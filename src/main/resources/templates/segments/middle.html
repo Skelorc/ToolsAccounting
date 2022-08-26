@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+<br>
+<a th:href="@{/tools}">Оборудование</a>
+<br>
+<a th:href="@{/clients}">Клиенты</a>
+<br>
+<a th:href="@{/main}">Главная</a>
+<br>
+<a href="javascript: document.logoutForm.submit()" role="menuitem">Выйти</a>
+<form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+    <input hidden type="submit" value="Sign Out"/>
+</form>
+</body>
+</html>

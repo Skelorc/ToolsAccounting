@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Оборудование</title>
+</head>
+<body>
+<div th:insert="segments/middle.html"></div>
+<br>
+Страница оборудования
+<form th:action="@{/tools/create}" th:object="${tools}" method="post">
+
+    <div th:insert="segments/footer.html"></div>
+</form>
+</body>
+</html>
