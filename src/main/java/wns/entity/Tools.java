@@ -10,6 +10,7 @@ import wns.constants.TypeTools;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -82,4 +83,49 @@ public class Tools{
     @CollectionTable(name = "photos_tools", joinColumns = @JoinColumn(name = "tools_id"))
     private Set<String> photos = new HashSet<>();
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tools tools = (Tools) o;
+        return id == tools.id && amount == tools.amount && costPrice == tools.costPrice && priceByDay == tools.priceByDay && incomeFromTools == tools.incomeFromTools && priceSell == tools.priceSell && incomeSales == tools.incomeSales && incomeInvestorProcents == tools.incomeInvestorProcents && incomeInvestor == tools.incomeInvestor && repairAmount == tools.repairAmount && numberWorkingShifts == tools.numberWorkingShifts && priceSublease == tools.priceSublease && paymentSublease == tools.paymentSublease && incomeAdditional == tools.incomeAdditional && typeTools == tools.typeTools && Objects.equals(name, tools.name) && Objects.equals(nameEstimate, tools.nameEstimate) && Objects.equals(barcode, tools.barcode) && category == tools.category && Objects.equals(model, tools.model) && Objects.equals(serialNumber, tools.serialNumber) && Objects.equals(characteristics, tools.characteristics) && Objects.equals(set, tools.set) && Objects.equals(state, tools.state) && status == tools.status && Objects.equals(project, tools.project) && Objects.equals(comment, tools.comment);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, typeTools, name, nameEstimate, barcode, category, model, serialNumber, characteristics, set, amount, state, status, project, comment, costPrice, priceByDay, incomeFromTools, priceSell, incomeSales, incomeInvestorProcents, incomeInvestor, repairAmount, numberWorkingShifts, priceSublease, paymentSublease, incomeAdditional);
+    }
+
+    @Override
+    public String toString() {
+        return "Tools{" +
+                "id=" + id +
+                ", typeTools=" + typeTools +
+                ", name='" + name + '\'' +
+                ", nameEstimate='" + nameEstimate + '\'' +
+                ", barcode='" + barcode + '\'' +
+                ", category=" + category +
+                ", model='" + model + '\'' +
+                ", serialNumber='" + serialNumber + '\'' +
+                ", characteristics='" + characteristics + '\'' +
+                ", set='" + set + '\'' +
+                ", amount=" + amount +
+                ", state='" + state + '\'' +
+                ", status=" + status +
+                ", project=" + project +
+                ", comment='" + comment + '\'' +
+                ", costPrice=" + costPrice +
+                ", priceByDay=" + priceByDay +
+                ", incomeFromTools=" + incomeFromTools +
+                ", priceSell=" + priceSell +
+                ", incomeSales=" + incomeSales +
+                ", incomeInvestorProcents=" + incomeInvestorProcents +
+                ", incomeInvestor=" + incomeInvestor +
+                ", repairAmount=" + repairAmount +
+                ", numberWorkingShifts=" + numberWorkingShifts +
+                ", priceSublease=" + priceSublease +
+                ", paymentSublease=" + paymentSublease +
+                ", incomeAdditional=" + incomeAdditional +
+                '}';
+    }
 }

@@ -6,14 +6,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("index")
-public class MainController {
+@RequestMapping("calendar")
+public class CalendarController {
 
     @GetMapping
-    public ModelAndView main()
+    public ModelAndView show()
     {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("index");
+        modelAndView.setViewName("calendar");
         return modelAndView;
     }
 }

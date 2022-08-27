@@ -15,4 +15,9 @@ public enum ClassificationProject {
     public String toString() {
         return this.name();
     }
+
+    public String getValue()
+    {
+        return this.value;
+    }
 }

@@ -1,19 +1,14 @@
 package wns.entity;
 
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import wns.constants.Roles;
 import wns.constants.TypeClients;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "clients")
@@ -145,5 +140,28 @@ public class Client {
         client.photos = photos;
         client.rented = rented;
         return client;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Client client = (Client) o;
+        return id == client.id && typeClient == client.typeClient && Objects.equals(fullName, client.fullName) && Objects.equals(legalName, client.legalName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, typeClient, fullName, legalName);
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", typeClient=" + typeClient +
+                ", fullName='" + fullName + '\'' +
+                ", legalName='" + legalName + '\'' +
+                '}';
     }
 }

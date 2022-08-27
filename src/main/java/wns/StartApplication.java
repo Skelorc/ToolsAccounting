@@ -24,6 +24,7 @@ public class StartApplication implements ApplicationRunner {
 	@Override
 	public void run(ApplicationArguments args) {
 		User admin = usersRepo.findByUsername("skelorc");
+		User andrew = usersRepo.findByUsername("andrew");
 		if(admin == null) {
 			admin = new User();
 			admin.setFullName("Petrov Ivan");
@@ -31,6 +32,15 @@ public class StartApplication implements ApplicationRunner {
 			admin.setPassword(passwordEncoder.encode("123"));
 			admin.getRoles().addAll(Collections.singleton(Roles.ADMIN));
 			usersRepo.save(admin);
+		}
+		if (andrew == null)
+		{
+			andrew = new User();
+			andrew.setFullName("andrew");
+			andrew.setUsername("andrew");
+			andrew.setPassword(passwordEncoder.encode("123"));
+			andrew.getRoles().addAll(Collections.singleton(Roles.ADMIN));
+			usersRepo.save(andrew);
 		}
 	}
 }

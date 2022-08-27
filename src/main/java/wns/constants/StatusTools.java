@@ -16,6 +16,16 @@ public enum StatusTools {
         this.color = color;
         this.value = value;
     }
+
+    public String getColor()
+    {
+        return this.color;
+    }
+
+    public String getValue()
+    {
+        return this.value;
+    }
     @Override
     public String toString() {
         return this.name();

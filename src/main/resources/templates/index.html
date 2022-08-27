@@ -1,637 +1,379 @@
 <!DOCTYPE html>
-    <html lang="ru">
-        <head>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+<head th:insert="segments/head.html">
 
-            <meta charset="utf-8">
-            <link rel="apple-touch-icon" sizes="57x57" href="https://lk.rentinhand.ru/img/icons/apple-icon-57x57.png">
-            <link rel="apple-touch-icon" sizes="60x60" href="https://lk.rentinhand.ru/img/icons/apple-icon-60x60.png">
-            <link rel="apple-touch-icon" sizes="72x72" href="https://lk.rentinhand.ru/img/icons/apple-icon-72x72.png">
-            <link rel="apple-touch-icon" sizes="76x76" href="https://lk.rentinhand.ru/img/icons/apple-icon-76x76.png">
-            <link rel="apple-touch-icon" sizes="114x114" href="https://lk.rentinhand.ru/img/icons/apple-icon-114x114.png">
-            <link rel="apple-touch-icon" sizes="120x120" href="https://lk.rentinhand.ru/img/icons/apple-icon-120x120.png">
-            <link rel="apple-touch-icon" sizes="144x144" href="https://lk.rentinhand.ru/img/icons/apple-icon-144x144.png">
-            <link rel="apple-touch-icon" sizes="152x152" href="https://lk.rentinhand.ru/img/icons/apple-icon-152x152.png">
-            <link rel="apple-touch-icon" sizes="180x180" href="https://lk.rentinhand.ru/img/icons/apple-icon-180x180.png">
-            <link rel="icon" type="image/png" sizes="192x192"
-                href="https://lk.rentinhand.ru/img/icons/android-icon-192x192.png">
-            <link rel="icon" type="image/png" sizes="32x32" href="https://lk.rentinhand.ru/img/icons/favicon-32x32.png">
-            <link rel="icon" type="image/png" sizes="96x96" href="https://lk.rentinhand.ru/img/icons/favicon-96x96.png">
-            <link rel="icon" type="image/png" sizes="16x16" href="https://lk.rentinhand.ru/img/icons/favicon-16x16.png">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="author" content="Кокщдум Andrey">
-            <meta name="description" content="MAD DOG
-                                                                    - это не просто программа для проката
-                                                                    - это одна система, управляющая вашим арендным бизнесом.
-                                                                    любое устройство, в любое время и в любом месте.">
-            <meta name="keywords" content="аренда, прокат, бронирование, MAD DOG, доска объявлений, витрина вещей">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <meta property="og:title" content="MAD DOG - сервис для учета и автоматизации проката">
-            <meta property="og:image" content="assets/img/icons/badge.jpg">
-            <meta property="og:image:type" content="image/jpeg">
-            <meta property="og:image:width" content="1024">
-            <meta property="og:image:height" content="1024">
-            <meta property="og:description"
-                content="Сервис автоматизирует учет выдаваемых товаров по клиентам, ведет историю платежей и взаиморасчетов, формируя все необходимые отчеты для руководителя">
-            <meta name="csrf-token" content="GZBtzNUdNLPZsoSVxcMg7xEb6l1rCUTTioCnmsqe">
-            <link rel="image_src" href="assets/img/icons/badge.jpg">
-            <meta name="theme-color" content="#179d82">
-            <link rel="manifest" href="assets/json/manifest.json">
-            <title>MAD DOG | Профиль</title>
-            <link rel="preload" href="./assets/css/app.css?id=e93b8771bc49054b9f7d" as="style">
-            <link rel="preload" href="./assets/js/app.js?id=fb90f6ab0a4555c52162" as="script">
-            <link rel="stylesheet" href="./assets/css/app.css">
-            <link rel="stylesheet" href="./assets/css/media.css">
-            <link rel="stylesheet" href="./assets/css/checkout.css">
-            <link rel="stylesheet" href="./assets/css/main.css">
-            <link rel="stylesheet" href="./assets/fonts/webfonts/fa-solid-900.ttf">
-            <script src="./fonts/fontawesome/webfonts/all.js"></script>
-            <script src="./assets/js/main.js"></script>
-            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-                integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-        
-        </head>
+    <title>Выдача</title>
+</head>
     <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic">
         <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
             <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
                 <section
-                class="ps-container navbar-default navbar-static-side rih-navbar ps rih-navbar--display-none-mobile"
-                role="navigation">
-                <div class="sidebar-collapse">
-                    <ul id="side-menu" class="nav metismenu">
-                        <li class="nav-header text-left">
-                            <a href="#" class="main-link">
-                                <img src="assets/img/logo/mad-dog-logo.png">
-                                <h4>MAD DOG</h4>
-                            </a>
-                        </li>
-                        <li data-id="36" data-parent_id="2" class="">
-                            <a href="/dashboard.html" class="" data-link="LkDashboardApp"><b><i
-                                        class="fa fa-chart-area"></i></b>
-                                <span class="nav-label">Общие сведения</span>
-                            </a>
-                        </li>
-                        <li data-id="170812" data-parent_id="2" class="">
-                            <a href="/ru/expense/" class="" data-link="ExpenseApp"><b><i class="fa fa-coins"></i></b>
-                                <span class="nav-label">Справочники</span>
-                            </a>
-                        </li>
-                        <li data-id="15" data-parent_id="2" class="">
-                            <a href="/ru/h/client/" class="" data-link="HumanClientApp"><b><i
-                                        class="fa fa-users"></i></b>
-                                <span class="nav-label">Выдача</span>
-                            </a>
-                        </li>
-                        <li data-id="4" data-parent_id="2" class="">
-                            <a href="#"><b><i class="fa fa-user-tie"></i></b>
-                                <span class="nav-label">Приемка</span>
-                                <span class="fa arrow"></span>
-                            </a>
-                            <ul class="nav nav-second-level">
-
-
-                            </ul>
-                        </li>
-                        <li data-id="310828" data-parent_id="2" class="">
-                            <a href="/ru/kit/" class="" data-link="KitApp"><b><i class="fa fa-boxes"></i></b>
-                                <span class="nav-label">Календарь</span>
-                            </a>
-                        </li>
-                        <li data-id="8" data-parent_id="2" class="">
-                            <a href="/ru/inventory/" class="" data-link="InventoryApp"><b><i
-                                        class="fa fa-cubes"></i></b>
-                                <span class="nav-label">Оборудование</span>
-                            </a>
-                        </li>
-                        <li data-id="170807" data-parent_id="2" class="">
-                            <a href="/ru/rent/booking" class="" data-link="RentBookingApp"><b><i
-                                        class="fa fa-calendar-alt"></i></b>
-                                <span class="nav-label">Клиенты</span>
-                            </a>
-                        </li>
-                        <li data-id="22" data-parent_id="2" class="">
-                            <a href="/ru/rent/" class="" data-link="RentApp"><b><i class="fa fa-book"></i></b>
-                                <span class="nav-label">Ремонт</span>
-                            </a>
-                        </li>
-                        <li data-id="9" data-parent_id="2" class="">
-                            <a href="#"><b><i class="fa fa-shopping-cart"></i></b>
-                                <span class="nav-label">Списание</span>
-                                <span class="fa arrow"></span>
-                            </a>
-                            <ul class="nav nav-second-level">
-
-
-                            </ul>
-                        </li>
-                        <li data-id="12" data-parent_id="2" class="">
-                            <a href="#"><b><i class="fa fa-wrench"></i></b>
-                                <span class="nav-label">Продажа</span>
-                                <span class="fa arrow"></span>
-                            </a>
-                            <ul class="nav nav-second-level">
-
-
-                            </ul>
-                        </li>
-                        <li data-id="5" data-parent_id="2" class="">
-                            <a href="/ru/my/settings/base/" class="" data-link="LkSettingsBaseApp"><b><i
-                                        class="fa fa-cogs"></i></b>
-                                <span class="nav-label">Отчеты</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="ps__rail-x" style="left: 0px; top: 0px;">
-                    <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
-                </div>
-                <div class="ps__rail-y" style="top: 0px; left: 0px;">
-                    <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
-                </div>
-            </section>
+                        class="ps-container navbar-default navbar-static-side rih-navbar ps rih-navbar--display-none-mobile"
+                        role="navigation">
+                    <div th:insert="segments/middle.html"></div>
+                    <div class="ps__rail-x" style="left: 0px; top: 0px;">
+                        <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                    </div>
+                    <div class="ps__rail-y" style="top: 0px; left: 0px;">
+                        <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
+                    </div>
+                </section>
                 <div class="b-overlay-wrap position-relative w-100" size="sm">
                     <div id="page-wrapper" class="bg-grayF3 dashbard-1">
-                        <nav data-v-59295fda="" role="navigation" class="navbar navbar-admin navbar-fixed-top">
-                            <div data-v-59295fda="" class="navbar-header">
-                                <a data-v-59295fda="" class="navbar-minimalize minimalize-styl-2">
-                                    <i data-v-59295fda="" class="fa fa-bars"></i>
-                                </a>
-                            </div>
-                            <ul data-v-59295fda="" class="nav navbar-top-links navbar-right" style="flex-basis: 0px;">
-                                <div data-v-59295fda="" class="dropdown b-dropdown m-0 createButton__wrapper btn-group" id="__BVID__36"><!---->
-                                    <button aria-haspopup="true" aria-expanded="false" type="button" class="btn dropdown-toggle btn-secondary btn-xl text-decoration-none dropdown-toggle-no-caret" id="__BVID__36__BV_toggle_">
-                                        <div id="createButton">
-                                            <span>Создать</span>
-                                            <i class="fas fa-plus"></i>
-                                        </div>
-                                    </button>
-                                    <ul role="menu" tabindex="-1" class="dropdown-menu dropdown-menu-right" aria-labelledby="__BVID__36__BV_toggle_">
-                                        <div class="createButton__cross"></div>
-                                        <li role="presentation">
-                                            <a href="/ru/rent/add" class="dropdown-item" role="menuitem" target="_self">
-                                                <p class="createButton__item"><span class="createButton__circle"></span>Создать аренду</p>
-                                            </a>
-                                        </li>
-                                        <li role="presentation">
-                                            <a href="/ru/repair/add" class="dropdown-item" role="menuitem" target="_self">
-                                                <p class="createButton__item"><span class="createButton__circle"></span>Создать заявку</p>
-                                            </a>
-                                        </li>
-                                        <li role="presentation">
-                                            <a href="/ru/stock/add" class="dropdown-item" role="menuitem" target="_self">
-                                                <p class="createButton__item"><span class="createButton__circle"></span>Оформить продажу</p>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <li data-v-59295fda="" id="profile" class="active">
-                                    <a data-v-59295fda="" href="/ru/my/profile" aria-current="page" class="count-info router-link-exact-active router-link-active"><i data-v-59295fda="" class="fas fa-user f-20"></i></a>
-                                </li><!---->
-                                <div data-v-59295fda="" id="help" class="dropdown b-dropdown m-0 help-button btn-group"><!---->
-                                    <button id="help__BV_toggle_" aria-haspopup="true" aria-expanded="false" type="button" class="btn dropdown-toggle btn-secondary text-decoration-none dropdown-toggle-no-caret">
-                                        <a id="help" class="help-button__manual manual"><i class="fas fa-life-ring f-20 help-button__i"></i></a><!---->
-                                    </button>
-                                    <ul role="menu" tabindex="-1" aria-labelledby="help__BV_toggle_" class="dropdown-menu dropdown-menu-right">
-                                        <div class="help-button__cross"></div>
-                                        <li role="presentation">
-                                            <a role="menuitem" href="#" target="_self" class="dropdown-item">
-                                                <p class="help-button__item"><span class="help-button__circle"></span>Справочник</p>
-                                            </a>
-                                        </li>
-                                        <li role="presentation">
-                                            <a role="menuitem" href="#" target="_self" class="dropdown-item">
-                                                <p class="help-button__item"><span class="help-button__circle"></span>Тех. поддержка</p>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div data-v-59295fda="" id="notification" class="dropdown b-dropdown m-0 notify-button btn-group"><!---->
-                                    <button id="notification__BV_toggle_" aria-haspopup="true" aria-expanded="false" type="button" class="btn dropdown-toggle btn-secondary text-decoration-none dropdown-toggle-no-caret">
-                                        <a id="notification" class="notify-button__btn"><i class="fas fa-bell f-20 notify-button__i"></i></a> <!---->
-                                    </button>
-                                    <ul role="menu" tabindex="-1" aria-labelledby="notification__BV_toggle_" class="dropdown-menu dropdown-menu-right">
-                                        <button class="notify-button__cross"></button>
-                                        <button class="notify-button__clear">Очистить</button>
-                                        <div class="notify-button__list notify-button__list--centered">
-                                            <p class="notify-button__none">words.notifications_empty</p>
-                                        </div>
-                                    </ul>
-                                </div>
-                                <li data-v-59295fda="" id="logout">
-                                    <a data-v-59295fda="" class="count-info"><i data-v-59295fda="" class="fa fa-sign-out-alt f-20"></i></a>
-                                </li><!---->
-                            </ul><!----> <!----> <!---->
-                        </nav>
+                        <div th:insert="segments/logout.html"></div>
                         <main class="wrapper wrapper-content border-bottom">
-                            <div>
-                                <div class="widget-list">
-                                    <div class="mb-4 text-right">
-                                        <a href="profile/edit" class="btn btn-primary btn-rounded">Редактировать профиль</a>
-                                    </div>
-                                    <div class="row lk-profile mb-4">
-                                        <div class="col-xl-4">
-                                            <div data-v-326b9f40="" class="lk-profile__personal">
-                                                <div data-v-326b9f40="" class="lk-profile__personal__photo text-center">
-                                                    <span data-v-326b9f40="" class="b-avatar badge-light rounded" style="width: 8rem; height: 8rem;">
-                                                        <span class="b-avatar-text" style="font-size: calc(3.2rem);">
-                                                            <span>ШФ</span>
-                                                        </span><!---->
-                                                    </span>
-                                                </div>
-                                                <div data-v-326b9f40="" class="lk-profile__personal__info">
-                                                    <h2 data-v-326b9f40="">Шевченко Филипп</h2>
-                                                    <div data-v-326b9f40="" class="lk-profile__personal__contact">
-                                                        <div data-v-326b9f40="" class="contact-item"><b data-v-326b9f40="" title="Login" class="mr-1"><i data-v-326b9f40="" class="fas fa-portrait"></i></b>
-                                                            <span data-v-326b9f40="">u675c</span>
-                                                        </div> <br data-v-326b9f40="">
-                                                        <div data-v-326b9f40="" class="contact-item"><b data-v-326b9f40="" title="Company Name" class="mr-1"><i data-v-326b9f40="" class="fas fa-building"></i></b>
-                                                            <span data-v-326b9f40="">Не указан</span>
-                                                        </div><br data-v-326b9f40="">
-                                                        <div data-v-326b9f40="" class="contact-item"><b data-v-326b9f40="" title="Address" class="mr-1"><i data-v-326b9f40="" class="fas fa-map-marker-alt"></i></b>
-                                                            <span data-v-326b9f40=""></span>
-                                                        </div><br data-v-326b9f40="">
-                                                        <div data-v-326b9f40="" class="contact-item"><b data-v-326b9f40="" title="Phone" class="mr-1"><i data-v-326b9f40="" class="fa fa-phone"></i></b> <!---->
-                                                            <span data-v-326b9f40="">+79060956620<!----></span>
-                                                        </div><br data-v-326b9f40="">
-                                                        <div data-v-326b9f40="" class="contact-item"><!----> <b data-v-326b9f40="" title="Email" class="mr-1"><i data-v-326b9f40="" class="fa fa-envelope"></i></b>
-                                                            <span data-v-326b9f40="">snakeemporio@mail.ru<i data-v-326b9f40="" title="Подтвержден" class="fas fa-check-circle fg-green ml-2"></i></span>
-                                                        </div><br data-v-326b9f40="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-8">
-                                            <div data-v-4db6aa98="" data-v-71d1c0f7="" class="ibox mb-4">
-                                                <div data-v-4db6aa98="" class="ibox-title">
-                                                    <h5 data-v-4db6aa98="" class="w-100">Текущая смена</h5>
-                                                    <div data-v-4db6aa98="" class="ibox-tools"> <!---->
-                                                    </div>
-                                                    <div data-v-71d1c0f7="" data-v-4db6aa98="" class="lk-profile__shift__time mt-2">
-                                                        <div data-v-71d1c0f7="" data-v-4db6aa98="" class="row">
-                                                            <div data-v-71d1c0f7="" data-v-4db6aa98="" class="col-lg-4">
-                                                                <label data-v-71d1c0f7="" data-v-4db6aa98="">Начало смены</label>
-                                                                <h2 data-v-71d1c0f7="" data-v-4db6aa98="">12:05 22.08.22</h2>
-                                                            </div>
-                                                            <div data-v-71d1c0f7="" data-v-4db6aa98="" class="col-lg-4">
-                                                                <label data-v-71d1c0f7="" data-v-4db6aa98="">Длительность смены</label>
-                                                                <h2 data-v-71d1c0f7="" data-v-4db6aa98="">06:10:06 </h2>
-                                                            </div>
-                                                            <div data-v-71d1c0f7="" data-v-4db6aa98="" class="col-lg-4">
-                                                                <a data-v-71d1c0f7="" href="/ru/h/shift/" class="mt-4 btn btn-primary" data-v-4db6aa98="">Все смены</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div data-v-4db6aa98="" class="ibox-content">
-                                                    <div data-v-3d5eff5f="" data-v-71d1c0f7="" class="lk-profile__shift__analytics__body"><!---->
-                                                        <div data-v-3d5eff5f="" class="row">
-                                                            <div data-v-3d5eff5f="" class="col-md-6 col-lg-3">
-                                                                <div data-v-3d5eff5f="" class="shift-widget">
-                                                                    <label data-v-3d5eff5f="">Кол-во клиентов</label>
-                                                                    <h4 data-v-3d5eff5f="">0<span data-v-3d5eff5f="" class="fg-lightGray">(+0<i data-v-3d5eff5f="" title="Новых клиентов" class="fa fa-question-circle"></i>)</span></h4>
-                                                                </div>
-                                                            </div>
-                                                            <div data-v-3d5eff5f="" class="col-md-6 col-lg-3">
-                                                                <div data-v-3d5eff5f="" class="shift-widget">
-                                                                    <label data-v-3d5eff5f="">Кол-во аренд</label>
-                                                                    <h4 data-v-3d5eff5f=""> 0</h4>
-                                                                </div>
-                                                            </div>
-                                                            <div data-v-3d5eff5f="" class="col-md-6 col-lg-3">
-                                                                <div data-v-3d5eff5f="" class="shift-widget">
-                                                                    <label data-v-3d5eff5f="">Кол-во продаж</label>
-                                                                    <h4 data-v-3d5eff5f="">0</h4>
-                                                                </div>
-                                                            </div>
-                                                            <div data-v-3d5eff5f="" class="col-md-6 col-lg-3">
-                                                                <div data-v-3d5eff5f="" class="shift-widget">
-                                                                    <label data-v-3d5eff5f="">Кол-во заявок</label>
-                                                                    <h4 data-v-3d5eff5f="">0</h4>
-                                                                </div>
-                                                            </div>
-                                                            <div data-v-3d5eff5f="" class="col-md-6 col-lg-3">
-                                                                <div data-v-3d5eff5f="" class="shift-widget">Выручка с аренд</label>
-                                                                    <h4 data-v-3d5eff5f="">0</h4>
-                                                                </div>
-                                                            </div>
-                                                            <div data-v-3d5eff5f="" class="col-md-6 col-lg-3">
-                                                                <div data-v-3d5eff5f="" class="shift-widget">
-                                                                    <label data-v-3d5eff5f="">Выручка с продаж</label><h4 data-v-3d5eff5f="">0</h4>
-                                                                </div>
-                                                            </div>
-                                                            <div data-v-3d5eff5f="" class="col-md-6 col-lg-3">
-                                                                <div data-v-3d5eff5f="" class="shift-widget">
-                                                                    <label data-v-3d5eff5f="">Выручка с мастерской</label>
-                                                                    <h4 data-v-3d5eff5f="">0</h4>
-                                                                </div>
-                                                            </div>
-                                                            <div data-v-3d5eff5f="" class="col-md-6 col-lg-3">
-                                                                <div data-v-3d5eff5f="" class="shift-widget">
-                                                                    <label data-v-3d5eff5f="">Сумма расходов</label>
-                                                                    <h4 data-v-3d5eff5f="">0</h4>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div data-v-4db6aa98="" class="ibox mb-4">
-                                                <div data-v-4db6aa98="" class="ibox-title">
-                                                    <h5 data-v-4db6aa98="" class="w-100">Тестовый период (14 дней)</h5>
-                                                    <div data-v-4db6aa98="" class="ibox-tools"> <!----></div>
-                                                </div>
-                                                <div data-v-4db6aa98="" class="ibox-content">
-                                                    <ul class="stat-list">
-                                                        <li><b>Остаток дней</b>
-                                                            <div class="stat-percent">13</div>
-                                                            <div title="Доступно" class="progress progress-mini">
-                                                                <div class="progress-bar bg-green bg-red"></div>
-                                                            </div>
-                                                        </li>
-                                                        <li><b>Инвентарь</b>
-                                                            <div class="stat-percent">0 /<span>100</span></div>
-                                                            <div title="Доступно" class="progress progress-mini">
-                                                                <div class="progress-bar bg-red" style="width: 0%;"></div>
-                                                            </div>
-                                                        </li>
-                                                        <li><b>Клиенты</b>
-                                                            <div class="stat-percent">0 /<span>100</span></div>
-                                                            <div title="Доступно" class="progress progress-mini">
-                                                                <div class="progress-bar bg-primary bg-red" style="width: 0%;"></div>
-                                                            </div>
-                                                        </li>
-                                                        <li><b>Сотрудники</b>
-                                                            <div class="stat-percent"> 0 /<span>1</span></div>
-                                                            <div title="Доступно" class="progress progress-mini">
-                                                                <div class="progress-bar bg-primary bg-red" style="width: 0%;"></div>
-                                                            </div>
-                                                        </li>
-                                                        <li><b>Пункты проката</b>
-                                                            <div class="stat-percent">1 /<span>1</span>
-                                                            </div>
-                                                            <div title="Доступно" class="progress progress-mini">
-                                                                <div class="progress-bar bg-primary bg-primary" style="width: 100%;"></div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-8">
-                                            <div class="tabs tab-content tab-content__limit-height mb-4" id="__BVID__81" style="border-radius: 0px 0px 20px 20px;"><!---->
-                                                <div class="card-header">
-                                                    <ul role="tablist" class="nav nav-pills card-header-pills" id="__BVID__81__BV_tab_controls_"><!---->
-                                                        <li role="presentation" class="nav-item">
-                                                            <a role="tab" aria-selected="true" aria-setsize="1" aria-posinset="1" href="#" target="_self" class="nav-link active" id="__BVID__82___BV_tab_button__" aria-controls="__BVID__82">История платежей</a>
-                                                        </li><!---->
-                                                    </ul>
-                                                </div>
-                                                <div class="tab-content" id="__BVID__81__BV_tab_container_">
-                                                    <div role="tabpanel" aria-hidden="false" class="tab-pane bg-white active card-body" id="__BVID__82" aria-labelledby="__BVID__82___BV_tab_button__">
-                                                        <div data-v-1da1c963="" class="panel-body" adminhumanid="67943">
-                                                            <div data-v-1da1c963="" class="b-overlay-wrap position-relative">
-                                                                <table data-v-1da1c963="" class="table table-hover">
-                                                                    <thead data-v-1da1c963="">
-                                                                        <tr data-v-1da1c963="" class="bg-white">
-                                                                            <th data-v-1da1c963="">Тариф</th>
-                                                                            <th data-v-1da1c963="">Период</th>
-                                                                            <th data-v-1da1c963="">Дата оплаты</th>
-                                                                            <th data-v-1da1c963="">Стоимость</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody data-v-1da1c963=""></tbody>
-                                                                </table> <!----><!---->
-                                                            </div>
-                                                        </div>
-                                                    </div><!---->
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="ibox ibox-content bg-white">
-                                                <section data-v-0cd40c39="" class="tariff-extend mb-2">
-                                                    <header data-v-0cd40c39="" class="tariff-extend__header">
-                                                        <h3 data-v-0cd40c39="">Подписка</h3>
-                                                        <div data-v-0cd40c39="" class="tariff-extend__tariff-info">
-                                                            <span data-v-0cd40c39="" class="tariff-extend__my d-inline-block mb-3"><b data-v-0cd40c39="">Ваш тариф Тестовый период</b>до05.09.2022</span> <!---->
-                                                        </div>
-                                                    </header>
-                                                    <div data-v-0cd40c39="" class="tariff-extend__main">
-                                                        <div data-v-0cd40c39="" class="tariff-extend__head">
-                                                            <h2 data-v-0cd40c39="">Купить тариф</h2> 
-                                                            <div data-v-0cd40c39="" class="tariff-extend__row">
-                                                                <div data-v-0cd40c39="" class="tariff-extend__interface">
-                                                                    <fieldset data-v-0cd40c39="" class="form-group mt-4 w-100" id="__BVID__938">
-                                                                        <legend tabindex="-1" class="bv-no-focus-ring col-form-label pt-0" id="__BVID__938__BV_label_">Выберите срок</legend>
-                                                                        <div>
-                                                                            <div data-v-5b7c3dea="" data-v-0cd40c39="" class="g-tabs g-tabs--lg">
-                                                                                <div data-v-5b7c3dea="" class="g-tabs__item">Месяц</div>
-                                                                                <div data-v-5b7c3dea="" class="g-tabs__item">Полгода</div>
-                                                                                <div data-v-5b7c3dea="" class="g-tabs__item g-tabs__item--active">Год</div>
-                                                                            </div><!----><!----><!---->
-                                                                        </div>
-                                                                    </fieldset> 
-                                                                    <fieldset data-v-0cd40c39="" class="form-group mt-2 w-100" id="__BVID__940">
-                                                                        <legend tabindex="-1" class="bv-no-focus-ring col-form-label pt-0" id="__BVID__940__BV_label_">Введите промокод</legend><div><div data-v-1915f99c="" data-v-0cd40c39="" role="group" class="input-group button-input"><!----><input data-v-1915f99c="" type="text" placeholder="Промокод" class="button-input__input form-control" id="__BVID__942"> <div data-v-1915f99c="" class="input-group-append"><button data-v-1915f99c="" type="button" class="g-btn g-btn__primary g-btn__rounded g-btn__md">Активировать</button>
-                                                                        </div><!---->
-                                                                    </div> 
-                                                                    <div data-v-0cd40c39="" class="invalid-feedback">Промокода не существует</div> 
-                                                                    <div data-v-0cd40c39="" class="valid-feedback"><p data-v-0cd40c39="">
-                                                                        Промокод применен.
-                                                                        Скидка
-                                                                        %
-                                                                        до
-                                                                        
-                                                                    </p> <p data-v-0cd40c39="" class="tariff-extend__promo-hint">
-                                                                        *Промокод сгорит после перехода к оплате
-                                                                    </p></div><!----><!----><!----></div></fieldset></div> <div data-v-0cd40c39="" class="tariff-extend__info"><p data-v-0cd40c39="" class="tariff-extend__hint">
-                                                                *После оплаты мы привяжем карту к вашему акккаунту и будем продлевать подписку автоматически. Вы всегда сможете это отключить
-                                                            </p></div></div></div> <div data-v-0cd40c39="" class="tariff-extend__tariffs mt-4"><div data-v-3df3560b="" data-v-0cd40c39="" class="tariff-card tariff-extend__tariff"><h4 data-v-3df3560b="" class="tariff-card__heading mb-5">Старт</h4> <span data-v-3df3560b="" class="tariff-card__plan mb-4"><p data-v-3df3560b="" class="tariff-card__info"><b data-v-3df3560b="">1</b>
-                                                    пункт проката
-                                                </p> <p data-v-3df3560b="" class="tariff-card__info"><b data-v-3df3560b="">5</b>
-                                                    сотрудников
-                                                </p> <p data-v-3df3560b="" class="tariff-card__info"><b data-v-3df3560b="">1000</b>
-                                                    позиций инвентаря
-                                                </p> <p data-v-3df3560b="" class="tariff-card__info"><b data-v-3df3560b="">1000</b>
-                                                    клиентов
-                                                </p> <!----> <!----></span> <!----> <h4 data-v-622d8a07="" data-v-3df3560b="" class="cost tariff-card__price mb-4 mt-auto"><span data-v-622d8a07="" class="cost-value" style="color: var(--palette-text-primary);">
-                                                10200
-                                            </span> <i data-v-622d8a07="" class="cost-currency fa fa-currency fa-ruble-sign" style="color: var(--palette-text-primary);"></i> </h4> <button data-v-3df3560b="" type="button" class="tariff-card__btn g-btn g-btn__primary g-btn__rounded g-btn__null">
-                                                    Купить
-                                                </button></div><div data-v-3df3560b="" data-v-0cd40c39="" class="tariff-card tariff-extend__tariff"><h4 data-v-3df3560b="" class="tariff-card__heading mb-5">Бизнес</h4> <span data-v-3df3560b="" class="tariff-card__plan mb-4"><p data-v-3df3560b="" class="tariff-card__info"><b data-v-3df3560b="">3</b>
-                                                    пункта проката
-                                                </p> <p data-v-3df3560b="" class="tariff-card__info"><b data-v-3df3560b="">30</b>
-                                                    сотрудников
-                                                </p> <p data-v-3df3560b="" class="tariff-card__info"><b data-v-3df3560b="">1000</b>
-                                                    позиций инвентаря
-                                                </p> <p data-v-3df3560b="" class="tariff-card__info"><b data-v-3df3560b="">10000</b>
-                                                    клиентов
-                                                </p> <!----> <!----></span> <!----> <h4 data-v-622d8a07="" data-v-3df3560b="" class="cost tariff-card__price mb-4 mt-auto"><span data-v-622d8a07="" class="cost-value" style="color: var(--palette-text-primary);">
-                                                24000
-                                            </span> <i data-v-622d8a07="" class="cost-currency fa fa-currency fa-ruble-sign" style="color: var(--palette-text-primary);"></i> </h4> <button data-v-3df3560b="" type="button" class="tariff-card__btn g-btn g-btn__primary g-btn__rounded g-btn__null">
-                                                    Купить
-                                                </button></div><div data-v-3df3560b="" data-v-0cd40c39="" class="tariff-card tariff-extend__tariff"><h4 data-v-3df3560b="" class="tariff-card__heading mb-5">Профи</h4> <span data-v-3df3560b="" class="tariff-card__plan mb-4"><p data-v-3df3560b="" class="tariff-card__info"><b data-v-3df3560b="">∞</b>
-                                                    пунктов проката
-                                                </p> <p data-v-3df3560b="" class="tariff-card__info"><b data-v-3df3560b="">∞</b>
-                                                    сотрудников
-                                                </p> <p data-v-3df3560b="" class="tariff-card__info"><b data-v-3df3560b="">∞</b>
-                                                    позиций инвентаря
-                                                </p> <p data-v-3df3560b="" class="tariff-card__info"><b data-v-3df3560b="">∞</b>
-                                                    клиентов
-                                                </p> <p data-v-3df3560b="" class="tariff-card__module">
-                                                    +
-                                                    <br data-v-3df3560b="">
-                                                    модуль
-                                                    "Мастерская"
-                                                </p> <p data-v-3df3560b="" class="tariff-card__module">
-                                                    +
-                                                    <br data-v-3df3560b="">
-                                                    модуль
-                                                    "Магазин"
-                                                </p></span> <!----> <h4 data-v-622d8a07="" data-v-3df3560b="" class="cost tariff-card__price mb-4 mt-auto"><span data-v-622d8a07="" class="cost-value" style="color: var(--palette-text-primary);">
-                                                42000
-                                            </span> <i data-v-622d8a07="" class="cost-currency fa fa-currency fa-ruble-sign" style="color: var(--palette-text-primary);"></i> </h4> <button data-v-3df3560b="" type="button" class="tariff-card__btn g-btn g-btn__primary g-btn__rounded g-btn__null">
-                                                    Купить
-                                                </button></div></div></div>
-                                                    
-                                                        <div data-v-0cd40c39="" class="tariff-extend__head">
-                                                            <h2 data-v-0cd40c39="">Купить тариф</h2>
-                                                            <div data-v-0cd40c39="" class="tariff-extend__row">
-                                                                <div data-v-0cd40c39="" class="tariff-extend__interface">
-                                                                    <fieldset data-v-0cd40c39="" class="form-group mt-4 w-100" id="__BVID__88">
-                                                                        <legend tabindex="-1" class="bv-no-focus-ring col-form-label pt-0" id="__BVID__88__BV_label_">Выберите срок</legend>
-                                                                        <div>
-                                                                            <div data-v-5b7c3dea="" data-v-0cd40c39="" class="g-tabs g-tabs--lg">
-                                                                                <div data-v-5b7c3dea="" class="g-tabs__item">Месяц</div>
-                                                                                <div data-v-5b7c3dea="" class="g-tabs__item">Полгода</div>
-                                                                                <div data-v-5b7c3dea="" class="g-tabs__item g-tabs__item--active">Год</div>
-                                                                            </div><!----><!----><!---->
-                                                                        </div>
-                                                                    </fieldset>
-                                                                    <fieldset data-v-0cd40c39="" class="form-group mt-2 w-100" id="__BVID__90">
-                                                                        <legend tabindex="-1" class="bv-no-focus-ring col-form-label pt-0" id="__BVID__90__BV_label_">Введите промокод</legend>
-                                                                        <div>
-                                                                            <div data-v-1915f99c="" data-v-0cd40c39="" role="group" class="input-group button-input"><!---->
-                                                                                <input data-v-1915f99c="" type="text" placeholder="Промокод" class="button-input__input form-control" id="__BVID__92">
-                                                                                <div data-v-1915f99c="" class="input-group-append">
-                                                                                    <button data-v-1915f99c="" type="button" class="g-btn g-btn__primary g-btn__rounded g-btn__md">Активироdfnm</button>
-                                                                                </div><!---->
-                                                                            </div>
-                                                                            <div data-v-0cd40c39="" class="invalid-feedback">Промокода не существует</div>
-                                                                            <div data-v-0cd40c39="" class="valid-feedback">
-                                                                                <p data-v-0cd40c39="">Промокод применен. Скидка % до</p>
-                                                                                <p data-v-0cd40c39="" class="tariff-extend__promo-hint">*Промокод сгорит после перехода к оплатa</p>
-                                                                            </div><!----><!----><!---->
-                                                                        </div>
-                                                                    </fieldset>
-                                                                </div>
-                                                                <div data-v-0cd40c39="" class="tariff-extend__info">
-                                                                    <p data-v-0cd40c39="" class="tariff-extend__hint"> *После оплаты мы привяжем карту к вашему акккаунту и будем продлевать подписку автоматически. Вы всегда сможете это отключить</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div data-v-0cd40c39="" class="tariff-extend__tariffs mt-4">
-                                                            <div data-v-3df3560b="" data-v-0cd40c39="" class="tariff-card tariff-extend__tariff">
-                                                                <h4 data-v-3df3560b="" class="tariff-card__heading mb-5">Старт</h4>
-                                                                    <span data-v-3df3560b="" class="tariff-card__plan mb-4">
-                                                                        <p data-v-3df3560b="" class="tariff-card__info"><b data-v-3df3560b="">1</b>пункт прокатa</p>
-                                                                        <p data-v-3df3560b="" class="tariff-card__info"><b data-v-3df3560b="">5</b>сотрудников</p>
-                                                                        <p data-v-3df3560b="" class="tariff-card__info"><b data-v-3df3560b="">1000</b>позиций инвентаря</p>
-                                                                        <p data-v-3df3560b="" class="tariff-card__info"><b data-v-3df3560b="">1000</b>клиентов</p> <!----> <!---->
-                                                                    </span> <!---->
-                                                                    <h4 data-v-622d8a07="" data-v-3df3560b="" class="cost tariff-card__price mb-4 mt-auto">
-                                                                        <span data-v-622d8a07="" class="cost-value" style="color: var(--palette-text-primary);">10200</span>
-                                                                        <i data-v-622d8a07="" class="cost-currency fa fa-currency fa-ruble-sign" style="color: var(--palette-text-primary);"></i>
-                                                                    </h4>
-                                                                    <button data-v-3df3560b="" type="button" class="tariff-card__btn g-btn g-btn__primary g-btn__rounded g-btn__null">Купить</button>
-                                                                </div>
-                                                                <div data-v-3df3560b="" data-v-0cd40c39="" class="tariff-card tariff-extend__tariff">
-                                                                    <h4 data-v-3df3560b="" class="tariff-card__heading mb-5">Бизнес</h4>
-                                                                        <span data-v-3df3560b="" class="tariff-card__plan mb-4">
-                                                                            <p data-v-3df3560b="" class="tariff-card__info"><b data-v-3df3560b="">3</b>пункта проката</p>
-                                                                            <p data-v-3df3560b="" class="tariff-card__info"><b data-v-3df3560b="">30</b>сотрудников</p>
-                                                                            <p data-v-3df3560b="" class="tariff-card__info"><b data-v-3df3560b="">1000</b>позиций инвентаря</p>
-                                                                            <p data-v-3df3560b="" class="tariff-card__info"><b data-v-3df3560b="">10000</b>клиентов</p> <!----> <!---->
-                                                                        </span> <!---->
-                                                                    <h4 data-v-622d8a07="" data-v-3df3560b="" class="cost tariff-card__price mb-4 mt-auto">
-                                                                        <span data-v-622d8a07="" class="cost-value" style="color: var(--palette-text-primary);">24000</span> <i data-v-622d8a07="" class="cost-currency fa fa-currency fa-ruble-sign" style="color: var(--palette-text-primary);"></i>
-                                                                    </h4>
-                                                                    <button data-v-3df3560b="" type="button" class="tariff-card__btn g-btn g-btn__primary g-btn__rounded g-btn__null">Купить</button>
-                                                                </div>
-                                                                <div data-v-3df3560b="" data-v-0cd40c39="" class="tariff-card tariff-extend__tariff">
-                                                                    <h4 data-v-3df3560b="" class="tariff-card__heading mb-5">Профи</h4>
-                                                                    <span data-v-3df3560b="" class="tariff-card__plan mb-4">
-                                                                        <p data-v-3df3560b="" class="tariff-card__info"><b data-v-3df3560b="">∞</b>пунктов проката</p><p data-v-3df3560b="" class="tariff-card__info"><b data-v-3df3560b="">∞</b>сотрудников</p>
-                                                                        <p data-v-3df3560b="" class="tariff-card__info"><b data-v-3df3560b="">∞</b>позиций инвентаря</p> 
-                                                                        <p data-v-3df3560b="" class="tariff-card__info"><b data-v-3df3560b="">∞</b>клиентов</p>\
-                                                                        <p data-v-3df3560b="" class="tariff-card__module">+<br data-v-3df3560b="">модуль "Мастерская"</p>
-                                                                        <p data-v-3df3560b="" class="tariff-card__module">+<br data-v-3df3560b="">модуль "Магазин"</p>
-                                                                    </span> <!---->
-                                                                    <h4 data-v-622d8a07="" data-v-3df3560b="" class="cost tariff-card__price mb-4 mt-auto">
-                                                                        <span data-v-622d8a07="" class="cost-value" style="color: var(--palette-text-primary);">42000</span><i data-v-622d8a07="" class="cost-currency fa fa-currency fa-ruble-sign" style="color: var(--palette-text-primary);"></i>
-                                                                    </h4>
-                                                                    <button data-v-3df3560b="" type="button" class="tariff-card__btn g-btn g-btn__primary g-btn__rounded g-btn__null">Купить</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <p data-v-0cd40c39="" class="mt-4 tariff-extend__hint">*Вы можете изменить свой тариф, неизрасходованные дни будут перерасчитаны автоматически. При понижении тарифного плана, оплаченный период текущей подписки не пересчитывается.</p>
-                                                    </section>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> <!----> <!---->
+                            <div data-v-e551daac="">
+                                <div class="wrapper__btn-primary">
+                                    <div data-v-e551daac="" class="mb-3 text-right">
+                                        <a data-v-e551daac="" href="/projects/create" th:href="@{/projects/create}" class="btn btn-primary btn-add_vidacha green">Создать</a>
+                                    </div> 
+                                    <div data-v-e551daac="" class="mb-3 text-right">
+                                        <a data-v-e551daac="" href="#" class="btn btn-primary btn-open_vidacha  grey">Открыть</a>
+                                    </div> 
+                                    <div data-v-e551daac="" class="mb-3 text-right">
+                                        <a data-v-e551daac="" href="#" class="btn btn-primary btn-delate_vidacha red">Удалить</a>
+                                    </div> 
+                                    <div data-v-e551daac="" class="mb-3 text-right">
+                                        <a data-v-e551daac="" href="#" class="btn btn-primary btn-update_vidacha  orange">Обновить</a>
+                                    </div> 
                                 </div>
-                            </main>
-                            <div class="footer">
-                                <div class="row">
-                                    <small class="col-6 pr-0"><b>Mad dog © 2022</b></small>
-                                    <small class="col-6 text-right pl-0">
-                                        <a href="/info/tariff/5125">естовый период</a>до<b></b>
-                                    </small>
+                                <div data-v-e551daac="">
+                                    <div data-v-e551daac="" class="b-overlay-wrap position-relative custom-ll">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="custom-ll__header">
+                                                    <div class="custom-ll__header__mobile">
+                                                        <div class="header__row"><!----> 
+                                                            <div class="header__size">
+                                                                <select class="custom-select" id="__BVID__66">
+                                                                    <option value="20">20</option>
+                                                                    <option value="50">50</option>
+                                                                    <option value="100">100</option>
+                                                                    <option value="500">500</option>
+                                                                    <option value="1000">1000</option>
+                                                                </select>
+                                                            </div> 
+                                                            <div class="header__search">
+                                                                <input type="search" placeholder="Поиск" class="form-control"> 
+                                                                <span class="header__search__btn"><i class="fa fa-search"></i></span>
+                                                            </div> <!---->
+                                                        </div> 
+                                                        <div class="header__row">
+                                                            <div class="header__info">
+                                                                <span>Всего:<b>0</b></span>
+                                                            </div> 
+                                                            <div class="header__filter"><!----> 
+                                                                <button type="button" class="btn btn-default collapsed" aria-expanded="false" aria-controls="filterbar" style="overflow-anchor: none;"><i class="fas fa-filter"></i></button> <!---->
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                    <div class="custom-ll__header__full show">
+                                                        <div class="custom-ll__header__full__left"><!----> 
+                                                            <div class="header__size">
+                                                                <select class="custom-select" id="__BVID__67">
+                                                                    <option value="20">20</option>
+                                                                    <option value="50">50</option>
+                                                                    <option value="100">100</option>
+                                                                    <option value="500">500</option>
+                                                                    <option value="1000">1000</option>
+                                                                </select>
+                                                            </div> 
+                                                            <div class="header__info">
+                                                                <span class="py-2 px-1 my-1">Всего:<b>0</b></span>
+                                                            </div> <!----> <!---->
+                                                        </div> 
+                                                        <div class="custom-ll__header__full__right">
+                                                            <div class="header__search">
+                                                                <input type="search" placeholder="Поиск" class="form-control"> 
+                                                                <span class="header__search__btn"><i class="fa fa-search"></i>
+                                                                </span>
+                                                            </div> 
+                                                            <div class="header__filter" style="margin-left: auto;">
+                                                                <button type="button" class="btn btn-default custom-ll__filter-button collapsed" aria-expanded="false" aria-controls="filterbar" style="overflow-anchor: none;"><i class="fas fa-filter"></i></button>
+                                                            </div> <!---->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                            <div class="custom-ll__filters col-lg-12">
+                                                <div class="row">
+                                                    <div class="col-md-4 col-lg-3">
+                                                        <h4 data-v-e551daac="" class="my-2 py-1">Вид расходов</h4> 
+                                                        <div data-v-e551daac="" dir="auto" class="v-select w-100 d-block vs--multiple vs--searchable"> 
+                                                            <div id="vs1__combobox" role="combobox" aria-expanded="false" aria-owns="vs1__listbox" aria-label="Search for option" class="vs__dropdown-toggle">
+                                                                <div class="vs__selected-options"> 
+                                                                    <input placeholder="Выберите вид" aria-autocomplete="list" aria-labelledby="vs1__combobox" aria-controls="vs1__listbox" type="search" autocomplete="off" class="vs__search">
+                                                                </div> 
+                                                                <div class="vs__actions">
+                                                                    <button type="button" title="Clear Selected" aria-label="Clear Selected" class="vs__clear" style="display: none;">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10">
+                                                                            <path d="M6.895455 5l2.842897-2.842898c.348864-.348863.348864-.914488 0-1.263636L9.106534.261648c-.348864-.348864-.914489-.348864-1.263636 0L5 3.104545 2.157102.261648c-.348863-.348864-.914488-.348864-1.263636 0L.261648.893466c-.348864.348864-.348864.914489 0 1.263636L3.104545 5 .261648 7.842898c-.348864.348863-.348864.914488 0 1.263636l.631818.631818c.348864.348864.914773.348864 1.263636 0L5 6.895455l2.842898 2.842897c.348863.348864.914772.348864 1.263636 0l.631818-.631818c.348864-.348864.348864-.914489 0-1.263636L6.895455 5z"></path>
+                                                                        </svg>
+                                                                    </button> 
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="10" role="presentation" class="vs__open-indicator">
+                                                                        <path d="M9.211364 7.59931l4.48338-4.867229c.407008-.441854.407008-1.158247 0-1.60046l-.73712-.80023c-.407008-.441854-1.066904-.441854-1.474243 0L7 5.198617 2.51662.33139c-.407008-.441853-1.066904-.441853-1.474243 0l-.737121.80023c-.407008.441854-.407008 1.158248 0 1.600461l4.48338 4.867228L7 10l2.211364-2.40069z"></path>
+                                                                    </svg> 
+                                                                    <div class="vs__spinner" style="display: none;">Loading...</div>
+                                                                </div>
+                                                            </div> 
+                                                            <ul id="vs1__listbox" role="listbox" style="display: none; visibility: hidden;"></ul> 
+                                                        </div>
+                                                    </div> 
+                                                    <div class="col-md-4 col-lg-3">
+                                                        <h4 data-v-e551daac="" class="my-2 py-1">Выберите период</h4>
+                                                        <div data-v-1ebd09d2="" data-v-e551daac="" class="vue-daterange-picker w-100">
+                                                            <div data-v-1ebd09d2="" class="form-control reportrange-text">
+                                                                <span data-v-e551daac="" data-v-1ebd09d2="" class="picker__placeholder">Выберите период</span> 
+                                                                <i data-v-e551daac="" data-v-1ebd09d2="" class="fas fa-calendar picker__icon"></i>
+                                                            </div><!---->
+                                                        </div>
+                                                    </div> 
+                                                    <div class="col-md-4 col-lg-3">
+                                                        <h4 data-v-e551daac="" class="my-2 py-1">Пункт проката</h4> 
+                                                        <div data-v-e551daac="" dir="auto" class="v-select w-100 mb-3 d-block vs--multiple vs--searchable"> 
+                                                            <div id="vs2__combobox" role="combobox" aria-expanded="false" aria-owns="vs2__listbox" aria-label="Search for option" class="vs__dropdown-toggle">
+                                                                <div class="vs__selected-options"> 
+                                                                    <input placeholder="Выберите пункт проката" aria-autocomplete="list" aria-labelledby="vs2__combobox" aria-controls="vs2__listbox" type="search" autocomplete="off" class="vs__search">
+                                                                </div> 
+                                                                <div class="vs__actions">
+                                                                    <button type="button" title="Clear Selected" aria-label="Clear Selected" class="vs__clear" style="display: none;">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10">
+                                                                            <path d="M6.895455 5l2.842897-2.842898c.348864-.348863.348864-.914488 0-1.263636L9.106534.261648c-.348864-.348864-.914489-.348864-1.263636 0L5 3.104545 2.157102.261648c-.348863-.348864-.914488-.348864-1.263636 0L.261648.893466c-.348864.348864-.348864.914489 0 1.263636L3.104545 5 .261648 7.842898c-.348864.348863-.348864.914488 0 1.263636l.631818.631818c.348864.348864.914773.348864 1.263636 0L5 6.895455l2.842898 2.842897c.348863.348864.914772.348864 1.263636 0l.631818-.631818c.348864-.348864.348864-.914489 0-1.263636L6.895455 5z"></path>
+                                                                        </svg>
+                                                                    </button> 
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="10" role="presentation" class="vs__open-indicator">
+                                                                            <path d="M9.211364 7.59931l4.48338-4.867229c.407008-.441854.407008-1.158247 0-1.60046l-.73712-.80023c-.407008-.441854-1.066904-.441854-1.474243 0L7 5.198617 2.51662.33139c-.407008-.441853-1.066904-.441853-1.474243 0l-.737121.80023c-.407008.441854-.407008 1.158248 0 1.600461l4.48338 4.867228L7 10l2.211364-2.40069z"></path>
+                                                                        </svg> 
+                                                                    <div class="vs__spinner" style="display: none;">Loading...</div>
+                                                                </div>
+                                                            </div> 
+                                                            <ul id="vs2__listbox" role="listbox" style="display: none; visibility: hidden;"></ul> 
+                                                        </div>
+                                                    </div> 
+                                                    <div class="col-md-4 col-lg-3">
+                                                        <h4 data-v-e551daac="" class="my-2 py-1">Инвентарь</h4> 
+                                                        <div data-v-e551daac="" dir="auto" class="v-select w-100 mb-3 d-block vs--multiple vs--searchable"> 
+                                                            <div id="vs3__combobox" role="combobox" aria-expanded="false" aria-owns="vs3__listbox" aria-label="Search for option" class="vs__dropdown-toggle">
+                                                                <div class="vs__selected-options"> 
+                                                                    <input placeholder="Выберите инвентарь" aria-autocomplete="list" aria-labelledby="vs3__combobox" aria-controls="vs3__listbox" type="search" autocomplete="off" class="vs__search"></div> 
+                                                                    <div class="vs__actions">
+                                                                        <button type="button" title="Clear Selected" aria-label="Clear Selected" class="vs__clear" style="display: none;">
+                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10">
+                                                                                <path d="M6.895455 5l2.842897-2.842898c.348864-.348863.348864-.914488 0-1.263636L9.106534.261648c-.348864-.348864-.914489-.348864-1.263636 0L5 3.104545 2.157102.261648c-.348863-.348864-.914488-.348864-1.263636 0L.261648.893466c-.348864.348864-.348864.914489 0 1.263636L3.104545 5 .261648 7.842898c-.348864.348863-.348864.914488 0 1.263636l.631818.631818c.348864.348864.914773.348864 1.263636 0L5 6.895455l2.842898 2.842897c.348863.348864.914772.348864 1.263636 0l.631818-.631818c.348864-.348864.348864-.914489 0-1.263636L6.895455 5z"></path>
+                                                                            </svg>
+                                                                        </button> 
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="10" role="presentation" class="vs__open-indicator">
+                                                                            <path d="M9.211364 7.59931l4.48338-4.867229c.407008-.441854.407008-1.158247 0-1.60046l-.73712-.80023c-.407008-.441854-1.066904-.441854-1.474243 0L7 5.198617 2.51662.33139c-.407008-.441853-1.066904-.441853-1.474243 0l-.737121.80023c-.407008.441854-.407008 1.158248 0 1.600461l4.48338 4.867228L7 10l2.211364-2.40069z"></path>
+                                                                        </svg> 
+                                                                        <div class="vs__spinner" style="display: none;">Loading...</div>
+                                                                    </div>
+                                                                </div> 
+                                                                <ul id="vs3__listbox" role="listbox" style="display: none; visibility: hidden;"></ul> 
+                                                            </div>
+                                                        </div> 
+                                                        <div class="col-md-4 col-lg-3"></div> 
+                                                        <div class="col-md-4 col-lg-3"></div> 
+                                                        <div class="col-md-4 col-lg-3"></div> 
+                                                        <div class="col-md-4 col-lg-3"></div>
+                                                    </div>
+                                                </div> 
+                                                <div class="col-lg-12 order-lg-1">
+                                                    <div class="wrapper__btn-under_table">
+                                                        <div data-v-e551daac="" class="mb-3 text-right">
+                                                            <a data-v-e551daac="" href="#" class="btn btn-primary btn-add_vidacha grey">Все</a>
+                                                        </div> 
+                                                        <div data-v-e551daac="" class="mb-3 text-right">
+                                                            <a data-v-e551daac="" href="#" class="btn btn-primary btn-open_vidacha  grey">Разовые</a>
+                                                        </div> 
+                                                        <div data-v-e551daac="" class="mb-3 text-right">
+                                                            <a data-v-e551daac="" href="#" class="btn btn-primary btn-delate_vidacha grey">Длинный</a>
+                                                        </div> 
+                                                        <div data-v-e551daac="" class="mb-3 text-right">
+                                                            <a data-v-e551daac="" href="#" class="btn btn-primary btn-update_vidacha  grey">Субаренда</a>
+                                                        </div> 
+                                                        <div data-v-e551daac="" class="mb-3 text-right">
+                                                            <a data-v-e551daac="" href="#" class="btn btn-primary btn-update_vidacha  grey">Тест</a>
+                                                        </div> 
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 order-lg-1 overflow-auto">
+                                                    <div class="custom-ll__table table-responsive">
+                                                        <table class="table w-100 in4dr-form">
+                                                            <tr>
+                                                                <th>№</th>
+                                                                <th>Проект</th>
+                                                                <th>Клиент</th>
+                                                                <th>Телефон</th>
+                                                                <th>Начало аренды</th>
+                                                                <th>Окончание аренды</th>
+                                                                <th>Дата и время создания</th>
+                                                                <th>Сотрудник</th>
+                                                                <th>Примечание</th>
+                                                                <th>Тип</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="column-table">1</td>
+                                                                <td>Павилион</td>
+                                                                <td>Имя фамилия</td>
+                                                                <td>8 (999) 999-99-99</td>
+                                                                <td>03.01.2022 15:00</td>
+                                                                <td>04.01.2022 20:00</td>
+                                                                <td>30.12.2021 20:07</td>
+                                                                <td>Имя Фамилия</td>
+                                                                <td>Вернёт другой механик</td>
+                                                                <td>Разовый</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>2</td>
+                                                                <td>Павилион</td>
+                                                                <td>Имя фамилия</td>
+                                                                <td>8 (999) 999-99-99</td>
+                                                                <td>03.01.2022 15:00</td>
+                                                                <td>04.01.2022 20:00</td>
+                                                                <td>30.12.2021 20:07</td>
+                                                                <td>Имя Фамилия</td>
+                                                                <td>Вернёт другой механик</td>
+                                                                <td>Разовый</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>3</td>
+                                                                <td>Павилион</td>
+                                                                <td>Имя фамилия</td>
+                                                                <td>8 (999) 999-99-99</td>
+                                                                <td>03.01.2022 15:00</td>
+                                                                <td>04.01.2022 20:00</td>
+                                                                <td>30.12.2021 20:07</td>
+                                                                <td>Имя Фамилия</td>
+                                                                <td>Вернёт другой механик</td>
+                                                                <td>Разовый</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>4</td>
+                                                                <td>Павилион</td>
+                                                                <td>Имя фамилия</td>
+                                                                <td>8 (999) 999-99-99</td>
+                                                                <td>03.01.2022 15:00</td>
+                                                                <td>04.01.2022 20:00</td>
+                                                                <td>30.12.2021 20:07</td>
+                                                                <td>Имя Фамилия</td>
+                                                                <td>Вернёт другой механик</td>
+                                                                <td>Разовый</td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 order-lg-1">
+                                                <!-- Bootstrap 4 -->
+                                                <nav aria-label="Навигация по страницам">
+                                                    <ul class="pagination">
+                                                    <li class="page-item disabled">
+                                                        <a class="page-link" href="#">
+                                                        Первая
+                                                        </a>
+                                                    </li>
+                                                    <li class="page-item disabled">
+                                                        <a class="page-link" href="#" aria-label="Предыдущая">
+                                                        <span aria-hidden="true">«</span>
+                                                        <span class="sr-only">Предыдущая</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="page-item active">
+                                                        <a class="page-link" href="#">1</a>
+                                                    </li>
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="#">2</a>
+                                                    </li>
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="#">3</a>
+                                                    </li>
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="#" aria-label="Следующая">
+                                                        <span aria-hidden="true">»</span>
+                                                        <span class="sr-only">Следующая</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="#">
+                                                        Последняя
+                                                        </a>
+                                                    </li>
+                                                    </ul>
+                                                </nav>
+                                            </div>
+                                            <div tabindex="-1" class="b-sidebar-outer" style="z-index: 2030;"><!---->
+                                                <div id="filterbar" tabindex="-1" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="filterbar___title__" class="b-sidebar shadow b-sidebar-right bg-light text-dark" style="display: none;">
+                                                    <header class="b-sidebar-header">
+                                                        <button type="button" aria-label="Close" class="close text-dark">
+                                                            <svg viewBox="0 0 16 16" width="1em" height="1em" focusable="false" role="img" aria-label="x" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi-x b-icon bi"><g>
+                                                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path></g>
+                                                            </svg>
+                                                        </button>
+                                                        <strong id="filterbar___title__">Фильтр</strong>
+                                                    </header>
+                                                    <div class="b-sidebar-body">
+                                                        <div class="custom-ll__filter p-3"><!----> <!----> 
+                                                            <h4 class="my-2 py-1">Поиск</h4> 
+                                                            <input type="text" placeholder="Начните вводить для поиска..." class="form-control btn fd1"> 
+                                                            <h4 data-v-e551daac="" class="my-2 py-1">Вид расходов</h4> 
+                                                            <div data-v-e551daac="" dir="auto" class="v-select w-100 mb-3 d-block vs--multiple vs--searchable"> 
+                                                                <div id="vs4__combobox" role="combobox" aria-expanded="false" aria-owns="vs4__listbox" aria-label="Search for option" class="vs__dropdown-toggle">
+                                                                    <div class="vs__selected-options"> 
+                                                                        <input placeholder="Выберите вид" aria-autocomplete="list" aria-labelledby="vs4__combobox" aria-controls="vs4__listbox" type="search" autocomplete="off" class="vs__search">
+                                                                    </div> 
+                                                                        <div class="vs__actions">
+                                                                            <button type="button" title="Clear Selected" aria-label="Clear Selected" class="vs__clear" style="display: none;">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10">
+                                                                                    <path d="M6.895455 5l2.842897-2.842898c.348864-.348863.348864-.914488 0-1.263636L9.106534.261648c-.348864-.348864-.914489-.348864-1.263636 0L5 3.104545 2.157102.261648c-.348863-.348864-.914488-.348864-1.263636 0L.261648.893466c-.348864.348864-.348864.914489 0 1.263636L3.104545 5 .261648 7.842898c-.348864.348863-.348864.914488 0 1.263636l.631818.631818c.348864.348864.914773.348864 1.263636 0L5 6.895455l2.842898 2.842897c.348863.348864.914772.348864 1.263636 0l.631818-.631818c.348864-.348864.348864-.914489 0-1.263636L6.895455 5z"></path>
+                                                                                </svg>
+                                                                            </button> 
+                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="10" role="presentation" class="vs__open-indicator">
+                                                                                <path d="M9.211364 7.59931l4.48338-4.867229c.407008-.441854.407008-1.158247 0-1.60046l-.73712-.80023c-.407008-.441854-1.066904-.441854-1.474243 0L7 5.198617 2.51662.33139c-.407008-.441853-1.066904-.441853-1.474243 0l-.737121.80023c-.407008.441854-.407008 1.158248 0 1.600461l4.48338 4.867228L7 10l2.211364-2.40069z"></path>
+                                                                            </svg> 
+                                                                            <div class="vs__spinner" style="display: none;">Loading...</div>
+                                                                        </div>
+                                                                    </div> 
+                                                                    <ul id="vs4__listbox" role="listbox" style="display: none; visibility: hidden;"></ul> 
+                                                                </div> 
+                                                                <h4 data-v-e551daac="" class="my-2 py-1">Выберите период</h4> 
+                                                                <div data-v-1ebd09d2="" data-v-e551daac="" class="vue-daterange-picker w-100">
+                                                                    <div data-v-1ebd09d2="" class="form-control reportrange-text">
+                                                                        <span data-v-e551daac="" data-v-1ebd09d2="" class="picker__placeholder">Выберите период</span> <i data-v-e551daac="" data-v-1ebd09d2="" class="fas fa-calendar picker__icon"></i></div><!---->
+                                                                    </div>
+                                                                    <h4 data-v-e551daac="" class="my-2 py-1">Пункт проката</h4>
+                                                                    <div data-v-e551daac="" dir="auto" class="v-select w-100 mb-3 d-block vs--multiple vs--searchable"> 
+                                                                        <div id="vs5__combobox" role="combobox" aria-expanded="false" aria-owns="vs5__listbox" aria-label="Search for option" class="vs__dropdown-toggle"><div class="vs__selected-options"> <input placeholder="Выберите пункт проката" aria-autocomplete="list" aria-labelledby="vs5__combobox" aria-controls="vs5__listbox" type="search" autocomplete="off" class="vs__search"></div> <div class="vs__actions"><button type="button" title="Clear Selected" aria-label="Clear Selected" class="vs__clear" style="display: none;"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"><path d="M6.895455 5l2.842897-2.842898c.348864-.348863.348864-.914488 0-1.263636L9.106534.261648c-.348864-.348864-.914489-.348864-1.263636 0L5 3.104545 2.157102.261648c-.348863-.348864-.914488-.348864-1.263636 0L.261648.893466c-.348864.348864-.348864.914489 0 1.263636L3.104545 5 .261648 7.842898c-.348864.348863-.348864.914488 0 1.263636l.631818.631818c.348864.348864.914773.348864 1.263636 0L5 6.895455l2.842898 2.842897c.348863.348864.914772.348864 1.263636 0l.631818-.631818c.348864-.348864.348864-.914489 0-1.263636L6.895455 5z"></path></svg></button> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="10" role="presentation" class="vs__open-indicator"><path d="M9.211364 7.59931l4.48338-4.867229c.407008-.441854.407008-1.158247 0-1.60046l-.73712-.80023c-.407008-.441854-1.066904-.441854-1.474243 0L7 5.198617 2.51662.33139c-.407008-.441853-1.066904-.441853-1.474243 0l-.737121.80023c-.407008.441854-.407008 1.158248 0 1.600461l4.48338 4.867228L7 10l2.211364-2.40069z"></path></svg> <div class="vs__spinner" style="display: none;">Loading...</div>
+                                                                    </div>
+                                                                </div> 
+                                                                <ul id="vs5__listbox" role="listbox" style="display: none; visibility: hidden;"></ul> 
+                                                            </div> 
+                                                            <h4 data-v-e551daac="" class="my-2 py-1">Инвентарь</h4> 
+                                                            <div data-v-e551daac="" dir="auto" class="v-select w-100 mb-3 d-block vs--multiple vs--searchable"> 
+                                                                <div id="vs6__combobox" role="combobox" aria-expanded="false" aria-owns="vs6__listbox" aria-label="Search for option" class="vs__dropdown-toggle"><div class="vs__selected-options"> <input placeholder="Выберите инвентарь" aria-autocomplete="list" aria-labelledby="vs6__combobox" aria-controls="vs6__listbox" type="search" autocomplete="off" class="vs__search"></div> <div class="vs__actions"><button type="button" title="Clear Selected" aria-label="Clear Selected" class="vs__clear" style="display: none;"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"><path d="M6.895455 5l2.842897-2.842898c.348864-.348863.348864-.914488 0-1.263636L9.106534.261648c-.348864-.348864-.914489-.348864-1.263636 0L5 3.104545 2.157102.261648c-.348863-.348864-.914488-.348864-1.263636 0L.261648.893466c-.348864.348864-.348864.914489 0 1.263636L3.104545 5 .261648 7.842898c-.348864.348863-.348864.914488 0 1.263636l.631818.631818c.348864.348864.914773.348864 1.263636 0L5 6.895455l2.842898 2.842897c.348863.348864.914772.348864 1.263636 0l.631818-.631818c.348864-.348864.348864-.914489 0-1.263636L6.895455 5z"></path></svg></button> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="10" role="presentation" class="vs__open-indicator"><path d="M9.211364 7.59931l4.48338-4.867229c.407008-.441854.407008-1.158247 0-1.60046l-.73712-.80023c-.407008-.441854-1.066904-.441854-1.474243 0L7 5.198617 2.51662.33139c-.407008-.441853-1.066904-.441853-1.474243 0l-.737121.80023c-.407008.441854-.407008 1.158248 0 1.600461l4.48338 4.867228L7 10l2.211364-2.40069z"></path></svg> <div class="vs__spinner" style="display: none;">Loading...</div>
+                                                            </div>
+                                                        </div> 
+                                                        <ul id="vs6__listbox" role="listbox" style="display: none; visibility: hidden;"></ul> 
+                                                    </div> 
+                                                    <button class="btn btn-primary w-100 mt-3">Поиск</button>
+                                                </div>
+                                            </div><!---->
+                                        </div><!---->
+                                        <div class="b-sidebar-backdrop bg-dark" style="display: none;"></div>
+                                    </div><!---->
                                 </div>
                             </div>
-                        </div><!---->
+                        </div>
+                        </main>
+                        <div th:insert="segments/footer.html"></div>
+                        <div class="footer">
+                            <div class="row">
+                                <small class="col-12 pr-0"><b><a href="#">Mad dog</a> © 2022</b>-<b>Все права защищены</b></small>
+                            </div>
+                        </div>
                     </div><!---->
-                </div>
-                <!--<div data-v-e2a69c3a="" class="notifications" style="right: 12px; top: 75px; width: 300px;">
-                    <div data-v-e2a69c3a=""></div>
-                </div>--><!---->
+                </div><!---->
             </div>
-
-
-    <!--<script>
-        window.config = "eyJBUFBfRU5WIjoicHJvZHVjdGlvbiIsIkFQUF9VUkwiOiJodHRwczpcL1wvbGsucmVudGluaGFuZC5ydSIsIkRPTUFJTl9MQU5ESU5HIjoicmVudGluaGFuZC5ydSIsIkRPTUFJTl9BUEkiOiJhcGkucmVudGluaGFuZC5ydSIsIkRPTUFJTl9NQVJLRVQiOiJtYXJrZXQucmVudGluaGFuZC5ydSIsIkRPTUFJTl9NRURJQSI6Im1lZGlhLnJlbnRpbmhhbmQucnUiLCJET01BSU5fTEsiOiJsay5yZW50aW5oYW5kLnJ1IiwiRE9NQUlOX0FETUlOIjoiYWRtaW4ucmVudGluaGFuZC5ydSIsIk1JWF9USU5ZX0FQSV9LRVkiOiJuaTlkczh5ZzlpY3N2aTNvb28xMGE1aDlqbTdhMnJ4M2VweXI0dzdsYmZjcmZ6c2ciLCJNSVhfR09PR0xFX1JFQ0FQVENIQSI6IjZMZFFkM2dVQUFBQUFDVjRSS192WjhER2hKeUdBQklqSEV2ZXJNZDMiLCJTRU5UUllfTEFSQVZFTF9MS19WVUVfRFNOIjoiaHR0cHM6XC9cLzJiNDY4MjUzYTE2YTQxM2NhOGRlNTk2NjYxNmViZGMxQHNlbnRyeS5yZW50aW5oYW5kLnJ1XC8xMCJ9";
-        window.locales = [
-            {
-                code: 'en',
-                name: 'language_en'
-            },
-            {
-                code: 'ru',
-                name: 'language_ru'
-            },
-            {
-                code: 'tr',
-                name: 'language_tr'
-            }
-        ];
-        window.defaultMessages = {
-        "ru.words": {"authorization":"\u0410\u0432\u0442\u043e\u0440\u0438\u0437\u0430\u0446\u0438\u044f","registration":"\u0420\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044f","authorization_description":"\u0410\u0432\u0442\u043e\u0440\u0438\u0437\u0443\u0439\u0442\u0435\u0441\u044c \u0432 \u0441\u0435\u0440\u0432\u0438\u0441\u0435 MAD DOG \u0438 \u0430\u0432\u0442\u043e\u043c\u0430\u0442\u0438\u0437\u0438\u0440\u0443\u0439\u0442\u0435 \u0432\u0430\u0448 \u043f\u0440\u043e\u043a\u0430\u0442\u043d\u044b\u0439 \u0431\u0438\u0437\u043d\u0435\u0441","registration_description":"\u0420\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u0443\u0439\u0442\u0435\u0441\u044c \u0432 \u0441\u0435\u0440\u0432\u0438\u0441\u0435 MAD DOG \u0438 \u043d\u0430\u0447\u043d\u0438\u0442\u0435 \u0430\u0432\u0442\u043e\u043c\u0430\u0442\u0438\u0437\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432\u0430\u0448 \u043f\u0440\u043e\u043a\u0430\u0442\u043d\u044b\u0439 \u0431\u0438\u0437\u043d\u0435\u0441"},
-        }
-        window.defaultLocale = "ru"
-    </script>-->
-    <script src="assets/js/app.js?id=fb90f6ab0a4555c52162" type="text/javascript"></script>
-    <!--<script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('assets/js/service-worker.js')
-                .then(function (registration) {
-                    console.log('Registered:', registration)
-                })
-                .catch(function (error) {
-                    console.log('Registration failed: ', error)
-                })
-        }
-    </script>-->
+        </div>
+        <script src="assets/js/app.js?id=fb90f6ab0a4555c52162" type="text/javascript"></script>
     </body>
 </html>

@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
-
 <body>
-
-<footer class="footer">
-   <h1>Footer</h1>
-</footer>
+    <div class="footer" th:fragment="footer">
+        <div class="row">
+            <smalll class="col-12 pr-0"><b><a href="#">Mad dog</a> © 2022</b>-<b>Все права защищены</b></smalll>
+        </div>
+        <script src="/templates/assets/js/main.js" th:src="@{/templates/assets/js/main.js}"></script>
+        <script src="/templates/assets/js/changeTypeClients.js" th:src="@{/templates/assets/js/changeTypeClients.js}"></script>
+        <script src="/templates/assets/js/app.js" type="text/javascript" th:src="@{/templates/assets/js/app.js}"></script>
+    </div>
 </body>
 </html>

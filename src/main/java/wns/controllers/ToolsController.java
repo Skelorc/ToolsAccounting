@@ -38,6 +38,15 @@ public class ToolsController {
         return modelAndView;
     }
 
+    @GetMapping
+    @RequestMapping("/create")
+    public ModelAndView create()
+    {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("toolsCreate");
+        return modelAndView;
+    }
+
     @PostMapping("/create")
     public String createTools(@ModelAttribute Tools tools, Model model)
     {

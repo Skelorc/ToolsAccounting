@@ -1,31 +1,26 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org/"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <div th:insert="segments/head.html"></div>
+        <title>Выдача</title>
+    </head>
+    <body>
+        <h1>Поля для заполнения</h1>
+        <div>
+            <span th:if="${param.loginError!=null}" th:text="'Вы ввели неправильный логин/пароль'">test</span>
+        </div>
+        <form th:action="@{/login}" method="POST">
+            <sec:csrfInput/>
+            <label for="username"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="username" required>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="_csrf" content="4bfd1575-3ad1-4d21-76yh-5ygfuyd9f86721"/>
-    <meta name="_csrf_header" content="X-CSRF-TOKEN"/>
-    <title>Авторизация</title>
-</head>
-<body>
-<h1>Поля для заполнения</h1>
-<div>
-    <span th:if="${param.loginError!=null}" th:text="'Вы ввели неправильный логин/пароль'">test</span>
-</div>
-<form th:action="@{/login}" method="POST">
-    <sec:csrfInput/>
-    <label for="username"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="username" required>
+            <label for="password"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required>
 
-    <label for="password"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" required>
+            <input name="submit" type="submit" value="submit">Login</input>
 
-    <input name="submit" type="submit" value="submit">Login</input>
-
-</form>
-</body>
+        </form>
+    </body>
 </html>
 
 

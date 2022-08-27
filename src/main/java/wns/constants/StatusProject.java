@@ -17,6 +17,16 @@ public enum StatusProject {
         this.status = status;
     }
 
+    public String getStatus()
+    {
+        return this.status;
+    }
+
+    public String getColor()
+    {
+        return this.color;
+    }
+
     @Override
     public String toString() {
         return this.name();

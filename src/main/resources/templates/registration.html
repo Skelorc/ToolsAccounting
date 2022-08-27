@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
-<div th:insert="segments/header.html"></div>
+<div th:insert="segments/head.html"></div>
 <head>
     <meta charset="UTF-8">
     <title>Регистрация</title>
@@ -13,6 +13,7 @@
         <div class="authorization-form__err" th:text="${message}"><span></span></div>
     </div>
 </div>
+<div th:insert="segments/logout.html"></div>
 <form th:action="@{/registration}" method="post" th:object="${user}">
     <br>
     <label><b>Укажите логин для нового пользователя</b></label>
@@ -28,10 +29,11 @@
     <input type="text" placeholder="Enter FullName" th:name="fullName" required>
     <br>
 
-    <p><select th:field ="*{roles}">
+    <p><select th:field="*{roles}">
         <option value="" disabled>Выберите роль</option>
         <option th:each="role : ${roles}" th:value="${role}" th:text="${role}"></option>
-    </select></p>
+    </select>
+    </p>
     <input name="submit" type="submit" value="submit">Зарегистрировать</input>
 </form>
 

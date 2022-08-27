@@ -42,4 +42,14 @@ public enum CategoryTools {
     public String toString() {
         return this.name();
     }
+
+    public String getCode()
+    {
+        return this.code;
+    }
+
+    public String getValue()
+    {
+        return this.value;
+    }
 }
