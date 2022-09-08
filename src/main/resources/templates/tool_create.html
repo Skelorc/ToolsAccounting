@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+
+<head>
+    <title>Добавить новое оборудование</title>
+    <div th:replace="fragments/head :: header"></div>
+</head>
+
+<body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
+<div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
+    <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
+        <div th:insert="fragments/menu_sidebar.html"></div>
+        <div class="b-overlay-wrap position-relative w-100" size="sm">
+            <div class="rih-page-wrapper">
+                <nav data-v-59295fda="" role="navigation" class="navbar navbar-admin navbar-fixed-top" th:insert="fragments/header_logout.html"></nav>
+                <main class="wrapper wrapper-content border-bottom">
+                    <div class="b-overlay-wrap position-relative">
+                        <div class="form-creat mb-3 col-12">
+                            <div class="btn-pimary__groups-wrapper vidacha-sozdach mb-3 vidacha-sozdach">
+                                <div class="mb-3 text-right">
+                                    <span class="btn-pimary__groups_title">Оборудование</span>
+                                </div>
+                                <div class="mb-3 text-right">
+                                    <a href="#" class="btn btn-primary light-blue">Назад</a>
+                                </div>
+                                <div class="mb-3 text-right">
+                                    <a href="#" class="btn btn-primary green">Сохранить</a>
+                                </div>
+                            </div>
+                            <div class="bg-white p-3 edit-container">
+                                <div class="row form-creat__half-wrapp">
+                                    <div class=" form-creat__half_two-column">
+                                        <div role="group" class="form-group">
+                                            <label class="d-block">Вид оборудования</label>
+                                            <span>
+                                                <input type="text" class="form-control" placeholder="Склад">
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-creat__half_two-column">
+                                        <div role="group" class="form-group">
+                                            <label class="d-block">Наименование</label>
+                                            <span>
+                                                <input type="text"
+                                                        class="form-control"
+                                                        placeholder="Введите наименование">
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class=" form-creat__half_two-column">
+                                        <div role="group" class="form-group">
+                                            <label class="d-block">Группа</label>
+                                            <span>
+                                                <span type="text" class=" form-control"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class=" form-creat__half_two-column">
+                                        <div role="group" class="form-group">
+                                            <label class="d-block">Штрих-код</label>
+                                            <span>
+                                                <input type="text" class="form-control" placeholder="Введите штрих-код">
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class=" form-creat__half_two-column">
+                                        <div role="group" class="form-group">
+                                            <label class="d-block">В смете</label>
+                                            <span>
+                                                <span type="text" class=" form-control"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class=" form-creat__half_two-column">
+                                        <div role="group" class="form-group">
+                                            <label class="d-block">Модель</label>
+                                            <span>
+                                                <input type="text" class="form-control" placeholder="Введите штрих-код">
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class=" form-creat__half_two-column">
+                                        <div role="group" class="form-group">
+                                            <label class="d-block">Серийный номер</label>
+                                            <span>
+                                                <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');" class="form-control" aria-describedby="item-human-passport_serial">
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row form-creat__half-wrapp">
+                                    <div class=" form-creat__half_two-column">
+                                        <div role="group" class="form-group">
+                                            <label class="d-block">Статус</label>
+                                            <span>
+                                                <span>
+                                                    <span type="text" class=" form-control"></span>
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class=" form-creat__half_two-column">
+                                        <div role="group" class="form-group">
+                                            <label class="d-block">Характеристики</label>
+                                            <span>
+                                                <input type="text" class="form-control" placeholder="Введите штрих-код">
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class=" form-creat__half_two-column">
+                                        <div role="group" class="form-group">
+                                            <label class="d-block">Состояние</label>
+                                            <span>
+                                                <input type="text" class="form-control" placeholder="Введите штрих-код">
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class=" form-creat__half_two-column">
+                                        <div role="group" class="form-group">
+                                            <label class="d-block">Комплект</label>
+                                            <span>
+                                                <input type="text" class="form-control" placeholder="Введите штрих-код">
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class=" form-creat__half_two-column">
+                                        <div role="group" class="form-group">
+                                            <label class="d-block">Коментарий</label>
+                                            <span>
+                                                <input type="text" class="form-control" placeholder="Введите штрих-код">
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class=" form-creat__half_two-column">
+                                        <div class="form-group">
+                                            <label class="d-block">Текущая дата и время</label>
+                                            <div class="vdpComponent vdpWithInput">
+                                                <input type="date" placeholder="дд.мм.гггг">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=" form-creat__half_two-column">
+                                        <div class="form-group">
+                                            <label class="d-block">Загрузите ваши фотографии на сервер</label>
+                                            <textarea required="" name="note" class="form-control" id="note_individual" style="height: 40px;"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-white p-3 edit-container">
+                                <div class="row form-creat__half-wrapp">
+                                    <div class=" form-creat__half_two-column">
+                                        <div role="group" class="form-group">
+                                            <label class="d-block">Цена субаренды за сутки</label>
+                                            <span>
+                                                <input type="text" class="form-control" placeholder="">
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-creat__half_two-column">
+                                        <div role="group" class="form-group">
+                                            <label class="d-block">Цена за сутки</label>
+                                            <span>
+                                                <input type="text"
+                                                        class="form-control"
+                                                        placeholder="Введите наименование">
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class=" form-creat__half_two-column">
+                                        <div role="group" class="form-group">
+                                            <label class="d-block">Доход с оборудования</label>
+                                            <span>
+                                                <span type="text" class=" form-control"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class=" form-creat__half_two-column">
+                                        <div role="group" class="form-group">
+                                            <label class="d-block">Доход с продажи</label>
+                                            <span>
+                                                <span type="text" class=" form-control"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class=" form-creat__half_two-column">
+                                        <div role="group" class="form-group">
+                                            <label class="d-block">Процент инвестора</label>
+                                            <span>
+                                                <input type="text" class="form-control" placeholder="">
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row form-creat__half-wrapp">
+                                    <div class=" form-creat__half_two-column">
+                                        <div role="group" class="form-group">
+                                            <label class="d-block">Себестоимость</label>
+                                            <span>
+                                                <span>
+                                                    <input type="text" class="form-control" placeholder="">
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class=" form-creat__half_two-column">
+                                        <div role="group" class="form-group">
+                                            <label class="d-block">Сумма списания</label>
+                                            <span>
+                                                <span type="text" class=" form-control"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class=" form-creat__half_two-column">
+                                        <div role="group" class="form-group">
+                                            <label class="d-block">Сумма ремонта</label>
+                                            <span>
+                                                <span type="text" class=" form-control"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class=" form-creat__half_two-column">
+                                        <div role="group" class="form-group">
+                                            <label class="d-block">Цена продажи</label>
+                                            <span>
+                                                <input type="text" class="form-control" placeholder="Введите штрих-код">
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class=" form-creat__half_two-column">
+                                        <div role="group" class="form-group">
+                                            <label class="d-block">Инвестиции</label>
+                                            <span>
+                                                <input type="text" class="form-control" placeholder="Введите штрих-код">
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="btn-pimary__groups mt-3 mb-3">
+                                <div class="btn-pimary__groups-wrapper vidacha-sozdach mb-3">
+                                    <div class="mb-3 text-right">
+                                        <span class="btn-pimary__groups_title">История</span>
+                                    </div>
+                                    <div class="mb-3 text-right">
+                                        <a href="#" class="btn btn-primary green">Обновить</a>
+                                    </div>
+                                    <div class="mb-3 text-right">
+                                        <a href="#" class="btn btn-primary grey">Экспорт</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table__info table__vidacha-sozdat_wrapp mb-3">
+                                <div class="table__vidacha-sozdat">
+                                    <table class="in4dr-form">
+                                        <tr>
+                                            <th>Проект</th>
+                                            <th>Клиент</th>
+                                            <th>Телефон</th>
+                                            <th>Начало аренды</th>
+                                            <th>Окончание аренды</th>
+                                            <th>Дата и время создания</th>
+                                            <th>Сотрудник</th>
+                                            <th>Примечание</th>
+                                            <th>Фотографии отгрузки</th>
+                                        </tr>
+                                        <tr>
+                                            <td class="column-table"></td>
+                                            <td>Будут данные</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 order-lg-1">
+                                <!-- Bootstrap 4 -->
+                                <nav aria-label="Навигация по страницам">
+                                    <ul class="pagination">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#">
+                                                Первая
+                                            </a>
+                                        </li>
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#" aria-label="Предыдущая">
+                                                <span aria-hidden="true">«</span>
+                                                <span class="sr-only">Предыдущая</span>
+                                            </a>
+                                        </li>
+                                        <li class="page-item active">
+                                            <a class="page-link" href="#">1</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">2</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">3</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#" aria-label="Следующая">
+                                                <span aria-hidden="true">»</span>
+                                                <span class="sr-only">Следующая</span>
+                                            </a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">
+                                                Последняя
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                </div>
+            </div>
+        <div th:insert="fragments/footer.html"></div>
+    </div>
+</div>
+</div>
+</div>
+<div th:insert="fragments/scripts.html"></div>
+</body>
+
+</html>

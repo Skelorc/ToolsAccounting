@@ -1,7 +1,7 @@
 package wns.services;
 
 import org.springframework.stereotype.Service;
-import wns.constants.Answers;
+import wns.constants.Messages;
 import wns.entity.Tools;
 import wns.repo.ToolsRepo;
 
@@ -25,9 +25,9 @@ public class ToolsService {
         if(byName == null)
         {
             toolsRepo.save(tools);
-            return Answers.TOOLS_CREATE.getValue();
+            return Messages.TOOLS_CREATE.getValue();
         }
         else
-            return Answers.TOOLS_EXISTS.getValue();
+            return Messages.TOOLS_EXISTS.getValue();
     }
 }

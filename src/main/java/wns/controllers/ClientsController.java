@@ -2,16 +2,18 @@ package wns.controllers;
 
 import lombok.AllArgsConstructor;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import wns.constants.Messages;
 import wns.constants.TypeClients;
+import wns.dto.ClientDTO;
 import wns.entity.Client;
 import wns.services.ClientsService;
+import wns.utils.ResponseHandler;
 
 import java.util.List;
 
@@ -22,11 +24,11 @@ public class ClientsController {
     private final ClientsService clientsService;
 
     @GetMapping
-    public ModelAndView show()
+    public ModelAndView show(@RequestParam(value = "filter", required=false) String filter)
     {
-        List<Client> all = clientsService.getAll();
+        List<ClientDTO> list_clients = clientsService.getListByFilter(filter);
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("clients",all);
+        modelAndView.addObject("clients",list_clients);
         modelAndView.setViewName("clients");
         return modelAndView;
     }
@@ -34,21 +36,42 @@ public class ClientsController {
     @GetMapping("/create")
     public ModelAndView creatingClient()
     {
-        List<Client> all = clientsService.getAll();
-        Client client = new Client();
+        ClientDTO client = new ClientDTO();
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("clients",all);
         modelAndView.addObject("client",client);
-        modelAndView.setViewName("clientCreate");
+        modelAndView.setViewName("client_create");
         return modelAndView;
     }
 
     @PostMapping("/create")
-    public String create(@ModelAttribute Client client, Model model)
+    public ResponseEntity<Object> create(@RequestBody ClientDTO dto)
     {
-        String answer = clientsService.saveClient(client);
-        model.addAttribute("answer",answer);
-        return "redirect:/clientCreate";
+        Messages message = clientsService.saveClient(dto);
+        return ResponseHandler.generateResponse(message);
     }
 
+
+    @GetMapping("/edit/{id}")
+    public ModelAndView showClientForUpdate(@PathVariable("id") long id)
+    {
+        ClientDTO dto = clientsService.findById(id);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("client",dto);
+        modelAndView.setViewName("client_create");
+        return modelAndView;
+    }
+
+    @PostMapping("/edit/{id}")
+    public ResponseEntity<Object> updateClient(@PathVariable("id") long id, @RequestBody ClientDTO dto)
+    {
+        Messages message = clientsService.updateClient(id,dto);
+        return ResponseHandler.generateResponse(message);
+    }
+
+    @PostMapping("/delete/{id}")
+    public String deleteClient(@PathVariable("id") long id)
+    {
+        clientsService.delete(id);
+        return "redirect:/clients";
+    }
 }

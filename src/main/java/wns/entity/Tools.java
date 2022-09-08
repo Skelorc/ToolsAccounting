@@ -40,7 +40,7 @@ public class Tools{
     @Column(columnDefinition = "TEXT")
     private String characteristics;
 
-    private String set;
+    private String equip;
     private int amount;
     private String state;
 
@@ -88,12 +88,12 @@ public class Tools{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Tools tools = (Tools) o;
-        return id == tools.id && amount == tools.amount && costPrice == tools.costPrice && priceByDay == tools.priceByDay && incomeFromTools == tools.incomeFromTools && priceSell == tools.priceSell && incomeSales == tools.incomeSales && incomeInvestorProcents == tools.incomeInvestorProcents && incomeInvestor == tools.incomeInvestor && repairAmount == tools.repairAmount && numberWorkingShifts == tools.numberWorkingShifts && priceSublease == tools.priceSublease && paymentSublease == tools.paymentSublease && incomeAdditional == tools.incomeAdditional && typeTools == tools.typeTools && Objects.equals(name, tools.name) && Objects.equals(nameEstimate, tools.nameEstimate) && Objects.equals(barcode, tools.barcode) && category == tools.category && Objects.equals(model, tools.model) && Objects.equals(serialNumber, tools.serialNumber) && Objects.equals(characteristics, tools.characteristics) && Objects.equals(set, tools.set) && Objects.equals(state, tools.state) && status == tools.status && Objects.equals(project, tools.project) && Objects.equals(comment, tools.comment);
+        return id == tools.id && amount == tools.amount && costPrice == tools.costPrice && priceByDay == tools.priceByDay && incomeFromTools == tools.incomeFromTools && priceSell == tools.priceSell && incomeSales == tools.incomeSales && incomeInvestorProcents == tools.incomeInvestorProcents && incomeInvestor == tools.incomeInvestor && repairAmount == tools.repairAmount && numberWorkingShifts == tools.numberWorkingShifts && priceSublease == tools.priceSublease && paymentSublease == tools.paymentSublease && incomeAdditional == tools.incomeAdditional && typeTools == tools.typeTools && Objects.equals(name, tools.name) && Objects.equals(nameEstimate, tools.nameEstimate) && Objects.equals(barcode, tools.barcode) && category == tools.category && Objects.equals(model, tools.model) && Objects.equals(serialNumber, tools.serialNumber) && Objects.equals(characteristics, tools.characteristics) && Objects.equals(equip, tools.equip) && Objects.equals(state, tools.state) && status == tools.status && Objects.equals(project, tools.project) && Objects.equals(comment, tools.comment);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, typeTools, name, nameEstimate, barcode, category, model, serialNumber, characteristics, set, amount, state, status, project, comment, costPrice, priceByDay, incomeFromTools, priceSell, incomeSales, incomeInvestorProcents, incomeInvestor, repairAmount, numberWorkingShifts, priceSublease, paymentSublease, incomeAdditional);
+        return Objects.hash(id, typeTools, name, nameEstimate, barcode, category, model, serialNumber, characteristics, equip, amount, state, status, project, comment, costPrice, priceByDay, incomeFromTools, priceSell, incomeSales, incomeInvestorProcents, incomeInvestor, repairAmount, numberWorkingShifts, priceSublease, paymentSublease, incomeAdditional);
     }
 
     @Override
@@ -108,7 +108,7 @@ public class Tools{
                 ", model='" + model + '\'' +
                 ", serialNumber='" + serialNumber + '\'' +
                 ", characteristics='" + characteristics + '\'' +
-                ", set='" + set + '\'' +
+                ", set='" + equip + '\'' +
                 ", amount=" + amount +
                 ", state='" + state + '\'' +
                 ", status=" + status +

@@ -43,7 +43,7 @@ public class ToolsController {
     public ModelAndView create()
     {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("toolsCreate");
+        modelAndView.setViewName("tool_create");
         return modelAndView;
     }
 

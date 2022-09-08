@@ -1,271 +1,247 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
 
-<header>
-    <div th:insert="segments/head.html">
-    </div>
-    <title>Создать Юр. Лицо</title>
-</header>
 
-<body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic">
+<head>
+    <title>Клиенты</title>
+    <div th:replace="fragments/head :: header"></div>
+</head>
+
+<body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
     <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
         <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
-            <section
-                class="ps-container navbar-default navbar-static-side rih-navbar ps rih-navbar--display-none-mobile"
-                role="navigation">
-                <div th:insert="segments/middle.html"></div>
-                <div class="ps__rail-x" style="left: 0px; top: 0px;">
-                    <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
-                </div>
-                <div class="ps__rail-y" style="top: 0px; left: 0px;">
-                    <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
-                </div>
-            </section>
+            <div th:insert="fragments/menu_sidebar.html"></div>
             <div class="b-overlay-wrap position-relative w-100" size="sm">
-                <div id="page-wrapper" class="bg-grayF3 dashbard-1">
-                <div th:insert="segments/logout.html"></div>
+                <div class="rih-page-wrapper">
+                <nav data-v-59295fda="" role="navigation" class="navbar navbar-admin navbar-fixed-top" th:insert="fragments/header_logout.html"></nav>
                     <main class="wrapper wrapper-content border-bottom">
                         <div data-v-e551daac="">
-                            <div class="btn-pimary__groups-wrapper">
+                            <div class="btn-pimary__groups-wrapper vidacha-sozdach mb-3">
                                 <div data-v-e551daac="" class="mb-3 text-right">
-                                    <a data-v-e551daac="" href="/clients/create" th:href="@{/clients/create}" class="btn btn-primary  btn-add_vidacha green">Создать</a>
-                                </div> 
+                                    <a data-v-e551daac="" href="/clients/create" th:href="@{/clients/create}"
+                                    class="btn btn-primary  btn-add_vidacha green">Создать</a>
+                                </div>
                                 <div data-v-e551daac="" class="mb-3 text-right">
-                                    <a data-v-e551daac="" href="#" class="btn btn-primary btn-open_vidacha red">Удалить</a>
-                                </div> 
-                                <div data-v-e551daac="" class="mb-3 text-right">
-                                    <a data-v-e551daac="" href="#" class="btn btn-primary btn-delate_vidacha orange ">Обновить</a>
-                                </div> 
-                                <div data-v-e551daac="" class="mb-3 text-right">
-                                    <a data-v-e551daac="" href="#" class="btn btn-primary btn-update_vidacha grey">Экспорт</a>
-                                </div> 
+                                    <a data-v-e551daac="" href="#"
+                                    class="btn btn-primary btn-update_vidacha grey">Экспорт</a>
+                                </div>
                             </div>
                             <div data-v-e551daac="">
                                 <div data-v-e551daac="" class="b-overlay-wrap position-relative custom-ll">
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="custom-ll__header">
-                                                <div class="custom-ll__header__mobile">
-                                                    <div class="header__row"><!----> 
-                                                        <div class="header__size">
-                                                            <select class="custom-select" id="__BVID__66">
-                                                                <option value="20">20</option>
-                                                                <option value="50">50</option>
-                                                                <option value="100">100</option>
-                                                                <option value="500">500</option>
-                                                                <option value="1000">1000</option>
-                                                            </select>
-                                                        </div> 
-                                                        <div class="header__search">
-                                                            <input type="search" placeholder="Поиск" class="form-control"> 
-                                                            <span class="header__search__btn"><i class="fa fa-search"></i></span>
-                                                        </div> <!---->
-                                                    </div> 
-                                                    <div class="header__row">
-                                                        <div class="header__info">
-                                                            <span>Всего:<b>0</b></span>
-                                                        </div> 
-                                                        <div class="header__filter"><!----> 
-                                                            <button type="button" class="btn btn-default collapsed" aria-expanded="false" aria-controls="filterbar" style="overflow-anchor: none;"><i class="fas fa-filter"></i></button> <!---->
-                                                        </div>
-                                                    </div>
-                                                </div> 
                                                 <div class="custom-ll__header__full show">
-                                                    <div class="custom-ll__header__full__left"><!----> 
-                                                        <div class="header__size">
-                                                            <select class="custom-select" id="__BVID__67">
-                                                                <option value="20">20</option>
-                                                                <option value="50">50</option>
-                                                                <option value="100">100</option>
-                                                                <option value="500">500</option>
-                                                                <option value="1000">1000</option>
-                                                            </select>
-                                                        </div> 
-                                                        <div class="header__info">
-                                                            <span class="py-2 px-1 my-1">Всего:<b>0</b></span>
-                                                        </div> <!----> <!---->
-                                                    </div> 
                                                     <div class="custom-ll__header__full__right">
-                                                        <div class="header__search">
-                                                            <input type="search" placeholder="Поиск" class="form-control"> 
-                                                            <span class="header__search__btn"><i class="fa fa-search"></i>
+                                                        <div class="header__search header__search_width">
+                                                            <input type="search" placeholder="Поиск" class="form-control">
+                                                            <span class="header__search__btn">
+                                                                <i class="fa fa-search"></i>
                                                             </span>
-                                                        </div> 
+                                                        </div>
                                                         <div class="header__filter" style="margin-left: auto;">
-                                                            <button type="button" class="btn btn-default custom-ll__filter-button collapsed" aria-expanded="false" aria-controls="filterbar" style="overflow-anchor: none;"><i class="fas fa-filter"></i></button>
-                                                        </div> <!---->
+                                                            <button type="button"
+                                                                    class="btn btn-default custom-ll__filter-button collapsed search-btn"
+                                                                    aria-expanded="false" aria-controls="filterbar"
+                                                                    style="overflow-anchor: none;">Поиск
+                                                                    <!-- <i class="fas fa-filter"></i> -->
+                                                            </button>
+                                                        </div> 
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div> 
-                                        <div class="custom-ll__filters col-lg-12">
+                                        </div>
+
                                             <div class="row">
                                                 <div class="col-md-4 col-lg-3">
-                                                    <h4 data-v-e551daac="" class="my-2 py-1">Вид расходов</h4> 
-                                                    <div data-v-e551daac="" dir="auto" class="v-select w-100 d-block vs--multiple vs--searchable"> 
-                                                        <div id="vs1__combobox" role="combobox" aria-expanded="false" aria-owns="vs1__listbox" aria-label="Search for option" class="vs__dropdown-toggle">
-                                                            <div class="vs__selected-options"> 
-                                                                <input placeholder="Выберите вид" aria-autocomplete="list" aria-labelledby="vs1__combobox" aria-controls="vs1__listbox" type="search" autocomplete="off" class="vs__search">
-                                                            </div> 
+                                                    <h4 data-v-e551daac="" class="my-2 py-1">Вид расходов</h4>
+                                                    <div data-v-e551daac="" dir="auto"
+                                                        class="v-select w-100 d-block vs--multiple vs--searchable">
+                                                        <div id="vs1__combobox" role="combobox" aria-expanded="false"
+                                                            aria-owns="vs1__listbox" aria-label="Search for option"
+                                                            class="vs__dropdown-toggle">
+                                                            <div class="vs__selected-options">
+                                                                <input placeholder="Выберите вид" aria-autocomplete="list"
+                                                                    aria-labelledby="vs1__combobox"
+                                                                    aria-controls="vs1__listbox" type="search"
+                                                                    autocomplete="off" class="vs__search">
+                                                            </div>
                                                             <div class="vs__actions">
-                                                                <button type="button" title="Clear Selected" aria-label="Clear Selected" class="vs__clear" style="display: none;">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10">
+                                                                <button type="button" title="Clear Selected"
+                                                                        aria-label="Clear Selected" class="vs__clear"
+                                                                        style="display: none;">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="10"
+                                                                        height="10">
                                                                         <path d="M6.895455 5l2.842897-2.842898c.348864-.348863.348864-.914488 0-1.263636L9.106534.261648c-.348864-.348864-.914489-.348864-1.263636 0L5 3.104545 2.157102.261648c-.348863-.348864-.914488-.348864-1.263636 0L.261648.893466c-.348864.348864-.348864.914489 0 1.263636L3.104545 5 .261648 7.842898c-.348864.348863-.348864.914488 0 1.263636l.631818.631818c.348864.348864.914773.348864 1.263636 0L5 6.895455l2.842898 2.842897c.348863.348864.914772.348864 1.263636 0l.631818-.631818c.348864-.348864.348864-.914489 0-1.263636L6.895455 5z"></path>
                                                                     </svg>
-                                                                </button> 
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="10" role="presentation" class="vs__open-indicator">
+                                                                </button>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="14"
+                                                                    height="10" role="presentation"
+                                                                    class="vs__open-indicator">
                                                                     <path d="M9.211364 7.59931l4.48338-4.867229c.407008-.441854.407008-1.158247 0-1.60046l-.73712-.80023c-.407008-.441854-1.066904-.441854-1.474243 0L7 5.198617 2.51662.33139c-.407008-.441853-1.066904-.441853-1.474243 0l-.737121.80023c-.407008.441854-.407008 1.158248 0 1.600461l4.48338 4.867228L7 10l2.211364-2.40069z"></path>
-                                                                </svg> 
-                                                                <div class="vs__spinner" style="display: none;">Loading...</div>
+                                                                </svg>
+                                                                <div class="vs__spinner" style="display: none;">Loading...
+                                                                </div>
                                                             </div>
-                                                        </div> 
-                                                        <ul id="vs1__listbox" role="listbox" style="display: none; visibility: hidden;"></ul> 
+                                                        </div>
+                                                        <ul id="vs1__listbox" role="listbox"
+                                                            style="display: none; visibility: hidden;"></ul>
                                                     </div>
-                                                </div> 
+                                                </div>
                                                 <div class="col-md-4 col-lg-3">
                                                     <h4 data-v-e551daac="" class="my-2 py-1">Выберите период</h4>
-                                                    <div data-v-1ebd09d2="" data-v-e551daac="" class="vue-daterange-picker w-100">
+                                                    <div data-v-1ebd09d2="" data-v-e551daac=""
+                                                        class="vue-daterange-picker w-100">
                                                         <div data-v-1ebd09d2="" class="form-control reportrange-text">
-                                                            <span data-v-e551daac="" data-v-1ebd09d2="" class="picker__placeholder">Выберите период</span> 
-                                                            <i data-v-e551daac="" data-v-1ebd09d2="" class="fas fa-calendar picker__icon"></i>
-                                                        </div><!---->
+                                                            <span data-v-e551daac="" data-v-1ebd09d2=""
+                                                                class="picker__placeholder">Выберите период</span>
+                                                            <i data-v-e551daac="" data-v-1ebd09d2=""
+                                                            class="fas fa-calendar picker__icon"></i>
+                                                        </div>
                                                     </div>
-                                                </div> 
+                                                </div>
                                                 <div class="col-md-4 col-lg-3">
-                                                    <h4 data-v-e551daac="" class="my-2 py-1">Пункт проката</h4> 
-                                                    <div data-v-e551daac="" dir="auto" class="v-select w-100 mb-3 d-block vs--multiple vs--searchable"> 
-                                                        <div id="vs2__combobox" role="combobox" aria-expanded="false" aria-owns="vs2__listbox" aria-label="Search for option" class="vs__dropdown-toggle">
-                                                            <div class="vs__selected-options"> 
-                                                                <input placeholder="Выберите пункт проката" aria-autocomplete="list" aria-labelledby="vs2__combobox" aria-controls="vs2__listbox" type="search" autocomplete="off" class="vs__search">
-                                                            </div> 
+                                                    <h4 data-v-e551daac="" class="my-2 py-1">Пункт проката</h4>
+                                                    <div data-v-e551daac="" dir="auto"
+                                                        class="v-select w-100 mb-3 d-block vs--multiple vs--searchable">
+                                                        <div id="vs2__combobox" role="combobox" aria-expanded="false"
+                                                            aria-owns="vs2__listbox" aria-label="Search for option"
+                                                            class="vs__dropdown-toggle">
+                                                            <div class="vs__selected-options">
+                                                                <input placeholder="Выберите пункт проката"
+                                                                    aria-autocomplete="list"
+                                                                    aria-labelledby="vs2__combobox"
+                                                                    aria-controls="vs2__listbox" type="search"
+                                                                    autocomplete="off" class="vs__search">
+                                                            </div>
                                                             <div class="vs__actions">
-                                                                <button type="button" title="Clear Selected" aria-label="Clear Selected" class="vs__clear" style="display: none;">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10">
+                                                                <button type="button" title="Clear Selected"
+                                                                        aria-label="Clear Selected" class="vs__clear"
+                                                                        style="display: none;">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="10"
+                                                                        height="10">
                                                                         <path d="M6.895455 5l2.842897-2.842898c.348864-.348863.348864-.914488 0-1.263636L9.106534.261648c-.348864-.348864-.914489-.348864-1.263636 0L5 3.104545 2.157102.261648c-.348863-.348864-.914488-.348864-1.263636 0L.261648.893466c-.348864.348864-.348864.914489 0 1.263636L3.104545 5 .261648 7.842898c-.348864.348863-.348864.914488 0 1.263636l.631818.631818c.348864.348864.914773.348864 1.263636 0L5 6.895455l2.842898 2.842897c.348863.348864.914772.348864 1.263636 0l.631818-.631818c.348864-.348864.348864-.914489 0-1.263636L6.895455 5z"></path>
                                                                     </svg>
-                                                                </button> 
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="10" role="presentation" class="vs__open-indicator">
-                                                                        <path d="M9.211364 7.59931l4.48338-4.867229c.407008-.441854.407008-1.158247 0-1.60046l-.73712-.80023c-.407008-.441854-1.066904-.441854-1.474243 0L7 5.198617 2.51662.33139c-.407008-.441853-1.066904-.441853-1.474243 0l-.737121.80023c-.407008.441854-.407008 1.158248 0 1.600461l4.48338 4.867228L7 10l2.211364-2.40069z"></path>
-                                                                    </svg> 
-                                                                <div class="vs__spinner" style="display: none;">Loading...</div>
-                                                            </div>
-                                                        </div> 
-                                                        <ul id="vs2__listbox" role="listbox" style="display: none; visibility: hidden;"></ul> 
-                                                    </div>
-                                                </div> 
-                                                <div class="col-md-4 col-lg-3">
-                                                    <h4 data-v-e551daac="" class="my-2 py-1">Инвентарь</h4> 
-                                                    <div data-v-e551daac="" dir="auto" class="v-select w-100 mb-3 d-block vs--multiple vs--searchable"> 
-                                                        <div id="vs3__combobox" role="combobox" aria-expanded="false" aria-owns="vs3__listbox" aria-label="Search for option" class="vs__dropdown-toggle">
-                                                            <div class="vs__selected-options"> 
-                                                                <input placeholder="Выберите инвентарь" aria-autocomplete="list" aria-labelledby="vs3__combobox" aria-controls="vs3__listbox" type="search" autocomplete="off" class="vs__search"></div> 
-                                                                <div class="vs__actions">
-                                                                    <button type="button" title="Clear Selected" aria-label="Clear Selected" class="vs__clear" style="display: none;">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10">
-                                                                            <path d="M6.895455 5l2.842897-2.842898c.348864-.348863.348864-.914488 0-1.263636L9.106534.261648c-.348864-.348864-.914489-.348864-1.263636 0L5 3.104545 2.157102.261648c-.348863-.348864-.914488-.348864-1.263636 0L.261648.893466c-.348864.348864-.348864.914489 0 1.263636L3.104545 5 .261648 7.842898c-.348864.348863-.348864.914488 0 1.263636l.631818.631818c.348864.348864.914773.348864 1.263636 0L5 6.895455l2.842898 2.842897c.348863.348864.914772.348864 1.263636 0l.631818-.631818c.348864-.348864.348864-.914489 0-1.263636L6.895455 5z"></path>
-                                                                        </svg>
-                                                                    </button> 
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="10" role="presentation" class="vs__open-indicator">
-                                                                        <path d="M9.211364 7.59931l4.48338-4.867229c.407008-.441854.407008-1.158247 0-1.60046l-.73712-.80023c-.407008-.441854-1.066904-.441854-1.474243 0L7 5.198617 2.51662.33139c-.407008-.441853-1.066904-.441853-1.474243 0l-.737121.80023c-.407008.441854-.407008 1.158248 0 1.600461l4.48338 4.867228L7 10l2.211364-2.40069z"></path>
-                                                                    </svg> 
-                                                                    <div class="vs__spinner" style="display: none;">Loading...</div>
+                                                                </button>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="14"
+                                                                    height="10" role="presentation"
+                                                                    class="vs__open-indicator">
+                                                                    <path d="M9.211364 7.59931l4.48338-4.867229c.407008-.441854.407008-1.158247 0-1.60046l-.73712-.80023c-.407008-.441854-1.066904-.441854-1.474243 0L7 5.198617 2.51662.33139c-.407008-.441853-1.066904-.441853-1.474243 0l-.737121.80023c-.407008.441854-.407008 1.158248 0 1.600461l4.48338 4.867228L7 10l2.211364-2.40069z"></path>
+                                                                </svg>
+                                                                <div class="vs__spinner" style="display: none;">Loading...
                                                                 </div>
-                                                            </div> 
-                                                            <ul id="vs3__listbox" role="listbox" style="display: none; visibility: hidden;"></ul> 
+                                                            </div>
                                                         </div>
-                                                    </div> 
-                                                    <div class="col-md-4 col-lg-3"></div> 
-                                                    <div class="col-md-4 col-lg-3"></div> 
-                                                    <div class="col-md-4 col-lg-3"></div> 
-                                                    <div class="col-md-4 col-lg-3"></div>
+                                                        <ul id="vs2__listbox" role="listbox"
+                                                            style="display: none; visibility: hidden;"></ul>
+                                                    </div>
                                                 </div>
-                                            </div> 
-                                            <div class="col-lg-12 order-lg-1">
-                                                <div class="wrapper__btn-under_table">
-                                                    <div data-v-e551daac="" class="mb-3 text-right">
-                                                        <a data-v-e551daac="" href="#" class="btn btn-primary btn-add_vidacha grey">Все</a>
-                                                    </div> 
-                                                    <div data-v-e551daac="" class="mb-3 text-right">
-                                                        <a data-v-e551daac="" href="#" class="btn btn-primary btn-open_vidacha  grey">Физ.лица</a>
-                                                    </div> 
-                                                    <div data-v-e551daac="" class="mb-3 text-right">
-                                                        <a data-v-e551daac="" href="#" class="btn btn-primary btn-delate_vidacha grey">Юр.лица</a>
-                                                    </div> 
-                                                    <div data-v-e551daac="" class="mb-3 text-right">
-                                                        <a data-v-e551daac="" href="#" class="btn btn-primary btn-update_vidacha  grey">Черный список</a>
-                                                    </div> 
+                                                <div class="col-md-4 col-lg-3">
+                                                    <h4 data-v-e551daac="" class="my-2 py-1">Инвентарь</h4>
+                                                    <div data-v-e551daac="" dir="auto"
+                                                        class="v-select w-100 mb-3 d-block vs--multiple vs--searchable">
+                                                        <div id="vs3__combobox" role="combobox" aria-expanded="false"
+                                                            aria-owns="vs3__listbox" aria-label="Search for option"
+                                                            class="vs__dropdown-toggle">
+                                                            <div class="vs__selected-options">
+                                                                <input placeholder="Выберите инвентарь"
+                                                                    aria-autocomplete="list"
+                                                                    aria-labelledby="vs3__combobox"
+                                                                    aria-controls="vs3__listbox" type="search"
+                                                                    autocomplete="off" class="vs__search"></div>
+                                                            <div class="vs__actions">
+                                                                <button type="button" title="Clear Selected"
+                                                                        aria-label="Clear Selected" class="vs__clear"
+                                                                        style="display: none;">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="10"
+                                                                        height="10">
+                                                                        <path d="M6.895455 5l2.842897-2.842898c.348864-.348863.348864-.914488 0-1.263636L9.106534.261648c-.348864-.348864-.914489-.348864-1.263636 0L5 3.104545 2.157102.261648c-.348863-.348864-.914488-.348864-1.263636 0L.261648.893466c-.348864.348864-.348864.914489 0 1.263636L3.104545 5 .261648 7.842898c-.348864.348863-.348864.914488 0 1.263636l.631818.631818c.348864.348864.914773.348864 1.263636 0L5 6.895455l2.842898 2.842897c.348863.348864.914772.348864 1.263636 0l.631818-.631818c.348864-.348864.348864-.914489 0-1.263636L6.895455 5z"></path>
+                                                                    </svg>
+                                                                </button>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="14"
+                                                                    height="10" role="presentation"
+                                                                    class="vs__open-indicator">
+                                                                    <path d="M9.211364 7.59931l4.48338-4.867229c.407008-.441854.407008-1.158247 0-1.60046l-.73712-.80023c-.407008-.441854-1.066904-.441854-1.474243 0L7 5.198617 2.51662.33139c-.407008-.441853-1.066904-.441853-1.474243 0l-.737121.80023c-.407008.441854-.407008 1.158248 0 1.600461l4.48338 4.867228L7 10l2.211364-2.40069z"></path>
+                                                                </svg>
+                                                                <div class="vs__spinner" style="display: none;">Loading...
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <ul id="vs3__listbox" role="listbox"
+                                                            style="display: none; visibility: hidden;"></ul>
+                                                    </div>
                                                 </div>
+                                                <div class="col-md-4 col-lg-3"></div>
+                                                <div class="col-md-4 col-lg-3"></div>
+                                                <div class="col-md-4 col-lg-3"></div>
+                                                <div class="col-md-4 col-lg-3"></div>
                                             </div>
-                                            <div class="col-lg-12 order-lg-1">
-                                                <div class="custom-ll__table table-responsive overflow-auto">
-                                                    <table class="table w-100 in4dr-form">
-                                                        <tr>
-                                                            <th>№</th>
-                                                            <th>ФИО</th>
-                                                            <th>Телефон</th>
-                                                            <th>Скидка</th>
-                                                            <th>Кол-во проектов</th>
-                                                            <th>Примечание</th>
-                                                            <th>Договор</th>
-                                                            <th>Черный список</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="column-table">1</td>
-                                                            <td>Фамилия Имя Отчество</td>
-                                                            <td>8 (999) 999-99-99</td>
-                                                            <td>0%</td>
-                                                            <td>2</td>
-                                                            <td>От бабушки</td>
-                                                            <td>Ссылка</td>
-                                                            <td>Нет</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>2</td>
-                                                            <td>Фамилия Имя Отчество</td>
-                                                            <td>8 (999) 999-99-99</td>
-                                                            <td>10%</td>
-                                                            <td>7</td>
-                                                            <td>Соц.сети</td>
-                                                            <td>Ссылка</td>
-                                                            <td>Нет</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>3</td>
-                                                            <td>Фамилия Имя Отчество</td>
-                                                            <td>8 (999) 999-99-99</td>
-                                                            <td>5%</td>
-                                                            <td>2</td>
-                                                            <td>Сайт</td>
-                                                            <td>Ссылка</td>
-                                                            <td>Нет</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>4</td>
-                                                            <td>Фамилия Имя Отчество</td>
-                                                            <td>8 (999) 999-99-99</td>
-                                                            <td>15%</td>
-                                                            <td>5</td>
-                                                            <td>От Ивана Иваныча</td>
-                                                            <td>Ссылка</td>
-                                                            <td>Нет</td>
-                                                        </tr>
-                                                    </table>
+                                        </div> -->
+                                        <div class="col-lg-12 order-lg-1">
+                                            <div class="wrapper__btn-under_table">
+                                                <div data-v-e551daac="" class="mb-3 text-right">
+                                                    <a data-v-e551daac="" href="/clients"
+                                                    class="btn btn-primary btn-add_vidacha grey">Все</a>
+                                                </div>
+                                                <div data-v-e551daac="" class="mb-3 text-right">
+                                                    <a data-v-e551daac="" href="#" th:href="@{/clients(filter='INDIVIDUAL')}"
+                                                    class="btn btn-primary btn-open_vidacha  grey">Физ.лица</a>
+                                                </div>
+                                                <div data-v-e551daac="" class="mb-3 text-right">
+                                                    <a data-v-e551daac="" href="#" th:href="@{/clients(filter='LEGAL')}"
+                                                    class="btn btn-primary btn-delate_vidacha grey">Юр.лица</a>
+                                                </div>
+                                                <div data-v-e551daac="" class="mb-3 text-right">
+                                                    <a data-v-e551daac="" href="#" th:href="@{/clients(filter='BLACKLIST')}"
+                                                    class="btn btn-primary btn-update_vidacha  grey">Черный список</a>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-12 order-lg-1">
-                                            <!-- Bootstrap 4 -->
-                                            <nav aria-label="Навигация по страницам">
-                                                <ul class="pagination">
+                                            <div class="custom-ll__table table-responsive overflow-auto">
+                                                <table class="table table-1190 w-100 in4dr-form">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>№</th>
+                                                        <th>ФИО</th>
+                                                        <th>Телефон</th>
+                                                        <th>Скидка</th>
+                                                        <th>Кол-во проектов</th>
+                                                        <th>Примечание</th>
+                                                        <th>Договор</th>
+                                                        <th>Черный список</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr th:each="clientDTO : ${clients}">
+                                                        <td class="align-middle"><h1 class="display-6" style="font-size: medium" th:utext="${clientDTOStat.index}"></h1></td></td>
+                                                        <td class="align-middle"><a class="nav-link"   style="font-size: medium" th:href="@{/clients/edit/{id}/(id=${clientDTO.id})}" th:utext="${clientDTO.fullName}"></a></td>
+                                                        <td class="align-middle"><h1 class="display-6" style="font-size: medium" th:utext="${clientDTO.phoneNumber}"></h1></td>
+                                                        <td class="align-middle"><h1 class="display-6" style="font-size: medium" th:utext="${clientDTO.discount}"></h1>
+                                                        <td class="align-middle"><h1 class="display-6" style="font-size: medium">Количество проектов</h1>
+                                                        <td class="align-middle"><h1 class="display-6" style="font-size: medium" th:utext="${clientDTO.note}"></h1>
+                                                        <td class="align-middle"><h1 class="display-6" style="font-size: medium">Договор</h1>
+                                                        <td class="align-middle"><h1 class="display-6" style="font-size: medium" th:utext="${clientDTO.inBlackList}"></h1>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 order-lg-1">
+                                        <!-- Bootstrap 4 -->
+                                        <nav aria-label="Навигация по страницам">
+                                            <ul class="pagination">
                                                 <li class="page-item disabled">
                                                     <a class="page-link" href="#">
-                                                    Первая
+                                                        Первая
                                                     </a>
                                                 </li>
                                                 <li class="page-item disabled">
                                                     <a class="page-link" href="#" aria-label="Предыдущая">
-                                                    <span aria-hidden="true">«</span>
-                                                    <span class="sr-only">Предыдущая</span>
+                                                        <span aria-hidden="true">«</span>
+                                                        <span class="sr-only">Предыдущая</span>
                                                     </a>
                                                 </li>
                                                 <li class="page-item active">
@@ -279,97 +255,165 @@
                                                 </li>
                                                 <li class="page-item">
                                                     <a class="page-link" href="#" aria-label="Следующая">
-                                                    <span aria-hidden="true">»</span>
-                                                    <span class="sr-only">Следующая</span>
+                                                        <span aria-hidden="true">»</span>
+                                                        <span class="sr-only">Следующая</span>
                                                     </a>
                                                 </li>
                                                 <li class="page-item">
                                                     <a class="page-link" href="#">
-                                                    Последняя
+                                                        Последняя
                                                     </a>
                                                 </li>
-                                                </ul>
-                                            </nav>
-                                        </div>
-                                        <div tabindex="-1" class="b-sidebar-outer" style="z-index: 2030;"><!---->
-                                            <div id="filterbar" tabindex="-1" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="filterbar___title__" class="b-sidebar shadow b-sidebar-right bg-light text-dark" style="display: none;">
-                                                <header class="b-sidebar-header">
-                                                    <button type="button" aria-label="Close" class="close text-dark">
-                                                        <svg viewBox="0 0 16 16" width="1em" height="1em" focusable="false" role="img" aria-label="x" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi-x b-icon bi"><g>
-                                                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path></g>
-                                                        </svg>
-                                                    </button>
-                                                    <strong id="filterbar___title__">Фильтр</strong>
-                                                </header>
-                                                <div class="b-sidebar-body">
-                                                    <div class="custom-ll__filter p-3"><!----> <!----> 
-                                                        <h4 class="my-2 py-1">Поиск</h4> 
-                                                        <input type="text" placeholder="Начните вводить для поиска..." class="form-control btn fd1"> 
-                                                        <h4 data-v-e551daac="" class="my-2 py-1">Вид расходов</h4> 
-                                                        <div data-v-e551daac="" dir="auto" class="v-select w-100 mb-3 d-block vs--multiple vs--searchable"> 
-                                                            <div id="vs4__combobox" role="combobox" aria-expanded="false" aria-owns="vs4__listbox" aria-label="Search for option" class="vs__dropdown-toggle">
-                                                                <div class="vs__selected-options"> 
-                                                                    <input placeholder="Выберите вид" aria-autocomplete="list" aria-labelledby="vs4__combobox" aria-controls="vs4__listbox" type="search" autocomplete="off" class="vs__search">
-                                                                </div> 
-                                                                    <div class="vs__actions">
-                                                                        <button type="button" title="Clear Selected" aria-label="Clear Selected" class="vs__clear" style="display: none;">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10">
-                                                                                <path d="M6.895455 5l2.842897-2.842898c.348864-.348863.348864-.914488 0-1.263636L9.106534.261648c-.348864-.348864-.914489-.348864-1.263636 0L5 3.104545 2.157102.261648c-.348863-.348864-.914488-.348864-1.263636 0L.261648.893466c-.348864.348864-.348864.914489 0 1.263636L3.104545 5 .261648 7.842898c-.348864.348863-.348864.914488 0 1.263636l.631818.631818c.348864.348864.914773.348864 1.263636 0L5 6.895455l2.842898 2.842897c.348863.348864.914772.348864 1.263636 0l.631818-.631818c.348864-.348864.348864-.914489 0-1.263636L6.895455 5z"></path>
-                                                                            </svg>
-                                                                        </button> 
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="10" role="presentation" class="vs__open-indicator">
-                                                                            <path d="M9.211364 7.59931l4.48338-4.867229c.407008-.441854.407008-1.158247 0-1.60046l-.73712-.80023c-.407008-.441854-1.066904-.441854-1.474243 0L7 5.198617 2.51662.33139c-.407008-.441853-1.066904-.441853-1.474243 0l-.737121.80023c-.407008.441854-.407008 1.158248 0 1.600461l4.48338 4.867228L7 10l2.211364-2.40069z"></path>
-                                                                        </svg> 
-                                                                        <div class="vs__spinner" style="display: none;">Loading...</div>
-                                                                    </div>
-                                                                </div> 
-                                                                <ul id="vs4__listbox" role="listbox" style="display: none; visibility: hidden;"></ul> 
-                                                            </div> 
-                                                            <h4 data-v-e551daac="" class="my-2 py-1">Выберите период</h4> 
-                                                            <div data-v-1ebd09d2="" data-v-e551daac="" class="vue-daterange-picker w-100">
-                                                                <div data-v-1ebd09d2="" class="form-control reportrange-text">
-                                                                    <span data-v-e551daac="" data-v-1ebd09d2="" class="picker__placeholder">Выберите период</span> <i data-v-e551daac="" data-v-1ebd09d2="" class="fas fa-calendar picker__icon"></i></div><!---->
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                    <div tabindex="-1" class="b-sidebar-outer" style="z-index: 2030;">
+                                        <div id="filterbar" tabindex="-1" role="dialog" aria-modal="true" aria-hidden="true"
+                                            aria-labelledby="filterbar___title__"
+                                            class="b-sidebar shadow b-sidebar-right bg-light text-dark"
+                                            style="display: none;">
+                                            <header class="b-sidebar-header">
+                                                <button type="button" aria-label="Close" class="close text-dark">
+                                                    <svg viewBox="0 0 16 16" width="1em" height="1em" focusable="false"
+                                                        role="img" aria-label="x" xmlns="http://www.w3.org/2000/svg"
+                                                        fill="currentColor" class="bi-x b-icon bi">
+                                                        <g>
+                                                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path>
+                                                        </g>
+                                                    </svg>
+                                                </button>
+                                                <strong id="filterbar___title__">Фильтр</strong>
+                                            </header>
+                                            <div class="b-sidebar-body">
+                                                <div class="custom-ll__filter p-3"> 
+                                                    <h4 class="my-2 py-1">Поиск</h4>
+                                                    <input type="text" placeholder="Начните вводить для поиска..."
+                                                        class="form-control btn fd1">
+                                                    <h4 data-v-e551daac="" class="my-2 py-1">Вид расходов</h4>
+                                                    <div data-v-e551daac="" dir="auto"
+                                                        class="v-select w-100 mb-3 d-block vs--multiple vs--searchable">
+                                                        <div id="vs4__combobox" role="combobox" aria-expanded="false"
+                                                            aria-owns="vs4__listbox" aria-label="Search for option"
+                                                            class="vs__dropdown-toggle">
+                                                            <div class="vs__selected-options">
+                                                                <input placeholder="Выберите вид" aria-autocomplete="list"
+                                                                    aria-labelledby="vs4__combobox"
+                                                                    aria-controls="vs4__listbox" type="search"
+                                                                    autocomplete="off" class="vs__search">
+                                                            </div>
+                                                            <div class="vs__actions">
+                                                                <button type="button" title="Clear Selected"
+                                                                        aria-label="Clear Selected" class="vs__clear"
+                                                                        style="display: none;">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="10"
+                                                                        height="10">
+                                                                        <path d="M6.895455 5l2.842897-2.842898c.348864-.348863.348864-.914488 0-1.263636L9.106534.261648c-.348864-.348864-.914489-.348864-1.263636 0L5 3.104545 2.157102.261648c-.348863-.348864-.914488-.348864-1.263636 0L.261648.893466c-.348864.348864-.348864.914489 0 1.263636L3.104545 5 .261648 7.842898c-.348864.348863-.348864.914488 0 1.263636l.631818.631818c.348864.348864.914773.348864 1.263636 0L5 6.895455l2.842898 2.842897c.348863.348864.914772.348864 1.263636 0l.631818-.631818c.348864-.348864.348864-.914489 0-1.263636L6.895455 5z"></path>
+                                                                    </svg>
+                                                                </button>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="14"
+                                                                    height="10" role="presentation"
+                                                                    class="vs__open-indicator">
+                                                                    <path d="M9.211364 7.59931l4.48338-4.867229c.407008-.441854.407008-1.158247 0-1.60046l-.73712-.80023c-.407008-.441854-1.066904-.441854-1.474243 0L7 5.198617 2.51662.33139c-.407008-.441853-1.066904-.441853-1.474243 0l-.737121.80023c-.407008.441854-.407008 1.158248 0 1.600461l4.48338 4.867228L7 10l2.211364-2.40069z"></path>
+                                                                </svg>
+                                                                <div class="vs__spinner" style="display: none;">Loading...
                                                                 </div>
-                                                                <h4 data-v-e551daac="" class="my-2 py-1">Пункт проката</h4>
-                                                                <div data-v-e551daac="" dir="auto" class="v-select w-100 mb-3 d-block vs--multiple vs--searchable"> 
-                                                                    <div id="vs5__combobox" role="combobox" aria-expanded="false" aria-owns="vs5__listbox" aria-label="Search for option" class="vs__dropdown-toggle"><div class="vs__selected-options"> <input placeholder="Выберите пункт проката" aria-autocomplete="list" aria-labelledby="vs5__combobox" aria-controls="vs5__listbox" type="search" autocomplete="off" class="vs__search"></div> <div class="vs__actions"><button type="button" title="Clear Selected" aria-label="Clear Selected" class="vs__clear" style="display: none;"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"><path d="M6.895455 5l2.842897-2.842898c.348864-.348863.348864-.914488 0-1.263636L9.106534.261648c-.348864-.348864-.914489-.348864-1.263636 0L5 3.104545 2.157102.261648c-.348863-.348864-.914488-.348864-1.263636 0L.261648.893466c-.348864.348864-.348864.914489 0 1.263636L3.104545 5 .261648 7.842898c-.348864.348863-.348864.914488 0 1.263636l.631818.631818c.348864.348864.914773.348864 1.263636 0L5 6.895455l2.842898 2.842897c.348863.348864.914772.348864 1.263636 0l.631818-.631818c.348864-.348864.348864-.914489 0-1.263636L6.895455 5z"></path></svg></button> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="10" role="presentation" class="vs__open-indicator"><path d="M9.211364 7.59931l4.48338-4.867229c.407008-.441854.407008-1.158247 0-1.60046l-.73712-.80023c-.407008-.441854-1.066904-.441854-1.474243 0L7 5.198617 2.51662.33139c-.407008-.441853-1.066904-.441853-1.474243 0l-.737121.80023c-.407008.441854-.407008 1.158248 0 1.600461l4.48338 4.867228L7 10l2.211364-2.40069z"></path></svg> <div class="vs__spinner" style="display: none;">Loading...</div>
-                                                                </div>
-                                                            </div> 
-                                                            <ul id="vs5__listbox" role="listbox" style="display: none; visibility: hidden;"></ul> 
-                                                        </div> 
-                                                        <h4 data-v-e551daac="" class="my-2 py-1">Инвентарь</h4> 
-                                                        <div data-v-e551daac="" dir="auto" class="v-select w-100 mb-3 d-block vs--multiple vs--searchable"> 
-                                                            <div id="vs6__combobox" role="combobox" aria-expanded="false" aria-owns="vs6__listbox" aria-label="Search for option" class="vs__dropdown-toggle"><div class="vs__selected-options"> <input placeholder="Выберите инвентарь" aria-autocomplete="list" aria-labelledby="vs6__combobox" aria-controls="vs6__listbox" type="search" autocomplete="off" class="vs__search"></div> <div class="vs__actions"><button type="button" title="Clear Selected" aria-label="Clear Selected" class="vs__clear" style="display: none;"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"><path d="M6.895455 5l2.842897-2.842898c.348864-.348863.348864-.914488 0-1.263636L9.106534.261648c-.348864-.348864-.914489-.348864-1.263636 0L5 3.104545 2.157102.261648c-.348863-.348864-.914488-.348864-1.263636 0L.261648.893466c-.348864.348864-.348864.914489 0 1.263636L3.104545 5 .261648 7.842898c-.348864.348863-.348864.914488 0 1.263636l.631818.631818c.348864.348864.914773.348864 1.263636 0L5 6.895455l2.842898 2.842897c.348863.348864.914772.348864 1.263636 0l.631818-.631818c.348864-.348864.348864-.914489 0-1.263636L6.895455 5z"></path></svg></button> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="10" role="presentation" class="vs__open-indicator"><path d="M9.211364 7.59931l4.48338-4.867229c.407008-.441854.407008-1.158247 0-1.60046l-.73712-.80023c-.407008-.441854-1.066904-.441854-1.474243 0L7 5.198617 2.51662.33139c-.407008-.441853-1.066904-.441853-1.474243 0l-.737121.80023c-.407008.441854-.407008 1.158248 0 1.600461l4.48338 4.867228L7 10l2.211364-2.40069z"></path></svg> <div class="vs__spinner" style="display: none;">Loading...</div>
+                                                            </div>
                                                         </div>
-                                                    </div> 
-                                                    <ul id="vs6__listbox" role="listbox" style="display: none; visibility: hidden;"></ul> 
-                                                </div> 
-                                                <button class="btn btn-primary w-100 mt-3">Поиск</button>
+                                                        <ul id="vs4__listbox" role="listbox"
+                                                            style="display: none; visibility: hidden;"></ul>
+                                                    </div>
+                                                    <h4 data-v-e551daac="" class="my-2 py-1">Выберите период</h4>
+                                                    <div data-v-1ebd09d2="" data-v-e551daac=""
+                                                        class="vue-daterange-picker w-100">
+                                                        <div data-v-1ebd09d2="" class="form-control reportrange-text">
+                                                            <span data-v-e551daac="" data-v-1ebd09d2=""
+                                                                class="picker__placeholder">Выберите период</span> <i
+                                                                data-v-e551daac="" data-v-1ebd09d2=""
+                                                                class="fas fa-calendar picker__icon"></i></div>
+                                                    </div>
+                                                    <h4 data-v-e551daac="" class="my-2 py-1">Пункт проката</h4>
+                                                    <div data-v-e551daac="" dir="auto"
+                                                        class="v-select w-100 mb-3 d-block vs--multiple vs--searchable">
+                                                        <div id="vs5__combobox" role="combobox" aria-expanded="false"
+                                                            aria-owns="vs5__listbox" aria-label="Search for option"
+                                                            class="vs__dropdown-toggle">
+                                                            <div class="vs__selected-options"><input
+                                                                    placeholder="Выберите пункт проката"
+                                                                    aria-autocomplete="list" aria-labelledby="vs5__combobox"
+                                                                    aria-controls="vs5__listbox" type="search"
+                                                                    autocomplete="off" class="vs__search"></div>
+                                                            <div class="vs__actions">
+                                                                <button type="button" title="Clear Selected"
+                                                                        aria-label="Clear Selected" class="vs__clear"
+                                                                        style="display: none;">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="10"
+                                                                        height="10">
+                                                                        <path d="M6.895455 5l2.842897-2.842898c.348864-.348863.348864-.914488 0-1.263636L9.106534.261648c-.348864-.348864-.914489-.348864-1.263636 0L5 3.104545 2.157102.261648c-.348863-.348864-.914488-.348864-1.263636 0L.261648.893466c-.348864.348864-.348864.914489 0 1.263636L3.104545 5 .261648 7.842898c-.348864.348863-.348864.914488 0 1.263636l.631818.631818c.348864.348864.914773.348864 1.263636 0L5 6.895455l2.842898 2.842897c.348863.348864.914772.348864 1.263636 0l.631818-.631818c.348864-.348864.348864-.914489 0-1.263636L6.895455 5z"></path>
+                                                                    </svg>
+                                                                </button>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="14"
+                                                                    height="10" role="presentation"
+                                                                    class="vs__open-indicator">
+                                                                    <path d="M9.211364 7.59931l4.48338-4.867229c.407008-.441854.407008-1.158247 0-1.60046l-.73712-.80023c-.407008-.441854-1.066904-.441854-1.474243 0L7 5.198617 2.51662.33139c-.407008-.441853-1.066904-.441853-1.474243 0l-.737121.80023c-.407008.441854-.407008 1.158248 0 1.600461l4.48338 4.867228L7 10l2.211364-2.40069z"></path>
+                                                                </svg>
+                                                                <div class="vs__spinner" style="display: none;">Loading...
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <ul id="vs5__listbox" role="listbox"
+                                                            style="display: none; visibility: hidden;"></ul>
+                                                    </div>
+                                                    <h4 data-v-e551daac="" class="my-2 py-1">Инвентарь</h4>
+                                                    <div data-v-e551daac="" dir="auto"
+                                                        class="v-select w-100 mb-3 d-block vs--multiple vs--searchable">
+                                                        <div id="vs6__combobox" role="combobox" aria-expanded="false"
+                                                            aria-owns="vs6__listbox" aria-label="Search for option"
+                                                            class="vs__dropdown-toggle">
+                                                            <div class="vs__selected-options"><input
+                                                                    placeholder="Выберите инвентарь"
+                                                                    aria-autocomplete="list" aria-labelledby="vs6__combobox"
+                                                                    aria-controls="vs6__listbox" type="search"
+                                                                    autocomplete="off" class="vs__search"></div>
+                                                            <div class="vs__actions">
+                                                                <button type="button" title="Clear Selected"
+                                                                        aria-label="Clear Selected" class="vs__clear"
+                                                                        style="display: none;">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="10"
+                                                                        height="10">
+                                                                        <path d="M6.895455 5l2.842897-2.842898c.348864-.348863.348864-.914488 0-1.263636L9.106534.261648c-.348864-.348864-.914489-.348864-1.263636 0L5 3.104545 2.157102.261648c-.348863-.348864-.914488-.348864-1.263636 0L.261648.893466c-.348864.348864-.348864.914489 0 1.263636L3.104545 5 .261648 7.842898c-.348864.348863-.348864.914488 0 1.263636l.631818.631818c.348864.348864.914773.348864 1.263636 0L5 6.895455l2.842898 2.842897c.348863.348864.914772.348864 1.263636 0l.631818-.631818c.348864-.348864.348864-.914489 0-1.263636L6.895455 5z"></path>
+                                                                    </svg>
+                                                                </button>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="14"
+                                                                    height="10" role="presentation"
+                                                                    class="vs__open-indicator">
+                                                                    <path d="M9.211364 7.59931l4.48338-4.867229c.407008-.441854.407008-1.158247 0-1.60046l-.73712-.80023c-.407008-.441854-1.066904-.441854-1.474243 0L7 5.198617 2.51662.33139c-.407008-.441853-1.066904-.441853-1.474243 0l-.737121.80023c-.407008.441854-.407008 1.158248 0 1.600461l4.48338 4.867228L7 10l2.211364-2.40069z"></path>
+                                                                </svg>
+                                                                <div class="vs__spinner" style="display: none;">Loading...
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <ul id="vs6__listbox" role="listbox"
+                                                            style="display: none; visibility: hidden;"></ul>
+                                                    </div>
+                                                    <button class="btn btn-primary w-100 mt-3">Поиск</button>
+                                                </div>
                                             </div>
-                                        </div><!---->
-                                    </div><!---->
-                                    <div class="b-sidebar-backdrop bg-dark" style="display: none;"></div>
-                                </div><!---->
+                                        </div>
+                                        <div class="b-sidebar-backdrop bg-dark" style="display: none;"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     </main>
-                    <div th:insert="segments/footer.html"></div>
-                    <div class="footer">
-                        <div class="row">
-                            <smalll class="col-12 pr-0"><b><a href="#">Mad dog</a> © 2022</b>-<b>Все права
-                                    защищены</b></smalll>
-                        </div>
-                    </div>
+                    <div th:insert="fragments/footer.html"></div>
+
                 </div>
 
             </div>
 
         </div>
     </div>
-    <script src="assets/js/app.js?id=fb90f6ab0a4555c52162" type="text/javascript"></script>
-    <script src="assets/js/main.js"></script>
-
+    <div th:insert="fragments/scripts.html"></div>
 </body>
 
 </html>

@@ -1,44 +1,65 @@
 package wns.services;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import wns.constants.Answers;
-import wns.constants.Roles;
+import wns.constants.Messages;
 import wns.entity.User;
-import wns.entity.UserDTO;
+import wns.dto.UserDTO;
 import wns.repo.UsersRepo;
+import wns.utils.Mapper;
 
-import java.util.Collections;
-import java.util.Objects;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
     private final UsersRepo usersRepo;
     private final PasswordEncoder passwordEncoder;
+    private final ModelMapper modelMapper;
 
-    public UserService(UsersRepo usersRepo, PasswordEncoder passwordEncoder) {
+    public UserService(UsersRepo usersRepo, PasswordEncoder passwordEncoder, ModelMapper modelMapper) {
         this.usersRepo = usersRepo;
         this.passwordEncoder = passwordEncoder;
+        this.modelMapper = modelMapper;
     }
 
-    public String saveUser(UserDTO dto) {
+
+    public Messages saveUser(UserDTO dto) {
         User userFromDb = usersRepo.findByUsername(dto.getUsername());
         if (userFromDb == null) {
-            createUserFromDTOAndSave(dto);
-            return Answers.USER_CREATE.getValue();
-        }
-        else
-            return Answers.USER_EXISTS.getValue();
+            User user = modelMapper.map(dto, User.class);
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            usersRepo.save(user);
+            return Messages.USER_CREATE;
+        } else
+            return Messages.USER_EXISTS;
     }
 
-    private void createUserFromDTOAndSave(UserDTO dto) {
-        User user = new User();
-        user.setUsername(dto.getUsername());
-        user.setFullName(dto.getFullName());
-        user.setRoles(dto.getRoles());
-        user.setPassword(passwordEncoder.encode(dto.getPassword()));
-        usersRepo.save(user);
+    public List<UserDTO> getAllUsers() {
+        List<User> all = usersRepo.findAll();
+        return all.stream()
+                .map(x -> modelMapper.map(x, UserDTO.class))
+                .collect(Collectors.toList());
     }
 
+    public UserDTO getDTOByID(long id) {
+        Optional<User> byId = usersRepo.findById(id);
+        return byId.map(x -> modelMapper.map(x, UserDTO.class)).orElseGet(UserDTO::new);
+    }
 
+    public Messages updateUser(UserDTO userDTO) {
+        User user = usersRepo.findById(userDTO.getId()).orElse(null);
+        if (user != null) {
+            modelMapper.map(userDTO, user);
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            usersRepo.save(user);
+            return Messages.USER_UPDATE;
+        } else
+            return Messages.USER_NOT_FOUND;
+    }
+
+    public void deleteUser(long id) {
+        usersRepo.deleteById(id);
+    }
 }

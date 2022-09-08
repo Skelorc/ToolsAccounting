@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 import wns.constants.ClassificationProject;
 import wns.constants.StatusProject;
 import wns.constants.TypeLease;
@@ -35,10 +36,13 @@ public class Project {
     @Column(name = "type_lease")
     private TypeLease typeLease;
     private int quantity;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(name = "creating_date")
     private LocalDateTime creatingDate;
     private String employee;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDateTime start;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDateTime end;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -10,10 +10,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import wns.constants.Roles;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name ="t_users")
@@ -32,21 +30,20 @@ public class User implements UserDetails {
     @Column(name = "full_name")
     private String fullName;
 
-    @ElementCollection(targetClass = Roles.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "roles", joinColumns = @JoinColumn(name = "t_users_id"))
     @Enumerated(EnumType.STRING)
-    private Set<Roles> roles = new HashSet<>();
+    @Column(name = "roles")
+    private Roles roles;
     @Transient
     private boolean is_active;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return getRoles();
+        return Collections.singletonList(roles);
     }
 
     @Override
     public String getUsername() {
-        return fullName;
+        return username;
     }
 
     @Override

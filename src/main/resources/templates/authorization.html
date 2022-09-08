@@ -1,29 +1,71 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+
     <head>
-        <div th:insert="segments/head.html"></div>
-        <title>Выдача</title>
+        <title>Авторизация</title>
+        <div th:replace="fragments/head :: header"></div>
     </head>
-    <body>
-        <h1>Поля для заполнения</h1>
-        <div>
-            <span th:if="${param.loginError!=null}" th:text="'Вы ввели неправильный логин/пароль'">test</span>
+
+    <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic">
+        <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
+            <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
+                <main class="w-100 login">
+                    <div class="login__circle login__circle--left-bottom"></div>
+                    <div class="login__circle login__circle--center-top"></div>
+                    <div class="row login__row">
+                        <div class="col-6">
+                            <div class="login__left-panel">
+                                <a href="/" class="login__link"><img th:src="@{/img/logo/mad-dog-logo.png}"
+                                        class="login__logo">
+                                    <h2>MAD DOG</h2>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <span>
+                                <div>
+                                    <span th:if="${param.loginError!=null}"
+                                        th:text="'Вы ввели неправильный логин/пароль'">test</span>
+                                </div>
+                                <form class="login__right-panel" th:action="@{/login}" method="POST">
+                                    <h2 class="login__heading">
+                                        Вход в систему
+                                    </h2>
+                                    <div class="login__form">
+                                        <span class="login__input">
+                                            <div class="labeled-input">
+                                                <label for="input-login"
+                                                    class="labeled-input__label">Логин<span>*</span></label>
+                                                <input class="labeled-input__input" type="text" name="username"
+                                                    placeholder="Можете ввести свой логин, телефон или почту..."
+                                                    autocomplete="on" required>
+                                                <div class="labeled-input__additional"></div>
+                                            </div>
+                                            <div class="labeled-input__additional"></div>
+                                        </span>
+                                        <span class="login__input login__input--mb-none">
+                                            <div class="labeled-input">
+                                                <label for="input-password"
+                                                    class="labeled-input__label">Пароль<span>*</span></label>
+                                                <input class="labeled-input__input" type="password" name="password"
+                                                    placeholder="Введите свой пароль..." autocomplete="on" required>
+                                                <div class="labeled-input__additional"></div>
+                                            </div>
+                                        </span>
+                                        <div class="row login__button-wrapper">
+                                            <div class="login__button-position">
+                                                <input data-v-0839162a class="orange-btn login__button" name="submit"
+                                                    type="submit" value="Вход">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </span>
+                        </div>
+                    </div>
+                </main>
+            </div>
         </div>
-        <form th:action="@{/login}" method="POST">
-            <sec:csrfInput/>
-            <label for="username"><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="username" required>
-
-            <label for="password"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="password" required>
-
-            <input name="submit" type="submit" value="submit">Login</input>
-
-        </form>
+        <div th:insert="fragments/scripts.html"></div>
     </body>
 </html>
-
-
-
-
-

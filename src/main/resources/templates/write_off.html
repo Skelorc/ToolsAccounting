@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <title>Списание</title>
+    <div th:replace="fragments/head :: header"></div>
+</head>
+
+<body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
+<div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
+    <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
+        <div th:insert="fragments/menu_sidebar.html"></div>
+        <div class="b-overlay-wrap position-relative w-100" size="sm">
+            <div class="rih-page-wrapper">
+                <nav data-v-59295fda="" role="navigation" class="navbar navbar-admin navbar-fixed-top" th:insert="fragments/header_logout.html"></nav>
+                <main class="wrapper wrapper-content border-bottom">
+                    <div class="b-overlay-wrap position-relative">
+                        <div class="btn-pimary__groups mt-3 mb-3">
+                            <div class="btn-pimary__groups-wrapper vidacha-sozdach mb-3">
+                                <div class="mb-3 text-right">
+                                    <a th:href="@{/write_off/create}" class="btn btn-primary green">Создать</a>
+                                </div>
+                                <div class="mb-3 text-right">
+                                    <a href="#" class="btn btn-primary red">Удалить</a>
+                                </div>
+                                <div class="mb-3 text-right">
+                                    <a href="#" class="btn btn-primary orange">Обновить</a>
+                                </div>
+                                <div class="mb-3 text-right">
+                                    <a href="#" class="btn btn-primary grey">Экспорт</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="custom-ll__table table-responsive">
+                            <table class="table table-1190 w-100 in4dr-form">
+                                <tbody><tr>
+                                    <th>№</th>
+                                    <th>Дата создания</th>
+                                    <th>Всего сумма списания</th>
+                                    <th>Сотрудник</th>
+                                    <th>Примечание</th>
+                                    <th>Статус</th>
+                                    <th>Фотграфии отгрузки</th>
+                                </tr>
+                                <tr>
+                                    <td class="column-table">1</td>
+                                    <td>12.03.2022</td>
+                                    <td>175990 руб.</td>
+                                    <td>Фамилия и имя</td>
+                                    <td></td>
+                                    <td>Списано</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class="column-table">1</td>
+                                    <td>12.03.2022</td>
+                                    <td>175990 руб.</td>
+                                    <td>Фамилия и имя</td>
+                                    <td></td>
+                                    <td>Списано</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class="column-table">1</td>
+                                    <td>12.03.2022</td>
+                                    <td>175990 руб.</td>
+                                    <td>Фамилия и имя</td>
+                                    <td></td>
+                                    <td>Списано</td>
+                                    <td></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="col-lg-12 order-lg-1">
+                            <!-- Bootstrap 4 -->
+                            <nav aria-label="Навигация по страницам">
+                                <ul class="pagination">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#">
+                                            Первая
+                                        </a>
+                                    </li>
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" aria-label="Предыдущая">
+                                            <span aria-hidden="true">«</span>
+                                            <span class="sr-only">Предыдущая</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item active">
+                                        <a class="page-link" href="#">1</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">2</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">3</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Следующая">
+                                            <span aria-hidden="true">»</span>
+                                            <span class="sr-only">Следующая</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">
+                                            Последняя
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </main>
+                <div th:insert="fragments/footer.html"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:insert="fragments/scripts.html"></div>
+</body>
+</html>

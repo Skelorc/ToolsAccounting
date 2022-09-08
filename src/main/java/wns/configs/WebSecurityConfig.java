@@ -26,13 +26,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        String[] staticResources  =  {
+                "/login/**",
+                "/css/**",
+                "/img/**",
+                "/fonts/**",
+                "/js/**",
+        };
         http
                 .csrf()
                 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                     .and()
                 .authorizeRequests()
-                .antMatchers("/registration").hasAuthority("ADMIN")
-                .antMatchers("/login/**")
+                .antMatchers("/adminPanel").hasAuthority("ADMIN")
+                .antMatchers(staticResources)
                 .permitAll()
                 .anyRequest()
                 .authenticated()
@@ -57,7 +64,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(8);
+        return new BCryptPasswordEncoder(10);
     }
 
     @Override
