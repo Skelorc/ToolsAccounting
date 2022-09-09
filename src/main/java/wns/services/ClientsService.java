@@ -35,6 +35,27 @@ public class ClientsService {
         return createListDTO(list);
     }
 
+    public Page<ClientDTO> findPaginated(Pageable pageable, String filter)
+    {
+        List<ClientDTO> listByFilter = getListByFilter(filter);
+        int pageSize = pageable.getPageSize();
+        int currentPage = pageable.getPageNumber();
+        int startItem = currentPage * pageSize;
+
+        List<ClientDTO> page_list;
+
+        if(listByFilter.size() < startItem)
+        {
+         page_list = Collections.emptyList();
+        }
+        else
+        {
+            int toIndex = Math.min(startItem + pageSize, listByFilter.size());
+            page_list = listByFilter.subList(startItem, toIndex);
+        }
+        return new PageImpl<>(page_list, PageRequest.of(currentPage, pageSize), listByFilter.size());
+    }
+
     public List<ClientDTO> getListByFilter(String filter_string)
     {
         Filter filter = Filter.getFilterByString(filter_string);
@@ -46,27 +67,6 @@ public class ClientsService {
             case BLACKLIST -> list.addAll(clientsRepo.findAllByInBlackList(true));
         }
         return createListDTO(list);
-    }
-
-    public Page<ClientDTO> findpaginated(Pageable pageable)
-    {
-        List<ClientDTO> all = createListDTO(clientsRepo.findAll());
-        int pageSize = pageable.getPageSize();
-        int currentPage = pageable.getPageNumber();
-        int startItem = currentPage * pageSize;
-
-        List<ClientDTO> page_list;
-
-        if(all.size() < startItem)
-        {
-         page_list = Collections.emptyList();
-        }
-        else
-        {
-            int toIndex = Math.min(startItem + pageSize, all.size());
-            page_list = all.subList(startItem, toIndex);
-        }
-        return new PageImpl<>(page_list, PageRequest.of(currentPage, pageSize), all.size());
     }
 
     public Messages saveClient(ClientDTO dto) {
@@ -88,7 +88,8 @@ public class ClientsService {
     }
 
     public ClientDTO findById(long id) {
-        return new ClientDTO(clientsRepo.findById(id).orElse(new Client()));
+        Client client = clientsRepo.findById(id).orElse(new Client());
+        return modelMapper.map(client, ClientDTO.class);
     }
 
     public void delete(long id) {
@@ -100,5 +101,9 @@ public class ClientsService {
         return list.stream()
                 .map(ClientDTO::new)
                 .collect(Collectors.toList());
+    }
+
+    public List<ClientDTO> findListByName(String username) {
+       return createListDTO(clientsRepo.findAllByFullNameContainingIgnoreCase(username));
     }
 }

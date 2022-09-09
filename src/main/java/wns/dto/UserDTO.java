@@ -13,7 +13,6 @@ import java.util.Objects;
 @AllArgsConstructor
 @Setter
 @Getter
-@Component
 public class UserDTO {
     private long id;
     private String username;

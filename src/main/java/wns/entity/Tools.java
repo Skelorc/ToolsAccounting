@@ -44,8 +44,9 @@ public class Tools{
     private int amount;
     private String state;
 
-    @Enumerated(EnumType.STRING)
-    private StatusTools status;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "status_tools_id",nullable = false)
+    private Status status;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "projects_id")

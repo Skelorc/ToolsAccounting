@@ -13,16 +13,16 @@ public class ResponseHandler {
 
     public static ResponseEntity<Object> generateResponse(Messages message, Object responseObj) {
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("message", message);
+        map.put("message", message.getValue());
         map.put("status", message.getStatus());
         map.put("data", responseObj);
-
         return new ResponseEntity<>(map, message.getStatus());
     }
+
     public static ResponseEntity<Object> generateResponse(Messages message) {
 
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("message", message);
+        map.put("message", message.getValue());
         map.put("status", message.getStatus());
         return new ResponseEntity<>(map, message.getStatus());
     }

@@ -1,5 +1,6 @@
 package wns.services;
 
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,17 +14,11 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class UserService {
     private final UsersRepo usersRepo;
     private final PasswordEncoder passwordEncoder;
     private final ModelMapper modelMapper;
-
-    public UserService(UsersRepo usersRepo, PasswordEncoder passwordEncoder, ModelMapper modelMapper) {
-        this.usersRepo = usersRepo;
-        this.passwordEncoder = passwordEncoder;
-        this.modelMapper = modelMapper;
-    }
-
 
     public Messages saveUser(UserDTO dto) {
         User userFromDb = usersRepo.findByUsername(dto.getUsername());

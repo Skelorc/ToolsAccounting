@@ -50,16 +50,6 @@ public class ClientDTO {
     private Set<String> photos;
     private long rented;
 
-    public Client createClient(ClientDTO dto)
-    {
-        if(dto.getTypeClient().equals(TypeClients.INDIVIDUAL))
-        {
-            return createIndividualFromDTO(dto);
-        }
-        else
-            return createLegalFromDTO(dto);
-    }
-
     public ClientDTO (Client client)
     {
         photos = new HashSet<>();
@@ -100,60 +90,42 @@ public class ClientDTO {
         this.setRented(client.getRented());
     }
 
-    private Client createIndividualFromDTO(ClientDTO dto) {
-        return Client.builder()
-                .typeClient(dto.getTypeClient())
-                .fullName(dto.getFullName())
-                .discount(dto.getDiscount())
-                .phoneNumber(dto.getPhoneNumber())
-                .email(dto.getEmail())
-                .fromComing(dto.getFromComing())
-                .limited(dto.getLimited())
-                .note(dto.getNote())
-                .birthday(dto.getBirthday())
-                .inBlackList(dto.isInBlackList())
-                .directorOfPhotography(dto.getDirectorOfPhotography())
-                .production(dto.getProduction())
-                .numberPassport(dto.getNumberPassport())
-                .issuedBy(dto.getIssuedBy())
-                .dateIssuePassport(dto.getDateIssuePassport())
-                .addressReal(dto.getAddressReal())
-                .dateCreating(dto.getDateCreating())
-                .projects(dto.getProjects())
-                .photos(dto.getPhotos())
-                .rented(dto.getRented())
-                .build();
-    }
 
-    private Client createLegalFromDTO(ClientDTO dto) {
-        return Client.builder()
-                .typeClient(dto.getTypeClient())
-                .fullName(dto.getFullName())
-                .legalName(dto.getLegalName())
-                .discount(dto.getDiscount())
-                .phoneNumber(dto.getPhoneNumber())
-                .email(dto.getEmail())
-                .fromComing(dto.getFromComing())
-                .limited(dto.getLimited())
-                .note(dto.getNote())
-                .inBlackList(dto.isInBlackList())
-                .addressReal(dto.getAddressReal())
-                .addressLegal(dto.getAddressLegal())
-                .inn(dto.getInn())
-                .kpp(dto.getKpp())
-                .ogrn(dto.getOgrn())
-                .fullNameSupervisor(dto.getFullNameSupervisor())
-                .jobTitleSupervisor(dto.getJobTitleSupervisor())
-                .inFace(dto.getInFace())
-                .based(dto.getBased())
-                .rs(dto.getRs())
-                .bank(dto.getBank())
-                .ks(dto.getKs())
-                .bik(dto.getBik())
-                .dateCreating(dto.getDateCreating())
-                .projects(dto.getProjects())
-                .photos(dto.getPhotos())
-                .rented(dto.getRented())
-                .build();
+    @Override
+    public String toString() {
+        return "ClientDTO{" +
+                "id=" + id +
+                ", typeClient=" + typeClient +
+                ", fullName='" + fullName + '\'' +
+                ", legalName='" + legalName + '\'' +
+                ", discount=" + discount +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", fromComing='" + fromComing + '\'' +
+                ", limited=" + limited +
+                ", note='" + note + '\'' +
+                ", birthday=" + birthday +
+                ", inBlackList=" + inBlackList +
+                ", directorOfPhotography='" + directorOfPhotography + '\'' +
+                ", production='" + production + '\'' +
+                ", numberPassport='" + numberPassport + '\'' +
+                ", issuedBy='" + issuedBy + '\'' +
+                ", dateIssuePassport=" + dateIssuePassport +
+                ", addressReal='" + addressReal + '\'' +
+                ", addressLegal='" + addressLegal + '\'' +
+                ", inn='" + inn + '\'' +
+                ", kpp='" + kpp + '\'' +
+                ", ogrn='" + ogrn + '\'' +
+                ", fullNameSupervisor='" + fullNameSupervisor + '\'' +
+                ", jobTitleSupervisor='" + jobTitleSupervisor + '\'' +
+                ", inFace='" + inFace + '\'' +
+                ", based='" + based + '\'' +
+                ", rs='" + rs + '\'' +
+                ", bank='" + bank + '\'' +
+                ", ks='" + ks + '\'' +
+                ", bik='" + bik + '\'' +
+                ", dateCreating=" + dateCreating +
+                ", rented=" + rented +
+                '}';
     }
 }
