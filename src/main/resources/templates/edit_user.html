@@ -27,11 +27,12 @@
                                             <div class="row admin-panel-wrapp">
                                                 <div class="col-6 admin-panel__input-wrapp">
                                                         <h2>Редактирование пользователя</h2>
+                                                        <form th:action="@{/admin-panel/edit/{id}(id=${user.id})}" method="post" th:object="${user}">
                                                         <div class="admin-panel__input-box">
                                                             <div role="group" class="form-group">
                                                                 <label class="d-block">Логин пользователя</label>
                                                                 <span>
-                                                                    <input class="form-control" type="text" placeholder="Enter Username" name="username" id="username" th:value="${user.getUsername()}">
+                                                                    <input class="form-control" type="text" placeholder="Enter Username" th:field="*{username}" th:value="${user.getUsername()}">
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -39,7 +40,7 @@
                                                             <div role="group" class="form-group">
                                                                 <label class="d-block">Обновить пароль пользователя</label>
                                                                 <span>
-                                                                    <input class="form-control" type="password" placeholder="Enter Password" name="password" id="password" th:value="${user.getPassword()}">
+                                                                    <input class="form-control" type="password" placeholder="Enter Password" th:field="*{password}" th:value="${user.getPassword()}">
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -47,26 +48,22 @@
                                                             <div role="group" class="form-group">
                                                                 <label class="d-block">Обновить ФИО пользователя</label>
                                                                 <span>
-                                                                    <input class="form-control" type="text" placeholder="Введите ФИО" name="fullName" id="fullName" th:value="${user.getFullName()}">
-                                                                </span>
-                                                            </div>
-                                                            <div role="group" class="form-group">
-                                                                <span>
-                                                                    <input class="form-control" type="submit" hidden="hidden" id="user_id" th:value="${user.getId()}">
+                                                                    <input class="form-control" type="text" placeholder="Введите ФИО" th:field="*{fullName}" th:value="${user.getFullName()}">
                                                                 </span>
                                                             </div>
                                                         </div>
                                                         <label class="d-block">Выберите новую роль</label>
                                                         <div class="admin-panel__select select">
-                                                            <select th:field="*{roles}" id="roles">
-                                                                <option class="vs__selected" selected th:value="${user.getRoles()}" th:text="${'Текущая роль - '+ user.getRoles().getValue()}"></option>
+                                                            <select th:field="*{roles}">
+                                                                <option class="vs__selected" selected disabled th:value="${user.getRoles()}" th:text="${'Текущая роль - '+ user.getRoles().getValue()}"></option>
                                                                 <option class="vs__selected" th:each="role : ${roles}" th:value="${role}" th:text="${role}" value="role"></option>
                                                             </select>
                                                         <span class="focus"></span>
                                                         </div>
                                                         <div class="login__button-position">
-                                                            <button id="update_user" class="admin-panel__btn" type="submit" value="submit">Обновить</button>
+                                                            <button class="admin-panel__btn" type="submit" value="submit">Обновить</button>
                                                         </div>
+                                                        </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -76,7 +73,7 @@
                                     <div class="col-12 bg-white p-3 edit-container">
                                         <div class="text-center">
                                             <h1 class="display-6">Хотите удалить этого пользователя?</h1>
-                                            <form th:method="post" th:action="@{/admin_panel/delete/{id}(id=${user.getId()})}">
+                                            <form th:method="post" th:action="@{/admin-panel/delete/{id}(id=${user.getId()})}">
                                                 <input type="submit" value="Удалить этого пользователя из базы данных!">
                                             </form>
                                         </div>

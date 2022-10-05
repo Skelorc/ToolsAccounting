@@ -78,6 +78,7 @@ public class Client {
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "photos_clients", joinColumns = @JoinColumn(name = "clients_id"))
+    @Column(columnDefinition = "TEXT")
     private Set<String> photos = new HashSet<>();
     private long rented;
 

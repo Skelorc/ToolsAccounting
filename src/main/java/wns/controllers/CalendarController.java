@@ -10,10 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class CalendarController {
 
     @GetMapping
-    public ModelAndView show()
+    public String show()
     {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("calendar");
-        return modelAndView;
+        return "calendar";
     }
 }

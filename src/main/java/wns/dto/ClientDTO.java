@@ -50,47 +50,6 @@ public class ClientDTO {
     private Set<String> photos;
     private long rented;
 
-    public ClientDTO (Client client)
-    {
-        photos = new HashSet<>();
-        projects = new ArrayList<>();
-        this.setId(client.getId());
-        this.setTypeClient(client.getTypeClient());
-        this.setFullName(client.getFullName());
-        this.setLegalName(client.getLegalName());
-        this.setDiscount(client.getDiscount());
-        this.setPhoneNumber(client.getPhoneNumber());
-        this.setEmail(client.getEmail());
-        this.setFromComing(client.getFromComing());
-        this.setLimited(client.getLimited());
-        this.setNote(client.getNote());
-        this.setBirthday(client.getBirthday());
-        this.setInBlackList(client.isInBlackList());
-        this.setDirectorOfPhotography(client.getDirectorOfPhotography());
-        this.setProduction(client.getProduction());
-        this.setNumberPassport(client.getNumberPassport());
-        this.setIssuedBy(client.getIssuedBy());
-        this.setDateIssuePassport(client.getDateIssuePassport());
-        this.setAddressReal(client.getAddressReal());
-        this.setAddressLegal(client.getAddressLegal());
-        this.setInn(client.getInn());
-        this.setKpp(client.getKpp());
-        this.setOgrn(client.getOgrn());
-        this.setFullNameSupervisor(client.getFullNameSupervisor());
-        this.setJobTitleSupervisor(client.getJobTitleSupervisor());
-        this.setInFace(client.getInFace());
-        this.setBased(client.getBased());
-        this.setRs(client.getRs());
-        this.setBank(client.getBank());
-        this.setKs(client.getKs());
-        this.setBik(client.getBik());
-        this.setDateCreating(client.getDateCreating());
-        this.setProjects(client.getProjects());
-        this.setPhotos(client.getPhotos());
-        this.setRented(client.getRented());
-    }
-
-
     @Override
     public String toString() {
         return "ClientDTO{" +

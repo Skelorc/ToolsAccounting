@@ -1,22 +1,25 @@
 package wns.configs;
 
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import wns.utils.StringToDateConverter;
 import wns.utils.StringToIntConverter;
 import wns.utils.StringToLongConverter;
+import wns.utils.StringToSetPhotos;
 
 @Configuration
+@AllArgsConstructor
 public class WebMvcConfig implements WebMvcConfigurer {
     private final StringToLongConverter stringToLongConverter;
     private final StringToIntConverter stringToIntConverter;
+    private final StringToDateConverter stringToDateConverter;
+    private final StringToSetPhotos stringToSetPhotos;
 
-    public WebMvcConfig(StringToLongConverter stringToLongConverter, StringToIntConverter stringToIntConverter) {
-        this.stringToLongConverter = stringToLongConverter;
-        this.stringToIntConverter = stringToIntConverter;
-    }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -32,5 +35,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(stringToLongConverter);
         registry.addConverter(stringToIntConverter);
+        registry.addConverter(stringToDateConverter);
+        registry.addConverter(stringToSetPhotos);
     }
 }

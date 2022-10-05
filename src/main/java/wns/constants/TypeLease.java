@@ -14,4 +14,9 @@ public enum TypeLease {
     public String toString() {
         return this.name();
     }
+
+    public String getType()
+    {
+        return type;
+    }
 }

@@ -7,774 +7,370 @@
 </head>
 
 <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
+<div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
     <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
-        <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
-            <div th:insert="fragments/menu_sidebar.html"></div>
-            <div class="b-overlay-wrap position-relative w-100" size="sm">
-                <div class="rih-page-wrapper">
-                    <nav data-v-59295fda="" role="navigation" class="navbar navbar-admin navbar-fixed-top" th:insert="fragments/header_logout.html"></nav>
-                    <main class="wrapper wrapper-content border-bottom">
-                        <div  class="b-overlay-wrap position-relative" size="sm">
-                            <div  class="row">
-                                <div  class="col-lg-8 col-xl-8">
-                                    <div class="project__creat">
-                                        <div class="btn-pimary__groups-wrapper vidacha-sozdach mb-3 vidacha-sozdach">
-                                            <div data-v-e551daac="" class="mb-3 text-right">
-                                                <span data-v-e551daac="" class="btn-pimary__groups_title">Проект</span>
-                                            </div>
-                                            <div data-v-e551daac="" class="mb-3 text-right">
-                                                <a data-v-e551daac="" href="#" class="btn btn-primary light-blue">Назад</a>
-                                            </div>
-                                            <div data-v-e551daac="" class="mb-3 text-right">
-                                                <a data-v-e551daac="" href="#" class="btn btn-primary green">Сохранить</a>
-                                            </div>
-                                            <div data-v-e551daac="" class="mb-3 text-right">
-                                                <a data-v-e551daac="" href="#" class="btn btn-primary red">Удалить</a>
-                                            </div>
-                                            <div data-v-e551daac="" class="mb-3 text-right">
-                                                <a data-v-e551daac="" href="#" class="btn btn-primary orange">Обновить</a>
-                                            </div>
-                                            <div data-v-e551daac="" class="mb-3 text-right">
-                                                <a data-v-e551daac="" href="#" class="btn btn-primary light-blue">Журнал</a>
-                                            </div>
-                                            <div data-v-e551daac="" class="mb-3 text-right">
-                                                <a data-v-e551daac="" href="#" class="btn btn-primary grey">Документы</a>
-                                            </div>
-                                            <div data-v-e551daac="" class="mb-3 text-right">
-                                                <a data-v-e551daac="" href="#" class="btn btn-primary orange">Выдать оборудование</a>
-                                            </div>
-                                            <div data-v-e551daac="" class="mb-3 text-right">
-                                                <a data-v-e551daac="" href="#" class="btn btn-primary light-blue">Единая система</a>
-                                            </div>
-                                        </div>
+        <div th:insert="fragments/menu_sidebar.html"></div>
+        <div class="b-overlay-wrap position-relative w-100" size="sm">
+            <div class="rih-page-wrapper">
+                <nav data-v-59295fda="" role="navigation" class="navbar navbar-admin navbar-fixed-top" th:insert="fragments/header_logout.html"></nav>
+                <main class="wrapper wrapper-content border-bottom">
+                    <div class="b-overlay-wrap position-relative" size="sm">
+                            <div class="project__creat mb-3">
+                                <div class="btn-pimary__groups-wrapper vidacha-sozdach mb-3 vidacha-sozdach">
+                                    <div class="mb-3 text-right">
+                                        <span class="btn-pimary__groups_title">Проект</span>
                                     </div>
-                                    <div class="col-lg-12 project__info-wrapp light-yellow mb-3 p-3">
-                                        <div class="project__info mb-3">
-                                            <div class="project__info-block">
-                                                <div class="project__info-block_small left">
-                                                    <span data-v-8271a922="" >
-                                                        Номер
-                                                    </span>
-                                                </div>
-                                                <div class="project__info-block_small right">
-                                                    <span data-v-8271a922="" >
-                                                        Следующий порядковый номер
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="project__info-block">
-                                                <div class="project__info-block_small left">
-                                                    <span data-v-8271a922="" >
-                                                        Класс
-                                                    </span>
-                                                </div>
-                                                <div class="project__info-block_small right">
-                                                    <div data-v-513a0ac0="" dir="auto"
-                                                            class="v-select w-100 mb-3 d-block vs--multiple vs--searchable">
-                                                        <div id="vs2__combobox" role="combobox" aria-expanded="false"
-                                                                aria-owns="vs2__listbox" aria-label="Search for option"
-                                                                class="vs__dropdown-toggle">
-                                                            <div class="vs__selected-options">
-                                                                <select class="vs__selected-options vs__search">
-                                                                    <option class="vs__selected-options vs__search"
-                                                                            value="razoviy">Разовый
-                                                                    </option>
-                                                                    <option class="vs__selected-options vs__search"
-                                                                            value="dlinniy">Длинный
-                                                                    </option>
-                                                                    <option value="subarenda">Субаренда</option>
-                                                                    <option value="test">Тест</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <ul id="vs2__listbox" role="listbox"
-                                                            style="display: none; visibility: hidden;"></ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="project__info mb-3">
-                                            <div class="project__info-block">
-                                                <div class="project__info-block_small left">
-                                                    <span data-v-8271a922="" >
-                                                        Наименование
-                                                    </span>
-                                                </div>
-                                                <div class="project__info-block_small right">
-                                                    <input type="text" class="vdatetime-input form-control" placeholder="Имя проекта">
-                                                </div>
-                                            </div>
-                                            <div class="project__info-block">
-                                                <div class="project__info-block_small left">
-                                                    <span data-v-8271a922="" >
-                                                        Создан
-                                                    </span>
-                                                </div>
-                                                <div class="project__info-block_small right">
-                                                    <input type="date" class="vdatetime-input form-control" placeholder="Текущая дата и время">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="project__info mb-3">
-                                            <div class="project__info-block">
-                                                <div class="project__info-block_small">
-                                                    <span data-v-8271a922="" >
-                                                        Фотографиии отгрузки
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="project__info-block_small ml-2">
-                                                <textarea required="" name="note" class="form-control" id="note_individual" style="height: 40px;"></textarea>
-                                            </div>
-                                        </div>
+                                    <div class="mb-3 text-right">
+                                        <a href="#" class="btn btn-primary min-width-120 light-blue">Назад</a>
                                     </div>
-                                    <div data-v-8271a922=""  class="rent__time mb-3">
-                                        <span data-v-8271a922="" >
-                                            Укажите время аренды
-                                        </span>
-                                        <div data-v-8271a922="" class="row">
-                                            <div data-v-8271a922="" class="col-lg-6">
-                                                <div data-v-8271a922="" class="rent__time__group"><span
-                                                        data-v-8271a922="" class="rent__time__group__label"><i
-                                                        data-v-8271a922="" class="far fa-clock mr-2"></i>
-                                                            Начало
-                                                        </span>
-                                                    <div data-v-8271a922="" class="vdatetime w-100 form-control">
-                                                        <input type="date" class="vdatetime-input" placeholder="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div data-v-8271a922="" class="col-lg-6">
-                                                <div data-v-8271a922="" class="rent__time__group"><span
-                                                        data-v-8271a922="" class="rent__time__group__label"><i
-                                                        data-v-8271a922="" class="far fa-clock mr-2"></i>
-                                                            Конец
-                                                        </span>
-                                                    <div data-v-8271a922="" class="vdatetime w-100 form-control">
-                                                        <input type="date" class="vdatetime-input" placeholder="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div data-v-8271a922="" class="col-lg-6 offset-lg-6">
-                                            </div>
-                                        </div>
+                                    <div class="mb-3 text-right">
+                                        <a href="#" class="btn btn-primary min-width-120 green">Сохранить</a>
                                     </div>
-                                    <div  class="rent__client mb-3">
-                                        <div class="mb-3 rent__client__buttons">
-                                            <span class="d-inline-block label-name ">
-                                                Укажите клиента
-                                            </span>
-                                            <a href="/clients" th:href="@{/clients}" title="ДобавитьКлиент" class="btn btn-primary btn-xs">
-                                            Новый клиент
-                                        </a>
-                                        </div>
-                                        <div class="mt-1 rent__client__selector">
-                                            <div dir="auto" class="v-select vs--single vs--searchable">
-                                                <div id="vs31__combobox" role="combobox" aria-expanded="false"
-                                                        aria-owns="vs31__listbox" aria-label="Search for option"
-                                                        class="vs__dropdown-toggle">
-                                                    <div class="vs__selected-options"><input
-                                                            placeholder="Начните вводить для поиска..."
-                                                            aria-autocomplete="list"
-                                                            aria-labelledby="vs31__combobox"
-                                                            aria-controls="vs31__listbox" type="search"
-                                                            autocomplete="off" class="vs__search"></div>
-                                                </div>
-                                                <ul id="vs31__listbox" role="listbox"
-                                                    style="display: none; visibility: hidden;"></ul>
-                                            </div>
-                                        </div>
+                                    <div class="mb-3 text-right">
+                                        <a href="#" class="btn btn-primary min-width-120 red">Удалить</a>
                                     </div>
-
-                                    <!-- Tab links -->
-                                    <div class="tab mb-3">
-                                        <button class="tablinks" onclick="openUnit(event, 'unit_1')" id="defaultOpen">
-                                            Юнит_1
-                                        </button>
-                                        <button class="tablinks" onclick="openUnit(event, 'unit_2')">Юнит_2</button>
-                                        <button class="tablinks" onclick="openUnit(event, 'unit_3')">Юнит_3</button>
-                                        <button class="tablinks" onclick="openUnit(event, 'unit_4')">Юнит_4</button>
+                                    <div class="mb-3 text-right">
+                                        <a href="#" class="btn btn-primary min-width-120 orange">Обновить</a>
                                     </div>
-
-                                    <!-- Tab content -->
-                                    <div id="unit_1" class="tabcontent light-yellow p-3 mb-3">
-                                        <div class="project__creat">
-                                            <div class="wrapper__btn-primary vidacha-sozdach">
-                                                <div data-v-e551daac="" class="mb-3 text-right">
-                                                    <span data-v-e551daac="" class="btn vidacha-sozdach_title">Список оборудования</span>
-                                                </div>
-                                                <div data-v-e551daac="" class="mb-3 text-right">
-                                                    <a data-v-e551daac="" href="#" class="btn btn-primary light-blue">Добавить</a>
-                                                </div>
-                                                <div data-v-e551daac="" class="mb-3 text-right">
-                                                    <a data-v-e551daac="" href="#" class="btn btn-primary green">Заменить</a>
-                                                </div>
-                                                <div data-v-e551daac="" class="mb-3 text-right">
-                                                    <a data-v-e551daac="" href="#"
-                                                        class="btn btn-primary red">Удалить</a>
-                                                </div>
-                                                <div data-v-e551daac="" class="mb-3 text-right">
-                                                    <a data-v-e551daac="" href="#" class="btn btn-primary orange">Штрих
-                                                        код</a>
-                                                </div>
-                                                <div data-v-e551daac="" class="mb-3 text-right">
-                                                    <a data-v-e551daac="" href="#" class="btn btn-primary light-blue">Добавить
-                                                        оборудование из другого проекта</a>
-                                                </div>
-                                                <div data-v-e551daac="" class="mb-3 text-right">
-                                                    <a data-v-e551daac="" href="#"
-                                                        class="btn btn-primary grey">Смета</a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="mb-3 text-right">
+                                        <a href="#" class="btn btn-primary min-width-120 light-blue">Журнал</a>
                                     </div>
-
-                                    <div id="unit_2" class="tabcontent light-yellow p-3 mb-3">
-                                        <div class="project__creat">
-                                            <div class="wrapper__btn-primary vidacha-sozdach">
-                                                <div data-v-e551daac="" class="mb-3 text-right">
-                                                    <span data-v-e551daac="" class="btn vidacha-sozdach_title">Список оборудования</span>
-                                                </div>
-                                                <div data-v-e551daac="" class="mb-3 text-right">
-                                                    <a data-v-e551daac="" href="#" class="btn btn-primary light-blue">Добавить</a>
-                                                </div>
-                                                <div data-v-e551daac="" class="mb-3 text-right">
-                                                    <a data-v-e551daac="" href="#" class="btn btn-primary green">Заменить</a>
-                                                </div>
-                                                <div data-v-e551daac="" class="mb-3 text-right">
-                                                    <a data-v-e551daac="" href="#"
-                                                        class="btn btn-primary red">Удалить</a>
-                                                </div>
-                                                <div data-v-e551daac="" class="mb-3 text-right">
-                                                    <a data-v-e551daac="" href="#" class="btn btn-primary orange">Штрих
-                                                        код</a>
-                                                </div>
-                                                <div data-v-e551daac="" class="mb-3 text-right">
-                                                    <a data-v-e551daac="" href="#" class="btn btn-primary light-blue">Добавить
-                                                        оборудование из другого проекта</a>
-                                                </div>
-                                                <div data-v-e551daac="" class="mb-3 text-right">
-                                                    <a data-v-e551daac="" href="#"
-                                                        class="btn btn-primary grey">Смета</a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="mb-3 text-right">
+                                        <a href="#" class="btn btn-primary min-width-120 grey">Документы</a>
                                     </div>
-
-                                    <div id="unit_3" class="tabcontent light-yellow p-3 mb-3">
-                                        <div class="project__creat">
-                                            <div class="wrapper__btn-primary vidacha-sozdach">
-                                                <div data-v-e551daac="" class="mb-3 text-right">
-                                                    <span data-v-e551daac="" class="btn vidacha-sozdach_title">Список оборудования</span>
-                                                </div>
-                                                <div data-v-e551daac="" class="mb-3 text-right">
-                                                    <a data-v-e551daac="" href="#" class="btn btn-primary light-blue">Добавить</a>
-                                                </div>
-                                                <div data-v-e551daac="" class="mb-3 text-right">
-                                                    <a data-v-e551daac="" href="#" class="btn btn-primary green">Заменить</a>
-                                                </div>
-                                                <div data-v-e551daac="" class="mb-3 text-right">
-                                                    <a data-v-e551daac="" href="#"
-                                                        class="btn btn-primary red">Удалить</a>
-                                                </div>
-                                                <div data-v-e551daac="" class="mb-3 text-right">
-                                                    <a data-v-e551daac="" href="#" class="btn btn-primary orange">Штрих
-                                                        код</a>
-                                                </div>
-                                                <div data-v-e551daac="" class="mb-3 text-right">
-                                                    <a data-v-e551daac="" href="#" class="btn btn-primary light-blue">Добавить
-                                                        оборудование из другого проекта</a>
-                                                </div>
-                                                <div data-v-e551daac="" class="mb-3 text-right">
-                                                    <a data-v-e551daac="" href="#"
-                                                        class="btn btn-primary grey">Смета</a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="mb-3 text-right">
+                                        <a href="#" class="btn btn-primary min-width-120 orange">Выдать
+                                            оборудование</a>
                                     </div>
-
-                                    <div id="unit_4" class="tabcontent light-yellow p-3 mb-3">
-                                        <div class="project__creat">
-                                            <div class="wrapper__btn-primary vidacha-sozdach">
-                                                <div data-v-e551daac="" class="mb-3 text-right">
-                                                    <span data-v-e551daac="" class="btn vidacha-sozdach_title">Список оборудования</span>
-                                                </div>
-                                                <div data-v-e551daac="" class="mb-3 text-right">
-                                                    <a data-v-e551daac="" href="#" class="btn btn-primary light-blue">Добавить</a>
-                                                </div>
-                                                <div data-v-e551daac="" class="mb-3 text-right">
-                                                    <a data-v-e551daac="" href="#" class="btn btn-primary green">Заменить</a>
-                                                </div>
-                                                <div data-v-e551daac="" class="mb-3 text-right">
-                                                    <a data-v-e551daac="" href="#"
-                                                        class="btn btn-primary red">Удалить</a>
-                                                </div>
-                                                <div data-v-e551daac="" class="mb-3 text-right">
-                                                    <a data-v-e551daac="" href="#" class="btn btn-primary orange">Штрих
-                                                        код</a>
-                                                </div>
-                                                <div data-v-e551daac="" class="mb-3 text-right">
-                                                    <a data-v-e551daac="" href="#" class="btn btn-primary light-blue">Добавить
-                                                        оборудование из другого проекта</a>
-                                                </div>
-                                                <div data-v-e551daac="" class="mb-3 text-right">
-                                                    <a data-v-e551daac="" href="#"
-                                                        class="btn btn-primary grey">Смета</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-lg-12 order-lg-1">
-                                        <div class="wrapper__btn-under_table">
-                                            <div data-v-e551daac="" class="mb-3 text-right">
-                                                <a data-v-e551daac="" href="#"
-                                                    class="btn btn-primary btn-add_vidacha grey">Еджиный список</a>
-                                            </div>
-                                            <div data-v-e551daac="" class="mb-3 text-right">
-                                                <a data-v-e551daac="" href="#"
-                                                    class="btn btn-primary btn-open_vidacha  grey">Просмотр по
-                                                    группам</a>
-                                            </div>
-                                            <div data-v-e551daac="" class="mb-3 text-right">
-                                                <a data-v-e551daac="" href="#"
-                                                    class="btn btn-primary btn-delate_vidacha grey">Просмотр по разделам
-                                                    сметы</a>
-                                            </div>
-                                            <div data-v-e551daac="" class="mb-3 text-right">
-                                                <a data-v-e551daac="" href="#"
-                                                    class="btn btn-primary btn-update_vidacha  grey">Сбросить фильтр</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="table__info table__vidacha-sozdat_wrapp mb-3">
-                                        <div class="table__vidacha-sozdat">
-                                            <table class="in4dr-form">
-                                                <tr>
-                                                    <th class="first-th">№</th>
-                                                    <th>Наименование</th>
-                                                    <th>Штрих код</th>
-                                                    <th>Группа</th>
-                                                    <th>Марка/Модель</th>
-                                                    <th>Серийный номер</th>
-                                                    <th>Коментарий</th>
-                                                    <th>Характеристики</th>
-                                                    <th>Состояние</th>
-                                                    <th>Цена</th>
-                                                    <th>Себестоимость</th>
-                                                    <th>Комплект</th>
-                                                </tr>
-                                                <tr>
-                                                    <td class="column-table">1</td>
-                                                    <td>O-konnector</td>
-                                                    <td>05556644</td>
-                                                    <td>05 heads</td>
-                                                    <td>2050</td>
-                                                    <td>54545454</td>
-                                                    <td>Black</td>
-                                                    <td>N/A</td>
-                                                    <td>Без повреждений</td>
-                                                    <td>1000.00</td>
-                                                    <td>2500.00</td>
-                                                    <td>1шт Головка</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="column-table">1</td>
-                                                    <td>O-konnector</td>
-                                                    <td>05556644</td>
-                                                    <td>05 heads</td>
-                                                    <td>2050</td>
-                                                    <td>54545454</td>
-                                                    <td>Black</td>
-                                                    <td>N/A</td>
-                                                    <td>Без повреждений</td>
-                                                    <td>1000.00</td>
-                                                    <td>2500.00</td>
-                                                    <td>1шт Головка</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="column-table">1</td>
-                                                    <td>O-konnector</td>
-                                                    <td>05556644</td>
-                                                    <td>05 heads</td>
-                                                    <td>2050</td>
-                                                    <td>54545454</td>
-                                                    <td>Black</td>
-                                                    <td>N/A</td>
-                                                    <td>Без повреждений</td>
-                                                    <td>1000.00</td>
-                                                    <td>2500.00</td>
-                                                    <td>1шт Головка</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="column-table">1</td>
-                                                    <td>O-konnector</td>
-                                                    <td>05556644</td>
-                                                    <td>05 heads</td>
-                                                    <td>2050</td>
-                                                    <td>54545454</td>
-                                                    <td>Black</td>
-                                                    <td>N/A</td>
-                                                    <td>Без повреждений</td>
-                                                    <td>1000.00</td>
-                                                    <td>2500.00</td>
-                                                    <td>1шт Головка</td>
-                                                </tr>
-                                                <tr>
-                                            </table>
-                                        </div>
-                                    </div>
-
-
-                                    <div data-v-bae42418=""  class="rent__product"
-                                            can-edit="true">
-                                        <div data-v-bae42418="" class="mb-2 rent__product__buttons">
-                                            <span data-v-bae42418="" class="d-inline-block label-name  mr-auto">
-                                                Выберите товар
-                                                <smalll data-v-bae42418="" class="label label-default ml-2"><b
-                                                        data-v-bae42418="">0</b></smalll>
-                                            </span>
-                                            <button data-v-bae42418="" type="button" title="Выбрать товар"
-                                                    class="btn btn-primary btn-xs">
-                                                Выбрать товар
-                                            </button>
-                                        </div>
-                                        <div data-v-bae42418="" class="rent__product__list">
-                                            <h4 data-v-bae42418=""
-                                                class="text-muted text-center mb-0 in4dr-form p-3"><i
-                                                    data-v-bae42418="" class="fa fa-search-dollar f-18"></i> <span
-                                                    data-v-bae42418="" class="d-block mt-2 d-block"
-                                                    style="vertical-align: top;">
-                                                        Добавьте товар к аренде
-                                                    </span></h4>
-                                        </div>
-
-                                    </div>
-                                    <div data-v-9bd4c89a=""  class="rent__additional_service">
-                                        <div data-v-9bd4c89a="" class="mb-2 rent__additional_service__buttons">
-                                            <span data-v-9bd4c89a="" class="d-inline-block label-name  mr-auto">
-                                                Выберите доп.услуги
-                                                <smalll data-v-9bd4c89a="" id="block-inventory-count"
-                                                        class="label label-default ml-2"><b
-                                                        data-v-9bd4c89a="">0</b></smalll>
-                                            </span>
-                                            <button data-v-9bd4c89a="" type="button" title="Добавить услугу"
-                                                    class="btn btn-primary btn-xs">
-                                                Выбрать услугу
-                                            </button>
-                                        </div>
-                                        <div data-v-9bd4c89a="" class="rent__additional_service__list">
-                                            <h4 data-v-9bd4c89a=""
-                                                class="text-muted text-center mb-0 in4dr-form p-3"><i
-                                                    data-v-9bd4c89a="" class="fa fa-search-dollar f-18"></i> <span
-                                                    data-v-9bd4c89a="" class="d-block mt-2 d-block"
-                                                    style="vertical-align: top;">
-                                                        Добавьте дополнительные услуги
-                                                    </span></h4>
-                                        </div>
-
+                                    <div class="mb-3 text-right">
+                                        <a href="#" class="btn btn-primary min-width-120 light-blue">Единая
+                                            система</a>
                                     </div>
                                 </div>
-                                <div  class="col-lg-4 col-xl-4">
-                                    <div data-v-4db6aa98=""  class="ibox mb-4">
-                                        <div data-v-4db6aa98="" class="ibox-title">
-                                            <h5 data-v-4db6aa98="" class="w-100">
-                                                Дополнительно
-                                            </h5>
-                                            <div data-v-4db6aa98="" class="ibox-tools"><a data-v-4db6aa98="" class="collapse-link"><i data-v-4db6aa98=""class="fa fa-chevron-down"></i></a></div>
-                                        </div>
 
-                                    </div>
-                                    <div  class="b-overlay-wrap position-relative">
-                                        <div data-v-99b7b900=""  class="rent__calculator">
-                                            <div data-v-99b7b900="" class="in4dr-form">
-                                                <div data-v-03171da2="" data-v-99b7b900="">
-                                                    <div data-v-03171da2="" class="promocode mb-3 mt-1 p-3">
-                                                        <input type="text" placeholder="Введит промокод или произвольную скидку" class="form-control" >
-                                                        <button data-v-03171da2="" type="button" disabled="disabled"
-                                                                class="btn border-radius-none  btn-primary disabled">
-                                                            <i data-v-03171da2="" class="fas fa-plus"></i>
-                                                        </button>
-                                                        <button data-v-03171da2="" type="button" disabled="disabled"
-                                                                class="btn btn-primary disabled">
-                                                            <i data-v-03171da2="" class="fas fa-search"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div data-v-99b7b900="" class="rent__calculator__list p-3">
-                                                    <div class="project__all-data_wrapp all-data light-yellow">
-                                                        <div class="project__all-data all-data_title">
-                                                            <span data-v-8271a922="" >
-                                                                Итоговая УСН
-                                                            </span>
-                                                        </div>
-                                                        <div class="project__all-data all-data_input">
-                                                                <span type="text" class="vdatetime-input form-control"/>
-                                                        </div>
-                                                    </div>
-                                                    <div class="project__all-data_wrapp all-data light-yellow">
-                                                        <div class="project__all-data all-data_title">
-                                                            <span data-v-8271a922="" >
-                                                                Итоговая сумма
-                                                            </span>
-                                                        </div>
-                                                        <div class="project__all-data all-data_input">
-                                                                <span type="text" class="vdatetime-input form-control"/>
-                                                        </div>
-                                                    </div>
-                                                    <div class="project__all-data_wrapp all-data light-yellow">
-                                                        <div class="project__all-data all-data_title">
-                                                            <span data-v-8271a922="" >
-                                                                Стоимость обор-ия
-                                                            </span>
-                                                        </div>
-                                                        <div class="project__all-data all-data_input">
-                                                                <span type="text" class="vdatetime-input form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="project__all-data_wrapp all-data light-yellow">
-                                                        <div class="project__all-data all-data_title">
-                                                            <span data-v-8271a922="" >
-                                                                Скидка на проект
-                                                            </span>
-                                                        </div>
-                                                        <div class="project__all-data all-data_input">
-                                                                <span type="text" class="vdatetime-input form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="project__all-data_wrapp last-chaild-pb-15 all-data light-yellow">
-                                                        <div class="project__all-data all-data_title">
-                                                            <span data-v-8271a922="" >
-                                                                Итоговая УСН
-                                                            </span>
-                                                        </div>
-                                                        <div class="project__all-data all-data_input">
-                                                                <span type="text" class="vdatetime-input form-control"/>
-                                                        </div>
-                                                    </div>
-                                                    <div data-v-99b7b900=""
-                                                            class="rent__calculator__list__row mb-3 text-muted">
-                                                        <div data-v-99b7b900="">
-                                                            Статус
-                                                        </div>
-                                                        <div data-v-99b7b900="">
-                                                            В процессе
-                                                        </div>
-                                                    </div>
-                                                    <div data-v-99b7b900="" class="rent__calculator__list__row">
-                                                        <div data-v-99b7b900="">
-                                                            Длительность
-                                                        </div>
-                                                        <div data-v-99b7b900=""><span data-v-99b7b900=""
-                                                                                        id="duration-rent"
-                                                                                        data-toggle="tooltip"
-                                                                                        data-placement="bottom">
-                                                                    0д 1ч 0м
-                                                                </span></div>
-                                                    </div>
-                                                    <div data-v-99b7b900="" class="rent__calculator__list__row">
-                                                        <div data-v-99b7b900="">
-                                                            Размер аренды
-                                                        </div>
-                                                        <h4 data-v-622d8a07="" data-v-99b7b900=""
-                                                            class="cost cost-widget"><span data-v-622d8a07=""
-                                                                                            class="cost-value"
-                                                                                            style="color: var(--palette-text-primary);">
-                                                                    0
-                                                                </span> <i data-v-622d8a07=""
-                                                                            class="cost-currency fa fa-currency fa-ruble-sign"
-                                                                            style="color: var(--palette-text-primary);"></i>
-                                                        </h4>
-                                                    </div>
-                                                    <div data-v-99b7b900="" class="rent__calculator__list__row">
-                                                        <div data-v-99b7b900="">
-                                                            Сумма продаж
-                                                        </div>
-                                                        <h4 data-v-622d8a07="" data-v-99b7b900=""
-                                                            class="cost cost-widget"><span data-v-622d8a07=""
-                                                                                            class="cost-value"
-                                                                                            style="color: var(--palette-text-primary);">
-                                                                    0
-                                                                </span> <i data-v-622d8a07=""
-                                                                            class="cost-currency fa fa-currency fa-ruble-sign"
-                                                                            style="color: var(--palette-text-primary);"></i>
-                                                        </h4>
-                                                    </div>
-                                                    <div data-v-99b7b900="" class="rent__calculator__list__row">
-                                                        <div data-v-99b7b900="">
-                                                            Сумма доп.услуг
-                                                        </div>
-                                                        <h4 data-v-622d8a07="" data-v-99b7b900=""
-                                                            class="cost cost-widget"><span data-v-622d8a07=""
-                                                                                            class="cost-value"
-                                                                                            style="color: var(--palette-text-primary);">
-                                                                    0
-                                                                </span> <i data-v-622d8a07=""
-                                                                            class="cost-currency fa fa-currency fa-ruble-sign"
-                                                                            style="color: var(--palette-text-primary);"></i>
-                                                        </h4>
-                                                    </div>
-                                                    <div data-v-99b7b900="" class="rent__calculator__list__row">
-                                                        <div data-v-99b7b900="">
-                                                            Штраф за поломки
-                                                        </div>
-                                                        <h4 data-v-622d8a07="" data-v-99b7b900=""
-                                                            class="cost cost-widget"><span data-v-622d8a07=""
-                                                                                            class="cost-value"
-                                                                                            style="color: var(--palette-text-primary);">
-                                                                    0
-                                                                </span> <i data-v-622d8a07=""
-                                                                            class="cost-currency fa fa-currency fa-ruble-sign"
-                                                                            style="color: var(--palette-text-primary);"></i>
-                                                        </h4>
-                                                    </div>
-
-                                                    <div data-v-99b7b900="" class="rent__calculator__list__row">
-                                                        <div data-v-99b7b900="">
-                                                            Скидка
-                                                        </div>
-                                                        <h4 data-v-622d8a07="" data-v-99b7b900=""
-                                                            class="cost cost-widget"><span data-v-622d8a07=""
-                                                                                            class="cost-value"
-                                                                                            style="color: var(--palette-text-primary);">
-                                                                    0
-                                                                </span> <i data-v-622d8a07=""
-                                                                            class="cost-currency fa fa-currency fa-ruble-sign"
-                                                                            style="color: var(--palette-text-primary);"></i>
-                                                        </h4>
-                                                    </div>
-                                                    <div data-v-99b7b900=""
-                                                            class="rent__calculator__list__row payment">
-                                                        <div data-v-99b7b900="">
-                                                            Оплачено
-                                                        </div>
-                                                        <h4 data-v-622d8a07="" data-v-99b7b900=""
-                                                            class="cost cost-widget"><span data-v-622d8a07=""
-                                                                                            class="cost-value"
-                                                                                            style="color: var(--palette-text-primary);">
-                                                                    0
-                                                                </span> <i data-v-622d8a07=""
-                                                                            class="cost-currency fa fa-currency fa-ruble-sign"
-                                                                            style="color: var(--palette-text-primary);"></i>
-                                                        </h4>
-                                                    </div>
-                                                    <div data-v-99b7b900=""
-                                                            class="rent__calculator__list__row total">
-                                                        <div data-v-99b7b900="">
-                                                            Итог
-                                                        </div>
-                                                        <h4 data-v-622d8a07="" data-v-99b7b900=""
-                                                            class="cost cost-widget"><span data-v-622d8a07=""
-                                                                                            class="cost-value"
-                                                                                            style="color: var(--palette-text-primary);">
-                                                                    0
-                                                                </span> <i data-v-622d8a07=""
-                                                                            class="cost-currency fa fa-currency fa-ruble-sign"
-                                                                            style="color: var(--palette-text-primary);"></i>
-                                                        </h4>
-                                                    </div>
-
-
-                                                </div>
-
-                                                <div data-v-69214a34="" data-v-99b7b900="" class="row mt-4 p-3">
-                                                    <div data-v-69214a34="" class="col-md-7">
-                                                        <div data-v-69214a34="" dir="auto" class="v-select mb-3 vs--single vs--searchable">
-                                                            <div id="vs32__combobox" role="combobox" aria-expanded="false" aria-owns="vs32__listbox" aria-label="Search for option" class="vs__dropdown-toggle">
-                                                                <div class="vs__selected-options">
-                                                                    <span class="vs__selected">
-                                                                        Наличные
-                                                                    </span> 
-                                                                    <input aria-autocomplete="list" aria-labelledby="vs32__combobox" aria-controls="vs32__listbox" type="search" autocomplete="off" class="vs__search">
-                                                                </div>
-                                                            </div>
-                                                            <ul id="vs32__listbox" role="listbox"
-                                                                style="display: none; visibility: hidden;">
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div data-v-69214a34="" class="col-md-5">
-                                                        <input
-                                                            data-v-69214a34="" type="number" placeholder="999"
-                                                            required="required" aria-required="true"
-                                                            class="mb-3 form-control" label="Итог" id="__BVID__487">
-                                                    </div>
-                                                    <div data-v-69214a34="" class="col-sm-12">
-                                                        <button
-                                                                data-v-69214a34="" type="button"
-                                                                class="btn btn-primary w-100 btn-primary">
-                                                            Оплатить
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div data-v-99b7b900="" class="p-3">
-                                                    <div data-v-4f057712="" data-v-99b7b900="" class="form-group">
-                                                        <div data-v-4f057712="" class="d-flex align-items-center">
-                                                            <div data-v-4f057712="" dir="auto" class="v-select w-100 ta-center vs--single vs--searchable">
-                                                                <div id="vs33__combobox" role="combobox" aria-expanded="false" aria-owns="vs33__listbox" aria-label="Search for option" class="vs__dropdown-toggle">
-                                                                    <div class="vs__selected-options">
-                                                                        <input
-                                                                            placeholder="Выберите объект залога"
-                                                                            aria-autocomplete="list"
-                                                                            aria-labelledby="vs33__combobox"
-                                                                            aria-controls="vs33__listbox"
-                                                                            type="search" autocomplete="off"
-                                                                            class="vs__search">
-                                                                    </div>
-                                                                </div>
-                                                                <ul id="vs33__listbox" role="listbox"
-                                                                    style="display: none; visibility: hidden;"></ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div data-v-99b7b900="" class="rent__calculator__info">
-                                                    <div data-v-99b7b900="" class="rent__calculator__info__total">
-                                                        <h2 data-v-99b7b900="">
-                                                            0
-                                                        </h2> <label data-v-99b7b900="">
-                                                        Всего
-                                                    </label>
-                                                    </div>
-                                                    <div data-v-99b7b900="" class="rent__calculator__info__payed">
-                                                        <h2 data-v-99b7b900="">
-                                                            0
-                                                        </h2> <label data-v-99b7b900="">
-                                                        Оплачено
-                                                    </label>
-                                                    </div>
-                                                    <div data-v-99b7b900="" class="rent__calculator__info__left">
-                                                        <h2 data-v-99b7b900="">
-                                                            0
-                                                        </h2> <label data-v-99b7b900="">
-                                                        Остаток
-                                                    </label>
-                                                    </div>
-                                                </div>
+                                <form th:action="@{/projects/create}" method="post" th:object="${projectDTO}">
+                                <div class="bg-white p-3 edit-container">
+                                    <div class="row form-creat__half-wrapp">
+                                        <div class=" form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Статус</label>
+                                                <select id="select_status_project" th:field="*{status}" name="status_tool" class="vs__selected-options main-secect__opions form-control">
+                                                    <option class="vs__selected vs__dropdown-toggle" value="" disabled="">Выберите статус проекта
+                                                    </option>
+                                                    <option class="vs__selected vs__dropdown-toggle" th:each="status: ${T(wns.constants.StatusProject).values()}" th:value="${status}" th:text="${status.getStatus()}"></option>
+                                                </select>
                                             </div>
-                                            <span data-v-99b7b900=""
-                                                    class="text-muted smalll float-right my-3">
-                                                    * Расчет происходит автоматически
+                                        </div>
+                                        <div class="form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Наименование</label>
+                                                <span>
+                                                    <input id="name_project" th:field="*{name}" required="" name="fromComing" type="text" class="form-control" placeholder="Имя проекта">
                                                 </span>
+                                            </div>
                                         </div>
-                                        <div  class="mt-4">
-                                            <button type="submit" class="btn btn-lg btn-primary w-100">
-                                                <i class="fa fa-shopping-cart"></i>
-                                                Сохранить
-                                            </button>
+                                        <div class=" form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Начало</label>
+                                                <div class="vdpComponent vdpWithInput">
+                                                    <input id="date_start" th:field="*{start}" class="form-control" type="datetime-local" placeholder="дд.мм.гггг">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class=" form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Окончание</label>
+                                                <div class="vdpComponent vdpWithInput">
+                                                    <input id="date_end" th:field="*{end}" class="form-control" type="datetime-local" placeholder="дд.мм.гггг">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class=" form-creat__half_two-column">
+                                            <div class="form-group">
+                                                <label class="d-block">Укажите ссылки на фото через запятую</label>
+                                                <textarea id="photos" th:field="*{photos}" name="photos" class="form-control" style="height: 40px;"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row form-creat__half-wrapp">
+                                        <div class=" form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Тип аренды</label>
+                                                <select class="vs__selected-options main-secect__opions form-control" id="type" th:field="*{typeLease}">
+                                                    <option class="vs__selected vs__dropdown-toggle" th:each="type: ${T(wns.constants.TypeLease).values()}" th:value="${type}" th:text="${type.getType()}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class=" form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Класс</label>
+                                                <select class="vs__selected-options main-secect__opions form-control" id="classification" th:field="*{classification}">
+                                                    <option class="vs__selected vs__dropdown-toggle" th:each="classification: ${T(wns.constants.ClassificationProject).values()}" th:value="${classification}" th:text="${classification.getValue()}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class=" form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Создан</label>
+                                                <div class="vdpComponent vdpWithInput">
+                                                    <input id="created" th:field="*{created}" class="form-control" type="datetime-local" placeholder="дд.мм.гггг">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-creat__half_two-column">
+                                            <div class="mb-3 rent__client__buttons">
+                                                <span class="d-inline-block label-name ">
+                                                    Укажите клиента
+                                                </span>
+                                                <a href="/clients" title="Добавить Клиентa" class="btn btn-primary min-width-120 btn-xs">Новый клиент
+                                                </a>
+                                            </div>
+                                            <select id="client" th:field="*{client_id}"
+                                                    class="vs__selected-options main-secect__opions form-control executor">
+                                                <option class="vs__selected vs__dropdown-toggle" value="" disabled>
+                                                    Выберите клиента
+                                                </option>
+                                                <option class="vs__selected vs__dropdown-toggle" th:each="client : ${clients}" th:value="${client.id}" th:text="${client.fullName}">
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-creat__half_two-column">
+                                        <div class="form-group">
+                                            <label class="d-block">Примечание</label>
+                                            <textarea id="note" th:field="*{note}" name="" class="form-control" rows="4"></textarea>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="bg-white p-3 edit-container">
+                                    <div class="row form-creat__half-wrapp">
+                                        <div class=" form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Итоговая сумма</label>
+                                                <span>
+                                                    <input id="sum" th:field="*{sum}" type="text" class="form-control" placeholder="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class=" form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Себестоимость оборудования</label>
+                                                <span>
+                                                    <input id="priceTools" th:field="*{priceTools}" type="text" class="form-control" placeholder="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Скидка на проект</label>
+                                                <span>
+                                                    <input id="discountByProject" th:field="*{discountByProject}" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');" class="form-control" placeholder="">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Сумма со скидкой</label>
+                                                <span>
+                                                    <input id="sumWithDiscount" th:field="*{sumWithDiscount}" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');" class="form-control" placeholder="">
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row form-creat__half-wrapp">
+                                        <div class="form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Итоговая УСН</label>
+                                                <span>
+                                                    <input id="finalSumUsn" th:field="*{finalSumUsn}" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');" class="form-control" placeholder="">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Стоимость работ</label>
+                                                <span>
+                                                    <input id="priceWork" th:field="*{priceWork}" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');" class="form-control" placeholder="">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class=" form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Оплачено</label>
+                                                <span>
+                                                    <input id="received" th:field="*{received}" type="text" class="form-control" placeholder="">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class=" form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Расчет неоплаченного остатка</label>
+                                                <span>
+                                                    <input id="remainder" th:field="*{remainder}" type="text" class="form-control" placeholder="">
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Tab content -->
+                                <div class="tabcontent mb-3">
+                                    <div class="project__creat">
+                                        <div class="wrapper__btn-primary vidacha-sozdach">
+                                            <div class="mb-3 text-right">
+                                                <span class="btn-pimary__groups_title">Список оборудования</span>
+                                            </div>
+                                            <div class="mb-3 text-right">
+                                                <a href="/tools/create" class="btn btn-primary min-width-120 light-blue">Добавить</a>
+                                            </div>
+                                            <div class="mb-3 text-right">
+                                                <a href="#" class="btn btn-primary min-width-120 green">Заменить</a>
+                                            </div>
+                                            <div class="mb-3 text-right">
+                                                <a href="#" class="btn btn-primary min-width-120 red">Удалить</a>
+                                            </div>
+                                            <div class="mb-3 text-right">
+                                                <a href="#" class="btn btn-primary min-width-120 light-blue">Добавить
+                                                    оборудование из другого проекта</a>
+                                            </div>
+                                            <div class="mb-3 text-right">
+                                                <a href="#" class="btn btn-primary min-width-120 grey">Смета</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="btn-pimary__groups-wrapper mb-3 order-lg-1">
+                                    <div class="btn__under-table">
+                                        <div class="mb-3 text-right">
+                                            <a href="#" class="btn btn-primary min-width-120 grey">Единый список</a>
+                                        </div>
+                                        <div class="mb-3 text-right">
+                                            <a href="#" class="btn btn-primary min-width-120 grey">Просмотр по группам</a>
+                                        </div>
+                                        <div class="mb-3 text-right">
+                                            <a href="#" class="btn btn-primary min-width-120 grey">Просмотр по разделам сметы</a>
+                                        </div>
+                                        <div class="mb-3 text-right">
+                                            <a href="#" class="btn btn-primary min-width-120 grey">Сбросить фильтр</a>
+                                        </div>
+                                        <div class="custom-ll__header custom-ll__header-zipcode custom-ll__header-zipcode_project">
+                                            <div class="custom-ll__header__full show">
+                                                <div class="custom-ll__header__full__right">
+                                                    <div class="custom-ll__header-wrapp">
+                                                        <div class="header__search header__search_width zip-cod__input-width">
+                                                            <input id="barcode_search_input" type="search" name="barcode" placeholder="Введите штрих код" class="form-control">
+                                                            <span class="header__search__btn"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="table__info table__vidacha-sozdat_wrapp mb-3">
+                                    <div class="table__vidacha-sozdat">
+                                        <table class="in4dr-form">
+                                            <tr>
+                                                <th class="first-th">#</th>
+                                                <th>Наименование</th>
+                                                <th>Штрихкод</th>
+                                                <th>Группа</th>
+                                                <th>Марка/Модель</th>
+                                                <th>Серийный номер</th>
+                                                <th>Коментарий</th>
+                                                <th>Характеристики</th>
+                                                <th>Состояние</th>
+                                                <th>Цена</th>
+                                                <th>Себестоимость</th>
+                                                <th>Комплект</th>
+                                            </tr>
+                                            <tr th:each="tool : ${list_tools}" class="row-tool">
+                                                <td class="column-table">
+                                                    <div class="column-table_checkbox-wrapp">
+                                                        <input th:value="${tool.id}" th:field="*{tools_id}" class="column-table_checkbox" type="checkbox" name=""><span
+                                                            class="tools-td-text table-td-text column-table_checkbox-number"
+                                                            th:utext="${toolStat.index}"></span>
+                                                    </div>
+                                                </td>
+                                                <td th:utext="${tool.name}"></td>
+                                                <td class="barcode-tool" th:utext="${tool.barcode}"></td>
+                                                <td th:utext="${tool.category.getData()}"></td>
+                                                <td th:utext="${tool.model}"></td>
+                                                <td th:utext="${tool.serialNumber}"></td>
+                                                <td th:utext="${tool.comment}"></td>
+                                                <td th:utext="${tool.characteristics}"></td>
+                                                <td th:utext="${tool.state}"></td>
+                                                <td class="price-tool" th:utext="${tool.costPrice}"></td>
+                                                <td th:utext="${tool.priceSell}"></td>
+                                                <td th:utext="${tool.equip}"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="btn-pimary__groups mt-3 mb-3">
+                                    <div class="btn-pimary__groups-wrapper mb-3">
+                                        <div class="mb-3 text-right">
+                                            <span class="btn-pimary__groups_title">Действия</span>
+                                        </div>
+                                        <div class="mb-3 text-right">
+                                            <button type="submit" class="btn btn-primary min-width-120 orange">Создать проект</button>
+                                        </div>
+                                        <div class="mb-3 text-right">
+                                            <a href="#" class="btn btn-primary min-width-120 red">Удалить</a>
+                                        </div>
+
+
+                                        <div class="pagination-control col-lg-12 order-lg-1">
+                                            <!-- Bootstrap 4 -->
+                                            <nav aria-label="Навигация по страницам">
+                                                <ul class="pagination">
+                                                    <li class="page-item disabled">
+                                                        <a class="page-link-m page-link" href="#">
+                                                            Первая
+                                                        </a>
+                                                    </li>
+                                                    <li class="page-item disabled">
+                                                        <a class="page-link-m page-link" href="#" aria-label="Предыдущая">
+                                                            <span aria-hidden="true">«</span>
+                                                            <span class="sr-only">Предыдущая</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="page-item" th:if="${list_tools.totalPages > 0}"
+                                                        th:each="page_number : ${page_numbers}">
+                                                        <a class="page-link-m page-link" th:href="@{/sale/create(size=${list_tools.size}, page=${page_numberStat.index})}" th:text="${page_numberStat.index}" th:class="${page_number==list_tools.number + 1} ? active"></a>
+                                                    </li>
+                                                    <li class="page-item">
+                                                        <a class="page-link-m page-link" aria-label="Следующая">
+                                                            <span aria-hidden="true">»</span>
+                                                            <span class="sr-only">Следующая</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="page-item">
+                                                        <a class="page-link-m page-link" href="#">
+                                                            Последняя
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </nav>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                </form>
                             </div>
-                        </div>
-                    </main>
-                    <div th:insert="fragments/footer.html"></div>
-                </div>
+                    </div>
+                </main>
+                <div th:insert="fragments/footer.html"></div>
             </div>
         </div>
     </div>
-    <div th:insert="fragments/scripts.html"></div>
+</div>
+<div th:insert="fragments/scripts.html"></div>
+<div>  <script src="/static/js/TotalCounter.js" th:src="@{/js/TotalCounter.js}"></script></div>
+<div>  <script src="/static/js/SearchBarcode.js" th:src="@{/js/SearchBarcode.js}"></script></div>
 </body>
 </html>

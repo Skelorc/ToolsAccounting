@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+
+<head>
+    <title>Выдача-смета</title>
+    <div th:replace="fragments/head :: header"></div>
+</head>
+
+<body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
+<div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
+    <div class="b-overlay-wrap position-relative w-100" size="sm">
+        <div th:insert="fragments/menu_sidebar.html"></div>
+        <div class="b-overlay-wrap position-relative w-100" size="sm"></div>
+        <div class="rih-page-wrapper" th:if="${project.start == null}">
+            <nav data-v-59295fda="" role="navigation" class="navbar navbar-admin navbar-fixed-top" th:insert="fragments/header_logout.html"></nav>
+            <form th:action="@{/estimate/create}" method="post" th:object="${project}">
+            <main class="wrapper wrapper-content border-bottom">
+                <div class="btn-pimary__groups-wrapper col-12 mb-3">
+                    <div class="mb-3 text-right">
+                        <span class="btn-pimary__groups_title">Смета</span>
+                    </div>
+                    <div class="mb-3 text-right">
+                        <a href="/projects/create" class="btn btn-primary min-width-120 btn-add_vidacha grey">Назад</a>
+                    </div>
+                    <div class="mb-3 text-right">
+                        <button href="#" class="btn btn-primary min-width-120 green">Сохранить</button>
+                    </div>
+                    <div class="mb-3 text-right">
+                        <button href="#" class="btn btn-primary min-width-120 yellow">Сохранить и закрыть</button>
+                    </div>
+                    <div class="mb-3 text-right">
+                        <button href="#" class="btn btn-primary min-width-120 light-grey ">Печать</button>
+                    </div>
+                    <div class="mb-3 text-right">
+                        <button href="#" class="btn btn-primary min-width-120 light-blue">Калькулятор</button>
+                    </div>
+                    <div class="mb-3 text-right">
+                        <button href="/tools" class="btn btn-primary min-width-120 green">Добавить оборудование и обслуживание</button>
+                    </div>
+                </div>
+                <div class="b-overlay-wrap position-relative custom-ll">
+                    <div class="row">
+                        <div class="btn__under-table col-lg-12 order-lg-1">
+                            <div class="mb-3 text-right">
+                                <a href="#" class="btn btn-primary min-width-120 btn-update_vidacha  grey">Без скидки</a>
+                            </div>
+                            <div class="mb-3 text-right">
+                                <a href="#" class="btn btn-primary min-width-120 btn-update_vidacha  grey">Скидка на оборудование</a>
+                            </div>
+                            <div class="mb-3 text-right">
+                                <a href="#" class="btn btn-primary min-width-120 btn-update_vidacha  grey">Скидка по каждому оборудованию</a>
+                            </div>
+                            <div class="mb-3 text-right">
+                                <a href="#" class="btn btn-primary min-width-120 btn-update_vidacha  grey">Расчет скидки из суммы по проекту</a>
+                            </div>
+                            <div class="mb-3 text-right">
+                                <a href="#" class="btn btn-primary min-width-120 btn-update_vidacha  grey">Расчет скидки из суммы с УСН</a>
+                            </div>
+                        </div>
+                        <div class="custom-ll__table table-responsive overflow-auto col-lg-12 order-lg-1">
+                            <table class="estimate table table-1190 w-100 in4dr-for">
+                                <tbody>
+                                    <tr>
+                                        <td rowspan="9" class="first-th">#</th>
+                                        <td colspan="2" rowspan="7"><img class="table-logo" th:src="@{/img/logo/mad-dog-logo.png}"></td>
+                                        <th colspan="3" rowspan="2">Съемочный период:</th>
+                                        <td colspan="3"><span class="table-td-text" th:field="*{start}" th:value="${project.start}" th:text="${#temporals.format(project.start, 'dd-MM-yyyy HH:mm')}">Подстановка даты начала проекта</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3"><span class="table-td-text" th:field="*{end}" th:value="${project.end}" th:text="${#temporals.format(project.end, 'dd-MM-yyyy HH:mm')}">Подстановка даты окончания проекта</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="3">Количество смен:</th>
+                                        <td colspan="3"><span class="table-td-text" th:text="${count_shifts}">Посчет исходя из дат проекта</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Проект:</th>
+                                        <td colspan="4"><span class="table-td-text" th:text="${project.name}">Подстановка названия проекта</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Оператор:</th>
+                                        <td colspan="4"><span class="table-td-text" th:text="${project.client.directorOfPhotography}">Постановка из карточки клиента</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Заказчик:</th>
+                                        <td colspan="4"><span class="table-td-text" th:text="${project.client.fullName}">Постановка из карточки клиента</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Менеджер:</th>
+                                        <td colspan="4"><span class="table-td-text" th:text="${project.employee}">ФИО сотрудника из аккаунта</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th rowspan="2">Наименование оборудования</th>
+                                        <th rowspan="2">Стоимость</th>
+                                        <th colspan="3">Количество</th>
+                                        <th rowspan="2">Итого за смену</th>
+                                        <th rowspan="2">Итого за проект</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Ед.техники</th>
+                                        <th>Дней</th>
+                                        <th>Скидка</th>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <th colspan="7">Камера</th>
+                                    </tr>
+                                    <tr>
+                                        <td class="grey">-</td>
+                                        <td><span class="table-td-text">Arry Allex mini (скидка 30%)</span></td>
+                                        <td><input required="" value="0" type="text" class="form-control__table" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Цена за сутки/ручной ввод"></td>
+                                        <td><span class="table-td-text">подсчет из списка оборудования</span></td>
+                                        <td><input required="" value="0" type="text" class="form-control__table" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Количесатво смен/ручной ввод"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*(100-скидка)/100</span></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*Дней(100-скидка)/100</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="green">+</td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*(100-скидка)/100</span></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*Дней(100-скидка)/100</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <th colspan="7">Комплект</th>
+                                    </tr>
+                                    <tr>
+                                        <td class="grey">-</td>
+                                        <td><span class="table-td-text">Карты памяти</span></td>
+                                        <td><input required="" value="0" name="" id="" type="text" class="form-control__table" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Цена за сутки/ручной ввод"></td>
+                                        <td><span class="table-td-text">подсчет из списка оборудования</span></td>
+                                        <td><input required="" value="0" name="" id="" type="text" class="form-control__table" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Количесатво смен/ручной ввод"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*(100-скидка)/100</span></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*Дней(100-скидка)/100</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="grey">-</td>
+                                        <td><span class="table-td-text">Комутация</span></td>
+                                        <td><input required="" value="0" name="" id="" type="text" class="form-control__table" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Цена за сутки/ручной ввод"></td>
+                                        <td><span class="table-td-text">подсчет из списка оборудования</span></td>
+                                        <td><input required="" value="0" name="" id="" type="text" class="form-control__table" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Количесатво смен/ручной ввод"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*(100-скидка)/100</span></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*Дней(100-скидка)/100</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="grey">-</td>
+                                        <td><span class="table-td-text ">Неизвестное оборудование</span></td>
+                                        <td><input required="" value="0" name="" id="" type="text" class="form-control__table" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Цена за сутки/ручной ввод"></td>
+                                        <td><span class="table-td-text">подсчет из списка оборудования</span></td>
+                                        <td><input required="" value="0" name="" id="" type="text" class="form-control__table" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Количесатво смен/ручной ввод"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*(100-скидка)/100</span></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*Дней(100-скидка)/100</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="green">+</td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*(100-скидка)/100</span></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*Дней(100-скидка)/100</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <th colspan="7">Операторская техника</th>
+                                    </tr>
+                                    <tr>
+                                        <td class="grey">-</td>
+                                        <td><span class="table-td-text ">Голова штативная O'conor</span></td>
+                                        <td><input required="" value="0" name="" id="" type="text" class="form-control__table" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Цена за сутки/ручной ввод"></td>
+                                        <td><span class="table-td-text">подсчет из списка оборудования</span></td>
+                                        <td><input required="" value="0" name="" id="" type="text" class="form-control__table" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Количесатво смен/ручной ввод"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*(100-скидка)/100</span></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*Дней(100-скидка)/100</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="grey">-</td>
+                                        <td><span class="table-td-text ">Штатив</span></td>
+                                        <td><input required="" value="0" name="" id="" type="text" class="form-control__table" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Цена за сутки/ручной ввод"></td>
+                                        <td><span class="table-td-text">подсчет из списка оборудования</span></td>
+                                        <td><input required="" value="0" name="" id="" type="text" class="form-control__table" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Количесатво смен/ручной ввод"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*(100-скидка)/100</span></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*Дней(100-скидка)/100</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="green">+</td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*(100-скидка)/100</span></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*Дней(100-скидка)/100</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <th colspan="7">Playback</th>
+                                    </tr>
+                                    <tr>
+                                        <td class="grey">-</td>
+                                        <td><span class="table-td-text ">Macboolk Pro</span></td>
+                                        <td><input required="" value="0" name="" id="" type="text" class="form-control__table" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Цена за сутки/ручной ввод"></td>
+                                        <td><span class="table-td-text">подсчет из списка оборудования</span></td>
+                                        <td><input required="" value="0" name="" id="" type="text" class="form-control__table" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Количесатво смен/ручной ввод"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*(100-скидка)/100</span></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*Дней(100-скидка)/100</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="grey">-</td>
+                                        <td><span class="table-td-text ">Монитор</span></td>
+                                        <td><input required="" value="0" name="" id="" type="text" class="form-control__table" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Цена за сутки/ручной ввод"></td>
+                                        <td><span class="table-td-text">подсчет из списка оборудования</span></td>
+                                        <td><input required="" value="0" name="" id="" type="text" class="form-control__table" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Количесатво смен/ручной ввод"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*(100-скидка)/100</span></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*Дней(100-скидка)/100</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="green">+</td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*(100-скидка)/100</span></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*Дней(100-скидка)/100</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <th colspan="7">Оптика</th>
+                                    </tr>
+                                    <tr>
+                                        <td class="grey">-</td>
+                                        <td><span class="table-td-text ">Fujinion Space</span></td>
+                                        <td><input required="" value="0" name="" id="" type="text" class="form-control__table" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Цена за сутки/ручной ввод"></td>
+                                        <td><span class="table-td-text">подсчет из списка оборудования</span></td>
+                                        <td><input required="" value="0" name="" id="" type="text" class="form-control__table" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Количесатво смен/ручной ввод"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*(100-скидка)/100</span></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*Дней(100-скидка)/100</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="green">+</td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*(100-скидка)/100</span></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*Дней(100-скидка)/100</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <th colspan="7">Фильтры</th>
+                                    </tr>
+                                    <tr>
+                                        <td class="grey">-</td>
+                                        <td><span class="table-td-text ">Clear</span></td>
+                                        <td><input required="" value="0" name="" id="" type="text" class="form-control__table" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Цена за сутки/ручной ввод"></td>
+                                        <td><span class="table-td-text">подсчет из списка оборудования</span></td>
+                                        <td><input required="" value="0" name="" id="" type="text" class="form-control__table" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Количесатво смен/ручной ввод"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*(100-скидка)/100</span></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*Дней(100-скидка)/100</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="grey">-</td>
+                                        <td><span class="table-td-text ">Diopter</span></td>
+                                        <td><input required="" value="0" name="" id="" type="text" class="form-control__table" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Цена за сутки/ручной ввод"></td>
+                                        <td><span class="table-td-text">подсчет из списка оборудования</span></td>
+                                        <td><input required="" value="0" name="" id="" type="text" class="form-control__table" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Количесатво смен/ручной ввод"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*(100-скидка)/100</span></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*Дней(100-скидка)/100</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="green">+</td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*(100-скидка)/100</span></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*Дней(100-скидка)/100</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <th colspan="7">Дополнительное оборудование</th>
+                                    </tr>
+                                    <tr>
+                                        <td class="grey">-</td>
+                                        <td><span class="table-td-text ">La-la-la</span></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*(100-скидка)/100</span></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*Дней(100-скидка)/100</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="grey">-</td>
+                                        <td><span class="table-td-text ">Tu-tu-tu</span></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*(100-скидка)/100</span></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*Дней(100-скидка)/100</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="grey">-</td>
+                                        <td><span class="table-td-text ">Tra-tata</span></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*(100-скидка)/100</span></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*Дней(100-скидка)/100</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="green">+</td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*(100-скидка)/100</span></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*Дней(100-скидка)/100</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="5"></td>
+                                        <th colspan="3">Всего по проекту:</th>
+                                        <td colspan="4"><span class="table-td-text">Сумма итого по оборудованию</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="3">Скидка на оборудование:(%)</th>
+                                        <td colspan="4"><span class="table-td-text">Постановка суммы клиента/расчет из суммы УСН/ручной ввод</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="3">Всего по проекту с учетом скидки:</th>
+                                        <td colspan="4"><span class="table-td-text">Сумма итого по оборудованию*(100 на комплект)/100</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="7"></td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="7">Обслуживание и транспорт</th>
+                                    </tr>
+                                    <tr>
+                                        <td class="grey">-</td>
+                                        <td><span class="table-td-text ">Механик камеры</span></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*(100-скидка)/100</span></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*Дней(100-скидка)/100</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="grey">-</td>
+                                        <td><span class="table-td-text ">Переработка за час</span></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*(100-скидка)/100</span></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*Дней(100-скидка)/100</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="grey">-</td>
+                                        <td><span class="table-td-text ">Камерваген</span></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*(100-скидка)/100</span></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*Дней(100-скидка)/100</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="grey">-</td>
+                                        <td><span class="table-td-text ">Прогон за МКАД</span></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*(100-скидка)/100</span></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*Дней(100-скидка)/100</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="green">+</td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><input type="text" class="form-control__table" placeholder="Ручной ввод/наименование"></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*(100-скидка)/100</span></td>
+                                        <td><span class="table-td-text">Стоимость*Ед.техники*Дней(100-скидка)/100</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <th colspan="3">Всего по проекту:</th>
+                                        <td colspan="4"><span class="table-td-text">Сумма итого по ослуживанию</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td colspan="7"></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <th colspan="3">Итоговая сумма по проекту:</th>
+                                        <td colspan="4"><span class="table-td-text">Сумма итого по оборудованию + Сумма итого по ослуживанию</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td colspan="7"></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <th colspan="3">Итоговая сумма УСН:</th>
+                                        <td colspan="4"><span class="table-td-text">Итоговая сумма по проекту/0.91/Ручной ввод</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="pagination-control col-lg-12 order-lg-1">
+                        <!-- Bootstrap 4 -->
+                        <nav aria-label="Навигация по страницам">
+                            <ul class="pagination">
+                                <li class="page-item" th:if="${list_tools.totalPages > 0}"
+                                    th:each="page_number : ${page_numbers}">
+                                    <a class="page-link-m page-link" th:href="@{/tools(size=${list_tools.size}, page=${page_numberStat.index})}" th:text="${page_numberStat.index}" th:class="${page_number==list_tools.number + 1} ? active"></a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </main>
+            </form>
+            <div th:insert="fragments/footer.html"></div>
+        </div>
+    </div>
+</div>
+</div>
+<div th:insert="fragments/scripts.html"></div>
+</body>
+
+</html>

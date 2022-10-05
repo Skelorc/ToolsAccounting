@@ -1,23 +1,24 @@
 package wns.dto;
 
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import wns.constants.CategoryTools;
 import wns.constants.TypeTools;
 import wns.entity.Project;
-import wns.entity.Status;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
 public class ToolsDTO {
     private long id;
     private TypeTools typeTools;
     private String name;
-    private String nameEstimate;
     private String barcode;
     private CategoryTools category;
     private String model;
@@ -26,9 +27,11 @@ public class ToolsDTO {
     private String equip;
     private int amount;
     private String state;
-    private Status status;
+    private StatusToolDTO status;
     private Project project;
+    private EstimateNameDTO estimateNameDTO;
     private String comment;
+    private LocalDate creating;
     private long costPrice;
     private int priceByDay;
     private int incomeFromTools;

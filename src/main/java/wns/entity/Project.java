@@ -36,13 +36,13 @@ public class Project {
     @Column(name = "type_lease")
     private TypeLease typeLease;
     private int quantity;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    @Column(name = "creating_date")
-    private LocalDateTime creatingDate;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @Column(name = "created")
+    private LocalDateTime created;
     private String employee;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime start;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime end;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -53,6 +53,7 @@ public class Project {
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "photos_projects", joinColumns = @JoinColumn(name = "projects_id"))
+    @Column(columnDefinition = "TEXT")
     private Set<String> photos;
 
     private int discount;
@@ -81,12 +82,12 @@ public class Project {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Project project = (Project) o;
-        return id == project.id && number == project.number && quantity == project.quantity && discount == project.discount && sum == project.sum && finalSumUsn == project.finalSumUsn && priceTools == project.priceTools && priceWork == project.priceWork && discountByProject == project.discountByProject && sumWithDiscount == project.sumWithDiscount && received == project.received && remainder == project.remainder && classification == project.classification && status == project.status && Objects.equals(name, project.name) && typeLease == project.typeLease && Objects.equals(creatingDate, project.creatingDate) && Objects.equals(employee, project.employee) && Objects.equals(start, project.start) && Objects.equals(end, project.end) && Objects.equals(client, project.client) && Objects.equals(phoneNumber, project.phoneNumber) && Objects.equals(note, project.note);
+        return id == project.id && number == project.number && quantity == project.quantity && discount == project.discount && sum == project.sum && finalSumUsn == project.finalSumUsn && priceTools == project.priceTools && priceWork == project.priceWork && discountByProject == project.discountByProject && sumWithDiscount == project.sumWithDiscount && received == project.received && remainder == project.remainder && classification == project.classification && status == project.status && Objects.equals(name, project.name) && typeLease == project.typeLease && Objects.equals(created, project.created) && Objects.equals(employee, project.employee) && Objects.equals(start, project.start) && Objects.equals(end, project.end) && Objects.equals(client, project.client) && Objects.equals(phoneNumber, project.phoneNumber) && Objects.equals(note, project.note);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, number, classification, status, name, typeLease, quantity, creatingDate, employee, start, end, client, phoneNumber, discount, note, sum, finalSumUsn, priceTools, priceWork, discountByProject, sumWithDiscount, received, remainder);
+        return Objects.hash(id, number, classification, status, name, typeLease, quantity, created, employee, start, end, client, phoneNumber, discount, note, sum, finalSumUsn, priceTools, priceWork, discountByProject, sumWithDiscount, received, remainder);
     }
 
     @Override
@@ -99,7 +100,7 @@ public class Project {
                 ", name='" + name + '\'' +
                 ", typeLease=" + typeLease +
                 ", quantity=" + quantity +
-                ", creatingDate=" + creatingDate +
+                ", creatingDate=" + created +
                 ", employee='" + employee + '\'' +
                 ", start=" + start +
                 ", end=" + end +

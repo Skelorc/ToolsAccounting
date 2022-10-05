@@ -2,9 +2,12 @@ package wns.services;
 
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import wns.constants.Messages;
+import wns.constants.Roles;
 import wns.entity.User;
 import wns.dto.UserDTO;
 import wns.repo.UsersRepo;
@@ -15,7 +18,7 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
-public class UserService {
+public class UserService  implements MainService {
     private final UsersRepo usersRepo;
     private final PasswordEncoder passwordEncoder;
     private final ModelMapper modelMapper;
@@ -31,7 +34,7 @@ public class UserService {
             return Messages.USER_EXISTS;
     }
 
-    public List<UserDTO> getAllUsers() {
+    public List<UserDTO> getAll() {
         List<User> all = usersRepo.findAll();
         return all.stream()
                 .map(x -> modelMapper.map(x, UserDTO.class))
@@ -57,4 +60,5 @@ public class UserService {
     public void deleteUser(long id) {
         usersRepo.deleteById(id);
     }
-}
+
+   }

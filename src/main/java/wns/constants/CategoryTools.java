@@ -52,4 +52,9 @@ public enum CategoryTools {
     {
         return this.value;
     }
+
+    public String getData()
+    {
+        return this.code + " " +this.value;
+    }
 }

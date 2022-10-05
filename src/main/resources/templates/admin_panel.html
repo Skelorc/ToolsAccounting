@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
 <head>
-    <title>Панель аднминистратора</title>
+    <title>Панель администратора</title>
     <div th:replace="fragments/head :: header"></div>
 </head>
     <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
-    <div class="text-center" id="ex1">
-        <p id="alert_message" class="font-bold"></p>
-    </div>
         <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
             <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
                 <div th:insert="fragments/menu_sidebar.html"></div>
@@ -28,11 +25,12 @@
                                             <div class="row admin-panel-wrapp">
                                                 <div class="col-6 admin-panel__input-wrapp">
                                                     <h2>Ввод данных</h2>
+                                                    <form th:action="@{/admin-panel/create}" method="post" th:object="${user}">
                                                     <div class="admin-panel__input-box">
                                                         <div role="group" class="form-group">
                                                             <label class="d-block">Укажите логин для нового пользователя</label>
                                                             <span>
-                                                                <input class="form-control" type="text" placeholder="Введите логин" name="username" id="username" required>
+                                                                <input class="form-control" type="text" placeholder="Введите логин" th:field="*{username}" required>
                                                             </span>
                                                         </div>
                                                     </div>
@@ -40,7 +38,7 @@
                                                         <div role="group" class="form-group">
                                                             <label class="d-block">Укажите пароль для нового пользователя</label>
                                                             <span>
-                                                                <input class="form-control" type="password" placeholder="Введите пароль" name="password" id="password" required>
+                                                                <input class="form-control" type="password" placeholder="Введите пароль" th:field="*{password}" required>
                                                             </span>
                                                         </div>
                                                     </div>
@@ -48,21 +46,22 @@
                                                         <div role="group" class="form-group">
                                                             <label class="d-block">Укажите ФИО для нового пользователя</label>
                                                             <span>
-                                                                <input class="form-control" type="text" placeholder="введите ФИО" name="fullName" id="fullName" required>
+                                                                <input class="form-control" type="text" placeholder="введите ФИО" th:field="*{fullName}" required>
                                                             </span>
                                                         </div>
                                                     </div>
                                                     <label class="d-block">Выберите роль</label>
                                                     <div class="admin-panel__select select">
-                                                        <select id="roles">
+                                                        <select id="roles" th:field="*{roles}">
                                                             <option class="vs__selected" value="" disabled>Выберите роль</option>
                                                             <option class="vs__selected" th:each="role : ${roles}" th:value="${role.getValue()}" th:text="${role}" value="role"></option>
                                                         </select>
                                                     <span class="focus"></span>
                                                     </div>
                                                     <div class="login__button-position">
-                                                        <button id="save_user" class="admin-panel__btn" name="submit" type="submit" value="submit">Зарегистрировать</button>
+                                                        <input class="admin-panel__btn" type="submit" value="Зарегистрировать">
                                                     </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -81,7 +80,7 @@
                                             <div class="text-center">
                                                 <tbody>
                                                     <tr th:each="userDTO : ${users}">
-                                                        <td class="align-middle"><a class="nav-link" th:href="@{/admin_panel/edit/{id}/(id=${userDTO.getId()})}"
+                                                        <td class="align-middle"><a class="nav-link" th:href="@{/admin-panel/edit/{id}/(id=${userDTO.getId()})}"
                                                                                     style="font-size: medium" th:utext="${userDTO.username}"></a></td>
                                                         <td class="align-middle"><h1 class="display-6" style="font-size: medium"
                                                                                     th:utext="${userDTO.fullName}"></h1></td>

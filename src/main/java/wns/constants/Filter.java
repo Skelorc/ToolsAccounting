@@ -5,7 +5,12 @@ public enum Filter {
     WITHOUT_FILTER("null"),
     INDIVIDUAL("INDIVIDUAL"),
     LEGAL("LEGAL"),
-    BLACKLIST("BLACKLIST");
+    BLACKLIST("BLACKLIST"),
+    STOCK("Склад"),
+    SUBLEASE("Субаренда"),
+    GROUPS("По группам"),
+    ESTIMATE("По смете");
+
 
     private final String value;
 
@@ -27,6 +32,6 @@ public enum Filter {
     {
         if(filter == null)
             return Filter.WITHOUT_FILTER;
-        return Filter.valueOf(filter);
+        return Filter.valueOf(filter.toUpperCase());
     }
 }

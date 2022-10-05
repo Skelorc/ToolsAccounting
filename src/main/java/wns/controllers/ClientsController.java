@@ -1,72 +1,53 @@
 package wns.controllers;
 
 import lombok.AllArgsConstructor;
-import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import wns.constants.Messages;
-import wns.constants.TypeClients;
 import wns.dto.ClientDTO;
-import wns.entity.Client;
 import wns.services.ClientsService;
+import wns.services.PageableService;
 import wns.utils.ResponseHandler;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @Controller
 @RequestMapping("clients")
 @AllArgsConstructor
 public class ClientsController {
     private final ClientsService clientsService;
+    private final PageableService pageableService;
 
     @GetMapping()
-    public ModelAndView showPage(@RequestParam(value = "filter", required = false) String filter,
+    public String showPage(@RequestParam(value = "filter", required = false) String filter,
                                  @RequestParam(value ="page", required = false) Optional<Integer> page,
-                                 @RequestParam(value ="size", required = false) Optional<Integer> size)
+                                 @RequestParam(value ="size", required = false) Optional<Integer> size,
+                                 Model model)
     {
-        int currentPage = page.orElse(1);
-        int pageSize = size.orElse(100);
-        Page<ClientDTO> paginated_list = clientsService.findPaginated(PageRequest.of(currentPage - 1, pageSize),filter);
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("list_clients", paginated_list);
-        int totalPages = paginated_list.getTotalPages();
-        if (totalPages > 0) {
-            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
-                    .boxed()
-                    .collect(Collectors.toList());
-            modelAndView.addObject("page_numbers", pageNumbers);
-        }
-        modelAndView.setViewName("clients");
-        return modelAndView;
+        Page<ClientDTO> paginated_list = clientsService.findPaginated(page,size,filter);
+        model.addAttribute("list_clients", paginated_list);
+        pageableService.getPageNumbers(paginated_list,model);
+        return "clients";
     }
 
     @PostMapping()
-    public ModelAndView findClientsByName(@RequestParam String username)
+    public String findClientsByName(@RequestParam String username, Model model)
     {
         List<ClientDTO> listByName = clientsService.findListByName(username);
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("list_clients",listByName);
-        modelAndView.setViewName("clients");
-        return modelAndView;
+        model.addAttribute("list_clients",listByName);
+        return "clients";
     }
 
 
     @GetMapping("/create")
-    public ModelAndView creatingClient() {
+    public String creatingClient(Model model) {
         ClientDTO client = new ClientDTO();
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("client", client);
-        modelAndView.setViewName("client_create");
-        return modelAndView;
+        model.addAttribute("client", client);
+        return "client_create";
     }
 
     @PostMapping("/create")
@@ -77,12 +58,10 @@ public class ClientsController {
 
 
     @GetMapping("/edit/{id}")
-    public ModelAndView showClientForUpdate(@PathVariable("id") long id) {
-        ClientDTO dto = clientsService.findById(id);
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("client", dto);
-        modelAndView.setViewName("client_create");
-        return modelAndView;
+    public String showClientForUpdate(@PathVariable("id") long id, Model model) {
+        ClientDTO dto = clientsService.findDTOById(id);
+        model.addAttribute("client", dto);
+        return "client_create";
     }
 
     @PostMapping("/edit/{id}")

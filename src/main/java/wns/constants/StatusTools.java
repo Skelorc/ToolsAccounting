@@ -3,18 +3,19 @@ package wns.constants;
 public enum StatusTools {
 
     ONLEASE("В аренде", "Red"),
-    INSTOCK("На складе", "Green"),
+    INSTOCK("На складe", "Green"),
+    WAITING("В ожидании","Yellow"),
     BOOKING("Бронь","Orange"),
     REPAIR("В ремонте", "Gray"),
     WRITENOFF("Списано", "Brown"),
     SALES("Продано", "Blue");
 
-    private final String color;
     private final String value;
+    private final String color;
 
-    StatusTools(String color, String value) {
-        this.color = color;
+    StatusTools(String value, String color) {
         this.value = value;
+        this.color = color;
     }
 
     public String getColor()

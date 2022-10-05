@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+    <head>
+        <title>Приемка</title>
+        <div th:replace="fragments/head :: header"></div>
+    </head>
+
+    <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
+        <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
+            <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
+                <div th:insert="fragments/menu_sidebar.html"></div>
+                <div class="b-overlay-wrap position-relative w-100" size="sm">
+                    <div class="rih-page-wrapper">
+                        <nav data-v-537a461c role="navigation" class="navbar navbar-admin navbar-fixed-top" th:insert="fragments/header_logout.html"></nav>
+                        <main class="wrapper wrapper-content border-bottom">
+                            <div >
+                                <div class="wrapper__btn-primary col-12">
+                                    <div  class="mb-3 text-right">
+                                        <a  href="/projects/create" th:href="@{/acceptance/create}" class="btn btn-primary min-width-120 btn-add_vidacha green">Создать</a>
+                                    </div>
+                                    <div  class="mb-3 text-right">
+                                        <a  href="#" class="btn btn-primary min-width-120 btn-open_vidacha  grey">Закрыть</a>
+                                    </div> 
+                                    <div  class="mb-3 text-right">
+                                        <a  href="#" class="btn btn-primary min-width-120 btn-update_vidacha  orange">Обновить</a>
+                                    </div> 
+                                    <div  class="mb-3 text-right">
+                                        <a  href="#" class="btn btn-primary min-width-120 btn-delate_vidacha grey">Поиск по штрихкоду</a>
+                                    </div> 
+                                </div>
+                                <div >
+                                    <div  class="b-overlay-wrap position-relative custom-ll">
+                                        <div class="row">
+                                            <div class="custom-ll__table table-responsive">
+                                                <table class="table w-100 in4dr-form">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th class="first-th">#</th>
+                                                            <th>Проект</th>
+                                                            <th>Клиент</th>
+                                                            <th>Телефон</th>
+                                                            <th>Начало аренды</th>
+                                                            <th>Окончание аренды</th>
+                                                            <th>Дата и время создания</th>
+                                                            <th>Сотрудник</th>
+                                                            <th>Примечание</th>
+                                                            <th>Фотoграфии отгрузки</th>
+                                                        </tr>
+                                                        <tr th:each="tool : ${list_tools}">
+                                                            <td class="column-table">
+                                                                <div class="column-table_checkbox-wrapp">
+                                                                    <input class="column-table_checkbox" type="checkbox" id="" name=""><span class="tools-td-text table-td-text column-table_checkbox-number" th:utext="${toolStat.index+1}"></span>
+                                                                </div>
+                                                            </td>
+                                                            <td>Павилион</td>
+                                                            <td>Имя фамилия</td>
+                                                            <td>8 (999) 999-99-99</td>
+                                                            <td>03.01.2022 15:00</td>
+                                                            <td>04.01.2022 20:00</td>
+                                                            <td>30.12.2021 20:07</td>
+                                                            <td>Имя Фамилия</td>
+                                                            <td>Вернёт другой механик</td>
+                                                            <td>
+                                                                <span class="column-table__photo-mini">
+                                                                    <a target="_blank" href="/src/main/resources/static/img/img/shester.jpg">
+                                                                        <img class="column-table__photo-mini_img" src="/src/main/resources/static/img/img/shester.jpg" alt="Первая">
+                                                                    </a>
+                                                                </span>
+                                                                <span class="column-table__photo-mini">
+                                                                    <a target="_blank" href="/src/main/resources/static/img/img/i.webp">
+                                                                        <img class="column-table__photo-mini_img" src="/src/main/resources/static/img/img/i.webp" alt="Вторая">
+                                                                    </a>
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="btn-pimary__groups-wrapper order-lg-1">
+                                                <div class="btn-pimary__groups-wrapper btn__under-table">
+                                                    <div  class="mb-3 text-right">
+                                                        <a  href="#" class="btn btn-primary min-width-120 grey">Все</a>
+                                                    </div> 
+                                                    <div  class="mb-3 text-right">
+                                                        <a  href="#" class="btn btn-primary min-width-120 grey">Разовые</a>
+                                                    </div> 
+                                                    <div  class="mb-3 text-right">
+                                                        <a  href="#" class="btn btn-primary min-width-120 grey">Длинные</a>
+                                                    </div> 
+                                                    <div  class="mb-3 text-right">
+                                                        <a  href="#" class="btn btn-primary min-width-120 grey">Субаренда</a>
+                                                    </div> 
+                                                    <div  class="mb-3 text-right">
+                                                        <a  href="#" class="btn btn-primary min-width-120 grey">Тест</a>
+                                                    </div> 
+                                                </div>
+                                            </div>
+                                            <div class="pagination-control col-lg-12 order-lg-1">
+                                                <!-- Bootstrap 4 -->
+                                                <nav aria-label="Навигация по страницам">
+                                                    <ul class="pagination">
+                                                    <li class="page-item disabled">
+                                                        <a class="page-link-m page-link" href="#">
+                                                        Первая
+                                                        </a>
+                                                    </li>
+                                                    <li class="page-item disabled">
+                                                        <a class="page-link-m page-link" href="#" aria-label="Предыдущая">
+                                                        <span aria-hidden="true">«</span>
+                                                        <span class="sr-only">Предыдущая</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="page-item active">
+                                                        <a class="page-link-m page-link" href="#">1</a>
+                                                    </li>
+                                                    <li class="page-item">
+                                                        <a class="page-link-m page-link" href="#">2</a>
+                                                    </li>
+                                                    <li class="page-item">
+                                                        <a class="page-link-m page-link" href="#">3</a>
+                                                    </li>
+                                                    <li class="page-item">
+                                                        <a class="page-link-m page-link" href="#" aria-label="Следующая">
+                                                        <span aria-hidden="true">»</span>
+                                                        <span class="sr-only">Следующая</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="page-item">
+                                                        <a class="page-link-m page-link" href="#">
+                                                        Последняя
+                                                        </a>
+                                                    </li>
+                                                    </ul>
+                                                </nav>
+                                            </div>
+                                        </div>
+                                        <div class="b-sidebar-backdrop bg-dark" style="display: none;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </main>
+                        <div th:insert="fragments/footer.html"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div th:insert="fragments/scripts.html"></div>
+    </body>
+</html>

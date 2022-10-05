@@ -40,7 +40,7 @@
                                     <div class="col-6 form-creat__half">
                                         <div class="form-group col-lg-3">
                                             <div class="p-svg p-curve p-jelly pretty" p-checkbox="">
-                                                 <input th:name="inBlackList" th:value="${client.inBlackList}" id="inBlackList" type="checkbox">
+                                                <input th:name="inBlackList" th:value="${client.inBlackList}" id="inBlackList" type="checkbox">
                                                 <script>if([[${client.inBlackList}]])
                                                 {
                                                     $('#inBlackList').click();
@@ -247,7 +247,7 @@
                                             </div>
                                             <div class="col-6 form-creat__half">
                                                 <div class="form-group">
-                                                    <p>Загрузите ваши фотографии на сервер</p>
+                                                    <label class="d-block">Загрузите ваши фотографии на сервер</label>
                                                     <span>
                                                         <textarea th:value="${client.photos}" th:text="${client.photos}" name="photos" class="form-control" id="photos_individual" style="height: 40px;"></textarea>
                                                     </span>
@@ -552,11 +552,11 @@
                                 <div id="edit_buttons" class="btn-pimary__groups-wrapper btn-pimary__groups-wrapper_client mb-3 ">
                                     <div class="mb-3 text-right">
                                         <input type="text" hidden="hidden" id="client_id" th:value="${client.getId()}">
-                                        <input class="btn btn-primary green" type="submit" id="update_client" th:value="Обновить">
+                                        <input class="btn btn-primary min-width-120 green" type="submit" id="update_client" th:value="Обновить">
                                     </div>
                                     <div class="mb-3 text-right">
                                         <form th:action="@{/clients/delete/{id}(id=${client.getId()})}" th:method="post">
-                                        <input class="btn btn-primary red" type="submit" id="delete_client" th:value="Удалить">
+                                        <input class="btn btn-primary min-width-120 red" type="submit" id="delete_client" th:value="Удалить">
                                         </form>
                                     </div>
                                 </div>
@@ -598,10 +598,10 @@
                                         <span class="btn-pimary__groups_title">История</span>
                                     </div>
                                     <div class="mb-3 text-right">
-                                        <a href="#" class="btn btn-primary green">Обновить</a>
+                                        <a href="#" class="btn btn-primary min-width-120 green">Обновить</a>
                                     </div>
                                     <div class="mb-3 text-right">
-                                        <a href="#" class="btn btn-primary grey">Экспорт</a>
+                                        <a href="#" class="btn btn-primary min-width-120 grey">Экспорт</a>
                                     </div>
                                 </div>
                             </div>
@@ -633,38 +633,38 @@
                                     </table>
                                 </div>
                             </div>
-                            <div class="col-lg-12 order-lg-1">
+                            <div class="pagination-control col-lg-12 order-lg-1">
                                 <!-- Bootstrap 4 -->
                                 <nav aria-label="Навигация по страницам">
                                     <ul class="pagination">
                                         <li class="page-item disabled">
-                                            <a class="page-link" href="#">
+                                            <a class="page-link-m page-link" href="#">
                                                 Первая
                                             </a>
                                         </li>
                                         <li class="page-item disabled">
-                                            <a class="page-link" href="#" aria-label="Предыдущая">
+                                            <a class="page-link-m page-link" href="#" aria-label="Предыдущая">
                                                 <span aria-hidden="true">«</span>
                                                 <span class="sr-only">Предыдущая</span>
                                             </a>
                                         </li>
                                         <li class="page-item active">
-                                            <a class="page-link" href="#">1</a>
+                                            <a class="page-link-m page-link" href="#">1</a>
                                         </li>
                                         <li class="page-item">
-                                            <a class="page-link" href="#">2</a>
+                                            <a class="page-link-m page-link" href="#">2</a>
                                         </li>
                                         <li class="page-item">
-                                            <a class="page-link" href="#">3</a>
+                                            <a class="page-link-m page-link" href="#">3</a>
                                         </li>
                                         <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Следующая">
+                                            <a class="page-link-m page-link" href="#" aria-label="Следующая">
                                                 <span aria-hidden="true">»</span>
                                                 <span class="sr-only">Следующая</span>
                                             </a>
                                         </li>
                                         <li class="page-item">
-                                            <a class="page-link" href="#">
+                                            <a class="page-link-m page-link" href="#">
                                                 Последняя
                                             </a>
                                         </li>
@@ -679,5 +679,6 @@
         </div>
     </div>
     <div th:insert="fragments/scripts.html"></div>
+    <div><script src="/static/js/changeTypeClients.js" th:src="@{/js/changeTypeClients.js}"></script></div>
 </body>
 </html>

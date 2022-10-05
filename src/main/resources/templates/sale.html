@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <title>Продажа</title>
@@ -12,131 +13,79 @@
         <div th:insert="fragments/menu_sidebar.html"></div>
         <div class="b-overlay-wrap position-relative w-100" size="sm">
             <div class="rih-page-wrapper">
-                <nav data-v-59295fda="" role="navigation" class="navbar navbar-admin navbar-fixed-top" th:insert="fragments/header_logout.html"></nav>
+                <nav data-v-59295fda="" role="navigation" class="navbar navbar-admin navbar-fixed-top"
+                     th:insert="fragments/header_logout.html"></nav>
                 <main class="wrapper wrapper-content border-bottom">
                     <div class="b-overlay-wrap position-relative">
                         <div class="btn-pimary__groups mt-3 mb-3">
                             <div class="btn-pimary__groups-wrapper vidacha-sozdach mb-3">
                                 <div class="mb-3 text-right">
-                                    <a th:href="@{/sale/create}" class="btn btn-primary green">Создать</a>
+                                    <a th:href="@{/sale/create}" class="btn btn-primary min-width-120 green">Создать</a>
                                 </div>
                                 <div class="mb-3 text-right">
-                                    <a href="#" class="btn btn-primary red">Удалить</a>
+                                    <a href="#" class="btn btn-primary min-width-120 red">Удалить</a>
                                 </div>
                                 <div class="mb-3 text-right">
-                                    <a href="#" class="btn btn-primary orange">Обновить</a>
+                                    <a href="/sale" class="btn btn-primary min-width-120 orange">Обновить</a>
                                 </div>
                                 <div class="mb-3 text-right">
-                                    <a href="#" class="btn btn-primary grey">Экспорт</a>
+                                    <a href="#" class="btn btn-primary min-width-120 grey">Экспорт</a>
                                 </div>
                             </div>
                         </div>
 
                         <div class="custom-ll__table table-responsive">
                             <table class="table table-1190 w-100 in4dr-form">
-                                <tbody><tr>
-                                    <th>№</th>
+                                <thead>
+                                <tr>
+                                    <th class="first-th">№</th>
                                     <th>Дата создания</th>
                                     <th>Исполнитель</th>
                                     <th>Телефон</th>
-                                    <th>Начало ремонта</th>
-                                    <th>Окончание ремонта</th>
-                                    <th>Всего цена ремонта</th>
+                                    <th>Фотографии</th>
+                                    <th>Всего цена продажи</th>
                                     <th>Сотрудник</th>
                                     <th>Примечание</th>
                                     <th>Статус</th>
-                                    <th>Фотографии</th>
                                 </tr>
-                                <tr>
-                                    <td class="column-table">1</td>
-                                    <td>12.03.2022</td>
-                                    <td>Имя фамилия</td>
-                                    <td>8 (999) 999-99-99</td>
-                                    <td>03.01.2022 15:00</td>
-                                    <td>04.01.2022 20:00</td>
-                                    <td>175990 руб.</td>
-                                    <td>Имя Фамилия</td>
-                                    <td>Что-то написано</td>
-                                    <td>В ремонте</td>
-                                    <td>фотографии будут</td>
-                                </tr>
-                                <tr>
-                                    <td class="column-table">2</td>
-                                    <td>12.03.2022</td>
-                                    <td>Имя фамилия</td>
-                                    <td>8 (999) 999-99-99</td>
-                                    <td>03.01.2022 15:00</td>
-                                    <td>04.01.2022 20:00</td>
-                                    <td>175990 руб.</td>
-                                    <td>Имя Фамилия</td>
-                                    <td>Что-то написано</td>
-                                    <td>В ремонте</td>
-                                    <td>фотографии будут</td>
-                                </tr>
-                                <tr>
-                                    <td class="column-table">3</td>
-                                    <td>12.03.2022</td>
-                                    <td>Имя фамилия</td>
-                                    <td>8 (999) 999-99-99</td>
-                                    <td>03.01.2022 15:00</td>
-                                    <td>04.01.2022 20:00</td>
-                                    <td>175990 руб.</td>
-                                    <td>Имя Фамилия</td>
-                                    <td>Что-то написано</td>
-                                    <td>В ремонте</td>
-                                    <td>фотографии будут</td>
-                                </tr>
-                                <tr>
-                                    <td class="column-table">4</td>
-                                    <td>12.03.2022</td>
-                                    <td>Имя фамилия</td>
-                                    <td>8 (999) 999-99-99</td>
-                                    <td>03.01.2022 15:00</td>
-                                    <td>04.01.2022 20:00</td>
-                                    <td>175990 руб.</td>
-                                    <td>Имя Фамилия</td>
-                                    <td>Что-то написано</td>
-                                    <td>В ремонте</td>
-                                    <td>фотографии будут</td>
+                                </thead>
+                                <tbody>
+                                <tr th:each="status : ${list_statuses}">
+                                    <td class="column-table">
+                                        <div class="column-table_checkbox-wrapp">
+                                            <input class="column-table_checkbox" type="checkbox" id="" name=""><span class="tools-td-text table-td-text column-table_checkbox-number" th:utext="${statusStat.index+1}"></span>
+                                        </div>
+                                    </td>
+                                    <td th:utext="${status.created}"></td>
+                                    <td th:utext="${status.executor}"></td>
+                                    <td th:utext="${status.phone_number}"></td>
+                                    <td>
+                                        <span class="column-table__photo-mini" th:each="photo : ${status.photos}">
+                                            <a  rel="modal:open"  th:href="${'#'+photoStat.count +''+ status.tools.id}">
+                                                <img class="column-table__photo-mini_img" th:src="${photo}">
+                                                <div th:id="${photoStat.count +''+ status.tools.id}" class="modal">
+                                                    <img th:src="${photo}">
+                                                </div>
+                                            </a>
+                                        </span>
+                                    </td>
+                                    <td th:utext="${status.priceSell}"></td>
+                                    <td th:utext="${status.employee}"></td>
+                                    <td th:utext="${status.note}"></td>
+                                    <td th:utext="${status.statusTools.getValue()}"></td>
                                 </tr>
                                 </tbody>
                             </table>
                         </div>
 
-                        <div class="col-lg-12 order-lg-1">
+                        <div class="pagination-control col-lg-12 order-lg-1">
                             <!-- Bootstrap 4 -->
                             <nav aria-label="Навигация по страницам">
                                 <ul class="pagination">
-                                    <li class="page-item disabled">
-                                        <a class="page-link" href="#">
-                                            Первая
-                                        </a>
-                                    </li>
-                                    <li class="page-item disabled">
-                                        <a class="page-link" href="#" aria-label="Предыдущая">
-                                            <span aria-hidden="true">«</span>
-                                            <span class="sr-only">Предыдущая</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item active">
-                                        <a class="page-link" href="#">1</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">2</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">3</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Следующая">
-                                            <span aria-hidden="true">»</span>
-                                            <span class="sr-only">Следующая</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">
-                                            Последняя
-                                        </a>
+                                    <li class="page-item" th:if="${list_statuses.totalPages > 0}"
+                                        th:each="page_number : ${page_numbers}">
+                                        <a class="page-link-m page-link" th:href="@{/sale(size=${list_statuses.size}, page=${page_numberStat.index})}"
+                                           th:text="${page_numberStat.index}" th:class="${page_number==list_statuses.number + 1} ? active"></a>
                                     </li>
                                 </ul>
                             </nav>

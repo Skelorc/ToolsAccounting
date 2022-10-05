@@ -10,10 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class MainController {
 
     @GetMapping
-    public ModelAndView main()
+    public String main()
     {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("index");
-        return modelAndView;
+        return "index";
     }
 }

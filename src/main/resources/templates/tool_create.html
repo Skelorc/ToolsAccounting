@@ -2,7 +2,8 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
 
 <head>
-    <title>Добавить новое оборудование</title>
+    <!--<title>Добавить новое оборудование</title>-->
+    <title th:text="${tool.name != null} ? 'Редактирование оборудования' : 'Добавить новое оборудование'"></title>
     <div th:replace="fragments/head :: header"></div>
 </head>
 
@@ -16,245 +17,349 @@
                 <main class="wrapper wrapper-content border-bottom">
                     <div class="b-overlay-wrap position-relative">
                         <div class="form-creat mb-3 col-12">
-                            <div class="btn-pimary__groups-wrapper vidacha-sozdach mb-3 vidacha-sozdach">
+                            <div class="btn-pimary__groups-wrapper mb-3">
                                 <div class="mb-3 text-right">
                                     <span class="btn-pimary__groups_title">Оборудование</span>
                                 </div>
                                 <div class="mb-3 text-right">
-                                    <a href="#" class="btn btn-primary light-blue">Назад</a>
+                                    <a href="/tools" class="btn btn-primary min-width-120 light-blue">Назад</a>
                                 </div>
                                 <div class="mb-3 text-right">
-                                    <a href="#" class="btn btn-primary green">Сохранить</a>
+                                    <a href="#" class="btn btn-primary min-width-120 green">Сохранить</a>
                                 </div>
                             </div>
-                            <div class="bg-white p-3 edit-container">
-                                <div class="row form-creat__half-wrapp">
-                                    <div class=" form-creat__half_two-column">
-                                        <div role="group" class="form-group">
-                                            <label class="d-block">Вид оборудования</label>
-                                            <span>
-                                                <input type="text" class="form-control" placeholder="Склад">
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="form-creat__half_two-column">
-                                        <div role="group" class="form-group">
-                                            <label class="d-block">Наименование</label>
-                                            <span>
-                                                <input type="text"
-                                                        class="form-control"
-                                                        placeholder="Введите наименование">
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class=" form-creat__half_two-column">
-                                        <div role="group" class="form-group">
-                                            <label class="d-block">Группа</label>
-                                            <span>
-                                                <span type="text" class=" form-control"></span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class=" form-creat__half_two-column">
-                                        <div role="group" class="form-group">
-                                            <label class="d-block">Штрих-код</label>
-                                            <span>
-                                                <input type="text" class="form-control" placeholder="Введите штрих-код">
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class=" form-creat__half_two-column">
-                                        <div role="group" class="form-group">
-                                            <label class="d-block">В смете</label>
-                                            <span>
-                                                <span type="text" class=" form-control"></span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class=" form-creat__half_two-column">
-                                        <div role="group" class="form-group">
-                                            <label class="d-block">Модель</label>
-                                            <span>
-                                                <input type="text" class="form-control" placeholder="Введите штрих-код">
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class=" form-creat__half_two-column">
-                                        <div role="group" class="form-group">
-                                            <label class="d-block">Серийный номер</label>
-                                            <span>
-                                                <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');" class="form-control" aria-describedby="item-human-passport_serial">
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row form-creat__half-wrapp">
-                                    <div class=" form-creat__half_two-column">
-                                        <div role="group" class="form-group">
-                                            <label class="d-block">Статус</label>
-                                            <span>
+                            <form th:action="@{/tools/create}" method="post">
+                                <div class="bg-white p-3 edit-container">
+                                    <div class="row form-creat__half-wrapp">
+                                        <div class=" form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Наименование</label>
                                                 <span>
-                                                    <span type="text" class=" form-control"></span>
+                                                    <input id="name" th:value="${tool.name}" name="name" type="text" class="form-control" placeholder="Введите наименование">
                                                 </span>
-                                            </span>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class=" form-creat__half_two-column">
-                                        <div role="group" class="form-group">
-                                            <label class="d-block">Характеристики</label>
-                                            <span>
-                                                <input type="text" class="form-control" placeholder="Введите штрих-код">
-                                            </span>
+                                        <div class=" form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Вид оборудования</label>
+                                                <select id="select_type_tool" th:value="${tool.typeTools}"
+                                                        name="typeTools"
+                                                        class="vs__selected-options main-secect__opions form-control select">
+                                                    <option class="vs__selected vs__dropdown-toggle"
+                                                            value="" disabled>Выберите тип оборудования
+                                                    </option>
+                                                    <option class="vs__selected vs__dropdown-toggle"
+                                                            th:each="type : ${T(wns.constants.TypeTools).values()}"
+                                                            th:value="${type}"
+                                                            th:text="${type.getType()}"
+                                                    >
+                                                    </option>
+                                                </select >
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class=" form-creat__half_two-column">
-                                        <div role="group" class="form-group">
-                                            <label class="d-block">Состояние</label>
-                                            <span>
-                                                <input type="text" class="form-control" placeholder="Введите штрих-код">
-                                            </span>
+                                        <div class="form-creat__half_two-column" >
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Наименование в смете</label>
+                                                <select name="name_estimate_id"
+                                                        class="vs__selected-options main-secect__opions form-control select">
+                                                    <option class="vs__selected vs__dropdown-toggle"
+                                                            value="" disabled>Выберите наименование
+                                                    </option>
+                                                    <option class="vs__selected vs__dropdown-toggle"
+                                                            th:each="estimateNameDTO : ${list_names_estimate}"
+                                                            th:value="${estimateNameDTO.id}"
+                                                            th:text="${estimateNameDTO.name}">
+                                                    </option>
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class=" form-creat__half_two-column">
-                                        <div role="group" class="form-group">
-                                            <label class="d-block">Комплект</label>
-                                            <span>
-                                                <input type="text" class="form-control" placeholder="Введите штрих-код">
-                                            </span>
+                                        <div class=" form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Количество</label>
+                                                <span>
+                                                    <input id="amount" th:value="${tool.amount}" name="amount"
+                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
+                                                           type="text" class="form-control"
+                                                           placeholder="Введите количество">
+                                                </span>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class=" form-creat__half_two-column">
-                                        <div role="group" class="form-group">
-                                            <label class="d-block">Коментарий</label>
-                                            <span>
-                                                <input type="text" class="form-control" placeholder="Введите штрих-код">
-                                            </span>
+                                        <div class=" form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Штрих-код</label>
+                                                <span>
+                                                    <input id="barcode" th:value="${tool.barcode}" name="barcode"
+                                                           type="text" class="form-control"
+                                                           placeholder="Введите штрих-код">
+                                                </span>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class=" form-creat__half_two-column">
-                                        <div class="form-group">
-                                            <label class="d-block">Текущая дата и время</label>
-                                            <div class="vdpComponent vdpWithInput">
-                                                <input type="date" placeholder="дд.мм.гггг">
+                                        <div class=" form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Модель</label>
+                                                <span>
+                                                    <input th:value="${tool.model}" name="model" type="text"
+                                                           class="form-control" placeholder="">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class=" form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Серийный номер</label>
+                                                <span>
+                                                    <input th:value="${tool.serialNumber}" name="serialNumber"
+                                                           type="text" class="form-control"
+                                                           aria-describedby="item-human-passport_serial">
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class=" form-creat__half_two-column">
-                                        <div class="form-group">
-                                            <label class="d-block">Загрузите ваши фотографии на сервер</label>
-                                            <textarea required="" name="note" class="form-control" id="note_individual" style="height: 40px;"></textarea>
+                                    <div class="row form-creat__half-wrapp">
+                                        <div class=" form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Статус</label>
+                                                <select id="select_status_tool" name="status_tool"
+                                                        class="vs__selected-options main-secect__opions form-control">
+                                                    <option class="vs__selected vs__dropdown-toggle"
+                                                            value="" disabled>Выберите статус
+                                                    </option>
+                                                    <option class="vs__selected vs__dropdown-toggle"
+                                                            th:each="status_tool : ${T(wns.constants.StatusTools).values()}"
+                                                            th:value="${status_tool}"
+                                                            th:text="${status_tool.getValue()}"
+                                                            th:selected="${status_tool == tool.status.statusTools}">
+                                                    </option>
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bg-white p-3 edit-container">
-                                <div class="row form-creat__half-wrapp">
-                                    <div class=" form-creat__half_two-column">
-                                        <div role="group" class="form-group">
-                                            <label class="d-block">Цена субаренды за сутки</label>
-                                            <span>
-                                                <input type="text" class="form-control" placeholder="">
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="form-creat__half_two-column">
-                                        <div role="group" class="form-group">
-                                            <label class="d-block">Цена за сутки</label>
-                                            <span>
-                                                <input type="text"
-                                                        class="form-control"
-                                                        placeholder="Введите наименование">
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class=" form-creat__half_two-column">
-                                        <div role="group" class="form-group">
-                                            <label class="d-block">Доход с оборудования</label>
-                                            <span>
-                                                <span type="text" class=" form-control"></span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class=" form-creat__half_two-column">
-                                        <div role="group" class="form-group">
-                                            <label class="d-block">Доход с продажи</label>
-                                            <span>
-                                                <span type="text" class=" form-control"></span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class=" form-creat__half_two-column">
-                                        <div role="group" class="form-group">
-                                            <label class="d-block">Процент инвестора</label>
-                                            <span>
-                                                <input type="text" class="form-control" placeholder="">
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row form-creat__half-wrapp">
-                                    <div class=" form-creat__half_two-column">
-                                        <div role="group" class="form-group">
-                                            <label class="d-block">Себестоимость</label>
-                                            <span>
+                                        <div class=" form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Характеристики</label>
                                                 <span>
-                                                    <input type="text" class="form-control" placeholder="">
+                                                    <input th:value="${tool.characteristics}" name="characteristics"
+                                                           type="text" class="form-control" placeholder="">
                                                 </span>
-                                            </span>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class=" form-creat__half_two-column">
-                                        <div role="group" class="form-group">
-                                            <label class="d-block">Сумма списания</label>
-                                            <span>
-                                                <span type="text" class=" form-control"></span>
-                                            </span>
+                                        <div class=" form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Состояние</label>
+                                                <span>
+                                                    <input th:value="${tool.state}" name="state" type="text"
+                                                           class="form-control" placeholder="">
+                                                </span>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class=" form-creat__half_two-column">
-                                        <div role="group" class="form-group">
-                                            <label class="d-block">Сумма ремонта</label>
-                                            <span>
-                                                <span type="text" class=" form-control"></span>
-                                            </span>
+                                        <div class=" form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Комплект</label>
+                                                <span>
+                                                    <input th:value="${tool.equip}" name="equip" type="text"
+                                                           class="form-control" placeholder="">
+                                                </span>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class=" form-creat__half_two-column">
-                                        <div role="group" class="form-group">
-                                            <label class="d-block">Цена продажи</label>
-                                            <span>
-                                                <input type="text" class="form-control" placeholder="Введите штрих-код">
-                                            </span>
+                                        <div class=" form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Комментарий</label>
+                                                <span>
+                                                    <input th:value="${tool.comment}" name="comment" type="text"
+                                                           class="form-control" placeholder="">
+                                                </span>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class=" form-creat__half_two-column">
-                                        <div role="group" class="form-group">
-                                            <label class="d-block">Инвестиции</label>
-                                            <span>
-                                                <input type="text" class="form-control" placeholder="Введите штрих-код">
-                                            </span>
+                                        <div class=" form-creat__half_two-column">
+                                            <div class="form-group">
+                                                <label class="d-block">Дата создания</label>
+                                                <div class="vdpComponent vdpWithInput">
+                                                    <input th:value="${tool.creating}" name="creating" type="date"
+                                                           placeholder="дд.мм.гггг">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class=" form-creat__half_two-column">
+                                            <div class="form-group">
+                                                <label class="d-block">Загрузите ваши фотографии на сервер</label>
+                                                <textarea th:value="${tool.photos}" name="photos"
+                                                          class="form-control" id="note_individual"
+                                                          style="height: 40px;"></textarea>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="bg-white p-3 edit-container">
+                                    <div class="row form-creat__half-wrapp">
+                                        <div class=" form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Себестоимость</label>
+                                                <span>
+                                                    <input th:value="${tool.costPrice}" name="costPrice" type="text"
+                                                           class="form-control" placeholder=""
+                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Цена за сутки</label>
+                                                <span>
+                                                    <input th:value="${tool.priceByDay}" name="priceByDay" type="text"
+                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
+                                                           class="form-control"
+                                                           placeholder="">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Доход с оборудования</label>
+                                                <span>
+                                                    <input th:value="${tool.incomeFromTools}" name="incomeFromTools"
+                                                           type="text"
+                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
+                                                           class="form-control"
+                                                           placeholder="">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Цена продажи</label>
+                                                <span>
+                                                    <input th:value="${tool.priceSell}" name="priceSell" type="text"
+                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
+                                                           class="form-control"
+                                                           placeholder="">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Доход с продажи</label>
+                                                <span>
+                                                    <input th:value="${tool.incomeSales}" name="incomeSales" type="text"
+                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
+                                                           class="form-control"
+                                                           placeholder="">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Доход инвестора (%)</label>
+                                                <span>
+                                                    <input th:value="${tool.incomeInvestorProcents}"
+                                                           name="incomeInvestorProcents" type="text"
+                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
+                                                           class="form-control"
+                                                           placeholder="">
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row form-creat__half-wrapp">
+                                        <div class="form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Доход инвестора</label>
+                                                <span>
+                                                    <input th:value="${tool.incomeInvestor}" name="incomeInvestor"
+                                                           type="text"
+                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
+                                                           class="form-control"
+                                                           placeholder="">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Сумма ремонта</label>
+                                                <span>
+                                                    <input th:value="${tool.repairAmount}" name="repairAmount"
+                                                           type="text"
+                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
+                                                           class="form-control"
+                                                           placeholder="">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class=" form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Кол-во отработанных смен</label>
+                                                <span>
+                                                    <input th:value="${tool.numberWorkingShifts}"
+                                                           name="numberWorkingShifts" type="text"
+                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
+                                                           class="form-control"
+                                                           placeholder="">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class=" form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Цена на субаренду</label>
+                                                <span>
+                                                    <input th:value="${tool.priceSublease}" name="priceSublease"
+                                                           type="text"
+                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
+                                                           class="form-control"
+                                                           placeholder="">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class=" form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Плата за субаренду</label>
+                                                <span>
+                                                    <input th:value="${tool.paymentSublease}" name="paymentSublease"
+                                                           type="text"
+                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
+                                                           class="form-control"
+                                                           placeholder="">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class=" form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block">Доп.доход</label>
+                                                <span>
+                                                    <input th:value="${tool.incomeAdditional}" name="incomeAdditional"
+                                                           type="text"
+                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
+                                                           class="form-control"
+                                                           placeholder="">
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-4 mb-4 col-4 save-btn">
+                                    <button type="submit" id="save_client"
+                                            class="btn btn-lg btn-primary btn-primary_save w-100">
+                                        <i class="fa fa-shopping-cart">
+                                        </i>
+                                        Сохранить
+                                    </button>
+                                </div>
+                            </form>
                             <div class="btn-pimary__groups mt-3 mb-3">
                                 <div class="btn-pimary__groups-wrapper vidacha-sozdach mb-3">
                                     <div class="mb-3 text-right">
                                         <span class="btn-pimary__groups_title">История</span>
                                     </div>
                                     <div class="mb-3 text-right">
-                                        <a href="#" class="btn btn-primary green">Обновить</a>
+                                        <a href="#" class="btn btn-primary min-width-120 green">Обновить</a>
                                     </div>
                                     <div class="mb-3 text-right">
-                                        <a href="#" class="btn btn-primary grey">Экспорт</a>
+                                        <a href="#" class="btn btn-primary min-width-120 grey">Экспорт</a>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="table__info table__vidacha-sozdat_wrapp mb-3">
                                 <div class="table__vidacha-sozdat">
                                     <table class="in4dr-form">
                                         <tr>
-                                            <th>Проект</th>
+                                            <th class="first-th">Проект</th>
                                             <th>Клиент</th>
                                             <th>Телефон</th>
                                             <th>Начало аренды</th>
@@ -267,49 +372,60 @@
                                         <tr>
                                             <td class="column-table"></td>
                                             <td>Будут данные</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td class="monce__tool-status"></td>
+                                            <td>8999999999</td>
+                                            <td class="monce__tool-status"></td>
+                                            <td class="monce__tool-status"></td>
+                                            <td>Фамилия Имя</td>
+                                            <td class="monce__tool-status"></td>
+                                            <td class="monce__tool-status"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="column-table"></td>
+                                            <td>Будут данные</td>
+                                            <td>8999999999</td>
+                                            <td class="monce__tool-status"></td>
+                                            <td class="monce__tool-status"></td>
+                                            <td class="monce__tool-status"></td>
+                                            <td>Фамилия Имя</td>
+                                            <td class="monce__tool-status"></td>
+                                            <td class="monce__tool-status"></td>
                                         </tr>
                                     </table>
                                 </div>
                             </div>
-                            <div class="col-lg-12 order-lg-1">
+                            <div class="pagination-control col-lg-12 order-lg-1">
                                 <!-- Bootstrap 4 -->
                                 <nav aria-label="Навигация по страницам">
                                     <ul class="pagination">
                                         <li class="page-item disabled">
-                                            <a class="page-link" href="#">
+                                            <a class="page-link-m page-link" href="#">
                                                 Первая
                                             </a>
                                         </li>
                                         <li class="page-item disabled">
-                                            <a class="page-link" href="#" aria-label="Предыдущая">
+                                            <a class="page-link-m page-link" href="#" aria-label="Предыдущая">
                                                 <span aria-hidden="true">«</span>
                                                 <span class="sr-only">Предыдущая</span>
                                             </a>
                                         </li>
                                         <li class="page-item active">
-                                            <a class="page-link" href="#">1</a>
+                                            <a class="page-link-m page-link" href="#">1</a>
                                         </li>
                                         <li class="page-item">
-                                            <a class="page-link" href="#">2</a>
+                                            <a class="page-link-m page-link" href="#">2</a>
                                         </li>
                                         <li class="page-item">
-                                            <a class="page-link" href="#">3</a>
+                                            <a class="page-link-m page-link" href="#">3</a>
                                         </li>
                                         <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Следующая">
+                                            <a class="page-link-m page-link" href="#" aria-label="Следующая">
                                                 <span aria-hidden="true">»</span>
                                                 <span class="sr-only">Следующая</span>
                                             </a>
                                         </li>
                                         <li class="page-item">
-                                            <a class="page-link" href="#">
+                                            <a class="page-link-m page-link" href="#">
                                                 Последняя
                                             </a>
                                         </li>
@@ -319,8 +435,8 @@
                         </div>
                     </div>
                 </main>
-                </div>
             </div>
+        </div>
         <div th:insert="fragments/footer.html"></div>
     </div>
 </div>

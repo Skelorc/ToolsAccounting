@@ -13,32 +13,32 @@ $(document).ready(function () {
                 data: JSON.stringify(data),
                 dataType: "json",
                 success: function (res) {
-                    if(url==="/admin_panel") {
+                    if (url === "/admin-panel" || url === "/tools" || url === "/repair/create" || url === "/tools/change-status" || url === "/sale/create" || url === "/write-off/create") {
                         window.location.reload();
-                        showMessage(res);
-                    }
-                    else if(url==="/admin_panel/edit/"+data.id)
-                    {
-                        window.location.replace("/admin_panel");
-                        showMessage(res);
-                    }
-                    else
-                    {
-                        showMessage(res);
+                    } else if (url === "/admin-panel/edit/" + data.id) {
+                        window.location.replace("/admin-panel");
+                    } else if (url === "/projects/create") {
+                        if (res.status === 'CREATED') {
+                            window.location.replace("/estimate/create");
+                        } else {
+                            var message = res.message;
+                            $("#alert_message").text(message.toString());
+                            $("#ex1").modal();
+                        }
                     }
                 }
             }
         );
     }
+
     $('#save_client').click(function (e) {
         const el = document.getElementById('select_type_client');
         let formData;
         let photos_arr
         let inBlackList = document.getElementById("inBlackList").checked;
-        if(el.value==='INDIVIDUAL')
-        {
-            photos_arr = $("#photos_individual").val().split(",",9999);
-            photos_arr.forEach(function(item, i, arr) {
+        if (el.value === 'INDIVIDUAL') {
+            photos_arr = $("#photos_individual").val().split(",", 9999);
+            photos_arr.forEach(function (item, i, arr) {
                 photos_arr[i] = photos_arr[i].trim();
             });
             formData = {
@@ -61,13 +61,12 @@ $(document).ready(function () {
                 photos: photos_arr,
                 dateCreating: $("#dateCreating_individual").val(),
             };
-        }
-        else
-        {
-            photos_arr = $("#photos_legal").val().split(",",9999);
-            photos_arr.forEach(function(item, i, arr) {
+        } else {
+            photos_arr = $("#photos_legal").val().split(",", 9999);
+            photos_arr.forEach(function (item, i, arr) {
                 photos_arr[i] = photos_arr[i].trim();
             });
+            7
             formData = {
                 typeClient: $("#select_type_client :selected").val(),
                 inBlackList,
@@ -95,7 +94,7 @@ $(document).ready(function () {
                 dateCreating: $("#dateCreating_individual").val(),
             };
         }
-        send_data("/clients/create","POST",formData);
+        send_data("/clients/create", "POST", formData);
     });
     $('#update_client').click(function (e) {
         const el = document.getElementById('select_type_client');
@@ -103,10 +102,9 @@ $(document).ready(function () {
         let formData;
         let photos_arr;
         let inBlackList = document.getElementById("inBlackList").checked;
-        if(el.value==='INDIVIDUAL')
-        {
-            photos_arr = $("#photos_individual").val().split(",",9999);
-            photos_arr.forEach(function(item, i, arr) {
+        if (el.value === 'INDIVIDUAL') {
+            photos_arr = $("#photos_individual").val().split(",", 9999);
+            photos_arr.forEach(function (item, i, arr) {
                 photos_arr[i] = photos_arr[i].trim();
             });
             formData = {
@@ -130,11 +128,9 @@ $(document).ready(function () {
                 photos: photos_arr,
                 dateCreating: $("#dateCreating_individual").val(),
             };
-        }
-        else
-        {
-            photos_arr = $("#photos_legal").val().split(",",9999);
-            photos_arr.forEach(function(item, i, arr) {
+        } else {
+            photos_arr = $("#photos_legal").val().split(",", 9999);
+            photos_arr.forEach(function (item, i, arr) {
                 photos_arr[i] = photos_arr[i].trim();
             });
             formData = {
@@ -165,7 +161,7 @@ $(document).ready(function () {
                 dateCreating: $("#dateCreating_individual").val(),
             };
         }
-        send_data("/clients/edit/"+id,"POST",formData);
+        send_data("/clients/edit/" + id, "POST", formData);
 
     });
     $('#update_user').click(function (e) {
@@ -177,24 +173,75 @@ $(document).ready(function () {
             fullName: $("#fullName").val(),
             roles: $("#roles :selected").val(),
         };
-        send_data("/admin_panel/edit/"+id,"POST",formData);
+        send_data("/admin-panel/edit/" + id, "POST", formData);
     });
-    $('#save_user').click(function (e) {
+    $('.change_status').click(function (e) {
+        var formData = [];
+        let status;
+        if ($(this).attr('id') === 'status_wait') {
+            status = "WAITING";
+        } else if ($(this).attr('id') === 'status_instock') {
+            status = "INSTOCK";
+        }
+        let count = 0;
+        $('.choose_tool').each(function (index, value) {
+            if ($(this)[0].checked) {
+                var id = $(this).next().attr("value");
+                var val = $(this)[0].checked;
+                if (val !== null) {
+                    formData[count] = {'id': id, 'status': status};
+                    count++;
+                }
+            }
+        });
+        console.log(formData);
+        send_data("/tools/change-status", "POST", formData);
+    });
+    $('#btn_create_project').click(function (e) {
+        let photos_arr;
+        photos_arr = $("#photos").val().split(",", 9999);
+        photos_arr.forEach(function (item, i, arr) {
+            photos_arr[i] = photos_arr[i].trim();
+        });
+        var identifiers = [];
+        let count = 0;
+        $('.choose_tool').each(function (index, value) {
+            if ($(this)[0].checked) {
+                var id = $(this).next().attr("value");
+                var val = $(this)[0].checked;
+                var price = 0;
+                if (val !== null) {
+                    identifiers[count] = {'id': id};
+                    count++;
+                }
+            }
+        });
         var formData = {
-            username: $("#username").val(),
-            password: $("#password").val(),
-            fullName: $("#fullName").val(),
-            roles: $("#roles :selected").val(),
+            status: $('#select_status_project').val(),
+            name: $('#name_project').val(),
+            start: $('#date_start').val(),
+            end: $('#date_end').val(),
+            typeLease: $('#type').val(),
+            classification: $('#classification').val(),
+            created: $('#created').val(),
+            client_id: $('#client').val(),
+            note: $('#note').val(),
+            photos: photos_arr,
+            tools_id: identifiers,
+            sum: $('#sum').val(),
+            priceTools: $('#priceTools').val(),
+            discountByProject: $('#discountByProject').val(),
+            sumWithDiscount: $('#sumWithDiscount').val(),
+            finalSumUsn: $('#finalSumUsn').val(),
+            priceWork: $('#priceWork').val(),
+            received: $('#received').val(),
+            remainder: $('#remainder').val()
         };
-        send_data("/admin_panel","POST",formData);
+        send_data("/projects/create", "POST", formData);
     });
 });
 
-function showMessage(res)
-{
-    $("#alert_message").text(res.message);
-    $("#ex1").modal();
-}
+
 
 
 

@@ -6,10 +6,1202 @@
     <div th:replace="fragments/head :: header"></div>
 </head>
 
-<body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
-<div th:insert="fragments/menu_sidebar.html"></div>
 
-<div th:insert="fragments/footer.html"></div>
+<body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
+    <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
+        <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
+            <div th:insert="fragments/menu_sidebar.html"></div>
+            <div class="b-overlay-wrap position-relative w-100" size="sm">
+                <div class="rih-page-wrapper">
+                    <nav data-v-59295fda="" role="navigation" class="navbar navbar-admin navbar-fixed-top"
+                        th:insert="fragments/header_logout.html"></nav>
+                    <main class="wrapper wrapper-content border-bottom">
+                        <div class="b-overlay-wrap position-relative" size="sm">
+                            <div class="row">
+                                <div class="btn-pimary__groups-wrapper col-12 vidacha-sozdach mb-3 vidacha-sozdach">
+                                    <div data-v-e551daac="" class="mb-3 text-right">
+                                        <a data-v-e551daac="" href="#"
+                                            class="btn btn-primary min-width-120 green">Месяц</a>
+                                    </div>
+                                    <div data-v-e551daac="" class="mb-3 text-right">
+                                        <a data-v-e551daac="" href="#"
+                                            class="btn btn-primary min-width-120 red">День</a>
+                                    </div>
+                                    <div data-v-e551daac="" class="mb-3 text-right">
+                                        <a data-v-e551daac="" href="#"
+                                            class="btn btn-primary min-width-120 orange">Обновить</a>
+                                    </div>
+                                    <div data-v-8271a922="" class="rent__time">
+                                        <div data-v-8271a922="" class="rent__time__group">
+                                            <span data-v-8271a922="" class="rent__time__group__label">
+                                                <svg data-v-8271a922="" class="svg-inline--fa fa-clock fa-w-16 mr-2"
+                                                    aria-hidden="true" focusable="false" data-prefix="far"
+                                                    data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 512 512" data-fa-i2svg="">
+                                                    <path fill="currentColor"
+                                                        d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z">
+                                                    </path>
+                                                </svg>
+                                                <!-- <i data-v-8271a922="" class="far fa-clock mr-2"></i> Font Awesome fontawesome.com -->
+                                                Даты с:
+                                            </span>
+                                            <div data-v-8271a922="" class="vdatetime w-100 form-control">
+                                                <input type="date" class="vdatetime-input" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div data-v-8271a922="" class="rent__time">
+                                        <div data-v-8271a922="" class="rent__time__group">
+                                            <span data-v-8271a922="" class="rent__time__group__label">
+                                                <svg data-v-8271a922="" class="svg-inline--fa fa-clock fa-w-16 mr-2"
+                                                    aria-hidden="true" focusable="false" data-prefix="far"
+                                                    data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 512 512" data-fa-i2svg="">
+                                                    <path fill="currentColor"
+                                                        d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z">
+                                                    </path>
+                                                </svg>
+                                                <!-- <i data-v-8271a922="" class="far fa-clock mr-2"></i> Font Awesome fontawesome.com -->
+                                                Даты по:
+                                            </span>
+                                            <div data-v-8271a922="" class="vdatetime w-100 form-control">
+                                                <input type="date" class="vdatetime-input" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div data-v-e551daac="" class="mb-3 text-right">
+                                        <a data-v-e551daac="" href="#"
+                                            class="btn btn-primary min-width-120 orange">Календарь</a>
+                                    </div>
+                                    <div data-v-e551daac="" class="mb-3 text-right">
+                                        <a data-v-e551daac="" href="#"
+                                            class="btn btn-primary min-width-120 пкун">Экспорт</a>
+                                    </div>
+                                </div>
+
+
+                                <!-- Tab links -->
+                                <div class="tab mb-3">
+                                    <button class="tablinks" onclick="openUnit(event, 'tools')"
+                                        id="defaultOpen">Оборудование</button>
+                                    <button class="tablinks" onclick="openUnit(event, 'project')">Проект</button>
+                                </div>
+
+                                <!-- Tab content -->
+                                <div id="tools" class="tabcontent mb-3">
+                                    <div class="order-lg-1">
+                                        <div class="btn__under-table">
+                                            <div data-v-e551daac="" class="mb-3 text-right">
+                                                <a data-v-e551daac="" href="#"
+                                                    class="btn btn-primary min-width-120 btn-add_vidacha grey">Все</a>
+                                            </div>
+                                            <div data-v-e551daac="" class="mb-3 text-right">
+                                                <a data-v-e551daac="" href="#"
+                                                    class="btn btn-primary min-width-120 btn-open_vidacha  grey">Склад</a>
+                                            </div>
+                                            <div data-v-e551daac="" class="mb-3 text-right">
+                                                <a data-v-e551daac="" href="#"
+                                                    class="btn btn-primary min-width-120 btn-delate_vidacha grey">Субарендa</a>
+                                            </div>
+                                            <div data-v-e551daac="" class="mb-3 text-right">
+                                                <a data-v-e551daac="" href="#"
+                                                    class="btn btn-primary min-width-120 btn-update_vidacha  grey">Единый
+                                                    список</a>
+                                            </div>
+                                            <div data-v-e551daac="" class="mb-3 text-right">
+                                                <a data-v-e551daac="" href="#"
+                                                    class="btn btn-primary min-width-120 btn-update_vidacha  grey">Просмотр
+                                                    по группам</a>
+                                            </div>
+                                            <div data-v-e551daac="" class="mb-3 text-right">
+                                                <a data-v-e551daac="" href="#"
+                                                    class="btn btn-primary min-width-120 btn-update_vidacha  grey">Просмотр
+                                                    по разделам сметы</a>
+                                            </div>
+                                            <div data-v-e551daac="" class="mb-3 text-right">
+                                                <a data-v-e551daac="" href="#"
+                                                    class="btn btn-primary min-width-120 btn-update_vidacha  grey">Сбросить
+                                                    фильтр</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="table__info custom-ll__table table-responsive mb-3">
+                                        <table class="table in4dr-form">
+                                            <tr>
+                                                <th class="first-th">№</th>
+                                                <th>Наименование</th>
+                                                <th>Штрих код</th>
+                                                <th>Группа</th>
+                                                <th>Марка/Модель</th>
+                                                <th>Серийный номер</th>
+                                                <th>Коментарий</th>
+                                                <th>Характеристики</th>
+                                                <th>Состояние</th>
+                                                <th>Текущий статус</th>
+                                                <th class="monce__tool">Число-Месяц</th>
+                                                <th class="monce__tool">Число-Месяц</th>
+                                                <th class="monce__tool">Число-Месяц</th>
+                                                <th class="monce__tool">Число-Месяц</th>
+                                                <th class="monce__tool">Число-Месяц</th>
+                                                <th class="monce__tool">Число-Месяц</th>
+                                                <th class="monce__tool">Число-Месяц</th>
+                                                <th class="monce__tool">Число-Месяц</th>
+                                                <th class="monce__tool">Число-Месяц</th>
+                                                <th class="monce__tool">Число-Месяц</th>
+                                                <th class="monce__tool">Число-Месяц</th>
+                                                <th class="monce__tool">Число-Месяц</th>
+                                                <th class="monce__tool">Число-Месяц</th>
+                                                <th class="monce__tool">Число-Месяц</th>
+                                                <th class="monce__tool">Число-Месяц</th>
+                                                <th class="monce__tool">Число-Месяц</th>
+                                                <th class="monce__tool">Число-Месяц</th>
+                                                <th class="monce__tool">Число-Месяц</th>
+                                                <th class="monce__tool">Число-Месяц</th>
+                                                <th class="monce__tool">Число-Месяц</th>
+                                                <th class="monce__tool">Число-Месяц</th>
+                                                <th class="monce__tool">Число-Месяц</th>
+                                                <th class="monce__tool">Число-Месяц</th>
+                                                <th class="monce__tool">Число-Месяц</th>
+                                                <th class="monce__tool">Число-Месяц</th>
+                                                <th class="monce__tool">Число-Месяц</th>
+                                                <th class="monce__tool">Число-Месяц</th>
+                                                <th class="monce__tool">Число-Месяц</th>
+                                                <th class="monce__tool">Число-Месяц</th>
+                                                <th class="monce__tool">Число-Месяц</th>
+                                                <th class="monce__tool">Число-Месяц</th>
+                                                <th class="hour__tool">Время</th>
+                                                <th class="hour__tool">Время</th>
+                                                <th class="hour__tool">Время</th>
+                                                <th class="hour__tool">Время</th>
+                                                <th class="hour__tool">Время</th>
+                                                <th class="hour__tool">Время</th>
+                                                <th class="hour__tool">Время</th>
+                                                <th class="hour__tool">Время</th>
+                                                <th class="hour__tool">Время</th>
+                                                <th class="hour__tool">Время</th>
+                                                <th class="hour__tool">Время</th>
+                                                <th class="hour__tool">Время</th>
+                                                <th class="hour__tool">Время</th>
+                                                <th class="hour__tool">Время</th>
+                                                <th class="hour__tool">Время</th>
+                                                <th class="hour__tool">Время</th>
+                                                <th class="hour__tool">Время</th>
+                                                <th class="hour__tool">Время</th>
+                                                <th class="hour__tool">Время</th>
+                                                <th class="hour__tool">Время</th>
+                                                <th class="hour__tool">Время</th>
+                                                <th class="hour__tool">Время</th>
+                                                <th class="hour__tool">Время</th>
+                                                <th class="hour__tool">Время</th>
+                                            </tr>
+                                            <tr>
+                                                <td class="column-table">1</td>
+                                                <td class="button open-popup"><a href="#">O-konnector</a></td>
+                                                <td>05556644</td>
+                                                <td>05 heads</td>
+                                                <td>2050</td>
+                                                <td>54545454</td>
+                                                <td>Black</td>
+                                                <td>N/A</td>
+                                                <td>Без повреждений</td>
+                                                <td class="monce__tool-status yellow">Ожидает</td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="column-table">1</td>
+                                                <td>O-konnector</td>
+                                                <td>05556644</td>
+                                                <td>05 heads</td>
+                                                <td>2050</td>
+                                                <td>54545454</td>
+                                                <td>Black</td>
+                                                <td>N/A</td>
+                                                <td>Без повреждений</td>
+                                                <td class="monce__tool-status green">На складе</td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="column-table">1</td>
+                                                <td>O-konnector</td>
+                                                <td>05556644</td>
+                                                <td>05 heads</td>
+                                                <td>2050</td>
+                                                <td>54545454</td>
+                                                <td>Black</td>
+                                                <td>N/A</td>
+                                                <td>Без повреждений</td>
+                                                <td class="monce__tool-status orange">Ожидает</td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="column-table">1</td>
+                                                <td>O-konnector</td>
+                                                <td>05556644</td>
+                                                <td>05 heads</td>
+                                                <td>2050</td>
+                                                <td>54545454</td>
+                                                <td>Black</td>
+                                                <td>N/A</td>
+                                                <td>Без повреждений</td>
+                                                <td class="monce__tool-status green">На складе</td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-status"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                                <td class="monce__tool-hour"></td>
+                                            </tr>
+                                            <tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div id="project" class="tabcontent mb-3">
+                                    <div class="order-lg-1">
+                                        <div class="btn__under-table">
+                                            <div data-v-e551daac="" class="mb-3 text-right">
+                                                <a data-v-e551daac="" href="#"
+                                                    class="btn btn-primary min-width-120 btn-add_vidacha grey">Все</a>
+                                            </div>
+                                            <div data-v-e551daac="" class="mb-3 text-right">
+                                                <a data-v-e551daac="" href="#"
+                                                    class="btn btn-primary min-width-120 btn-open_vidacha  grey">Разовый</a>
+                                            </div>
+                                            <div data-v-e551daac="" class="mb-3 text-right">
+                                                <a data-v-e551daac="" href="#"
+                                                    class="btn btn-primary min-width-120 btn-delate_vidacha grey">Длинный</a>
+                                            </div>
+                                            <div data-v-e551daac="" class="mb-3 text-right">
+                                                <a data-v-e551daac="" href="#"
+                                                    class="btn btn-primary min-width-120 btn-update_vidacha  grey">Субаренда</a>
+                                            </div>
+                                            <div data-v-e551daac="" class="mb-3 text-right">
+                                                <a data-v-e551daac="" href="#"
+                                                    class="btn btn-primary min-width-120 btn-update_vidacha  grey">Тест</a>
+                                            </div>
+                                            <div data-v-e551daac="" class="mb-3 text-right">
+                                                <a data-v-e551daac="" href="#"
+                                                    class="btn btn-primary min-width-120 btn-update_vidacha  grey">Сбросить
+                                                    фильтр</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="table__info custom-ll__table table-responsive mb-3">
+                                        <table class="table in4dr-form">
+                                            <tr>
+                                                <th class="first-th">№</th>
+                                                <th>Проект</th>
+                                                <th>Клиент</th>
+                                                <th>Телефон</th>
+                                                <th>Начало аренды</th>
+                                                <th>Окончание аренды</th>
+                                                <th>Дата/время создания</th>
+                                                <th>Сотрудник</th>
+                                                <th>Примечание</th>
+                                                <th>Тип</th>
+                                                <th>Текущий статус</th>
+                                                <th class="monce__project">Число-Месяц</th>
+                                                <th class="monce__project">Число-Месяц</th>
+                                                <th class="monce__project">Число-Месяц</th>
+                                                <th class="monce__project">Число-Месяц</th>
+                                                <th class="monce__project">Число-Месяц</th>
+                                                <th class="monce__project">Число-Месяц</th>
+                                                <th class="monce__project">Число-Месяц</th>
+                                                <th class="monce__project">Число-Месяц</th>
+                                                <th class="monce__project">Число-Месяц</th>
+                                                <th class="monce__project">Число-Месяц</th>
+                                                <th class="monce__project">Число-Месяц</th>
+                                                <th class="monce__project">Число-Месяц</th>
+                                                <th class="monce__project">Число-Месяц</th>
+                                                <th class="monce__project">Число-Месяц</th>
+                                                <th class="monce__project">Число-Месяц</th>
+                                                <th class="monce__project">Число-Месяц</th>
+                                                <th class="monce__project">Число-Месяц</th>
+                                                <th class="monce__project">Число-Месяц</th>
+                                                <th class="monce__project">Число-Месяц</th>
+                                                <th class="monce__project">Число-Месяц</th>
+                                                <th class="monce__project">Число-Месяц</th>
+                                                <th class="monce__project">Число-Месяц</th>
+                                                <th class="monce__project">Число-Месяц</th>
+                                                <th class="monce__project">Число-Месяц</th>
+                                                <th class="monce__project">Число-Месяц</th>
+                                                <th class="monce__project">Число-Месяц</th>
+                                                <th class="monce__project">Число-Месяц</th>
+                                                <th class="monce__project">Число-Месяц</th>
+                                                <th class="monce__project">Число-Месяц</th>
+                                                <th class="monce__project">Число-Месяц</th>
+                                                <th class="monce__project">Число-Месяц</th>
+                                                <th class="hour__project">Время</th>
+                                                <th class="hour__project">Время</th>
+                                                <th class="hour__project">Время</th>
+                                                <th class="hour__project">Время</th>
+                                                <th class="hour__project">Время</th>
+                                                <th class="hour__project">Время</th>
+                                                <th class="hour__project">Время</th>
+                                                <th class="hour__project">Время</th>
+                                                <th class="hour__project">Время</th>
+                                                <th class="hour__project">Время</th>
+                                                <th class="hour__project">Время</th>
+                                                <th class="hour__project">Время</th>
+                                                <th class="hour__project">Время</th>
+                                                <th class="hour__project">Время</th>
+                                                <th class="hour__project">Время</th>
+                                                <th class="hour__project">Время</th>
+                                                <th class="hour__project">Время</th>
+                                                <th class="hour__project">Время</th>
+                                                <th class="hour__project">Время</th>
+                                                <th class="hour__project">Время</th>
+                                                <th class="hour__project">Время</th>
+                                                <th class="hour__project">Время</th>
+                                                <th class="hour__project">Время</th>
+                                            </tr>
+                                            <tr>
+                                                <td class="column-table">1</td>
+                                                <td>Павилион</td>
+                                                <td>Имя фамилия</td>
+                                                <td>8 (999) 999-99-99</td>
+                                                <td>03.01.2022 15:00</td>
+                                                <td>04.01.2022 20:00</td>
+                                                <td>30.12.2021 20:07</td>
+                                                <td>Имя Фамилия</td>
+                                                <td>Вернет другой</td>
+                                                <td>Разовый</td>
+                                                <td class="monce__project-status red">Просрочен</td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour">15:46</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>Павилион</td>
+                                                <td>Имя фамилия</td>
+                                                <td>8 (999) 999-99-99</td>
+                                                <td>03.01.2022 15:00</td>
+                                                <td>04.01.2022 20:00</td>
+                                                <td>30.12.2021 20:07</td>
+                                                <td>Имя Фамилия</td>
+                                                <td>Вернет другой</td>
+                                                <td>Разовый</td>
+                                                <td class="monce__project-status green">Продлен</td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>Павилион</td>
+                                                <td>Имя фамилия</td>
+                                                <td>8 (999) 999-99-99</td>
+                                                <td>03.01.2022 15:00</td>
+                                                <td>04.01.2022 20:00</td>
+                                                <td>30.12.2021 20:07</td>
+                                                <td>Имя Фамилия</td>
+                                                <td>Вернет другой</td>
+                                                <td>Разовый</td>
+                                                <td class="monce__project-status green">Продлен</td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour">11:00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td>Павилион</td>
+                                                <td>Имя фамилия</td>
+                                                <td>8 (999) 999-99-99</td>
+                                                <td>03.01.2022 15:00</td>
+                                                <td>04.01.2022 20:00</td>
+                                                <td>30.12.2021 20:07</td>
+                                                <td>Имя Фамилия</td>
+                                                <td>Вернет другой</td>
+                                                <td>Разовый</td>
+                                                <td class="monce__project-status red">Просрочен</td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status"></td>
+                                                <td class="monce__project-status">выполнено</td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour"></td>
+                                                <td class="monce__project-hour">13:00</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="pagination-control col-lg-12 order-lg-1 mt-3">
+                                    <!-- Bootstrap 4 -->
+                                    <nav aria-label="Навигация по страницам">
+                                        <ul class="pagination">
+                                            <li class="page-item disabled">
+                                                <a class="page-link-m page-link" href="#">
+                                                    Первая
+                                                </a>
+                                            </li>
+                                            <li class="page-item disabled">
+                                                <a class="page-link-m page-link" href="#" aria-label="Предыдущая">
+                                                    <span aria-hidden="true">«</span>
+                                                    <span class="sr-only">Предыдущая</span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item active">
+                                                <a class="page-link-m page-link" href="#">1</a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link-m page-link" href="#">2</a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link-m page-link" href="#">3</a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link-m page-link" href="#" aria-label="Следующая">
+                                                    <span aria-hidden="true">»</span>
+                                                    <span class="sr-only">Следующая</span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link-m page-link" href="#">
+                                                    Последняя
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+
+                                <div class="popup-bg outer-btn-popup">
+                                    <div class="popup">
+                                        <!-- <div class="popup-bg-wrapper"></div> -->
+                                        
+                                        <!-- Содержимое popup -->
+                                        <div class="popup-overley">
+                                            <div class="content-wrapp">
+                                                <div class="popup__close-btn mb-3">
+                                                    <span class="close-popup ">
+                                                        <svg viewBox="0 0 512 512" width="100" title="window-close">
+                                                            <path d="M464 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-83.6 290.5c4.8 4.8 4.8 12.6 0 17.4l-40.5 40.5c-4.8 4.8-12.6 4.8-17.4 0L256 313.3l-66.5 67.1c-4.8 4.8-12.6 4.8-17.4 0l-40.5-40.5c-4.8-4.8-4.8-12.6 0-17.4l67.1-66.5-67.1-66.5c-4.8-4.8-4.8-12.6 0-17.4l40.5-40.5c4.8-4.8 12.6-4.8 17.4 0l66.5 67.1 66.5-67.1c4.8-4.8 12.6-4.8 17.4 0l40.5 40.5c4.8 4.8 4.8 12.6 0 17.4L313.3 256l67.1 66.5z" />
+                                                        </svg>
+                                                    </span>
+                                                </div>
+                                                <div class="btn-pimary__groups col-12  mt-3 mb-3">
+                                                    <div class="btn-pimary__groups-wrapper mb-3">
+                                                        <div class="mb-3 text-right">
+                                                            <span class="btn-pimary__groups_title white-coor">Проект</span>
+                                                        </div>
+                                                        <div class="mb-3 text-right">
+                                                            <a href="#" class="btn btn-primary min-width-120 green">Выдать</a>
+                                                        </div>
+                                                        <div class="mb-3 text-right">
+                                                            <a href="#" class="btn btn-primary min-width-120 green">Принять</a>
+                                                        </div>
+                                                        <div class="mb-3 text-right">
+                                                            <a href="#" class="btn btn-primary min-width-120 orange">Журнал</a>
+                                                        </div>
+                                                        <div class="mb-3 text-right">
+                                                            <a href="#" class="btn btn-primary min-width-120 orange">Документы</a>
+                                                        </div>
+                                                        <div class="mb-3 text-right">
+                                                            <a href="#" class="btn btn-primary min-width-120 red">Назад</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                
+                                                <div class="tab-content">
+                                                    <div class="form-creat mb-3 col-12">
+                                                        <div class="bg-white p-3 edit-container">
+                                                            <div class="row form-creat__half-wrapp">
+                                                                <div class="form-creat__half_two-column">
+                                                                    <div role="group" class="form-group">
+                                                                        <label class="d-block">Наименование проекта</label>
+                                                                        <span>
+                                                                            <span type="text" class="vdatetime-input form-control span-input_repair" ></span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-creat__half_two-column">
+                                                                    <div role="group" class="form-group">
+                                                                        <label class="d-block">Статус</label>
+                                                                        <span>
+                                                                            <span type="text" class="vdatetime-input form-control span-input_repair"></span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-creat__half_two-column">
+                                                                    <div role="group" class="form-group">
+                                                                        <label class="d-block">Начало</label>
+                                                                        <div class="vdpComponent vdpWithInput">
+                                                                            <input required="" type="date" placeholder="дд.мм.гггг">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class=" form-creat__half_two-column">
+                                                                    <div role="group" class="form-group">
+                                                                        <label class="d-block">Окончание</label>
+                                                                        <div class="vdpComponent vdpWithInput">
+                                                                            <input required="" type="date" placeholder="дд.мм.гггг">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-creat__half_two-column">
+                                                                    <div role="group" class="form-group">
+                                                                        <label class="d-block">Примечание</label>
+                                                                        <span>
+                                                                            <span type="text" class="vdatetime-input form-control span-input_repair"></span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class=" form-creat__half_two-column">
+                                                                    <div role="group" class="form-group">
+                                                                        <label class="d-block">Фотографии</label>
+                                                                        <span>
+                                                                            <textarea value="[]" name="photos" class="form-control" style="height: 40px;">[]</textarea>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row form-creat__half-wrapp">
+                                                                <div role="group" class="form-group">
+                                                                    <label class="d-block">Дата создания</label>
+                                                                    <div class="vdpComponent vdpWithInput">
+                                                                        <input required="" type="date" name="dateCreating" value="" placeholder="Текущее дата и время">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-creat__half_two-column">
+                                                                    <div role="group" class="form-group">
+                                                                        <label class="d-block">Время создания</label>
+                                                                        <div class="vdpComponent vdpWithInput">
+                                                                            <input required="" type="time" value="" placeholder="Текущее дата и время">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-creat__half_two-column">
+                                                                    <div role="group" class="form-group">
+                                                                        <label class="d-block">Сотрудник</label>
+                                                                        <span>
+                                                                            <span type="text" class="vdatetime-input form-control span-input_repair"></span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-creat__half_two-column">
+                                                                    <div role="group" class="form-group">
+                                                                        <label class="d-block">Клиент</label>
+                                                                        <span>
+                                                                            <span type="text" class="vdatetime-input form-control span-input_repair"></span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class=" form-creat__half_two-column">
+                                                                    <div role="group" class="form-group">
+                                                                        <label class="d-block">Телефон</label>
+                                                                        <div class="vdpComponent vdpWithInput">
+                                                                            <input required="" name="phoneNumber" value="" class="form-control" placeholder="+7-999-99-99">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-creat__half_two-column">
+                                                                    <div role="group" class="form-group">
+                                                                        <label class="d-block">Скидка</label>
+                                                                        <span>
+                                                                            <span type="text" class="vdatetime-input form-control span-input_repair"></span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-content">
+                                                    <div class="form-creat mb-3 col-12">
+                                                        <div class="bg-white p-3 edit-container">
+                                                            <div class="row form-creat__half-wrapp">
+                                                                <div class="form-creat__half_two-column">
+                                                                    <div role="group" class="form-group">
+                                                                        <label class="d-block">Сумма</label>
+                                                                        <span>
+                                                                            <span type="text" class="vdatetime-input form-control span-input_repair" ></span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-creat__half_two-column">
+                                                                    <div role="group" class="form-group">
+                                                                        <label class="d-block">Сумма со скидкуй</label>
+                                                                        <span>
+                                                                            <span type="text" class="vdatetime-input form-control span-input_repair"></span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-creat__half_two-column">
+                                                                    <div role="group" class="form-group">
+                                                                        <label class="d-block">Стоимость оборудования</label>
+                                                                        <span>
+                                                                            <span type="text" class="vdatetime-input form-control span-input_repair"></span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-creat__half_two-column">
+                                                                    <div role="group" class="form-group">
+                                                                        <label class="d-block">Стоимость работ</label>
+                                                                        <span>
+                                                                            <span type="text" class="vdatetime-input form-control span-input_repair"></span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row form-creat__half-wrapp">
+                                                                <div class="form-creat__half_two-column">
+                                                                    <div role="group" class="form-group">
+                                                                        <label class="d-block">Скидка на проект</label>
+                                                                        <span>
+                                                                            <span type="text" class="vdatetime-input form-control span-input_repair"></span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-creat__half_two-column">
+                                                                    <div role="group" class="form-group">
+                                                                        <label class="d-block">Оплачено</label>
+                                                                        <span>
+                                                                            <span type="text" class="vdatetime-input form-control span-input_repair"></span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-creat__half_two-column">
+                                                                    <div role="group" class="form-group">
+                                                                        <label class="d-block">Остаток</label>
+                                                                        <span>
+                                                                            <span type="text" class="vdatetime-input form-control span-input_repair"></span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-creat__half_two-column">
+                                                                    <div role="group" class="form-group">
+                                                                        <label class="d-block">Скидка</label>
+                                                                        <span>
+                                                                            <span type="text" class="vdatetime-input form-control span-input_repair"></span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-creat__half_two-column">
+                                                                    <div role="group" class="form-group">
+                                                                        <label class="d-block">Итоговая УСН</label>
+                                                                        <span>
+                                                                            <span type="text" class="vdatetime-input form-control span-input_repair"></span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                
+                                                <div class="custom-ll__table table-responsive col-12 mb-3">
+                                                    <table class="table table-1480 w-100 in4dr-form">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th class="first-th">№</th>
+                                                                <th>Наименование</th>
+                                                                <th>Штрих код</th>
+                                                                <th>Группа</th>
+                                                                <th>Марка/Модель</th>
+                                                                <th>Серийный номер</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="column-table">1</td>
+                                                                <td>Magic Arm</td>
+                                                                <td>2200011</td>
+                                                                <td>220 Gear</td>
+                                                                <td ></td>
+                                                                <td ></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="column-table">1</td>
+                                                                <td>Magic Arm</td>
+                                                                <td>2200011</td>
+                                                                <td>220 Gear</td>
+                                                                <td ></td>
+                                                                <td ></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="column-table">1</td>
+                                                                <td>Magic Arm</td>
+                                                                <td>2200011</td>
+                                                                <td>220 Gear</td>
+                                                                <td ></td>
+                                                                <td ></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="column-table">1</td>
+                                                                <td>Magic Arm</td>
+                                                                <td>2200011</td>
+                                                                <td>220 Gear</td>
+                                                                <td ></td>
+                                                                <td ></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                
+                                                <div class="pagination-control col-lg-12 order-lg-1 mb-30">
+                                                    <!-- Bootstrap 4 -->
+                                                    <nav aria-label="Навигация по страницам">
+                                                        <ul class="pagination">
+                                                            <li class="page-item disabled">
+                                                                <a class="page-link-m page-link" href="#">
+                                                                    Первая
+                                                                </a>
+                                                            </li>
+                                                            <li class="page-item disabled">
+                                                                <a class="page-link-m page-link" href="#" aria-label="Предыдущая">
+                                                                    <span aria-hidden="true">«</span>
+                                                                    <span class="sr-only">Предыдущая</span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="page-item active">
+                                                                <a class="page-link-m page-link" href="#">1</a>
+                                                            </li>
+                                                            <li class="page-item">
+                                                                <a class="page-link-m page-link" href="#">2</a>
+                                                            </li>
+                                                            <li class="page-item">
+                                                                <a class="page-link-m page-link" href="#">3</a>
+                                                            </li>
+                                                            <li class="page-item">
+                                                                <a class="page-link-m page-link" href="#" aria-label="Следующая">
+                                                                    <span aria-hidden="true">»</span>
+                                                                    <span class="sr-only">Следующая</span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="page-item">
+                                                                <a class="page-link-m page-link" href="#">
+                                                                    Последняя
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </nav>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Конец содержимого poup -->
+
+                                    </div>
+                                </div>
+                
+                            </div>
+                        </div>
+                    </main>
+                    <div th:insert="fragments/footer.html"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:insert="fragments/scripts.html"></div>
 </body>
 
 </html>

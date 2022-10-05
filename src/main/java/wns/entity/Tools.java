@@ -5,10 +5,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import wns.constants.CategoryTools;
-import wns.constants.StatusTools;
 import wns.constants.TypeTools;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -27,8 +27,7 @@ public class Tools{
     @Enumerated(EnumType.STRING)
     private TypeTools typeTools;
     private String name;
-    @Column(name = "name_estimate")
-    private String nameEstimate;
+
     private String barcode;
 
     @Enumerated(EnumType.STRING)
@@ -44,16 +43,21 @@ public class Tools{
     private int amount;
     private String state;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "status_tools_id",nullable = false)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "status_tools_id",referencedColumnName = "id",nullable = false)
     private Status status;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "projects_id")
     private Project project;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "estimate_name_id")
+    private EstimateName estimateName;
+
     @Column(columnDefinition = "TEXT")
     private String comment;
+    private LocalDate creating;
 
     @Column(name = "cost_price")
     private long costPrice;
@@ -82,6 +86,7 @@ public class Tools{
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "photos_tools", joinColumns = @JoinColumn(name = "tools_id"))
+    @Column(columnDefinition = "TEXT")
     private Set<String> photos = new HashSet<>();
 
     @Override
@@ -89,12 +94,12 @@ public class Tools{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Tools tools = (Tools) o;
-        return id == tools.id && amount == tools.amount && costPrice == tools.costPrice && priceByDay == tools.priceByDay && incomeFromTools == tools.incomeFromTools && priceSell == tools.priceSell && incomeSales == tools.incomeSales && incomeInvestorProcents == tools.incomeInvestorProcents && incomeInvestor == tools.incomeInvestor && repairAmount == tools.repairAmount && numberWorkingShifts == tools.numberWorkingShifts && priceSublease == tools.priceSublease && paymentSublease == tools.paymentSublease && incomeAdditional == tools.incomeAdditional && typeTools == tools.typeTools && Objects.equals(name, tools.name) && Objects.equals(nameEstimate, tools.nameEstimate) && Objects.equals(barcode, tools.barcode) && category == tools.category && Objects.equals(model, tools.model) && Objects.equals(serialNumber, tools.serialNumber) && Objects.equals(characteristics, tools.characteristics) && Objects.equals(equip, tools.equip) && Objects.equals(state, tools.state) && status == tools.status && Objects.equals(project, tools.project) && Objects.equals(comment, tools.comment);
+        return id == tools.id && amount == tools.amount && costPrice == tools.costPrice && priceByDay == tools.priceByDay && incomeFromTools == tools.incomeFromTools && priceSell == tools.priceSell && incomeSales == tools.incomeSales && incomeInvestorProcents == tools.incomeInvestorProcents && incomeInvestor == tools.incomeInvestor && repairAmount == tools.repairAmount && numberWorkingShifts == tools.numberWorkingShifts && priceSublease == tools.priceSublease && paymentSublease == tools.paymentSublease && incomeAdditional == tools.incomeAdditional && typeTools == tools.typeTools && Objects.equals(name, tools.name) && Objects.equals(barcode, tools.barcode) && category == tools.category && Objects.equals(model, tools.model) && Objects.equals(serialNumber, tools.serialNumber) && Objects.equals(characteristics, tools.characteristics) && Objects.equals(equip, tools.equip) && Objects.equals(status, tools.status) && state == tools.state && Objects.equals(project, tools.project) && Objects.equals(comment, tools.comment);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, typeTools, name, nameEstimate, barcode, category, model, serialNumber, characteristics, equip, amount, state, status, project, comment, costPrice, priceByDay, incomeFromTools, priceSell, incomeSales, incomeInvestorProcents, incomeInvestor, repairAmount, numberWorkingShifts, priceSublease, paymentSublease, incomeAdditional);
+        return Objects.hash(id, typeTools, name,  barcode, category, model, serialNumber, characteristics, equip, amount, state, status, project, comment, costPrice, priceByDay, incomeFromTools, priceSell, incomeSales, incomeInvestorProcents, incomeInvestor, repairAmount, numberWorkingShifts, priceSublease, paymentSublease, incomeAdditional);
     }
 
     @Override
@@ -103,7 +108,6 @@ public class Tools{
                 "id=" + id +
                 ", typeTools=" + typeTools +
                 ", name='" + name + '\'' +
-                ", nameEstimate='" + nameEstimate + '\'' +
                 ", barcode='" + barcode + '\'' +
                 ", category=" + category +
                 ", model='" + model + '\'' +

@@ -1,11 +1,12 @@
 package wns.controllers;
 
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import wns.constants.Messages;
 import wns.constants.Roles;
 import wns.dto.UserDTO;
@@ -15,51 +16,50 @@ import wns.utils.ResponseHandler;
 import java.util.List;
 
 @Controller
-@RequestMapping("admin_panel")
+@RequestMapping("admin-panel")
 @AllArgsConstructor
 public class AdminController {
 
     private final UserService userService;
 
     @GetMapping
-    public ModelAndView showRegistrationPage()
+    public String showRegistrationPage(@ModelAttribute("message") String message,Model model)
     {
-        ModelAndView modelAndView = new ModelAndView();
-        List<UserDTO> allUsers = userService.getAllUsers();
-        modelAndView.addObject("roles", Roles.values());
-        modelAndView.addObject("users",allUsers);
-        modelAndView.setViewName("admin_panel");
-        return modelAndView;
+        List<UserDTO> allUsers = userService.getAll();
+        model.addAttribute("roles", Roles.values());
+        model.addAttribute("users",allUsers);
+        model.addAttribute("user", new UserDTO());
+        model.addAttribute("message", message);
+        return "admin_panel";
     }
 
-    @PostMapping
-    public ResponseEntity<Object> saveNewUser(@RequestBody UserDTO user)
+    @PostMapping("/create")
+    public String saveNewUser(@ModelAttribute UserDTO user)
     {
-        Messages message = userService.saveUser(user);
-        return ResponseHandler.generateResponse(message);
+        userService.saveUser(user);
+        return "redirect:/admin-panel";
     }
 
     @GetMapping("/edit/{id}")
-    public ModelAndView edit(@PathVariable("id") long id)
+    public String edit(@PathVariable("id") long id, Model model)
     {
         UserDTO dto = userService.getDTOByID(id);
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("roles", Roles.values());
-        modelAndView.addObject("user",dto);
-        modelAndView.setViewName("edit_user");
-        return modelAndView;
+        model.addAttribute("roles", Roles.values());
+        model.addAttribute("user",dto);
+        return "edit_user";
     }
 
     @PostMapping("/edit/{id}")
-    public ResponseEntity<Object> updateUser(@RequestBody UserDTO user)
+    public String updateUser(@ModelAttribute UserDTO user, RedirectAttributes redirectAttributes)
     {
-        Messages message = userService.updateUser(user);
-        return ResponseHandler.generateResponse(message);
+        Messages messages = userService.updateUser(user);
+        redirectAttributes.addFlashAttribute("message",messages.getValue());
+        return "redirect:/admin-panel";
     }
 
     @PostMapping("/delete/{id}")
     public String deleteUser(@PathVariable(value = "id") long id){
         userService.deleteUser(id);
-        return "redirect:/admin_panel";
+        return "redirect:/admin-panel";
     }
 }
