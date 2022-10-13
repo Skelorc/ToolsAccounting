@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+
+<head class="head">
+    <title>Отчеты</title>
+    <div th:replace="fragments/head :: header"></div>
+</head>
+
+
+<body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
+    <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
+        <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
+            <div th:insert="fragments/menu_sidebar.html"></div>
+            <div class="b-overlay-wrap position-relative w-100" size="sm">
+                <div class="rih-page-wrapper">
+                    <nav role="navigation" class="navbar navbar-admin navbar-fixed-top"
+                        th:insert="fragments/header_logout.html"></nav>
+                    <main class="wrapper wrapper-content border-bottom">
+                        <div class="b-overlay-wrap position-relative" size="sm">
+                            <div class="row">
+                                <div class="btn-pimary__groups-wrapper mb-3">
+                                    <div  class="mb-3 text-right">
+                                        <a  href="#" class="btn btn-primary min-width-120 green">Проекты</a>
+                                    </div>
+                                    <div  class="mb-3 text-right">
+                                        <a  href="#" class="btn btn-primary min-width-120 red">Общий</a>
+                                    </div>
+                                    <div  class="mb-3 text-right">
+                                        <a  href="#" class="btn btn-primary min-width-120 orange">Оборудование</a>
+                                    </div>
+                                    <div  class="mb-3 text-right">
+                                        <a  href="#" class="btn btn-primary min-width-120 pink">Оборудование на проектах</a>
+                                    </div>
+                                    <div data-v-8271a922="" class="rent__time">
+                                        <div data-v-8271a922="" class="rent__time__group">
+                                            <span data-v-8271a922="" class="rent__time__group__label">
+                                                <svg data-v-8271a922="" class="svg-inline--fa fa-clock fa-w-16 mr-2"
+                                                    aria-hidden="true" focusable="false" data-prefix="far"
+                                                    data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 512 512" data-fa-i2svg="">
+                                                    <path fill="currentColor"
+                                                        d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z">
+                                                    </path>
+                                                </svg>
+                                                <!-- <i data-v-8271a922="" class="far fa-clock mr-2"></i> Font Awesome fontawesome.com -->
+                                                Даты с:
+                                            </span>
+                                            <div data-v-8271a922="" class="vdatetime w-100 form-control">
+                                                <input type="date" class="vdatetime-input" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div data-v-8271a922="" class="rent__time">
+                                        <div data-v-8271a922="" class="rent__time__group">
+                                            <span data-v-8271a922="" class="rent__time__group__label">
+                                                <svg data-v-8271a922="" class="svg-inline--fa fa-clock fa-w-16 mr-2"
+                                                    aria-hidden="true" focusable="false" data-prefix="far"
+                                                    data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 512 512" data-fa-i2svg="">
+                                                    <path fill="currentColor"
+                                                        d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z">
+                                                    </path>
+                                                </svg>
+                                                <!-- <i data-v-8271a922="" class="far fa-clock mr-2"></i> Font Awesome fontawesome.com -->
+                                                Даты по:
+                                            </span>
+                                            <div data-v-8271a922="" class="vdatetime w-100 form-control">
+                                                <input type="date" class="vdatetime-input" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div  class="mb-3 text-right">
+                                        <a  href="#" class="btn btn-primary min-width-120 orange">Календарь</a>
+                                    </div>
+                                    <div  class="mb-3 text-right">
+                                        <a  href="#" class="btn btn-primary min-width-120 orange">Обновить</a>
+                                    </div>
+                                    <div  class="mb-3 text-right">
+                                        <a  href="#" class="btn btn-primary min-width-120 пкун">Экспорт</a>
+                                    </div>
+                                </div>
+
+
+                                <!-- Таблица проекты -->
+                                <div class="order-lg-1 overflow-auto">
+                                    <div class="custom-ll__table table-responsive">
+                                        <table class="table w-100 in4dr-form">
+                                            <tbody><tr>
+                                                <th class="first-th">#</th>
+                                                <th>Проект</th>
+                                                <th>Клиент</th>
+                                                <th>Телефон</th>
+                                                <th>Начало аренды</th>
+                                                <th>Окончание аренды</th>
+                                                <th>Дата и время создания</th>
+                                                <th>Сотрудник</th>
+                                                <th>Примечание</th>
+                                                <th>Фотографии отгрузки</th>
+                                                <th>Статус</th>
+                                            </tr>
+                                            <tr>
+                                                <td class="column-table">
+                                                    <div class="column-table_checkbox-wrapp">
+                                                        <input class="column-table_checkbox ids" type="checkbox">
+                                                        <input type="text" hidden="hidden" value="1">
+                                                        <span class="tools-td-text table-td-text column-table_checkbox-number">1</span>
+                                                    </div>
+                                                </td>
+                                                <td><a href="/projects/edit/1/" title="Редактирование проекта">"крутой проект"</a></td>
+                                                <td>Иванов сергей</td>
+                                                <td>+79887555454</td>
+                                                <td>10-10-2022 14:11</td>
+                                                <td>21-10-2022 15:45</td>
+                                                <td>2022-10-10T14:11</td>
+                                                <td>skelorc</td>
+                                                <td>какой то коммент</td>
+                                                <td>Фотографии будут</td>
+                                                <td>Какой-то статус</td>
+                                            </tr>
+                                        </tbody></table>
+                                    </div>
+                                </div>
+
+                                <div class="pagination-control col-lg-12 order-lg-1 mt-3">
+                                    <!-- Bootstrap 4 -->
+                                    <nav aria-label="Навигация по страницам">
+                                        <ul class="pagination">
+                                            <li class="page-item disabled">
+                                                <a class="page-link-m page-link" href="#">
+                                                    Первая
+                                                </a>
+                                            </li>
+                                            <li class="page-item disabled">
+                                                <a class="page-link-m page-link" href="#" aria-label="Предыдущая">
+                                                    <span aria-hidden="true">«</span>
+                                                    <span class="sr-only">Предыдущая</span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item active">
+                                                <a class="page-link-m page-link" href="#">1</a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link-m page-link" href="#">2</a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link-m page-link" href="#">3</a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link-m page-link" href="#" aria-label="Следующая">
+                                                    <span aria-hidden="true">»</span>
+                                                    <span class="sr-only">Следующая</span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link-m page-link" href="#">
+                                                    Последняя
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+
+                                <!-- Таблица "общий" -->
+                                <div class="order-lg-1 overflow-auto">
+                                    <div class="custom-ll__table table-responsive">
+                                        <table class="table w-100 in4dr-form">
+                                            <tbody><tr>
+                                                <th class="first-th">#</th>
+                                                <th>Проект</th>
+                                                <th>Клиент</th>
+                                                <th>Телефон</th>
+                                                <th>Начало аренды</th>
+                                                <th>Окончание аренды</th>
+                                                <th>Дата и время создания</th>
+                                                <th>Сотрудник</th>
+                                                <th>Примечание</th>
+                                                <th>Фотографии отгрузки</th>
+                                                <th>Статус</th>
+                                                <th>Сумма</th>
+                                                <th>Скидка на проект</th>
+                                                <th>Сумма со скидкой</th>
+                                                <th>Стоимость оборудования</th>
+                                                <th>Стоимость работ</th>
+                                                <th>Оплачено</th>
+                                                <th>Остаток</th>
+                                            </tr>
+                                            <tr>
+                                                <td class="column-table">
+                                                    <div class="column-table_checkbox-wrapp">
+                                                        <input class="column-table_checkbox ids" type="checkbox">
+                                                        <input type="text" hidden="hidden" value="1">
+                                                        <span class="tools-td-text table-td-text column-table_checkbox-number">1</span>
+                                                    </div>
+                                                </td>
+                                                <td><a href="/projects/edit/1/" title="Редактирование проекта">"крутой проект"</a></td>
+                                                <td>Иванов сергей</td>
+                                                <td>+79887555454</td>
+                                                <td>10-10-2022 14:11</td>
+                                                <td>21-10-2022 15:45</td>
+                                                <td>2022-10-10T14:11</td>
+                                                <td>skelorc</td>
+                                                <td>какой то коммент</td>
+                                                <td>Фотографии будут</td>
+                                                <td>Какой-то статус</td>
+                                                <td>Пример</td>
+                                                <td>Пример</td>
+                                                <td>Пример</td>
+                                                <td>Пример</td>
+                                                <td>Пример</td>
+                                                <td>Пример</td>
+                                                <td>Пример</td>
+                                            </tr>
+                                        </tbody></table>
+                                    </div>
+                                </div>
+
+                                <!-- Таблица оборудование -->
+                                <div class="order-lg-1 overflow-auto">
+                                    <div class="custom-ll__table table-responsive">
+                                        <table class="table w-100 in4dr-form">
+                                            <tbody><tr>
+                                                <th class="first-th">#</th>
+                                                <th>Проект</th>
+                                                <th>Клиент</th>
+                                                <th>Телефон</th>
+                                                <th>Начало аренды</th>
+                                                <th>Окончание аренды</th>
+                                                <th>Дата и время создания</th>
+                                                <th>Сотрудник</th>
+                                                <th>Примечание</th>
+                                                <th>Фотографии отгрузки</th>
+                                                <th>Статус</th>
+                                                <th>Цена за сутки</th>
+                                                <th>Себестоимость</th>
+                                                <th>Доход с оборудования</th>
+                                                <th>Доход с продажи</th>
+                                                <th>Доход инвестора</th>
+                                                <th>Сумма ремонта</th>
+                                                <th>Цена продажи</th>
+                                                <th>Инвестиции</th>
+                                                <th>Количество смен</th>
+                                            </tr>
+                                            <tr>
+                                                <td class="column-table">
+                                                    <div class="column-table_checkbox-wrapp">
+                                                        <input class="column-table_checkbox ids" type="checkbox">
+                                                        <input type="text" hidden="hidden" value="1">
+                                                        <span class="tools-td-text table-td-text column-table_checkbox-number">1</span>
+                                                    </div>
+                                                </td>
+                                                <td><a href="/projects/edit/1/" title="Редактирование проекта">"крутой проект"</a></td>
+                                                <td>Иванов сергей</td>
+                                                <td>+79887555454</td>
+                                                <td>10-10-2022 14:11</td>
+                                                <td>21-10-2022 15:45</td>
+                                                <td>2022-10-10T14:11</td>
+                                                <td>skelorc</td>
+                                                <td>какой то коммент</td>
+                                                <td>Фотографии будут</td>
+                                                <td>Какой-то статус</td>
+                                                <td>Пример</td>
+                                                <td>Пример</td>
+                                                <td>Пример</td>
+                                                <td>Пример</td>
+                                                <td>Пример</td>
+                                                <td>Пример</td>
+                                                <td>Пример</td>
+                                                <td>Пример</td>
+                                                <td>Пример</td>
+                                            </tr>
+                                        </tbody></table>
+                                    </div>
+                                </div>
+                                <!-- Оборудование на проектах -->
+                                <div class="order-lg-1 overflow-auto">
+                                    <div class="custom-ll__table table-responsive">
+                                        <table class="table w-100 in4dr-form">
+                                            <tbody><tr>
+                                                <th class="first-th">#</th>
+                                                <th>Проект</th>
+                                                <th>Клиент</th>
+                                                <th>Телефон</th>
+                                                <th>Начало аренды</th>
+                                                <th>Окончание аренды</th>
+                                                <th>Дата и время создания</th>
+                                                <th>Сотрудник</th>
+                                                <th>Примечание</th>
+                                                <th>Фотографии отгрузки</th>
+                                                <th>Статус</th>
+                                                <th>Текущий проект/th>
+                                                <th>Уена за сутки</th>
+                                                <th>Себестоимость</th>
+                                                <th>Доход с оборудования</th>
+                                                <th>Доход с продажи</th>
+                                                <th>Доход инвестора</th>
+                                                <th>Сумма ремонта</th>
+                                                <th>Цена продажи</th>
+                                                <th>Инвестиции</th>
+                                                <th>Количество смен</th>
+                                            </tr>
+                                            <tr>
+                                                <td class="column-table">
+                                                    <div class="column-table_checkbox-wrapp">
+                                                        <input class="column-table_checkbox ids" type="checkbox">
+                                                        <input type="text" hidden="hidden" value="1">
+                                                        <span class="tools-td-text table-td-text column-table_checkbox-number">1</span>
+                                                    </div>
+                                                </td>
+                                                <td><a href="/projects/edit/1/" title="Редактирование проекта">"крутой проект"</a></td>
+                                                <td>Иванов сергей</td>
+                                                <td>+79887555454</td>
+                                                <td>10-10-2022 14:11</td>
+                                                <td>21-10-2022 15:45</td>
+                                                <td>2022-10-10T14:11</td>
+                                                <td>skelorc</td>
+                                                <td>какой то коммент</td>
+                                                <td>Фотографии будут</td>
+                                                <td class="red">Какой-то статус</td>
+                                                <td class="pink">Пример</td>
+                                                <td>Пример</td>
+                                                <td>Пример</td>
+                                                <td>Пример</td>
+                                                <td>Пример</td>
+                                                <td>Пример</td>
+                                                <td>Пример</td>
+                                                <td>Пример</td>
+                                                <td>Пример</td>
+                                                <td>Пример</td>
+                                            </tr>
+                                        </tbody></table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                    <div th:insert="fragments/footer.html"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:insert="fragments/scripts.html"></div>
+</body>
+
+</html>

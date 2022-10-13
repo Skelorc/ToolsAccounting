@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/sale")
+@RequestMapping("sale")
 @AllArgsConstructor
 public class SaleController {
 

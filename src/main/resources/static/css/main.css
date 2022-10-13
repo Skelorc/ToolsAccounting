@@ -40,6 +40,9 @@ svg {
 .orange {
     background-color: orange;
 }
+.pink {
+    background-color: pink;
+}
 .light-yellow {
     background-color: rgb(248, 240, 202);
 }
@@ -354,6 +357,10 @@ label {
     margin-left: auto;
 }
 
+.btn-primary {
+    font-size: 14px;
+}
+
 .btn-primary_save {
     border-radius: 30px;
 }
@@ -361,6 +368,10 @@ label {
 
 .min-width-120 {
     min-width: 120px;
+}
+
+.acceptance-input-button {
+    max-width: 110px;
 }
 
 .admin-panel__btn {
@@ -414,6 +425,12 @@ label {
     border: 1px solid #e5e6e7;
     border-radius: 20px;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.vdpComponent {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
 /* стрнаница логин login*/
@@ -704,6 +721,7 @@ th, td {
     border: 1px solid #ddd; /* Gray border */
     border-radius: 4px; 
     max-width: 35px;
+    max-height: 35px;
     /* padding: 5px; Some padding */
     /* width: 150px; Set a small width */
 }
@@ -846,6 +864,12 @@ table.estimate th {
 .td-whith-input {
     padding: 0 !important;
     margin: 0 !important;
+}
+
+.input-width-button {
+    max-width: 600px !important;
+    display: inline-block;
+    margin-right: 10px;
 }
 
 .input-without-style {

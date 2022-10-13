@@ -1,9 +1,6 @@
 package wns.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import wns.constants.CategoryTools;
 import wns.constants.TypeTools;
 
@@ -15,8 +12,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "tools")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Tools{
@@ -43,14 +39,20 @@ public class Tools{
     private int amount;
     private String state;
 
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "status_tools_id",referencedColumnName = "id",nullable = false)
     private Status status;
 
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "projects_id")
     private Project project;
 
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "estimate_name_id")
     private EstimateName estimateName;
@@ -89,48 +91,4 @@ public class Tools{
     @Column(columnDefinition = "TEXT")
     private Set<String> photos = new HashSet<>();
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Tools tools = (Tools) o;
-        return id == tools.id && amount == tools.amount && costPrice == tools.costPrice && priceByDay == tools.priceByDay && incomeFromTools == tools.incomeFromTools && priceSell == tools.priceSell && incomeSales == tools.incomeSales && incomeInvestorProcents == tools.incomeInvestorProcents && incomeInvestor == tools.incomeInvestor && repairAmount == tools.repairAmount && numberWorkingShifts == tools.numberWorkingShifts && priceSublease == tools.priceSublease && paymentSublease == tools.paymentSublease && incomeAdditional == tools.incomeAdditional && typeTools == tools.typeTools && Objects.equals(name, tools.name) && Objects.equals(barcode, tools.barcode) && category == tools.category && Objects.equals(model, tools.model) && Objects.equals(serialNumber, tools.serialNumber) && Objects.equals(characteristics, tools.characteristics) && Objects.equals(equip, tools.equip) && Objects.equals(status, tools.status) && state == tools.state && Objects.equals(project, tools.project) && Objects.equals(comment, tools.comment);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, typeTools, name,  barcode, category, model, serialNumber, characteristics, equip, amount, state, status, project, comment, costPrice, priceByDay, incomeFromTools, priceSell, incomeSales, incomeInvestorProcents, incomeInvestor, repairAmount, numberWorkingShifts, priceSublease, paymentSublease, incomeAdditional);
-    }
-
-    @Override
-    public String toString() {
-        return "Tools{" +
-                "id=" + id +
-                ", typeTools=" + typeTools +
-                ", name='" + name + '\'' +
-                ", barcode='" + barcode + '\'' +
-                ", category=" + category +
-                ", model='" + model + '\'' +
-                ", serialNumber='" + serialNumber + '\'' +
-                ", characteristics='" + characteristics + '\'' +
-                ", set='" + equip + '\'' +
-                ", amount=" + amount +
-                ", state='" + state + '\'' +
-                ", status=" + status +
-                ", project=" + project +
-                ", comment='" + comment + '\'' +
-                ", costPrice=" + costPrice +
-                ", priceByDay=" + priceByDay +
-                ", incomeFromTools=" + incomeFromTools +
-                ", priceSell=" + priceSell +
-                ", incomeSales=" + incomeSales +
-                ", incomeInvestorProcents=" + incomeInvestorProcents +
-                ", incomeInvestor=" + incomeInvestor +
-                ", repairAmount=" + repairAmount +
-                ", numberWorkingShifts=" + numberWorkingShifts +
-                ", priceSublease=" + priceSublease +
-                ", paymentSublease=" + paymentSublease +
-                ", incomeAdditional=" + incomeAdditional +
-                '}';
-    }
 }

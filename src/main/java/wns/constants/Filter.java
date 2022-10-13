@@ -1,7 +1,7 @@
 package wns.constants;
 
 public enum Filter {
-
+    //tools
     WITHOUT_FILTER("null"),
     INDIVIDUAL("INDIVIDUAL"),
     LEGAL("LEGAL"),
@@ -9,7 +9,13 @@ public enum Filter {
     STOCK("Склад"),
     SUBLEASE("Субаренда"),
     GROUPS("По группам"),
-    ESTIMATE("По смете");
+    INSTOCK("На складе"),
+    ONLEASE("В аренде"),
+    ESTIMATE("По смете"),
+    //project
+    ONE_TIME("Разовый"),
+    LONG("Длинный"),
+    TEST("Тестовый");
 
 
     private final String value;

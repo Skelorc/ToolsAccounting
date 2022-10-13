@@ -71,11 +71,11 @@ $( document ).ready(function() {
     });
 });
 
-$(document).ready(function() {
+/*$(document).ready(function() {
     if(document.getElementById("date_start")!==null) {
         document.getElementById("date_start").value = new Date().toISOString().substring(0, 16);
     }if(document.getElementById("created")!==null) {
         document.getElementById("created").value = new Date().toISOString().substring(0, 16);
     }
-});
+});*/
 

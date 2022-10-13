@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 import wns.dto.ClientDTO;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -21,7 +22,7 @@ public class PageableService {
     public <T> PageImpl<T>  findPaginated(Optional<Integer> page, Optional<Integer> size,
                                           List<T> list) {
         int currentPage = page.orElse(0);
-        int pageSize = size.orElse(100);
+        int pageSize = size.orElse(5);
         int startItem = currentPage * pageSize;
         List<T> page_list;
         if (list.size() < startItem) {
@@ -33,7 +34,6 @@ public class PageableService {
         return new PageImpl<T>(page_list, PageRequest.of(currentPage, pageSize), list.size());
     }
 
-
     public <T> void getPageNumbers(Page<T> list, Model model)
     {
         int totalPages = list.getTotalPages();
@@ -44,5 +44,4 @@ public class PageableService {
             model.addAttribute("page_numbers", pageNumbers);
         }
     }
-
 }

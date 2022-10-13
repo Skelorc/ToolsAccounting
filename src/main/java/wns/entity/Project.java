@@ -74,7 +74,7 @@ public class Project {
     private long remainder;
 
     //Мапинг по переменной, в данном случае это project
-    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Tools> tools = new HashSet<>();
 
     @Override

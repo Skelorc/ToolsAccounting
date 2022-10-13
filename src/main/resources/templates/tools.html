@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
 
-<head>
+<head class="head">
     <title>Оборудование</title>
     <div th:replace="fragments/head :: header"></div>
 </head>
@@ -12,7 +12,8 @@
         <div th:insert="fragments/menu_sidebar.html"></div>
         <div class="b-overlay-wrap position-relative w-100" size="sm"></div>
         <div class="rih-page-wrapper">
-            <nav data-v-59295fda="" role="navigation" class="navbar navbar-admin navbar-fixed-top" th:insert="fragments/header_logout.html"></nav>
+            <nav  role="navigation" class="navbar navbar-admin navbar-fixed-top"
+                 th:insert="fragments/header_logout.html"></nav>
             <main class="wrapper wrapper-content border-bottom">
                 <div class="btn-pimary__groups-wrapper col-12 mb-3">
                     <div class="mb-3 text-right">
@@ -25,7 +26,7 @@
                         <button href="#" class="btn btn-primary min-width-120 red">Удалить</button>
                     </div>
                     <div class="mb-3 text-right">
-                        <button href="#" class="btn btn-primary min-width-120 orange ">Обновить</button>
+                        <button href="/tools" class="btn btn-primary min-width-120 orange ">Обновить</button>
                     </div>
                     <div class="mb-3 text-right">
                         <button href="#" class="btn btn-primary min-width-120 light-grey">Импорт</button>
@@ -34,10 +35,12 @@
                         <button href="#" class="btn btn-primary min-width-120 grey">Экспорт</button>
                     </div>
                     <div class="mb-3 text-right">
-                        <button id="status_wait" class="btn btn-primary min-width-120 yellow change_status">В ожидание</button>
+                        <button id="status_wait" class="btn btn-primary min-width-120 yellow change_status">В ожидание
+                        </button>
                     </div>
                     <div class="mb-3 text-right">
-                        <button id="status_instock" class="btn btn-primary min-width-120 green change_status">На склад</button>
+                        <button id="status_instock" class="btn btn-primary min-width-120 green change_status">На склад
+                        </button>
                     </div>
                 </div>
                 <div class="b-overlay-wrap position-relative custom-ll">
@@ -47,10 +50,12 @@
                                 <a th:href="@{/tools}" class="btn btn-primary min-width-120 btn-update_vidacha  grey">Все</a>
                             </div>
                             <div class="mb-3 text-right">
-                                <a th:href="@{/tools(filter=stock)}" class="btn btn-primary min-width-120 btn-update_vidacha  grey">Склад</a>
+                                <a th:href="@{/tools(filter=stock)}"
+                                   class="btn btn-primary min-width-120 btn-update_vidacha  grey">Склад</a>
                             </div>
                             <div class="mb-3 text-right">
-                                <a th:href="@{/tools(filter=sublease)}" class="btn btn-primary min-width-120 btn-update_vidacha  grey">Субаренда</a>
+                                <a th:href="@{/tools(filter=sublease)}"
+                                   class="btn btn-primary min-width-120 btn-update_vidacha  grey">Субаренда</a>
                             </div>
                         </div>
                         <div class="custom-ll__table table-responsive overflow-auto col-lg-12 order-lg-1">
@@ -89,70 +94,74 @@
                                 <tbody>
                                 <tr th:each="tool : ${list_tools}">
                                     <td class="column-table">
-                                        <div class="column-table_checkbox-wrapp">
-                                            <input class="column-table_checkbox choose_tool" type="checkbox" name="">
-                                            <input type="hidden" th:value="${tool.id}">
-                                            <span class="tools-td-text table-td-text column-table_checkbox-number"  th:utext="${toolStat.index+1}"></span>
+                                        <div class="column-table_checkbox-wrapp " id="ids_tools">
+                                            <input class="column-table_checkbox choose_tool" type="checkbox">
+                                            <input type="hidden" class="id_tool" th:value="${tool.id}">
+                                            <span class="tools-td-text table-td-text column-table_checkbox-number tool_id"
+                                                  th:utext="${toolStat.index+1}"></span>
                                         </div>
                                     </td>
-                                    <td><a class="tools-td-text table-td-text" th:href="@{/tools/edit/{id}/(id=${tool.id})}"
-                                            th:utext="${tool.name}"></a></td>
-                                    <td><span class="tools-td-text table-td-text"
-                                            th:utext="${tool.category.getData()}"></span></td>
-                                    <td><span class="tools-td-text table-td-text"
-                                            th:utext="${tool.barcode}"></span></td>
-                                    <td><span class="tools-td-text table-td-text"
-                                            th:utext="${tool.estimateName.getName()}"></span></td>
-                                    <td><span class="tools-td-text table-td-text"
-                                            th:utext="${tool.model}"></span></td>
-                                    <td><span class="tools-td-text table-td-text"
-                                            th:utext="${tool.serialNumber}"></span></td>
-                                    <td><span class="tools-td-text table-td-text"
-                                            th:utext="${tool.comment}"></span></td>
-                                    <td><span class="tools-td-text table-td-text"
-                                            th:utext="${tool.characteristics}"></span></td>
-                                    <td><span class="tools-td-text table-td-text"
-                                            th:utext="${tool.state}"></span></td>
-                                    <td><span class="tools-td-text table-td-text"
-                                            th:utext="${tool.priceByDay}"></span></td>
-                                    <td><span class="tools-td-text table-td-text"
-                                            th:utext="${tool.costPrice}"></span></td>
-                                    <td><span class="tools-td-text table-td-text"
-                                            th:utext="${tool.equip}"></span></td>
-                                    <td><span class="tools-td-text table-td-text"
-                                            th:utext="${tool.amount}"></span></td>
-                                    <td><span class="tools-td-text table-td-text"
-                                            th:utext="${tool.status.getStatusTools().getValue()}"></span></td>
-                                    <td><span class="tools-td-text table-td-text"
-                                            th:utext="${tool.numberWorkingShifts}"></span></td>
-                                    <td><span class="tools-td-text table-td-text"
-                                            th:utext="${tool.project}"></span></td>
-                                    <td><span class="tools-td-text table-td-text"
-                                            th:utext="${tool.incomeFromTools}"></span></td>
-                                    <td><span class="tools-td-text table-td-text"
-                                            th:utext="${tool.priceSell}"></span></td>
-                                    <td><span class="tools-td-text table-td-text"
-                                            th:utext="${tool.incomeSales}"></span></td>
-                                    <td><span class="tools-td-text table-td-text"
-                                            th:utext="${tool.incomeInvestorProcents}"></span></td>
-                                    <td><span class="tools-td-text table-td-text"
-                                            th:utext="${tool.incomeInvestor}"></span></td>
-                                    <td><span class="tools-td-text table-td-text"
-                                            th:utext="${tool.repairAmount}"></span></td>
-                                    <td><span class="tools-td-text table-td-text"
-                                            th:utext="${tool.priceSublease}"></span></td>
-                                    <td><span class="tools-td-text table-td-text"
-                                            th:utext="${tool.paymentSublease}"></span></td>
-                                    <td><span class="tools-td-text table-td-text"
-                                            th:utext="${tool.incomeAdditional}"></span></td>
+                                    <td><a class="tools-td-text table-td-text tool_name"
+                                           th:href="@{/tools/edit/{id}/(id=${tool.id})}"
+                                           th:utext="${tool.name}"></a></td>
+                                    <td><span class="tools-td-text table-td-text tool_category"
+                                              th:utext="${tool.category.getData()}"></span></td>
+                                    <td><span class="tools-td-text table-td-text tool_barcode"
+                                              th:utext="${tool.barcode}"></span></td>
+                                    <td><span class="tools-td-text table-td-text tool_estimateName"
+                                              th:utext="${tool.estimateName}"></span></td>
+                                    <td><span class="tools-td-text table-td-text tool_model"
+                                              th:utext="${tool.model}"></span></td>
+                                    <td><span class="tools-td-text table-td-text tool_serialNumber"
+                                              th:utext="${tool.serialNumber}"></span></td>
+                                    <td><span class="tools-td-text table-td-text tool_comment"
+                                              th:utext="${tool.comment}"></span></td>
+                                    <td><span class="tools-td-text table-td-text tool_characteristics"
+                                              th:utext="${tool.characteristics}"></span></td>
+                                    <td><span class="tools-td-text table-td-text tool_state"
+                                              th:utext="${tool.state}"></span></td>
+                                    <td><span class="tools-td-text table-td-text tool_priceByDay"
+                                              th:utext="${tool.priceByDay}"></span></td>
+                                    <td><span class="tools-td-text table-td-text tool_costPrice"
+                                              th:utext="${tool.costPrice}"></span></td>
+                                    <td><span class="tools-td-text table-td-text tool_equip"
+                                              th:utext="${tool.equip}"></span></td>
+                                    <td><span class="tools-td-text table-td-text tool_amount"
+                                              th:utext="${tool.amount}"></span></td>
+                                    <td><span class="tools-td-text table-td-text tool_status"
+                                              th:utext="${tool.status}"></span></td>
+                                    <td><span class="tools-td-text table-td-text tool_numberWorkingShifts"
+                                              th:utext="${tool.numberWorkingShifts}"></span></td>
+                                    <td><span class="tools-td-text table-td-text tool_project"
+                                              th:utext="${tool.project}"></span></td>
+                                    <td><span class="tools-td-text table-td-text tool_incomeFromTools"
+                                              th:utext="${tool.incomeFromTools}"></span></td>
+                                    <td><span class="tools-td-text table-td-text tool_priceSell"
+                                              th:utext="${tool.priceSell}"></span></td>
+                                    <td><span class="tools-td-text table-td-text tool_incomeSales"
+                                              th:utext="${tool.incomeSales}"></span></td>
+                                    <td><span class="tools-td-text table-td-text tool_incomeInvestorProcents"
+                                              th:utext="${tool.incomeInvestorProcents}"></span></td>
+                                    <td><span class="tools-td-text table-td-text tool_incomeInvestor"
+                                              th:utext="${tool.incomeInvestor}"></span></td>
+                                    <td><span class="tools-td-text table-td-text tool_repairAmount"
+                                              th:utext="${tool.repairAmount}"></span></td>
+                                    <td><span class="tools-td-text table-td-text tool_priceSublease"
+                                              th:utext="${tool.priceSublease}"></span></td>
+                                    <td><span class="tools-td-text table-td-text tool_paymentSublease"
+                                              th:utext="${tool.paymentSublease}"></span></td>
+                                    <td><span class="tools-td-text table-td-text tool_incomeAdditional"
+                                              th:utext="${tool.incomeAdditional}"></span></td>
                                     <td>
-                                        <span class="column-table__photo-mini" th:each="photo : ${tool.status.photos}">
-                                            <a  rel="modal:open"  th:href="${'#'+photoStat.count+tool.id}">
-                                                <img class="column-table__photo-mini_img" th:src="${photo}">
-                                                <div th:id="${photoStat.count+''+tool.id}" class="modal">
-                                                    <img th:src="${photo}">
-                                                </div>
-                                            </a>
+                                        <span class="tool_photos">
+                                            <span class="column-table__photo-mini" th:each="photo : ${tool.photos}">
+                                                <a rel="modal:open" th:href="${'#'+photoStat.count+tool.id}">
+                                                    <img class="column-table__photo-mini_img" th:src="${photo}">
+                                                    <div th:id="${photoStat.count+''+tool.id}" class="modal">
+                                                        <img th:src="${photo}">
+                                                    </div>
+                                                </a>
+                                            </span>
                                         </span>
                                     </td>
                                 </tr>
@@ -160,14 +169,21 @@
                             </table>
                         </div>
                     </div>
+                    <div class="mb-3 text-right">
+                        <button id="btn_replace_tools_to_project" class="btn btn-primary min-width-120 green"
+                                style="display: none;">Заменить оборудование
+                        </button>
+                    </div>
                     <div class="pagination-control col-lg-12 order-lg-1">
                         <!-- Bootstrap 4 -->
                         <nav aria-label="Навигация по страницам">
                             <ul class="pagination">
                                 <li class="page-item" th:if="${list_tools.totalPages > 0}"
                                     th:each="page_number : ${page_numbers}">
-                                    <a class="page-link-m page-link" th:href="@{/tools(size=${list_tools.size}, page=${page_numberStat.index})}"
-                                       th:text="${page_numberStat.index}" th:class="${page_number==list_tools.number + 1} ? active"></a>
+                                    <a class="page-link-m page-link"
+                                       th:href="@{/tools(size=${list_tools.size}, page=${page_numberStat.index})}"
+                                       th:text="${page_numberStat.index}"
+                                       th:class="${page_number==list_tools.number + 1} ? active"></a>
                                 </li>
                             </ul>
                         </nav>

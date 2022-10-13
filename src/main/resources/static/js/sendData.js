@@ -13,18 +13,15 @@ $(document).ready(function () {
                 data: JSON.stringify(data),
                 dataType: "json",
                 success: function (res) {
-                    if (url === "/admin-panel" || url === "/tools" || url === "/repair/create" || url === "/tools/change-status" || url === "/sale/create" || url === "/write-off/create") {
+                    if(res.response_code == 200){
                         window.location.reload();
-                    } else if (url === "/admin-panel/edit/" + data.id) {
-                        window.location.replace("/admin-panel");
-                    } else if (url === "/projects/create") {
-                        if (res.status === 'CREATED') {
-                            window.location.replace("/estimate/create");
-                        } else {
-                            var message = res.message;
-                            $("#alert_message").text(message.toString());
-                            $("#ex1").modal();
-                        }
+                    }
+                    else if(res.response_code == 300){
+                        window.location.replace(res.redirect_url);
+                    }
+                    else if(res.response_code == 400){
+                        $("#alert_message").text(res.message);
+                        $("#ex1").modal();
                     }
                 }
             }
@@ -164,17 +161,6 @@ $(document).ready(function () {
         send_data("/clients/edit/" + id, "POST", formData);
 
     });
-    $('#update_user').click(function (e) {
-        id = $("#user_id").val();
-        var formData = {
-            id,
-            username: $("#username").val(),
-            password: $("#password").val(),
-            fullName: $("#fullName").val(),
-            roles: $("#roles :selected").val(),
-        };
-        send_data("/admin-panel/edit/" + id, "POST", formData);
-    });
     $('.change_status').click(function (e) {
         var formData = [];
         let status;
@@ -194,50 +180,98 @@ $(document).ready(function () {
                 }
             }
         });
-        console.log(formData);
         send_data("/tools/change-status", "POST", formData);
     });
-    $('#btn_create_project').click(function (e) {
-        let photos_arr;
-        photos_arr = $("#photos").val().split(",", 9999);
-        photos_arr.forEach(function (item, i, arr) {
-            photos_arr[i] = photos_arr[i].trim();
-        });
-        var identifiers = [];
+    $('#btn_delete_project').click(function (e) {
+        var formData = [];
         let count = 0;
-        $('.choose_tool').each(function (index, value) {
+        $('.ids').each(function (index, value) {
             if ($(this)[0].checked) {
-                var id = $(this).next().attr("value");
-                var val = $(this)[0].checked;
-                var price = 0;
-                if (val !== null) {
-                    identifiers[count] = {'id': id};
-                    count++;
-                }
+                formData[count] = $(this).next().attr("value");
+                count++;
             }
         });
-        var formData = {
-            status: $('#select_status_project').val(),
-            name: $('#name_project').val(),
-            start: $('#date_start').val(),
-            end: $('#date_end').val(),
-            typeLease: $('#type').val(),
-            classification: $('#classification').val(),
-            created: $('#created').val(),
-            client_id: $('#client').val(),
-            note: $('#note').val(),
-            photos: photos_arr,
-            tools_id: identifiers,
-            sum: $('#sum').val(),
-            priceTools: $('#priceTools').val(),
-            discountByProject: $('#discountByProject').val(),
-            sumWithDiscount: $('#sumWithDiscount').val(),
-            finalSumUsn: $('#finalSumUsn').val(),
-            priceWork: $('#priceWork').val(),
-            received: $('#received').val(),
-            remainder: $('#remainder').val()
-        };
-        send_data("/projects/create", "POST", formData);
+        send_data("/projects", "POST", formData);
+    });
+
+    $('#btn_delete_tools_from_project').click(function (e) {
+        var formData = [];
+        let count = 0;
+        $('.ids').each(function (index, value) {
+            if ($(this)[0].checked) {
+                formData[count] = $(this).next().attr("value");
+                count++;
+            }
+        });
+        let id = $("#id_project").val();
+        send_data("/projects/edit/delete-tool/"+id, "POST", formData);
+    });
+
+    $('#btn_add_tools_to_project').click(function (e) {
+        var formData = [];
+        let count = 0;
+        $('.id_tool').each(function (index, value) {
+            if ($(this).parent().find('.choose_tool')[0].checked) {
+                formData[count] = $(this).attr("value");
+                count++;
+            }
+        });
+        let id = $("#project_id").val();
+
+        send_data("/projects/edit/add-tool/"+id, "POST", formData);
+    });
+
+
+    $('#replaceBtn').click(function (e) {
+        var formData = "";
+        count = 0
+        $('.id_ob').each(function (index, value) {
+            if ($(this).parent().find('.ids')[0].checked) {
+                if(formData != "") formData += ",";
+                formData += $(this).attr("value");
+                count++;
+            }
+        });
+        var id = window.location.pathname.replace("/projects/edit/", "");
+         if(count > 0) window.location.replace('/tools/replace-tool/'+id+"?ids="+formData);
+        //console.log('/projects/replace-tool/'+id+"?ids="+JSON.stringify(formData))
+
+
+        /*if(count > 0) send_data('/projects/replace-tool/'+id+"?ids="+formData, "GET");*/
+    });
+
+
+    $('body').on('click', '.page-item a', function(event){
+        var linkData = $(this).attr('href');
+        linkData = linkData.replace('/tools','/tools/pagination');
+        $.ajax({
+                contentType: "application/json; charset=utf-8",
+                type: 'GET',
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader(header, token);
+                },
+                url: linkData,
+                dataType: "json",
+                success: function (res) {
+                    if(res.response_code == 200){
+                        console.log(res.data);
+                        console.log(res.data[1]);
+                        console.log(res.data[1].content);
+                        var content = res.data[1].content;
+                        // content.each(function (index, value) {
+                        //     console.log(index);
+                        //     console.log(value);
+                        // });
+
+                        content.forEach(function(item, i, arr) {
+                          console.log( i + ": " + item + " (массив:" + arr + ")" );
+                          $('tbody tr:eq('+i+')').find('.tool.category').text(item.tool.category);
+                        });
+                    }
+                }
+            }
+        );
+        event.preventDefault();
     });
 });
 

@@ -15,8 +15,10 @@ import wns.entity.Status;
 import wns.entity.Tools;
 import wns.repo.ToolsRepo;
 
+import javax.tools.Tool;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -32,45 +34,36 @@ public class ToolsService implements MainService {
     }
 
     public List<Tools> getListToolsByStatus(StatusTools statusTools) {
-        List<Tools> list_tools = new ArrayList<>();
         List<Status> listByStatuses = statusService.getListByStatuses(statusTools);
-        for (Status status : listByStatuses) {
-            if (status.getStatusTools().equals(statusTools)) {
-                list_tools.add(status.getTools());
-            }
-        }
-        return list_tools;
+        return listByStatuses.stream()
+                .filter(x -> x.getStatusTools().equals(statusTools))
+                .map(Status::getTools)
+                .collect(Collectors.toList());
     }
 
-    public List<Tools> findByBarcode(String barcode)
-    {
+    public List<Tools> findByBarcode(String barcode) {
         List<Tools> list = new ArrayList<>();
-        if(barcode!=null)
-        {
+        if (barcode != null) {
             Optional<Tools> tools = toolsRepo.findByBarcode(barcode);
-            if(!tools.isEmpty())
+            if (!tools.isEmpty())
                 list.add(tools.get());
         }
         return list;
     }
 
-    public List<Tools> getListByFilter(String filter_string) {
-        Filter filter = Filter.getFilterByString(filter_string);
-        List<Tools> list = new ArrayList<>();
-        switch (filter) {
-            case STOCK -> list.addAll(toolsRepo.findAllByTypeTools(TypeTools.STOCK));
-            case SUBLEASE -> list.addAll(toolsRepo.findAllByTypeTools(TypeTools.SUBLEASE));
-            case WITHOUT_FILTER -> list.addAll(toolsRepo.findAll());
-        }
-        return list;
+    public Page<ToolsDTO> findPaginated(Optional<Integer> page, Optional<Integer> size, String filter) {
+        List<Tools> listByFilter = getDataByFilter(filter, 0);
+        List<ToolsDTO> collect = listByFilter.stream().map(ToolsDTO::new).collect(Collectors.toList());
+        return pageableService.findPaginated(page, size, collect);
     }
 
-    public Page<Tools> findPaginated(Optional<Integer> page, Optional<Integer> size, String filter) {
-        List<Tools> listByFilter = getListByFilter(filter);
-        return pageableService.findPaginated(page, size, listByFilter);
+    public Page<ToolsDTO> findPaginated(Optional<Integer> page, Optional<Integer> size, String filter, long id) {
+        List<Tools> listByFilter = getDataByFilter(filter, id);
+        List<ToolsDTO> collect = listByFilter.stream().map(ToolsDTO::new).collect(Collectors.toList());
+        return pageableService.findPaginated(page, size, collect);
     }
 
-    public Messages createTools(ToolsDTO toolsDTO, long name_estimate_id, StatusTools status_tool) {
+    public Messages createTools(Tools toolsDTO, long name_estimate_id, StatusTools status_tool) {
         Tools toolToSave = toolsRepo.findByName(toolsDTO.getName()).orElse(null);
         if (toolToSave == null) {
             toolToSave = modelMapper.map(toolsDTO, Tools.class);
@@ -81,6 +74,7 @@ public class ToolsService implements MainService {
             estimateName.getListTools().add(toolToSave);
             toolsRepo.save(toolToSave);
             estimateNameService.save(estimateName);
+
             return Messages.TOOLS_CREATE;
         } else
             return Messages.TOOLS_EXISTS;
@@ -105,7 +99,7 @@ public class ToolsService implements MainService {
         }
         List<Identifiers> identifiers = typeStatusDTO.getTools_id_with_prices();
         for (Identifiers identifier : identifiers) {
-            if(identifier.isChecked()) {
+            if (identifier.isChecked()) {
                 Tools tools = toolsRepo.findById(identifier.getId()).get();
                 Status status = tools.getStatus();
                 status.setCreated(LocalDateTime.now());
@@ -137,13 +131,30 @@ public class ToolsService implements MainService {
         return Messages.STATUS_CREATE;
     }
 
-    public ToolsDTO findById(long id) {
-        return modelMapper.map(toolsRepo.findById(id).get(), ToolsDTO.class);
+    public Tools findById(long id) {
+        return toolsRepo.findById(id).get();
+    }
+
+    public Tools getById(long id) {
+        return toolsRepo.findById(id).get();
     }
 
     public void save(Tools tool) {
         Status status = tool.getStatus();
-        statusService.save(status);
         toolsRepo.save(tool);
+        statusService.save(status);
+    }
+
+    public List<Tools> getDataByFilter(String filter_string, long id) {
+        Filter filter = Filter.getFilterByString(filter_string);
+        List<Tools> list = new ArrayList<>();
+        switch (filter) {
+            case STOCK -> list.addAll(toolsRepo.findAllByTypeTools(TypeTools.STOCK));
+            case SUBLEASE -> list.addAll(toolsRepo.findAllByTypeTools(TypeTools.SUBLEASE));
+            case WITHOUT_FILTER -> list.addAll(toolsRepo.findAll());
+            case INSTOCK -> list.addAll(statusService.getToolsByStatuses(StatusTools.INSTOCK));
+            case ONLEASE -> list.addAll(statusService.getToolsByStatusesAndProject(StatusTools.ONLEASE, id));
+        }
+        return list;
     }
 }

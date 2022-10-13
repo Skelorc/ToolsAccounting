@@ -1,43 +1,45 @@
 package wns.constants;
 
-import org.springframework.http.HttpStatus;
-
 public enum Messages {
 
-    CLIENT_CREATE("Клиент сохранён!",HttpStatus.CREATED),
-    CLIENT_EXISTS("Клиент с таким ФИО уже существует!", HttpStatus.OK),
-    CLIENT_UPDATE("Клиент обновлён!",HttpStatus.ACCEPTED),
-    CLIENT_NOT_FOUND("Клиент не найден!",HttpStatus.OK),
-    USER_CREATE("Новый пользователь успешно создан!",HttpStatus.CREATED),
-    USER_UPDATE("Пользователь обновлён!",HttpStatus.ACCEPTED),
-    USER_NOT_FOUND("Пользователь не найден!",HttpStatus.OK),
-    USER_EXISTS("Пользователь уже существует!", HttpStatus.OK),
-    TOOLS_CREATE("Оборудование создано!",HttpStatus.CREATED),
-    TOOLS_EXISTS("Оборудование с таким названием уже существует!", HttpStatus.OK),
-    NAME_ESTIMATE_CREATE("Наименование в смете успешно создано!",HttpStatus.CREATED),
-    NAME_ESTIMATE_EXISTS("Наименование в смете с таким названием уже существует!", HttpStatus.OK),
-    STATUS_CREATE("Статус успешно создан!",HttpStatus.CREATED),
-    STATUS_CHANGE_FAILED("Ошибка при изменении статуса оборудования",HttpStatus.OK),
-    DELETE("Удалено!", HttpStatus.ACCEPTED),
-    NOT_FOUND("Ошибка удаления! Такого объекта не существует!", HttpStatus.OK),
-    CREATE_NEW_PROJECT("Создание нового проекта!", HttpStatus.CREATED),
-    PROJECT_EXISTS("Проект с таким именем уже существует!", HttpStatus.OK);
+    OK("Выполнено!","200"),
+    REPLACE("Выполнено! Редирект!","300"),
+    CLIENT_CREATE("Клиент сохранён!","200"),
+    CLIENT_EXISTS("Клиент с таким ФИО уже существует!", "400"),
+    CLIENT_UPDATE("Клиент обновлён!","200"),
+    CLIENT_NOT_FOUND("Клиент не найден!","400"),
+    USER_CREATE("Новый пользователь успешно создан!","200"),
+    USER_UPDATE("Пользователь обновлён!","200"),
+    USER_NOT_FOUND("Пользователь не найден!","400"),
+    USER_EXISTS("Пользователь уже существует!", "400"),
+    TOOLS_CREATE("Оборудование создано!","200"),
+    TOOLS_EXISTS("Оборудование с таким названием уже существует!", "400"),
+    NAME_ESTIMATE_CREATE("Наименование в смете успешно создано!","200"),
+    NAME_ESTIMATE_EXISTS("Наименование в смете с таким названием уже существует!", "400"),
+    STATUS_CREATE("Статус успешно создан!","200"),
+    STATUS_CHANGE_FAILED("Ошибка при изменении статуса оборудования","400"),
+    DELETE("Удалено!","200"),
+    NOT_FOUND("Ошибка удаления! Такого объекта не существует!", "400"),
+    CREATE_NEW_PROJECT("Создание нового проекта!", "200"),
+    PROJECT_EXISTS("Проект с таким именем уже существует!", "400"),
+    PROJECT_UPDATE("Проект обновлён!", "300"),
+    PROJECT_ERROR("Ошибка обновления проекта", "400");
 
 
     private final String value;
-    private final HttpStatus status;
+    private final String code;
 
-    Messages(String value, HttpStatus status) {
+    Messages(String value, String code) {
         this.value = value;
-        this.status = status;
+        this.code = code;
     }
 
     public String getValue() {
         return value;
     }
 
-    public HttpStatus getStatus()
+    public String getCode()
     {
-        return status;
+        return code;
     }
 }

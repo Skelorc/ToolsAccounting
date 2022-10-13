@@ -3,15 +3,14 @@ package wns.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("index")
-public class MainController {
+@RequestMapping("reports")
+public class ReportsController {
 
     @GetMapping
-    public String main()
+    public String show()
     {
-        return "index";
+        return "reports";
     }
 }

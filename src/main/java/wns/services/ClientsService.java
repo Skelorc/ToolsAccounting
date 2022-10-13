@@ -81,4 +81,5 @@ public class ClientsService implements MainService {
     public List<ClientDTO> findListByName(String username) {
         return createListDTO(clientsRepo.findAllByFullNameContainingIgnoreCase(username));
     }
+
 }

@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<head>
+<head class="head">
     <title>Смета</title>
     <div th:replace="fragments/head :: header"></div>
 </head>
@@ -13,7 +13,7 @@
         <div th:insert="fragments/menu_sidebar.html"></div>
         <div class="b-overlay-wrap position-relative w-100" size="sm">
             <div class="rih-page-wrapper">
-                <nav data-v-59295fda="" role="navigation" class="navbar navbar-admin navbar-fixed-top"
+                <nav  role="navigation" class="navbar navbar-admin navbar-fixed-top"
                      th:insert="fragments/header_logout.html"></nav>
                 <main class="wrapper wrapper-content border-bottom">
                     <div class="b-overlay-wrap position-relative">
@@ -87,15 +87,14 @@
                             </div>
 
                             <div class="mt-4 mb-4 col-4 save-btn">
-                                <button type="submit" id="save_estimate"
+                                <button type="submit"
                                         class="btn btn-lg btn-primary btn-primary_save w-100">
                                     <svg class="svg-inline--fa fa-shopping-cart fa-w-18" aria-hidden="true"
                                          focusable="false" data-prefix="fa" data-icon="shopping-cart" role="img"
                                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="">
                                         <path fill="currentColor"
                                               d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"></path>
-                                    </svg><!-- <i class="fa fa-shopping-cart">
-                                    </i> Font Awesome fontawesome.com -->
+                                    </svg>
                                     Сохранить
                                 </button>
                             </div>
@@ -136,7 +135,7 @@
                                 </tr>
                                 </thead>
                                 <tbody class="text-center">
-                                <tr th:each="estimateName : ${all}">
+                                <tr th:each="estimateName : ${list_estimate}">
                                     <td class="align-middle">
                                         <h1 class="display-6" style="font-size: medium"
                                             th:utext="${estimateNameStat.index+1}"></h1>
@@ -156,45 +155,18 @@
                                 </tbody>
                             </table>
                         </div>
+                    </div>
 
-                        <div class="pagination-control col-lg-12 order-lg-1">
-                            <!-- Bootstrap 4 -->
-                            <nav aria-label="Навигация по страницам">
-                                <ul class="pagination">
-                                    <li class="page-item disabled">
-                                        <a class="page-link-m page-link" href="#">
-                                            Первая
-                                        </a>
-                                    </li>
-                                    <li class="page-item disabled">
-                                        <a class="page-link-m page-link" href="#" aria-label="Предыдущая">
-                                            <span aria-hidden="true">«</span>
-                                            <span class="sr-only">Предыдущая</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item active">
-                                        <a class="page-link-m page-link" href="#">1</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link-m page-link" href="#">2</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link-m page-link" href="#">3</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link-m page-link" href="#" aria-label="Следующая">
-                                            <span aria-hidden="true">»</span>
-                                            <span class="sr-only">Следующая</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link-m page-link" href="#">
-                                            Последняя
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
+                    <div class="pagination-control col-lg-12 order-lg-1">
+                        <nav aria-label="Навигация по страницам">
+                            <ul class="pagination">
+                                <li class="page-item" th:if="${list_estimate.totalPages > 0}"
+                                    th:each="page_number : ${page_numbers}">
+                                    <a class="page-link-m page-link" th:href="@{/estimate(size=${list_estimate.size}, page=${page_numberStat.index})}"
+                                       th:text="${page_numberStat.index}" th:class="${page_number==list_estimate.number + 1} ? active"></a>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
                 </main>
                 <div th:insert="fragments/footer.html"></div>

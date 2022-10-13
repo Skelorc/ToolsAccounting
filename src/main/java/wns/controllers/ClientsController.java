@@ -51,6 +51,7 @@ public class ClientsController {
     }
 
     @PostMapping("/create")
+    @ResponseBody
     public ResponseEntity<Object> create(@RequestBody ClientDTO dto) {
         Messages message = clientsService.saveClient(dto);
         return ResponseHandler.generateResponse(message);

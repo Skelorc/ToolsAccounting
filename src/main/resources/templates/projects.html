@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
-    <head>
+    <head class="head">
         <title>Выдача</title>
         <div th:replace="fragments/head :: header"></div>
     </head>
@@ -19,13 +19,13 @@
                                         <a data-v-e551daac="" href="/projects/create" th:href="@{/projects/create}" class="btn btn-primary min-width-120 btn-add_vidacha green">Создать</a>
                                     </div>
                                     <div data-v-e551daac="" class="mb-3 text-right">
-                                        <a data-v-e551daac="" href="#" class="btn btn-primary min-width-120 btn-open_vidacha  grey">Открыть</a>
+                                        <a data-v-e551daac="" class="btn btn-primary min-width-120 btn-open_vidacha  grey">Открыть</a>
                                     </div> 
                                     <div data-v-e551daac="" class="mb-3 text-right">
-                                        <a data-v-e551daac="" href="#" class="btn btn-primary min-width-120 btn-delate_vidacha red">Удалить</a>
+                                        <a data-v-e551daac="" id="btn_delete_project" class="btn btn-primary min-width-120 btn-delate_vidacha red">Удалить</a>
                                     </div> 
                                     <div data-v-e551daac="" class="mb-3 text-right">
-                                        <a data-v-e551daac="" href="#" class="btn btn-primary min-width-120 btn-update_vidacha  orange">Обновить</a>
+                                        <a data-v-e551daac="" class="btn btn-primary min-width-120 btn-update_vidacha  orange">Обновить</a>
                                     </div> 
                                 </div>
                                 <div data-v-e551daac="">
@@ -52,19 +52,19 @@
                                                 <div class="order-lg-1">
                                                     <div class="btn__under-table">
                                                         <div data-v-e551daac="" class="mb-3 text-right">
-                                                            <a data-v-e551daac="" href="#" class="btn btn-primary min-width-120 btn-add_vidacha grey">Все</a>
+                                                            <a data-v-e551daac="" href="/" class="btn btn-primary min-width-120 btn-add_vidacha grey">Все</a>
                                                         </div> 
                                                         <div data-v-e551daac="" class="mb-3 text-right">
-                                                            <a data-v-e551daac="" href="#" class="btn btn-primary min-width-120 btn-open_vidacha  grey">Разовые</a>
+                                                            <a data-v-e551daac="" href="/?filter=one_time" class="btn btn-primary min-width-120 btn-open_vidacha  grey">Разовые</a>
                                                         </div> 
                                                         <div data-v-e551daac="" class="mb-3 text-right">
-                                                            <a data-v-e551daac="" href="#" class="btn btn-primary min-width-120 btn-delate_vidacha grey">Длинный</a>
+                                                            <a data-v-e551daac="" href="/?filter=long" class="btn btn-primary min-width-120 btn-delate_vidacha grey">Длинный</a>
                                                         </div> 
                                                         <div data-v-e551daac="" class="mb-3 text-right">
-                                                            <a data-v-e551daac="" href="#" class="btn btn-primary min-width-120 btn-update_vidacha  grey">Субаренда</a>
+                                                            <a data-v-e551daac="" href="/?filter=sublease" class="btn btn-primary min-width-120 btn-update_vidacha  grey">Субаренда</a>
                                                         </div> 
                                                         <div data-v-e551daac="" class="mb-3 text-right">
-                                                            <a data-v-e551daac="" href="#" class="btn btn-primary min-width-120 btn-update_vidacha  grey">Тест</a>
+                                                            <a data-v-e551daac="" href="/?filter=test" class="btn btn-primary min-width-120 btn-update_vidacha  grey">Тест</a>
                                                         </div> 
                                                     </div>
                                                 </div>
@@ -82,65 +82,45 @@
                                                                 <th>Сотрудник</th>
                                                                 <th>Примечание</th>
                                                                 <th>Тип</th>
+                                                                <th>Открыть смету</th>
                                                             </tr>
-                                                            <tr th:each="tool : ${list_tools}">
+                                                            <tr th:each="project : ${list_projects}" >
                                                                 <td class="column-table">
                                                                     <div class="column-table_checkbox-wrapp">
-                                                                        <input class="column-table_checkbox" type="checkbox" id="" name=""><span class="tools-td-text table-td-text column-table_checkbox-number" th:utext="${toolStat.index+1}"></span>
+                                                                        <input class="column-table_checkbox ids" type="checkbox">
+                                                                        <input type="text" hidden="hidden" th:value="${project.id}">
+                                                                        <span class="tools-td-text table-td-text column-table_checkbox-number"
+                                                                              th:utext="${projectStat.index+1}">
+                                                                        </span>
                                                                     </div>
                                                                 </td>
-                                                                <td>Павилион</td>
-                                                                <td>Имя фамилия</td>
-                                                                <td>8 (999) 999-99-99</td>
-                                                                <td>03.01.2022 15:00</td>
-                                                                <td>04.01.2022 20:00</td>
-                                                                <td>30.12.2021 20:07</td>
-                                                                <td>Имя Фамилия</td>
-                                                                <td>Вернёт другой механик</td>
-                                                                <td>Разовый</td>
+                                                                <td><a th:href="@{/projects/edit/{id}/(id=${project.getId()})}" th:utext="${project.name}" title="Редактирование проекта"></a></td>
+                                                                <td th:utext="${project.client.fullName}"></td>
+                                                                <td th:utext="${project.client.phoneNumber}"></td>
+                                                                <td th:utext="${#temporals.format(project.start, 'dd-MM-yyyy HH:mm')}"></td>
+                                                                <td th:text="${#temporals.format(project.end, 'dd-MM-yyyy HH:mm')}"></td>
+                                                                <td th:utext="${project.created}"></td>
+                                                                <td th:utext="${project.employee}"></td>
+                                                                <td th:utext="${project.note}"></td>
+                                                                <td th:utext="${project.classification.getValue()}"></td>
+                                                                <td><a th:href="@{/estimate/create/{id}/(id=${project.getId()})}" title="Просмотр/редактирование сметы">Смета</a></td>
                                                             </tr>
                                                         </table>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="pagination-control col-lg-12 order-lg-1">
-                                                <!-- Bootstrap 4 -->
-                                                <nav aria-label="Навигация по страницам">
-                                                    <ul class="pagination">
-                                                    <li class="page-item disabled">
-                                                        <a class="page-link-m page-link" href="#">
-                                                        Первая
-                                                        </a>
+                                        </div>
+                                        <div class="pagination-control col-lg-12 order-lg-1">
+                                            <!-- Bootstrap 4 -->
+                                            <nav aria-label="Навигация по страницам">
+                                                <ul class="pagination">
+                                                    <li class="page-item" th:if="${list_projects.totalPages > 0}"
+                                                        th:each="page_number : ${page_numbers}">
+                                                        <a class="page-link-m page-link" th:href="@{/(size=${list_projects.size}, page=${page_numberStat.index})}"
+                                                             th:text="${page_numberStat.index}" th:class="${page_number==list_projects.number + 1} ? active"></a>
                                                     </li>
-                                                    <li class="page-item disabled">
-                                                        <a class="page-link-m page-link" href="#" aria-label="Предыдущая">
-                                                        <span aria-hidden="true">«</span>
-                                                        <span class="sr-only">Предыдущая</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="page-item active">
-                                                        <a class="page-link-m page-link" href="#">1</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link-m page-link" href="#">2</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link-m page-link" href="#">3</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link-m page-link" href="#" aria-label="Следующая">
-                                                        <span aria-hidden="true">»</span>
-                                                        <span class="sr-only">Следующая</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link-m page-link" href="#">
-                                                        Последняя
-                                                        </a>
-                                                    </li>
-                                                    </ul>
-                                                </nav>
-                                            </div>
+                                                </ul>
+                                            </nav>
                                         </div>
                                         <div class="b-sidebar-backdrop bg-dark" style="display: none;"></div>
                                     </div>

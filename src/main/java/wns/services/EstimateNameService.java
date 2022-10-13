@@ -2,14 +2,17 @@ package wns.services;
 
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import wns.constants.Messages;
 import wns.dto.EstimateNameDTO;
+import wns.dto.ToolsDTO;
 import wns.entity.EstimateName;
 import wns.entity.Tools;
 import wns.repo.EstimateNameRepo;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -17,6 +20,7 @@ import java.util.stream.Collectors;
 @Service
 public class EstimateNameService implements MainService {
     private final EstimateNameRepo repo;
+    private final PageableService pageableService;
     private final ModelMapper modelMapper;
 
     public List<EstimateNameDTO> getAll()
@@ -66,5 +70,15 @@ public class EstimateNameService implements MainService {
     public EstimateName getNameEstimateById(long id)
     {
         return repo.findById(id).orElse(new EstimateName());
+    }
+
+    public Page<EstimateNameDTO> findPaginated(Optional<Integer> page, Optional<Integer> size, String filter) {
+        List<EstimateNameDTO> listByFilter = getDataByFilter(filter);
+        return pageableService.findPaginated(page, size, listByFilter);
+    }
+
+    private List<EstimateNameDTO> getDataByFilter(String filter) {
+        List<EstimateName> all = repo.findAll();
+        return all.stream().map(x -> modelMapper.map(x, EstimateNameDTO.class)).collect(Collectors.toList());
     }
 }
