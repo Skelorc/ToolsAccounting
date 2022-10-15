@@ -72,17 +72,22 @@
                                                 </select>
                                             </div>
                                         </div>
-                                       <!-- <div class=" form-creat__half_two-column">
+                                        <div class="form-creat__half_two-column" >
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Количество</label>
-                                                <span>
-                                                    <input id="amount" name="amount"
-                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
-                                                           type="text" class="form-control"
-                                                           placeholder="Введите количество">
-                                                </span>
+                                                <label class="d-block">Выберите группу</label>
+                                                <select name="section"
+                                                        class="vs__selected-options main-secect__opions form-control select">
+                                                    <option class="vs__selected vs__dropdown-toggle"
+                                                            value="" disabled>Выберите группу
+                                                    </option>
+                                                    <option class="vs__selected vs__dropdown-toggle"
+                                                            th:each="section : ${T(wns.constants.EstimateSection).values()}"
+                                                            th:value="${section}"
+                                                            th:text="${section.getValue()}">
+                                                    </option>
+                                                </select>
                                             </div>
-                                        </div>-->
+                                        </div>
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
                                                 <label class="d-block">Штрих-код</label>

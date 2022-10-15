@@ -33,7 +33,7 @@ public class RepairController {
     public String show(@RequestParam(value = "page", required = false) Optional<Integer> page,
                        @RequestParam(value = "size", required = false) Optional<Integer> size, Model model) {
         Page<Status> paginated_list = statusService.findPaginated(page, size, statusService.getListByStatuses(StatusTools.REPAIR));
-        pageableService.getPageNumbers(paginated_list, model);
+        pageableService.addPageNumbersToModel(paginated_list, model);
         model.addAttribute("list_statuses", paginated_list);
         return "repair";
     }
@@ -45,7 +45,7 @@ public class RepairController {
         model.addAttribute("clients", clientsService.getAll());
         List<Tools> list = toolsService.getListToolsByStatus(StatusTools.WAITING);
         Page<Tools> paginated = pageableService.findPaginated(page, size, list);
-        pageableService.getPageNumbers(paginated, model);
+        pageableService.addPageNumbersToModel(paginated, model);
         model.addAttribute("list_tools", paginated);
         model.addAttribute("status", new TypeStatusDTO());
         model.addAttribute("message", message);

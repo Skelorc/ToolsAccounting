@@ -2,6 +2,7 @@ package wns.entity;
 
 import lombok.*;
 import wns.constants.CategoryTools;
+import wns.constants.EstimateSection;
 import wns.constants.TypeTools;
 
 import javax.persistence.*;
@@ -56,6 +57,8 @@ public class Tools{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "estimate_name_id")
     private EstimateName estimateName;
+    @Enumerated(EnumType.STRING)
+    private EstimateSection section;
 
     @Column(columnDefinition = "TEXT")
     private String comment;

@@ -65,7 +65,7 @@
                                             <div role="group" class="form-group">
                                                 <label class="d-block">Наименование</label>
                                                 <span>
-                                                    <input id="name_project" th:field="*{name}" required="" name="fromComing" type="text" class="form-control" placeholder="Имя проекта">
+                                                    <input id="name_project" th:field="*{name}" required placeholder="Имя проекта" name="fromComing" type="text" class="form-control" >
                                                 </span>
                                             </div>
                                         </div>
@@ -278,7 +278,7 @@
                                                 <th>Комплект</th>
 
                                             </tr>
-                                            <tr th:each="tool,itemStat : ${list_tools}" class="row-tool">
+                                            <tr th:each="tool: ${list_tools}" class="row-tool">
                                                 <td class="column-table">
                                                     <div class="column-table_checkbox-wrapp">
                                                         <input th:value="${tool.id}" th:field="*{tools_id}" class="column-table_checkbox" type="checkbox" name=""><span
@@ -308,7 +308,7 @@
                                             <span class="btn-pimary__groups_title">Действия</span>
                                         </div>
                                         <div class="mb-3 text-right">
-                                            <button type="submit" class="btn btn-primary min-width-120 orange">Перейти в смету</button>
+                                            <button type="submit" class="btn btn-primary min-width-120 orange">Создать проект и перейти в смету</button>
                                         </div>
                                         <div class="mb-3 text-right">
                                             <a href="#" class="btn btn-primary min-width-120 red">Удалить</a>

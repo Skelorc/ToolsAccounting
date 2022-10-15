@@ -9,11 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import wns.constants.Messages;
 import wns.constants.StatusTools;
-import wns.constants.TypeTools;
-import wns.dto.ChangeToolsIds;
+import wns.dto.IdsDTO;
 import wns.dto.Identifiers;
 import wns.dto.ProjectDTO;
-import wns.dto.ToolsDTO;
 import wns.entity.Project;
 import wns.services.ClientsService;
 import wns.services.PageableService;
@@ -39,16 +37,16 @@ public class ProjectsController {
                        @RequestParam(value = "filter", required = false) String filter, Model model) {
 
         Page<Project> paginated_list = projectService.findPaginated(page, size, filter);
-        pageableService.getPageNumbers(paginated_list, model);
+        pageableService.addPageNumbersToModel(paginated_list, model);
         model.addAttribute("list_projects", paginated_list);
         return "projects";
     }
 
-    @PostMapping("/projects")
+    @PostMapping("/projects/delete")
     @ResponseBody
-    public ResponseEntity<Object> deleteProject(@RequestBody List<Long> ids) {
-        projectService.deleteProjectsByListsId(ids);
-        return ResponseHandler.generateResponse(Messages.DELETE);
+    public ResponseEntity<Object> deleteProject(@RequestBody IdsDTO ids) {
+        projectService.deleteProjectsByListsId(ids.getIds());
+        return ResponseHandler.generateResponse(Messages.DELETE,"/projects");
     }
 
     @GetMapping("/projects/create")
@@ -62,9 +60,9 @@ public class ProjectsController {
     }
 
     @PostMapping("/projects/create")
-    public String createProject(@ModelAttribute ProjectDTO projectDTO, RedirectAttributes redirectAttributes) {
-        redirectAttributes.addFlashAttribute("project", projectService.createProject(projectDTO));
-        return "redirect:/estimate/create";
+    public String createProject(@ModelAttribute ProjectDTO projectDTO) {
+        Project project = projectService.createProject(projectDTO);
+        return "redirect:/estimate/create/"+project.getId();
     }
 
     @GetMapping("/projects/edit/{id}")
@@ -77,21 +75,21 @@ public class ProjectsController {
 
     @PostMapping("/projects/add-tool/{id}")
     @ResponseBody
-    public ResponseEntity<Object> addToolsToProject(@PathVariable("id") long id, @RequestBody ChangeToolsIds ids) {
+    public ResponseEntity<Object> addToolsToProject(@PathVariable("id") long id, @RequestBody IdsDTO ids) {
         Messages messages = projectService.addToolsToProject(id, ids.getNew_ids());
         return ResponseHandler.generateResponse(messages, "/projects/edit/" + id+"/");
     }
 
     @PostMapping("/projects/change-tools/{id}")
     @ResponseBody
-    public ResponseEntity<Object> changeTools(@PathVariable("id") long project_id, @RequestBody ChangeToolsIds ids) {
+    public ResponseEntity<Object> changeTools(@PathVariable("id") long project_id, @RequestBody IdsDTO ids) {
         Messages messages = projectService.changeToolsInProject(project_id, ids);
         return ResponseHandler.generateResponse(messages,"/projects/edit/"+project_id+"/");
     }
 
     @PostMapping("/projects/remove-tool/{id}")
     @ResponseBody
-    public ResponseEntity<Object> deleteTools(@PathVariable("id") long id, @RequestBody ChangeToolsIds ids) {
+    public ResponseEntity<Object> deleteTools(@PathVariable("id") long id, @RequestBody IdsDTO ids) {
         Messages messages = projectService.clearToolsFromProject(ids.getIds());
         return ResponseHandler.generateResponse(messages,"/projects/edit/"+id);
     }

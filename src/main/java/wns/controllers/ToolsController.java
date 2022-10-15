@@ -6,11 +6,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import wns.constants.EstimateSection;
 import wns.constants.Messages;
 import wns.constants.StatusTools;
 import wns.dto.IdentifiersStatus;
 import wns.dto.ToolsDTO;
-import wns.entity.Project;
 import wns.entity.Tools;
 import wns.services.EstimateNameService;
 import wns.services.PageableService;
@@ -38,7 +38,7 @@ public class ToolsController {
                        @RequestParam(value = "size", required = false) Optional<Integer> size,
                        Model model) {
         Page<ToolsDTO> paginated_list = toolsService.findPaginated(page, size, filter);
-        pageableService.getPageNumbers(paginated_list, model);
+        pageableService.addPageNumbersToModel(paginated_list, model);
         model.addAttribute("list_tools", paginated_list);
         return "tools";
     }
@@ -46,8 +46,9 @@ public class ToolsController {
     @GetMapping("/pagination")
     @ResponseBody
     public ResponseEntity<Object> pagination(@RequestParam(value = "page", required = false) Optional<Integer> page,
-                                             @RequestParam(value = "size", required = false) Optional<Integer> size) {
-        Page<ToolsDTO> paginated_list = toolsService.findPaginated(page, size, StatusTools.INSTOCK.toString());
+                                             @RequestParam(value = "size", required = false) Optional<Integer> size,
+                                             @RequestParam(value = "filter", required = false) String filter) {
+        Page<ToolsDTO> paginated_list = toolsService.findPaginated(page, size, filter);
         int totalPages = paginated_list.getTotalPages();
         List<Integer> pageNumbers = null;
         if (totalPages > 0) {
@@ -67,7 +68,7 @@ public class ToolsController {
                                 @PathVariable(value = "id",required = false) long id,
                                 Model model) {
         Page<ToolsDTO> paginated_list = toolsService.findPaginated(page, size, StatusTools.INSTOCK.toString(), id);
-        pageableService.getPageNumbers(paginated_list, model);
+        pageableService.addPageNumbersToModel(paginated_list, model);
         model.addAttribute("list_tools", paginated_list);
         model.addAttribute("project_id", id);
         return "tools";
@@ -81,7 +82,7 @@ public class ToolsController {
                                 @RequestParam(value = "status") StatusTools statusTools,
                                 Model model) {
         Page<ToolsDTO> paginated_list = toolsService.findPaginated(page, size, statusTools.toString(),project_id);
-        pageableService.getPageNumbers(paginated_list, model);
+        pageableService.addPageNumbersToModel(paginated_list, model);
         model.addAttribute("list_tools", paginated_list);
         model.addAttribute("ids", ids_tools);
         model.addAttribute("project_id", project_id);
@@ -99,8 +100,9 @@ public class ToolsController {
     @PostMapping("/create")
     public String createTools(@ModelAttribute Tools tool,
                               @RequestParam("name_estimate_id") long name_estimate_id,
+                              @RequestParam("section") EstimateSection section,
                               @RequestParam("status_tool") StatusTools status_tool) {
-        toolsService.createTools(tool, name_estimate_id, status_tool);
+        toolsService.createTools(tool, name_estimate_id,section, status_tool);
         return "redirect:/tools/create";
     }
 

@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ChangeToolsIds {
+public class IdsDTO {
     private List<Long> ids;
     private List<Long> old_ids;
     private List<Long> new_ids;

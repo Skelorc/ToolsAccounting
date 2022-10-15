@@ -5,12 +5,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import wns.constants.Filter;
-import wns.constants.Messages;
-import wns.constants.StatusTools;
-import wns.constants.TypeTools;
+import wns.constants.*;
 import wns.dto.*;
 import wns.entity.EstimateName;
+import wns.entity.Project;
 import wns.entity.Status;
 import wns.entity.Tools;
 import wns.repo.ToolsRepo;
@@ -63,12 +61,14 @@ public class ToolsService implements MainService {
         return pageableService.findPaginated(page, size, collect);
     }
 
-    public Messages createTools(Tools toolsDTO, long name_estimate_id, StatusTools status_tool) {
+    public Messages createTools(Tools toolsDTO, long name_estimate_id, EstimateSection section, StatusTools status_tool) {
         Tools toolToSave = toolsRepo.findByName(toolsDTO.getName()).orElse(null);
         if (toolToSave == null) {
             toolToSave = modelMapper.map(toolsDTO, Tools.class);
             EstimateName estimateName = estimateNameService.getNameEstimateById(name_estimate_id);
             toolToSave.setStatus(StatusToolDTO.createStatusWithTools(toolToSave, status_tool));
+            toolToSave.setSection(section);
+            toolToSave.setAmount(1);
             toolToSave.setCategory(estimateName.getCategoryTools());
             toolToSave.setEstimateName(estimateName);
             estimateName.getListTools().add(toolToSave);
@@ -156,5 +156,32 @@ public class ToolsService implements MainService {
             case ONLEASE -> list.addAll(statusService.getToolsByStatusesAndProject(StatusTools.ONLEASE, id));
         }
         return list;
+    }
+
+    public void deleteToolFromProject(Tools tool)
+    {
+        tool.setProject(null);
+        Status status = tool.getStatus();
+        status.setCreated(LocalDateTime.now());
+        status.setStatusTools(StatusTools.INSTOCK);
+        status.setPhotos(tool.getPhotos());
+        toolsRepo.save(tool);
+    }
+
+    public void addToolToProject(Tools tool,Project project)
+    {
+        Status status = StatusToolDTO.createStatusWithTools(tool, StatusTools.ONLEASE);
+        status.setCreated(project.getCreated());
+        status.setStart(project.getStart());
+        status.setEnd(project.getEnd());
+        status.setStatusTools(StatusTools.ONLEASE);
+        status.setEmployee(SecurityContextHolder.getContext().getAuthentication().getName());
+        status.setExecutor(project.getClient().getFullName());
+        status.setNote(project.getNote());
+        status.setPhone_number(project.getClient().getPhoneNumber());
+        status.setPhotos(project.getPhotos());
+        project.setSum(tool.getCostPrice() + project.getSum());
+        tool.setProject(project);
+        toolsRepo.save(tool);
     }
 }

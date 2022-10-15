@@ -30,7 +30,7 @@ public class ClientsController {
     {
         Page<ClientDTO> paginated_list = clientsService.findPaginated(page,size,filter);
         model.addAttribute("list_clients", paginated_list);
-        pageableService.getPageNumbers(paginated_list,model);
+        pageableService.addPageNumbersToModel(paginated_list,model);
         return "clients";
     }
 

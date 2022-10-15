@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.orm.hibernate5.SpringSessionContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import wns.constants.ClassificationProject;
 import wns.constants.StatusProject;
 import wns.constants.TypeLease;
@@ -52,29 +54,28 @@ public class ProjectDTO {
     public Project createProjectFromDTO(ProjectDTO dto)
     {
         Project project = new Project();
-        project.setClassification(dto.getClassification());
-        project.setStatus(dto.getStatus());
         project.setName(dto.getName());
+        project.setNumber(dto.getNumber());
+        project.setStatus(dto.getStatus());
         project.setTypeLease(dto.getTypeLease());
         project.setQuantity(dto.getQuantity());
         project.setCreated(dto.getCreated());
-        project.setEmployee(dto.getEmployee());
+        project.setEmployee(SecurityContextHolder.getContext().getAuthentication().getName());
         project.setStart(dto.getStart());
         project.setEnd(dto.getEnd());
-        //пропуск клиента
-        project.setPhoneNumber(dto.getPhoneNumber());
         project.setPhotos(dto.getPhotos());
         project.setDiscount(dto.getDiscount());
         project.setNote(dto.getNote());
         project.setSum(dto.getSum());
         project.setFinalSumUsn(dto.getFinalSumUsn());
         project.setPriceTools(dto.getPriceTools());
-        project.setPriceWork(dto.getPriceWork());
         project.setDiscountByProject(dto.getDiscountByProject());
         project.setSumWithDiscount(dto.getSumWithDiscount());
         project.setReceived(dto.getReceived());
         project.setRemainder(dto.getRemainder());
-        //пропуск оборудования
+        project.setClassification(dto.getClassification());
+        project.setPhoneNumber(dto.getPhoneNumber());
+        project.setPriceWork(dto.getPriceWork());
         return project;
     }
 

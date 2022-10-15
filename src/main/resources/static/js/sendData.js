@@ -13,13 +13,13 @@ $(document).ready(function () {
                 data: JSON.stringify(data),
                 dataType: "json",
                 success: function (res) {
-                    if(res.response_code == 200){
+                    if(parseInt(res.response_code) == 200){
                         window.location.reload();
                     }
-                    else if(res.response_code == 300){
+                    else if(parseInt(res.response_code) == 300){
                         window.location.replace(res.redirect_url);
                     }
-                    else if(res.response_code == 400){
+                    else if(parseInt(res.response_code) == 400){
                         $("#alert_message").text(res.message);
                         $("#ex1").modal();
                     }
@@ -182,6 +182,7 @@ $(document).ready(function () {
         });
         send_data("/tools/change-status", "POST", formData);
     });
+
     $('#btn_delete_project').click(function (e) {
         var formData = [];
         let count = 0;
@@ -191,7 +192,7 @@ $(document).ready(function () {
                 count++;
             }
         });
-        send_data("/projects", "POST", formData);
+        send_data("/projects/delete", "POST", {"ids": formData});
     });
 
     $('#btn_delete_tools_from_project').click(function (e) {
@@ -224,7 +225,7 @@ $(document).ready(function () {
 
     $('#replaceBtn').click(function (e) {
         var formData = "";
-        count = 0
+        count = 0;
         $('.id_ob').each(function (index, value) {
             if ($(this).parent().find('.ids')[0].checked) {
                 if(formData != "") formData += ",";
@@ -233,17 +234,97 @@ $(document).ready(function () {
             }
         });
         var id = window.location.pathname.replace("/projects/edit/", "");
-         if(count > 0) window.location.replace('/tools/replace-tool/'+id+"?ids="+formData);
-        //console.log('/projects/replace-tool/'+id+"?ids="+JSON.stringify(formData))
-
-
-        /*if(count > 0) send_data('/projects/replace-tool/'+id+"?ids="+formData, "GET");*/
+        console.log(count);
+        if(count > 0){
+            window.location.replace('/tools/replace-tool/'+id+"?ids="+formData+"&status=INSTOCK");
+        }
     });
 
+    $('#replaceBtnOther').click(function (e) {
+        var id = window.location.pathname.replace("/projects/edit/", "");
+        window.location.replace('/tools/replace-tool/'+id+"?status=ONLEASE");
+    });
+    // Replace ids from table
+
+    function removeItemOnce(arr, value) {
+        var index = arr.indexOf(value);
+        if (index > -1) {
+            arr.splice(index, 1);
+        }
+        return arr;
+    }
+
+    function getUrlVars(url){
+        var vars = {};
+        var parts = url.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+            vars[key] = value;
+        });
+        return vars;
+    }
+
+    var replaceIds = [];
+
+    $('body').on('click','.choose_tool',function(){
+        var checked = $(this).is(":checked");
+        var id = $(this).parent().find('.id_tool').val();
+        if(checked) replaceIds.push(id);
+        else removeItemOnce(replaceIds, id);
+
+        console.log(checked+" - "+id);
+        console.log(replaceIds);
+
+        if (window.location.pathname.indexOf('add-tool-to-project') > -1) {
+            $("#btn_replace_tools_to_project").text("Добавить");
+        }
+        if (window.location.pathname.indexOf('replace-tool') > -1) {
+            $("#btn_replace_tools_to_project").text("Заменить");
+        }
+
+        if (window.location.pathname.indexOf('/tools/') > -1) {
+            if (replaceIds.length > 0) {
+                $("#btn_replace_tools_to_project").fadeIn();
+            } else {
+                $("#btn_replace_tools_to_project").fadeOut();
+            }
+        }
+    });
+
+    $('body').on('click','#btn_replace_tools_to_project',function(){
+        var getParams = getUrlVars(window.location.search);
+        if(typeof getParams.ids != 'undefined'){
+            var oldIds = getParams.ids.split(",");
+        }
+        else oldIds = [];
+        var sendUrl = window.location.pathname;
+
+        var sendUrl;
+        if (window.location.pathname.indexOf('add-tool-to-project') > -1) {
+            sendUrl = sendUrl.replace('/tools/add-tool-to-project','/projects/add-tool');
+        }
+        else{
+            sendUrl = sendUrl.replace('/tools/replace-tool','/projects/change-tools');
+        }
+        // sendUrl = sendUrl.substr(0, sendUrl.length - 1);
+        send_data(sendUrl, "POST", {'old_ids': oldIds, 'new_ids': replaceIds});
+    });
+
+    $('body').on('click','#removeBtn',function(){
+        var sendUrl = window.location.pathname;
+        sendUrl = sendUrl.replace('/projects/edit','/projects/remove-tool');
+        // sendUrl = sendUrl.substr(0, sendUrl.length - 1);
+        send_data(sendUrl, "POST", {'ids': replaceIds});
+    });
 
     $('body').on('click', '.page-item a', function(event){
+        var getParams = getUrlVars(window.location.search);
         var linkData = $(this).attr('href');
         linkData = linkData.replace('/tools','/tools/pagination');
+
+        if(typeof getParams.status !== 'undefined') {
+            if (linkData.indexOf('?') > -1) linkData = linkData + "&status="+getParams.status;
+            else linkData = linkData + "?status="+getParams.status;
+            console.log(linkData);
+        }
         $.ajax({
                 contentType: "application/json; charset=utf-8",
                 type: 'GET',
@@ -254,24 +335,123 @@ $(document).ready(function () {
                 dataType: "json",
                 success: function (res) {
                     if(res.response_code == 200){
-                        console.log(res.data);
-                        console.log(res.data[1]);
-                        console.log(res.data[1].content);
+                        // console.log(res.data);
+                        // console.log(res.data[1]);
+                        // console.log(res.data[1].content);
                         var content = res.data[1].content;
-                        // content.each(function (index, value) {
-                        //     console.log(index);
-                        //     console.log(value);
-                        // });
-
+                        var tableTR = '';
                         content.forEach(function(item, i, arr) {
-                          console.log( i + ": " + item + " (массив:" + arr + ")" );
-                          $('tbody tr:eq('+i+')').find('.tool.category').text(item.tool.category);
+                                tableTR += '<tr>\n' +
+                                '<td>' +
+                                '   <div class="column-table_checkbox-wrapp " id="ids_tools">\n';
+                            if (replaceIds.indexOf(String(item.id)) > -1)  tableTR += '<input class="column-table_checkbox choose_tool" type="checkbox" checked>\n';
+                            else tableTR += '<input class="column-table_checkbox choose_tool" type="checkbox">\n';
+
+                            tableTR += '       <input type="hidden" class="id_tool" value="'+item.id+'">\n' +
+                                '       <span class="tools-td-text table-td-text column-table_checkbox-number tool_id">'+item.id+'</span>\n' +
+                                '   </div>\n' +
+                                '</td>\n' +
+                                '<td><a class="tools-td-text table-td-text tool_name" href="/tools/edit/'+item.id+'/">'+item.name+'</a></td>\n' +
+                                '<td><span class="tools-td-text table-td-text tool_category">'+item.category+'</span></td>\n' +
+                                '<td><span class="tools-td-text table-td-text tool_barcode">'+item.barcode+'</span></td>\n' +
+                                '<td><span class="tools-td-text table-td-text tool_estimateName">'+item.estimateName+'</span></td>\n' +
+                                '<td><span class="tools-td-text table-td-text tool_model">'+item.model+'</span></td>\n' +
+                                '<td><span class="tools-td-text table-td-text tool_serialNumber">'+item.serialNumber+'</span></td>\n' +
+                                '<td><span class="tools-td-text table-td-text tool_comment">'+item.comment+'</span></td>\n' +
+                                '<td><span class="tools-td-text table-td-text tool_characteristics">'+item.characteristics+'</span></td>\n' +
+                                '<td><span class="tools-td-text table-td-text tool_state">'+item.state+'</span></td>\n' +
+                                '<td><span class="tools-td-text table-td-text tool_priceByDay">'+item.priceByDay+'</span></td>\n' +
+                                '<td><span class="tools-td-text table-td-text tool_costPrice">'+item.costPrice+'</span></td>\n' +
+                                '<td><span class="tools-td-text table-td-text tool_equip">'+item.equip+'</span></td>\n' +
+                                '<td><span class="tools-td-text table-td-text tool_amount">'+item.amount+'</span></td>\n' +
+                                '<td><span class="tools-td-text table-td-text tool_status">'+item.status_string+'</span></td>\n' +
+                                '<td><span class="tools-td-text table-td-text tool_numberWorkingShifts">'+item.numberWorkingShifts+'</span></td>\n' +
+                                '<td><span class="tools-td-text table-td-text tool_project">'+item.project+'</span></td>\n' +
+                                '<td><span class="tools-td-text table-td-text tool_incomeFromTools">'+item.incomeFromTools+'</span></td>\n' +
+                                '<td><span class="tools-td-text table-td-text tool_priceSell">'+item.priceSell+'</span></td>\n' +
+                                '<td><span class="tools-td-text table-td-text tool_incomeSales">'+item.incomeSales+'</span></td>\n' +
+                                '<td><span class="tools-td-text table-td-text tool_incomeInvestorProcents">'+item.incomeInvestorProcents+'</span></td>\n' +
+                                '<td><span class="tools-td-text table-td-text tool_incomeInvestor">'+item.incomeInvestor+'</span></td>\n' +
+                                '<td><span class="tools-td-text table-td-text tool_repairAmount">'+item.repairAmount+'</span></td>\n' +
+                                '<td><span class="tools-td-text table-td-text tool_priceSublease">'+item.priceSublease+'</span></td>\n' +
+                                '<td><span class="tools-td-text table-td-text tool_paymentSublease">'+item.paymentSublease+'</span></td>\n' +
+                                '<td><span class="tools-td-text table-td-text tool_incomeAdditional">'+item.incomeAdditional+'</span></td>\n';
+
+                                if(typeof item.photos !== 'undefined') {
+                                    if (item.photos.length > 0) {
+                                        var photos_code = '';
+                                        item.photos.forEach(function (item, i, arr) {
+                                            photos_code += '<span class="column-table__photo-mini">\n' +
+                                                '   <a rel="modal:open" href="#' + i + '">\n' +
+                                                '       <img class="column-table__photo-mini_img" src="' + item + '">\n' +
+                                                '           <div id="' + i + '" class="modal">\n' +
+                                                '           <img src="' + item + '">\n' +
+                                                '       </div>\n' +
+                                                '   </a>\n' +
+                                                '</span>';
+                                        });
+                                        tableTR += '<td>'+photos_code+'</td>\n';
+                                    }
+                                    else tableTR += '<td></td>\n';
+                                }
+                                else tableTR += '<td></td>\n';
+
+                            tableTR += '</tr>';
+                            $('table tbody').html(tableTR);
                         });
                     }
                 }
             }
         );
         event.preventDefault();
+    });
+
+    //SMETA
+    $(".fIn1, .fIn2, .fIn3, .fIn4").on('keyup', function (e) {
+        var currentRow = $(this).parent().parent();
+        var fIn1 = currentRow.find('.fIn1').val();
+        var fIn2 = currentRow.find('.fIn2').val();
+        var fIn3 = currentRow.find('.fIn3').val();
+        var fIn4 = currentRow.find('.fIn4').val();
+        var priceProject = 0;
+        if(fIn4 != "" && fIn4 <= 0){
+            priceProject = fIn1*fIn3*fIn2;
+        }
+        else{
+            fIn4 = fIn4 / 100;
+            priceProject = (fIn1*fIn3) - (fIn4 * fIn1*fIn3);
+            priceProject = priceProject*fIn2;
+        }
+
+        var priceSmeta = fIn1 * fIn2;
+
+        currentRow.find("td:eq(6) span").text(Math.round(priceSmeta));
+        currentRow.find("td:eq(7) span").text(Math.round(priceProject));
+
+        ccSum()
+    });
+
+    function ccSum(){
+        var allPrice = 0;
+        $('.fIn6').each(function (index, value) {
+            allPrice = allPrice + parseInt($(this).text());
+        });
+
+        $('.fsIn1').val(allPrice);
+
+        var skPrice = $('.fsIn2').val();
+        console.log(skPrice);
+        if(skPrice != "" && skPrice > 0){
+            $('.fsIn3').val(Math.round(allPrice - (allPrice * (skPrice / 100))));
+        }
+        else{
+            $('.fsIn3').val(Math.round(allPrice));
+        }
+    }
+    ccSum()
+
+    $(".fsIn2").on('keyup', function (e) {
+        ccSum()
     });
 });
 

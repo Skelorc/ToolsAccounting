@@ -42,7 +42,7 @@ public class OffsController {
         model.addAttribute("clients", clientsService.getAll());
         List<Tools> list = toolsService.getListToolsByStatus(StatusTools.WAITING);
         Page<Tools> paginated = pageableService.findPaginated(page, size, list);
-        pageableService.getPageNumbers(paginated, model);
+        pageableService.addPageNumbersToModel(paginated, model);
         model.addAttribute("list_tools", paginated);
         model.addAttribute("status", new TypeStatusDTO());
         model.addAttribute("message", message);

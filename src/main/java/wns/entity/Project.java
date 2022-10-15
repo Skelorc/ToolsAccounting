@@ -77,6 +77,10 @@ public class Project {
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Tools> tools = new HashSet<>();
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "estimate_id",referencedColumnName = "id")
+    private Estimate estimate;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

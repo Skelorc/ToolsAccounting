@@ -34,7 +34,7 @@ public class PageableService {
         return new PageImpl<T>(page_list, PageRequest.of(currentPage, pageSize), list.size());
     }
 
-    public <T> void getPageNumbers(Page<T> list, Model model)
+    public <T> void addPageNumbersToModel(Page<T> list, Model model)
     {
         int totalPages = list.getTotalPages();
         if (totalPages > 0) {
