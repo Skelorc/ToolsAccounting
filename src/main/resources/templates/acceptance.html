@@ -3,6 +3,7 @@
 <head class="head">
     <title>Приемка</title>
     <div th:replace="fragments/head :: header"></div>
+    
 </head>
 
 <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
@@ -15,7 +16,7 @@
                      th:insert="fragments/header_logout.html"></nav>
                 <main class="wrapper wrapper-content border-bottom">
                     <div>
-                        <div class="wrapper__btn-primary col-12">
+                        <div class="wrapper__btn-primary col-sm-6 col-6 col-md-12">
                             <div class="mb-3 text-right">
                                 <a href="/acceptance/create" th:href="@{/acceptance/create}"
                                    class="btn btn-primary min-width-120 btn-add_vidacha green">Создать</a>

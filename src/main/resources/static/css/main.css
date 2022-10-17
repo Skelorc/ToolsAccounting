@@ -325,11 +325,45 @@ label {
     flex-wrap: wrap;
     width: 100%;
 }
+
+
+/* Media button tools.html */
+
+@media (min-width: 414px) {
+.btn-pimary__groups-wrapper {
+    width: 50%;
+    justify-content: center;
+}
+}
+
+@media (min-width: 576px) {
+    .btn-pimary__groups-wrapper {
+        width: 70%;
+    }
+}
+
+
+@media (min-width: 768px) {
+    .btn-pimary__groups-wrapper {
+        justify-content: left;
+        width: 100%;
+    }
+}
 .btn-pimary__groups-wrapper_client {
     justify-content: center;
 }
 
+.primary-calendar {
+    display: flex;
+    justify-content: space-between;
+    
+}
 
+@media (min-width: 768px) {
+    .primary-calendar {
+        justify-content: left;
+    }
+}
 
 .btn-pimary__groups_title {
     font-weight: bold;
@@ -352,24 +386,87 @@ label {
     margin-right: 10px;
 }
 
-.save-btn {
-    margin-right: auto;
-    margin-left: auto;
-}
 
+
+
+
+@media (min-width: 414px) {
+    .save-btn {
+        margin-left: 0;
+    }
+}
+@media (min-width: 768px) {
+    .save-btn {
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
 .btn-primary {
     font-size: 14px;
 }
 
+/* Media button page project.html */
+@media (min-width: 414px) {
+    .btn-primary {
+        font-size: 12px;
+        padding: 7px;
+    }
+}
+
+@media (min-width: 720px) {
+    .btn-primary {
+        font-size: 14px;
+    }
+}
 .btn-primary_save {
     border-radius: 30px;
 }
 
-
-.min-width-120 {
-    min-width: 120px;
+@media (min-width: 576px) {
+    .wrapper__btn-primary {
+    width: 70%;
+    }
 }
 
+@media (min-width: 768px) {
+    .wrapper__btn-primary {
+        display: flex;
+    }
+}
+
+@media (min-width: 414px){
+    .width {
+        width: 80px;
+        padding: 5px;
+    }
+
+    .width-primary{
+        width: 100%;
+    }
+}
+
+@media (min-width: 720px) {
+    .width {
+        width: 120px;
+    }
+}
+@media (min-width: 414px) {
+    .btn__under-table {
+        justify-content: center;
+        width: 70%;
+    }
+}
+@media (min-width: 576px) {
+    .btn__under-table {
+        width: 70%;
+    }
+}
+
+@media (min-width: 768px) {
+    .btn__under-table {
+       width: 100%;
+    }
+}
 .acceptance-input-button {
     max-width: 110px;
 }
@@ -377,8 +474,8 @@ label {
 .admin-panel__btn {
     font-family: Montserrat, sans-serif;
     font-weight: 500;
-    font-size: 13px;
-    width: 300px;
+    font-size: 10px;
+    width: 150px;
     text-transform: uppercase;
     color: #fff;
     background-color: #faad65;
@@ -388,6 +485,17 @@ label {
     border-radius: 100px;
     box-shadow: 0 4px 4px 0 rgb(0 0 0 / 40%);
     transition: all .3s ease;
+}
+@media (min-width: 576px) {
+    .admin-panel__btn {
+        font-size: 13px;
+        width: 200px;
+    }
+}
+@media (min-width: 768px) {
+    .admin-panel__btn {
+        width: 300px;
+    }
 }
 .admin-panel__btn:hover {
     background-color: #f5a85f;
@@ -500,7 +608,6 @@ label {
     margin-top: 40px;
 }
 
-
 .login__button-position {
     text-align: center;
     width: 100%;
@@ -549,6 +656,7 @@ th, td {
     line-height: 1.25 !important;
     min-width: 165px;
 }
+
 
 .table>tbody>tr>th {
     vertical-align: middle;
@@ -892,9 +1000,21 @@ table.estimate th {
 }
 
 .form-creat__half-wrapp {
-    width: 49%;
+    
     display: inline-flex;
     margin: auto;
+}
+/* Media Form page tools.html */
+
+@media (min-width: 414px) {
+    .form-creat__half-wrapp {
+        width: 100%;
+    }
+}
+@media (min-width: 768px) {
+    .form-creat__half-wrapp {
+        width: 49%;
+    }
 }
 .form-creat__half-wrapp_client {
     width: 100%;
@@ -914,6 +1034,15 @@ table.estimate th {
     margin-right: 15px;
     line-height: 30px;
 }
+
+.form-creat__itog-title{
+    font-size: 14px;
+}
+@media (min-width: 768px) {
+    .form-creat__itog-title {
+        font-size: 18px;
+    }
+}
 .anomalia {
     display: flex;
 }
@@ -928,6 +1057,12 @@ table.estimate th {
 
 .form-control {
     height: calc(1.5em + 0.75rem + 2px);
+margin-bottom: 15px;
+}
+@media (min-width: 768px) {
+    .form-control {
+        margin-bottom: 0;
+    }
 }
 
 .form-control__table {
@@ -1038,11 +1173,19 @@ table.estimate th {
 .sidebar-collapse__menu-title_text {
     font-size: 22px;
     vertical-align: middle;
-    line-height: 70px;
+    line-height: 40px;
     /* padding-right: 10px; */
     color: #fff;
     text-align: left;
 }
+
+@media (min-width: 768px) {
+    .sidebar-collapse__menu-title_text {
+        font-size: 22px;
+        line-height: 70px;
+    }
+}
+
 .text-center {
     text-align: center;
 }
@@ -1068,10 +1211,47 @@ table.estimate th {
 /* поиск search */
 /*********************/
 
+.custom__search--mobile {
+  display: block;  
+}
+
+.search__flex {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: space-between; */
+}
+.form-m {
+    margin-right: 10px;
+}
+
+@media (min-width: 768px) {
+    .form-m {
+        margin-right: 0;
+    }
+}
+@media (min-width: 768px) {
+    .custom__search--mobile {
+        display: none;
+    }
+}
+
+@media (min-width: 768px) {
+    .header__filter--mobile {
+        margin-bottom: 15px;
+    }
+}
 .custom-ll__header-wrapp {
     display: flex;
 }
+.custom-ll__header{
+    display: none;
+}
 
+@media (min-width: 768px) {
+    .custom-ll__header{
+        display: block;
+    }
+}
 .header__search_width-clients {
     display: inline-flex;
     min-width: 310px;
@@ -1152,6 +1332,7 @@ table.estimate th {
 .rent__time__group-calendar {
     min-width: 310px;
 }
+
 
 /* modal popup всплывашка*/
 /*********************/
@@ -1259,5 +1440,100 @@ td>.button:hover {
     display: none;
 }
 
+.wrapper__btn {
+    display: flex;
+    flex-wrap: wrap;
+}
 
+
+/* Form page tools.html */ 
+@media (min-width: 414px) {
+    .font {
+        font-size: 12px;
+    }
+
+    .edit-container {
+        display: unset;
+    }
+}
+
+@media (min-width: 768px) {
+    .font {
+        font-size: 16px;
+    }
+}
+/* MEDIA sidebar*/
+
+.nav-label {
+    font-size: 12px;
+}
+
+@media (min-width: 768px) {
+    .nav-label {
+        font-size: 14px;
+    }
+}
+
+/* admin panel */
+
+.font-size {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    .font-size {
+        font-size: 25px;
+    }
+}
+
+.size-label{
+    font-size: 12px;
+}
+
+@media (min-width: 768px) {
+    .size-label {
+        font-size: 18px;
+    }
+}
+
+.table-overflow{
+    overflow-x: scroll;
+}
+
+.edit-width {
+    width: 100%;
+}
+
+/* Client_create */
+
+.size {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    .size {
+        font-size: 18px;
+    }
+}
+
+.input-width {
+    width: 150px;
+}
+
+@media (min-width: 576px) {
+    .input-flex {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+@media (min-width: 768px) {
+    .input-width {
+        width: 100%;
+    }
+
+    .input-flex {
+        display: block;
+    }
+}
 /*********************/

@@ -1,137 +1,231 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
-    <head class="head">
-        <title>Выдача</title>
-        <div th:replace="fragments/head :: header"></div>
-    </head>
 
-    <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
+<head class="head">
+    <title>Выдача</title>
+    <div th:replace="fragments/head :: header"></div>
+</head>
+
+<body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
+    <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
         <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
-            <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
-                <div th:insert="fragments/menu_sidebar.html"></div>
-                <div class="b-overlay-wrap position-relative w-100" size="sm">
-                    <div class="rih-page-wrapper">
-                        <nav data-v-537a461c role="navigation" class="navbar navbar-admin navbar-fixed-top" th:insert="fragments/header_logout.html"></nav>
-                        <main class="wrapper wrapper-content border-bottom">
-                            <div data-v-e551daac="">
-                                <div class="wrapper__btn-primary col-12">
-                                    <div data-v-e551daac="" class="mb-3 text-right">
-                                        <a data-v-e551daac="" href="/projects/create" th:href="@{/projects/create}" class="btn btn-primary min-width-120 btn-add_vidacha green">Создать</a>
-                                    </div>
-                                    <div data-v-e551daac="" class="mb-3 text-right">
-                                        <a data-v-e551daac="" class="btn btn-primary min-width-120 btn-open_vidacha  grey">Открыть</a>
-                                    </div> 
-                                    <div data-v-e551daac="" class="mb-3 text-right">
-                                        <a data-v-e551daac="" id="btn_delete_project" class="btn btn-primary min-width-120 btn-delate_vidacha red">Удалить</a>
-                                    </div> 
-                                    <div data-v-e551daac="" class="mb-3 text-right">
-                                        <a data-v-e551daac="" class="btn btn-primary min-width-120 btn-update_vidacha  orange">Обновить</a>
-                                    </div> 
+            <div th:insert="fragments/menu_sidebar.html">
+            </div>
+            <div class="b-overlay-wrap position-relative w-100" size="sm">
+                <div class="rih-page-wrapper">
+                    <nav data-v-537a461c role="navigation" class="navbar navbar-admin navbar-fixed-top"
+                    th:insert="fragments/header_logout.html">
+                        <div id="menu-toggle" class="navbar-header">
+                            <a class="navbar-minimalize minimalize-styl-2">
+                                <i class="fa fa-bars"></i>
+                            </a>
+                        </div>
+                        <ul class="nav navbar-top-links navbar-right" style="flex-basis: 0px;">
+                            <li id="logout">
+                                <form id="logoutForm" th:action="@{/logout}" method="post">
+                                    <a class="count-info"
+                                        href="javascript: document.getElementById('logoutForm').submit()"
+                                        role="menuitem"><i class="fa fa-sign-out-alt f-20">
+                                            <input hidden type="submit" value="Sign Out">
+                                        </i></a>
+                                </form>
+                            </li>
+                        </ul>
+                    </nav>
+                    <main class="wrapper wrapper-content border-bottom">
+                        <div data-v-e551daac="">
+                            <div class="wrapper__btn-primary col-lg-12 col-xl-12 col-md-6 col-sm-12 col-6">
+                                <div data-v-e551daac="" class="mb-3 text-right">
+                                    <a data-v-e551daac="" href="/projects/create" th:href="@{/projects/create}"
+                                        class="btn btn-primary width btn-add_vidacha green">Создать</a>
                                 </div>
-                                <div data-v-e551daac="">
-                                    <div data-v-e551daac="" class="b-overlay-wrap position-relative custom-ll">
-                                        <div class="row">
-                                            <div class="custom-ll__header col-12">
-                                                <div class="custom-ll__header__full show">
-                                                    <div class="custom-ll__header__full__right">
-                                                        <div class="header__search header__search_width">
-                                                            <input type="search" placeholder="Поиск" class="form-control">
-                                                            <span class="header__search__btn">
-                                                                    <svg class="svg-inline--fa fa-search fa-w-16" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path></svg><!-- <i class="fa fa-search"></i> Font Awesome fontawesome.com -->
-                                                                </span>
-                                                        </div>
-                                                        <div class="header__filter" style="margin-left: auto;">
-                                                            <button type="button" class="btn btn-default custom-ll__filter-button collapsed search-btn" aria-expanded="false" aria-controls="filterbar" style="overflow-anchor: none;">Поиск
-                                                                <!-- <i class="fas fa-filter"></i> -->
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="custom-ll__filters col-12">
-                                                <div class="order-lg-1">
-                                                    <div class="btn__under-table">
-                                                        <div data-v-e551daac="" class="mb-3 text-right">
-                                                            <a data-v-e551daac="" href="/" class="btn btn-primary min-width-120 btn-add_vidacha grey">Все</a>
-                                                        </div> 
-                                                        <div data-v-e551daac="" class="mb-3 text-right">
-                                                            <a data-v-e551daac="" href="/?filter=one_time" class="btn btn-primary min-width-120 btn-open_vidacha  grey">Разовые</a>
-                                                        </div> 
-                                                        <div data-v-e551daac="" class="mb-3 text-right">
-                                                            <a data-v-e551daac="" href="/?filter=long" class="btn btn-primary min-width-120 btn-delate_vidacha grey">Длинный</a>
-                                                        </div> 
-                                                        <div data-v-e551daac="" class="mb-3 text-right">
-                                                            <a data-v-e551daac="" href="/?filter=sublease" class="btn btn-primary min-width-120 btn-update_vidacha  grey">Субаренда</a>
-                                                        </div> 
-                                                        <div data-v-e551daac="" class="mb-3 text-right">
-                                                            <a data-v-e551daac="" href="/?filter=test" class="btn btn-primary min-width-120 btn-update_vidacha  grey">Тест</a>
-                                                        </div> 
-                                                    </div>
-                                                </div>
-                                                <div class="order-lg-1 overflow-auto">
-                                                    <div class="custom-ll__table table-responsive">
-                                                        <table class="table w-100 in4dr-form">
-                                                            <tr>
-                                                                <th class="first-th">#</th>
-                                                                <th>Проект</th>
-                                                                <th>Клиент</th>
-                                                                <th>Телефон</th>
-                                                                <th>Начало аренды</th>
-                                                                <th>Окончание аренды</th>
-                                                                <th>Дата и время создания</th>
-                                                                <th>Сотрудник</th>
-                                                                <th>Примечание</th>
-                                                                <th>Тип</th>
-                                                                <th>Открыть смету</th>
-                                                            </tr>
-                                                            <tr th:each="project : ${list_projects}" >
-                                                                <td class="column-table">
-                                                                    <div class="column-table_checkbox-wrapp">
-                                                                        <input class="column-table_checkbox ids" type="checkbox">
-                                                                        <input type="text" hidden="hidden" th:value="${project.id}">
-                                                                        <span class="tools-td-text table-td-text column-table_checkbox-number"
-                                                                              th:utext="${projectStat.index+1}">
-                                                                        </span>
-                                                                    </div>
-                                                                </td>
-                                                                <td><a th:href="@{/projects/edit/{id}/(id=${project.getId()})}" th:utext="${project.name}" title="Редактирование проекта"></a></td>
-                                                                <td th:utext="${project.client.fullName}"></td>
-                                                                <td th:utext="${project.client.phoneNumber}"></td>
-                                                                <td th:utext="${#temporals.format(project.start, 'dd-MM-yyyy HH:mm')}"></td>
-                                                                <td th:text="${#temporals.format(project.end, 'dd-MM-yyyy HH:mm')}"></td>
-                                                                <td th:utext="${project.created}"></td>
-                                                                <td th:utext="${project.employee}"></td>
-                                                                <td th:utext="${project.note}"></td>
-                                                                <td th:utext="${project.classification.getValue()}"></td>
-                                                                <td><a th:href="@{/estimate/create/{id}/(id=${project.getId()})}" title="Просмотр/редактирование сметы">Смета</a></td>
-                                                            </tr>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="pagination-control col-lg-12 order-lg-1">
-                                            <!-- Bootstrap 4 -->
-                                            <nav aria-label="Навигация по страницам">
-                                                <ul class="pagination">
-                                                    <li class="page-item" th:if="${list_projects.totalPages > 0}"
-                                                        th:each="page_number : ${page_numbers}">
-                                                        <a class="page-link-m page-link" th:href="@{/(size=${list_projects.size}, page=${page_numberStat.index})}"
-                                                             th:text="${page_numberStat.index}" th:class="${page_number==list_projects.number + 1} ? active"></a>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </div>
-                                        <div class="b-sidebar-backdrop bg-dark" style="display: none;"></div>
-                                    </div>
+                                <div data-v-e551daac="" class="mb-3 text-right">
+                                    <a data-v-e551daac=""
+                                        class="btn btn-primary width btn-open_vidacha  grey">Открыть</a>
+                                </div>
+                                <div data-v-e551daac="" class="mb-3 text-right">
+                                    <a data-v-e551daac="" id="btn_delete_project"
+                                        class="btn btn-primary width btn-delate_vidacha red">Удалить</a>
+                                </div>
+                                <div data-v-e551daac="" class="mb-3 text-right">
+                                    <a data-v-e551daac=""
+                                        class="btn btn-primary width btn-update_vidacha  orange">Обновить</a>
                                 </div>
                             </div>
-                        </main>
-                        <div th:insert="fragments/footer.html"></div>
-                    </div>
+                            <div data-v-e551daac="">
+                                <div data-v-e551daac="" class="b-overlay-wrap position-relative custom-ll">
+                                    <div class="row">
+                                        <div class="custom-ll__header col-12">
+                                            <div class="custom-ll__header__full show">
+                                                <div class="custom-ll__header__full__right">
+                                                    <div class="header__search header__search_width">
+                                                        <input type="search" placeholder="Поиск" class="form-control">
+                                                        <span class="header__search__btn">
+                                                            <svg class="svg-inline--fa fa-search fa-w-16"
+                                                                aria-hidden="true" focusable="false" data-prefix="fa"
+                                                                data-icon="search" role="img"
+                                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                                                                data-fa-i2svg="">
+                                                                <path fill="currentColor"
+                                                                    d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z">
+                                                                </path>
+                                                            </svg>
+                                                            <!-- <i class="fa fa-search"></i> Font Awesome fontawesome.com -->
+                                                        </span>
+                                                    </div>
+                                                    <div class="header__filter" style="margin-left: auto;">
+                                                        <button type="button"
+                                                            class="btn btn-default custom-ll__filter-button collapsed search-btn"
+                                                            aria-expanded="false" aria-controls="filterbar"
+                                                            style="overflow-anchor: none;">Поиск
+                                                            <!-- <i class="fas fa-filter"></i> -->
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="custom-ll__filters col-12">
+                                            <div class="order-lg-1">
+                                                <div class="btn__under-table col-6 col-md-12 col-lg-12">
+                                                    <div data-v-e551daac="" class="mb-3 text-right">
+                                                        <a data-v-e551daac="" href="/"
+                                                            class="btn btn-primary width btn-add_vidacha grey">Все</a>
+                                                    </div>
+                                                    <div data-v-e551daac="" class="mb-3 text-right">
+                                                        <a data-v-e551daac="" href="/?filter=one_time"
+                                                            class="btn btn-primary width btn-open_vidacha  grey">Разовые</a>
+                                                    </div>
+                                                    <div data-v-e551daac="" class="mb-3 text-right">
+                                                        <a data-v-e551daac="" href="/?filter=long"
+                                                            class="btn btn-primary width btn-delate_vidacha grey">Длинный</a>
+                                                    </div>
+                                                    <div data-v-e551daac="" class="mb-3 text-right">
+                                                        <a data-v-e551daac="" href="/?filter=sublease"
+                                                            class="btn btn-primary width btn-update_vidacha  grey">Субаренда</a>
+                                                    </div>
+                                                    <div data-v-e551daac="" class="mb-3 text-right">
+                                                        <a data-v-e551daac="" href="/?filter=test"
+                                                            class="btn btn-primary width btn-update_vidacha  grey">Тест</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="order-lg-1 overflow-auto">
+                                                <div class="custom-ll__table table-responsive">
+                                                    <table class="table w-100 in4dr-form">
+                                                        <tr>
+                                                            <th class="first-th">#</th>
+                                                            <th>Проект</th>
+                                                            <th>Клиент</th>
+                                                            <th>Телефон</th>
+                                                            <th>Начало аренды</th>
+                                                            <th>Окончание аренды</th>
+                                                            <th>Дата и время создания</th>
+                                                            <th>Сотрудник</th>
+                                                            <th>Примечание</th>
+                                                            <th>Тип</th>
+                                                            <th>Открыть смету</th>
+                                                        </tr>
+                                                        <tr th:each="project : ${list_projects}">
+                                                            <td class="column-table">
+                                                                <div class="column-table_checkbox-wrapp">
+                                                                    <input class="column-table_checkbox ids"
+                                                                        type="checkbox">
+                                                                    <input type="text" hidden="hidden"
+                                                                        th:value="${project.id}">
+                                                                    <span
+                                                                        class="tools-td-text table-td-text column-table_checkbox-number"
+                                                                        th:utext="${projectStat.index+1}">
+                                                                    </span>
+                                                                </div>
+                                                            </td>
+                                                            <td><a th:href="@{/projects/edit/{id}/(id=${project.getId()})}"
+                                                                    th:utext="${project.name}"
+                                                                    title="Редактирование проекта"></a></td>
+                                                            <td th:utext="${project.client.fullName}"></td>
+                                                            <td th:utext="${project.client.phoneNumber}"></td>
+                                                            <td
+                                                                th:utext="${#temporals.format(project.start, 'dd-MM-yyyy HH:mm')}">
+                                                            </td>
+                                                            <td
+                                                                th:text="${#temporals.format(project.end, 'dd-MM-yyyy HH:mm')}">
+                                                            </td>
+                                                            <td th:utext="${project.created}"></td>
+                                                            <td th:utext="${project.employee}"></td>
+                                                            <td th:utext="${project.note}"></td>
+                                                            <td th:utext="${project.classification.getValue()}"></td>
+                                                            <td><a th:href="@{/estimate/create/{id}/(id=${project.getId()})}"
+                                                                    title="Просмотр/редактирование сметы">Смета</a></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pagination-control col-lg-12 order-lg-1">
+                                        <!-- Bootstrap 4 -->
+                                        <nav aria-label="Навигация по страницам">
+                                            <ul class="pagination">
+                                                <li class="page-item" th:if="${list_projects.totalPages > 0}"
+                                                    th:each="page_number : ${page_numbers}">
+                                                    <a class="page-link-m page-link"
+                                                        th:href="@{/(size=${list_projects.size}, page=${page_numberStat.index})}"
+                                                        th:text="${page_numberStat.index}"
+                                                        th:class="${page_number==list_projects.number + 1} ? active"></a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                    <div class="row">
+                                        <div class="custom__search--mobile col-6 col-sm-12 col-md-12">
+                                            <div class="custom-ll__header__full show ">
+                                                <div class="custom-ll__header__full__right search__flex">
+                                                    <div class="header__search header__search_width form-m">
+                                                        <input type="search" placeholder="Поиск" class="form-control  header__filter--mobile">
+                                                        <!-- <span class="header__search__btn">
+                                                            <svg class="svg-inline--fa fa-search fa-w-16"
+                                                                aria-hidden="true" focusable="false" data-prefix="fa"
+                                                                data-icon="search" role="img"
+                                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                                                                data-fa-i2svg="">
+                                                                <path fill="currentColor"
+                                                                    d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z">
+                                                                </path>
+                                                            </svg>
+                                                            <i class="fa fa-search"></i>
+                                                        </span> -->
+                                                    </div>
+                                                    <div class="header__filter ">
+                                                        <button type="button"
+                                                            class="btn btn-default custom-ll__filter-button collapsed search-btn"
+                                                            aria-expanded="false" aria-controls="filterbar"
+                                                            style="overflow-anchor: none;">Поиск
+                                                            <i class="fas fa-filter"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="b-sidebar-backdrop bg-dark" style="display: none;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                    <div th:insert="fragments/footer.html"></div>
                 </div>
             </div>
         </div>
-        <div th:insert="fragments/scripts.html"></div>
-    </body>
+    </div>
+    <script src="../static/js/main.js" th:src="@{/js/main.js}"></script>
+    <script src="../static/fonts/fontawesome/all.js" th:src="@{/fonts/fontawesome/all.js}"></script>
+    <script src="../static/js/main.js" th:src="@{/js/main.js}"></script>
+    <script src="../static/js/service-worker.js" th:src="@{/js/service-worker.js}"></script>
+    <!--<script src="/static/js/sendData.js" th:src="@{/js/sendData.js}"></script>-->
+    <!--<script src="https://91.210.168.186/js/sendData.js" th:src="@{https://91.210.168.186/js/sendData.js}"></script>-->
+    <script type="text/javascript">
+        document.write('<script src="https://91.210.168.186/js/sendData.js">' + '<\/script>');
+    </script>
+    <!-- <div th:insert="fragments/scripts.html"></div> -->
+</body>
+
 </html>

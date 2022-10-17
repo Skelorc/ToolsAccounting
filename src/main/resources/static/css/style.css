@@ -2687,8 +2687,8 @@ body {
 
 .rih-page-wrapper {
     padding: 0 15px;
-    margin: 55px 0 0 220px;
-    width: calc(100% - 220px);
+    margin: 55px 0 0 120px;
+    width: calc(100% - 120px);
     min-height: calc(100vh - 60px);
     overflow-x: hidden;
     position: relative;
@@ -2696,7 +2696,12 @@ body {
     background-color: #f3f3f3;
     transition: all .4s
 }
-
+@media (min-width: 768px) {
+    .rih-page-wrapper {
+        margin: 55px 0 0 220px;
+    width: calc(100% - 220px);
+    }
+}
 .rih-page-wrapper--full {
     margin-left: 50px;
     width: calc(100% - 50px)
@@ -2947,12 +2952,21 @@ body {
 .custom-ll__header .header__filter {
     width: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: left;
     align-items: center;
     text-align: right;
     margin-bottom: 1rem
 }
-
+/* @media (min-width: 768px) {
+    .custom-ll__header .header__filter {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        text-align: right;
+        margin-bottom: 1rem
+    }
+} */
 .custom-ll__header .header__filter .btn {
     color: inherit;
     background: #fff;
@@ -4328,25 +4342,25 @@ body {
     font-size: 3.8em
 }
 
-@media (max-width:1000px) {
+@media (min-width:1000px) {
     .login__heading {
         font-size: 3em
     }
 }
 
-@media (max-width:810px) {
+@media (min-width:810px) {
     .login__heading {
         font-size: 2.8em
     }
 }
 
-@media (max-width:365px) {
+@media (min-width:414px) {
     .login__heading {
-        font-size: 2.2em
+        font-size: 2em
     }
 }
 
-@media (max-width:768px) {
+@media (min-width:768px) {
     .login__heading {
         margin-bottom: 1em
     }
@@ -5350,13 +5364,17 @@ body {
 
 
 .rih-nav {
-    width: 220px;
+    width: 120px;
     height: 100vh;
     background-color: var(--pallet-menu-background);
     position: fixed;
     z-index: 1
 }
-
+@media (min-width: 768px){
+    .rih-nav {
+        width: 220px;
+    }
+}
 .rih-nav__header {
     padding: 13.5px 14px;
     /* background-color: var(--pallet-primary-color); */
@@ -21752,7 +21770,16 @@ td [data-item=time_start] span[data-v-32063ebc]:last-child {
 }
 
 .rent__time__group[data-v-8271a922] {
-    position: relative
+    position: relative;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+
+@media (min-width: 768px) {
+    .rent__time__group {
+        margin-bottom: 0;
+        margin-left: 0;
+    }
 }
 
 .rent__time__group__label[data-v-8271a922] {
@@ -23083,8 +23110,20 @@ td [data-item=state][data-v-eef6afb2] {
     top: 10px;
     left: 12px;
     bottom: 0;
-    opacity: .67
+    opacity: .67;
+ 
 }
+.rent__time__group__label{
+    font-size: 12px;
+}
+
+@media (min-width: 768px) {
+    .rent__time__group__label {
+        font-size: 14px;
+    }
+}
+
+
 
 .rent__time__group .form-control[data-v-89408aa2] {
     border-radius: 20px;

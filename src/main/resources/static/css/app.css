@@ -9112,7 +9112,8 @@ pre code {
     background-clip: padding-box;
     border: 1px solid #ced4da;
     border-radius: .25rem;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    margin-top: 20px;
 }
 
 @media(prefers-reduced-motion:reduce) {
@@ -11807,12 +11808,23 @@ input[type=button].btn-block,input[type=reset].btn-block,input[type=submit].btn-
     color: #6c757d
 }
 
+
 .pagination {
     display: flex;
-    padding-left: 0;
-    list-style: none;
-    border-radius: .25rem
+    flex-direction: column;
+    list-style-type: none;
 }
+
+@media (min-width: 768px) {
+    .pagination {
+        display: flex;
+        padding-left: 0;
+        list-style: none;
+        border-radius: .25rem;
+        flex-direction: row;
+    }
+}
+
 
 .page-link {
     position: relative;
@@ -31494,9 +31506,13 @@ body.top-navigation.fixed-nav #wrapper #page-wrapper {
 }
 
 body.fixed-nav.fixed-nav-basic .navbar-fixed-top {
-    left: 220px
+    left: 120px
 }
-
+@media (min-width: 768px) {
+    body.fixed-nav.fixed-nav-basic .navbar-fixed-top {
+        left: 220px
+    }
+}
 body.fixed-nav.fixed-nav-basic.mini-navbar .navbar-fixed-top {
     left: 70px
 }
@@ -31627,7 +31643,7 @@ body.canvas-menu.mini-navbar .navbar-default .nav>li>.nav-second-level li a {
 }
 
 body.canvas-menu.mini-navbar .nav-label,body.canvas-menu.mini-navbar .navbar-default .nav li a span,body.fixed-sidebar.mini-navbar .nav-label,body.fixed-sidebar.mini-navbar .navbar-default .nav li a span {
-    display: inline
+    display: inline;
 }
 
 body.canvas-menu.mini-navbar .navbar-default .nav li .profile-element a span {

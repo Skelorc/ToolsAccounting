@@ -3,11 +3,14 @@
 <head class="head">
     <title>Панель администратора</title>
     <div th:replace="fragments/head :: header"></div>
+    
+      
 </head>
     <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
         <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
             <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
                 <div th:insert="fragments/menu_sidebar.html"></div>
+               
                 <div class="b-overlay-wrap position-relative w-100" size="sm">
                     <div class="rih-page-wrapper">
                         <nav  role="navigation" class="navbar navbar-admin navbar-fixed-top" th:insert="fragments/header_logout.html"></nav>
@@ -21,14 +24,14 @@
                                         </h2>
                                     </div>
                                     <div class="col-12 form-creat mb-3 admin-panel">
-                                        <div class="bg-white p-3 edit-container">
+                                        <div class="bg-white p-3 edit-container d-block col-8 col-md-12">
                                             <div class="row admin-panel-wrapp">
                                                 <div class="col-6 admin-panel__input-wrapp">
-                                                    <h2>Ввод данных</h2>
+                                                    <h2 class="font-size">Ввод данных</h2>
                                                     <form th:action="@{/admin-panel/create}" method="post" th:object="${user}">
                                                     <div class="admin-panel__input-box">
                                                         <div role="group" class="form-group">
-                                                            <label class="d-block">Укажите логин для нового пользователя</label>
+                                                            <label class="d-block size-label">Укажите логин для нового пользователя</label>
                                                             <span>
                                                                 <input class="form-control" type="text" placeholder="Введите логин" th:field="*{username}" required>
                                                             </span>
@@ -36,7 +39,7 @@
                                                     </div>
                                                     <div class="admin-panel__input-box">
                                                         <div role="group" class="form-group">
-                                                            <label class="d-block">Укажите пароль для нового пользователя</label>
+                                                            <label class="d-block size-label">Укажите пароль для нового пользователя</label>
                                                             <span>
                                                                 <input class="form-control" type="password" placeholder="Введите пароль" th:field="*{password}" required>
                                                             </span>
@@ -44,13 +47,13 @@
                                                     </div>
                                                     <div class="admin-panel__input-box">
                                                         <div role="group" class="form-group">
-                                                            <label class="d-block">Укажите ФИО для нового пользователя</label>
+                                                            <label class="d-block size-label">Укажите ФИО для нового пользователя</label>
                                                             <span>
                                                                 <input class="form-control" type="text" placeholder="введите ФИО" th:field="*{fullName}" required>
                                                             </span>
                                                         </div>
                                                     </div>
-                                                    <label class="d-block">Выберите роль</label>
+                                                    <label class="d-block size-label">Выберите роль</label>
                                                     <div class="admin-panel__select select">
                                                         <select id="roles" th:field="*{roles}">
                                                             <option class="vs__selected" value="" disabled>Выберите роль</option>
@@ -67,14 +70,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-content">
-                                    <div class="col-12 bg-white p-3 edit-container">
-                                        <table class="table table-1190 table-bordered">
+                                <div class="tab-content col-12 table-overflow">
+                                    <div class="">
+                                        <table class="table table-1190 table-bordered table-width">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">Логин</th>
-                                                    <th scope="col">ФИО</th>
-                                                    <th scope="col">Роль</th>
+                                                    <th  scope="col">Логин</th>
+                                                    <th  scope="col">ФИО</th>
+                                                    <th  scope="col">Роль</th>
                                                 </tr>
                                             </thead>
                                             <div class="text-center">

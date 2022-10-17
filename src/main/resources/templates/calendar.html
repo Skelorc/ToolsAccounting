@@ -4,6 +4,8 @@
 <head class="head">
     <title>Календарь</title>
     <div th:replace="fragments/head :: header"></div>
+    
+   
 </head>
 
 
@@ -13,23 +15,21 @@
             <div th:insert="fragments/menu_sidebar.html"></div>
             <div class="b-overlay-wrap position-relative w-100" size="sm">
                 <div class="rih-page-wrapper">
-                    <nav  role="navigation" class="navbar navbar-admin navbar-fixed-top"
+                    <nav role="navigation" class="navbar navbar-admin navbar-fixed-top"
                         th:insert="fragments/header_logout.html"></nav>
                     <main class="wrapper wrapper-content border-bottom">
                         <div class="b-overlay-wrap position-relative" size="sm">
                             <div class="row">
-                                <div class="btn-pimary__groups-wrapper col-12 vidacha-sozdach mb-3 vidacha-sozdach">
+                                <div
+                                    class="btn-pimary__groups-wrapper primary-calendar col-6 col-sm-8 col-md-12 vidacha-sozdach mb-3 vidacha-sozdach">
                                     <div data-v-e551daac="" class="mb-3 text-right">
-                                        <a data-v-e551daac="" href="#"
-                                            class="btn btn-primary min-width-120 green">Месяц</a>
+                                        <a data-v-e551daac="" href="#" class="btn btn-primary width green">Месяц</a>
                                     </div>
                                     <div data-v-e551daac="" class="mb-3 text-right">
-                                        <a data-v-e551daac="" href="#"
-                                            class="btn btn-primary min-width-120 red">День</a>
+                                        <a data-v-e551daac="" href="#" class="btn btn-primary width red">День</a>
                                     </div>
                                     <div data-v-e551daac="" class="mb-3 text-right">
-                                        <a data-v-e551daac="" href="#"
-                                            class="btn btn-primary min-width-120 orange">Обновить</a>
+                                        <a data-v-e551daac="" href="#" class="btn btn-primary width orange">Обновить</a>
                                     </div>
                                     <div data-v-8271a922="" class="rent__time">
                                         <div data-v-8271a922="" class="rent__time__group">
@@ -71,56 +71,56 @@
                                     </div>
                                     <div data-v-e551daac="" class="mb-3 text-right">
                                         <a data-v-e551daac="" href="#"
-                                            class="btn btn-primary min-width-120 orange">Календарь</a>
+                                            class="btn btn-primary width orange">Календарь</a>
                                     </div>
                                     <div data-v-e551daac="" class="mb-3 text-right">
-                                        <a data-v-e551daac="" href="#"
-                                            class="btn btn-primary min-width-120 пкун">Экспорт</a>
+                                        <a data-v-e551daac="" href="#" class="btn btn-primary width пкун">Экспорт</a>
                                     </div>
                                 </div>
 
 
                                 <!-- Tab links -->
-                                <div class="tab mb-3">
-                                    <button class="tablinks" onclick="openUnit(event, 'tools')"
-                                        id="defaultOpen">Оборудование</button>
-                                    <button class="tablinks" onclick="openUnit(event, 'project')">Проект</button>
+                                <div class="row">
+                                    <div class="tab mb-3 col-6 col-md-12">
+                                        <button class="tablinks" onclick="openUnit(event, 'tools')"
+                                            id="defaultOpen">Оборудование</button>
+                                        <button class="tablinks" onclick="openUnit(event, 'project')">Проект</button>
+                                    </div>
                                 </div>
-
                                 <!-- Tab content -->
                                 <div id="tools" class="tabcontent mb-3">
                                     <div class="order-lg-1">
-                                        <div class="btn__under-table">
+                                        <div class="btn__under-table w-70 col-6 col-md-12">
                                             <div data-v-e551daac="" class="mb-3 text-right">
                                                 <a data-v-e551daac="" href="#"
-                                                    class="btn btn-primary min-width-120 btn-add_vidacha grey">Все</a>
+                                                    class="btn btn-primary width btn-add_vidacha grey">Все</a>
                                             </div>
                                             <div data-v-e551daac="" class="mb-3 text-right">
                                                 <a data-v-e551daac="" href="#"
-                                                    class="btn btn-primary min-width-120 btn-open_vidacha  grey">Склад</a>
+                                                    class="btn btn-primary width btn-open_vidacha  grey">Склад</a>
                                             </div>
                                             <div data-v-e551daac="" class="mb-3 text-right">
                                                 <a data-v-e551daac="" href="#"
-                                                    class="btn btn-primary min-width-120 btn-delate_vidacha grey">Субарендa</a>
+                                                    class="btn btn-primary width btn-delate_vidacha grey">Субарендa</a>
                                             </div>
                                             <div data-v-e551daac="" class="mb-3 text-right">
                                                 <a data-v-e551daac="" href="#"
-                                                    class="btn btn-primary min-width-120 btn-update_vidacha  grey">Единый
+                                                    class="btn btn-primary width btn-update_vidacha  grey">Единый
                                                     список</a>
                                             </div>
                                             <div data-v-e551daac="" class="mb-3 text-right">
                                                 <a data-v-e551daac="" href="#"
-                                                    class="btn btn-primary min-width-120 btn-update_vidacha  grey">Просмотр
+                                                    class="btn btn-primary width btn-update_vidacha  grey">Просмотр
                                                     по группам</a>
                                             </div>
                                             <div data-v-e551daac="" class="mb-3 text-right">
                                                 <a data-v-e551daac="" href="#"
-                                                    class="btn btn-primary min-width-120 btn-update_vidacha  grey">Просмотр
+                                                    class="btn btn-primary width btn-update_vidacha  grey">Просмотр
                                                     по разделам сметы</a>
                                             </div>
                                             <div data-v-e551daac="" class="mb-3 text-right">
                                                 <a data-v-e551daac="" href="#"
-                                                    class="btn btn-primary min-width-120 btn-update_vidacha  grey">Сбросить
+                                                    class="btn btn-primary width btn-update_vidacha  grey">Сбросить
                                                     фильтр</a>
                                             </div>
                                         </div>
@@ -880,49 +880,58 @@
                                 <div class="popup-bg outer-btn-popup">
                                     <div class="popup">
                                         <!-- <div class="popup-bg-wrapper"></div> -->
-                                        
+
                                         <!-- Содержимое popup -->
                                         <div class="popup-overley">
                                             <div class="content-wrapp">
                                                 <div class="popup__close-btn mb-3">
                                                     <span class="close-popup ">
                                                         <svg viewBox="0 0 512 512" width="100" title="window-close">
-                                                            <path d="M464 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-83.6 290.5c4.8 4.8 4.8 12.6 0 17.4l-40.5 40.5c-4.8 4.8-12.6 4.8-17.4 0L256 313.3l-66.5 67.1c-4.8 4.8-12.6 4.8-17.4 0l-40.5-40.5c-4.8-4.8-4.8-12.6 0-17.4l67.1-66.5-67.1-66.5c-4.8-4.8-4.8-12.6 0-17.4l40.5-40.5c4.8-4.8 12.6-4.8 17.4 0l66.5 67.1 66.5-67.1c4.8-4.8 12.6-4.8 17.4 0l40.5 40.5c4.8 4.8 4.8 12.6 0 17.4L313.3 256l67.1 66.5z" />
+                                                            <path
+                                                                d="M464 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-83.6 290.5c4.8 4.8 4.8 12.6 0 17.4l-40.5 40.5c-4.8 4.8-12.6 4.8-17.4 0L256 313.3l-66.5 67.1c-4.8 4.8-12.6 4.8-17.4 0l-40.5-40.5c-4.8-4.8-4.8-12.6 0-17.4l67.1-66.5-67.1-66.5c-4.8-4.8-4.8-12.6 0-17.4l40.5-40.5c4.8-4.8 12.6-4.8 17.4 0l66.5 67.1 66.5-67.1c4.8-4.8 12.6-4.8 17.4 0l40.5 40.5c4.8 4.8 4.8 12.6 0 17.4L313.3 256l67.1 66.5z" />
                                                         </svg>
                                                     </span>
                                                 </div>
                                                 <div class="btn-pimary__groups col-12  mt-3 mb-3">
                                                     <div class="btn-pimary__groups-wrapper mb-3">
                                                         <div class="mb-3 text-right">
-                                                            <span class="btn-pimary__groups_title white-coor">Проект</span>
+                                                            <span
+                                                                class="btn-pimary__groups_title white-coor">Проект</span>
                                                         </div>
                                                         <div class="mb-3 text-right">
-                                                            <a href="#" class="btn btn-primary min-width-120 green">Выдать</a>
+                                                            <a href="#"
+                                                                class="btn btn-primary min-width-120 green">Выдать</a>
                                                         </div>
                                                         <div class="mb-3 text-right">
-                                                            <a href="#" class="btn btn-primary min-width-120 green">Принять</a>
+                                                            <a href="#"
+                                                                class="btn btn-primary min-width-120 green">Принять</a>
                                                         </div>
                                                         <div class="mb-3 text-right">
-                                                            <a href="#" class="btn btn-primary min-width-120 orange">Журнал</a>
+                                                            <a href="#"
+                                                                class="btn btn-primary min-width-120 orange">Журнал</a>
                                                         </div>
                                                         <div class="mb-3 text-right">
-                                                            <a href="#" class="btn btn-primary min-width-120 orange">Документы</a>
+                                                            <a href="#"
+                                                                class="btn btn-primary min-width-120 orange">Документы</a>
                                                         </div>
                                                         <div class="mb-3 text-right">
-                                                            <a href="#" class="btn btn-primary min-width-120 red">Назад</a>
+                                                            <a href="#"
+                                                                class="btn btn-primary min-width-120 red">Назад</a>
                                                         </div>
                                                     </div>
                                                 </div>
-                                
+
                                                 <div class="tab-content">
                                                     <div class="form-creat mb-3 col-12">
                                                         <div class="bg-white p-3 edit-container">
                                                             <div class="row form-creat__half-wrapp">
                                                                 <div class="form-creat__half_two-column">
                                                                     <div role="group" class="form-group">
-                                                                        <label class="d-block">Наименование проекта</label>
+                                                                        <label class="d-block">Наименование
+                                                                            проекта</label>
                                                                         <span>
-                                                                            <span type="text" class="vdatetime-input form-control span-input_repair" ></span>
+                                                                            <span type="text"
+                                                                                class="vdatetime-input form-control span-input_repair"></span>
                                                                         </span>
                                                                     </div>
                                                                 </div>
@@ -930,7 +939,8 @@
                                                                     <div role="group" class="form-group">
                                                                         <label class="d-block">Статус</label>
                                                                         <span>
-                                                                            <span type="text" class="vdatetime-input form-control span-input_repair"></span>
+                                                                            <span type="text"
+                                                                                class="vdatetime-input form-control span-input_repair"></span>
                                                                         </span>
                                                                     </div>
                                                                 </div>
@@ -938,7 +948,8 @@
                                                                     <div role="group" class="form-group">
                                                                         <label class="d-block">Начало</label>
                                                                         <div class="vdpComponent vdpWithInput">
-                                                                            <input required="" type="date" placeholder="дд.мм.гггг">
+                                                                            <input required="" type="date"
+                                                                                placeholder="дд.мм.гггг">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -946,7 +957,8 @@
                                                                     <div role="group" class="form-group">
                                                                         <label class="d-block">Окончание</label>
                                                                         <div class="vdpComponent vdpWithInput">
-                                                                            <input required="" type="date" placeholder="дд.мм.гггг">
+                                                                            <input required="" type="date"
+                                                                                placeholder="дд.мм.гггг">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -954,7 +966,8 @@
                                                                     <div role="group" class="form-group">
                                                                         <label class="d-block">Примечание</label>
                                                                         <span>
-                                                                            <span type="text" class="vdatetime-input form-control span-input_repair"></span>
+                                                                            <span type="text"
+                                                                                class="vdatetime-input form-control span-input_repair"></span>
                                                                         </span>
                                                                     </div>
                                                                 </div>
@@ -962,7 +975,9 @@
                                                                     <div role="group" class="form-group">
                                                                         <label class="d-block">Фотографии</label>
                                                                         <span>
-                                                                            <textarea value="[]" name="photos" class="form-control" style="height: 40px;">[]</textarea>
+                                                                            <textarea value="[]" name="photos"
+                                                                                class="form-control"
+                                                                                style="height: 40px;">[]</textarea>
                                                                         </span>
                                                                     </div>
                                                                 </div>
@@ -971,14 +986,17 @@
                                                                 <div role="group" class="form-group">
                                                                     <label class="d-block">Дата создания</label>
                                                                     <div class="vdpComponent vdpWithInput">
-                                                                        <input required="" type="date" name="dateCreating" value="" placeholder="Текущее дата и время">
+                                                                        <input required="" type="date"
+                                                                            name="dateCreating" value=""
+                                                                            placeholder="Текущее дата и время">
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-creat__half_two-column">
                                                                     <div role="group" class="form-group">
                                                                         <label class="d-block">Время создания</label>
                                                                         <div class="vdpComponent vdpWithInput">
-                                                                            <input required="" type="time" value="" placeholder="Текущее дата и время">
+                                                                            <input required="" type="time" value=""
+                                                                                placeholder="Текущее дата и время">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -986,7 +1004,8 @@
                                                                     <div role="group" class="form-group">
                                                                         <label class="d-block">Сотрудник</label>
                                                                         <span>
-                                                                            <span type="text" class="vdatetime-input form-control span-input_repair"></span>
+                                                                            <span type="text"
+                                                                                class="vdatetime-input form-control span-input_repair"></span>
                                                                         </span>
                                                                     </div>
                                                                 </div>
@@ -994,7 +1013,8 @@
                                                                     <div role="group" class="form-group">
                                                                         <label class="d-block">Клиент</label>
                                                                         <span>
-                                                                            <span type="text" class="vdatetime-input form-control span-input_repair"></span>
+                                                                            <span type="text"
+                                                                                class="vdatetime-input form-control span-input_repair"></span>
                                                                         </span>
                                                                     </div>
                                                                 </div>
@@ -1002,7 +1022,9 @@
                                                                     <div role="group" class="form-group">
                                                                         <label class="d-block">Телефон</label>
                                                                         <div class="vdpComponent vdpWithInput">
-                                                                            <input required="" name="phoneNumber" value="" class="form-control" placeholder="+7-999-99-99">
+                                                                            <input required="" name="phoneNumber"
+                                                                                value="" class="form-control"
+                                                                                placeholder="+7-999-99-99">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1010,7 +1032,8 @@
                                                                     <div role="group" class="form-group">
                                                                         <label class="d-block">Скидка</label>
                                                                         <span>
-                                                                            <span type="text" class="vdatetime-input form-control span-input_repair"></span>
+                                                                            <span type="text"
+                                                                                class="vdatetime-input form-control span-input_repair"></span>
                                                                         </span>
                                                                     </div>
                                                                 </div>
@@ -1026,7 +1049,8 @@
                                                                     <div role="group" class="form-group">
                                                                         <label class="d-block">Сумма</label>
                                                                         <span>
-                                                                            <span type="text" class="vdatetime-input form-control span-input_repair" ></span>
+                                                                            <span type="text"
+                                                                                class="vdatetime-input form-control span-input_repair"></span>
                                                                         </span>
                                                                     </div>
                                                                 </div>
@@ -1034,15 +1058,18 @@
                                                                     <div role="group" class="form-group">
                                                                         <label class="d-block">Сумма со скидкуй</label>
                                                                         <span>
-                                                                            <span type="text" class="vdatetime-input form-control span-input_repair"></span>
+                                                                            <span type="text"
+                                                                                class="vdatetime-input form-control span-input_repair"></span>
                                                                         </span>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-creat__half_two-column">
                                                                     <div role="group" class="form-group">
-                                                                        <label class="d-block">Стоимость оборудования</label>
+                                                                        <label class="d-block">Стоимость
+                                                                            оборудования</label>
                                                                         <span>
-                                                                            <span type="text" class="vdatetime-input form-control span-input_repair"></span>
+                                                                            <span type="text"
+                                                                                class="vdatetime-input form-control span-input_repair"></span>
                                                                         </span>
                                                                     </div>
                                                                 </div>
@@ -1050,7 +1077,8 @@
                                                                     <div role="group" class="form-group">
                                                                         <label class="d-block">Стоимость работ</label>
                                                                         <span>
-                                                                            <span type="text" class="vdatetime-input form-control span-input_repair"></span>
+                                                                            <span type="text"
+                                                                                class="vdatetime-input form-control span-input_repair"></span>
                                                                         </span>
                                                                     </div>
                                                                 </div>
@@ -1060,7 +1088,8 @@
                                                                     <div role="group" class="form-group">
                                                                         <label class="d-block">Скидка на проект</label>
                                                                         <span>
-                                                                            <span type="text" class="vdatetime-input form-control span-input_repair"></span>
+                                                                            <span type="text"
+                                                                                class="vdatetime-input form-control span-input_repair"></span>
                                                                         </span>
                                                                     </div>
                                                                 </div>
@@ -1068,7 +1097,8 @@
                                                                     <div role="group" class="form-group">
                                                                         <label class="d-block">Оплачено</label>
                                                                         <span>
-                                                                            <span type="text" class="vdatetime-input form-control span-input_repair"></span>
+                                                                            <span type="text"
+                                                                                class="vdatetime-input form-control span-input_repair"></span>
                                                                         </span>
                                                                     </div>
                                                                 </div>
@@ -1076,7 +1106,8 @@
                                                                     <div role="group" class="form-group">
                                                                         <label class="d-block">Остаток</label>
                                                                         <span>
-                                                                            <span type="text" class="vdatetime-input form-control span-input_repair"></span>
+                                                                            <span type="text"
+                                                                                class="vdatetime-input form-control span-input_repair"></span>
                                                                         </span>
                                                                     </div>
                                                                 </div>
@@ -1084,7 +1115,8 @@
                                                                     <div role="group" class="form-group">
                                                                         <label class="d-block">Скидка</label>
                                                                         <span>
-                                                                            <span type="text" class="vdatetime-input form-control span-input_repair"></span>
+                                                                            <span type="text"
+                                                                                class="vdatetime-input form-control span-input_repair"></span>
                                                                         </span>
                                                                     </div>
                                                                 </div>
@@ -1092,7 +1124,8 @@
                                                                     <div role="group" class="form-group">
                                                                         <label class="d-block">Итоговая УСН</label>
                                                                         <span>
-                                                                            <span type="text" class="vdatetime-input form-control span-input_repair"></span>
+                                                                            <span type="text"
+                                                                                class="vdatetime-input form-control span-input_repair"></span>
                                                                         </span>
                                                                     </div>
                                                                 </div>
@@ -1100,7 +1133,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                
+
                                                 <div class="custom-ll__table table-responsive col-12 mb-3">
                                                     <table class="table table-1480 w-100 in4dr-form">
                                                         <tbody>
@@ -1117,37 +1150,37 @@
                                                                 <td>Magic Arm</td>
                                                                 <td>2200011</td>
                                                                 <td>220 Gear</td>
-                                                                <td ></td>
-                                                                <td ></td>
+                                                                <td></td>
+                                                                <td></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="column-table">1</td>
                                                                 <td>Magic Arm</td>
                                                                 <td>2200011</td>
                                                                 <td>220 Gear</td>
-                                                                <td ></td>
-                                                                <td ></td>
+                                                                <td></td>
+                                                                <td></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="column-table">1</td>
                                                                 <td>Magic Arm</td>
                                                                 <td>2200011</td>
                                                                 <td>220 Gear</td>
-                                                                <td ></td>
-                                                                <td ></td>
+                                                                <td></td>
+                                                                <td></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="column-table">1</td>
                                                                 <td>Magic Arm</td>
                                                                 <td>2200011</td>
                                                                 <td>220 Gear</td>
-                                                                <td ></td>
-                                                                <td ></td>
+                                                                <td></td>
+                                                                <td></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                
+
                                                 <div class="pagination-control col-lg-12 order-lg-1 mb-30">
                                                     <!-- Bootstrap 4 -->
                                                     <nav aria-label="Навигация по страницам">
@@ -1158,7 +1191,8 @@
                                                                 </a>
                                                             </li>
                                                             <li class="page-item disabled">
-                                                                <a class="page-link-m page-link" href="#" aria-label="Предыдущая">
+                                                                <a class="page-link-m page-link" href="#"
+                                                                    aria-label="Предыдущая">
                                                                     <span aria-hidden="true">«</span>
                                                                     <span class="sr-only">Предыдущая</span>
                                                                 </a>
@@ -1173,7 +1207,8 @@
                                                                 <a class="page-link-m page-link" href="#">3</a>
                                                             </li>
                                                             <li class="page-item">
-                                                                <a class="page-link-m page-link" href="#" aria-label="Следующая">
+                                                                <a class="page-link-m page-link" href="#"
+                                                                    aria-label="Следующая">
                                                                     <span aria-hidden="true">»</span>
                                                                     <span class="sr-only">Следующая</span>
                                                                 </a>
@@ -1192,7 +1227,7 @@
 
                                     </div>
                                 </div>
-                
+
                             </div>
                         </div>
                     </main>

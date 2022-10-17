@@ -3,8 +3,76 @@
 
 <head class="head">
     <title>Оборудование</title>
-    <div th:replace="fragments/head :: header"></div>
+    <!-- <div th:replace="fragments/head :: header"></div> -->
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="robots" content="index, follow">
+<meta name="author" content="">
+<meta property="og:url" content="https://site.ru">
+<meta property="og:title" content="MAD DOG">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="640">
+<meta property="og:image:height" content="442">
+<meta property="og:description" content="">
+<meta property="og:site_name" content="Site-name">
+
+<link rel="apple-touch-icon" sizes="57x57" href="https://lk.rentinhand.ru/img/icons/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="https://lk.rentinhand.ru/img/icons/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="https://lk.rentinhand.ru/img/icons/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="https://lk.rentinhand.ru/img/icons/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="https://lk.rentinhand.ru/img/icons/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="https://lk.rentinhand.ru/img/icons/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="https://lk.rentinhand.ru/img/icons/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="https://lk.rentinhand.ru/img/icons/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://lk.rentinhand.ru/img/icons/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"
+href="https://lk.rentinhand.ru/img/icons/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://lk.rentinhand.ru/img/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="https://lk.rentinhand.ru/img/icons/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://lk.rentinhand.ru/img/icons/favicon-16x16.png">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="Andrey">
+<meta name="description" content="MAD DOG">
+<meta name="keywords" content="MAD DOG">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="MAD DOG - сервис для учета и автоматизации проката">
+<meta property="og:image" content="assets/img/icons/badge.jpg" th:src="@{/img/icons/badge.jpg}">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="1024">
+<meta property="og:description" content="Программа для учёта инструментов">
+<link rel="image_src" href="/static/img/icons/badge.jpg" th:href="@{/img/icons/badge.jpg}">
+<meta name="theme-color" content="#179d82">
+<meta th:name="_csrf" th:content="${_csrf.token}"/>
+<meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+<!--<link rel="manifest" href="/templates/assets/json/manifest.json" th:href="@{/templates/assets/json/manifest.json}">-->
+
+<link rel="preload" href="../static/fonts/fontawesome/fontawesome-all-css.css" as="style" th:href="@{/fonts/fontawesome/fontawesome-all-css.css}">
+<link rel="preload" href="../static/css/style.css" as="style" th:href="@{/css/style.css}">
+<link rel="preload" href="../static/css/app.css" as="style" th:href="@{/css/app.css}">
+<link rel="preload" href="../static/css/media.css" as="style" th:href="@{/css/media.css}">
+<link rel="preload" href="../static/css/checkout.css" as="style" th:href="@{/css/checkout.css}">
+<link rel="preload" href="../static/css/main.css" as="style" th:href="@{/css/main.css}">
+
+
+<link rel="stylesheet" href="../static/fonts/webfonts/fa-solid-900.ttf" th:href="@{/fonts/webfonts/fa-solid-900.ttf}">
+<link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+<link rel="stylesheet" href="../static/css/app.css" th:href="@{/css/app.css}">
+<link rel="stylesheet" href="../static/css/media.css" th:href="@{/css/media.css}">
+<link rel="stylesheet" href="../static/css/animation-iror.css" th:href="@{/css/animation-iror.css}">
+<link rel="stylesheet" href="../static/fonts/fontawesome/fontawesome.css" th:href="@{/fonts/fontawesome/fontawesome.css}">
+<link rel="stylesheet" href="../static/fonts/fontawesome/fontawesome-all-css.css" th:href="@{/fonts/fontawesome/fontawesome-all-css.css}">
+<link rel="stylesheet" href="../static/css/checkout.css" th:href="@{/css/checkout.css}">
+<link rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}">
+
+<script src="../static/fonts/fontawesome/all.js" th:src="@{/fonts/fontawesome/all.js}"></script>
+<!--JQuery-->
+<script src="../static/js/jquery.js" th:src="@{/js/jquery.js}"></script>
+<!-- jQuery Modal -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"  th:src="@{/js/jquery.modal.js}"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" />
 </head>
+
 
 <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
 <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
@@ -15,47 +83,47 @@
             <nav  role="navigation" class="navbar navbar-admin navbar-fixed-top"
                  th:insert="fragments/header_logout.html"></nav>
             <main class="wrapper wrapper-content border-bottom">
-                <div class="btn-pimary__groups-wrapper col-12 mb-3">
+                <div class="btn-pimary__groups-wrapper col-12 col-md-12 mb-3">
                     <div class="mb-3 text-right">
-                        <a href="/tools/create" class="btn btn-primary min-width-120 btn-add_vidacha green">Создать</a>
+                        <a href="/tools/create" class="btn btn-primary width btn-add_vidacha green">Создать</a>
                     </div>
                     <div class="mb-3 text-right">
-                        <button href="#" class="btn btn-primary min-width-120 grey">Открыть</button>
+                        <button href="#" class="btn btn-primary width grey">Открыть</button>
                     </div>
                     <div class="mb-3 text-right">
-                        <button href="#" class="btn btn-primary min-width-120 red">Удалить</button>
+                        <button href="#" class="btn btn-primary width red">Удалить</button>
                     </div>
                     <div class="mb-3 text-right">
-                        <button href="/tools" class="btn btn-primary min-width-120 orange ">Обновить</button>
+                        <button href="/tools" class="btn btn-primary width orange ">Обновить</button>
                     </div>
                     <div class="mb-3 text-right">
-                        <button href="#" class="btn btn-primary min-width-120 light-grey">Импорт</button>
+                        <button href="#" class="btn btn-primary width light-grey">Импорт</button>
                     </div>
                     <div class="mb-3 text-right">
-                        <button href="#" class="btn btn-primary min-width-120 grey">Экспорт</button>
+                        <button href="#" class="btn btn-primary width grey">Экспорт</button>
                     </div>
                     <div class="mb-3 text-right">
-                        <button id="status_wait" class="btn btn-primary min-width-120 yellow change_status">В ожидание
+                        <button id="status_wait" class="btn btn-primary width yellow change_status">В ожидание
                         </button>
                     </div>
                     <div class="mb-3 text-right">
-                        <button id="status_instock" class="btn btn-primary min-width-120 green change_status">На склад
+                        <button id="status_instock" class="btn btn-primary width green change_status">На склад
                         </button>
                     </div>
                 </div>
                 <div class="b-overlay-wrap position-relative custom-ll">
                     <div class="row">
-                        <div class="btn__under-table col-lg-12 order-lg-1">
+                        <div class="btn__under-table col-6 col-lg-12 order-lg-1 justify-content-center">
                             <div class="mb-3 text-right">
-                                <a th:href="@{/tools}" class="btn btn-primary min-width-120 btn-update_vidacha  grey">Все</a>
+                                <a th:href="@{/tools}" class="btn btn-primary width btn-update_vidacha  grey">Все</a>
                             </div>
                             <div class="mb-3 text-right">
                                 <a th:href="@{/tools(filter=stock)}"
-                                   class="btn btn-primary min-width-120 btn-update_vidacha  grey">Склад</a>
+                                   class="btn btn-primary width btn-update_vidacha  grey">Склад</a>
                             </div>
                             <div class="mb-3 text-right">
                                 <a th:href="@{/tools(filter=sublease)}"
-                                   class="btn btn-primary min-width-120 btn-update_vidacha  grey">Субаренда</a>
+                                   class="btn btn-primary width btn-update_vidacha  grey">Субаренда</a>
                             </div>
                         </div>
                         <div class="custom-ll__table table-responsive overflow-auto col-lg-12 order-lg-1">
@@ -184,6 +252,121 @@
                                        th:href="@{/tools(size=${list_tools.size}, page=${page_numberStat.index})}"
                                        th:text="${page_numberStat.index}"
                                        th:class="${page_number==list_tools.number + 1} ? active"></a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <form class="form-width" th:action="@{/estimate}" method="post" th:object="${estimateDTO}">
+                        <div class="row">
+                        <div class="bg-white p-3 col-5 col-md-12 col-sm-6 edit-container">
+                            <div class="row form-creat__half-wrapp">
+                                <div class=" form-creat__half_two-column">
+                                    <div role="group col-12" class="form-group">
+                                        <label class="d-block font">Наименование в смете</label>
+                                        <div class="vdpComponent vdpWithInput">
+                                            <input th:field="*{name}" required="" type="text"
+                                                   placeholder="Наименование в смете">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row form-creat__half-wrapp">
+                                <div class="form-creat__half_two-column">
+                                    <div role="group" class="form-group">
+                                        <label class="d-block font">Группа</label>
+                                        <select id="select_category_tool" th:field="*{categoryTools}"
+                                                class="vs__selected-options main-secect__opions form-control">
+                                            <option class="vs__selected vs__dropdown-toggle"
+                                                    value="" disabled>Выберите группу оборудования
+                                            </option>
+                                            <option class="vs__selected vs__dropdown-toggle"
+                                                    th:each="type : ${T(wns.constants.CategoryTools).values()}"
+                                                    th:value="${type}"
+                                                    th:text="${type.getData()}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="mt-4 mb-4 col-6 save-btn">
+                            <button type="submit"
+                                    class="btn btn-lg btn-primary btn-primary_save w-100">
+                                <svg class="svg-inline--fa fa-shopping-cart fa-w-18" aria-hidden="true"
+                                     focusable="false" data-prefix="fa" data-icon="shopping-cart" role="img"
+                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="">
+                                    <path fill="currentColor"
+                                          d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"></path>
+                                </svg>
+                                Сохранить
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="btn__under-table_wrapp col-6 order-lg-1">
+                        <div class="btn__under-table">
+                            <div data-v-e551daac="" class="mb-3 text-right">
+                                <a data-v-e551daac="" href="#"
+                                   class="btn btn-primary width-primary btn-add_vidacha grey">Единый список</a>
+                            </div>
+                            <div data-v-e551daac="" class="mb-3 text-right">
+                                <a data-v-e551daac="" href="#"
+                                   class="btn btn-primary width-primary btn-open_vidacha  grey">Просмотр по
+                                    группам</a>
+                            </div>
+                            <div data-v-e551daac="" class="mb-3 text-right">
+                                <a data-v-e551daac="" href="#"
+                                   class="btn btn-primary width-primary btn-delate_vidacha grey">Просмотр по
+                                    разделам сметы</a>
+                            </div>
+                            <div data-v-e551daac="" class="mb-3 text-right">
+                                <a data-v-e551daac="" href="#"
+                                   class="btn btn-primary width-primary btn-update_vidacha  grey">Сбросить
+                                    фильтр</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="custom-ll__table table-responsive">
+                        <table class="table table-1190 w-100 in4dr-form">
+                            <thead>
+                            <tr class="text-center">
+                                <th class="first-th">№</th>
+                                <th>Наименование в смете</th>
+                                <th>Группа</th>
+                                <th>Удалить</th>
+                            </tr>
+                            </thead>
+                            <tbody class="text-center">
+                            <tr th:each="estimateName : ${list_estimate}">
+                                <td class="align-middle">
+                                    <h1 class="display-6" style="font-size: medium"
+                                        th:utext="${estimateNameStat.index+1}"></h1>
+                                </td>
+                                <td class="align-middle"><a class="nav-link"
+                                                            style="font-size: medium"
+                                                            th:utext="${estimateName.name}"></a></td>
+                                <td class="align-middle"><h1 class="display-6" style="font-size: medium"
+                                                             th:utext="${estimateName.categoryTools.getData()}"></h1>
+                                </td>
+                                <td class="align-middle">
+                                    <form th:action="@{/estimate/delete/{id}/(id=${estimateName.getId()})}" th:method="delete">
+                                    <input class="btn btn-primary min-width-120 red" type="submit" id="delete_client" th:value="Удалить">
+                                    </form>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="pagination-control col-lg-12 order-lg-1">
+                        <nav aria-label="Навигация по страницам">
+                            <ul class="pagination">
+                                <li class="page-item" th:if="${list_estimate.totalPages > 0}"
+                                    th:each="page_number : ${page_numbers}">
+                                    <a class="page-link-m page-link" th:href="@{/estimate(size=${list_estimate.size}, page=${page_numberStat.index})}"
+                                       th:text="${page_numberStat.index}" th:class="${page_number==list_estimate.number + 1} ? active"></a>
                                 </li>
                             </ul>
                         </nav>
