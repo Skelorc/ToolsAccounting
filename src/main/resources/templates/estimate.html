@@ -28,43 +28,42 @@
                             <a data-v-e551daac="" href="/estimate/create" class="btn btn-primary min-width-120 btn-add_vidacha grey">Смета создать</a>
                         </div>
 
-
-
-                        <form th:action="@{/estimate}" method="post" th:object="${estimateDTO}">
-                            <div class="bg-white p-3 edit-container">
-                                <div class="row form-creat__half-wrapp">
-                                    <div class=" form-creat__half_two-column">
-                                        <div role="group" class="form-group">
-                                            <label class="d-block">Наименование в смете</label>
-                                            <div class="vdpComponent vdpWithInput">
-                                                <input th:field="*{name}" required="" type="text"
-                                                       placeholder="Наименование в смете">
+                        <form class="form-width" th:action="@{/estimate}" method="post" >
+                            <div class="row">
+                                <div class="bg-white p-3 col-5 col-md-12 col-sm-6 edit-container">
+                                    <div class="row form-creat__half-wrapp">
+                                        <div class=" form-creat__half_two-column">
+                                            <div role="group col-12" class="form-group">
+                                                <label class="d-block font">Наименование в смете</label>
+                                                <div class="vdpComponent vdpWithInput">
+                                                    <input  required="" type="text"
+                                                            placeholder="Наименование в смете">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row form-creat__half-wrapp">
+                                        <div class="form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block font">Группа</label>
+                                                <select id="select_category_tool"
+                                                        class="vs__selected-options main-secect__opions form-control">
+                                                    <option class="vs__selected vs__dropdown-toggle"
+                                                            value="" disabled>Выберите группу оборудования
+                                                    </option>
+                                                    <option class="vs__selected vs__dropdown-toggle"
+                                                            th:each="type : ${T(wns.constants.CategoryTools).values()}"
+                                                            th:value="${type}"
+                                                            th:text="${type.getData()}">
+                                                    </option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row form-creat__half-wrapp">
-                                    <div class="form-creat__half_two-column">
-                                        <div role="group" class="form-group">
-                                            <label class="d-block">Группа</label>
-                                            <select id="select_category_tool" th:field="*{categoryTools}"
-                                                    class="vs__selected-options main-secect__opions form-control">
-                                                <option class="vs__selected vs__dropdown-toggle"
-                                                        value="" disabled>Выберите группу оборудования
-                                                </option>
-                                                <option class="vs__selected vs__dropdown-toggle"
-                                                        th:each="type : ${T(wns.constants.CategoryTools).values()}"
-                                                        th:value="${type}"
-                                                        th:text="${type.getData()}">
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
-
-                            <div class="mt-4 mb-4 col-4 save-btn">
-                                <button type="submit" id="save_estimate"
+                            <div class="mt-4 mb-4 col-6 save-btn">
+                                <button type="submit"
                                         class="btn btn-lg btn-primary btn-primary_save w-100">
                                     <svg class="svg-inline--fa fa-shopping-cart fa-w-18" aria-hidden="true"
                                          focusable="false" data-prefix="fa" data-icon="shopping-cart" role="img"
@@ -77,25 +76,25 @@
                             </div>
                         </form>
 
-                        <div class="btn__under-table_wrapp order-lg-1">
+                        <div class="btn__under-table_wrapp col-6 order-lg-1">
                             <div class="btn__under-table">
                                 <div data-v-e551daac="" class="mb-3 text-right">
                                     <a data-v-e551daac="" href="#"
-                                       class="btn btn-primary min-width-120 btn-add_vidacha grey">Единый список</a>
+                                       class="btn btn-primary width-primary btn-add_vidacha grey">Единый список</a>
                                 </div>
                                 <div data-v-e551daac="" class="mb-3 text-right">
                                     <a data-v-e551daac="" href="#"
-                                       class="btn btn-primary min-width-120 btn-open_vidacha  grey">Просмотр по
+                                       class="btn btn-primary width-primary btn-open_vidacha  grey">Просмотр по
                                         группам</a>
                                 </div>
                                 <div data-v-e551daac="" class="mb-3 text-right">
                                     <a data-v-e551daac="" href="#"
-                                       class="btn btn-primary min-width-120 btn-delate_vidacha grey">Просмотр по
+                                       class="btn btn-primary width-primary btn-delate_vidacha grey">Просмотр по
                                         разделам сметы</a>
                                 </div>
                                 <div data-v-e551daac="" class="mb-3 text-right">
                                     <a data-v-e551daac="" href="#"
-                                       class="btn btn-primary min-width-120 btn-update_vidacha  grey">Сбросить
+                                       class="btn btn-primary width-primary btn-update_vidacha  grey">Сбросить
                                         фильтр</a>
                                 </div>
                             </div>
@@ -132,6 +131,8 @@
                                 </tbody>
                             </table>
                         </div>
+
+
                     </div>
 
                     <div class="pagination-control col-lg-12 order-lg-1">
