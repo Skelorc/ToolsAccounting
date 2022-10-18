@@ -3,8 +3,8 @@
 
 <head class="head">
     <title>Редактирование проекта</title>
-    <div th:replace="fragments/head :: header"></div>
-    <!-- <meta charset="UTF-8">
+    <!-- <div th:replace="fragments/head :: header"></div> -->
+    <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
       <meta name="robots" content="index, follow">
       <meta name="author" content="">
@@ -47,7 +47,7 @@
       <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
       <link rel="manifest" href="/templates/assets/json/manifest.json" th:href="@{/templates/assets/json/manifest.json}">-->
 
-      <!--<link rel="preload" href="../static/fonts/fontawesome/fontawesome-all-css.css" as="style" th:href="@{/fonts/fontawesome/fontawesome-all-css.css}">
+      <link rel="preload" href="../static/fonts/fontawesome/fontawesome-all-css.css" as="style" th:href="@{/fonts/fontawesome/fontawesome-all-css.css}">
       <link rel="preload" href="../static/css/style.css" as="style" th:href="@{/css/style.css}">
       <link rel="preload" href="../static/css/app.css" as="style" th:href="@{/css/app.css}">
       <link rel="preload" href="../static/css/media.css" as="style" th:href="@{/css/media.css}">
@@ -70,7 +70,7 @@
       <script src="/static/js/jquery.js" th:src="@{/js/jquery.js}"></script>
       
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"  th:src="@{/js/jquery.modal.js}"></script>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" /> -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" />
 </head>
 
 <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
@@ -88,36 +88,36 @@
                                     <span class="btn-pimary__groups_title">Проект</span>
                                 </div>
                                 <div class="mb-3 text-right">
-                                    <a href="#" class="btn btn-primary min-width-120 light-blue">Назад</a>
+                                    <a href="#" class="btn btn-primary width light-blue">Назад</a>
                                 </div>
                                 <div class="mb-3 text-right">
-                                    <a href="#" class="btn btn-primary min-width-120 green">Сохранить</a>
+                                    <a href="#" class="btn btn-primary width green">Сохранить</a>
                                 </div>
                                 <div class="mb-3 text-right">
-                                    <a href="#" class="btn btn-primary min-width-120 orange">Обновить</a>
+                                    <a href="#" class="btn btn-primary width orange">Обновить</a>
                                 </div>
                                 <div class="mb-3 text-right">
-                                    <a href="#" class="btn btn-primary min-width-120 light-blue">Журнал</a>
+                                    <a href="#" class="btn btn-primary width light-blue">Журнал</a>
                                 </div>
                                 <div class="mb-3 text-right">
-                                    <a href="#" class="btn btn-primary min-width-120 grey">Документы</a>
+                                    <a href="#" class="btn btn-primary width grey">Документы</a>
                                 </div>
                                 <div class="mb-3 text-right">
-                                    <a href="#" class="btn btn-primary min-width-120 orange">Выдать
+                                    <a href="#" class="btn btn-primary width orange">Выдать
                                         оборудование</a>
                                 </div>
                                 <div class="mb-3 text-right">
-                                    <a href="#" class="btn btn-primary min-width-120 light-blue">Единая
+                                    <a href="#" class="btn btn-primary width light-blue">Единая
                                         система</a>
                                 </div>
                             </div>
 
                             <form th:action="@{/projects/create}" method="post" th:object="${project}">
-                                <div class="bg-white p-3 edit-container d-block">
+                                <div class="bg-white p-3 edit-container d-block col-8 col-md-12">
                                     <div class="row form-creat__half-wrapp">
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Статус</label>
+                                                <label class="d-block size">Статус</label>
                                                 <select id="select_status_project" th:field="*{status}"
                                                         th:value="${project.status}" name="status_tool"
                                                         class="vs__selected-options main-secect__opions form-control">
@@ -133,7 +133,7 @@
                                         </div>
                                         <div class="form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Наименование</label>
+                                                <label class="d-block size">Наименование</label>
                                                 <span>
                                                     <input id="name_project" th:field="*{name}" th:value="${project.name}" required="" name="fromComing" type="text" class="form-control" placeholder="Имя проекта">
                                                 </span>
@@ -141,7 +141,7 @@
                                         </div>
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Начало</label>
+                                                <label class="d-block size">Начало</label>
                                                 <div class="vdpComponent vdpWithInput">
                                                     <input id="date_start" th:field="*{start}"
                                                            th:value="${project.start}" class="form-control"
@@ -151,7 +151,7 @@
                                         </div>
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Окончание</label>
+                                                <label class="d-block size">Окончание</label>
                                                 <div class="vdpComponent vdpWithInput">
                                                     <input id="date_end" th:field="*{end}" th:value="${project.end}"
                                                            class="form-control" type="datetime-local"
@@ -161,7 +161,7 @@
                                         </div>
                                         <div class=" form-creat__half_two-column">
                                             <div class="form-group">
-                                                <label class="d-block">Укажите ссылки на фото через запятую</label>
+                                                <label class="d-block size">Укажите ссылки на фото через запятую</label>
                                                 <textarea id="photos" th:field="*{photos}" th:value="${project.photos}"
                                                           name="photos" class="form-control"
                                                           style="height: 40px;"></textarea>
@@ -171,7 +171,7 @@
                                     <div class="row form-creat__half-wrapp">
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Тип аренды</label>
+                                                <label class="d-block size">Тип аренды</label>
                                                 <select class="vs__selected-options main-secect__opions form-control"
                                                         id="type" th:field="*{typeLease}"
                                                         th:value="${project.typeLease}">
@@ -183,7 +183,7 @@
                                         </div>
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Класс</label>
+                                                <label class="d-block size">Класс</label>
                                                 <select class="vs__selected-options main-secect__opions form-control"
                                                         id="classification" th:field="*{classification}"
                                                         th:value="${project.classification}">
@@ -196,7 +196,7 @@
                                         </div>
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Создан</label>
+                                                <label class="d-block size">Создан</label>
                                                 <div class="vdpComponent vdpWithInput">
                                                     <input id="created" th:field="*{created}"
                                                            th:value="${project.created}" class="form-control"
@@ -206,10 +206,10 @@
                                         </div>
                                         <div class="form-creat__half_two-column">
                                             <div class="mb-3 rent__client__buttons">
-                                                <span class="d-inline-block label-name ">
+                                                <span class="d-inline-block label-name  size">
                                                     Укажите клиента
                                                 </span>
-                                                <a href="/clients" title="Добавить Клиентa" class="btn btn-primary min-width-120 btn-xs">Новый клиент
+                                                <a href="/clients" title="Добавить Клиентa" class="btn btn-primary width btn-xs size">Новый клиент
                                                 </a>
                                             </div>
                                             <select id="client" th:field="*{client}"
@@ -227,16 +227,16 @@
                                     </div>
                                     <div class="form-creat__half_two-column">
                                         <div class="form-group">
-                                            <label class="d-block">Примечание</label>
+                                            <label class="d-block size">Примечание</label>
                                             <textarea id="note" th:field="*{note}" th:value="${project.note}" name="" class="form-control" rows="4"></textarea>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="bg-white p-3 edit-container d-block">
+                                <div class="bg-white p-3 edit-container d-block col-8 col-md-12">
                                     <div class="row form-creat__half-wrapp">
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Итоговая сумма</label>
+                                                <label class="d-block size">Итоговая сумма</label>
                                                 <span>
                                                     <input id="sum" th:field="*{sum}" th:value="${project.sum}"
                                                            type="text" class="form-control" placeholder=""
@@ -246,7 +246,7 @@
                                         </div>
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Себестоимость оборудования</label>
+                                                <label class="d-block size">Себестоимость оборудования</label>
                                                 <span>
                                                     <input id="priceTools" th:field="*{priceTools}"
                                                            th:value="${project.priceTools}" type="text"
@@ -257,7 +257,7 @@
                                         </div>
                                         <div class="form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Скидка на проект</label>
+                                                <label class="d-block size">Скидка на проект</label>
                                                 <span>
                                                     <input id="discountByProject" th:field="*{discountByProject}"
                                                            th:value="${project.discountByProject}" type="text"
@@ -267,7 +267,7 @@
                                         </div>
                                         <div class="form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Сумма со скидкой</label>
+                                                <label class="d-block size">Сумма со скидкой</label>
                                                 <span>
                                                     <input id="sumWithDiscount" th:field="*{sumWithDiscount}"
                                                            th:value="${project.sumWithDiscount}" type="text"
@@ -279,7 +279,7 @@
                                     <div class="row form-creat__half-wrapp">
                                         <div class="form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Итоговая УСН</label>
+                                                <label class="d-block size">Итоговая УСН</label>
                                                 <span>
                                                     <input id="finalSumUsn" th:field="*{finalSumUsn}"
                                                            th:value="${project.finalSumUsn}" type="text"
@@ -290,7 +290,7 @@
                                         </div>
                                         <div class="form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Стоимость работ</label>
+                                                <label class="d-block size">Стоимость работ</label>
                                                 <span>
                                                     <input id="priceWork" th:field="*{priceWork}"
                                                            th:value="${project.priceWork}" type="text"
@@ -300,7 +300,7 @@
                                         </div>
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Оплачено</label>
+                                                <label class="d-block size">Оплачено</label>
                                                 <span>
                                                     <input id="received" th:field="*{received}" th:value="${project.received}" type="text" class="form-control" placeholder="">
                                                 </span>
@@ -308,7 +308,7 @@
                                         </div>
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Расчет неоплаченного остатка</label>
+                                                <label class="d-block size">Расчет неоплаченного остатка</label>
                                                 <span>
                                                     <input id="remainder" th:field="*{remainder}"
                                                            th:value="${project.remainder}" type="text" class="form-control" placeholder="">
@@ -320,10 +320,10 @@
                                 <div class="btn-pimary__groups mt-3 mb-3">
                                     <div class="btn-pimary__groups-wrapper mb-3">
                                         <div class="mb-3 text-right">
-                                            <span class="btn-pimary__groups_title">Действия</span>
+                                            <span class="btn-pimary__groups_title size">Действия</span>
                                         </div>
                                         <div class="mb-3 text-right">
-                                            <button type="submit" class="btn btn-primary min-width-120 orange">Обновить
+                                            <button type="submit" class="btn btn-primary width orange">Обновить
                                                 проект
                                             </button>
                                         </div>
@@ -333,16 +333,16 @@
                                 <div class="btn-pimary__groups-wrapper mb-3 order-lg-1">
                                     <div class="btn__under-table">
                                         <div class="mb-3 text-right">
-                                            <a href="#" class="btn btn-primary min-width-120 grey">Единый список</a>
+                                            <a href="#" class="btn btn-primary width grey">Единый список</a>
                                         </div>
                                         <div class="mb-3 text-right">
-                                            <a href="#" class="btn btn-primary min-width-120 grey">Просмотр по группам</a>
+                                            <a href="#" class="btn btn-primary width grey">Просмотр по группам</a>
                                         </div>
                                         <div class="mb-3 text-right">
-                                            <a href="#" class="btn btn-primary min-width-120 grey">Просмотр по разделам сметы</a>
+                                            <a href="#" class="btn btn-primary width grey">Просмотр по разделам сметы</a>
                                         </div>
                                         <div class="mb-3 text-right">
-                                            <a href="#" class="btn btn-primary min-width-120 grey">Сбросить фильтр</a>
+                                            <a href="#" class="btn btn-primary width grey">Сбросить фильтр</a>
                                         </div>
                                         <div class="custom-ll__header custom-ll__header-zipcode custom-ll__header-zipcode_project">
                                             <div class="custom-ll__header__full show">
@@ -364,7 +364,7 @@
                                 <div class="table__info table__vidacha-sozdat_wrapp mb-3">
                                     <div class="table__vidacha-sozdat">
                                         <table class="in4dr-form">
-                                            <tr>
+                                            <tr >
                                                 <th class="first-th">#</th>
                                                 <th>Наименование</th>
                                                 <th>Штрихкод</th>
@@ -389,17 +389,17 @@
                                                         </span>
                                                     </div>
                                                 </td>
-                                                <td th:utext="${tool.name}"></td>
-                                                <td class="barcode-tool" th:utext="${tool.barcode}"></td>
-                                                <td th:utext="${tool.category.getData()}"></td>
-                                                <td th:utext="${tool.model}"></td>
-                                                <td th:utext="${tool.serialNumber}"></td>
-                                                <td th:utext="${tool.comment}"></td>
-                                                <td th:utext="${tool.characteristics}"></td>
-                                                <td th:utext="${tool.state}"></td>
-                                                <td class="price-tool" th:utext="${tool.costPrice}"></td>
-                                                <td th:utext="${tool.priceSell}"></td>
-                                                <td th:utext="${tool.equip}"></td>
+                                                <td data-label="Наименование" th:utext="${tool.name}"></td>
+                                                <td data-label="Штрихкод" class="barcode-tool" th:utext="${tool.barcode}"></td>
+                                                <td data-label="Группа" th:utext="${tool.category.getData()}"></td>
+                                                <td data-label="Марка\Модель" th:utext="${tool.model}"></td>
+                                                <td data-label="Серийный номер" th:utext="${tool.serialNumber}"></td>
+                                                <td data-label="Коментарий" th:utext="${tool.comment}"></td>
+                                                <td data-label="Характеристики" th:utext="${tool.characteristics}"></td>
+                                                <td data-label="Состояние" th:utext="${tool.state}"></td>
+                                                <td data-label="Цена" class="price-tool" th:utext="${tool.costPrice}"></td>
+                                                <td data-label="Себестоимость" th:utext="${tool.priceSell}"></td>
+                                                <td data-label="Комплект" th:utext="${tool.equip}"></td>
                                             </tr>
                                         </table>
                                     </div>
@@ -408,20 +408,20 @@
                             <!-- Tab content -->
                             <div class="tabcontent mb-3">
                                 <div class="project__creat">
-                                    <div class="wrapper__btn-primary vidacha-sozdach">
+                                    <div class="wrapper__btn-primary vidacha-sozdach col-md-12 col-6">
                                         <div class="mb-3 text-right">
-                                            <span class="btn-pimary__groups_title">Действия с оборудованием</span>
+                                            <span class="btn-pimary__groups_title  size">Действия с оборудованием</span>
                                         </div>
                                         <a style="display: inline-flex; margin-right: 10px;" th:href="@{/tools/add-tool-to-project/{id}/(id=${project.id})}">
                                             <div >
-                                                <input type="submit" class="btn btn-primary min-width-120 light-blue" value="Добавить">
+                                                <input type="submit" class="btn btn-primary width light-blue" value="Добавить">
                                             </div>
                                         </a>
                                         <div style="display: inline-flex; margin-right: 10px;">
-                                            <input id="replaceBtn" type="submit" class="btn btn-primary min-width-120 light-blue" value="Заменить">
+                                            <input id="replaceBtn" type="submit" class="btn btn-primary width light-blue" value="Заменить">
                                         </div>
                                         <div style="display: inline-flex; margin-right: 10px;">
-                                            <input id="removeBtn" type="submit" class="btn btn-primary min-width-120 light-blue" value="Удалить">
+                                            <input id="removeBtn" type="submit" class="btn btn-primary width light-blue" value="Удалить">
                                         </div>
                                         <div style="display: inline-flex; margin-right: 10px;">
                                             <input id="replaceBtnOther" type="submit" class="btn btn-primary min-width-120 light-blue" value="Добавить оборудование из другого проекта">

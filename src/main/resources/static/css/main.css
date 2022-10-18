@@ -1536,4 +1536,46 @@ td>.button:hover {
         display: block;
     }
 }
+
+/* Table */ 
+@media (max-width: 1200px) {
+   table.delivery {
+    border: 0;
+   }
+
+   table.delivery th {
+    display: none;
+   }
+
+   table.delivery tr {
+    margin-bottom: 10px;
+    display: block;
+   }
+
+   table.delivery td:last-child {
+    border-bottom: 0;
+  }
+   
+   table.delivery td {
+    display: block;
+    text-align: right;
+   }
+ 
+
+  table.delivery td {
+    position: relative;
+  }
+
+  table.h-table td {
+    height: 50px;
+  }
+  table.delivery td:before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: bold;
+  }
+}
+
 /*********************/

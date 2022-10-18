@@ -116,11 +116,11 @@
                                 </div>
 
                                 <form th:action="@{/projects/create}" method="post" th:object="${projectDTO}">
-                                <div class="bg-white p-3 edit-container">
+                                <div class="bg-white p-3 edit-container d-block col-8 col-md-12">
                                     <div class="row form-creat__half-wrapp">
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Статус</label>
+                                                <label class="d-block size">Статус</label>
                                                 <select id="select_status_project" th:field="*{status}" name="status_tool" class="vs__selected-options main-secect__opions form-control">
                                                     <option class="vs__selected vs__dropdown-toggle" value="" disabled="">Выберите статус проекта
                                                     </option>
@@ -130,7 +130,7 @@
                                         </div>
                                         <div class="form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Наименование</label>
+                                                <label class="d-block size">Наименование</label>
                                                 <span>
                                                     <input id="name_project" th:field="*{name}" required placeholder="Имя проекта" name="fromComing" type="text" class="form-control" >
                                                 </span>
@@ -138,7 +138,7 @@
                                         </div>
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Начало</label>
+                                                <label class="d-block size">Начало</label>
                                                 <div class="vdpComponent vdpWithInput">
                                                     <input id="date_start" required="required" th:field="*{start}" class="form-control" type="datetime-local" placeholder="дд.мм.гггг">
                                                 </div>
@@ -146,7 +146,7 @@
                                         </div>
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Окончание</label>
+                                                <label class="d-block size">Окончание</label>
                                                 <div class="vdpComponent vdpWithInput">
                                                     <input id="date_end" required="required" th:field="*{end}" class="form-control" type="datetime-local" placeholder="дд.мм.гггг">
                                                 </div>
@@ -154,7 +154,7 @@
                                         </div>
                                         <div class=" form-creat__half_two-column">
                                             <div class="form-group">
-                                                <label class="d-block">Укажите ссылки на фото через запятую</label>
+                                                <label class="d-block size">Укажите ссылки на фото через запятую</label>
                                                 <textarea id="photos" th:field="*{photos}" name="photos" class="form-control" style="height: 40px;"></textarea>
                                             </div>
                                         </div>
@@ -162,7 +162,7 @@
                                     <div class="row form-creat__half-wrapp">
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Тип аренды</label>
+                                                <label class="d-block size">Тип аренды</label>
                                                 <select class="vs__selected-options main-secect__opions form-control" id="type" th:field="*{typeLease}">
                                                     <option class="vs__selected vs__dropdown-toggle" th:each="type: ${T(wns.constants.TypeLease).values()}" th:value="${type}" th:text="${type.getType()}"></option>
                                                 </select>
@@ -170,7 +170,7 @@
                                         </div>
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Класс</label>
+                                                <label class="d-block size">Класс</label>
                                                 <select class="vs__selected-options main-secect__opions form-control" id="classification" th:field="*{classification}">
                                                     <option class="vs__selected vs__dropdown-toggle" th:each="classification: ${T(wns.constants.ClassificationProject).values()}" th:value="${classification}" th:text="${classification.getValue()}"></option>
                                                 </select>
@@ -178,7 +178,7 @@
                                         </div>
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Создан</label>
+                                                <label class="d-block size">Создан</label>
                                                 <div class="vdpComponent vdpWithInput">
                                                     <input id="created" th:field="*{created}" class="form-control" type="datetime-local" placeholder="дд.мм.гггг">
                                                 </div>
@@ -186,10 +186,10 @@
                                         </div>
                                         <div class="form-creat__half_two-column">
                                             <div class="mb-3 rent__client__buttons">
-                                                <span class="d-inline-block label-name ">
+                                                <span class="d-inline-block label-name size">
                                                     Укажите клиента
                                                 </span>
-                                                <a href="/clients/create" title="Добавить Клиентa" class="btn btn-primary min-width-120 btn-xs">Новый клиент
+                                                <a href="/clients/create" title="Добавить Клиентa" class="btn btn-primary min-width-120 btn-xs size">Новый клиент
                                                 </a>
                                             </div>
                                             <select id="client" th:field="*{client_id}" required
@@ -204,16 +204,16 @@
                                     </div>
                                     <div class="form-creat__half_two-column">
                                         <div class="form-group">
-                                            <label class="d-block">Примечание</label>
+                                            <label class="d-block size">Примечание</label>
                                             <textarea id="note" th:field="*{note}" name="" class="form-control" rows="4"></textarea>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="bg-white p-3 edit-container">
+                                <div class="bg-white p-3 edit-container d-block  col-8 col-md-12">
                                     <div class="row form-creat__half-wrapp">
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Итоговая сумма</label>
+                                                <label class="d-block size">Итоговая сумма</label>
                                                 <span>
                                                     <input id="sum" th:field="*{sum}" type="text" class="form-control" placeholder="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');">
                                                 </span>
@@ -221,7 +221,7 @@
                                         </div>
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Себестоимость оборудования</label>
+                                                <label class="d-block size">Себестоимость оборудования</label>
                                                 <span>
                                                     <input id="priceTools" th:field="*{priceTools}" type="text" class="form-control" placeholder="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');">
                                                 </span>
@@ -229,7 +229,7 @@
                                         </div>
                                         <div class="form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Скидка на проект</label>
+                                                <label class="d-block size">Скидка на проект</label>
                                                 <span>
                                                     <input id="discountByProject" th:field="*{discountByProject}" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');" class="form-control" placeholder="">
                                                 </span>
@@ -237,7 +237,7 @@
                                         </div>
                                         <div class="form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Сумма со скидкой</label>
+                                                <label class="d-block size">Сумма со скидкой</label>
                                                 <span>
                                                     <input id="sumWithDiscount" th:field="*{sumWithDiscount}" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');" class="form-control" placeholder="">
                                                 </span>
@@ -247,7 +247,7 @@
                                     <div class="row form-creat__half-wrapp">
                                         <div class="form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Итоговая УСН</label>
+                                                <label class="d-block size">Итоговая УСН</label>
                                                 <span>
                                                     <input id="finalSumUsn" th:field="*{finalSumUsn}" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');" class="form-control" placeholder="">
                                                 </span>
@@ -255,7 +255,7 @@
                                         </div>
                                         <div class="form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Стоимость работ</label>
+                                                <label class="d-block size">Стоимость работ</label>
                                                 <span>
                                                     <input id="priceWork" th:field="*{priceWork}" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');" class="form-control" placeholder="">
                                                 </span>
@@ -263,7 +263,7 @@
                                         </div>
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Оплачено</label>
+                                                <label class="d-block size">Оплачено</label>
                                                 <span>
                                                     <input id="received" th:field="*{received}" type="text" class="form-control" placeholder="">
                                                 </span>
@@ -271,7 +271,7 @@
                                         </div>
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Расчет неоплаченного остатка</label>
+                                                <label class="d-block size">Расчет неоплаченного остатка</label>
                                                 <span>
                                                     <input id="remainder" th:field="*{remainder}" type="text" class="form-control" placeholder="">
                                                 </span>
@@ -284,7 +284,7 @@
                                     <div class="project__creat">
                                         <div class="wrapper__btn-primary vidacha-sozdach">
                                             <div class="mb-3 text-right">
-                                                <span class="btn-pimary__groups_title">Список оборудования</span>
+                                                <span class="btn-pimary__groups_title size">Список оборудования</span>
                                             </div>
                                             <div class="mb-3 text-right">
                                                 <a href="/tools/create" class="btn btn-primary min-width-120 light-blue">Добавить</a>
@@ -329,7 +329,7 @@
 
                                 <div class="table__info table__vidacha-sozdat_wrapp mb-3">
                                     <div class="table__vidacha-sozdat">
-                                        <table class="in4dr-form">
+                                        <table class="in4dr-form  delivery h-table">
                                             <tr>
                                                 <th class="first-th">#</th>
                                                 <th>Наименование</th>
@@ -353,17 +353,17 @@
                                                             th:utext="${toolStat.index}"></span>
                                                     </div>
                                                 </td>
-                                                <td th:utext="${tool.name}"></td>
-                                                <td class="barcode-tool" th:utext="${tool.barcode}"></td>
-                                                <td th:utext="${tool.category.getData()}"></td>
-                                                <td th:utext="${tool.model}"></td>
-                                                <td th:utext="${tool.serialNumber}"></td>
-                                                <td th:utext="${tool.comment}"></td>
-                                                <td th:utext="${tool.characteristics}"></td>
-                                                <td th:utext="${tool.state}"></td>
-                                                <td class="price-tool" th:utext="${tool.costPrice}"></td>
-                                                <td th:utext="${tool.priceSell}"></td>
-                                                <td th:utext="${tool.equip}"></td>
+                                                <td data-label="Наименование" th:utext="${tool.name}"></td>
+                                                <td data-label="Штрихкод" class="barcode-tool" th:utext="${tool.barcode}"></td>
+                                                <td data-label="Группа" th:utext="${tool.category.getData()}"></td>
+                                                <td data-label="Марка\Модель" th:utext="${tool.model}"></td>
+                                                <td data-label="Серийный номер" th:utext="${tool.serialNumber}"></td>
+                                                <td data-label="Комментарий" th:utext="${tool.comment}"></td>
+                                                <td data-label="Характеристики" th:utext="${tool.characteristics}"></td>
+                                                <td data-label="Состояние" th:utext="${tool.state}"></td>
+                                                <td data-label="Цена" class="price-tool" th:utext="${tool.costPrice}"></td>
+                                                <td data-label="Себестоимость" th:utext="${tool.priceSell}"></td>
+                                                <td data-label="Комплект" th:utext="${tool.equip}"></td>
                                             </tr>
                                         </table>
                                     </div>
@@ -372,7 +372,7 @@
                                 <div class="btn-pimary__groups mt-3 mb-3">
                                     <div class="btn-pimary__groups-wrapper mb-3">
                                         <div class="mb-3 text-right">
-                                            <span class="btn-pimary__groups_title">Действия</span>
+                                            <span class="btn-pimary__groups_title size">Действия</span>
                                         </div>
                                         <div class="mb-3 text-right">
                                             <button type="submit" class="btn btn-primary min-width-120 orange">Создать проект и перейти в смету</button>
