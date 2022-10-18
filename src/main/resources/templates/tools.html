@@ -127,7 +127,7 @@ href="https://lk.rentinhand.ru/img/icons/android-icon-192x192.png">
                             </div>
                         </div>
                         <div class="custom-ll__table table-responsive overflow-auto col-lg-12 order-lg-1">
-                            <table class="table table-1190 w-100 in4dr-form">
+                            <table class="table delivery w-table h-table in4dr-form">
                                 <thead>
                                 <tr>
                                     <th class="first-th">#</th>
@@ -169,58 +169,58 @@ href="https://lk.rentinhand.ru/img/icons/android-icon-192x192.png">
                                                   th:utext="${toolStat.index+1}"></span>
                                         </div>
                                     </td>
-                                    <td><a class="tools-td-text table-td-text tool_name"
+                                    <td data-label="Наименование"><a class="tools-td-text table-td-text tool_name"
                                            th:href="@{/tools/edit/{id}/(id=${tool.id})}"
                                            th:utext="${tool.name}"></a></td>
-                                    <td><span class="tools-td-text table-td-text tool_category"
+                                    <td data-label="Группа"><span class="tools-td-text table-td-text tool_category"
                                               th:utext="${tool.category.getData()}"></span></td>
-                                    <td><span class="tools-td-text table-td-text tool_barcode"
+                                    <td data-label="Штрихкод"><span class="tools-td-text table-td-text tool_barcode"
                                               th:utext="${tool.barcode}"></span></td>
-                                    <td><span class="tools-td-text table-td-text tool_estimateName"
+                                    <td data-label="В смете"><span class="tools-td-text table-td-text tool_estimateName"
                                               th:utext="${tool.estimateName}"></span></td>
-                                    <td><span class="tools-td-text table-td-text tool_model"
+                                    <td data-label="Марка\Модель"><span class="tools-td-text table-td-text tool_model"
                                               th:utext="${tool.model}"></span></td>
-                                    <td><span class="tools-td-text table-td-text tool_serialNumber"
+                                    <td data-label="Серийный номер"><span class="tools-td-text table-td-text tool_serialNumber"
                                               th:utext="${tool.serialNumber}"></span></td>
-                                    <td><span class="tools-td-text table-td-text tool_comment"
+                                    <td data-label="Комментарий"><span class="tools-td-text table-td-text tool_comment"
                                               th:utext="${tool.comment}"></span></td>
-                                    <td><span class="tools-td-text table-td-text tool_characteristics"
+                                    <td data-label="Характеристики"><span class="tools-td-text table-td-text tool_characteristics"
                                               th:utext="${tool.characteristics}"></span></td>
-                                    <td><span class="tools-td-text table-td-text tool_state"
+                                    <td data-label="Состояние"><span class="tools-td-text table-td-text tool_state"
                                               th:utext="${tool.state}"></span></td>
-                                    <td><span class="tools-td-text table-td-text tool_priceByDay"
+                                    <td data-label="Цена аренды"><span class="tools-td-text table-td-text tool_priceByDay"
                                               th:utext="${tool.priceByDay}"></span></td>
-                                    <td><span class="tools-td-text table-td-text tool_costPrice"
+                                    <td data-label="Себестоимость"><span class="tools-td-text table-td-text tool_costPrice"
                                               th:utext="${tool.costPrice}"></span></td>
-                                    <td><span class="tools-td-text table-td-text tool_equip"
+                                    <td data-label="Комплект"><span class="tools-td-text table-td-text tool_equip"
                                               th:utext="${tool.equip}"></span></td>
-                                    <td><span class="tools-td-text table-td-text tool_amount"
+                                    <td data-label="Кол-во"><span class="tools-td-text table-td-text tool_amount"
                                               th:utext="${tool.amount}"></span></td>
-                                    <td><span class="tools-td-text table-td-text tool_status"
+                                    <td data-label="Статус"><span class="tools-td-text table-td-text tool_status"
                                               th:utext="${tool.status.getValue()}"></span></td>
-                                    <td><span class="tools-td-text table-td-text tool_numberWorkingShifts"
+                                    <td data-label="Кол-во смен"><span class="tools-td-text table-td-text tool_numberWorkingShifts"
                                               th:utext="${tool.numberWorkingShifts}"></span></td>
-                                    <td><span class="tools-td-text table-td-text tool_project"
+                                    <td data-label="Текущий проект"><span class="tools-td-text table-td-text tool_project"
                                               th:utext="${tool.project}"></span></td>
-                                    <td><span class="tools-td-text table-td-text tool_incomeFromTools"
+                                    <td data-label="Доход с оборудования"><span class="tools-td-text table-td-text tool_incomeFromTools"
                                               th:utext="${tool.incomeFromTools}"></span></td>
-                                    <td><span class="tools-td-text table-td-text tool_priceSell"
+                                    <td data-label="Цена продажи"><span class="tools-td-text table-td-text tool_priceSell"
                                               th:utext="${tool.priceSell}"></span></td>
-                                    <td><span class="tools-td-text table-td-text tool_incomeSales"
+                                    <td data-label="Доход с продажи"><span class="tools-td-text table-td-text tool_incomeSales"
                                               th:utext="${tool.incomeSales}"></span></td>
-                                    <td><span class="tools-td-text table-td-text tool_incomeInvestorProcents"
+                                    <td data-label="Доход с инвестора (%)"><span class="tools-td-text table-td-text tool_incomeInvestorProcents"
                                               th:utext="${tool.incomeInvestorProcents}"></span></td>
-                                    <td><span class="tools-td-text table-td-text tool_incomeInvestor"
+                                    <td data-label="Доход с инвестора"><span class="tools-td-text table-td-text tool_incomeInvestor"
                                               th:utext="${tool.incomeInvestor}"></span></td>
-                                    <td><span class="tools-td-text table-td-text tool_repairAmount"
+                                    <td data-label="Сумма ремонта"><span class="tools-td-text table-td-text tool_repairAmount"
                                               th:utext="${tool.repairAmount}"></span></td>
-                                    <td><span class="tools-td-text table-td-text tool_priceSublease"
+                                    <td data-label="Цена за субаренду"><span class="tools-td-text table-td-text tool_priceSublease"
                                               th:utext="${tool.priceSublease}"></span></td>
-                                    <td><span class="tools-td-text table-td-text tool_paymentSublease"
+                                    <td data-label="Плата за субаренду"><span class="tools-td-text table-td-text tool_paymentSublease"
                                               th:utext="${tool.paymentSublease}"></span></td>
-                                    <td><span class="tools-td-text table-td-text tool_incomeAdditional"
+                                    <td data-label="Доп. доход"><span class="tools-td-text table-td-text tool_incomeAdditional"
                                               th:utext="${tool.incomeAdditional}"></span></td>
-                                    <td>
+                                    <td data-label="Фото">
                                         <span class="tool_photos">
                                             <span class="column-table__photo-mini" th:each="photo : ${tool.photos}">
                                                 <a rel="modal:open" th:href="${'#'+photoStat.count+tool.id}">

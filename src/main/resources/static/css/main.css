@@ -1569,6 +1569,11 @@ td>.button:hover {
   table.h-table td {
     height: 50px;
   }
+  table.w-table {
+    width: 100%;
+  }
+ 
+
   table.delivery td:before {
     content: attr(data-label);
     position: absolute;
@@ -1578,4 +1583,29 @@ td>.button:hover {
   }
 }
 
+@media (max-width: 768px) {
+    table.w-table {
+        width: 70%;
+      }
+
+      table.delivery td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-weight: bold;
+        font-size: 12px;
+      }
+
+      table.delivery td span{
+        font-size: 12px;
+      }
+}
+
+
+/* Header search */
+
+.header__search input{
+    margin-top: 0;
+}
 /*********************/
