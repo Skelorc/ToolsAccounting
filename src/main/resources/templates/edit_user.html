@@ -3,6 +3,7 @@
 <head class="head">
     <title>Редактирование пользователя</title>
     <div th:replace="fragments/head :: header"></div>
+
 </head>
 
     <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
@@ -23,14 +24,14 @@
                                         </h2>
                                     </div>
                                     <div class="col-12 form-creat mb-3 admin-panel">
-                                        <div class="bg-white p-3 edit-container">
+                                        <div class="bg-white p-3 edit-container d-block col-8 col-md-12">
                                             <div class="row admin-panel-wrapp">
                                                 <div class="col-6 admin-panel__input-wrapp">
-                                                        <h2>Редактирование пользователя</h2>
+                                                        <h2 class="font-size">Редактирование пользователя</h2>
                                                         <form th:action="@{/admin-panel/edit/{id}(id=${user.id})}" method="post" th:object="${user}">
                                                         <div class="admin-panel__input-box">
                                                             <div role="group" class="form-group">
-                                                                <label class="d-block">Логин пользователя</label>
+                                                                <label class="d-block size">Логин пользователя</label>
                                                                 <span>
                                                                     <input class="form-control" type="text" placeholder="Enter Username" th:field="*{username}" th:value="${user.getUsername()}">
                                                                 </span>
@@ -38,7 +39,7 @@
                                                         </div>
                                                         <div class="admin-panel__input-box">
                                                             <div role="group" class="form-group">
-                                                                <label class="d-block">Обновить пароль пользователя</label>
+                                                                <label class="d-block size">Обновить пароль пользователя</label>
                                                                 <span>
                                                                     <input class="form-control" type="password" placeholder="Enter Password" th:field="*{password}" th:value="${user.getPassword()}">
                                                                 </span>
@@ -46,7 +47,7 @@
                                                         </div>
                                                         <div class="admin-panel__input-box">
                                                             <div role="group" class="form-group">
-                                                                <label class="d-block">Обновить ФИО пользователя</label>
+                                                                <label class="d-block size">Обновить ФИО пользователя</label>
                                                                 <span>
                                                                     <input class="form-control" type="text" placeholder="Введите ФИО" th:field="*{fullName}" th:value="${user.getFullName()}">
                                                                 </span>
@@ -70,9 +71,9 @@
                                     </div>
                                 </div>
                                 <div class="tab-content">
-                                    <div class="col-12 bg-white p-3 edit-container">
+                                    <div class="col-md-12 col-8 bg-white p-3 edit-container d-block">
                                         <div class="text-center">
-                                            <h1 class="display-6">Хотите удалить этого пользователя?</h1>
+                                            <h1 class="display-6 font-size">Хотите удалить этого пользователя?</h1>
                                             <form th:method="post" th:action="@{/admin-panel/delete/{id}(id=${user.getId()})}">
                                                 <input type="submit" value="Удалить этого пользователя из базы данных!">
                                             </form>

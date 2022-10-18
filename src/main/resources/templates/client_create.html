@@ -4,6 +4,8 @@
 <head class="head">
     <title th:text="${client.typeClient != null} ? 'Редактирование клиента' : 'Создать нового клиента'"></title>
     <div th:replace="fragments/head :: header"></div>
+
+ 
     
 </head>
 
@@ -17,7 +19,7 @@
                     <main class="wrapper wrapper-content border-bottom">
                         <div class="b-overlay-wrap position-relative">
                             <div class="tab-content">
-                                <div class="edit-container__header bg-white p-3 edit-container d-block col-6 col-md-12 col-lg-12 col-xl-12">
+                                <div class="edit-container__header bg-white p-3 edit-container d-block col-8 col-md-12 col-lg-12 col-xl-12">
                                     <div class="col-12 col-md-6 edit-container__header-select mb-3">
                                         <h3 class="my-3">
                                             Тип клиента
@@ -60,14 +62,14 @@
                                 </div>
 
                                 <div id="individual" class="form-creat mb-3 col-12">
-                                    <div class="bg-white p-3 edit-container d-block col-6 col-md-12 col-lg-12 col-xl-12">
+                                    <div class="bg-white p-3 edit-container d-block col-8 col-md-12 col-lg-12 col-xl-12">
                                         <div class="row form-creat__half-wrapp form-creat__half-wrapp_client">
                                             <div class="col-12 form-creat__half-title">
                                                 <h3 class="my-3 form-creat__half-title_text">
                                                     Основное
                                                 </h3>
                                             </div>
-                                            <div class="col-12 input-flex">
+                                            
                                                 <div class="col-12 form-creat__half">
                                                     <div role="group" class="form-group">
                                                         <label class="d-block size">ФИО/Наименование</label>
@@ -83,10 +85,10 @@
                                                         </span>
                                                     </div>
                                                 </div>
-                                            </div>
+                                        
                                         </div>
                                     </div>
-                                    <div class="bg-white p-3 edit-container d-block col-6 col-md-12 col-lg-12 col-xl-12">
+                                    <div class="bg-white p-3 edit-container d-block col-8 col-md-12 col-lg-12 col-xl-12">
                                         <div class="row form-creat__half-wrapp form-creat__half-wrapp_client">
                                             <div class="col-12 form-creat__half-title">
                                                 <h3 class="my-3 form-creat__half-title_text">
@@ -118,7 +120,7 @@
                                             
                                         </div>
                                     </div>
-                                    <div class="bg-white p-3 edit-container d-block col-6 col-md-12 col-lg-12 col-xl-12">
+                                    <div class="bg-white p-3 edit-container d-block col-8 col-md-12 col-lg-12 col-xl-12">
                                         <div class="row form-creat__half-wrapp form-creat__half-wrapp_client">
                                             <div class="col-12 form-creat__half-title">
                                                 <h3 class="my-3 form-creat__half-title_text">
@@ -192,7 +194,7 @@
                                             
                                         </div>
                                     </div>
-                                    <div class="bg-white p-3 edit-container d-block  col-6 col-md-12 col-lg-12 col-xl-12">
+                                    <div class="bg-white p-3 edit-container d-block  col-8 col-md-12 col-lg-12 col-xl-12">
                                         <div class="row form-creat__half-wrapp form-creat__half-wrapp_client">
                                             <div class="col-12 form-creat__half-title">
                                                 <h3 class="my-3 form-creat__half-title_text">
@@ -608,7 +610,7 @@
                             </div>
                             <div class="table__info table__vidacha-sozdat_wrapp mb-3">
                                 <div class="table__vidacha-sozdat">
-                                    <table class="in4dr-form">
+                                    <table class="in4dr-form delivery w-table h-table">
                                         <tr>
                                             <th>Проект</th>
                                             <th>Клиент</th>
@@ -621,15 +623,15 @@
                                             <th>Фотографии отгрузки</th>
                                         </tr>
                                         <tr>
-                                            <td class="column-table"></td>
-                                            <td>Будут данные</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td data-label="Проект" class="column-table"></td>
+                                            <td data-label="Клиент">Будут данные</td>
+                                            <td data-label="Телефон"></td>
+                                            <td data-label="Начало аренды"></td>
+                                            <td data-label="Окончание аренды"></td>
+                                            <td data-label="Дата и время создания"></td>
+                                            <td data-label="Сотрудник"></td>
+                                            <td data-label="Примечание"></td>
+                                            <td data-label="Фотографии отгрузки"></td>
                                         </tr>
                                     </table>
                                 </div>

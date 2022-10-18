@@ -931,6 +931,7 @@ table.estimate th {
 
 .form-creat__itog {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .dialog__yur-lico_total {
@@ -1034,6 +1035,7 @@ table.estimate th {
     margin-right: 15px;
     line-height: 30px;
 }
+
 
 .form-creat__itog-title{
     font-size: 14px;
@@ -1603,6 +1605,24 @@ td>.button:hover {
 }
 
 
+@media (min-width: 768px) {
+    .mb-input {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    
+    .mb-title {
+        margin-top: 0;
+    }
+}
+.mb-input {
+    margin-top: -30px;
+    margin-bottom: 20px;
+}
+
+.mb-title {
+    margin-top: -20px;
+}
 /* Header search */
 
 .header__search input{

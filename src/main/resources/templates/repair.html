@@ -5,6 +5,7 @@
 <head class="head">
     <title>Ремонт</title>
     <div th:replace="fragments/head :: header"></div>
+    
 </head>
 
 <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
@@ -34,7 +35,7 @@
                         </div>
 
                         <div class="custom-ll__table table-responsive">
-                            <table class="table table-1190 w-100 in4dr-form">
+                            <table class="table delivery w-table h-table in4dr-form">
                                 <thead>
                                 <tr>
                                     <th class="first-th">№</th>
@@ -53,24 +54,24 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="status : ${list_statuses}">
-                                    <td class="column-table">
+                                    <td data-label="№" class="column-table">
                                         <div class="column-table_checkbox-wrapp">
                                             <input class="column-table_checkbox" type="checkbox" id="" name=""><span
                                                 class="tools-td-text table-td-text column-table_checkbox-number"
                                                 th:utext="${statusStat.index+1}"></span>
                                         </div>
                                     </td>
-                                    <td th:utext="${status.created}"></td>
-                                    <td th:utext="${status.tools.name}"></td>
-                                    <td th:utext="${status.executor}"></td>
-                                    <td th:utext="${status.phone_number}"></td>
-                                    <td th:utext="${status.start}"></td>
-                                    <td th:utext="${status.end}"></td>
-                                    <td th:utext="${status.priceRepair}"></td>
-                                    <td th:utext="${status.employee}"></td>
-                                    <td th:utext="${status.note}"></td>
-                                    <td th:utext="${status.statusTools.getValue()}"></td>
-                                    <td>
+                                    <td data-label="Дата создания" th:utext="${status.created}"></td>
+                                    <td data-label="Название оборудования" th:utext="${status.tools.name}"></td>
+                                    <td data-label="Исполнитель" th:utext="${status.executor}"></td>
+                                    <td data-label="Телефон" th:utext="${status.phone_number}"></td>
+                                    <td data-label="Начало ремонта" th:utext="${status.start}"></td>
+                                    <td data-label="Окончание ремонта" th:utext="${status.end}"></td>
+                                    <td data-label="Всего цена ремонта" th:utext="${status.priceRepair}"></td>
+                                    <td data-label="Сотрудник" th:utext="${status.employee}"></td>
+                                    <td data-label="Примечание" th:utext="${status.note}"></td>
+                                    <td data-label="Статус" th:utext="${status.statusTools.getValue()}"></td>
+                                    <td data-label="Фотографии">
                                         <span class="column-table__photo-mini" th:each="photo : ${status.photos}">
                                             <a  rel="modal:open"  th:href="${'#'+photoStat.count +''+ status.tools.id}">
                                                 <img class="column-table__photo-mini_img" th:src="${photo}">

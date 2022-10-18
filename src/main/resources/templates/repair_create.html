@@ -5,6 +5,9 @@
 <head class="head">
     <title>Ремонт-Создать</title>
     <div th:replace="fragments/head :: header"></div>
+
+    
+    
 </head>
 
 <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
@@ -34,7 +37,7 @@
 
                             <div class="tab-content">
                                 <div class="form-creat mb-3 col-12">
-                                    <div class="bg-white p-3 edit-container">
+                                    <div class="bg-white p-3 edit-container d-block col-8 col-md-12">
                                         <div class="row form-creat__half-wrapp">
                                             <div class="form-creat__half_two-column">
                                                 <div role="group" class="form-group">
@@ -120,7 +123,7 @@
                         </div>
 
                         <div class="custom-ll__table table-responsive mb-3">
-                            <table class="table table-1480 w-100 in4dr-form">
+                            <table class="table h-table delivery w-table in4dr-form">
                                 <tbody>
                                 <thead>
                                 <tr>
@@ -149,19 +152,19 @@
                                                 <input type="hidden" th:name="tools_id_with_prices[__${itemStat.index}__].id" th:value="${tool.id}">
                                             </div>
                                         </td>
-                                        <td th:utext="${tool.name}"></td>
-                                        <td class="barcode-tool" th:utext="${tool.barcode}"></td>
-                                        <td th:utext="${tool.category.getData()}"></td>
-                                        <td th:utext="${tool.model}"></td>
-                                        <td th:utext="${tool.serialNumber}"></td>
-                                        <td th:utext="${tool.comment}"></td>
-                                        <td th:utext="${tool.characteristics}"></td>
-                                        <td th:utext="${tool.state}"></td>
-                                        <td th:utext="${tool.costPrice}"></td>
-                                        <td th:utext="${tool.priceSell}"></td>
-                                        <td th:utext="${tool.equip}"></td>
+                                        <td data-label="Наименование" th:utext="${tool.name}"></td>
+                                        <td data-label="Штрихкод" class="barcode-tool" th:utext="${tool.barcode}"></td>
+                                        <td data-label="Группа" th:utext="${tool.category.getData()}"></td>
+                                        <td data-label="Марка\Модель" th:utext="${tool.model}"></td>
+                                        <td data-label="Серийный номер" th:utext="${tool.serialNumber}"></td>
+                                        <td data-label="Комментарий" th:utext="${tool.comment}"></td>
+                                        <td data-label="Характеристики" th:utext="${tool.characteristics}"></td>
+                                        <td data-label="Состояние" th:utext="${tool.state}"></td>
+                                        <td data-label="Цена" th:utext="${tool.costPrice}"></td>
+                                        <td data-label="Себестоимость" th:utext="${tool.priceSell}"></td>
+                                        <td data-label="Комплект" th:utext="${tool.equip}"></td>
                                         <td></td>
-                                        <td class="td-whith-input">
+                                        <td data-label="Цена ремонта" class="td-whith-input">
                                             <input th:field="*{tools_id_with_prices[__${itemStat.index}__].price}" class="form-control input-without-style repair_price" type="text" placeholder="Введите цену" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');" aria-describedby="item-human-passport_serial">
                                         </td>
                                     </tr>
