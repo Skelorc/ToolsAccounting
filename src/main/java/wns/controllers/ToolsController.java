@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import wns.constants.EstimateSection;
 import wns.constants.Messages;
 import wns.constants.StatusTools;
+import wns.dto.EstimateNameDTO;
 import wns.dto.IdentifiersStatus;
 import wns.dto.ToolsDTO;
 import wns.entity.Tools;
@@ -40,6 +41,7 @@ public class ToolsController {
         Page<ToolsDTO> paginated_list = toolsService.findPaginated(page, size, filter);
         pageableService.addPageNumbersToModel(paginated_list, model);
         model.addAttribute("list_tools", paginated_list);
+        model.addAttribute("estimateDTO", new EstimateNameDTO());
         return "tools";
     }
 

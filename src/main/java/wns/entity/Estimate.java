@@ -48,4 +48,14 @@ public class Estimate {
     public int hashCode() {
         return Objects.hash(getId(), getStart(), getEnd(), getCount_shifts());
     }
+
+    @Override
+    public String toString() {
+        return "Estimate{" +
+                "id=" + id +
+                ", start=" + start +
+                ", end=" + end +
+                ", count_shifts=" + count_shifts +
+                '}';
+    }
 }

@@ -3,6 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head class="head">
+<<<<<<< HEAD
     <title>Смета</title>
     <!-- <div th:replace="fragments/head :: header"></div> -->
     <meta charset="UTF-8">
@@ -145,6 +146,10 @@ href="https://lk.rentinhand.ru/img/icons/android-icon-192x192.png">
 <!-- jQuery Modal -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"  th:src="@{/js/jquery.modal.js}"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" />
+=======
+    <title>Ассоциативный массив</title>
+    <div th:replace="fragments/head :: header"></div>
+>>>>>>> 8be2271712b6f3bdc26c9e31972b2ddc764f83b9
 </head>
 
 <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
@@ -153,14 +158,14 @@ href="https://lk.rentinhand.ru/img/icons/android-icon-192x192.png">
         <div th:insert="fragments/menu_sidebar.html"></div>
         <div class="b-overlay-wrap position-relative w-100" size="sm">
             <div class="rih-page-wrapper">
-                <nav  role="navigation" class="navbar navbar-admin navbar-fixed-top"
+                <nav data-v-59295fda="" role="navigation" class="navbar navbar-admin navbar-fixed-top"
                      th:insert="fragments/header_logout.html"></nav>
                 <main class="wrapper wrapper-content border-bottom">
                     <div class="b-overlay-wrap position-relative">
                         <div class="btn-pimary__groups mt-3 mb-3">
                             <div class="btn-pimary__groups-wrapper vidacha-sozdach mb-3">
                                 <div class="mb-3 text-right">
-                                    <span class="btn-pimary__groups_title">Смета</span>
+                                    <span class="btn-pimary__groups_title">Ассоциативный массив</span>
                                 </div>
                             </div>
                         </div>
@@ -168,65 +173,41 @@ href="https://lk.rentinhand.ru/img/icons/android-icon-192x192.png">
                             <a data-v-e551daac="" href="/estimate/create" class="btn btn-primary min-width-120 btn-add_vidacha grey">Смета создать</a>
                         </div>
 
-                        <div class="btn-pimary__groups-wrapper order-lg-1">
-                            <div class="btn-pimary__groups-wrapper btn__under-table">
-                                <div data-v-e551daac="" class="mb-3 text-right">
-                                    <a data-v-e551daac="" href="#" class="btn btn-primary min-width-120 grey">Без
-                                        скидки</a>
-                                </div>
-                                <div data-v-e551daac="" class="mb-3 text-right">
-                                    <a data-v-e551daac="" href="#" class="btn btn-primary min-width-120 grey">Скидка на
-                                        оборудование</a>
-                                </div>
-                                <div data-v-e551daac="" class="mb-3 text-right">
-                                    <a data-v-e551daac="" href="#" class="btn btn-primary min-width-120 grey">Скидка по
-                                        каждому оборудованию</a>
-                                </div>
-                                <div data-v-e551daac="" class="mb-3 text-right">
-                                    <a data-v-e551daac="" href="#" class="btn btn-primary min-width-120 grey">Рсчет
-                                        скидки из скидки по проекту</a>
-                                </div>
-                                <div data-v-e551daac="" class="mb-3 text-right">
-                                    <a data-v-e551daac="" href="#" class="btn btn-primary min-width-120 grey">Расчет
-                                        скидки из суммы УСН</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- <form th:action="@{/estimate}" method="post" th:object="${estimateDTO}">
-                            <div class="bg-white p-3 edit-container">
-                                <div class="row form-creat__half-wrapp">
-                                    <div class=" form-creat__half_two-column">
-                                        <div role="group" class="form-group">
-                                            <label class="d-block">Наименование в смете</label>
-                                            <div class="vdpComponent vdpWithInput">
-                                                <input th:field="*{name}" required="" type="text"
-                                                       placeholder="Наименование в смете">
+                        <form class="form-width" th:action="@{/estimate}" method="post" >
+                            <div class="row">
+                                <div class="bg-white p-3 col-8 col-md-12 col-sm-6 edit-container">
+                                    <div class="row form-creat__half-wrapp">
+                                        <div class=" form-creat__half_two-column col-12">
+                                            <div role="group col-12" class="form-group">
+                                                <label class="d-block font">Наименование в смете</label>
+                                                <div class="vdpComponent vdpWithInput">
+                                                    <input  required="" type="text"
+                                                            placeholder="Наименование в смете">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row form-creat__half-wrapp">
+                                        <div class="form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block font">Группа</label>
+                                                <select id="select_category_tool"
+                                                        class="vs__selected-options main-secect__opions form-control">
+                                                    <option class="vs__selected vs__dropdown-toggle"
+                                                            value="" disabled>Выберите группу оборудования
+                                                    </option>
+                                                    <option class="vs__selected vs__dropdown-toggle"
+                                                            th:each="type : ${T(wns.constants.CategoryTools).values()}"
+                                                            th:value="${type}"
+                                                            th:text="${type.getData()}">
+                                                    </option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row form-creat__half-wrapp">
-                                    <div class="form-creat__half_two-column">
-                                        <div role="group" class="form-group">
-                                            <label class="d-block">Группа</label>
-                                            <select id="select_category_tool" th:field="*{categoryTools}"
-                                                    class="vs__selected-options main-secect__opions form-control">
-                                                <option class="vs__selected vs__dropdown-toggle"
-                                                        value="" disabled>Выберите группу оборудования
-                                                </option>
-                                                <option class="vs__selected vs__dropdown-toggle"
-                                                        th:each="type : ${T(wns.constants.CategoryTools).values()}"
-                                                        th:value="${type}"
-                                                        th:text="${type.getData()}">
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
-
-                            <div class="mt-4 mb-4 col-4 save-btn">
+                            <div class="mt-4 mb-4 col-6 save-btn">
                                 <button type="submit"
                                         class="btn btn-lg btn-primary btn-primary_save w-100">
                                     <svg class="svg-inline--fa fa-shopping-cart fa-w-18" aria-hidden="true"
@@ -238,34 +219,34 @@ href="https://lk.rentinhand.ru/img/icons/android-icon-192x192.png">
                                     Сохранить
                                 </button>
                             </div>
-                        </form> -->
+                        </form>
 
-                        <!-- <div class="btn__under-table_wrapp order-lg-1">
+                        <div class="btn__under-table_wrapp col-6 order-lg-1">
                             <div class="btn__under-table">
                                 <div data-v-e551daac="" class="mb-3 text-right">
                                     <a data-v-e551daac="" href="#"
-                                       class="btn btn-primary min-width-120 btn-add_vidacha grey">Единый список</a>
+                                       class="btn btn-primary width-primary btn-add_vidacha grey">Единый список</a>
                                 </div>
                                 <div data-v-e551daac="" class="mb-3 text-right">
                                     <a data-v-e551daac="" href="#"
-                                       class="btn btn-primary min-width-120 btn-open_vidacha  grey">Просмотр по
+                                       class="btn btn-primary width-primary btn-open_vidacha  grey">Просмотр по
                                         группам</a>
                                 </div>
                                 <div data-v-e551daac="" class="mb-3 text-right">
                                     <a data-v-e551daac="" href="#"
-                                       class="btn btn-primary min-width-120 btn-delate_vidacha grey">Просмотр по
+                                       class="btn btn-primary width-primary btn-delate_vidacha grey">Просмотр по
                                         разделам сметы</a>
                                 </div>
                                 <div data-v-e551daac="" class="mb-3 text-right">
                                     <a data-v-e551daac="" href="#"
-                                       class="btn btn-primary min-width-120 btn-update_vidacha  grey">Сбросить
+                                       class="btn btn-primary width-primary btn-update_vidacha  grey">Сбросить
                                         фильтр</a>
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
 
-                        <!-- <div class="custom-ll__table table-responsive">
-                            <table class="table table-1190 w-100 in4dr-form">
+                        <div class="custom-ll__table table-responsive">
+                            <table class="table delivery w-table h-table in4dr-form">
                                 <thead>
                                 <tr class="text-center">
                                     <th class="first-th">№</th>
@@ -276,28 +257,30 @@ href="https://lk.rentinhand.ru/img/icons/android-icon-192x192.png">
                                 </thead>
                                 <tbody class="text-center">
                                 <tr th:each="estimateName : ${list_estimate}">
-                                    <td class="align-middle">
+                                    <td data-label="№" class="align-middle">
                                         <h1 class="display-6" style="font-size: medium"
                                             th:utext="${estimateNameStat.index+1}"></h1>
                                     </td>
-                                    <td class="align-middle"><a class="nav-link"
+                                    <td data-label="Наименование в смете" class="align-middle"><a class="nav-link"
                                                                 style="font-size: medium"
                                                                 th:utext="${estimateName.name}"></a></td>
-                                    <td class="align-middle"><h1 class="display-6" style="font-size: medium"
+                                    <td data-label="Группа" class="align-middle"><h1 class="display-6" style="font-size: medium"
                                                                  th:utext="${estimateName.categoryTools.getData()}"></h1>
                                     </td>
-                                    <td class="align-middle">
+                                    <td data-label="Удалить" style="margin-bottom: 10px;" class="align-middle">
                                         <form th:action="@{/estimate/delete/{id}/(id=${estimateName.getId()})}" th:method="delete">
-                                        <input class="btn btn-primary min-width-120 red" type="submit" id="delete_client" th:value="Удалить">
+                                            <input class="btn btn-primary width red" type="submit" id="delete_client" th:value="Удалить">
                                         </form>
                                     </td>
                                 </tr>
                                 </tbody>
                             </table>
-                        </div> -->
+                        </div>
+
+
                     </div>
 
-                    <!-- <div class="pagination-control col-lg-12 order-lg-1">
+                    <div class="pagination-control col-lg-12 order-lg-1">
                         <nav aria-label="Навигация по страницам">
                             <ul class="pagination">
                                 <li class="page-item" th:if="${list_estimate.totalPages > 0}"
@@ -307,7 +290,7 @@ href="https://lk.rentinhand.ru/img/icons/android-icon-192x192.png">
                                 </li>
                             </ul>
                         </nav>
-                    </div> -->
+                    </div>
                 </main>
                 <div th:insert="fragments/footer.html"></div>
             </div>
