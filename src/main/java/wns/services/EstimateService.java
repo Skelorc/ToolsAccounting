@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import wns.constants.EstimateSection;
+import wns.constants.Messages;
 import wns.dto.ToolsEstimateDTO;
 import wns.entity.Estimate;
 import wns.entity.Project;
@@ -59,5 +60,20 @@ public class EstimateService implements MainService{
 
     public void delete(Estimate estimate) {
         estimateRepo.delete(estimate);
+    }
+
+    public Estimate findById(long id) {
+        return estimateRepo.findById(id).get();
+    }
+
+    public Messages updateEstimate(long id, List<ToolsEstimate> estimateList) {
+        Estimate estimate = findById(id);
+        estimate.getToolsEstimates().clear();
+        estimateRepo.save(estimate);
+        for (ToolsEstimate x : estimateList) {
+            x.setEstimate(estimate);
+            toolsEstimateService.save(x);
+        }
+        return Messages.OK;
     }
 }

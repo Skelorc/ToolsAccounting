@@ -31,4 +31,9 @@ public enum StatusTools {
     public String toString() {
         return this.name();
     }
+
+    public String getData()
+    {
+        return this.color + " " + this.value;
+    }
 }

@@ -9,7 +9,8 @@ public enum EstimateSection {
     LENSES(5, "Оптика"),
     FILTERS(6, "Фильтры"),
     OPTIONAL_EQUIPMENT(7, "Дополнительное оборудование"),
-    SERVICE_AND_TRANSPORT(8, "Сервис и транспорт");
+    SERVICE_AND_TRANSPORT(8, "Сервис и транспорт"),
+    SERVICE(9, "Обслуживание");
 
     private final int number;
     private final String value;
@@ -27,5 +28,10 @@ public enum EstimateSection {
     public String getValue()
     {
         return this.value;
+    }
+
+    public Integer getNumber()
+    {
+        return this.number;
     }
 }
