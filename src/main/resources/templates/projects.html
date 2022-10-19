@@ -3,8 +3,8 @@
 
 <head class="head">
     <title>Выдача</title>
-    <div th:replace="fragments/head :: header"></div>
-    <!-- <meta charset="UTF-8">
+    <!-- <div th:replace="fragments/head :: header"></div> -->
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="robots" content="index, follow">
     <meta name="author" content="">
@@ -76,7 +76,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"
         th:src="@{/js/jquery.modal.js}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"
-        th:href="@{/css/jquery.modal.css}" /> -->
+        th:href="@{/css/jquery.modal.css}" />
 </head>
 
 <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
@@ -107,10 +107,10 @@
                     </nav>
                     <main class="wrapper wrapper-content border-bottom">
                         <div data-v-e551daac="">
-                            <div class="wrapper__btn-primary col-lg-12 col-xl-12 col-md-6 col-sm-12 col-6">
+                            <div class=" col-lg-12 col-xl-12 col-md-6 col-sm-12 col-6">
                                 <div data-v-e551daac="" class="mb-3 text-right">
                                     <a data-v-e551daac="" href="/projects/create" th:href="@{/projects/create}"
-                                        class="btn btn-primary width btn-add_vidacha green">Создать</a>
+                                        class="btn btn-primary width btn-add_vidacha green" >Создать</a>
                                 </div>
                                 <div data-v-e551daac="" class="mb-3 text-right">
                                     <a data-v-e551daac=""
@@ -128,7 +128,7 @@
                             <div data-v-e551daac="">
                                 <div data-v-e551daac="" class="b-overlay-wrap position-relative custom-ll">
                                     <div class="row">
-                                        <div class="custom-ll__header col-12">
+                                        <div class="custom-ll__header" style="width: 550px;">
                                             <div class="custom-ll__header__full show">
                                                 <div class="custom-ll__header__full__right">
                                                     <div class="header__search header__search_width">
@@ -150,7 +150,7 @@
                                                         <button type="button"
                                                             class="btn btn-default custom-ll__filter-button collapsed search-btn"
                                                             aria-expanded="false" aria-controls="filterbar"
-                                                            style="overflow-anchor: none;">Поиск
+                                                            style="overflow-anchor: none; line-height: 15px;">Поиск
                                                             <!-- <i class="fas fa-filter"></i> -->
                                                         </button>
                                                     </div>

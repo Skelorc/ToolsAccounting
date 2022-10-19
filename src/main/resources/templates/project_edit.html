@@ -3,8 +3,8 @@
 
 <head class="head">
     <title>Редактирование проекта</title>
-     <div th:replace="fragments/head :: header"></div>
-   <!-- <meta charset="UTF-8">
+     <!-- <div th:replace="fragments/head :: header"></div> -->
+   <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
       <meta name="robots" content="index, follow">
       <meta name="author" content="">
@@ -70,7 +70,7 @@
       <script src="/static/js/jquery.js" th:src="@{/js/jquery.js}"></script>
       
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"  th:src="@{/js/jquery.modal.js}"></script>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" />-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" />
 </head>
 
 <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
@@ -408,7 +408,7 @@
                             <!-- Tab content -->
                             <div class="tabcontent mb-3">
                                 <div class="project__creat">
-                                    <div class="wrapper__btn-primary vidacha-sozdach col-md-12 col-6">
+                                    <div class="wrapper__btn-primary vidacha-sozdach col-md-12 col-8">
                                         <div class="mb-3 text-right">
                                             <span class="btn-pimary__groups_title  size">Действия с оборудованием</span>
                                         </div>
@@ -424,7 +424,7 @@
                                             <input id="removeBtn" type="submit" class="btn btn-primary width light-blue" value="Удалить">
                                         </div>
                                         <div style="display: inline-flex; margin-right: 10px;">
-                                            <input id="replaceBtnOther" type="submit" class="btn btn-primary min-width-120 light-blue" value="Добавить оборудование из другого проекта">
+                                            <input id="replaceBtnOther" type="submit" class="btn btn-primary width light-blue" value="Добавить оборудование из другого проекта">
                                         </div>
                                     
                                     </div>

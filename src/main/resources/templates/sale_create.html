@@ -3,9 +3,75 @@
 
 <head class="head">
     <title>Продажа-Создать</title>
-    <div th:replace="fragments/head :: header"></div>
+    <!-- <div th:replace="fragments/head :: header"></div> -->
    
-   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="">
+    <meta property="og:url" content="https://site.ru">
+    <meta property="og:title" content="MAD DOG">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="640">
+    <meta property="og:image:height" content="442">
+    <meta property="og:description" content="">
+    <meta property="og:site_name" content="Site-name">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="https://lk.rentinhand.ru/img/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://lk.rentinhand.ru/img/icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://lk.rentinhand.ru/img/icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://lk.rentinhand.ru/img/icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://lk.rentinhand.ru/img/icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://lk.rentinhand.ru/img/icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://lk.rentinhand.ru/img/icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://lk.rentinhand.ru/img/icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://lk.rentinhand.ru/img/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"
+    href="https://lk.rentinhand.ru/img/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://lk.rentinhand.ru/img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="https://lk.rentinhand.ru/img/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://lk.rentinhand.ru/img/icons/favicon-16x16.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Andrey">
+    <meta name="description" content="MAD DOG">
+    <meta name="keywords" content="MAD DOG">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="MAD DOG - сервис для учета и автоматизации проката">
+    <meta property="og:image" content="assets/img/icons/badge.jpg" th:src="@{/img/icons/badge.jpg}">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="1024">
+    <meta property="og:description" content="Программа для учёта инструментов">
+    <link rel="image_src" href="/static/img/icons/badge.jpg" th:href="@{/img/icons/badge.jpg}">
+    <meta name="theme-color" content="#179d82">
+    <meta th:name="_csrf" th:content="${_csrf.token}"/>
+    <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <link rel="manifest" href="/templates/assets/json/manifest.json" th:href="@{/templates/assets/json/manifest.json}">&ndash;&gt;
+
+    <link rel="preload" href="../static/fonts/fontawesome/fontawesome-all-css.css" as="style" th:href="@{/fonts/fontawesome/fontawesome-all-css.css}">
+    <link rel="preload" href="../static/css/style.css" as="style" th:href="@{/css/style.css}">
+    <link rel="preload" href="../static/css/app.css" as="style" th:href="@{/css/app.css}">
+    <link rel="preload" href="../static/css/media.css" as="style" th:href="@{/css/media.css}">
+    <link rel="preload" href="../static/css/checkout.css" as="style" th:href="@{/css/checkout.css}">
+    <link rel="preload" href="../static/css/main.css" as="style" th:href="@{/css/main.css}">
+
+
+    <link rel="stylesheet" href="../static/fonts/webfonts/fa-solid-900.ttf" th:href="@{/fonts/webfonts/fa-solid-900.ttf}">
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="../static/css/app.css" th:href="@{/css/app.css}">
+    <link rel="stylesheet" href="../static/css/media.css" th:href="@{/css/media.css}">
+    <link rel="stylesheet" href=".../static/css/animation-iror.css" th:href="@{/css/animation-iror.css}">
+    <link rel="stylesheet" href="../static/fonts/fontawesome/fontawesome.css" th:href="@{/fonts/fontawesome/fontawesome.css}">
+    <link rel="stylesheet" href="../static/fonts/fontawesome/fontawesome-all-css.css" th:href="@{/fonts/fontawesome/fontawesome-all-css.css}">
+    <link rel="stylesheet" href="../static/css/checkout.css" th:href="@{/css/checkout.css}">
+    <link rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}">
+    
+    <script src="/static/fonts/fontawesome/all.js" th:src="@{/fonts/fontawesome/all.js}"></script>
+    
+    <script src="/static/js/jquery.js" th:src="@{/js/jquery.js}"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"  th:src="@{/js/jquery.modal.js}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" />
 </head>
 
 <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
@@ -24,10 +90,10 @@
                                     <span class="btn-pimary__groups_title">Продажа</span>
                                 </div>
                                 <div class="mb-3 text-right">
-                                    <a href="/sale" class="btn btn-primary min-width-120 grey">Назад</a>
+                                    <a href="/sale" class="btn btn-primary width grey">Назад</a>
                                 </div>
                                 <div class="mb-3 text-right">
-                                    <a href="/tools/create" class="btn btn-primary min-width-120 green">Добавить оборудование</a>
+                                    <a href="/tools/create" class="btn btn-primary width green">Добавить оборудование</a>
                                 </div>
                             </div>
                         </div>
@@ -38,7 +104,7 @@
                                         <div data-v-4af8fa58="" class="rent__client form-creat__half_two-column mb-3">
                                             <div class="rent__client__buttons">
                                                 <label class="d-inline-block pl-2 mr-auto rent__client__buttons_title-mb">Исполнитель</label>
-                                                <button type="button" class="btn btn-primary min-width-120 btn-xs"><a th:href="@{/clients}">Новый клиент</a>
+                                                <button type="button" class="btn btn-primary width btn-xs"><a th:href="@{/clients}">Новый клиент</a>
                                                 </button>
                                             </div>
                                             <div class="mt-1 rent__client__selector mb-3">
@@ -77,10 +143,10 @@
                             </div>
                             <div id="edit_buttons" class="btn-pimary__groups-wrapper btn-pimary__groups-wrapper_client mb-3 " style="display: none;">
                                 <div class="mb-3 text-right">
-                                    <input class="btn btn-primary min-width-120 green" type="submit" id="update_client" value="Обновить">
+                                    <input class="btn btn-primary width green" type="submit" id="update_client" value="Обновить">
                                 </div>
                                 <div class="mb-3 text-right">
-                                    <input class="btn btn-primary min-width-120 red" type="submit" id="delete_client" value="Удалить">
+                                    <input class="btn btn-primary width red" type="submit" id="delete_client" value="Удалить">
                                 </div>
                             </div>
 
@@ -177,10 +243,10 @@
                                 <span class="btn-pimary__groups_title">Действия</span>
                             </div>
                             <div class="mb-3 text-right">
-                                <input type="submit" value="В продажу" class="btn btn-primary min-width-120 orange">
+                                <input type="submit" value="В продажу" class="btn btn-primary width orange">
                             </div>
                             <div class="mb-3 text-right">
-                                <a href="/repair/create" class="btn btn-primary min-width-120 green">Показать все</a>
+                                <a href="/repair/create" class="btn btn-primary width green">Показать все</a>
                             </div>
                         </div>
                     </div>
