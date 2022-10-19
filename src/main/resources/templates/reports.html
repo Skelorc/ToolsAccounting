@@ -4,6 +4,7 @@
 <head class="head">
     <title>Отчеты</title>
     <div th:replace="fragments/head :: header"></div>
+   
     
 </head>
 
@@ -83,9 +84,9 @@
 
 
                                 <!-- Таблица проекты -->
-                                <div class="order-lg-1 overflow-auto">
+                                <div class="order-lg-1 overflow-auto col-12">
                                     <div class="custom-ll__table table-responsive">
-                                        <table class="table w-100 in4dr-form">
+                                        <table class="table w-table h-table delivery in4dr-form">
                                             <tbody><tr>
                                                 <th class="first-th">#</th>
                                                 <th>Проект</th>
@@ -107,16 +108,16 @@
                                                         <span class="tools-td-text table-td-text column-table_checkbox-number">1</span>
                                                     </div>
                                                 </td>
-                                                <td><a href="/projects/edit/1/" title="Редактирование проекта">"крутой проект"</a></td>
-                                                <td>Иванов сергей</td>
-                                                <td>+79887555454</td>
-                                                <td>10-10-2022 14:11</td>
-                                                <td>21-10-2022 15:45</td>
-                                                <td>2022-10-10T14:11</td>
-                                                <td>skelorc</td>
-                                                <td>какой то коммент</td>
-                                                <td>Фотографии будут</td>
-                                                <td>Какой-то статус</td>
+                                                <td data-label="Проект"><a href="/projects/edit/1/" title="Редактирование проекта">"крутой проект"</a></td>
+                                                <td data-label="Клиент">Иванов сергей</td>
+                                                <td data-label="Телефон">+79887555454</td>
+                                                <td data-label="Начало аренды">10-10-2022 14:11</td>
+                                                <td data-label="Окончание аренды">21-10-2022 15:45</td>
+                                                <td data-label="Дата и время создания">2022-10-10T14:11</td>
+                                                <td data-label="Сотрудник">skelorc</td>
+                                                <td data-label="Примечание">какой то коммент</td>
+                                                <td data-label="Фотографии отгрузки">Фотографии будут</td>
+                                                <td data-label="Статус">Какой-то статус</td>
                                             </tr>
                                         </tbody></table>
                                     </div>
@@ -162,9 +163,9 @@
                                 </div>
 
                                 <!-- Таблица "общий" -->
-                                <div class="order-lg-1 overflow-auto">
+                                <div class="order-lg-1 overflow-auto col-12">
                                     <div class="custom-ll__table table-responsive">
-                                        <table class="table w-100 in4dr-form">
+                                        <table class="table delivery w-table h-table in4dr-form">
                                             <tbody><tr>
                                                 <th class="first-th">#</th>
                                                 <th>Проект</th>
@@ -193,32 +194,32 @@
                                                         <span class="tools-td-text table-td-text column-table_checkbox-number">1</span>
                                                     </div>
                                                 </td>
-                                                <td><a href="/projects/edit/1/" title="Редактирование проекта">"крутой проект"</a></td>
-                                                <td>Иванов сергей</td>
-                                                <td>+79887555454</td>
-                                                <td>10-10-2022 14:11</td>
-                                                <td>21-10-2022 15:45</td>
-                                                <td>2022-10-10T14:11</td>
-                                                <td>skelorc</td>
-                                                <td>какой то коммент</td>
-                                                <td>Фотографии будут</td>
-                                                <td>Какой-то статус</td>
-                                                <td>Пример</td>
-                                                <td>Пример</td>
-                                                <td>Пример</td>
-                                                <td>Пример</td>
-                                                <td>Пример</td>
-                                                <td>Пример</td>
-                                                <td>Пример</td>
+                                                <td data-label="Проект"> <a href="/projects/edit/1/" title="Редактирование проекта">"крутой проект"</a></td>
+                                                <td data-label="Клиент">Иванов сергей</td>
+                                                <td data-label="Телефон">+79887555454</td>
+                                                <td data-label="Начало аренды">10-10-2022 14:11</td>
+                                                <td data-label="Окончание аренды">21-10-2022 15:45</td>
+                                                <td data-label="Дата и время создания">2022-10-10T14:11</td>
+                                                <td data-label="Сотрудник">skelorc</td>
+                                                <td data-label="Примечание">какой то коммент</td>
+                                                <td data-label="Фотографии отгрузки">Фотографии будут</td>
+                                                <td data-label="Статус">Какой-то статус</td>
+                                                <td data-label="Скидка на проект">Пример</td>
+                                                <td data-label="Сумма">Пример</td>
+                                                <td data-label="Сумма со скидкой">Пример</td>
+                                                <td data-label="Стоимость оборудования">Пример</td>
+                                                <td data-label="Стоимость работ">Пример</td>
+                                                <td data-label="Оплачено">Пример</td>
+                                                <td data-label="Остаток">Пример</td>
                                             </tr>
                                         </tbody></table>
                                     </div>
                                 </div>
 
                                 <!-- Таблица оборудование -->
-                                <div class="order-lg-1 overflow-auto">
+                                <div class="order-lg-1 overflow-auto col-12">
                                     <div class="custom-ll__table table-responsive">
-                                        <table class="table w-100 in4dr-form">
+                                        <table class="table w-table h-table delivery in4dr-form">
                                             <tbody><tr>
                                                 <th class="first-th">#</th>
                                                 <th>Проект</th>
@@ -242,32 +243,32 @@
                                                 <th>Количество смен</th>
                                             </tr>
                                             <tr>
-                                                <td class="column-table">
+                                                <td data-label="#" class="column-table">
                                                     <div class="column-table_checkbox-wrapp">
                                                         <input class="column-table_checkbox ids" type="checkbox">
                                                         <input type="text" hidden="hidden" value="1">
                                                         <span class="tools-td-text table-td-text column-table_checkbox-number">1</span>
                                                     </div>
                                                 </td>
-                                                <td><a href="/projects/edit/1/" title="Редактирование проекта">"крутой проект"</a></td>
-                                                <td>Иванов сергей</td>
-                                                <td>+79887555454</td>
-                                                <td>10-10-2022 14:11</td>
-                                                <td>21-10-2022 15:45</td>
-                                                <td>2022-10-10T14:11</td>
-                                                <td>skelorc</td>
-                                                <td>какой то коммент</td>
-                                                <td>Фотографии будут</td>
-                                                <td>Какой-то статус</td>
-                                                <td>Пример</td>
-                                                <td>Пример</td>
-                                                <td>Пример</td>
-                                                <td>Пример</td>
-                                                <td>Пример</td>
-                                                <td>Пример</td>
-                                                <td>Пример</td>
-                                                <td>Пример</td>
-                                                <td>Пример</td>
+                                                <td data-label="Проект"><a href="/projects/edit/1/" title="Редактирование проекта">"крутой проект"</a></td>
+                                                <td data-label="Клиент">Иванов сергей</td>
+                                                <td data-label="Телефон">+79887555454</td>
+                                                <td data-label="Начало аренды">10-10-2022 14:11</td>
+                                                <td data-label="Окончание аренды">21-10-2022 15:45</td>
+                                                <td data-label="Дата и время создания">2022-10-10T14:11</td>
+                                                <td data-label="Сотрудник">skelorc</td>
+                                                <td data-label="Примечание">какой то коммент</td>
+                                                <td data-label="фотографии отгрузки">Фотографии будут</td>
+                                                <td data-label="Статус">Какой-то статус</td>
+                                                <td data-label="Цена за сутки">Пример</td>
+                                                <td data-label="Себестоимость">Пример</td>
+                                                <td data-label="Доход с оборудования">Пример</td>
+                                                <td data-label="Доход с продажи">Пример</td>
+                                                <td data-label="Доход инвестора">Пример</td>
+                                                <td data-label="Сумма ремонта">Пример</td>
+                                                <td data-label="Цена продажи">Пример</td>
+                                                <td data-label="Инвестиции">Пример</td>
+                                                <td data-label="Количество смен">Пример</td>
                                             </tr>
                                         </tbody></table>
                                     </div>

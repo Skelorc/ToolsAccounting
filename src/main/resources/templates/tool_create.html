@@ -4,6 +4,7 @@
 <head class="head">
     <title>Добавить новое оборудование</title>
     <div th:replace="fragments/head :: header"></div>
+    
 </head>
 
 <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
@@ -28,11 +29,11 @@
                                 </div>
                             </div>
                             <form th:action="@{/tools/create}" method="post">
-                                <div class="bg-white p-3 edit-container">
+                                <div class="bg-white p-3 edit-container d-block col-8 col-md-12">
                                     <div class="row form-creat__half-wrapp">
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Наименование</label>
+                                                <label class="d-block size">Наименование</label>
                                                 <span>
                                                     <input id="name" name="name" type="text" class="form-control" placeholder="Введите наименование">
                                                 </span>
@@ -40,7 +41,7 @@
                                         </div>
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Вид оборудования</label>
+                                                <label class="d-block size">Вид оборудования</label>
                                                 <select id="select_type_tool"
                                                         name="typeTools"
                                                         class="vs__selected-options main-secect__opions form-control select">
@@ -58,7 +59,7 @@
                                         </div>
                                         <div class="form-creat__half_two-column" >
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Наименование в смете</label>
+                                                <label class="d-block size">Наименование в смете</label>
                                                 <select name="name_estimate_id"
                                                         class="vs__selected-options main-secect__opions form-control select">
                                                     <option class="vs__selected vs__dropdown-toggle"
@@ -74,7 +75,7 @@
                                         </div>
                                         <div class="form-creat__half_two-column" >
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Выберите группу</label>
+                                                <label class="d-block size">Выберите группу</label>
                                                 <select name="section"
                                                         class="vs__selected-options main-secect__opions form-control select">
                                                     <option class="vs__selected vs__dropdown-toggle"
@@ -90,7 +91,7 @@
                                         </div>
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Штрих-код</label>
+                                                <label class="d-block size">Штрих-код</label>
                                                 <span>
                                                     <input id="barcode" name="barcode"
                                                            type="text" class="form-control"
@@ -100,7 +101,7 @@
                                         </div>
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Модель</label>
+                                                <label class="d-block size">Модель</label>
                                                 <span>
                                                     <input name="model" type="text"
                                                            class="form-control" placeholder="">
@@ -109,7 +110,7 @@
                                         </div>
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Серийный номер</label>
+                                                <label class="d-block size">Серийный номер</label>
                                                 <span>
                                                     <input name="serialNumber"
                                                            type="text" class="form-control"
@@ -121,7 +122,7 @@
                                     <div class="row form-creat__half-wrapp">
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Статус</label>
+                                                <label class="d-block size">Статус</label>
                                                 <select id="select_status_tool" name="status_tool"
                                                         class="vs__selected-options main-secect__opions form-control">
                                                     <option class="vs__selected vs__dropdown-toggle"
@@ -137,7 +138,7 @@
                                         </div>
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Характеристики</label>
+                                                <label class="d-block size">Характеристики</label>
                                                 <span>
                                                     <input name="characteristics"
                                                            type="text" class="form-control" placeholder="">
@@ -146,7 +147,7 @@
                                         </div>
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Состояние</label>
+                                                <label class="d-block size">Состояние</label>
                                                 <span>
                                                     <input name="state" type="text"
                                                            class="form-control" placeholder="">
@@ -155,7 +156,7 @@
                                         </div>
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Комплект</label>
+                                                <label class="d-block size">Комплект</label>
                                                 <span>
                                                     <input name="equip" type="text"
                                                            class="form-control" placeholder="">
@@ -164,7 +165,7 @@
                                         </div>
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Комментарий</label>
+                                                <label class="d-block size">Комментарий</label>
                                                 <span>
                                                     <input name="comment" type="text"
                                                            class="form-control" placeholder="">
@@ -173,7 +174,7 @@
                                         </div>
                                         <div class=" form-creat__half_two-column">
                                             <div class="form-group">
-                                                <label class="d-block">Дата создания</label>
+                                                <label class="d-block size">Дата создания</label>
                                                 <div class="vdpComponent vdpWithInput">
                                                     <input name="creating" type="date"
                                                            placeholder="дд.мм.гггг">
@@ -182,7 +183,7 @@
                                         </div>
                                         <div class=" form-creat__half_two-column">
                                             <div class="form-group">
-                                                <label class="d-block">Загрузите ваши фотографии на сервер</label>
+                                                <label class="d-block size">Загрузите ваши фотографии на сервер</label>
                                                 <textarea name="photos"
                                                           class="form-control" id="note_individual"
                                                           style="height: 40px;"></textarea>
@@ -190,11 +191,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="bg-white p-3 edit-container">
+                                <div class="bg-white p-3 edit-container d-block  col-8 col-md-12">
                                     <div class="row form-creat__half-wrapp">
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Себестоимость</label>
+                                                <label class="d-block size">Себестоимость</label>
                                                 <span>
                                                     <input name="costPrice" type="text"
                                                            class="form-control" placeholder=""
@@ -204,7 +205,7 @@
                                         </div>
                                         <div class="form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Цена за сутки</label>
+                                                <label class="d-block size">Цена за сутки</label>
                                                 <span>
                                                     <input name="priceByDay" type="text"
                                                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
@@ -215,7 +216,7 @@
                                         </div>
                                         <div class="form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Доход с оборудования</label>
+                                                <label class="d-block size">Доход с оборудования</label>
                                                 <span>
                                                     <input name="incomeFromTools"
                                                            type="text"
@@ -227,7 +228,7 @@
                                         </div>
                                         <div class="form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Цена продажи</label>
+                                                <label class="d-block size">Цена продажи</label>
                                                 <span>
                                                     <input name="priceSell" type="text"
                                                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
@@ -238,7 +239,7 @@
                                         </div>
                                         <div class="form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Доход с продажи</label>
+                                                <label class="d-block size">Доход с продажи</label>
                                                 <span>
                                                     <input name="incomeSales" type="text"
                                                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
@@ -249,7 +250,7 @@
                                         </div>
                                         <div class="form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Доход инвестора (%)</label>
+                                                <label class="d-block size">Доход инвестора (%)</label>
                                                 <span>
                                                     <input
                                                            name="incomeInvestorProcents" type="text"
@@ -263,7 +264,7 @@
                                     <div class="row form-creat__half-wrapp">
                                         <div class="form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Доход инвестора</label>
+                                                <label class="d-block size">Доход инвестора</label>
                                                 <span>
                                                     <input name="incomeInvestor"
                                                            type="text"
@@ -275,7 +276,7 @@
                                         </div>
                                         <div class="form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Сумма ремонта</label>
+                                                <label class="d-block size">Сумма ремонта</label>
                                                 <span>
                                                     <input name="repairAmount"
                                                            type="text"
@@ -287,7 +288,7 @@
                                         </div>
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Кол-во отработанных смен</label>
+                                                <label class="d-block size">Кол-во отработанных смен</label>
                                                 <span>
                                                     <input
                                                            name="numberWorkingShifts" type="text"
@@ -299,7 +300,7 @@
                                         </div>
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Цена на субаренду</label>
+                                                <label class="d-block size">Цена на субаренду</label>
                                                 <span>
                                                     <input name="priceSublease"
                                                            type="text"
@@ -311,7 +312,7 @@
                                         </div>
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Плата за субаренду</label>
+                                                <label class="d-block size">Плата за субаренду</label>
                                                 <span>
                                                     <input name="paymentSublease"
                                                            type="text"
@@ -323,7 +324,7 @@
                                         </div>
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Доп.доход</label>
+                                                <label class="d-block size">Доп.доход</label>
                                                 <span>
                                                     <input name="incomeAdditional"
                                                            type="text"

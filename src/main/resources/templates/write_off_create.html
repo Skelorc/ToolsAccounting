@@ -5,6 +5,7 @@
 <head class="head">
     <title>Списание-Создать</title>
     <div th:replace="fragments/head :: header"></div>
+    
 </head>
 
 <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
@@ -24,10 +25,10 @@
                                         <span class="btn-pimary__groups_title">Списание</span>
                                     </div>
                                     <div class="mb-3 text-right">
-                                        <a href="/write-off" class="btn btn-primary min-width-120 grey">Назад</a>
+                                        <a href="/write-off" class="btn btn-primary width grey">Назад</a>
                                     </div>
                                     <div class="mb-3 text-right">
-                                        <a href="/tools/create" class="btn btn-primary min-width-120 green">Добавить
+                                        <a href="/tools/create" class="btn btn-primary width green">Добавить
                                             оборудование</a>
                                     </div>
                                 </div>
@@ -35,10 +36,10 @@
 
                             <div class="tab-content">
                                 <div class="form-creat mb-3 col-12">
-                                    <div class="bg-white p-3 edit-container">
+                                    <div class="bg-white p-3 edit-container d-block col-8 col-md-12">
                                         <div class="form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Примечание</label>
+                                                <label class="d-block size">Примечание</label>
                                                 <span>
                                                     <textarea th:field="*{note}" name="note" class="form-control"
                                                               style="height: 40px;"></textarea>
@@ -47,7 +48,7 @@
                                         </div>
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block">Фотографии</label>
+                                                <label class="d-block size">Фотографии</label>
                                                 <span>
                                                     <textarea th:field="*{photos}" class="form-control"
                                                               style="height: 40px;"></textarea>
@@ -73,17 +74,17 @@
                             </div>
 
                             <div class="col-12">
-                                <div class="form-creat__itog mb-3">
-                                    <h3 class="form-creat__itog-title form-creat__itog-title_text">Всего цена
+                                <div class="form-creat__itog col-6 col-md-12 mb-3">
+                                    <h3 class="form-creat__itog-title form-creat__itog-title_text mb-title">Всего цена
                                         списания</h3>
-                                    <div class="project__all-data all-data_input">
+                                    <div class="project__all-data all-data_input mb-input">
                                         <span type="text" class="vdatetime-input form-control span-input"></span>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="custom-ll__table table-responsive mb-3">
-                                <table class="table table-1480 w-100 in4dr-form">
+                                <table class="table delivery w-table h-table in4dr-form">
                                     <tbody>
                                     <thead>
                                     <tr>
@@ -105,7 +106,7 @@
                                     </thead>
                                     <tbody>
                                     <tr th:each="tool,itemStat : ${list_tools}" class="row-tool">
-                                        <td class="column-table">
+                                        <td data-label="#" class="column-table">
                                             <div class="column-table_checkbox-wrapp">
                                                 <input class="column-table_checkbox choose_tool" type="checkbox"
                                                        th:field="*{tools_id_with_prices[__${itemStat.index}__].checked}">
@@ -114,19 +115,19 @@
                                                        th:value="${tool.id}">
                                             </div>
                                         </td>
-                                        <td th:utext="${tool.name}"></td>
-                                        <td class="barcode-tool" th:utext="${tool.barcode}"></td>
-                                        <td th:utext="${tool.category.getData()}"></td>
-                                        <td th:utext="${tool.model}"></td>
-                                        <td th:utext="${tool.serialNumber}"></td>
-                                        <td th:utext="${tool.comment}"></td>
-                                        <td th:utext="${tool.characteristics}"></td>
-                                        <td th:utext="${tool.state}"></td>
-                                        <td th:utext="${tool.costPrice}"></td>
-                                        <td th:utext="${tool.priceSell}"></td>
-                                        <td th:utext="${tool.equip}"></td>
-                                        <td></td>
-                                        <td class="td-whith-input">
+                                        <td data-label="Наименование" th:utext="${tool.name}"></td>
+                                        <td data-label="Штрихкод" class="barcode-tool" th:utext="${tool.barcode}"></td>
+                                        <td data-label="Группа" th:utext="${tool.category.getData()}"></td>
+                                        <td data-label="Марка\Модель" th:utext="${tool.model}"></td>
+                                        <td data-label="Серийный номер" th:utext="${tool.serialNumber}"></td>
+                                        <td data-label="Комментарий" th:utext="${tool.comment}"></td>
+                                        <td data-label="Характеристики" th:utext="${tool.characteristics}"></td>
+                                        <td data-label="Состояние" th:utext="${tool.state}"></td>
+                                        <td data-label="Цена" th:utext="${tool.costPrice}"></td>
+                                        <td data-label="Себестоимость" th:utext="${tool.priceSell}"></td>
+                                        <td data-label="Комплект" th:utext="${tool.equip}"></td>
+                                        <td data-label="*"></td>
+                                        <td data-label="Сумма списания" class="td-whith-input">
                                             <input th:field="*{tools_id_with_prices[__${itemStat.index}__].price}"
                                                    name="price"
                                                    class="form-control input-without-style writeoff_price" type="text"

@@ -1628,4 +1628,15 @@ td>.button:hover {
 .header__search input{
     margin-top: 0;
 }
+
+/* zipcode search */ 
+.custom-ll__header-zipcode--mobile {
+    display: block;
+}
+
+@media (min-width: 768px) {
+    .custom-ll__header-zipcode--mobile {
+        display: none;
+    }
+}
 /*********************/
