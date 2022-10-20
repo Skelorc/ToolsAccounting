@@ -35,7 +35,8 @@ public class ToolsEstimate {
     @Column(name = "price_by_day")
     private int priceByDay;
     private LocalDate creating;
-    private int count_shifts;
+    @Column(name = "count_shifts")
+    private int countShifts;
     private int discount;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -47,12 +48,12 @@ public class ToolsEstimate {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ToolsEstimate that = (ToolsEstimate) o;
-        return id == that.id && amount == that.amount && priceByDay == that.priceByDay && count_shifts == that.count_shifts && discount == that.discount && Objects.equals(name, that.name) && Objects.equals(barcode, that.barcode) && category == that.category && Objects.equals(model, that.model) && section == that.section && Objects.equals(creating, that.creating);
+        return id == that.id && amount == that.amount && priceByDay == that.priceByDay && countShifts == that.countShifts && discount == that.discount && Objects.equals(name, that.name) && Objects.equals(barcode, that.barcode) && category == that.category && Objects.equals(model, that.model) && section == that.section && Objects.equals(creating, that.creating);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, barcode, category, model, section, amount, priceByDay, creating, count_shifts, discount);
+        return Objects.hash(id, name, barcode, category, model, section, amount, priceByDay, creating, countShifts, discount);
     }
 
     @Override
@@ -68,7 +69,7 @@ public class ToolsEstimate {
                 ", amount=" + amount +
                 ", priceByDay=" + priceByDay +
                 ", creating=" + creating +
-                ", count_shifts=" + count_shifts +
+                ", count_shifts=" + countShifts +
                 ", discount=" + discount +
                 '}';
     }

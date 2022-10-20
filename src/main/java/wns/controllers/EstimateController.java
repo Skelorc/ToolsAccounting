@@ -75,20 +75,21 @@ public class EstimateController {
     @PostMapping("/create/{id}")
     @ResponseBody
     public ResponseEntity<Object> createEstimateName(@PathVariable("id") long id,
-                                                     @RequestBody List<ToolsEstimate> estimateList)
+                                                     @RequestBody Estimate estimate)
     {
-        estimateList.forEach(System.out::println);
-        Messages messages = estimateService.updateEstimate(id, estimateList);
-        return ResponseHandler.generateResponse(messages);
+        System.out.println(estimate);
+        //Messages messages = estimateService.updateEstimate(id, estimateList);
+        return ResponseHandler.generateResponse(Messages.OK);
     }
 
     @PostMapping("/download-estimate/{id}")
     @ResponseBody
-    public ResponseEntity<Object> downloadEstimate(@PathVariable("id") long id)
+    public ResponseEntity<Object> downloadEstimate(@PathVariable("id") long id,
+                                                   @RequestBody Estimate estimate)
     {
-        Project project = projectService.getById(id);
-        Estimate estimate = project.getEstimate();
-        excelUtil.createDocumentAndAddHeaders(estimate,estimate.getProject().getName());
+        //Project project = projectService.getById(id);
+        System.out.println(estimate);
+        //excelUtil.createDocumentAndAddHeaders(estimate,estimate.getProject().getName());
         return ResponseHandler.generateResponse(Messages.OK);
     }
 

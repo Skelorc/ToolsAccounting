@@ -190,7 +190,7 @@
                                                 </tr>
                                             </div>
                                                 <tr>
-                                                    <td rowspan="5" class="first-th"></td>
+                                                    <td rowspan="4" class="first-th"></td>
                                                     <th colspan="3">Всего по проекту:</th>
                                                     <td colspan="4"><span class="table-td-text "><input required="" type="text" class="form-control__table fsIn1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Сумма итого по оборудованию"></span></td>
                                                 </tr>
@@ -206,11 +206,12 @@
                                                     <td colspan="8"></td>
                                                 </tr>
                                                 <tr>
-                                                    <th colspan="7" class="sat" style="cursor: pointer;">Обслуживание и транспорт</th>
+                                                    <td class="first-th add_transport" style="cursor: pointer;">+</td>
+                                                    <th colspan="7" class="sat">Обслуживание и транспорт</th>
                                                 </tr>
-                                                <tr class="sat_item" style="display: none;">
-                                                    <td class="first-th"></td>
-                                                    <td><span class="table-td-text ">Механик камеры</span></td>
+                                                <tr class="sat_item">
+                                                    <td class="first-th remove_transport" style="cursor: pointer;">-</td>
+                                                    <td><input type="text" class="form-control__table" value="Механик камеры" style="font-size: 14px;"></td>
                                                     <td><input type="text" class="form-control__table fIn1_t" placeholder="Ручной ввод/наименование"></td>
                                                     <td><input type="text" class="form-control__table fIn2_t" placeholder="Ручной ввод/наименование"></td>
                                                     <td><input type="text" class="form-control__table fIn3_t" placeholder="Ручной ввод/наименование"></td>
@@ -218,9 +219,9 @@
                                                     <td><span class="table-td-text fIn5_t"></span></td>
                                                     <td><span class="table-td-text fIn6_t"></span></td>
                                                 </tr>
-                                                <tr class="sat_item" style="display: none;">
-                                                    <td class="first-th"></td>
-                                                    <td><span class="table-td-text ">Переработка за час</span></td>
+                                                <tr class="sat_item">
+                                                    <td class="first-th remove_transport" style="cursor: pointer;">-</td>
+                                                    <td><input class="form-control__table" value="Переработка за час" style="font-size: 14px;"></td>
                                                     <td><input type="text" class="form-control__table fIn1_t" placeholder="Ручной ввод/наименование"></td>
                                                     <td><input type="text" class="form-control__table fIn2_t" placeholder="Ручной ввод/наименование"></td>
                                                     <td><input type="text" class="form-control__table fIn3_t" placeholder="Ручной ввод/наименование"></td>
@@ -228,9 +229,9 @@
                                                     <td><span class="table-td-text fIn5_t"></span></td>
                                                     <td><span class="table-td-text fIn6_t"></span></td>
                                                 </tr>
-                                                <tr class="sat_item" style="display: none;">
-                                                    <td class="first-th"></td>
-                                                    <td><span class="table-td-text ">Камерваген</span></td>
+                                                <tr class="sat_item">
+                                                    <td class="first-th remove_transport" style="cursor: pointer;">-</td>
+                                                    <td><input class="form-control__table" value="Камерваген" style="font-size: 14px;"></td>
                                                     <td><input type="text" class="form-control__table fIn1_t" placeholder="Ручной ввод/наименование"></td>
                                                     <td><input type="text" class="form-control__table fIn2_t" placeholder="Ручной ввод/наименование"></td>
                                                     <td><input type="text" class="form-control__table fIn3_t" placeholder="Ручной ввод/наименование"></td>
@@ -238,9 +239,9 @@
                                                     <td><span class="table-td-text fIn5_t"></span></td>
                                                     <td><span class="table-td-text fIn6_t"></span></td>
                                                 </tr>
-                                                <tr class="sat_item" style="display: none;">
-                                                    <td class="first-th"></td>
-                                                    <td><span class="table-td-text ">Прогон за МКАД</span></td>
+                                                <tr class="sat_item">
+                                                    <td class="first-th remove_transport" style="cursor: pointer;">-</td>
+                                                    <td><input class="form-control__table" value="Прогон за МКАД" style="font-size: 14px;"></td>
                                                     <td><input type="text" class="form-control__table fIn1_t" placeholder="Ручной ввод/наименование"></td>
                                                     <td><input type="text" class="form-control__table fIn2_t" placeholder="Ручной ввод/наименование"></td>
                                                     <td><input type="text" class="form-control__table fIn3_t" placeholder="Ручной ввод/наименование"></td>

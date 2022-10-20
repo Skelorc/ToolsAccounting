@@ -16,7 +16,7 @@ public class EstimateDTO {
     private LocalDateTime start;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime end;
-    private int count_shifts;
+    private int countShifts;
     private Project project;
     private List<ToolsEstimate> toolsEstimates = new ArrayList<>();
 }

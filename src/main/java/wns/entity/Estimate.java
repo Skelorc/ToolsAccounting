@@ -28,9 +28,26 @@ public class Estimate {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime end;
     private int count_shifts;
+    @Column(name = "all_by_project")
+    private long allByPRoject;
+    @Column(name = "discount_by_tools")
+    private int discountByTools;
+    @Column(name = "all_by_project_with_discount")
+    private long allByProjectWithDiscount;
+    @Column(name = "all_by_service")
+    private long allByService;
+    @Column (name = "final_sum_by_project")
+    private long finalSumByProject;
+    @Column(name = "procent_usn")
+    private int procentUsn;
+    @Column(name = "final_sum_with_usn")
+    private long finalSumWithUsn;
+
 
     @OneToOne(mappedBy = "estimate")
     private Project project;
+
+
 
 
     @OneToMany(mappedBy = "estimate", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
