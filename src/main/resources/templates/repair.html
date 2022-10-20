@@ -4,8 +4,8 @@
 
 <head class="head">
     <title>Ремонт</title>
-    <!-- <div th:replace="fragments/head :: header"></div> -->
-    <meta charset="UTF-8">
+    <div th:replace="fragments/head :: header"></div>
+    <!-- <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="robots" content="index, follow">
     <meta name="author" content="">
@@ -71,7 +71,7 @@
     <script src="/static/js/jquery.js" th:src="@{/js/jquery.js}"></script>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"  th:src="@{/js/jquery.modal.js}"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" /> -->
 </head>
 
 <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
@@ -86,16 +86,16 @@
                         <div class="btn-pimary__groups mt-3 mb-3">
                             <div class="btn-pimary__groups-wrapper vidacha-sozdach mb-3">
                                 <div class="mb-3 text-right">
-                                    <a th:href="@{/repair/create}" class="btn btn-primary min-width-120 green">Создать</a>
+                                    <a th:href="@{/repair/create}" class="btn btn-primary width green">Создать</a>
                                 </div>
                                 <div class="mb-3 text-right">
-                                    <a href="#" class="btn btn-primary min-width-120 red">Удалить</a>
+                                    <a href="#" class="btn btn-primary width red">Удалить</a>
                                 </div>
                                 <div class="mb-3 text-right">
-                                    <a href="/repair" class="btn btn-primary min-width-120 orange">Обновить</a>
+                                    <a href="/repair" class="btn btn-primary width orange">Обновить</a>
                                 </div>
                                 <div class="mb-3 text-right">
-                                    <a href="#" class="btn btn-primary min-width-120 grey">Экспорт</a>
+                                    <a href="#" class="btn btn-primary width grey">Экспорт</a>
                                 </div>
                             </div>
                         </div>

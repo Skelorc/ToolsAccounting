@@ -421,8 +421,13 @@ label {
 }
 .btn-primary_save {
     border-radius: 30px;
+    
 }
-
+@media (min-width: 768px) {
+    .btn-primary_save {
+        padding-bottom: 20px;
+    }
+}
 @media (min-width: 576px) {
     .wrapper__btn-primary {
     width: 70%;
@@ -1278,7 +1283,9 @@ margin-bottom: 15px;
     align-items: center;
 }
 .custom-ll__header-zipcode_project {
-    max-width: 415px;
+    width: 315px;
+    margin-left: -50px;
+    
 }
 .header__search_width-repair {
     display: inline-flex;

@@ -3,8 +3,8 @@
 
 <head class="head">
     <title>Оборудование</title>
-     <!-- <div th:replace="fragments/head :: header"></div> -->
-     <meta charset="UTF-8">
+     <div th:replace="fragments/head :: header"></div>
+     <!-- <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
       <meta name="robots" content="index, follow">
       <meta name="author" content="">
@@ -45,7 +45,7 @@
       <meta name="theme-color" content="#179d82">
       <meta th:name="_csrf" th:content="${_csrf.token}"/>
       <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
-      <!--<link rel="manifest" href="/templates/assets/json/manifest.json" th:href="@{/templates/assets/json/manifest.json}">-->
+      
 
       <link rel="preload" href="../static/fonts/fontawesome/fontawesome-all-css.css" as="style" th:href="@{/fonts/fontawesome/fontawesome-all-css.css}">
       <link rel="preload" href="../static/css/style.css" as="style" th:href="@{/css/style.css}">
@@ -66,11 +66,11 @@
       <link rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}">
       
       <script src="/static/fonts/fontawesome/all.js" th:src="@{/fonts/fontawesome/all.js}"></script>
-      <!--JQuery-->
+      
       <script src="/static/js/jquery.js" th:src="@{/js/jquery.js}"></script>
-      <!-- jQuery Modal -->
+      
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"  th:src="@{/js/jquery.modal.js}"></script>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" /> -->
      
 </head>
 
@@ -114,7 +114,7 @@
                 </div>
                 <div class="b-overlay-wrap position-relative custom-ll">
                     <div class="row">
-                        <div class="btn__under-table col-6 col-lg-12 order-lg-1 justify-content-center">
+                        <div class="btn__under-table col-6 col-lg-12 order-lg-1">
                             <div class="mb-3 text-right">
                                 <a th:href="@{/tools}" class="btn btn-primary width btn-update_vidacha  grey">Все</a>
                             </div>

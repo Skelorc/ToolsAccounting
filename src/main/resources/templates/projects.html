@@ -3,8 +3,8 @@
 
 <head class="head">
     <title>Выдача</title>
-    <!-- <div th:replace="fragments/head :: header"></div> -->
-    <meta charset="UTF-8">
+    <div th:replace="fragments/head :: header"></div>
+    <!-- <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="robots" content="index, follow">
     <meta name="author" content="">
@@ -76,13 +76,97 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"
         th:src="@{/js/jquery.modal.js}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"
-        th:href="@{/css/jquery.modal.css}" />
+        th:href="@{/css/jquery.modal.css}" /> -->
 </head>
 
 <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
     <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
         <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
-            <div th:insert="fragments/menu_sidebar.html">
+            <!-- <div th:insert="fragments/menu_sidebar.html"> -->
+                <div class="text-center" id="ex1">
+                    <p id="alert_message" class="font-bold"></p>
+                    <script th:inline="javascript">
+                        var message = [[${message}]];
+                        if (message){
+                            console.log(typeof message);
+                            console.log(message);
+                            $("#alert_message").text(message.toString());
+                            $("#ex1").modal();
+                        }
+                    </script>
+                </div>
+                <nav role="navigation" class="rih-nav">
+                    <div class="nav-header text-center sidebar-collapse__menu-logo rih-nav__header">
+                        <a href="#" class="main-link">
+                            <div class="sidebar-collapse__menu-logo">
+                                <img class="sidebar-collapse__menu-logo_img" th:src="@{/img/logo/mad-dog-logo.png}">
+                            </div>
+                            <div class="sidebar-collapse__menu-title">
+                                <h4 class="sidebar-collapse__menu-title_text">MAD DOG</h4>
+                            </div>
+                        </a>
+                    </div>
+                    <ul id="side-menu" class="nav metismenu rih-nav__list">
+                        <li data-id="15" data-parent_id="2">
+                            <a class="vidacha activ-page" th:href="@{/}" data-link="HumanClientApp"><b><i
+                                    class="fa fa-users"></i></b>
+                                <span class="nav-label">Выдача</span>
+                            </a>
+                        </li>
+                        <li data-id="4" data-parent_id="2">
+                            <a class="priemka" th:href="@{/acceptance}"><b><i class="fa fa-user-tie"></i></b>
+                                <span class="nav-label">Приемка</span>
+                            </a>
+                        </li>
+                        <li data-id="310828" data-parent_id="2">
+                            <a class="calendar" th:href="@{/calendar}" data-link="KitApp"><b><i class="fa fa-boxes"></i></b>
+                                <span class="nav-label">Календарь</span>
+                            </a>
+                        </li>
+                        <li data-id="8" data-parent_id="2">
+                            <a class="tools" th:href="@{/tools}" data-link="InventoryApp"><b><i
+                                    class="fa fa-cubes"></i></b>
+                                <span class="nav-label">Оборудование</span>
+                            </a>
+                        </li>
+                        <li data-id="170807" data-parent_id="2">
+                            <a class="clients" th:href="@{/clients}" data-link="RentBookingApp"><b><i
+                                    class="fa fa-calendar-alt"></i></b>
+                                <span class="nav-label">Клиенты</span>
+                            </a>
+                        </li>
+                        <li data-id="22" data-parent_id="2">
+                            <a class="remont" href="/repair" th:href="@{/repair}" data-link="RentApp"><b><i
+                                    class="fa fa-book"></i></b>
+                                <span class="nav-label">Ремонт</span>
+                            </a>
+                        </li>
+                        <li data-id="9" data-parent_id="2">
+                            <a class="spisanie" th:href="@{/write-off}"><b><i class="fa fa-shopping-cart"></i></b>
+                                <span class="nav-label">Списание</span>
+                            </a>
+                        </li>
+                        <li data-id="12" data-parent_id="2">
+                            <a class="prodaza" th:href="@{/sale}"><b><i class="fa fa-wrench"></i></b>
+                                <span class="nav-label">Продажа</span>
+                            </a>
+                        </li>
+                        <li data-id="12" data-parent_id="2" sec:authorize="hasAuthority('ADMIN')">
+                            <a class="admin-panel" th:href="@{/admin-panel}"><b><i class="fa fa-wrench"></i></b>
+                                <span class="nav-label">Панель Администратора</span>
+                            </a>
+                        </li>
+                        <li data-id="5" data-parent_id="2">
+                            <a class="otchety" href="/reports" data-link="LkSettingsBaseApp"><b><i
+                                    class="fa fa-cogs"></i></b>
+                                <span class="nav-label">Отчеты</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="text-center" id="ex1">
+                        <p id="alert_message" class="font-bold"></p>
+                    </div>
+                </nav>
             </div>
             <div class="b-overlay-wrap position-relative w-100" size="sm">
                 <div class="rih-page-wrapper">
@@ -107,7 +191,8 @@
                     </nav>
                     <main class="wrapper wrapper-content border-bottom">
                         <div data-v-e551daac="">
-                            <div class=" col-lg-12 col-xl-12 col-md-6 col-sm-12 col-6">
+                            <div class="row">
+                            <div class=" col-lg-12 col-xl-12 col-md-6 col-sm-12 col-6 ml-3">
                                 <div data-v-e551daac="" class="mb-3 text-right">
                                     <a data-v-e551daac="" href="/projects/create" th:href="@{/projects/create}"
                                         class="btn btn-primary width btn-add_vidacha green" >Создать</a>
@@ -125,6 +210,7 @@
                                         class="btn btn-primary width btn-update_vidacha  orange">Обновить</a>
                                 </div>
                             </div>
+                        </div>
                             <div data-v-e551daac="">
                                 <div data-v-e551daac="" class="b-overlay-wrap position-relative custom-ll">
                                     <div class="row">

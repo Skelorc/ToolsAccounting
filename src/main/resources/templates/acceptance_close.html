@@ -2,8 +2,8 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
     <head class="head">
         <title>Приемка закрыть</title>
-        <!-- <div th:replace="fragments/head :: header"></div> -->
-        <meta charset="UTF-8">
+        <div th:replace="fragments/head :: header"></div>
+        <!-- <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
       <meta name="robots" content="index, follow">
       <meta name="author" content="">
@@ -44,7 +44,7 @@
       <meta name="theme-color" content="#179d82">
       <meta th:name="_csrf" th:content="${_csrf.token}"/>
       <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
-      <!--<link rel="manifest" href="/templates/assets/json/manifest.json" th:href="@{/templates/assets/json/manifest.json}">-->
+      
 
       <link rel="preload" href="../static/fonts/fontawesome/fontawesome-all-css.css" as="style" th:href="@{/fonts/fontawesome/fontawesome-all-css.css}">
       <link rel="preload" href="../static/css/style.css" as="style" th:href="@{/css/style.css}">
@@ -65,11 +65,11 @@
       <link rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}">
       
       <script src="/static/fonts/fontawesome/all.js" th:src="@{/fonts/fontawesome/all.js}"></script>
-      <!--JQuery-->
+      
       <script src="/static/js/jquery.js" th:src="@{/js/jquery.js}"></script>
-      <!-- jQuery Modal -->
+    
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"  th:src="@{/js/jquery.modal.js}"></script>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" /> -->
     
     </head>
 
@@ -312,7 +312,7 @@
                                         </div>
                                     </form>
                                 </div>
-                                    <div class="wrapper__btn-primary col-8 col-md-12 mb-3 vidacha-sozdach d-block">
+                                    <div class="wrapper__btn-primary ml-3 col-8 col-md-12 mb-3 vidacha-sozdach d-block">
                                         <div class="mb-3 text-right">
                                             <span class="btn-pimary__groups_title">Список оборудования</span>
                                         </div>
@@ -332,7 +332,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="btn-pimary__groups-wrapper mb-3 order-lg-1">
+                                    <div class="btn-pimary__groups-wrapper ml-3  mb-3 order-lg-1">
                                         <div class="btn__under-table">
                                             <div class="mb-3 text-right">
                                                 <a href="#" class="btn btn-primary width grey">Единый список</a>
