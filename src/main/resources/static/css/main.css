@@ -1283,7 +1283,7 @@ margin-bottom: 15px;
     align-items: center;
 }
 .custom-ll__header-zipcode_project {
-    width: 315px;
+    max-width: 415px;
     margin-left: -50px;
     
 }
