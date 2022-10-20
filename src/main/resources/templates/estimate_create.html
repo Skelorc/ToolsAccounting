@@ -142,7 +142,10 @@
                                                 </tr>
                                                 <tr>
                                                     <th>Проект:</th>
-                                                    <td colspan="5"><span class="table-td-text" th:text="${estimate.project.name}">Подстановка названия проекта</span></td>
+                                                    <td colspan="5">
+                                                        <span class="table-td-text" th:text="${estimate.project.name}">Подстановка названия проекта</span>
+                                                        <input type="text" hidden="hidden" th:value="${estimate.id}" class="estimate_id_value">
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <th>Оператор:</th>
@@ -176,7 +179,6 @@
                                                 </tr>
                                                 <tr th:each="tool :${list_tools.value}">
                                                     <td>
-                                                        <span class="first-th" th:utext="${list_toolsStat.index}"></span>
                                                         <input class="item_id" type="hidden" th:value="${tool.id}">
                                                         <input class="item_category" type="hidden" th:value="${list_tools.key}">
                                                     </td>
@@ -211,7 +213,7 @@
                                                 </tr>
                                                 <tr class="sat_item">
                                                     <td class="first-th remove_transport" style="cursor: pointer;">-</td>
-                                                    <td><input type="text" class="form-control__table" value="Механик камеры" style="font-size: 14px;"></td>
+                                                    <td><input type="text" class="form-control__table fIn0_t" value="Механик камеры" style="font-size: 14px;"></td>
                                                     <td><input type="text" class="form-control__table fIn1_t" placeholder="Ручной ввод/наименование"></td>
                                                     <td><input type="text" class="form-control__table fIn2_t" placeholder="Ручной ввод/наименование"></td>
                                                     <td><input type="text" class="form-control__table fIn3_t" placeholder="Ручной ввод/наименование"></td>
@@ -221,7 +223,7 @@
                                                 </tr>
                                                 <tr class="sat_item">
                                                     <td class="first-th remove_transport" style="cursor: pointer;">-</td>
-                                                    <td><input class="form-control__table" value="Переработка за час" style="font-size: 14px;"></td>
+                                                    <td><input type="text" class="form-control__table fIn0_t" value="Переработка за час" style="font-size: 14px;"></td>
                                                     <td><input type="text" class="form-control__table fIn1_t" placeholder="Ручной ввод/наименование"></td>
                                                     <td><input type="text" class="form-control__table fIn2_t" placeholder="Ручной ввод/наименование"></td>
                                                     <td><input type="text" class="form-control__table fIn3_t" placeholder="Ручной ввод/наименование"></td>
@@ -231,7 +233,7 @@
                                                 </tr>
                                                 <tr class="sat_item">
                                                     <td class="first-th remove_transport" style="cursor: pointer;">-</td>
-                                                    <td><input class="form-control__table" value="Камерваген" style="font-size: 14px;"></td>
+                                                    <td><input type="text" class="form-control__table fIn0_t" value="Камерваген" style="font-size: 14px;"></td>
                                                     <td><input type="text" class="form-control__table fIn1_t" placeholder="Ручной ввод/наименование"></td>
                                                     <td><input type="text" class="form-control__table fIn2_t" placeholder="Ручной ввод/наименование"></td>
                                                     <td><input type="text" class="form-control__table fIn3_t" placeholder="Ручной ввод/наименование"></td>
@@ -241,7 +243,7 @@
                                                 </tr>
                                                 <tr class="sat_item">
                                                     <td class="first-th remove_transport" style="cursor: pointer;">-</td>
-                                                    <td><input class="form-control__table" value="Прогон за МКАД" style="font-size: 14px;"></td>
+                                                    <td><input type="text" class="form-control__table fIn0_t" value="Прогон за МКАД" style="font-size: 14px;"></td>
                                                     <td><input type="text" class="form-control__table fIn1_t" placeholder="Ручной ввод/наименование"></td>
                                                     <td><input type="text" class="form-control__table fIn2_t" placeholder="Ручной ввод/наименование"></td>
                                                     <td><input type="text" class="form-control__table fIn3_t" placeholder="Ручной ввод/наименование"></td>

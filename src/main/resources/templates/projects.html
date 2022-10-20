@@ -89,20 +89,8 @@
 <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
     <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
         <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
-            <!-- <div th:insert="fragments/menu_sidebar.html"> -->
-                <div class="text-center" id="ex1">
-                    <p id="alert_message" class="font-bold"></p>
-                    <script th:inline="javascript">
-                        var message = [[${message}]];
-                        if (message){
-                            console.log(typeof message);
-                            console.log(message);
-                            $("#alert_message").text(message.toString());
-                            $("#ex1").modal();
-                        }
-                    </script>
-                </div>
-                <nav role="navigation" class="rih-nav">
+             <div th:insert="fragments/menu_sidebar.html">
+                <!--<nav role="navigation" class="rih-nav">
                     <div class="nav-header text-center sidebar-collapse__menu-logo rih-nav__header">
                         <a href="#" class="main-link">
                             <div class="sidebar-collapse__menu-logo">
@@ -173,7 +161,7 @@
                     <div class="text-center" id="ex1">
                         <p id="alert_message" class="font-bold"></p>
                     </div>
-                </nav>
+                </nav>-->
             </div>
             <div class="b-overlay-wrap position-relative w-100" size="sm">
                 <div class="rih-page-wrapper">
@@ -319,7 +307,7 @@
                                                             <td data-label="Сотрудник" th:utext="${project.employee}"></td>
                                                             <td data-label="Примечание" th:utext="${project.note}"></td>
                                                             <td data-label="Тип" th:utext="${project.classification.getValue()}"></td>
-                                                            <td data-label="Открыть смету"><a th:href="@{/estimate/create/{id}/(id=${project.getId()})}"
+                                                            <td data-label="Открыть смету"><a th:href="@{/estimate/create/{id}(id=${project.getId()})}"
                                                                     title="Просмотр/редактирование сметы">Смета</a></td>
                                                         </tr>
                                                     </table>
@@ -347,18 +335,6 @@
                                                 <div class="custom-ll__header__full__right search__flex">
                                                     <div class="header__search header__search_width form-m">
                                                         <input type="search" placeholder="Поиск" class="form-control  header__filter--mobile">
-                                                        <!-- <span class="header__search__btn">
-                                                            <svg class="svg-inline--fa fa-search fa-w-16"
-                                                                aria-hidden="true" focusable="false" data-prefix="fa"
-                                                                data-icon="search" role="img"
-                                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-                                                                data-fa-i2svg="">
-                                                                <path fill="currentColor"
-                                                                    d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z">
-                                                                </path>
-                                                            </svg>
-                                                            <i class="fa fa-search"></i>
-                                                        </span> -->
                                                     </div>
                                                     <div class="header__filter ">
                                                         <button type="button"
@@ -382,16 +358,16 @@
             </div>
         </div>
     </div>
-    <script src="../static/js/main.js" th:src="@{/js/main.js}"></script>
+   <!-- <script src="../static/js/main.js" th:src="@{/js/main.js}"></script>
     <script src="../static/fonts/fontawesome/all.js" th:src="@{/fonts/fontawesome/all.js}"></script>
     <script src="../static/js/main.js" th:src="@{/js/main.js}"></script>
     <script src="../static/js/service-worker.js" th:src="@{/js/service-worker.js}"></script>
-    <!--<script src="/static/js/sendData.js" th:src="@{/js/sendData.js}"></script>-->
-    <!--<script src="https://91.210.168.186/js/sendData.js" th:src="@{https://91.210.168.186/js/sendData.js}"></script>-->
+    &lt;!&ndash;<script src="/static/js/sendData.js" th:src="@{/js/sendData.js}"></script>&ndash;&gt;
+    &lt;!&ndash;<script src="https://91.210.168.186/js/sendData.js" th:src="@{https://91.210.168.186/js/sendData.js}"></script>&ndash;&gt;
     <script type="text/javascript">
         document.write('<script src="https://91.210.168.186/js/sendData.js">' + '<\/script>');
-    </script>
-    <!-- <div th:insert="fragments/scripts.html"></div> -->
+    </script>-->
+     <div th:insert="fragments/scripts.html"></div>
 </body>
 
 </html>

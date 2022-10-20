@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import wns.constants.Messages;
+import wns.dto.EstimateDTO;
 import wns.dto.EstimateNameDTO;
 import wns.entity.Estimate;
 import wns.entity.Project;
@@ -75,21 +76,21 @@ public class EstimateController {
     @PostMapping("/create/{id}")
     @ResponseBody
     public ResponseEntity<Object> createEstimateName(@PathVariable("id") long id,
-                                                     @RequestBody Estimate estimate)
+                                                     @RequestBody EstimateDTO dto)
     {
-        System.out.println(estimate);
-        //Messages messages = estimateService.updateEstimate(id, estimateList);
+        Estimate estimate = dto.createEstimateFromDTO(projectService.getById(id));
+        estimateService.save(estimate);
         return ResponseHandler.generateResponse(Messages.OK);
     }
 
     @PostMapping("/download-estimate/{id}")
     @ResponseBody
     public ResponseEntity<Object> downloadEstimate(@PathVariable("id") long id,
-                                                   @RequestBody Estimate estimate)
+                                                   @RequestBody EstimateDTO dto)
     {
-        //Project project = projectService.getById(id);
-        System.out.println(estimate);
-        //excelUtil.createDocumentAndAddHeaders(estimate,estimate.getProject().getName());
+        Estimate estimate = dto.createEstimateFromDTO(projectService.getById(id));
+        estimateService.save(estimate);
+        excelUtil.createDocument(estimate,estimate.getProject().getName());
         return ResponseHandler.generateResponse(Messages.OK);
     }
 

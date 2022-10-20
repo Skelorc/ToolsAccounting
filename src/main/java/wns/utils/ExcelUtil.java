@@ -24,7 +24,6 @@ import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 @Component
 public class ExcelUtil {
     private Workbook workbook;
