@@ -4,8 +4,8 @@
 
 <head class="head">
     <title>Клиенты</title>
-    <div th:replace="fragments/head :: header"></div>
-    <!-- <meta charset="UTF-8">
+    <!-- <div th:replace="fragments/head :: header"></div> -->
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="robots" content="index, follow">
     <meta name="author" content="">
@@ -70,7 +70,7 @@
 
     <script src="/static/js/jquery.js" th:src="@{/js/jquery.js}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"  th:src="@{/js/jquery.modal.js}"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" />
 </head>
 
 <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
@@ -81,7 +81,7 @@
             <div class="rih-page-wrapper">
                 <nav  role="navigation" class="navbar navbar-admin navbar-fixed-top" th:insert="fragments/header_logout.html"></nav>
                 <main class="wrapper wrapper-content border-bottom">
-                    <div data-v-e551daac="">
+                    <div class="edit-container d-block col-8 col-md-12" data-v-e551daac="">
                         <div class="btn-pimary__groups-wrapper vidacha-sozdach mb-3 paddin-l-r-15">
                             <div data-v-e551daac="" class="mb-3 text-right">
                                 <a data-v-e551daac="" href="/clients/create" th:href="@{/clients/create}" class="btn btn-primary width  btn-add_vidacha green">Создать</a>
