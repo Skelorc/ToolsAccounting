@@ -73,6 +73,13 @@ public class Estimate {
                 ", start=" + start +
                 ", end=" + end +
                 ", count_shifts=" + count_shifts +
+                ", allByPRoject=" + allByPRoject +
+                ", discountByTools=" + discountByTools +
+                ", allByProjectWithDiscount=" + allByProjectWithDiscount +
+                ", allByService=" + allByService +
+                ", finalSumByProject=" + finalSumByProject +
+                ", procentUsn=" + procentUsn +
+                ", finalSumWithUsn=" + finalSumWithUsn +
                 '}';
     }
 }

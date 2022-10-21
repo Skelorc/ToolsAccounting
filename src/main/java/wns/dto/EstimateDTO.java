@@ -37,6 +37,7 @@ public class EstimateDTO {
         estimate.setFinalSumByProject(params.getFinalSumByProject());
         estimate.setProcentUsn(params.getProcentUsn());
         estimate.setFinalSumWithUsn(params.getFinalSumWithUsn());
+        estimate.setToolsEstimates(toolsEstimates);
         return estimate;
     }
 }

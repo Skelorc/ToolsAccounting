@@ -75,241 +75,296 @@
 </head>
 
 <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
-    <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
+<div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
+    <div class="b-overlay-wrap position-relative w-100" size="sm">
+        <div th:insert="fragments/menu_sidebar.html"></div>
         <div class="b-overlay-wrap position-relative w-100" size="sm">
-            <div th:insert="fragments/menu_sidebar.html"></div>
-            <div class="b-overlay-wrap position-relative w-100" size="sm">
-                <div class="rih-page-wrapper">
-                    <nav  role="navigation" class="navbar navbar-admin navbar-fixed-top" th:insert="fragments/header_logout.html"></nav>
-                        <main class="wrapper wrapper-content border-bottom">
-                           <!-- <div class="btn-pimary__groups-wrapper col-12 mb-3">
+            <div class="rih-page-wrapper">
+                <nav role="navigation" class="navbar navbar-admin navbar-fixed-top"
+                     th:insert="fragments/header_logout.html"></nav>
+                <main class="wrapper wrapper-content border-bottom">
+                    <!-- <div class="btn-pimary__groups-wrapper col-12 mb-3">
+                         <div class="mb-3 text-right">
+                             <span class="btn-pimary__groups_title">Смета</span>
+                         </div>
+                         <div class="mb-3 text-right">
+                             <a href="/projects/create" class="btn btn-primary min-width-120 btn-add_vidacha grey">Назад</a>
+                         </div>
+                         <div class="mb-3 text-right">
+                             <button href="#" class="btn btn-primary min-width-120 green">Сохранить</button>
+                         </div>
+                         <div class="mb-3 text-right">
+                             <button href="#" class="btn btn-primary min-width-120 yellow">Сохранить и закрыть</button>
+                         </div>
+                         <div class="mb-3 text-right">
+                             <button href="#" class="btn btn-primary min-width-120 light-grey ">Печать</button>
+                         </div>
+                         <div class="mb-3 text-right">
+                             <button href="#" class="btn btn-primary min-width-120 light-blue">Калькулятор</button>
+                         </div>
+                         <div class="mb-3 text-right">
+                             <button href="/tools" class="btn btn-primary min-width-120 green">Добавить оборудование и обслуживание</button>
+                         </div>
+                     </div>-->
+                    <div class="b-overlay-wrap position-relative custom-ll">
+                        <div class="row">
+                            <!--<div class="btn__under-table col-lg-12 order-lg-1">
                                 <div class="mb-3 text-right">
-                                    <span class="btn-pimary__groups_title">Смета</span>
+                                    <a href="#" class="btn btn-primary min-width-120 grey">Без скидки</a>
                                 </div>
                                 <div class="mb-3 text-right">
-                                    <a href="/projects/create" class="btn btn-primary min-width-120 btn-add_vidacha grey">Назад</a>
+                                    <a href="#" class="btn btn-primary min-width-120 grey">Скидка на оборудование</a>
                                 </div>
                                 <div class="mb-3 text-right">
-                                    <button href="#" class="btn btn-primary min-width-120 green">Сохранить</button>
+                                    <a href="#" class="btn btn-primary min-width-120 grey">Скидка по каждому оборудованию</a>
                                 </div>
                                 <div class="mb-3 text-right">
-                                    <button href="#" class="btn btn-primary min-width-120 yellow">Сохранить и закрыть</button>
+                                    <a href="#" class="btn btn-primary min-width-120 grey">Расчет скидки из суммы по проекту</a>
                                 </div>
                                 <div class="mb-3 text-right">
-                                    <button href="#" class="btn btn-primary min-width-120 light-grey ">Печать</button>
-                                </div>
-                                <div class="mb-3 text-right">
-                                    <button href="#" class="btn btn-primary min-width-120 light-blue">Калькулятор</button>
-                                </div>
-                                <div class="mb-3 text-right">
-                                    <button href="/tools" class="btn btn-primary min-width-120 green">Добавить оборудование и обслуживание</button>
+                                    <a href="#" class="btn btn-primary min-width-120 grey">Расчет скидки из суммы с УСН</a>
                                 </div>
                             </div>-->
-                            <div class="b-overlay-wrap position-relative custom-ll">
-                                <div class="row">
-                                    <!--<div class="btn__under-table col-lg-12 order-lg-1">
-                                        <div class="mb-3 text-right">
-                                            <a href="#" class="btn btn-primary min-width-120 grey">Без скидки</a>
+                            <div class="custom-ll__table table-responsive overflow-auto col-lg-12 order-lg-1">
+                                <table class="estimate table w-table">
+                                    <tbody>
+                                    <tr>
+                                        <td rowspan="9" class="first-th"></td>
+                                        <td rowspan="7"><img class="table-logo" th:src="@{/img/logo/mad-dog-logo.png}">
+                                        </td>
+                                        <th colspan="2" rowspan="2">Съемочный период:</th>
+                                        <td colspan="4"><span class="table-td-text" th:field="*{start}"
+                                                              th:value="${estimate.start}"
+                                                              th:text="${#temporals.format(estimate.start, 'dd-MM-yyyy HH:mm')}">Подстановка даты начала проекта</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4"><span class="table-td-text" th:field="*{end}"
+                                                              th:value="${estimate.end}"
+                                                              th:text="${#temporals.format(estimate.end, 'dd-MM-yyyy HH:mm')}">Подстановка даты окончания проекта</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="3">Количество смен:</th>
+                                        <td colspan="3"><span class="table-td-text" th:text="${estimate.count_shifts}">Посчет исходя из дат проекта</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Проект:</th>
+                                        <td colspan="5">
+                                            <span class="table-td-text" th:text="${estimate.project.name}">Подстановка названия проекта</span>
+                                            <input type="text" hidden="hidden" th:value="${estimate.id}"
+                                                   class="estimate_id_value">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Оператор:</th>
+                                        <td colspan="5"><span class="table-td-text"
+                                                              th:text="${estimate.project.client.directorOfPhotography}">Постановка из карточки клиента</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Заказчик:</th>
+                                        <td colspan="5"><span class="table-td-text"
+                                                              th:text="${estimate.project.client.fullName}">Постановка из карточки клиента</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Менеджер:</th>
+                                        <td colspan="5"><span class="table-td-text"
+                                                              th:text="${estimate.project.employee}">ФИО сотрудника из аккаунта</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th rowspan="2">Наименование оборудования</th>
+                                        <th rowspan="2">Стоимость</th>
+                                        <th colspan="3">Количество</th>
+                                        <th rowspan="2">Итого за смену</th>
+                                        <th rowspan="2">Итого за проект</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Ед.техники</th>
+                                        <th>Дней</th>
+                                        <th>Скидка</th>
+                                    </tr>
+                                    <!-- Выбока данных -->
+                                    <div id="data-form-send" th:each="list_tools: ${map_tools}">
+                                        <div th:with="key = ${list_tools.key}">
+                                            <tr th:if="${key.toString()!='SERVICE'}">
+                                                <td class="first-th"></td>
+                                                <th colspan="7" th:utext="${list_tools.key.getValue()}"></th>
+                                            </tr>
                                         </div>
-                                        <div class="mb-3 text-right">
-                                            <a href="#" class="btn btn-primary min-width-120 grey">Скидка на оборудование</a>
-                                        </div>
-                                        <div class="mb-3 text-right">
-                                            <a href="#" class="btn btn-primary min-width-120 grey">Скидка по каждому оборудованию</a>
-                                        </div>
-                                        <div class="mb-3 text-right">
-                                            <a href="#" class="btn btn-primary min-width-120 grey">Расчет скидки из суммы по проекту</a>
-                                        </div>
-                                        <div class="mb-3 text-right">
-                                            <a href="#" class="btn btn-primary min-width-120 grey">Расчет скидки из суммы с УСН</a>
-                                        </div>
-                                    </div>-->
-                                    <div class="custom-ll__table table-responsive overflow-auto col-lg-12 order-lg-1">
-                                        <table class="estimate table w-table">
-                                            <tbody>
-                                                <tr>
-                                                    <td rowspan="9" class="first-th"></td>
-                                                    <td rowspan="7"><img class="table-logo" th:src="@{/img/logo/mad-dog-logo.png}"></td>
-                                                    <th colspan="2" rowspan="2">Съемочный период:</th>
-                                                    <td colspan="4"><span class="table-td-text" th:field="*{start}" th:value="${estimate.start}" th:text="${#temporals.format(estimate.start, 'dd-MM-yyyy HH:mm')}">Подстановка даты начала проекта</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td colspan="4"><span class="table-td-text" th:field="*{end}" th:value="${estimate.end}" th:text="${#temporals.format(estimate.end, 'dd-MM-yyyy HH:mm')}">Подстановка даты окончания проекта</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <th colspan="3">Количество смен:</th>
-                                                    <td colspan="3"><span class="table-td-text" th:text="${estimate.count_shifts}">Посчет исходя из дат проекта</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Проект:</th>
-                                                    <td colspan="5">
-                                                        <span class="table-td-text" th:text="${estimate.project.name}">Подстановка названия проекта</span>
-                                                        <input type="text" hidden="hidden" th:value="${estimate.id}" class="estimate_id_value">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Оператор:</th>
-                                                    <td colspan="5"><span class="table-td-text" th:text="${estimate.project.client.directorOfPhotography}">Постановка из карточки клиента</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Заказчик:</th>
-                                                    <td colspan="5"><span class="table-td-text" th:text="${estimate.project.client.fullName}">Постановка из карточки клиента</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Менеджер:</th>
-                                                    <td colspan="5"><span class="table-td-text" th:text="${estimate.project.employee}">ФИО сотрудника из аккаунта</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <th rowspan="2">Наименование оборудования</th>
-                                                    <th rowspan="2">Стоимость</th>
-                                                    <th colspan="3">Количество</th>
-                                                    <th rowspan="2">Итого за смену</th>
-                                                    <th rowspan="2">Итого за проект</th>
-                                                </tr>
-                                                <tr>
-                                                    <th>Ед.техники</th>
-                                                    <th>Дней</th>
-                                                    <th>Скидка</th>
-                                                </tr>
-                                                <!-- Выбока данных -->
-                                            <div id="data-form-send" th:each="list_tools: ${map_tools}">
-                                                <tr>
-                                                    <td class="first-th"></td>
-                                                    <th colspan="7" th:utext="${list_tools.key.getValue()}"></th>
-                                                </tr>
-                                                <tr th:each="tool :${list_tools.value}">
-                                                    <td>
-                                                        <input class="item_id" type="hidden" th:value="${tool.id}">
-                                                        <input class="item_category" type="hidden" th:value="${list_tools.key}">
-                                                    </td>
-                                                    <td><span class="table-td-text" th:value="${tool.name}" th:utext="${tool.name}"></span></td>
-                                                    <td><input required="" th:value="${tool.priceByDay}" type="text" class="form-control__table fIn1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Цена за сутки/ручной ввод"></td>
-                                                    <td><input class="form-control__table fIn2" type="text" th:value="${tool.amount}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></td>
-                                                    <td><input required="" th:value="${estimate.count_shifts}" type="text" class="form-control__table fIn3" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Количество смен/ручной ввод"></td>
-                                                    <td><input type="text" th:value="${estimate.project.discount}" class="form-control__table fIn4" placeholder="Ручной ввод/наименование"></td>
-                                                    <td><span class="table-td-text fIn5" th:utext="${tool.priceByDay*tool.amount*(100-(estimate.project.getDiscount()))/100}" th:value="${tool.priceByDay*tool.amount*(100-(estimate.project.getDiscount()))/100}">Стоимость*Ед.техники*(100-скидка)/100</span></td>
-                                                    <td><span class="table-td-text fIn6" th:utext="${tool.priceByDay*tool.amount*estimate.count_shifts*(100-(estimate.project.getDiscount()))/100}" th:value="${tool.priceByDay*tool.amount*estimate.count_shifts*(100-(estimate.project.getDiscount()))/100}">Стоимость*Ед.техники*Дней(100-скидка)/100</span></td>
-                                                </tr>
+                                        <tr th:each="tool :${list_tools.value}">
+                                            <div th:unless="${tool.section.toString()=='SERVICE'}">
+                                                <td>
+                                                    <input class="item_id" type="hidden" th:value="${tool.id}">
+                                                    <input class="item_category" type="hidden"
+                                                           th:value="${list_tools.key}">
+                                                </td>
+                                                <td><span class="table-td-text" th:value="${tool.name}"
+                                                          th:utext="${tool.name}"></span></td>
+                                                <td><input required="" th:value="${tool.priceByDay}" type="text"
+                                                           class="form-control__table fIn1"
+                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                                           placeholder="Цена за сутки/ручной ввод"></td>
+                                                <td><input class="form-control__table fIn2" type="text"
+                                                           th:value="${tool.amount}"
+                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                                </td>
+                                                <td><input required="" th:value="${tool.countShifts}" type="text"
+                                                           class="form-control__table fIn3"
+                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                                           placeholder="Количество смен/ручной ввод"></td>
+                                                <td><input type="text" th:value="${tool.discount}"
+                                                           class="form-control__table fIn4"
+                                                           placeholder="Ручной ввод/наименование"></td>
+                                                <td><span class="table-td-text fIn5"
+                                                          th:utext="${tool.priceByDay*tool.amount*(100-(estimate.project.getDiscount()))/100}"
+                                                          th:value="${tool.priceByDay*tool.amount*(100-(estimate.project.getDiscount()))/100}">Стоимость*Ед.техники*(100-скидка)/100</span>
+                                                </td>
+                                                <td><span class="table-td-text fIn6"
+                                                          th:utext="${tool.priceByDay*tool.amount*estimate.count_shifts*(100-(estimate.project.getDiscount()))/100}"
+                                                          th:value="${tool.priceByDay*tool.amount*estimate.count_shifts*(100-(estimate.project.getDiscount()))/100}">Стоимость*Ед.техники*Дней(100-скидка)/100</span>
+                                                </td>
                                             </div>
-                                                <tr>
-                                                    <td rowspan="4" class="first-th"></td>
-                                                    <th colspan="3">Всего по проекту:</th>
-                                                    <td colspan="4"><span class="table-td-text "><input required="" type="text" class="form-control__table fsIn1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Сумма итого по оборудованию"></span></td>
-                                                </tr>
-                                                <tr>
-                                                    <th colspan="3">Скидка на оборудование:(%)</th>
-                                                    <td colspan="4"><span class="table-td-text"><input required="" type="text" class="form-control__table fsIn2" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Постановка суммы клиента/расчет из суммы УСН"></span></td>
-                                                </tr>
-                                                <tr>
-                                                    <th colspan="3">Всего по проекту с учетом скидки:</th>
-                                                    <td colspan="4"><span class="table-td-text"><input required="" type="text" class="form-control__table fsIn3" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Сумма итого по оборудованию*(100 на комплект)/100"></span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td colspan="8"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="first-th add_transport" style="cursor: pointer;">+</td>
-                                                    <th colspan="7" class="sat">Обслуживание и транспорт</th>
-                                                </tr>
-                                                <tr class="sat_item">
-                                                    <td class="first-th remove_transport" style="cursor: pointer;">-</td>
-                                                    <td><input type="text" class="form-control__table fIn0_t" value="Механик камеры" style="font-size: 14px;"></td>
-                                                    <td><input type="text" class="form-control__table fIn1_t" placeholder="Ручной ввод/наименование"></td>
-                                                    <td><input type="text" class="form-control__table fIn2_t" placeholder="Ручной ввод/наименование"></td>
-                                                    <td><input type="text" class="form-control__table fIn3_t" placeholder="Ручной ввод/наименование"></td>
-                                                    <td><input type="text" class="form-control__table fIn4_t" placeholder="Ручной ввод/наименование"></td>
-                                                    <td><span class="table-td-text fIn5_t"></span></td>
-                                                    <td><span class="table-td-text fIn6_t"></span></td>
-                                                </tr>
-                                                <tr class="sat_item">
-                                                    <td class="first-th remove_transport" style="cursor: pointer;">-</td>
-                                                    <td><input type="text" class="form-control__table fIn0_t" value="Переработка за час" style="font-size: 14px;"></td>
-                                                    <td><input type="text" class="form-control__table fIn1_t" placeholder="Ручной ввод/наименование"></td>
-                                                    <td><input type="text" class="form-control__table fIn2_t" placeholder="Ручной ввод/наименование"></td>
-                                                    <td><input type="text" class="form-control__table fIn3_t" placeholder="Ручной ввод/наименование"></td>
-                                                    <td><input type="text" class="form-control__table fIn4_t" placeholder="Ручной ввод/наименование"></td>
-                                                    <td><span class="table-td-text fIn5_t"></span></td>
-                                                    <td><span class="table-td-text fIn6_t"></span></td>
-                                                </tr>
-                                                <tr class="sat_item">
-                                                    <td class="first-th remove_transport" style="cursor: pointer;">-</td>
-                                                    <td><input type="text" class="form-control__table fIn0_t" value="Камерваген" style="font-size: 14px;"></td>
-                                                    <td><input type="text" class="form-control__table fIn1_t" placeholder="Ручной ввод/наименование"></td>
-                                                    <td><input type="text" class="form-control__table fIn2_t" placeholder="Ручной ввод/наименование"></td>
-                                                    <td><input type="text" class="form-control__table fIn3_t" placeholder="Ручной ввод/наименование"></td>
-                                                    <td><input type="text" class="form-control__table fIn4_t" placeholder="Ручной ввод/наименование"></td>
-                                                    <td><span class="table-td-text fIn5_t"></span></td>
-                                                    <td><span class="table-td-text fIn6_t"></span></td>
-                                                </tr>
-                                                <tr class="sat_item">
-                                                    <td class="first-th remove_transport" style="cursor: pointer;">-</td>
-                                                    <td><input type="text" class="form-control__table fIn0_t" value="Прогон за МКАД" style="font-size: 14px;"></td>
-                                                    <td><input type="text" class="form-control__table fIn1_t" placeholder="Ручной ввод/наименование"></td>
-                                                    <td><input type="text" class="form-control__table fIn2_t" placeholder="Ручной ввод/наименование"></td>
-                                                    <td><input type="text" class="form-control__table fIn3_t" placeholder="Ручной ввод/наименование"></td>
-                                                    <td><input type="text" class="form-control__table fIn4_t" placeholder="Ручной ввод/наименование"></td>
-                                                    <td><span class="table-td-text fIn5_t"></span></td>
-                                                    <td><span class="table-td-text fIn6_t"></span></td>
-                                                </tr>
-                                                <tr class="sat_item_empty sat_item">
-                                                    <td colspan="8"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="first-th"></td>
-                                                    <th colspan="3">Всего по обслуживанию и транспорту:</th>
-                                                    <td colspan="4"><span class="table-td-text "><input required="" type="text" class="form-control__table fsIn1_t" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Сумма итого по ослуживанию"></span></td>
-                                                </tr>
-
-
-                                                <tr>
-                                                    <td class="first-th"></td>
-                                                    <th colspan="3">Итоговая сумма по проекту:</th>
-                                                    <td colspan="4"><span class="table-td-text"><input required="" type="text" class="form-control__table fsIn2_t" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Сумма итого по оборудованию + Сумма итого по ослуживанию"></span></td>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="first-th"></td>
-                                                    <th colspan="3">Процент УСН (%):</th>
-                                                    <td colspan="4"><span class="table-td-text"><input required="" type="text" class="form-control__table fsIn3_USN_t" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Процент УСН (%)"></span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="first-th"></td>
-                                                    <th colspan="3">Итоговая сумма УСН:</th>
-                                                    <td colspan="4"><span class="table-td-text"><input required="" type="text" class="form-control__table fsIn3_t" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" placeholder="Итоговая сумма по проекту/0.91/Ручной ввод"></span></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <div class="mt-4 mb-4 col-4 save-btn">
-                                            <button type="submit" id="save_estimate" class="btn btn-lg btn-primary btn-primary_save w-100">
-                                                Сохранить смету
-                                            </button>
-                                        </div>
-                                        <div class="mt-4 mb-4 col-4 save-btn">
-                                            <button type="submit" id="estimate_load_file" class="btn btn-lg btn-primary btn-primary_save w-100">
-                                                Выгрузить
-                                            </button>
-                                        </div>
+                                        </tr>
                                     </div>
+                                    <tr>
+                                        <td rowspan="4" class="first-th"></td>
+                                        <th colspan="3">Всего по проекту:</th>
+                                        <td colspan="4"><span class="table-td-text "><input required="" type="text"
+                                                                                            class="form-control__table fsIn1"
+                                                                                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                                                                            placeholder="Сумма итого по оборудованию"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="3">Скидка на оборудование:(%)</th>
+                                        <td colspan="4"><span class="table-td-text"><input required="" type="text"
+                                                                                           class="form-control__table fsIn2"
+                                                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                                                                           placeholder="Постановка суммы клиента/расчет из суммы УСН"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="3">Всего по проекту с учетом скидки:</th>
+                                        <td colspan="4"><span class="table-td-text"><input required="" type="text"
+                                                                                           class="form-control__table fsIn3"
+                                                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                                                                           placeholder="Сумма итого по оборудованию*(100 на комплект)/100"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="8"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="first-th add_transport"
+                                            style="cursor: pointer; background: #1ab394; color: #fff; font-size: 20px;">
+                                            +
+                                        </td>
+                                        <th colspan="7" class="sat">Обслуживание и транспорт</th>
+                                    </tr>
+                                    <div th:each="list_tools: ${map_tools}">
+                                        <tr class="sat_item" th:each="tool :${list_tools.value}">
+                                            <div th:unless="${tool.section.toString()!='SERVICE'}">
+                                                <td class="first-th remove_transport"
+                                                    style="cursor: pointer; background: #1ab394; color: #fff; font-size: 20px;">
+                                                    -
+                                                </td>
+                                                <td><input type="text" class="form-control__table fIn0_t"
+                                                           th:value="${tool.name}"
+                                                           style="font-size: 14px;"></td>
+                                                <td><input th:value="${tool.priceByDay}" type="text" class="form-control__table fIn1_t"
+                                                           placeholder="Ручной ввод/наименование"></td>
+                                                <td><input th:value="${tool.amount}" type="text" class="form-control__table fIn2_t"
+                                                           placeholder="Ручной ввод/наименование"></td>
+                                                <td><input th:value="${tool.countShifts}" type="text" class="form-control__table fIn3_t"
+                                                           placeholder="Ручной ввод/наименование"></td>
+                                                <td><input type="text" th:value="${tool.discount}" class="form-control__table fIn4_t"
+                                                           placeholder="Ручной ввод/наименование"></td>
+                                                <td><span class="table-td-text fIn5_t"></span></td>
+                                                <td><span class="table-td-text fIn6_t"></span></td>
+                                            </div>
+                                        </tr>
+                                    </div>
+                                    <tr>
+                                        <td class="first-th"></td>
+                                        <th colspan="3">Всего по обслуживанию и транспорту:</th>
+                                        <td colspan="4"><span class="table-td-text "><input required="" type="text"
+                                                                                            class="form-control__table fsIn1_t"
+                                                                                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                                                                            placeholder="Сумма итого по ослуживанию"></span>
+                                        </td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td class="first-th"></td>
+                                        <th colspan="3">Итоговая сумма по проекту:</th>
+                                        <td colspan="4"><span class="table-td-text"><input required="" type="text"
+                                                                                           class="form-control__table fsIn2_t"
+                                                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                                                                           placeholder="Сумма итого по оборудованию + Сумма итого по ослуживанию"></span>
+                                        </td>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="first-th"></td>
+                                        <th colspan="3">Процент УСН (%):</th>
+                                        <td colspan="4"><span class="table-td-text"><input required="" type="text"
+                                                                                           class="form-control__table fsIn3_USN_t"
+                                                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                                                                           placeholder="Процент УСН (%)"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="first-th"></td>
+                                        <th colspan="3">Итоговая сумма УСН:</th>
+                                        <td colspan="4"><span class="table-td-text"><input required="" type="text"
+                                                                                           class="form-control__table fsIn3_t"
+                                                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                                                                           placeholder="Итоговая сумма по проекту/0.91/Ручной ввод"></span>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div class="mt-4 mb-4 col-4 save-btn">
+                                    <button type="submit" id="save_estimate"
+                                            class="btn btn-lg btn-primary btn-primary_save w-100">
+                                        Сохранить смету
+                                    </button>
+                                </div>
+                                <div class="mt-4 mb-4 col-4 save-btn">
+                                    <button type="submit" id="estimate_load_file"
+                                            class="btn btn-lg btn-primary btn-primary_save w-100">
+                                        Выгрузить
+                                    </button>
                                 </div>
                             </div>
-                            <div class="pagination-control col-lg-12 order-lg-1">
-                                <!-- Bootstrap 4 -->
-                                <nav aria-label="Навигация по страницам">
-                                    <ul class="pagination">
-                                        <li class="page-item" th:if="${list_tools.totalPages > 0}"
-                                            th:each="page_number : ${page_numbers}">
-                                            <a class="page-link-m page-link" th:href="@{/tools(size=${list_tools.size}, page=${page_numberStat.index})}" th:text="${page_numberStat.index}" th:class="${page_number==list_tools.number + 1} ? active"></a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </main>
-                    <div th:insert="fragments/footer.html"></div>
-                </div>
+                        </div>
+                    </div>
+                    <div class="pagination-control col-lg-12 order-lg-1">
+                        <!-- Bootstrap 4 -->
+                        <nav aria-label="Навигация по страницам">
+                            <ul class="pagination">
+                                <li class="page-item" th:if="${list_tools.totalPages > 0}"
+                                    th:each="page_number : ${page_numbers}">
+                                    <a class="page-link-m page-link"
+                                       th:href="@{/tools(size=${list_tools.size}, page=${page_numberStat.index})}"
+                                       th:text="${page_numberStat.index}"
+                                       th:class="${page_number==list_tools.number + 1} ? active"></a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </main>
+                <div th:insert="fragments/footer.html"></div>
             </div>
         </div>
     </div>
-    <div th:insert="fragments/scripts.html"></div>
+</div>
+<div th:insert="fragments/scripts.html"></div>
 </body>
 
 </html>

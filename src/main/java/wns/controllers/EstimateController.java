@@ -89,9 +89,8 @@ public class EstimateController {
                                                    @RequestBody EstimateDTO dto)
     {
         Estimate estimate = dto.createEstimateFromDTO(projectService.getById(id));
-        estimateService.save(estimate);
-        excelUtil.createDocument(estimate,estimate.getProject().getName());
-        return ResponseHandler.generateResponse(Messages.OK);
+        String file_path = excelUtil.createDocument(estimate);
+        return ResponseHandler.generateResponse(Messages.RETURN_FILE_URL,"/estimates-files/"+file_path);
     }
 
 

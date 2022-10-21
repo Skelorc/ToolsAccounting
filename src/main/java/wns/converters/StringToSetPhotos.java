@@ -1,4 +1,4 @@
-package wns.utils;
+package wns.converters;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;

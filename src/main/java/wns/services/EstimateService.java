@@ -29,6 +29,8 @@ public class EstimateService implements MainService{
 
     public void save(Estimate estimate)
     {
+        estimate.getToolsEstimates().forEach(x -> x.setEstimate(estimate));
+        estimate.getToolsEstimates().forEach(x -> toolsEstimateService.save(x));
         estimateRepo.save(estimate);
     }
 

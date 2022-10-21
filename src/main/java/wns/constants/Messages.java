@@ -2,9 +2,9 @@ package wns.constants;
 
 public enum Messages {
 
-    OK("Выполнено!","200"),
-    RETURN_FILE_URL("Файл!","300"),
-    REPLACE("Выполнено! Редирект!","300"),
+    OK("Create!","200"),
+    RETURN_FILE_URL("File!","300"),
+    REPLACE("Create! Redirect!","300"),
     CLIENT_CREATE("Клиент сохранён!","200"),
     CLIENT_EXISTS("Клиент с таким ФИО уже существует!", "400"),
     CLIENT_UPDATE("Клиент обновлён!","200"),

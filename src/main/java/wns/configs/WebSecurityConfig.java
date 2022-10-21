@@ -26,7 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        String[] staticResources  =  {
+        String[] staticResources = {
                 "/login/**",
                 "/css/**",
                 "/img/**",
@@ -46,7 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/",true)
+                .defaultSuccessUrl("/", true)
                 .failureHandler(getAuthenticationFailureHandler())
                 .permitAll()
                     .and()
