@@ -4,8 +4,8 @@
 <head class="head">
     <title>Создание проекта</title>
     <div th:replace="fragments/head :: header"></div>
-  
-   <!-- <meta charset="UTF-8">
+<!--   
+   <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
    <meta name="robots" content="index, follow">
    <meta name="author" content="">
@@ -46,7 +46,7 @@
    <meta name="theme-color" content="#179d82">
    <meta th:name="_csrf" th:content="${_csrf.token}"/>
    <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
-   <!--<link rel="manifest" href="/templates/assets/json/manifest.json" th:href="@{/templates/assets/json/manifest.json}">-->
+   <link rel="manifest" href="/templates/assets/json/manifest.json" th:href="@{/templates/assets/json/manifest.json}">
 
    <link rel="preload" href="../static/fonts/fontawesome/fontawesome-all-css.css" as="style" th:href="@{/fonts/fontawesome/fontawesome-all-css.css}">
    <link rel="preload" href="../static/css/style.css" as="style" th:href="@{/css/style.css}">
@@ -190,7 +190,7 @@
                                                 <span class="d-inline-block label-name size">
                                                     Укажите клиента
                                                 </span>
-                                                <a href="/clients/create" title="Добавить Клиентa" class="btn btn-primary min-width-120 btn-xs size">Новый клиент
+                                                <a href="/clients/create" title="Добавить Клиентa" class="btn btn-primary width btn-xs size" style="padding-top: 5px;">Новый клиент
                                                 </a>
                                             </div>
                                             <select id="client" th:field="*{client_id}" required

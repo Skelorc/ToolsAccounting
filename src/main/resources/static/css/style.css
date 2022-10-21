@@ -2930,7 +2930,8 @@ body {
 
 @media (min-width:769px) {
     .custom-ll__header .header__search {
-        display: inline-flex
+        display: inline-flex;
+        margin-left: 50px;
     }
 }
 
