@@ -295,8 +295,8 @@
                                                             <td data-label="Проект"><a th:href="@{/projects/edit/{id}/(id=${project.getId()})}"
                                                                     th:utext="${project.name}"
                                                                     title="Редактирование проекта"></a></td>
-                                                            <td data-label="Клиент" th:utext="${project.client.fullName}"></td>
-                                                            <td data-label="Телефон" th:utext="${project.client.phoneNumber}"></td>
+                                                            <td data-label="Клиент" th:utext="${project.client_name}"></td>
+                                                            <td data-label="Телефон" th:utext="${project.phoneNumber}"></td>
                                                             <td data-label="Начало аренды"
                                                                 th:utext="${#temporals.format(project.start, 'dd-MM-yyyy HH:mm')}">
                                                             </td>

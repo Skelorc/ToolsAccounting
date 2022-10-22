@@ -21,7 +21,6 @@ import java.util.stream.Collectors;
 public class EstimateService implements MainService{
     private final EstimateRepo estimateRepo;
     private ToolsEstimateService toolsEstimateService;
-    private ModelMapper modelMapper;
     @Override
     public  List<Estimate> getAll() {
        return estimateRepo.findAll();

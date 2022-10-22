@@ -20,7 +20,6 @@ import java.util.stream.Collectors;
 @Service
 public class EstimateNameService implements MainService {
     private final EstimateNameRepo repo;
-    private final PageableService pageableService;
     private final ModelMapper modelMapper;
 
     public List<EstimateNameDTO> getAll()
@@ -72,13 +71,4 @@ public class EstimateNameService implements MainService {
         return repo.findById(id).orElse(new EstimateName());
     }
 
-    public Page<EstimateNameDTO> findPaginated(Optional<Integer> page, Optional<Integer> size, String filter) {
-        List<EstimateNameDTO> listByFilter = getDataByFilter(filter);
-        return pageableService.findPaginated(page, size, listByFilter);
-    }
-
-    private List<EstimateNameDTO> getDataByFilter(String filter) {
-        List<EstimateName> all = repo.findAll();
-        return all.stream().map(x -> modelMapper.map(x, EstimateNameDTO.class)).collect(Collectors.toList());
-    }
 }

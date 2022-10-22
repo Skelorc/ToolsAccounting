@@ -3,7 +3,7 @@ package wns.constants;
 public enum ClassificationProject {
     ONE_TIME("Разовый"),
     LONG("Длинный"),
-    SUBLEASE("Субаренда"),
+    SUBLEASE_PROJECT("Субаренда"),
     TEST("Тестовый");
 
     private final String value;

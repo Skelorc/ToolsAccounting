@@ -6,12 +6,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import wns.constants.Filter;
 import wns.constants.Messages;
+import wns.constants.PaginationConst;
 import wns.constants.StatusTools;
 import wns.dto.TypeStatusDTO;
 import wns.entity.Tools;
 import wns.services.ClientsService;
-import wns.services.PageableService;
+import wns.services.PageableFilterService;
 import wns.services.StatusService;
 import wns.services.ToolsService;
 
@@ -25,7 +27,7 @@ public class OffsController {
     private final ClientsService clientsService;
     private final StatusService statusService;
     private final ToolsService toolsService;
-    private final PageableService pageableService;
+    private final PageableFilterService pageableFilterService;
 
     @GetMapping
     public String show(Model model) {
@@ -36,13 +38,13 @@ public class OffsController {
     @GetMapping("/create")
     public String create(@RequestParam(value = "page", required = false) Optional<Integer> page,
                          @RequestParam(value = "size", required = false) Optional<Integer> size,
+                         @RequestParam(value = "filter", required = false) Filter filter,
                          @ModelAttribute("message") String message,
                          Model model)
     {
+        Page<Object> paginated = pageableFilterService.getPageByFilter(page, size, filter, PaginationConst.TOOLS,0);
+        pageableFilterService.addPageNumbersToModel(paginated, model);
         model.addAttribute("clients", clientsService.getAll());
-        List<Tools> list = toolsService.getListToolsByStatus(StatusTools.WAITING);
-        Page<Tools> paginated = pageableService.findPaginated(page, size, list);
-        pageableService.addPageNumbersToModel(paginated, model);
         model.addAttribute("list_tools", paginated);
         model.addAttribute("status", new TypeStatusDTO());
         model.addAttribute("message", message);

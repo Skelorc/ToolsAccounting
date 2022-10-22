@@ -2,10 +2,12 @@ package wns.services;
 
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.data.domain.Page;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import wns.constants.*;
+import wns.constants.EstimateSection;
+import wns.constants.Messages;
+import wns.constants.StatusTools;
+import wns.constants.TypeTools;
 import wns.dto.*;
 import wns.entity.EstimateName;
 import wns.entity.Project;
@@ -13,9 +15,8 @@ import wns.entity.Status;
 import wns.entity.Tools;
 import wns.repo.ToolsRepo;
 
-import javax.tools.Tool;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,8 +24,6 @@ import java.util.stream.Collectors;
 public class ToolsService implements MainService {
     private final ToolsRepo toolsRepo;
     private final EstimateNameService estimateNameService;
-    private final ModelMapper modelMapper;
-    private final PageableService pageableService;
     private final StatusService statusService;
 
     public List<Tools> getAll() {
@@ -39,42 +38,18 @@ public class ToolsService implements MainService {
                 .collect(Collectors.toList());
     }
 
-    public List<Tools> findByBarcode(String barcode) {
-        List<Tools> list = new ArrayList<>();
-        if (barcode != null) {
-            Optional<Tools> tools = toolsRepo.findByBarcode(barcode);
-            if (!tools.isEmpty())
-                list.add(tools.get());
-        }
-        return list;
-    }
-
-    public Page<ToolsDTO> findPaginated(Optional<Integer> page, Optional<Integer> size, String filter) {
-        List<Tools> listByFilter = getDataByFilter(filter, 0);
-        List<ToolsDTO> collect = listByFilter.stream().map(ToolsDTO::new).collect(Collectors.toList());
-        return pageableService.findPaginated(page, size, collect);
-    }
-
-    public Page<ToolsDTO> findPaginated(Optional<Integer> page, Optional<Integer> size, String filter, long id) {
-        List<Tools> listByFilter = getDataByFilter(filter, id);
-        List<ToolsDTO> collect = listByFilter.stream().map(ToolsDTO::new).collect(Collectors.toList());
-        return pageableService.findPaginated(page, size, collect);
-    }
-
-    public Messages createTools(Tools toolsDTO, long name_estimate_id, EstimateSection section, StatusTools status_tool) {
-        Tools toolToSave = toolsRepo.findByName(toolsDTO.getName()).orElse(null);
+    public Messages createTools(Tools tools, long name_estimate_id, EstimateSection section, StatusTools status_tool) {
+        Tools toolToSave = toolsRepo.findByName(tools.getName()).orElse(null);
         if (toolToSave == null) {
-            toolToSave = modelMapper.map(toolsDTO, Tools.class);
             EstimateName estimateName = estimateNameService.getNameEstimateById(name_estimate_id);
-            toolToSave.setStatus(StatusToolDTO.createStatusWithTools(toolToSave, status_tool));
-            toolToSave.setSection(section);
-            toolToSave.setAmount(1);
-            toolToSave.setCategory(estimateName.getCategoryTools());
-            toolToSave.setEstimateName(estimateName);
-            estimateName.getListTools().add(toolToSave);
-            toolsRepo.save(toolToSave);
+            tools.setStatus(StatusToolDTO.createStatusWithTools(tools, status_tool));
+            tools.setSection(section);
+            tools.setAmount(1);
+            tools.setCategory(estimateName.getCategoryTools());
+            tools.setEstimateName(estimateName);
+            estimateName.getListTools().add(tools);
+            toolsRepo.save(tools);
             estimateNameService.save(estimateName);
-
             return Messages.TOOLS_CREATE;
         } else
             return Messages.TOOLS_EXISTS;
@@ -145,18 +120,7 @@ public class ToolsService implements MainService {
         statusService.save(status);
     }
 
-    public List<Tools> getDataByFilter(String filter_string, long id) {
-        Filter filter = Filter.getFilterByString(filter_string);
-        List<Tools> list = new ArrayList<>();
-        switch (filter) {
-            case STOCK -> list.addAll(toolsRepo.findAllByTypeTools(TypeTools.STOCK));
-            case SUBLEASE -> list.addAll(toolsRepo.findAllByTypeTools(TypeTools.SUBLEASE));
-            case WITHOUT_FILTER -> list.addAll(toolsRepo.findAll());
-            case INSTOCK -> list.addAll(statusService.getToolsByStatuses(StatusTools.INSTOCK));
-            case ONLEASE -> list.addAll(statusService.getToolsByStatusesAndProject(StatusTools.ONLEASE, id));
-        }
-        return list;
-    }
+
 
     public void deleteToolFromProject(Tools tool)
     {
@@ -184,4 +148,9 @@ public class ToolsService implements MainService {
         tool.setProject(project);
         toolsRepo.save(tool);
     }
+
+    public List<ToolsDTO> findListByTypeTools(TypeTools typeTools) {
+        return toolsRepo.findAllByTypeTools(typeTools).stream().map(ToolsDTO::new).collect(Collectors.toList());
+    }
+
 }

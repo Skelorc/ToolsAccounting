@@ -21,7 +21,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Project {
+public class Project{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

@@ -7,11 +7,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
-import wns.dto.ClientDTO;
-import wns.dto.ToolsDTO;
-import wns.services.PageableService;
-import wns.services.ToolsService;
+import wns.constants.Filter;
+import wns.constants.PaginationConst;
+import wns.services.PageableFilterService;
 
 import java.util.Optional;
 
@@ -19,19 +17,17 @@ import java.util.Optional;
 @RequestMapping("calendar")
 @AllArgsConstructor
 public class CalendarController {
-
-private final ToolsService toolsService;
-private final PageableService pageableService;
+private final PageableFilterService pageableFilterService;
 
     @GetMapping()
-    public String showPage(@RequestParam(value = "filter", required = false) String filter,
+    public String showPage(@RequestParam(value = "filter", required = false) Filter filter,
                            @RequestParam(value ="page", required = false) Optional<Integer> page,
                            @RequestParam(value ="size", required = false) Optional<Integer> size,
                            Model model)
     {
-        Page<ToolsDTO> paginated_list = toolsService.findPaginated(page, size, filter);
+        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, filter, PaginationConst.TOOLS,0);
         model.addAttribute("list_tools", paginated_list);
-        pageableService.addPageNumbersToModel(paginated_list,model);
+        pageableFilterService.addPageNumbersToModel(paginated_list,model);
         return "calendar";
     }
 }

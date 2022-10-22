@@ -1,17 +1,15 @@
 package wns.controllers;
 
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import wns.constants.Messages;
 import wns.constants.Roles;
 import wns.dto.UserDTO;
+import wns.entity.User;
 import wns.services.UserService;
-import wns.utils.ResponseHandler;
 
 import java.util.List;
 
@@ -28,13 +26,13 @@ public class AdminController {
         List<UserDTO> allUsers = userService.getAll();
         model.addAttribute("roles", Roles.values());
         model.addAttribute("users",allUsers);
-        model.addAttribute("user", new UserDTO());
+        model.addAttribute("user", new User());
         model.addAttribute("message", message);
         return "admin_panel";
     }
 
     @PostMapping("/create")
-    public String saveNewUser(@ModelAttribute UserDTO user)
+    public String saveNewUser(@ModelAttribute User user)
     {
         userService.saveUser(user);
         return "redirect:/admin-panel";
@@ -43,17 +41,15 @@ public class AdminController {
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") long id, Model model)
     {
-        UserDTO dto = userService.getDTOByID(id);
         model.addAttribute("roles", Roles.values());
-        model.addAttribute("user",dto);
+        model.addAttribute("user",userService.getUserByID(id));
         return "edit_user";
     }
 
     @PostMapping("/edit/{id}")
-    public String updateUser(@ModelAttribute UserDTO user, RedirectAttributes redirectAttributes)
+    public String updateUser(@ModelAttribute User user)
     {
-        Messages messages = userService.updateUser(user);
-        redirectAttributes.addFlashAttribute("message",messages.getValue());
+        userService.updateUser(user);
         return "redirect:/admin-panel";
     }
 

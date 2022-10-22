@@ -5,11 +5,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import wns.constants.Filter;
+import wns.constants.PaginationConst;
 import wns.constants.StatusTools;
 import wns.dto.TypeStatusDTO;
 import wns.entity.Tools;
 import wns.services.ClientsService;
-import wns.services.PageableService;
+import wns.services.PageableFilterService;
 import wns.services.StatusService;
 import wns.services.ToolsService;
 
@@ -24,7 +26,7 @@ public class SaleController {
     private final StatusService statusService;
     private final ClientsService clientsService;
     private final ToolsService toolsService;
-    private final PageableService pageableService;
+    private final PageableFilterService pageableFilterService;
 
     @GetMapping
     public String show(Model model) {
@@ -37,10 +39,9 @@ public class SaleController {
                          @RequestParam(value = "size", required = false) Optional<Integer> size,
                          @ModelAttribute("message") String message,
                          Model model) {
+        Page<Object> paginated = pageableFilterService.getPageByFilter(page, size, Filter.WAITING, PaginationConst.TOOLS,0);
+        pageableFilterService.addPageNumbersToModel(paginated, model);
         model.addAttribute("clients", clientsService.getAll());
-        List<Tools> list = toolsService.getListToolsByStatus(StatusTools.INSTOCK);
-        Page<Tools> paginated = pageableService.findPaginated(page, size, list);
-        pageableService.addPageNumbersToModel(paginated, model);
         model.addAttribute("list_tools", paginated);
         model.addAttribute("status", new TypeStatusDTO());
         model.addAttribute("message", message);

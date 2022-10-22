@@ -1,23 +1,21 @@
 package wns.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.orm.hibernate5.SpringSessionContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import wns.constants.ClassificationProject;
 import wns.constants.StatusProject;
 import wns.constants.TypeLease;
-import wns.entity.Client;
 import wns.entity.Project;
 import wns.entity.Tools;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
-@AllArgsConstructor
+
 @NoArgsConstructor
 @Data
 public class ProjectDTO {
@@ -36,6 +34,7 @@ public class ProjectDTO {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime end;
     private long client_id;
+    private String client_name;
     private String phoneNumber;
     private Set<String> photos;
     private int discount;
@@ -48,8 +47,39 @@ public class ProjectDTO {
     private long sumWithDiscount;
     private long received;
     private long remainder;
+    private long estimate_id;
     private Set<Long> tools_id = new HashSet<>();
 
+
+    public ProjectDTO(Project project)
+    {
+        this.id = project.getId();
+        this.classification = project.getClassification();
+        this.status = project.getStatus();
+        this.name = project.getName();
+        this.typeLease = project.getTypeLease();
+        this.quantity = project.getQuantity();
+        this.created = project.getCreated();
+        this.employee = SecurityContextHolder.getContext().getAuthentication().getName();
+        this.start = project.getStart();
+        this.end = project.getEnd();
+        this.client_id = project.getClient().getId();
+        this.client_name = project.getClient().getFullName();
+        this.phoneNumber = project.getPhoneNumber();
+        this.photos = project.getPhotos();
+        this.discount = project.getDiscount();
+        this.note = project.getNote();
+        this.sum = project.getSum();
+        this.finalSumUsn = project.getFinalSumUsn();
+        this.priceTools = project.getPriceTools();
+        this.priceWork = project.getPriceWork();
+        this.discountByProject = project.getDiscountByProject();
+        this.sumWithDiscount = project.getSumWithDiscount();
+        this.received = project.getReceived();
+        this.remainder = project.getRemainder();
+        this.estimate_id = project.getEstimate().getId();
+        this.tools_id = project.getTools().stream().map(Tools::getId).collect(Collectors.toSet());
+    }
 
     public Project createProjectFromDTO(ProjectDTO dto)
     {
@@ -78,5 +108,6 @@ public class ProjectDTO {
         project.setPriceWork(dto.getPriceWork());
         return project;
     }
+
 
 }

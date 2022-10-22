@@ -6,15 +6,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import wns.constants.Filter;
 import wns.constants.Messages;
+import wns.constants.PaginationConst;
 import wns.constants.StatusTools;
 import wns.dto.IdsDTO;
 import wns.dto.Identifiers;
 import wns.dto.ProjectDTO;
 import wns.entity.Project;
 import wns.services.ClientsService;
-import wns.services.PageableService;
+import wns.services.PageableFilterService;
 import wns.services.ProjectService;
 import wns.services.ToolsService;
 import wns.utils.ResponseHandler;
@@ -29,15 +30,16 @@ public class ProjectsController {
     private final ProjectService projectService;
     private final ClientsService clientsService;
     private final ToolsService toolsService;
-    private final PageableService pageableService;
+    private final PageableFilterService pageableFilterService;
 
     @GetMapping
     public String show(@RequestParam(value = "page", required = false) Optional<Integer> page,
                        @RequestParam(value = "size", required = false) Optional<Integer> size,
-                       @RequestParam(value = "filter", required = false) String filter, Model model) {
+                       @RequestParam(value = "filter", required = false) Filter filter,
+                       Model model) {
 
-        Page<Project> paginated_list = projectService.findPaginated(page, size, filter);
-        pageableService.addPageNumbersToModel(paginated_list, model);
+        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, filter, PaginationConst.PROJECT,0);
+        pageableFilterService.addPageNumbersToModel(paginated_list, model);
         model.addAttribute("list_projects", paginated_list);
         return "projects";
     }

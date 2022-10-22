@@ -6,10 +6,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import wns.constants.Filter;
 import wns.constants.Messages;
+import wns.constants.PaginationConst;
 import wns.dto.ClientDTO;
+import wns.entity.Client;
+import wns.services.PageableFilterService;
 import wns.services.ClientsService;
-import wns.services.PageableService;
 import wns.utils.ResponseHandler;
 
 import java.util.List;
@@ -20,17 +23,17 @@ import java.util.Optional;
 @AllArgsConstructor
 public class ClientsController {
     private final ClientsService clientsService;
-    private final PageableService pageableService;
+    private final PageableFilterService pageableFilterService;
 
     @GetMapping()
-    public String showPage(@RequestParam(value = "filter", required = false) String filter,
+    public String showPage(@RequestParam(value = "filter", required = false) Filter filter,
                                  @RequestParam(value ="page", required = false) Optional<Integer> page,
                                  @RequestParam(value ="size", required = false) Optional<Integer> size,
                                  Model model)
     {
-        Page<ClientDTO> paginated_list = clientsService.findPaginated(page,size,filter);
+        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page,size,filter, PaginationConst.CLIENT,0);
+        pageableFilterService.addPageNumbersToModel(paginated_list,model);
         model.addAttribute("list_clients", paginated_list);
-        pageableService.addPageNumbersToModel(paginated_list,model);
         return "clients";
     }
 
@@ -52,23 +55,23 @@ public class ClientsController {
 
     @PostMapping("/create")
     @ResponseBody
-    public ResponseEntity<Object> create(@RequestBody ClientDTO dto) {
-        Messages message = clientsService.saveClient(dto);
+    public ResponseEntity<Object> create(@RequestBody Client client) {
+        Messages message = clientsService.saveClient(client);
         return ResponseHandler.generateResponse(message);
     }
 
 
     @GetMapping("/edit/{id}")
     public String showClientForUpdate(@PathVariable("id") long id, Model model) {
-        ClientDTO dto = clientsService.findDTOById(id);
-        model.addAttribute("client", dto);
+        Client client = clientsService.getById(id);
+        model.addAttribute("client", client);
         return "client_create";
     }
 
     @PostMapping("/edit/{id}")
-    public ResponseEntity<Object> updateClient(@PathVariable("id") long id, @RequestBody ClientDTO dto) {
-        Messages message = clientsService.updateClient(id, dto);
-        return ResponseHandler.generateResponse(message);
+    public ResponseEntity<Object> updateClient(@PathVariable("id") long id, @RequestBody Client client) {
+        clientsService.updateClient(id, client);
+        return ResponseHandler.generateResponse(Messages.OK);
     }
 
     @PostMapping("/delete/{id}")

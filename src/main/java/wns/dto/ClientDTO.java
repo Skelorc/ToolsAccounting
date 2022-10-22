@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @Data
@@ -46,9 +47,49 @@ public class ClientDTO {
     private String ks;
     private String bik;
     private LocalDate dateCreating;
-    private List<Project> projects;
+    private List<Long> projects_id;
     private Set<String> photos;
     private long rented;
+
+
+    public ClientDTO(Client client)
+    {
+        this.id = client.getId();
+        this.typeClient = client.getTypeClient();
+        this.fullName = client.getFullName();
+        this.legalName = client.getLegalName();
+        this.discount = client.getDiscount();
+        this.phoneNumber = client.getPhoneNumber();
+        this.email = client.getEmail();
+        this.fromComing = client.getFromComing();
+        this.limited = client.getLimited();
+        this.note = client.getNote();
+        this.birthday = client.getBirthday();
+        this.inBlackList = client.isInBlackList();
+        this.directorOfPhotography = client.getDirectorOfPhotography();
+        this.production = client.getProduction();
+        this.numberPassport = client.getNumberPassport();
+        this.issuedBy = client.getIssuedBy();
+        this.dateIssuePassport = client.getDateIssuePassport();
+        this.addressReal = client.getAddressReal();
+        this.addressLegal = client.getAddressLegal();
+        this.inn = client.getInn();
+        this.kpp = client.getKpp();
+        this.ogrn = client.getOgrn();
+        this.fullNameSupervisor = client.getFullNameSupervisor();
+        this.jobTitleSupervisor = client.getJobTitleSupervisor();
+        this.inFace = client.getInFace();
+        this.based = client.getBased();
+        this.rs = client.getRs();
+        this.bank = client.getBank();
+        this.ks = client.getKs();
+        this.bik = client.getBik();
+        this.dateCreating = client.getDateCreating();
+        this.projects_id = client.getProjects().stream().map(Project::getId).collect(Collectors.toList());
+        this.photos = client.getPhotos();
+        this.rented = client.getRented();
+    }
+
 
     @Override
     public String toString() {

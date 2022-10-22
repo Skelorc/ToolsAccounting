@@ -7,15 +7,18 @@ public enum Filter {
     LEGAL("LEGAL"),
     BLACKLIST("BLACKLIST"),
     STOCK("Склад"),
-    SUBLEASE("Субаренда"),
+    SUBLEASE_TOOLS("Субаренда"),
     GROUPS("По группам"),
     INSTOCK("На складе"),
+    WAITING("В ожидании"),
     ONLEASE("В аренде"),
+    REPAIR("В ремонте"),
     ESTIMATE("По смете"),
     //project
     ONE_TIME("Разовый"),
     LONG("Длинный"),
-    TEST("Тестовый");
+    TEST("Тестовый"),
+    SUBLEASE_PROJECT("Субаренда");
 
 
     private final String value;

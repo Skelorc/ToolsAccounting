@@ -3,7 +3,7 @@ package wns.constants;
 public enum TypeTools {
 
     STOCK("Склад"),
-    SUBLEASE("Субаренда");
+    SUBLEASE_TOOLS("Субаренда");
 
     private final String type;
 

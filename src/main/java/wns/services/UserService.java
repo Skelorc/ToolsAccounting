@@ -23,10 +23,9 @@ public class UserService  implements MainService {
     private final PasswordEncoder passwordEncoder;
     private final ModelMapper modelMapper;
 
-    public Messages saveUser(UserDTO dto) {
-        User userFromDb = usersRepo.findByUsername(dto.getUsername());
+    public Messages saveUser(User user) {
+        User userFromDb = usersRepo.findByUsername(user.getUsername());
         if (userFromDb == null) {
-            User user = modelMapper.map(dto, User.class);
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             usersRepo.save(user);
             return Messages.USER_CREATE;
@@ -41,20 +40,12 @@ public class UserService  implements MainService {
                 .collect(Collectors.toList());
     }
 
-    public UserDTO getDTOByID(long id) {
-        Optional<User> byId = usersRepo.findById(id);
-        return byId.map(x -> modelMapper.map(x, UserDTO.class)).orElseGet(UserDTO::new);
+    public User getUserByID(long id) {
+        return usersRepo.findById(id).get();
     }
 
-    public Messages updateUser(UserDTO userDTO) {
-        User user = usersRepo.findById(userDTO.getId()).orElse(null);
-        if (user != null) {
-            modelMapper.map(userDTO, user);
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-            usersRepo.save(user);
-            return Messages.USER_UPDATE;
-        } else
-            return Messages.USER_NOT_FOUND;
+    public void updateUser(User user) {
+        usersRepo.save(user);
     }
 
     public void deleteUser(long id) {

@@ -18,6 +18,7 @@ import wns.entity.ToolsEstimate;
 import java.io.*;
 import java.nio.file.FileSystems;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -46,18 +47,7 @@ public class ExcelUtil {
         int num_cell = 5;
         addImage();
 
-        XSSFCellStyle headerStyle = (XSSFCellStyle) workbook.createCellStyle();
-        headerStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
-        headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-        headerStyle.setAlignment(HorizontalAlignment.CENTER_SELECTION);
-        headerStyle.setVerticalAlignment(VerticalAlignment.CENTER);
-        headerStyle.setWrapText(true);
-        XSSFFont font = ((XSSFWorkbook) workbook).createFont();
-        font.setFontName("Segoe UI");
-        font.setFontHeightInPoints((short) 12);
-        headerStyle.setFont(font);
-        headerStyle.setBorderBottom(BorderStyle.MEDIUM);
-        headerStyle.setBorderTop(BorderStyle.MEDIUM);
+        XSSFCellStyle headerStyle = createHeaderStyle();
 
         Cell cell_name_project = name_project.createCell(num_cell);
         cell_name_project.setCellValue("Проект: " + estimate.getProject().getName());
@@ -69,7 +59,8 @@ public class ExcelUtil {
 
         Cell cell_period = period.createCell(num_cell);
         cell_period.getRow().setHeightInPoints(cell_period.getSheet().getDefaultRowHeightInPoints() * 2);
-        cell_period.setCellValue("Съёмочный период: начало - " + estimate.getStart() + ",\nокончание - " + estimate.getEnd());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        cell_period.setCellValue("Съёмочный период: начало - " + estimate.getStart().format(formatter) + ",\nокончание - " + estimate.getEnd().format(formatter));
         cell_period.setCellStyle(headerStyle);
         sheet.autoSizeColumn(num_cell, true);
 
@@ -89,7 +80,6 @@ public class ExcelUtil {
         cell_phone_number.setCellValue("Тел.: " + estimate.getProject().getPhoneNumber());
         cell_phone_number.setCellStyle(headerStyle);
 
-        font.setBold(true);
         Cell cell_site = site.createCell(num_cell);
         cell_site.setCellValue("Сайт: maddog-rental.com");
         cell_site.setCellStyle(headerStyle);
@@ -100,6 +90,9 @@ public class ExcelUtil {
 
         return createFile(estimate.getProject().getId() + "-" + estimate.getId());
     }
+
+
+
     private void setBordersToMergedCells(Sheet sheet) {
         List<CellRangeAddress> mergedRegions = sheet.getMergedRegions();
         for (CellRangeAddress rangeAddress : mergedRegions) {
@@ -191,6 +184,7 @@ public class ExcelUtil {
         Row row = null;
         Cell cell;
         XSSFCellStyle section_style = createStyleForSection();
+        XSSFCellStyle headerStyle = createHeaderStyle();
         List<ToolsEstimate> list_result = estimate.getToolsEstimates();
         Map<EstimateSection, List<ToolsEstimate>> sectionListMap = new HashMap<>();
         for (ToolsEstimate toolsEstimate : list_result) {
@@ -210,7 +204,7 @@ public class ExcelUtil {
 
                 cell = row.createCell(count_cell);
                 cell.setCellValue(estimateSection.getValue());
-                cell.setCellStyle(section_style);
+                cell.setCellStyle(headerStyle);
                 List<ToolsEstimate> list_tools = sectionListMap.get(estimateSection);
                 for (int i = 0; i < list_tools.size(); i++, num_row++) {
                     ToolsEstimate toolsEstimate = list_tools.get(i);
@@ -228,7 +222,7 @@ public class ExcelUtil {
                 num_row++;
             }
         }
-        createResultRows(num_row,sheet,section_style,estimate);
+        createResultRows(num_row,sheet,headerStyle,estimate);
     }
 
 
@@ -291,13 +285,15 @@ public class ExcelUtil {
         cell.setCellStyle(section_style);
         num_row++;
 
+
+        XSSFCellStyle styleForSection = createStyleForSection();
         List<ToolsEstimate> toolsEstimates = estimate.getToolsEstimates();
         int count_cell = 0;
         for (ToolsEstimate toolsEstimate : toolsEstimates) {
             if(toolsEstimate.getSection().equals(EstimateSection.SERVICE))
             {
                 row = sheet.createRow(num_row);
-                createCellsWithData(section_style, row, count_cell, toolsEstimate);
+                createCellsWithData(styleForSection, row, count_cell, toolsEstimate);
                 num_row++;
             }
         }
@@ -340,7 +336,6 @@ public class ExcelUtil {
         cell = row.createCell(5);
         cell.setCellValue(estimate.getFinalSumWithUsn());
         cell.setCellStyle(section_style);
-        num_row++;
     }
 
     private void createCellsWithData(XSSFCellStyle section_style, Row row, int count_cell, ToolsEstimate toolsEstimate) {
@@ -364,6 +359,12 @@ public class ExcelUtil {
         cell = row.createCell(count_cell + 4);
         cell.setCellValue(toolsEstimate.getDiscount());
         cell.setCellStyle(section_style);
+
+        cell = row.createCell(count_cell + 5);
+        long sum_without_procent = ((long) toolsEstimate.getAmount() * toolsEstimate.getPriceByDay() * toolsEstimate.getCountShifts());
+        long sum = Math.round(sum_without_procent - (((sum_without_procent) / 100.0) * toolsEstimate.getDiscount()));
+        cell.setCellValue(sum);
+        cell.setCellStyle(section_style);
     }
 
     private XSSFCellStyle createStyleForSection() {
@@ -380,6 +381,22 @@ public class ExcelUtil {
         font.setFontHeightInPoints((short) 11);
         section_style.setFont(font);
         return section_style;
+    }
+
+    private XSSFCellStyle createHeaderStyle() {
+        XSSFCellStyle headerStyle =  (XSSFCellStyle) workbook.createCellStyle();
+        headerStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+        headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        headerStyle.setAlignment(HorizontalAlignment.CENTER_SELECTION);
+        headerStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+        headerStyle.setWrapText(true);
+        XSSFFont font = ((XSSFWorkbook) workbook).createFont();
+        font.setFontName("Segoe UI");
+        font.setFontHeightInPoints((short) 12);
+        headerStyle.setFont(font);
+        headerStyle.setBorderBottom(BorderStyle.MEDIUM);
+        headerStyle.setBorderTop(BorderStyle.MEDIUM);
+        return headerStyle;
     }
 
 

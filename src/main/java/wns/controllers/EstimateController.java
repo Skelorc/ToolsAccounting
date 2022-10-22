@@ -7,19 +7,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import wns.constants.Messages;
+import wns.constants.PaginationConst;
 import wns.dto.EstimateDTO;
 import wns.dto.EstimateNameDTO;
 import wns.entity.Estimate;
 import wns.entity.Project;
-import wns.entity.ToolsEstimate;
 import wns.services.EstimateNameService;
 import wns.services.EstimateService;
-import wns.services.PageableService;
+import wns.services.PageableFilterService;
 import wns.services.ProjectService;
 import wns.utils.ExcelUtil;
 import wns.utils.ResponseHandler;
 
-import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -29,30 +28,7 @@ public class EstimateController {
     private final EstimateNameService estimateNameService;
     private final EstimateService estimateService;
     private final ProjectService projectService;
-    private final PageableService pageableService;
     private final ExcelUtil excelUtil;
-
-    @GetMapping
-    public String show(@RequestParam(value = "filter", required = false) String filter,
-                       @RequestParam(value = "page", required = false) Optional<Integer> page,
-                       @RequestParam(value = "size", required = false) Optional<Integer> size,
-                       Model model)
-    {
-        Page<EstimateNameDTO> paginated_list = estimateNameService.findPaginated(page, size, filter);
-        pageableService.addPageNumbersToModel(paginated_list,model);
-        model.addAttribute("estimateDTO",new EstimateNameDTO());
-        model.addAttribute("list_estimate",paginated_list);
-        return "estimate";
-    }
-
-    @PostMapping
-    public String create(@ModelAttribute("estimtateDTO") EstimateNameDTO estimateNameDTO, Model model)
-    {
-        Messages message = estimateNameService.save(estimateNameDTO);
-        model.addAttribute("message",message);
-        return "redirect:/estimate";
-    }
-
 
     @GetMapping("/create/{id}")
     public String showEstimateByProject(@PathVariable("id") long id, Model model)
@@ -80,7 +56,7 @@ public class EstimateController {
     {
         Estimate estimate = dto.createEstimateFromDTO(projectService.getById(id));
         estimateService.save(estimate);
-        return ResponseHandler.generateResponse(Messages.OK);
+        return ResponseHandler.generateResponse(Messages.REPLACE,"/");
     }
 
     @PostMapping("/download-estimate/{id}")
@@ -99,6 +75,6 @@ public class EstimateController {
     public String delete(@PathVariable("id") long id)
     {
         estimateNameService.delete(id);
-        return "redirect:/estimate";
+        return "redirect:/";
     }
 }
