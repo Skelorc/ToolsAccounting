@@ -29,8 +29,12 @@ public class SaleController {
     private final PageableFilterService pageableFilterService;
 
     @GetMapping
-    public String show(Model model) {
-        model.addAttribute("list_statuses", statusService.getListByStatuses(StatusTools.SALES));
+    public String show(@RequestParam(value = "page", required = false) Optional<Integer> page,
+                       @RequestParam(value = "size", required = false) Optional<Integer> size,
+                       Model model) {
+        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, Filter.SALE,PaginationConst.STATUS,0);
+        pageableFilterService.addPageNumbersToModel(paginated_list, model);
+        model.addAttribute("list_statuses", paginated_list);
         return "sale";
     }
 
@@ -39,7 +43,7 @@ public class SaleController {
                          @RequestParam(value = "size", required = false) Optional<Integer> size,
                          @ModelAttribute("message") String message,
                          Model model) {
-        Page<Object> paginated = pageableFilterService.getPageByFilter(page, size, Filter.WAITING, PaginationConst.TOOLS,0);
+        Page<Object> paginated = pageableFilterService.getPageByFilter(page, size, Filter.WAITING, PaginationConst.STATUS,0);
         pageableFilterService.addPageNumbersToModel(paginated, model);
         model.addAttribute("clients", clientsService.getAll());
         model.addAttribute("list_tools", paginated);
@@ -50,7 +54,7 @@ public class SaleController {
 
     @PostMapping("/create")
     public String createSale(@ModelAttribute TypeStatusDTO typeStatusDTO) {
-        typeStatusDTO.setStatusTools(StatusTools.SALES);
+        typeStatusDTO.setStatusTools(StatusTools.SALE);
         toolsService.changeStatus(typeStatusDTO);
         return "redirect:/sale/create";
     }

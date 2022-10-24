@@ -3,17 +3,21 @@ package wns.constants;
 public enum Filter {
     //tools
     WITHOUT_FILTER("null"),
-    INDIVIDUAL("INDIVIDUAL"),
-    LEGAL("LEGAL"),
-    BLACKLIST("BLACKLIST"),
     STOCK("Склад"),
     SUBLEASE_TOOLS("Субаренда"),
     GROUPS("По группам"),
+    //status
     INSTOCK("На складе"),
     WAITING("В ожидании"),
     ONLEASE("В аренде"),
     REPAIR("В ремонте"),
+    SALE("Продано"),
+    //estimate
     ESTIMATE("По смете"),
+    //clients
+    INDIVIDUAL("INDIVIDUAL"),
+    LEGAL("LEGAL"),
+    BLACKLIST("BLACKLIST"),
     //project
     ONE_TIME("Разовый"),
     LONG("Длинный"),

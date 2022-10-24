@@ -81,6 +81,9 @@ public class PageableFilterService {
             case REPAIR:
                 list.addAll(statusService.getStatusesByFilter(StatusTools.REPAIR));
                 break;
+            case SALE:
+                list.addAll(statusService.getStatusesByFilter(StatusTools.SALE));
+                break;
             case LEGAL:
                 list.addAll(clientsService.findListByTypeClient(TypeClients.LEGAL));
                 break;

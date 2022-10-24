@@ -135,12 +135,13 @@
                                                 th:utext="${statusStat.index+1}"></span>
                                         </div>
                                     </td>
-                                    <td data-label="Дата создания" th:utext="${status.created}"></td>
+
+                                    <td data-label="Дата создания" th:utext="${#temporals.format(status.created, 'dd-MM-yyyy HH:mm')}"></td>
                                     <td data-label="Название оборудования" th:utext="${status.tools}"></td>
                                     <td data-label="Исполнитель" th:utext="${status.executor}"></td>
                                     <td data-label="Телефон" th:utext="${status.phone_number}"></td>
-                                    <td data-label="Начало ремонта" th:utext="${status.start}"></td>
-                                    <td data-label="Окончание ремонта" th:utext="${status.end}"></td>
+                                    <td data-label="Начало ремонта" th:utext="${#temporals.format(status.start, 'dd-MM-yyyy HH:mm')}"></td>
+                                    <td data-label="Окончание ремонта" th:utext="${#temporals.format(status.end, 'dd-MM-yyyy HH:mm')}"></td>
                                     <td data-label="Всего цена ремонта" th:utext="${status.priceRepair}"></td>
                                     <td data-label="Сотрудник" th:utext="${status.employee}"></td>
                                     <td data-label="Примечание" th:utext="${status.note}"></td>

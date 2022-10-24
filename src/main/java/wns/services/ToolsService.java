@@ -90,7 +90,7 @@ public class ToolsService implements MainService {
                 status.setNote(typeStatusDTO.getNote());
                 status.setStatusTools(typeStatusDTO.getStatusTools());
                 status.setPhotos(typeStatusDTO.getPhotos());
-                if (status.getStatusTools().equals(StatusTools.SALES)) {
+                if (status.getStatusTools().equals(StatusTools.SALE)) {
                     status.setPriceSell(status.getPriceSell() + identifier.getPrice());
                 }
                 if (status.getStatusTools().equals(StatusTools.REPAIR)) {

@@ -114,7 +114,7 @@
                                 <tr>
                                     <th class="first-th">№</th>
                                     <th>Дата создания</th>
-                                    <th>Исполнитель</th>
+                                    <th>Клиент</th>
                                     <th>Телефон</th>
                                     <th>Фотографии</th>
                                     <th>Всего цена продажи</th>
@@ -130,7 +130,7 @@
                                             <input class="column-table_checkbox" type="checkbox" id="" name=""><span class="tools-td-text table-td-text column-table_checkbox-number" th:utext="${statusStat.index+1}"></span>
                                         </div>
                                     </td>
-                                    <td data-label="Дата создания" th:utext="${status.created}"></td>
+                                    <td data-label="Дата создания" th:utext="${#temporals.format(status.created, 'dd-MM-yyyy HH:mm')}"></td>
                                     <td data-label="Исполнитель" th:utext="${status.executor}"></td>
                                     <td data-label="Телефон" th:utext="${status.phone_number}"></td>
                                     <td data-label="Фотографии">
