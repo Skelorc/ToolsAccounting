@@ -43,7 +43,7 @@ public class SaleController {
                          @RequestParam(value = "size", required = false) Optional<Integer> size,
                          @ModelAttribute("message") String message,
                          Model model) {
-        Page<Object> paginated = pageableFilterService.getPageByFilter(page, size, Filter.WAITING, PaginationConst.STATUS,0);
+        Page<Object> paginated = pageableFilterService.getPageByFilter(page, size, Filter.INSTOCK, PaginationConst.TOOLS,0);
         pageableFilterService.addPageNumbersToModel(paginated, model);
         model.addAttribute("clients", clientsService.getAll());
         model.addAttribute("list_tools", paginated);

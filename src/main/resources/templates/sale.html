@@ -133,8 +133,8 @@
                                     <td data-label="Дата создания" th:utext="${#temporals.format(status.created, 'dd-MM-yyyy HH:mm')}"></td>
                                     <td data-label="Исполнитель" th:utext="${status.executor}"></td>
                                     <td data-label="Телефон" th:utext="${status.phone_number}"></td>
-                                    <td data-label="Фотографии">
-                                        <span class="column-table__photo-mini" th:each="photo : ${status.photos}">
+                                <!--    <td data-label="Фотографии">
+                                        <span class="column-table__photo-mini" th:each="photo : ${status.photos_status}">
                                             <a  rel="modal:open"  th:href="${'#'+photoStat.count +''+ status.tools.id}">
                                                 <img class="column-table__photo-mini_img" th:src="${photo}">
                                                 <div th:id="${photoStat.count +''+ status.tools.id}" class="modal">
@@ -142,7 +142,7 @@
                                                 </div>
                                             </a>
                                         </span>
-                                    </td>
+                                    </td>-->
                                     <td data-label="Всего цена продажи" th:utext="${status.priceSell}"></td>
                                     <td data-label="Сотрудник" th:utext="${status.employee}"></td>
                                     <td data-label="Примечание" th:utext="${status.note}"></td>

@@ -84,6 +84,9 @@ public class PageableFilterService {
             case SALE:
                 list.addAll(statusService.getStatusesByFilter(StatusTools.SALE));
                 break;
+            case WRITE_OFF:
+                list.addAll(statusService.getStatusesByFilter(StatusTools.WRITENOFF));
+                break;
             case LEGAL:
                 list.addAll(clientsService.findListByTypeClient(TypeClients.LEGAL));
                 break;

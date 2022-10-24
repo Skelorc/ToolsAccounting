@@ -12,6 +12,7 @@ public enum Filter {
     ONLEASE("В аренде"),
     REPAIR("В ремонте"),
     SALE("Продано"),
+    WRITE_OFF("Списано"),
     //estimate
     ESTIMATE("По смете"),
     //clients
@@ -23,7 +24,6 @@ public enum Filter {
     LONG("Длинный"),
     TEST("Тестовый"),
     SUBLEASE_PROJECT("Субаренда");
-
 
     private final String value;
 

@@ -133,7 +133,7 @@
                                     <td data-label="Примечание" th:utext="${status.note}"></td>
                                     <td data-label="Статус" th:utext="${status.statusTools.getValue()}"></td>
                                     <td data-label="Фотография отгрузки">
-                                        <span class="column-table__photo-mini" th:each="photo : ${status.photos}">
+                                        <span class="column-table__photo-mini" th:each="photo : ${status.photos_status}">
                                             <a  rel="modal:open"  th:href="${'#'+photoStat.count +''+ status.tools.id}">
                                                 <img class="column-table__photo-mini_img" th:src="${photo}">
                                                 <div th:id="${photoStat.count +''+ status.tools.id}" class="modal">
