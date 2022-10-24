@@ -228,16 +228,14 @@
                                 <ul class="pagination">
                                     <li class="page-item" th:if="${list_tools.totalPages > 0}"
                                         th:each="page_number : ${page_numbers}">
-                                        <a class="page-link-m page-link"
-                                           th:href="@{/write-off/create(size=${list_tools.size}, page=${page_numberStat.index})}"
-                                           th:text="${page_numberStat.index}"
-                                           th:class="${page_number==list_tools.number + 1} ? active"></a>
+                                        <a class="page-link-m page-link" th:href="@{/sale/create(size=${list_tools.size}, page=${page_numberStat.index})}"
+                                           th:text="${page_numberStat.index}" th:class="${page_number==list_tools.number + 1} ? active"></a>
                                     </li>
                                 </ul>
                             </nav>
+                        </div>
                     </main>
                 </form>
-                </div>
                 <div th:insert="fragments/footer.html"></div>
             </div>
         </div>
