@@ -136,7 +136,7 @@
                                         </div>
                                     </td>
                                     <td data-label="Дата создания" th:utext="${status.created}"></td>
-                                    <td data-label="Название оборудования" th:utext="${status.tools.name}"></td>
+                                    <td data-label="Название оборудования" th:utext="${status.tools}"></td>
                                     <td data-label="Исполнитель" th:utext="${status.executor}"></td>
                                     <td data-label="Телефон" th:utext="${status.phone_number}"></td>
                                     <td data-label="Начало ремонта" th:utext="${status.start}"></td>
@@ -146,10 +146,10 @@
                                     <td data-label="Примечание" th:utext="${status.note}"></td>
                                     <td data-label="Статус" th:utext="${status.statusTools.getValue()}"></td>
                                     <td data-label="Фотографии">
-                                        <span class="column-table__photo-mini" th:each="photo : ${status.photos}">
-                                            <a  rel="modal:open"  th:href="${'#'+photoStat.count +''+ status.tools.id}">
+                                        <span class="column-table__photo-mini" th:each="photo : ${status.photos_status}">
+                                            <a  rel="modal:open"  th:href="${'#'+photoStat.count +''+ status.tools_id}">
                                                 <img class="column-table__photo-mini_img" th:src="${photo}">
-                                                <div th:id="${photoStat.count +''+ status.tools.id}" class="modal">
+                                                <div th:id="${photoStat.count +''+ status.tools_id}" class="modal">
                                                     <img th:src="${photo}">
                                                 </div>
                                             </a>

@@ -29,8 +29,7 @@ public class PaginationController {
     @PostMapping()
     @ResponseBody
     public ResponseEntity<Object> pagination(@RequestBody PageDataDTO pageDataDTO) {
-        System.out.println(pageDataDTO.toString());
-        /*Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, filter,paginationConst,id);
+        Page<Object> paginated_list = pageableFilterService.getPageByFilter(pageDataDTO);
         int totalPages = paginated_list.getTotalPages();
         List<Integer> pageNumbers = null;
         if (totalPages > 0) {
@@ -38,10 +37,9 @@ public class PaginationController {
                     .boxed()
                     .collect(Collectors.toList());
         }
-
-        data.put(1,paginated_list);
-        data.put(2,pageNumbers);*/
         Map<Integer, Object> data = new HashMap<>();
+        data.put(1,paginated_list);
+        data.put(2,pageNumbers);
         return ResponseHandler.generateResponse(Messages.OK,"",data);
     }
 }

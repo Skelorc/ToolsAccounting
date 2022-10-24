@@ -35,7 +35,7 @@ public class RepairController {
     public String show(@RequestParam(value = "page", required = false) Optional<Integer> page,
                        @RequestParam(value = "size", required = false) Optional<Integer> size,
                        Model model) {
-        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, Filter.REPAIR,PaginationConst.TOOLS,0);
+        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, Filter.REPAIR,PaginationConst.STATUS,0);
         pageableFilterService.addPageNumbersToModel(paginated_list, model);
         model.addAttribute("list_statuses", paginated_list);
         return "repair";

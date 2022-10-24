@@ -128,8 +128,8 @@
                                                     </div>
                                                 </td>
                                                 <td data-label="Проект"><a th:href="@{/acceptance/create/{id}/(id=${project.getId()})}" th:utext="${project.name}" title="Принять проект"></a></td>
-                                                <td data-label="Клиент" th:utext="${project.client.fullName}"></td>
-                                                <td data-label="Телефон" th:utext="${project.client.phoneNumber}"></td>
+                                                <td data-label="Клиент" th:utext="${project.client_name}"></td>
+                                                <td data-label="Телефон" th:utext="${project.phoneNumber}"></td>
                                                 <td data-label="Начало аренды" th:utext="${project.start}"></td>
                                                 <td data-label="Дата и время создания" th:utext="${project.end}"></td>
                                                 <td data-label="Сотрудник" th:utext="${project.created}"></td>
@@ -172,36 +172,12 @@
                                         <!-- Bootstrap 4 -->
                                         <nav aria-label="Навигация по страницам">
                                             <ul class="pagination">
-                                                <li class="page-item disabled">
-                                                    <a class="page-link-m page-link" href="#">
-                                                        Первая
-                                                    </a>
-                                                </li>
-                                                <li class="page-item disabled">
-                                                    <a class="page-link-m page-link" href="#" aria-label="Предыдущая">
-                                                        <span aria-hidden="true">«</span>
-                                                        <span class="sr-only">Предыдущая</span>
-                                                    </a>
-                                                </li>
-                                                <li class="page-item active">
-                                                    <a class="page-link-m page-link" href="#">1</a>
-                                                </li>
-                                                <li class="page-item">
-                                                    <a class="page-link-m page-link" href="#">2</a>
-                                                </li>
-                                                <li class="page-item">
-                                                    <a class="page-link-m page-link" href="#">3</a>
-                                                </li>
-                                                <li class="page-item">
-                                                    <a class="page-link-m page-link" href="#" aria-label="Следующая">
-                                                        <span aria-hidden="true">»</span>
-                                                        <span class="sr-only">Следующая</span>
-                                                    </a>
-                                                </li>
-                                                <li class="page-item">
-                                                    <a class="page-link-m page-link" href="#">
-                                                        Последняя
-                                                    </a>
+                                                <li class="page-item" th:if="${list_projects.totalPages > 0}"
+                                                    th:each="page_number : ${page_numbers}">
+                                                    <a class="page-link-m page-link"
+                                                       th:href="@{/(size=${list_projects.size}, page=${page_numberStat.index})}"
+                                                       th:text="${page_numberStat.index}"
+                                                       th:class="${page_number==list_projects.number + 1} ? active"></a>
                                                 </li>
                                             </ul>
                                         </nav>

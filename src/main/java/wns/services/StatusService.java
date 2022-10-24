@@ -12,6 +12,7 @@ import wns.entity.Tools;
 import wns.repo.StatusRepo;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -43,10 +44,14 @@ public class StatusService implements MainService {
 
     public List<ToolsDTO> getToolsByStatusesAndProject(StatusTools statusTools, long id) {
         return repo.findAllByStatusTools(statusTools).stream().map(Status::getTools)
-                .filter(tools -> tools.getProject().getId() != id)
                 .map(ToolsDTO::new)
                 .collect(Collectors.toList());
     }
 
 
+    public List<StatusToolDTO> getStatusesByFilter(StatusTools statusTools) {
+       return repo.findAllByStatusTools(statusTools).stream()
+                .map(StatusToolDTO::new)
+                .collect(Collectors.toList());
+    }
 }

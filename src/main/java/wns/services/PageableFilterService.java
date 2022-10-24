@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import wns.constants.*;
 import wns.dto.ClientDTO;
+import wns.dto.PageDataDTO;
 import wns.dto.ProjectDTO;
 import wns.dto.ToolsDTO;
 import wns.entity.Project;
@@ -29,6 +30,12 @@ public class PageableFilterService {
     private final EstimateService estimateService;
     private final ClientsService clientsService;
 
+    public Page<Object> getPageByFilter(PageDataDTO pageDataDTO) {
+        List<Object> list_data = new ArrayList<>();
+        getDataByFilter(pageDataDTO.getFilter(), pageDataDTO.getPaginationConst(), pageDataDTO.getId_object(), list_data);
+        return findPaginated(pageDataDTO.getPage(), pageDataDTO.getSize(), list_data);
+    }
+
     public Page<Object> getPageByFilter(Optional<Integer> page,
                                         Optional<Integer> size,
                                         Filter filter,
@@ -39,8 +46,9 @@ public class PageableFilterService {
         return findPaginated(page, size, list_data);
     }
 
+
     private void getDataByFilter(Filter filter, PaginationConst paginationConst, long id, List<Object> list) {
-        if (filter == null)
+        if(filter==null)
             filter = Filter.WITHOUT_FILTER;
         switch (filter) {
             case ONE_TIME:
@@ -71,7 +79,7 @@ public class PageableFilterService {
                 list.addAll(statusService.getToolsByStatusesAndProject(StatusTools.ONLEASE, id));
                 break;
             case REPAIR:
-                list.addAll(statusService.getToolsByStatusesAndProject(StatusTools.REPAIR, id));
+                list.addAll(statusService.getStatusesByFilter(StatusTools.REPAIR));
                 break;
             case LEGAL:
                 list.addAll(clientsService.findListByTypeClient(TypeClients.LEGAL));

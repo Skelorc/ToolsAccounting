@@ -97,6 +97,7 @@ public class ToolsDTO {
         this.incomeAdditional = tools.getIncomeAdditional();
         this.photos.addAll(tools.getStatus().getPhotos());
     }
+
 }
 
 

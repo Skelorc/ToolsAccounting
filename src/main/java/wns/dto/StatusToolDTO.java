@@ -19,8 +19,10 @@ import java.util.Set;
 @Data
 public class StatusToolDTO {
     private long id;
-    private ToolsDTO tools;
+    private long tools_id;
+    private String tools;
     private StatusTools statusTools;
+    private String status_value;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime created;
     private String employee;
@@ -31,7 +33,7 @@ public class StatusToolDTO {
     private String executor;
     private String phone_number;
     private String note;
-    private Set<String> photos_status = new HashSet<>();
+    private Set<String> photos_status;
     private int priceRepair;
     private int priceSell;
     private int priceOff;
@@ -45,6 +47,25 @@ public class StatusToolDTO {
         status.setEmployee(SecurityContextHolder.getContext().getAuthentication().getName());
         status.setPhotos(tools.getPhotos());
         return status;
+    }
+    public StatusToolDTO (Status status)
+    {
+        this.id = status.getId();
+        this.tools_id = status.getTools().getId();
+        this.tools = status.getTools().getName();
+        this.statusTools = status.getStatusTools();
+        this.status_value = status.getStatusTools().getValue();
+        this.created = status.getCreated();
+        this.employee = status.getEmployee();
+        this.start = status.getStart();
+        this.end = status.getEnd();
+        this.executor = status.getExecutor();
+        this.phone_number = status.getPhone_number();
+        this.note = status.getNote();
+        this.photos_status = status.getPhotos();
+        this.priceRepair = status.getPriceRepair();
+        this.priceSell = status.getPriceSell();
+        this.priceOff = status.getPriceOff();
     }
 
 
