@@ -71,7 +71,7 @@ public class ToolsService implements MainService {
             typeStatusDTO.setExecutor(data[0]);
             typeStatusDTO.setPhoneNumber(data[1]);
         }
-        List<Identifiers> identifiers = typeStatusDTO.getItems().values().stream().toList();
+        List<Identifiers> identifiers = typeStatusDTO.getItems();
         for (Identifiers identifier : identifiers) {
             if (identifier.isChecked()) {
                 if(identifier.getPrice()==0)

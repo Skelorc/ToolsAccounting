@@ -59,9 +59,8 @@ public class RepairController {
     @PostMapping("/create")
     @ResponseBody
     public ResponseEntity<Object> createRepair(@RequestBody TypeStatusDTO typeStatusDTO) {
-        System.out.println(typeStatusDTO);
-        //typeStatusDTO.setStatusTools(StatusTools.REPAIR);
-        //toolsService.changeStatus(typeStatusDTO);
+        typeStatusDTO.setStatusTools(StatusTools.REPAIR);
+        toolsService.changeStatus(typeStatusDTO);
         return ResponseHandler.generateResponse(Messages.OK,"/repair");
     }
 }
