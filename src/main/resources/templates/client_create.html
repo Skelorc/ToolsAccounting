@@ -2,10 +2,10 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head class="head">
-    <!-- <title th:text="${client.typeClient != null} ? 'Редактирование клиента' : 'Создать нового клиента'"></title>
+    <title th:text="${client.typeClient != null} ? 'Редактирование клиента' : 'Создать нового клиента'"></title>
     <div th:replace="fragments/head :: header"></div>
 
-    <meta charset="UTF-8">
+    <!-- <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="robots" content="index, follow">
     <meta name="author" content="">
@@ -139,14 +139,14 @@
                                                 <div class="col-12 form-creat__half">
                                                     <div role="group" class="form-group">
                                                         <label class="d-block size">ФИО/Наименование</label>
-                                                        <span><input required th:value="${client.fullName}" th:name="fullName" id="fullName_individual" type="text" class="form-control input-width" placeholder="Введите ФИО/Наименование"></span>
+                                                        <span><input required th:value="${client.fullName}" th:name="fullName" id="fullName_individual" type="text" class="form-control" placeholder="Введите ФИО/Наименование"></span>
                                                     </div>
                                                 </div>
-                                                <div class="col-6 form-creat__half">
+                                                <div class="col-12 form-creat__half">
                                                     <div role="group" class="form-group">
                                                         <label class="d-block size ml-3">Скидки</label>
                                                         <span>
-                                                            <input required th:value="${client.discount}" th:name="discount" id="discount_individual" type="text" class="form-control input-width" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                                            <input required th:value="${client.discount}" th:name="discount" id="discount_individual" type="text" class="form-control" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
                                                                     placeholder="Введите скидку в процентах">
                                                         </span>
                                                     </div>
@@ -217,7 +217,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="anomalia col-12 input-flex">
-                                                    <div class="col-12 col-md-4 form-creat__half">
+                                                    <div class="col-12 col-md-6 form-creat__half">
                                                         <div role="group" class="form-group">
                                                             <label class="d-block size">Примечание</label>
                                                             <span>
@@ -227,7 +227,7 @@
                                                             </span>
                                                         </div>
                                                     </div>
-                                                    <div class="col-12 col-md-4 form-creat__half mt-3">
+                                                    <div class="col-12 col-md-6 form-creat__half mt-3">
                                                         <div class="form-group">
                                                             <label class="d-block size">Дата рождения</label>
                                                             <div class="vdpComponent vdpWithInput">
@@ -236,7 +236,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-12 col-md-4 form-creat__half">
+                                                <div class="col-12 col-md-6 form-creat__half">
                                                     <div role="group" class="form-group">
                                                         <label class="d-block size">Оператор постановщик</label>
                                                         <span>
@@ -315,10 +315,10 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-12 form-creat__half">
-                                                <div class="form-group">
+                                                <div class="form-group" ">
                                                     <label class="d-block size">Загрузите ваши фотографии на сервер</label>
                                                     <span>
-                                                        <textarea th:value="${client.photos}" th:text="${client.photos}" name="photos" class="form-control input-width" id="photos_individual" style="height: 40px;"></textarea>
+                                                        <textarea th:value="${client.photos}" th:text="${client.photos}" name="photos" class="form-control input-width" id="photos_individual" style="height: 40px; margin-top: -3px;"></textarea>
                                                     </span>
                                                 </div>
                                             </div>
@@ -621,11 +621,11 @@
                                 <div id="edit_buttons" class="btn-pimary__groups-wrapper btn-pimary__groups-wrapper_client mb-3 ">
                                     <div class="mb-3 text-right">
                                         <input type="text" hidden="hidden" id="client_id" th:value="${client.getId()}">
-                                        <input class="btn btn-primary min-width-120 green" type="submit" id="update_client" th:value="Обновить">
+                                        <input class="btn btn-primary width green" type="submit" id="update_client" th:value="Обновить">
                                     </div>
                                     <div class="mb-3 text-right">
                                         <form th:action="@{/clients/delete/{id}(id=${client.getId()})}" th:method="post">
-                                        <input class="btn btn-primary min-width-120 red" type="submit" id="delete_client" th:value="Удалить">
+                                        <input class="btn btn-primary width red" type="submit" id="delete_client" th:value="Удалить">
                                         </form>
                                     </div>
                                 </div>
@@ -634,7 +634,7 @@
                                     <div class="form-creat__itog mb-3 d-flex flex-wrap col-6 flex-md-nowrap">
                                         <h3 class="form-creat__itog-title form-creat__itog-title_text" th:value="${client.rented}">Арендовал на
                                             сумму</h3>
-                                        <div class="project__all-data all-data_input mb-3 col-12 col-md-6">
+                                        <div class="project__all-data all-data_input mb-3 col-12 col-md-6" style="margin-top: -15px;">
                                             <span type="text" class="vdatetime-input form-control span-input"></span>
                                         </div>
                                     </div>
@@ -667,10 +667,10 @@
                                         <span class="btn-pimary__groups_title">История</span>
                                     </div>
                                     <div class="mb-3 text-right">
-                                        <a href="#" class="btn btn-primary min-width-120 green">Обновить</a>
+                                        <a href="#" class="btn btn-primary width green">Обновить</a>
                                     </div>
                                     <div class="mb-3 text-right">
-                                        <a href="#" class="btn btn-primary min-width-120 grey">Экспорт</a>
+                                        <a href="#" class="btn btn-primary width grey">Экспорт</a>
                                     </div>
                                 </div>
                             </div>
