@@ -2,76 +2,76 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<!-- <head class="head">
+ <head class="head">
     <title>Списание-Создать</title>
     <div th:replace="fragments/head :: header"></div>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="robots" content="index, follow">
-    <meta name="author" content="">
-    <meta property="og:url" content="https://site.ru">
-    <meta property="og:title" content="MAD DOG">
-    <meta property="og:image:type" content="image/jpeg">
-    <meta property="og:image:width" content="640">
-    <meta property="og:image:height" content="442">
-    <meta property="og:description" content="">
-    <meta property="og:site_name" content="Site-name">
+     <!-- <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+      <meta name="robots" content="index, follow">
+      <meta name="author" content="">
+      <meta property="og:url" content="https://site.ru">
+      <meta property="og:title" content="MAD DOG">
+      <meta property="og:image:type" content="image/jpeg">
+      <meta property="og:image:width" content="640">
+      <meta property="og:image:height" content="442">
+      <meta property="og:description" content="">
+      <meta property="og:site_name" content="Site-name">
 
-    <link rel="apple-touch-icon" sizes="57x57" href="https://lk.rentinhand.ru/img/icons/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="https://lk.rentinhand.ru/img/icons/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="https://lk.rentinhand.ru/img/icons/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="https://lk.rentinhand.ru/img/icons/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="https://lk.rentinhand.ru/img/icons/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="https://lk.rentinhand.ru/img/icons/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="https://lk.rentinhand.ru/img/icons/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="https://lk.rentinhand.ru/img/icons/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://lk.rentinhand.ru/img/icons/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"
-    href="https://lk.rentinhand.ru/img/icons/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://lk.rentinhand.ru/img/icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="https://lk.rentinhand.ru/img/icons/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://lk.rentinhand.ru/img/icons/favicon-16x16.png">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="author" content="Andrey">
-    <meta name="description" content="MAD DOG">
-    <meta name="keywords" content="MAD DOG">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta property="og:title" content="MAD DOG - сервис для учета и автоматизации проката">
-    <meta property="og:image" content="assets/img/icons/badge.jpg" th:src="@{/img/icons/badge.jpg}">
-    <meta property="og:image:type" content="image/jpeg">
-    <meta property="og:image:width" content="1024">
-    <meta property="og:image:height" content="1024">
-    <meta property="og:description" content="Программа для учёта инструментов">
-    <link rel="image_src" href="/static/img/icons/badge.jpg" th:href="@{/img/icons/badge.jpg}">
-    <meta name="theme-color" content="#179d82">
-    <meta th:name="_csrf" th:content="${_csrf.token}"/>
-    <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
-    <link rel="manifest" href="/templates/assets/json/manifest.json" th:href="@{/templates/assets/json/manifest.json}">&ndash;&gt;
+      <link rel="apple-touch-icon" sizes="57x57" href="https://lk.rentinhand.ru/img/icons/apple-icon-57x57.png">
+      <link rel="apple-touch-icon" sizes="60x60" href="https://lk.rentinhand.ru/img/icons/apple-icon-60x60.png">
+      <link rel="apple-touch-icon" sizes="72x72" href="https://lk.rentinhand.ru/img/icons/apple-icon-72x72.png">
+      <link rel="apple-touch-icon" sizes="76x76" href="https://lk.rentinhand.ru/img/icons/apple-icon-76x76.png">
+      <link rel="apple-touch-icon" sizes="114x114" href="https://lk.rentinhand.ru/img/icons/apple-icon-114x114.png">
+      <link rel="apple-touch-icon" sizes="120x120" href="https://lk.rentinhand.ru/img/icons/apple-icon-120x120.png">
+      <link rel="apple-touch-icon" sizes="144x144" href="https://lk.rentinhand.ru/img/icons/apple-icon-144x144.png">
+      <link rel="apple-touch-icon" sizes="152x152" href="https://lk.rentinhand.ru/img/icons/apple-icon-152x152.png">
+      <link rel="apple-touch-icon" sizes="180x180" href="https://lk.rentinhand.ru/img/icons/apple-icon-180x180.png">
+      <link rel="icon" type="image/png" sizes="192x192"
+      href="https://lk.rentinhand.ru/img/icons/android-icon-192x192.png">
+      <link rel="icon" type="image/png" sizes="32x32" href="https://lk.rentinhand.ru/img/icons/favicon-32x32.png">
+      <link rel="icon" type="image/png" sizes="96x96" href="https://lk.rentinhand.ru/img/icons/favicon-96x96.png">
+      <link rel="icon" type="image/png" sizes="16x16" href="https://lk.rentinhand.ru/img/icons/favicon-16x16.png">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="author" content="Andrey">
+      <meta name="description" content="MAD DOG">
+      <meta name="keywords" content="MAD DOG">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta property="og:title" content="MAD DOG - сервис для учета и автоматизации проката">
+      <meta property="og:image" content="assets/img/icons/badge.jpg" th:src="@{/img/icons/badge.jpg}">
+      <meta property="og:image:type" content="image/jpeg">
+      <meta property="og:image:width" content="1024">
+      <meta property="og:image:height" content="1024">
+      <meta property="og:description" content="Программа для учёта инструментов">
+      <link rel="image_src" href="/static/img/icons/badge.jpg" th:href="@{/img/icons/badge.jpg}">
+      <meta name="theme-color" content="#179d82">
+      <meta th:name="_csrf" th:content="${_csrf.token}"/>
+      <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+      <link rel="manifest" href="/templates/assets/json/manifest.json" th:href="@{/templates/assets/json/manifest.json}">&ndash;&gt;
 
-    <link rel="preload" href="../static/fonts/fontawesome/fontawesome-all-css.css" as="style" th:href="@{/fonts/fontawesome/fontawesome-all-css.css}">
-    <link rel="preload" href="../static/css/style.css" as="style" th:href="@{/css/style.css}">
-    <link rel="preload" href="../static/css/app.css" as="style" th:href="@{/css/app.css}">
-    <link rel="preload" href="../static/css/media.css" as="style" th:href="@{/css/media.css}">
-    <link rel="preload" href="../static/css/checkout.css" as="style" th:href="@{/css/checkout.css}">
-    <link rel="preload" href="../static/css/main.css" as="style" th:href="@{/css/main.css}">
+      <link rel="preload" href="../static/fonts/fontawesome/fontawesome-all-css.css" as="style" th:href="@{/fonts/fontawesome/fontawesome-all-css.css}">
+      <link rel="preload" href="../static/css/style.css" as="style" th:href="@{/css/style.css}">
+      <link rel="preload" href="../static/css/app.css" as="style" th:href="@{/css/app.css}">
+      <link rel="preload" href="../static/css/media.css" as="style" th:href="@{/css/media.css}">
+      <link rel="preload" href="../static/css/checkout.css" as="style" th:href="@{/css/checkout.css}">
+      <link rel="preload" href="../static/css/main.css" as="style" th:href="@{/css/main.css}">
 
 
-    <link rel="stylesheet" href="../static/fonts/webfonts/fa-solid-900.ttf" th:href="@{/fonts/webfonts/fa-solid-900.ttf}">
-    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
-    <link rel="stylesheet" href="../static/css/app.css" th:href="@{/css/app.css}">
-    <link rel="stylesheet" href="../static/css/media.css" th:href="@{/css/media.css}">
-    <link rel="stylesheet" href=".../static/css/animation-iror.css" th:href="@{/css/animation-iror.css}">
-    <link rel="stylesheet" href="../static/fonts/fontawesome/fontawesome.css" th:href="@{/fonts/fontawesome/fontawesome.css}">
-    <link rel="stylesheet" href="../static/fonts/fontawesome/fontawesome-all-css.css" th:href="@{/fonts/fontawesome/fontawesome-all-css.css}">
-    <link rel="stylesheet" href="../static/css/checkout.css" th:href="@{/css/checkout.css}">
-    <link rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}">
-    
-    <script src="/static/fonts/fontawesome/all.js" th:src="@{/fonts/fontawesome/all.js}"></script>
-    
-    <script src="/static/js/jquery.js" th:src="@{/js/jquery.js}"></script>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"  th:src="@{/js/jquery.modal.js}"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" /> -->
+      <link rel="stylesheet" href="../static/fonts/webfonts/fa-solid-900.ttf" th:href="@{/fonts/webfonts/fa-solid-900.ttf}">
+      <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+      <link rel="stylesheet" href="../static/css/app.css" th:href="@{/css/app.css}">
+      <link rel="stylesheet" href="../static/css/media.css" th:href="@{/css/media.css}">
+      <link rel="stylesheet" href=".../static/css/animation-iror.css" th:href="@{/css/animation-iror.css}">
+      <link rel="stylesheet" href="../static/fonts/fontawesome/fontawesome.css" th:href="@{/fonts/fontawesome/fontawesome.css}">
+      <link rel="stylesheet" href="../static/fonts/fontawesome/fontawesome-all-css.css" th:href="@{/fonts/fontawesome/fontawesome-all-css.css}">
+      <link rel="stylesheet" href="../static/css/checkout.css" th:href="@{/css/checkout.css}">
+      <link rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}">
+
+      <script src="/static/fonts/fontawesome/all.js" th:src="@{/fonts/fontawesome/all.js}"></script>
+
+      <script src="/static/js/jquery.js" th:src="@{/js/jquery.js}"></script>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"  th:src="@{/js/jquery.modal.js}"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" /> -->
 </head>
 
 <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
@@ -155,7 +155,9 @@
                                     <thead>
                                     <tr>
                                         <th class="first-th">#</th>
+                                        <th class="first-th">*</th>
                                         <th>Наименование</th>
+                                        <th>Сумма списания</th>
                                         <th>Штрих код</th>
                                         <th>Группа</th>
                                         <th>Марка/Модель</th>
@@ -166,8 +168,7 @@
                                         <th>Цена</th>
                                         <th>Себестоимость</th>
                                         <th>Комплект</th>
-                                        <th class="first-th">*</th>
-                                        <th>Сумма списания</th>
+
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -175,13 +176,19 @@
                                         <td data-label="#" class="column-table">
                                             <div class="column-table_checkbox-wrapp">
                                                 <input class="column-table_checkbox choose_tool" type="checkbox"
-                                                       th:field="*{tools_id_with_prices[__${itemStat.index}__].checked}">
-                                                <input type="hidden"
-                                                       th:name="tools_id_with_prices[__${itemStat.index}__].id"
-                                                       th:value="${tool.id}">
+                                                       >
+                                                <input type="hidden" th:value="${tool.id}">
                                             </div>
                                         </td>
+                                        <td data-label="*"></td>
                                         <td data-label="Наименование" th:utext="${tool.name}"></td>
+                                        <td data-label="Сумма списания" class="td-whith-input">
+                                            <input name="price"
+                                                   class="form-control input-without-style writeoff_price" type="text"
+                                                   placeholder="Введите цену"
+                                                   oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
+                                                   aria-describedby="item-human-passport_serial">
+                                        </td>
                                         <td data-label="Штрихкод" class="barcode-tool" th:utext="${tool.barcode}"></td>
                                         <td data-label="Группа" th:utext="${tool.category}"></td>
                                         <td data-label="Марка\Модель" th:utext="${tool.model}"></td>
@@ -192,15 +199,6 @@
                                         <td data-label="Цена" th:utext="${tool.costPrice}"></td>
                                         <td data-label="Себестоимость" th:utext="${tool.priceSell}"></td>
                                         <td data-label="Комплект" th:utext="${tool.equip}"></td>
-                                        <td data-label="*"></td>
-                                        <td data-label="Сумма списания" class="td-whith-input">
-                                            <input th:field="*{tools_id_with_prices[__${itemStat.index}__].price}"
-                                                   name="price"
-                                                   class="form-control input-without-style writeoff_price" type="text"
-                                                   placeholder="Введите цену"
-                                                   oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
-                                                   aria-describedby="item-human-passport_serial">
-                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>

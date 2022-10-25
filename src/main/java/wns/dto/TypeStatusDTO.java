@@ -31,6 +31,5 @@ public class TypeStatusDTO {
     private String phoneNumber;
     private StatusTools statusTools;
     private int price;
-    private List<Identifiers> tools_id_with_prices;
-
+    private Map<Long, Identifiers> items;
 }
