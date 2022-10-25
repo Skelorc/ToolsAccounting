@@ -36,13 +36,13 @@ public class Project{
     @Column(name = "type_lease")
     private TypeLease typeLease;
     private int quantity;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     @Column(name = "created")
     private LocalDateTime created;
     private String employee;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime start;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime end;
 
     @ManyToOne(fetch = FetchType.LAZY)

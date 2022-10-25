@@ -1,17 +1,16 @@
 package wns.converters;
 
-import net.bytebuddy.asm.Advice;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Component
-public class StringToDateConverter implements Converter<String, LocalDate> {
+public class StringToDateConverter implements Converter<String, LocalDateTime> {
     @Override
-    public LocalDate convert(String source) {
+    public LocalDateTime convert(String source) {
         if(source.isEmpty())
-            return LocalDate.now();
-        return LocalDate.parse(source);
+            return LocalDateTime.now();
+        return LocalDateTime.parse(source);
     }
 }

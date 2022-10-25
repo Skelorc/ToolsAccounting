@@ -11,6 +11,7 @@ import wns.entity.Project;
 import wns.entity.Tools;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -22,16 +23,17 @@ public class ProjectDTO {
     private long id;
     private long number;
     private ClassificationProject classification;
+    private String classification_name;
     private StatusProject status;
     private String name;
     private TypeLease typeLease;
     private int quantity;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime created;
     private String employee;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime start;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime end;
     private long client_id;
     private String client_name;
@@ -53,8 +55,10 @@ public class ProjectDTO {
 
     public ProjectDTO(Project project)
     {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         this.id = project.getId();
         this.classification = project.getClassification();
+        this.classification_name = project.getClassification().getValue();
         this.status = project.getStatus();
         this.name = project.getName();
         this.typeLease = project.getTypeLease();

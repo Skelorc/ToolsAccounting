@@ -25,7 +25,7 @@ public class ToolsDTO {
     private TypeTools typeTools;
     private String name;
     private String barcode;
-    private CategoryTools category;
+    private String category;
     private String model;
     private String serialNumber;
     private String characteristics;
@@ -61,7 +61,7 @@ public class ToolsDTO {
         this.typeTools = tools.getTypeTools();
         this.name = tools.getName();
         this.barcode = tools.getBarcode();
-        this.category = tools.getCategory();
+        this.category = tools.getCategory().getData();
         this.model = tools.getModel();
         this.serialNumber = tools.getSerialNumber();
         this.characteristics = tools.getCharacteristics();
@@ -97,6 +97,7 @@ public class ToolsDTO {
         this.incomeAdditional = tools.getIncomeAdditional();
         this.photos.addAll(tools.getStatus().getPhotos());
     }
+
 }
 
 

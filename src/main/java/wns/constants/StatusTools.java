@@ -8,7 +8,7 @@ public enum StatusTools {
     BOOKING("Бронь","Orange"),
     REPAIR("В ремонте", "Gray"),
     WRITENOFF("Списано", "Brown"),
-    SALES("Продано", "Blue");
+    SALE("Продано", "Blue");
 
     private final String value;
     private final String color;

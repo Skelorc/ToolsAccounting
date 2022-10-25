@@ -30,9 +30,13 @@ public class OffsController {
     private final PageableFilterService pageableFilterService;
 
     @GetMapping
-    public String show(Model model) {
-        model.addAttribute("list_statuses", statusService.getListByStatuses(StatusTools.WRITENOFF));
-        return "write_off";
+    public String show(@RequestParam(value = "page", required = false) Optional<Integer> page,
+                       @RequestParam(value = "size", required = false) Optional<Integer> size,
+                       Model model) {
+        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, Filter.WRITE_OFF,PaginationConst.STATUS,0);
+        pageableFilterService.addPageNumbersToModel(paginated_list, model);
+        model.addAttribute("list_statuses", paginated_list);
+        return "WRITE_off";
     }
 
     @GetMapping("/create")

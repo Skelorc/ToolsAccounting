@@ -164,7 +164,7 @@
                                 <tr th:each="tool : ${list_tools}">
                                     <td class="column-table">
                                         <div class="column-table_checkbox-wrapp " id="ids_tools">
-                                            <input class="column-table_checkbox choose_tool" type="checkbox">
+                                            <input class="column-table_checkbox choose_tool ids" type="checkbox">
                                             <input type="hidden" class="id_tool" th:value="${tool.id}">
                                             <span class="tools-td-text table-td-text column-table_checkbox-number tool_id"
                                                   th:utext="${toolStat.index+1}"></span>

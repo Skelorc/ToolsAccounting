@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import wns.constants.Filter;
 import wns.constants.PaginationConst;
 import wns.constants.StatusTools;
+import wns.dto.ToolsDTO;
 import wns.dto.TypeStatusDTO;
 import wns.entity.Status;
 import wns.entity.Tools;
@@ -35,7 +36,7 @@ public class RepairController {
     public String show(@RequestParam(value = "page", required = false) Optional<Integer> page,
                        @RequestParam(value = "size", required = false) Optional<Integer> size,
                        Model model) {
-        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, Filter.REPAIR,PaginationConst.TOOLS,0);
+        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, Filter.REPAIR,PaginationConst.STATUS,0);
         pageableFilterService.addPageNumbersToModel(paginated_list, model);
         model.addAttribute("list_statuses", paginated_list);
         return "repair";
@@ -46,7 +47,7 @@ public class RepairController {
                                  @RequestParam(value = "size", required = false) Optional<Integer> size,
                                  @ModelAttribute("message") String message,
                                  Model model) {
-        Page<Object> paginated = pageableFilterService.getPageByFilter(page, size,Filter.WAITING, PaginationConst.TOOLS,0);
+        Page<Object> paginated = pageableFilterService.getPageByFilter(page, size,Filter.WAITING, PaginationConst.STATUS,0);
         pageableFilterService.addPageNumbersToModel(paginated, model);
         model.addAttribute("clients", clientsService.getAll());
         model.addAttribute("list_tools", paginated);

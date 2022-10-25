@@ -13,6 +13,7 @@ import wns.entity.ToolsEstimate;
 import wns.repo.EstimateRepo;
 
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -65,16 +66,5 @@ public class EstimateService implements MainService{
 
     public Estimate findById(long id) {
         return estimateRepo.findById(id).get();
-    }
-
-    public Messages updateEstimate(long id, List<ToolsEstimate> estimateList) {
-        Estimate estimate = findById(id);
-        estimate.getToolsEstimates().clear();
-        estimateRepo.save(estimate);
-        for (ToolsEstimate x : estimateList) {
-            x.setEstimate(estimate);
-            toolsEstimateService.save(x);
-        }
-        return Messages.OK;
     }
 }

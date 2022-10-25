@@ -75,6 +75,10 @@ public class ToolsService implements MainService {
         List<Identifiers> identifiers = typeStatusDTO.getTools_id_with_prices();
         for (Identifiers identifier : identifiers) {
             if (identifier.isChecked()) {
+                if(identifier.getPrice()==0)
+                {
+                    return Messages.STATUS_CHANGE_FAILED;
+                }
                 Tools tools = toolsRepo.findById(identifier.getId()).get();
                 Status status = tools.getStatus();
                 status.setCreated(LocalDateTime.now());
@@ -86,7 +90,7 @@ public class ToolsService implements MainService {
                 status.setNote(typeStatusDTO.getNote());
                 status.setStatusTools(typeStatusDTO.getStatusTools());
                 status.setPhotos(typeStatusDTO.getPhotos());
-                if (status.getStatusTools().equals(StatusTools.SALES)) {
+                if (status.getStatusTools().equals(StatusTools.SALE)) {
                     status.setPriceSell(status.getPriceSell() + identifier.getPrice());
                 }
                 if (status.getStatusTools().equals(StatusTools.REPAIR)) {
@@ -138,7 +142,6 @@ public class ToolsService implements MainService {
         status.setCreated(project.getCreated());
         status.setStart(project.getStart());
         status.setEnd(project.getEnd());
-        status.setStatusTools(StatusTools.ONLEASE);
         status.setEmployee(SecurityContextHolder.getContext().getAuthentication().getName());
         status.setExecutor(project.getClient().getFullName());
         status.setNote(project.getNote());
@@ -146,6 +149,7 @@ public class ToolsService implements MainService {
         status.setPhotos(project.getPhotos());
         project.setSum(tool.getCostPrice() + project.getSum());
         tool.setProject(project);
+        tool.setStatus(status);
         toolsRepo.save(tool);
     }
 
