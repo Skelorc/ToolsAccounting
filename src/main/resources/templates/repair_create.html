@@ -193,7 +193,6 @@
                                 <thead>
                                 <tr>
                                     <th class="first-th">#</th>
-                                    <th class="first-th">*</th>
                                     <th>Наименование</th>
                                     <th>Цена ремонта</th>
                                     <th>Штрих код</th>
@@ -217,7 +216,6 @@
                                                 <input type="hidden" th:value="${tool.id}">
                                             </div>
                                         </td>
-                                        <td data-label="*"></td>
                                         <td data-label="Наименование" th:utext="${tool.name}"></td>
                                         <td data-label="Цена ремонта" class="td-whith-input">
                                             <input class="form-control input-without-style repair_price" type="text" placeholder="Введите цену" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');" aria-describedby="item-human-passport_serial">
