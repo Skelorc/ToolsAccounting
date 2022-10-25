@@ -169,6 +169,7 @@
                                 <tr>
                                     <th class="first-th">#</th>
                                     <th>Наименование</th>
+                                    <th>Цена продажи</th>
                                     <th>Штрих код</th>
                                     <th>Группа</th>
                                     <th>Марка/Модель</th>
@@ -179,19 +180,21 @@
                                     <th>Цена</th>
                                     <th>Себестоимость</th>
                                     <th>Комплект</th>
-                                    <th class="first-th">*</th>
-                                    <th>Цена продажи</th>
+
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr th:each="tool,itemStat : ${list_tools}" class="row-tool" >
                                     <td class="column-table">
                                         <div class="column-table_checkbox-wrapp">
-                                            <input class="column-table_checkbox" type="checkbox" th:field="*{tools_id_with_prices[__${itemStat.index}__].checked}">
-                                            <input type="hidden" th:name="tools_id_with_prices[__${itemStat.index}__].id" th:value="${tool.id}">
+                                            <input class="column-table_checkbox" type="checkbox" >
+                                            <input type="hidden" th:value="${tool.id}">
                                         </div>
                                     </td>
                                     <td data-label="Наименование" th:utext="${tool.name}"></td>
+                                    <td data-label="Цена продажи" class="td-whith-input">
+                                        <input id="price_sell_tool" name="price" class="form-control input-without-style sell_price" type="text" placeholder="Введите цену" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');" aria-describedby="item-human-passport_serial">
+                                    </td>
                                     <td data-label="Штрихкод" class="barcode-tool" th:utext="${tool.barcode}"></td>
                                     <td data-label="Группа" th:utext="${tool.category}"></td>
                                     <td data-label="Марка\Модель" th:utext="${tool.model}"></td>
@@ -202,10 +205,7 @@
                                     <td data-label="Цена" th:utext="${tool.costPrice}"></td>
                                     <td data-label="Себестоимость"  th:utext="${tool.priceSell}"></td>
                                     <td data-label="Комплект" th:utext="${tool.equip}"></td>
-                                    <td data-label="*"></td>
-                                    <td data-label="Цена продажи" class="td-whith-input">
-                                        <input id="price_sell_tool" th:field="*{tools_id_with_prices[__${itemStat.index}__].price}" name="price" class="form-control input-without-style sell_price" type="text" placeholder="Введите цену" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');" aria-describedby="item-human-passport_serial">
-                                    </td>
+
                                 </tr>
                                 </tbody>
                             </table>

@@ -1,7 +1,6 @@
 package wns.services;
 
 import lombok.AllArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import wns.constants.EstimateSection;
@@ -72,7 +71,7 @@ public class ToolsService implements MainService {
             typeStatusDTO.setExecutor(data[0]);
             typeStatusDTO.setPhoneNumber(data[1]);
         }
-        List<Identifiers> identifiers = typeStatusDTO.getTools_id_with_prices();
+        List<Identifiers> identifiers = typeStatusDTO.getItems().values().stream().toList();
         for (Identifiers identifier : identifiers) {
             if (identifier.isChecked()) {
                 if(identifier.getPrice()==0)

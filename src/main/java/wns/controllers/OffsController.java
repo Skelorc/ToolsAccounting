@@ -42,11 +42,10 @@ public class OffsController {
     @GetMapping("/create")
     public String create(@RequestParam(value = "page", required = false) Optional<Integer> page,
                          @RequestParam(value = "size", required = false) Optional<Integer> size,
-                         @RequestParam(value = "filter", required = false) Filter filter,
                          @ModelAttribute("message") String message,
                          Model model)
     {
-        Page<Object> paginated = pageableFilterService.getPageByFilter(page, size, filter, PaginationConst.TOOLS,0);
+        Page<Object> paginated = pageableFilterService.getPageByFilter(page, size, Filter.INSTOCK, PaginationConst.TOOLS,0);
         pageableFilterService.addPageNumbersToModel(paginated, model);
         model.addAttribute("clients", clientsService.getAll());
         model.addAttribute("list_tools", paginated);
