@@ -1257,6 +1257,7 @@ margin-bottom: 15px;
 }
 .custom-ll__header-wrapp {
     display: flex;
+    /* width: 400px; */
 }
 .custom-ll__header{
     display: none;
@@ -1537,7 +1538,7 @@ td>.button:hover {
     width: 150px;
 }
 
-@media (min-width: 576px) {
+@media (min-width: 414px) {
     .input-flex {
         display: flex;
         flex-wrap: wrap;
@@ -1549,9 +1550,9 @@ td>.button:hover {
         width: 100%;
     }
 
-    .input-flex {
+    /* .input-flex {
         display: block;
-    }
+    } */
 }
 
 /* Table */ 

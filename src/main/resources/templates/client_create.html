@@ -2,9 +2,9 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head class="head">
-    <title th:text="${client.typeClient != null} ? 'Редактирование клиента' : 'Создать нового клиента'"></title>
+    <!-- <title th:text="${client.typeClient != null} ? 'Редактирование клиента' : 'Создать нового клиента'"></title>
     <div th:replace="fragments/head :: header"></div>
-<!-- 
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="robots" content="index, follow">
@@ -216,8 +216,8 @@
                                                         </span>
                                                     </div>
                                                 </div>
-                                                <div class="anomalia input-flex">
-                                                    <div class="col-12 col-md-6 form-creat__half">
+                                                <div class="anomalia col-12 input-flex">
+                                                    <div class="col-12 col-md-4 form-creat__half">
                                                         <div role="group" class="form-group">
                                                             <label class="d-block size">Примечание</label>
                                                             <span>
@@ -227,7 +227,7 @@
                                                             </span>
                                                         </div>
                                                     </div>
-                                                    <div class="col-12 col-md-6 form-creat__half">
+                                                    <div class="col-12 col-md-4 form-creat__half mt-3">
                                                         <div class="form-group">
                                                             <label class="d-block size">Дата рождения</label>
                                                             <div class="vdpComponent vdpWithInput">
@@ -236,7 +236,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-12 col-md-6 form-creat__half">
+                                                <div class="col-12 col-md-4 form-creat__half">
                                                     <div role="group" class="form-group">
                                                         <label class="d-block size">Оператор постановщик</label>
                                                         <span>

@@ -5,7 +5,7 @@
 <head class="head">
     <title>Клиенты</title>
     <!-- <div th:replace="fragments/head :: header"></div> -->
-    <meta charset="UTF-8">
+    <!-- <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="robots" content="index, follow">
     <meta name="author" content="">
@@ -70,7 +70,7 @@
 
     <script src="/static/js/jquery.js" th:src="@{/js/jquery.js}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"  th:src="@{/js/jquery.modal.js}"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" /> -->
 </head>
 
 <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
@@ -93,16 +93,16 @@
                         <div data-v-e551daac="">
                             <div data-v-e551daac="" class="b-overlay-wrap position-relative custom-ll">
                                 <div class="row">
-                                    <div class="custom-ll__header col-12">
+                                    <div class="custom-ll__header " style="margin-left: -40px;">
                                         <div class="custom-ll__header__full show">
                                             <div class="custom-ll__header__full__right">
                                                 <form class="custom-ll__header-form" th:action="@{/clients}" method="post">
-                                                    <div role="group" class="custom-ll__header-label form-group">
+                                                    <!-- <div role="group" class="custom-ll__header-label form-group">
                                                         <label class="d-block">Поиск</label>
-                                                    </div>
-                                                    <div class="custom-ll__header-wrapp">
-                                                        <div class="header__search header__search_width header__search_width-clients" style="width: 200px;">
-                                                            <input type="search" name="username" placeholder="Поиск" class="form-control" style="height: 44px; width: 320px;">
+                                                    </div> -->
+                                                    <div class="custom-ll__header-wrapp" >
+                                                        <div class="header__search header__search_width header__search_width-clients" style="width: 365px;">
+                                                            <input type="search" name="username" placeholder="Поиск" class="form-control" style="height: 44px; width: 390px;">
                                                             <span class="header__search__btn"><i class="fa fa-search"></i></span>
                                                         </div>
                                                         <div class="header__filter">
