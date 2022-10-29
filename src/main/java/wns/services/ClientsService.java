@@ -21,6 +21,11 @@ public class ClientsService implements MainService {
         return clientsRepo.findAll();
     }
 
+    public List<ClientDTO> getAllClientsDTO()
+    {
+        return clientsRepo.findAll().stream().map(ClientDTO::new).collect(Collectors.toList());
+    }
+
     public Messages saveClient(Client client) {
         Client clientByFullName = clientsRepo.findClientByFullName(client.getFullName());
         if (clientByFullName == null) {

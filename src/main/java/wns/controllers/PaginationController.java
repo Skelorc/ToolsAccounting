@@ -5,9 +5,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import wns.constants.Filter;
 import wns.constants.Messages;
-import wns.constants.PaginationConst;
 import wns.dto.PageDataDTO;
 import wns.services.PageableFilterService;
 import wns.utils.ResponseHandler;
@@ -15,7 +13,6 @@ import wns.utils.ResponseHandler;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 

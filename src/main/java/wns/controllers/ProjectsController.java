@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import wns.constants.Filter;
 import wns.constants.Messages;
 import wns.constants.PaginationConst;
-import wns.constants.StatusTools;
+import wns.constants.StatusProject;
 import wns.dto.IdsDTO;
-import wns.dto.Identifiers;
 import wns.dto.ProjectDTO;
 import wns.entity.Project;
 import wns.services.ClientsService;
@@ -35,10 +34,8 @@ public class ProjectsController {
     @GetMapping
     public String show(@RequestParam(value = "page", required = false) Optional<Integer> page,
                        @RequestParam(value = "size", required = false) Optional<Integer> size,
-                       @RequestParam(value = "filter", required = false) Filter filter,
                        Model model) {
-
-        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, filter, PaginationConst.PROJECT,0);
+        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, Filter.WITHOUT_FILTER, PaginationConst.PROJECT,-1);
         pageableFilterService.addPageNumbersToModel(paginated_list, model);
         model.addAttribute("list_projects", paginated_list);
         return "projects";
@@ -52,27 +49,51 @@ public class ProjectsController {
     }
 
     @GetMapping("/projects/create")
-    public String showCreatingPage(Model model) {
-        List<Identifiers> list = new ArrayList<>();
+    public String showCreatingPage(@RequestParam(value = "page", required = false) Optional<Integer> page,
+                                   @RequestParam(value = "size", required = false) Optional<Integer> size,
+                                   Model model) {
+        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, Filter.INSTOCK, PaginationConst.TOOLS,-1);
+        pageableFilterService.addPageNumbersToModel(paginated_list, model);
         model.addAttribute("clients", clientsService.getAll());
-        model.addAttribute("list_tools", toolsService.getListToolsByStatus(StatusTools.INSTOCK));
+        model.addAttribute("list_tools", paginated_list);
         model.addAttribute("projectDTO", new ProjectDTO());
-        model.addAttribute("ids",list);
         return "project_create";
     }
 
     @PostMapping("/projects/create")
-    public String createProject(@ModelAttribute ProjectDTO projectDTO) {
+    @ResponseBody
+    public ResponseEntity<Object> createProject(@RequestBody ProjectDTO projectDTO) {
         Project project = projectService.createProject(projectDTO);
-        return "redirect:/estimate/create/"+project.getId();
+        return ResponseHandler.generateResponse(Messages.REDIRECT,"/estimate/create/"+project.getId());
     }
 
     @GetMapping("/projects/edit/{id}")
-    public String editProject(@PathVariable("id") long id, Model model) {
+    public String editProject(@RequestParam(value = "page", required = false) Optional<Integer> page,
+                              @RequestParam(value = "size", required = false) Optional<Integer> size,
+                              @PathVariable("id") long id, Model model) {
+        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, Filter.GET_TOOLS_BY_PROJECT, PaginationConst.PROJECT,id);
+        pageableFilterService.addPageNumbersToModel(paginated_list, model);
         model.addAttribute("clients", clientsService.getAll());
-        model.addAttribute("list_tools", toolsService.getListToolsByStatus(StatusTools.INSTOCK));
+        model.addAttribute("list_tools", paginated_list);
         model.addAttribute("project", projectService.getById(id));
         return "project_edit";
+    }
+
+    @PostMapping("/projects/edit")
+    @ResponseBody
+    public ResponseEntity<Object> updateProject(@RequestBody ProjectDTO projectDTO)
+    {
+        System.out.println(projectDTO);
+        projectService.updateProject(projectDTO);
+        return ResponseHandler.generateResponse(Messages.REDIRECT,"/");
+    }
+
+    @PostMapping("/projects/close")
+    @ResponseBody
+    public ResponseEntity<Object> closeProject(@RequestBody ProjectDTO dto)
+    {
+        projectService.closeProject(dto);
+        return ResponseHandler.generateResponse(Messages.REDIRECT,"/");
     }
 
     @PostMapping("/projects/add-tool/{id}")

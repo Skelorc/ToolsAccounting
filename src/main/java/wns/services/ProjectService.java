@@ -1,16 +1,13 @@
 package wns.services;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import org.apache.poi.ss.formula.functions.T;
 import org.modelmapper.ModelMapper;
-import org.springframework.data.domain.Page;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import wns.constants.ClassificationProject;
-import wns.constants.Filter;
 import wns.constants.Messages;
+import wns.constants.StatusProject;
 import wns.dto.IdsDTO;
-import wns.dto.ClientDTO;
 import wns.dto.ProjectDTO;
 import wns.entity.*;
 import wns.repo.ProjectRepo;
@@ -46,7 +43,7 @@ public class ProjectService implements MainService {
                 Estimate estimate = estimateService.createEstimate(project);
                 project.setEstimate(estimate);
                 projectRepo.save(project);
-                for (Long id : projectDTO.getTools_id()) {
+                for (Long id : projectDTO.getItems()) {
                     Tools tool = modelMapper.map(toolsService.findById(id), Tools.class);
                     toolsService.addToolToProject(tool,project);
                     toolsEstimateService.addToolEstimateToEstimate(project,tool);
@@ -86,7 +83,7 @@ public class ProjectService implements MainService {
         try {
             Project project = projectRepo.findById(id).get();
             for (Long id_tool : list_id) {
-                Tools tool = modelMapper.map(toolsService.findById(id_tool), Tools.class);
+                Tools tool = toolsService.findById(id_tool);
                 addToolToProject(tool, project);
             }
         } catch (Exception e) {
@@ -111,7 +108,7 @@ public class ProjectService implements MainService {
                 Tools new_tool = toolsService.findById(new_id);
                 addToolToProject(new_tool, project);
             }
-            return Messages.REPLACE;
+            return Messages.REDIRECT;
         } catch (Exception e) {
             e.printStackTrace();
             return Messages.PROJECT_ERROR;
@@ -131,5 +128,47 @@ public class ProjectService implements MainService {
     public List<ProjectDTO> findListByClassification(ClassificationProject classificationProject) {
         List<Project> list_project = projectRepo.findAllByClassification(classificationProject);
         return list_project.stream().map(ProjectDTO::new).collect(Collectors.toList());
+    }
+
+    public void updateProject(ProjectDTO dto) {
+        Project project = projectRepo.findById(dto.getId()).get();
+        project.setName(dto.getName());
+        project.setNumber(dto.getNumber());
+        project.setStatus(dto.getStatus());
+        project.setTypeLease(dto.getTypeLease());
+        project.setQuantity(dto.getQuantity());
+        project.setCreated(dto.getCreated());
+        project.setEmployee(SecurityContextHolder.getContext().getAuthentication().getName());
+        project.setStart(dto.getStart());
+        project.setEnd(dto.getEnd());
+        project.setPhotos(dto.getPhotos());
+        project.setDiscount(dto.getDiscount());
+        project.setNote(dto.getNote());
+        project.setSum(dto.getSum());
+        project.setFinalSumUsn(dto.getFinalSumUsn());
+        project.setPriceTools(dto.getPriceTools());
+        project.setDiscountByProject(dto.getDiscountByProject());
+        project.setSumWithDiscount(dto.getSumWithDiscount());
+        project.setReceived(dto.getReceived());
+        project.setRemainder(dto.getRemainder());
+        project.setClassification(dto.getClassification());
+        project.setPhoneNumber(dto.getPhoneNumber());
+        project.setPriceWork(dto.getPriceWork());
+        Client client = clientsService.getById(dto.getClient_id());
+        client.getProjects().add(project);
+        project.setClient(client);
+        project.setPhoneNumber(client.getPhoneNumber());
+        clientsService.saveClient(client);
+        projectRepo.save(project);
+    }
+
+    public void closeProject(ProjectDTO dto) {
+        Project project = projectRepo.findById(dto.getId()).get();
+        project.setStatus(StatusProject.CLOSED);
+        projectRepo.save(project);
+    }
+
+    public void save(Project project) {
+        projectRepo.save(project);
     }
 }

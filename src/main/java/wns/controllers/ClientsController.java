@@ -26,22 +26,19 @@ public class ClientsController {
     private final PageableFilterService pageableFilterService;
 
     @GetMapping()
-    public String showPage(@RequestParam(value = "filter", required = false) Filter filter,
-                                 @RequestParam(value ="page", required = false) Optional<Integer> page,
-                                 @RequestParam(value ="size", required = false) Optional<Integer> size,
-                                 Model model)
-    {
-        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page,size,filter, PaginationConst.CLIENT,0);
-        pageableFilterService.addPageNumbersToModel(paginated_list,model);
+    public String showPage(@RequestParam(value = "page", required = false) Optional<Integer> page,
+                           @RequestParam(value = "size", required = false) Optional<Integer> size,
+                           Model model) {
+        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, Filter.ALL_CLIENTS, PaginationConst.CLIENT, -1);
+        pageableFilterService.addPageNumbersToModel(paginated_list, model);
         model.addAttribute("list_clients", paginated_list);
         return "clients";
     }
 
     @PostMapping()
-    public String findClientsByName(@RequestParam String username, Model model)
-    {
+    public String findClientsByName(@RequestParam String username, Model model) {
         List<ClientDTO> listByName = clientsService.findListByName(username);
-        model.addAttribute("list_clients",listByName);
+        model.addAttribute("list_clients", listByName);
         return "clients";
     }
 
@@ -62,9 +59,14 @@ public class ClientsController {
 
 
     @GetMapping("/edit/{id}")
-    public String showClientForUpdate(@PathVariable("id") long id, Model model) {
+    public String showClientForUpdate(@RequestParam(value = "page", required = false) Optional<Integer> page,
+                                      @RequestParam(value = "size", required = false) Optional<Integer> size,
+                                      @PathVariable("id") long id, Model model) {
         Client client = clientsService.getById(id);
+        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, Filter.PROJECTS_BY_CLIENTS, PaginationConst.CLIENT, id);
+        pageableFilterService.addPageNumbersToModel(paginated_list, model);
         model.addAttribute("client", client);
+        model.addAttribute("list_projects", paginated_list);
         return "client_create";
     }
 

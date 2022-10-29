@@ -1,14 +1,10 @@
 class SearchHandler{
-
     constructor(){
         this.dom = {
             searchInput: document.querySelector("#barcode_search_input")
         }
-
         this.init()
     }
-
-    //events
     handleSearchInputKeyUp(){
         let $this = this
         let newValue = $this.dom.searchInput.value.toUpperCase()
@@ -17,8 +13,6 @@ class SearchHandler{
             tableRowBarcode.includes(newValue) ? tableRow.classList.remove("row_hidden") : tableRow.classList.add("row_hidden")
         }
     }
-
-
     init(){
         // adding event listeners
         this.dom.searchInput.addEventListener("keyup", this.handleSearchInputKeyUp.bind(this))

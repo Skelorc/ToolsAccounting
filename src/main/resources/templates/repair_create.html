@@ -73,7 +73,7 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"  th:src="@{/js/jquery.modal.js}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" /> -->
-    
+
 </head>
 
 <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
@@ -82,178 +82,181 @@
         <div th:insert="fragments/menu_sidebar.html"></div>
         <div class="b-overlay-wrap position-relative w-100" size="sm">
             <div class="rih-page-wrapper">
-                <nav  role="navigation" class="navbar navbar-admin navbar-fixed-top" th:insert="fragments/header_logout.html"></nav>
-                    <main class="wrapper wrapper-content border-bottom">
-                        <div class="b-overlay-wrap position-relative">
-                            <div class="btn-pimary__groups mt-3 mb-3">
-                                <div class="btn-pimary__groups-wrapper vidacha-sozdach mb-3">
-                                    <div class="mb-3 text-right">
-                                        <span class="btn-pimary__groups_title">Ремонт</span>
-                                    </div>
-                                    <div class="mb-3 text-right">
-                                        <a href="/repair" class="btn btn-primary width grey">Назад</a>
-                                    </div>
-                                    <div class="mb-3 text-right">
-                                        <a href="/tools/create" class="btn btn-primary width green">Добавить
-                                            оборудование</a>
-                                    </div>
+                <nav role="navigation" class="navbar navbar-admin navbar-fixed-top"
+                     th:insert="fragments/header_logout.html"></nav>
+                <main class="wrapper wrapper-content border-bottom">
+                    <div class="b-overlay-wrap position-relative">
+                        <div class="btn-pimary__groups mt-3 mb-3">
+                            <div class="btn-pimary__groups-wrapper vidacha-sozdach mb-3">
+                                <div class="mb-3 text-right">
+                                    <span class="btn-pimary__groups_title">Ремонт</span>
+                                </div>
+                                <div class="mb-3 text-right">
+                                    <a href="/repair" class="btn btn-primary width grey">Назад</a>
+                                </div>
+                                <div class="mb-3 text-right">
+                                    <a href="/tools/create" class="btn btn-primary width green">Добавить
+                                        оборудование</a>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="tab-content">
-                                <div class="form-creat mb-3 col-12">
-                                    <div class="bg-white p-3 edit-container d-block col-8 col-md-12">
-                                        <div class="row form-creat__half-wrapp">
-                                            <div class="form-creat__half_two-column">
-                                                <div role="group" class="form-group">
-                                                    <label class="d-block size">Начало</label>
-                                                    <div class="vdpComponent vdpWithInput">
-                                                        <input class="form-control" id="start_repair" required="" type="datetime-local" placeholder="дд.мм.гггг">
-                                                    </div>
+                        <div class="tab-content">
+                            <div class="form-creat mb-3 col-12">
+                                <div class="bg-white p-3 edit-container d-block col-8 col-md-12">
+                                    <div class="row form-creat__half-wrapp">
+                                        <div class="form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block size">Начало</label>
+                                                <div class="vdpComponent vdpWithInput">
+                                                    <input class="form-control" id="start_repair" required=""
+                                                           type="datetime-local" placeholder="дд.мм.гггг">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class=" form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block size">Окончание</label>
+                                                <div class="vdpComponent vdpWithInput">
+                                                    <input class="form-control" id="end_repair" required=""
+                                                           type="datetime-local" placeholder="дд.мм.гггг">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row form-creat__half-wrapp">
+                                        <div data-v-4af8fa58="" class="rent__client form-creat__half_two-column mb-3">
+                                            <div class="rent__client__buttons">
+                                                <label class="d-inline-block pl-2 mr-auto rent__client__buttons_title-mb">Исполнитель</label>
+                                                <button type="button" class="btn btn-primary width btn-xs">
+                                                    <a th:href="@{/clients}">Новый клиент</a>
+                                                </button>
+                                            </div>
+                                            <div class="mt-1 rent__client__selector mb-3">
+                                                <div dir="auto" class="v-select vs--single vs--searchable">
+                                                    <select class="vs__selected-options main-secect__opions form-control executor"
+                                                            id="data_repair">
+                                                        <option class="vs__selected vs__dropdown-toggle"
+                                                                value="" disabled>Выберите исполнителя
+                                                        </option>
+                                                        <option class="vs__selected vs__dropdown-toggle"
+                                                                th:each="clientDTO : ${clients}"
+                                                                th:value="${clientDTO.fullName+','+clientDTO.phoneNumber}"
+                                                                th:text="${clientDTO.fullName}">
+                                                        </option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class=" form-creat__half_two-column">
                                                 <div role="group" class="form-group">
-                                                    <label class="d-block size">Окончание</label>
-                                                    <div class="vdpComponent vdpWithInput">
-                                                        <input class="form-control" id="end_repair" required="" type="datetime-local" placeholder="дд.мм.гггг">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row form-creat__half-wrapp">
-                                            <div data-v-4af8fa58="" class="rent__client form-creat__half_two-column mb-3">
-                                                <div class="rent__client__buttons">
-                                                    <label class="d-inline-block pl-2 mr-auto rent__client__buttons_title-mb">Исполнитель</label>
-                                                    <button type="button" class="btn btn-primary width btn-xs">
-                                                        <a th:href="@{/clients}">Новый клиент</a>
-                                                    </button>
-                                                </div>
-                                                <div class="mt-1 rent__client__selector mb-3">
-                                                    <div dir="auto" class="v-select vs--single vs--searchable">
-                                                        <select class="vs__selected-options main-secect__opions form-control executor"
-                                                                id="data_repair">
-                                                            <option class="vs__selected vs__dropdown-toggle"
-                                                                    value="" disabled>Выберите исполнителя
-                                                            </option>
-                                                            <option class="vs__selected vs__dropdown-toggle"
-                                                                    th:each="clientDTO : ${clients}"
-                                                                    th:value="${clientDTO.fullName+','+clientDTO.phoneNumber}"
-                                                                    th:text="${clientDTO.fullName}">
-                                                            </option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class=" form-creat__half_two-column">
-                                                    <div role="group" class="form-group">
-                                                        <label class="d-block size">Фотографии</label>
-                                                        <span>
-                                                        <textarea id="photos_repair" class="form-control textarea-height-40"></textarea>
+                                                    <label class="d-block size">Фотографии</label>
+                                                    <span>
+                                                        <textarea id="photos_repair"
+                                                                  class="form-control textarea-height-40"></textarea>
                                                     </span>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-creat__half_two-column">
-                                            <div class="form-group">
-                                                <label class="d-block size">Примечание</label>
-                                                <textarea id="note_repair" class="form-control" rows="4"></textarea>
-                                            </div>
-                                        </div>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="col-12">
-                                <div class="form-creat__itog mb-3">
-                                    <h3 class="form-creat__itog-title form-creat__itog-title_text" value="0">Всего цена
-                                        ремонта</h3>
-                                    <div class="project__all-data all-data_input">
-                                        <span id="price_repair" type="text" class="vdatetime-input form-control span-input"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="custom-ll__header custom-ll__header-zipcode">
-                            <div class="custom-ll__header__full show">
-                                <div class="custom-ll__header__full__right">
-                                    <div class="custom-ll__header-wrapp">
-                                        <div class="header__search header__search_width header__search_width-clients">
-                                            <input id="barcode_search_input" type="text" name="barcode" placeholder="Введите штрих код" class="form-control">
-                                            <span class="header__search__btn"></span>
+                                    <div class="form-creat__half_two-column">
+                                        <div class="form-group">
+                                            <label class="d-block size">Примечание</label>
+                                            <textarea id="note_repair" class="form-control" rows="4"
+                                                      required></textarea>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="custom-ll__table table-responsive mb-3">
-                            <table class="table h-table delivery w-table in4dr-form">
-                                <tbody>
-                                <thead>
-                                <tr>
-                                    <th class="first-th">#</th>
-                                    <th>Наименование</th>
-                                    <th>Цена ремонта</th>
-                                    <th>Штрих код</th>
-                                    <th>Группа</th>
-                                    <th>Марка/Модель</th>
-                                    <th>Серийный номер</th>
-                                    <th>Комментарий</th>
-                                    <th>Характеристики</th>
-                                    <th>Состояние</th>
-                                    <th>Цена</th>
-                                    <th>Себестоимость</th>
-                                    <th>Комплект</th>
+                       <!-- <div class="col-12">
+                            <div class="form-creat__itog mb-3">
+                                <h3 class="form-creat__itog-title form-creat__itog-title_text" value="0">Всего цена
+                                    ремонта</h3>
+                                <div class="project__all-data all-data_input">
+                                    <span id="price_repair" type="text"
+                                          class="vdatetime-input form-control span-input"></span>
+                                </div>
+                            </div>
+                        </div>-->
+                    </div>
+                    <div class="custom-ll__header custom-ll__header-zipcode">
+                        <div class="custom-ll__header__full show">
+                            <div class="custom-ll__header__full__right">
+                                <div class="custom-ll__header-wrapp">
+                                    <div class="header__search header__search_width header__search_width-clients">
+                                        <input id="barcode_search_input" type="text" name="barcode"
+                                               placeholder="Введите штрих код" class="form-control">
+                                        <span class="header__search__btn"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="custom-ll__table table-responsive mb-3">
+                        <table class="table h-table delivery w-table in4dr-form">
+                            <tbody>
+                            <thead>
+                            <tr>
+                                <th class="first-th">#</th>
+                                <th>Наименование</th>
+                                <th>Цена ремонта</th>
+                                <th>Штрих код</th>
+                                <th>Группа</th>
+                                <th>Марка/Модель</th>
+                                <th>Серийный номер</th>
+                                <th>Комментарий</th>
+                                <th>Характеристики</th>
+                                <th>Состояние</th>
+                                <th>Цена</th>
+                                <th>Себестоимость</th>
+                                <th>Комплект</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <div th:if="!${#lists.isEmpty(list_tools)}">
+                                <tr th:each="tool,itemStat : ${list_tools}" class="row-tool">
+                                    <td class="column-table">
+                                        <div class="column-table_checkbox-wrapp">
+                                            <input class="column-table_checkbox choose_tool ids" type="checkbox">
+                                            <input type="hidden" th:value="${tool.id}">
+                                        </div>
+                                    </td>
+                                    <td data-label="Наименование" th:utext="${tool.name}"></td>
+                                    <td data-label="Цена ремонта" class="td-whith-input">
+                                        <input class="form-control input-without-style repair_price" type="text"
+                                               placeholder="Введите цену"
+                                               oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
+                                               aria-describedby="item-human-passport_serial">
+                                    </td>
+                                    <td data-label="Штрихкод" class="barcode-tool" th:utext="${tool.barcode}"></td>
+                                    <td data-label="Группа" th:utext="${tool.category}"></td>
+                                    <td data-label="Марка\Модель" th:utext="${tool.model}"></td>
+                                    <td data-label="Серийный номер" th:utext="${tool.serialNumber}"></td>
+                                    <td data-label="Комментарий" th:utext="${tool.comment}"></td>
+                                    <td data-label="Характеристики" th:utext="${tool.characteristics}"></td>
+                                    <td data-label="Состояние" th:utext="${tool.state}"></td>
+                                    <td data-label="Цена" th:utext="${tool.costPrice}"></td>
+                                    <td data-label="Себестоимость" th:utext="${tool.priceSell}"></td>
+                                    <td data-label="Комплект" th:utext="${tool.equip}"></td>
                                 </tr>
-                                </thead>
-                                <tbody>
-                                <div th:if="!${#lists.isEmpty(list_tools)}">
-                                    <tr th:each="tool,itemStat : ${list_tools}" class="row-tool">
-                                        <td class="column-table">
-                                            <div class="column-table_checkbox-wrapp">
-                                                <input class="column-table_checkbox choose_tool ids" type="checkbox">
-                                                <input type="hidden" th:value="${tool.id}">
-                                            </div>
-                                        </td>
-                                        <td data-label="Наименование" th:utext="${tool.name}"></td>
-                                        <td data-label="Цена ремонта" class="td-whith-input">
-                                            <input class="form-control input-without-style repair_price" type="text" placeholder="Введите цену" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');" aria-describedby="item-human-passport_serial">
-                                        </td>
-                                        <td data-label="Штрихкод" class="barcode-tool" th:utext="${tool.barcode}"></td>
-                                        <td data-label="Группа" th:utext="${tool.category}"></td>
-                                        <td data-label="Марка\Модель" th:utext="${tool.model}"></td>
-                                        <td data-label="Серийный номер" th:utext="${tool.serialNumber}"></td>
-                                        <td data-label="Комментарий" th:utext="${tool.comment}"></td>
-                                        <td data-label="Характеристики" th:utext="${tool.characteristics}"></td>
-                                        <td data-label="Состояние" th:utext="${tool.state}"></td>
-                                        <td data-label="Цена" th:utext="${tool.costPrice}"></td>
-                                        <td data-label="Себестоимость" th:utext="${tool.priceSell}"></td>
-                                        <td data-label="Комплект" th:utext="${tool.equip}"></td>
-                                    </tr>
-                                </div>
-                                </tbody>
-                            </table>
-                            <div th:if="${#lists.isEmpty(list_tools)}"><h1>Данные не найдены!</h1></div>
-                        </div>
+                            </div>
+                            </tbody>
+                        </table>
+                        <div th:if="${#lists.isEmpty(list_tools)}"><h1>Данные не найдены!</h1></div>
+                    </div>
 
-                        <div class="btn-pimary__groups mt-3 mb-3">
-                            <div class="btn-pimary__groups-wrapper mb-3">
-                                <div class="mb-3 text-right">
-                                    <span class="btn-pimary__groups_title">Действия</span>
-                                </div>
-                                <div class="mb-3 text-right">
-                                    <input id="repair_create" type="submit" value="В ремонт" class="btn btn-primary width orange">
-                                </div>
-                                <div class="mb-3 text-right">
-                                    <a href="/repair/create" class="btn btn-primary width green">Показать
-                                        все</a>
-                                </div>
-
+                    <div class="btn-pimary__groups mt-3 mb-3">
+                        <div class="btn-pimary__groups-wrapper mb-3">
+                            <div class="mb-3 text-right">
+                                <input id="repair_create" type="submit" value="В ремонт"
+                                       class="btn btn-primary width orange">
                             </div>
                         </div>
+                    </div>
 
-                    </main>
+                </main>
 
                 <div class="pagination-control col-lg-12 order-lg-1">
                     <!-- Bootstrap 4 -->
@@ -261,7 +264,10 @@
                         <ul class="pagination">
                             <li class="page-item" th:if="${list_tools.totalPages > 0}"
                                 th:each="page_number : ${page_numbers}">
-                                <a class="page-link-m page-link" th:href="@{/repair/create(size=${list_tools.size}, page=${page_numberStat.index})}" th:text="${page_numberStat.index}" th:class="${page_number==list_tools.number + 1} ? active"></a>
+                                <a class="page-link-m page-link"
+                                   th:href="@{/repair/create(size=${list_tools.size}, page=${page_numberStat.index})}"
+                                   th:text="${page_numberStat.index}"
+                                   th:class="${page_number==list_tools.number + 1} ? active"></a>
                             </li>
                         </ul>
                     </nav>
@@ -273,6 +279,8 @@
 </div>
 
 <div th:insert="fragments/scripts.html"></div>
-<div>  <script src="/static/js/SearchBarcode.js" th:src="@{/js/SearchBarcode.js}"></script></div>
+<div>
+    <script src="/static/js/SearchBarcode.js" th:src="@{/js/SearchBarcode.js}"></script>
+</div>
 </body>
 </html>

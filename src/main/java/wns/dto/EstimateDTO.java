@@ -30,7 +30,7 @@ public class EstimateDTO {
     public Estimate createEstimateFromDTO(Project project)
     {
         Estimate estimate = project.getEstimate();
-        estimate.setAllByPRoject(params.getAllByPRoject());
+        estimate.setAllByProject(params.getAllByPRoject());
         estimate.setDiscountByTools(params.getDiscountByTools());
         estimate.setAllByProjectWithDiscount(params.getAllByProjectWithDiscount());
         estimate.setAllByService(params.getAllByService());

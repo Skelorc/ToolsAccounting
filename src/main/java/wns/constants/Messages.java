@@ -4,7 +4,7 @@ public enum Messages {
 
     OK("Create!","200"),
     RETURN_FILE_URL("File!","300"),
-    REPLACE("Create! Redirect!","300"),
+    REDIRECT("Create! Redirect!","300"),
     CLIENT_CREATE("Клиент сохранён!","200"),
     CLIENT_EXISTS("Клиент с таким ФИО уже существует!", "400"),
     CLIENT_UPDATE("Клиент обновлён!","200"),

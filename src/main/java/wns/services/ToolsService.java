@@ -54,48 +54,32 @@ public class ToolsService implements MainService {
             return Messages.TOOLS_EXISTS;
     }
 
-    public void updateStatus(List<IdentifiersStatus> statuses) {
-        for (IdentifiersStatus identifiersStatus : statuses) {
-            Tools tools = toolsRepo.findById(identifiersStatus.getId()).get();
-            Status status = tools.getStatus();
-            status.setEmployee(SecurityContextHolder.getContext().getAuthentication().getName());
-            status.setStatusTools(StatusTools.valueOf(identifiersStatus.getStatus()));
-            status.setCreated(LocalDateTime.now());
-            statusService.save(status);
+    public Messages changeStatus(StatusToolDTO statusToolDTO) {
+        if (statusToolDTO.getData() != null) {
+            String[] data = statusToolDTO.getData().split(",");
+            statusToolDTO.setExecutor(data[0]);
+            statusToolDTO.setPhone_number(data[1]);
         }
-    }
-
-    public Messages changeStatus(TypeStatusDTO typeStatusDTO) {
-        if (typeStatusDTO.getData() != null) {
-            String[] data = typeStatusDTO.getData().split(",");
-            typeStatusDTO.setExecutor(data[0]);
-            typeStatusDTO.setPhoneNumber(data[1]);
-        }
-        List<Identifiers> identifiers = typeStatusDTO.getItems();
+        List<Identifiers> identifiers = statusToolDTO.getItems();
         for (Identifiers identifier : identifiers) {
-            if (identifier.isChecked()) {
-                if(identifier.getPrice()==0)
-                {
-                    return Messages.STATUS_CHANGE_FAILED;
-                }
                 Tools tools = toolsRepo.findById(identifier.getId()).get();
                 Status status = tools.getStatus();
                 status.setCreated(LocalDateTime.now());
-                status.setStart(typeStatusDTO.getStart());
-                status.setEnd(typeStatusDTO.getEnd());
+                status.setStart(statusToolDTO.getStart());
+                status.setEnd(statusToolDTO.getEnd());
                 status.setEmployee(SecurityContextHolder.getContext().getAuthentication().getName());
-                status.setExecutor(typeStatusDTO.getExecutor());
-                status.setPhone_number(typeStatusDTO.getPhoneNumber());
-                status.setNote(typeStatusDTO.getNote());
-                status.setStatusTools(typeStatusDTO.getStatusTools());
-                status.setPhotos(typeStatusDTO.getPhotos());
+                status.setExecutor(statusToolDTO.getExecutor());
+                status.setPhone_number(statusToolDTO.getPhone_number());
+                status.setNote(statusToolDTO.getNote());
+                status.setStatusTools(statusToolDTO.getStatusTools());
+                status.setPhotos(statusToolDTO.getPhotos());
                 if (status.getStatusTools().equals(StatusTools.SALE)) {
                     status.setPriceSell(status.getPriceSell() + identifier.getPrice());
                 }
                 if (status.getStatusTools().equals(StatusTools.REPAIR)) {
                     status.setPriceRepair(status.getPriceRepair() + identifier.getPrice());
                 }
-                if (status.getStatusTools().equals(StatusTools.WRITENOFF)) {
+                if (status.getStatusTools().equals(StatusTools.WRITEOFF)) {
                     status.setPriceOff(status.getPriceOff() + identifier.getPrice());
                 }
                 try {
@@ -104,7 +88,6 @@ public class ToolsService implements MainService {
                     e.printStackTrace();
                     return Messages.STATUS_CHANGE_FAILED;
                 }
-            }
         }
         return Messages.STATUS_CREATE;
     }
@@ -152,8 +135,33 @@ public class ToolsService implements MainService {
         toolsRepo.save(tool);
     }
 
-    public List<ToolsDTO> findListByTypeTools(TypeTools typeTools) {
+    public List<ToolsDTO> findListByTypeToolsAndProject(TypeTools typeTools, long id)
+    {
+        if(id>=0)
+        {
+            return toolsRepo.findAllByTypeTools(typeTools).stream()
+                    .filter(x -> (x.getProject()==null || x.getProject().getId()!=id))
+                    .map(ToolsDTO::new)
+                    .collect(Collectors.toList());
+        }
         return toolsRepo.findAllByTypeTools(typeTools).stream().map(ToolsDTO::new).collect(Collectors.toList());
+    }
+
+    public List<ToolsDTO> getToolsByStatuses(StatusTools statusTools)
+    {
+        return toolsRepo.findAllByStatus_StatusTools(statusTools)
+                .stream()
+                .map(ToolsDTO::new)
+                .collect(Collectors.toList());
+    }
+
+    public List<ToolsDTO> getToolsByStatusesAndNotProject(StatusTools statusTools, long id)
+    {
+        List<Tools> allByStatusTools = toolsRepo.findAllByStatus_StatusTools(statusTools);
+        return allByStatusTools.stream()
+                .filter(x -> (x.getProject()!=null && x.getProject().getId()!=id))
+                .map(ToolsDTO::new)
+                .collect(Collectors.toList());
     }
 
 }

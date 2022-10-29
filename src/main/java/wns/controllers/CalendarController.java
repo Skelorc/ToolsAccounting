@@ -25,7 +25,7 @@ private final PageableFilterService pageableFilterService;
                            @RequestParam(value ="size", required = false) Optional<Integer> size,
                            Model model)
     {
-        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, filter, PaginationConst.TOOLS,0);
+        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, filter, PaginationConst.TOOLS,-1);
         model.addAttribute("list_tools", paginated_list);
         pageableFilterService.addPageNumbersToModel(paginated_list,model);
         return "calendar";

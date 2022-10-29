@@ -97,13 +97,7 @@
                                     <a th:href="@{/sale/create}" class="btn btn-primary width green">Создать</a>
                                 </div>
                                 <div class="mb-3 text-right">
-                                    <a href="#" class="btn btn-primary width red">Удалить</a>
-                                </div>
-                                <div class="mb-3 text-right">
-                                    <a href="/sale" class="btn btn-primary width orange">Обновить</a>
-                                </div>
-                                <div class="mb-3 text-right">
-                                    <a href="#" class="btn btn-primary width grey">Экспорт</a>
+                                    <span class="btn btn-primary width orange" id="back_repair">Вернуть на склад</span>
                                 </div>
                             </div>
                         </div>
@@ -116,37 +110,38 @@
                                     <th>Дата создания</th>
                                     <th>Клиент</th>
                                     <th>Телефон</th>
-                                    <th>Фотографии</th>
                                     <th>Всего цена продажи</th>
                                     <th>Сотрудник</th>
                                     <th>Примечание</th>
                                     <th>Статус</th>
+                                    <th>Фотографии</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr th:each="status : ${list_statuses}">
                                     <td data-label="№" class="column-table">
                                         <div class="column-table_checkbox-wrapp">
-                                            <input class="column-table_checkbox" type="checkbox" id="" name=""><span class="tools-td-text table-td-text column-table_checkbox-number" th:utext="${statusStat.index+1}"></span>
+                                            <input class="column-table_checkbox ids" type="checkbox">
+                                            <input type="hidden" th:value="${status.id}">
                                         </div>
                                     </td>
                                     <td data-label="Дата создания" th:utext="${#temporals.format(status.created, 'dd-MM-yyyy HH:mm')}"></td>
                                     <td data-label="Исполнитель" th:utext="${status.executor}"></td>
                                     <td data-label="Телефон" th:utext="${status.phone_number}"></td>
-                                <!--    <td data-label="Фотографии">
-                                        <span class="column-table__photo-mini" th:each="photo : ${status.photos_status}">
-                                            <a  rel="modal:open"  th:href="${'#'+photoStat.count +''+ status.tools.id}">
-                                                <img class="column-table__photo-mini_img" th:src="${photo}">
-                                                <div th:id="${photoStat.count +''+ status.tools.id}" class="modal">
-                                                    <img th:src="${photo}">
-                                                </div>
-                                            </a>
-                                        </span>
-                                    </td>-->
                                     <td data-label="Всего цена продажи" th:utext="${status.priceSell}"></td>
                                     <td data-label="Сотрудник" th:utext="${status.employee}"></td>
                                     <td data-label="Примечание" th:utext="${status.note}"></td>
                                     <td data-label="Статус" th:utext="${status.statusTools.getValue()}"></td>
+                                    <td data-label="Фотографии">
+                                        <span class="column-table__photo-mini" th:each="photo : ${status.photos}">
+                                            <a  rel="modal:open"  th:href="${'#'+photoStat.count +''+ status.tools_id}">
+                                                <img class="column-table__photo-mini_img" th:src="${photo}">
+                                                <div th:id="${photoStat.count +''+ status.tools_id}" class="modal">
+                                                    <img th:src="${photo}">
+                                                </div>
+                                            </a>
+                                        </span>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>

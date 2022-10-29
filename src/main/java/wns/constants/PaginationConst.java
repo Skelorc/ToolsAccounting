@@ -5,10 +5,13 @@ import java.util.Arrays;
 public enum PaginationConst {
 
     PROJECT,
+    PROJECT_CREATE,
     TOOLS,
+    TOOLS_ADD,
     CLIENT,
     STATUS,
-    ESTIMATE;
+    ESTIMATE,
+    CHANGE;
 
     @Override
     public String toString() {

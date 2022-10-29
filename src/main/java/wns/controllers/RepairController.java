@@ -11,17 +11,13 @@ import wns.constants.Filter;
 import wns.constants.Messages;
 import wns.constants.PaginationConst;
 import wns.constants.StatusTools;
-import wns.dto.ToolsDTO;
-import wns.dto.TypeStatusDTO;
-import wns.entity.Status;
-import wns.entity.Tools;
+import wns.dto.StatusToolDTO;
 import wns.services.ClientsService;
 import wns.services.PageableFilterService;
 import wns.services.StatusService;
 import wns.services.ToolsService;
 import wns.utils.ResponseHandler;
 
-import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -39,7 +35,7 @@ public class RepairController {
     public String show(@RequestParam(value = "page", required = false) Optional<Integer> page,
                        @RequestParam(value = "size", required = false) Optional<Integer> size,
                        Model model) {
-        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, Filter.REPAIR,PaginationConst.STATUS,0);
+        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, Filter.REPAIR,PaginationConst.STATUS,-1);
         pageableFilterService.addPageNumbersToModel(paginated_list, model);
         model.addAttribute("list_statuses", paginated_list);
         return "repair";
@@ -49,7 +45,7 @@ public class RepairController {
     public String showCreatePage(@RequestParam(value = "page", required = false) Optional<Integer> page,
                                  @RequestParam(value = "size", required = false) Optional<Integer> size,
                                  Model model) {
-        Page<Object> paginated = pageableFilterService.getPageByFilter(page, size,Filter.WAITING, PaginationConst.STATUS,0);
+        Page<Object> paginated = pageableFilterService.getPageByFilter(page, size,Filter.WAITING, PaginationConst.STATUS,-1);
         pageableFilterService.addPageNumbersToModel(paginated, model);
         model.addAttribute("clients", clientsService.getAll());
         model.addAttribute("list_tools", paginated);
@@ -58,9 +54,9 @@ public class RepairController {
 
     @PostMapping("/create")
     @ResponseBody
-    public ResponseEntity<Object> createRepair(@RequestBody TypeStatusDTO typeStatusDTO) {
-        typeStatusDTO.setStatusTools(StatusTools.REPAIR);
-        toolsService.changeStatus(typeStatusDTO);
+    public ResponseEntity<Object> createRepair(@RequestBody StatusToolDTO statusToolDTO) {
+        statusToolDTO.setStatusTools(StatusTools.REPAIR);
+        toolsService.changeStatus(statusToolDTO);
         return ResponseHandler.generateResponse(Messages.OK,"/repair");
     }
 }

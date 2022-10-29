@@ -254,7 +254,7 @@ public class ExcelUtil {
         cell.setCellValue("Всего по проекту:");
         cell.setCellStyle(section_style);
         cell = row.createCell(5);
-        cell.setCellValue(estimate.getAllByPRoject());
+        cell.setCellValue(estimate.getAllByProject());
         cell.setCellStyle(section_style);
         num_row++;
 

@@ -25,6 +25,8 @@ public class ProjectDTO {
     private ClassificationProject classification;
     private String classification_name;
     private StatusProject status;
+    private String status_value;
+    private String status_color;
     private String name;
     private TypeLease typeLease;
     private int quantity;
@@ -50,7 +52,7 @@ public class ProjectDTO {
     private long received;
     private long remainder;
     private long estimate_id;
-    private Set<Long> tools_id = new HashSet<>();
+    private Set<Long> items = new HashSet<>();
 
 
     public ProjectDTO(Project project)
@@ -60,6 +62,8 @@ public class ProjectDTO {
         this.classification = project.getClassification();
         this.classification_name = project.getClassification().getValue();
         this.status = project.getStatus();
+        this.status_value = project.getStatus().getStatus();
+        this.status_color = project.getStatus().getColor();
         this.name = project.getName();
         this.typeLease = project.getTypeLease();
         this.quantity = project.getQuantity();
@@ -82,7 +86,7 @@ public class ProjectDTO {
         this.received = project.getReceived();
         this.remainder = project.getRemainder();
         this.estimate_id = project.getEstimate().getId();
-        this.tools_id = project.getTools().stream().map(Tools::getId).collect(Collectors.toSet());
+        this.items = project.getTools().stream().map(Tools::getId).collect(Collectors.toSet());
     }
 
     public Project createProjectFromDTO(ProjectDTO dto)

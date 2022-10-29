@@ -16,5 +16,5 @@ public class PageDataDTO {
     private Optional<Integer> size;
     private Filter filter;
     private PaginationConst paginationConst;
-    private long id_object;
+    private long id = -1;
 }

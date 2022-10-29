@@ -1,13 +1,12 @@
 package wns.dto;
 
 import lombok.Data;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 import wns.constants.CategoryTools;
 import wns.entity.Tools;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Data
 public class EstimateNameDTO {
@@ -28,16 +27,13 @@ public class EstimateNameDTO {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-
         if (o == null || getClass() != o.getClass()) return false;
-
         EstimateNameDTO that = (EstimateNameDTO) o;
-
-        return new EqualsBuilder().append(id, that.id).append(name, that.name).append(categoryTools, that.categoryTools).isEquals();
+        return id == that.id && Objects.equals(name, that.name) && categoryTools == that.categoryTools;
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder(17, 37).append(id).append(name).toHashCode();
+        return Objects.hash(id, name, categoryTools);
     }
 }

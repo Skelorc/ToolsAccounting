@@ -8,8 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import wns.constants.*;
 import wns.dto.EstimateNameDTO;
-import wns.dto.IdentifiersStatus;
-import wns.dto.ToolsDTO;
+import wns.dto.StatusToolDTO;
 import wns.entity.Tools;
 import wns.services.EstimateNameService;
 import wns.services.PageableFilterService;
@@ -28,14 +27,14 @@ public class ToolsController {
     private final PageableFilterService pageableFilterService;
 
     @GetMapping()
-    public String show(@RequestParam(value = "filter", required = false) String filter,
-                       @RequestParam(value = "page", required = false) Optional<Integer> page,
+    public String show(@RequestParam(value = "page", required = false) Optional<Integer> page,
                        @RequestParam(value = "size", required = false) Optional<Integer> size,
                        Model model) {
-        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, Filter.WITHOUT_FILTER, PaginationConst.TOOLS,0);
+        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, Filter.STOCK, PaginationConst.TOOLS,-1);
         pageableFilterService.addPageNumbersToModel(paginated_list, model);
         model.addAttribute("list_tools", paginated_list);
         model.addAttribute("estimateDTO", new EstimateNameDTO());
+        model.addAttribute("project_id", -1);
         return "tools";
     }
 
@@ -45,7 +44,7 @@ public class ToolsController {
                                 @RequestParam(value = "size", required = false) Optional<Integer> size,
                                 @PathVariable(value = "id",required = false) long id,
                                 Model model) {
-        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, Filter.INSTOCK,PaginationConst.TOOLS, id);
+        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, Filter.STOCK,PaginationConst.TOOLS, id);
         pageableFilterService.addPageNumbersToModel(paginated_list, model);
         model.addAttribute("list_tools", paginated_list);
         model.addAttribute("project_id", id);
@@ -55,11 +54,11 @@ public class ToolsController {
     @GetMapping("/replace-tool/{id}")
     public String showToolsPage(@RequestParam(value = "page", required = false) Optional<Integer> page,
                                 @RequestParam(value = "size", required = false) Optional<Integer> size,
+                                @RequestParam(value = "filter", required = false) Filter filter,
                                 @PathVariable("id") long project_id,
                                 @RequestParam(value = "ids", required = false) List<Long> ids_tools,
-                                @RequestParam(value = "status") Filter filter,
                                 Model model) {
-        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, filter,PaginationConst.PROJECT,project_id);
+        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size,filter,PaginationConst.CHANGE,project_id);
         pageableFilterService.addPageNumbersToModel(paginated_list, model);
         model.addAttribute("list_tools", paginated_list);
         model.addAttribute("ids", ids_tools);
@@ -93,8 +92,15 @@ public class ToolsController {
 
     @PostMapping("/change-status")
     @ResponseBody
-    public ResponseEntity<Object> changeStatusTool(@RequestBody List<IdentifiersStatus> statuses) {
-        toolsService.updateStatus(statuses);
-        return ResponseHandler.generateResponse(Messages.STATUS_CREATE);
+    public ResponseEntity<Object> changeStatusTool(@RequestBody StatusToolDTO statusToolDTO) {
+        System.out.println(statusToolDTO);
+        toolsService.changeStatus(statusToolDTO);
+        if(statusToolDTO.getStatusTools().equals(StatusTools.WRITEOFF))
+            return ResponseHandler.generateResponse(Messages.REDIRECT,"/write-off");
+        if(statusToolDTO.getStatusTools().equals(StatusTools.SALE))
+            return ResponseHandler.generateResponse(Messages.REDIRECT,"/sale");
+        if(statusToolDTO.getStatusTools().equals(StatusTools.REPAIR))
+            return ResponseHandler.generateResponse(Messages.REDIRECT,"/repair");
+        return ResponseHandler.generateResponse(Messages.OK);
     }
 }

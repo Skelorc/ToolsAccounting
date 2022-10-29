@@ -3,15 +3,14 @@ package wns.services;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import wns.dto.ToolsEstimateDTO;
 import wns.entity.Estimate;
 import wns.entity.Project;
 import wns.entity.Tools;
 import wns.entity.ToolsEstimate;
 import wns.repo.ToolsEstimateRepo;
 
+import java.time.Period;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -41,8 +40,19 @@ public class ToolsEstimateService implements MainService{
 
     public void addToolEstimateToEstimate(Project project, Tools tool) {
         Estimate estimate = project.getEstimate();
-        ToolsEstimateDTO dto = new ToolsEstimateDTO(tool,estimate);
-        toolsEstimateRepo.save(modelMapper.map(dto, ToolsEstimate.class));
+        ToolsEstimate toolsEstimate = new ToolsEstimate();
+        toolsEstimate.setEstimate(estimate);
+        toolsEstimate.setTypeTools(tool.getTypeTools());
+        toolsEstimate.setName(tool.getName());
+        toolsEstimate.setBarcode(tool.getBarcode());
+        toolsEstimate.setCategory(tool.getCategory());
+        toolsEstimate.setModel(tool.getModel());
+        toolsEstimate.setSection(tool.getSection());
+        toolsEstimate.setAmount(tool.getAmount());
+        toolsEstimate.setPriceByDay(tool.getPriceByDay());
+        toolsEstimate.setCreating(tool.getCreating());
+        toolsEstimate.setCountShifts(Period.between(estimate.getProject().getStart().toLocalDate(), estimate.getProject().getEnd().toLocalDate()).getDays());
+        toolsEstimateRepo.save(toolsEstimate);
     }
 
     public void deleteToolEstimateFromEstimate(Tools tool) {

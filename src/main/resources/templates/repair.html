@@ -97,13 +97,7 @@
                                     <a th:href="@{/repair/create}" class="btn btn-primary width green">Создать</a>
                                 </div>
                                 <div class="mb-3 text-right">
-                                    <a href="#" class="btn btn-primary width red">Удалить</a>
-                                </div>
-                                <div class="mb-3 text-right">
-                                    <a href="/repair" class="btn btn-primary width orange">Обновить</a>
-                                </div>
-                                <div class="mb-3 text-right">
-                                    <a href="#" class="btn btn-primary width grey">Экспорт</a>
+                                    <span class="btn btn-primary width orange" id="back_repair">Вернуть на склад</span>
                                 </div>
                             </div>
                         </div>
@@ -130,9 +124,8 @@
                                 <tr th:each="status : ${list_statuses}">
                                     <td data-label="№" class="column-table">
                                         <div class="column-table_checkbox-wrapp">
-                                            <input class="column-table_checkbox" type="checkbox" id="" name=""><span
-                                                class="tools-td-text table-td-text column-table_checkbox-number"
-                                                th:utext="${statusStat.index+1}"></span>
+                                            <input class="column-table_checkbox ids" type="checkbox">
+                                            <input type="hidden" th:value="${status.id}">
                                         </div>
                                     </td>
 
@@ -147,7 +140,7 @@
                                     <td data-label="Примечание" th:utext="${status.note}"></td>
                                     <td data-label="Статус" th:utext="${status.statusTools.getValue()}"></td>
                                     <td data-label="Фотографии">
-                                        <span class="column-table__photo-mini" th:each="photo : ${status.photos_status}">
+                                        <span class="column-table__photo-mini" th:each="photo : ${status.photos}">
                                             <a  rel="modal:open"  th:href="${'#'+photoStat.count +''+ status.tools_id}">
                                                 <img class="column-table__photo-mini_img" th:src="${photo}">
                                                 <div th:id="${photoStat.count +''+ status.tools_id}" class="modal">
@@ -169,7 +162,8 @@
                                 <ul class="pagination">
                                     <li class="page-item" th:if="${list_statuses.totalPages > 0}"
                                         th:each="page_number : ${page_numbers}">
-                                        <a class="page-link-m page-link" th:href="@{/repair(size=${list_statuses.size}, page=${page_numberStat.index})}" th:text="${page_numberStat.index}" th:class="${page_number==list_statuses.number + 1} ? active"></a>
+                                        <a class="page-link-m page-link" th:href="@{/repair(size=${list_statuses.size}, page=${page_numberStat.index})}"
+                                           th:text="${page_numberStat.index}" th:class="${page_number==list_statuses.number + 1} ? active"></a>
                                     </li>
                                 </ul>
                             </nav>

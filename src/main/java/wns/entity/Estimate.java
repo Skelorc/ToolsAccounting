@@ -29,7 +29,7 @@ public class Estimate {
     private LocalDateTime end;
     private int count_shifts;
     @Column(name = "all_by_project")
-    private long allByPRoject;
+    private long allByProject;
     @Column(name = "discount_by_tools")
     private int discountByTools;
     @Column(name = "all_by_project_with_discount")
@@ -73,7 +73,7 @@ public class Estimate {
                 ", start=" + start +
                 ", end=" + end +
                 ", count_shifts=" + count_shifts +
-                ", allByPRoject=" + allByPRoject +
+                ", allByPRoject=" + allByProject +
                 ", discountByTools=" + discountByTools +
                 ", allByProjectWithDiscount=" + allByProjectWithDiscount +
                 ", allByService=" + allByService +

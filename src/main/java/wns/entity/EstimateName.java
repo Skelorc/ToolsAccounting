@@ -1,13 +1,15 @@
 package wns.entity;
 
-import lombok.*;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import wns.constants.CategoryTools;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "estimate_name")
@@ -37,16 +39,13 @@ public class EstimateName {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-
         if (o == null || getClass() != o.getClass()) return false;
-
         EstimateName that = (EstimateName) o;
-
-        return new EqualsBuilder().append(id, that.id).append(name, that.name).append(categoryTools, that.categoryTools).isEquals();
+        return id == that.id && Objects.equals(name, that.name) && categoryTools == that.categoryTools;
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder(17, 37).append(id).append(name).toHashCode();
+        return Objects.hash(id, name, categoryTools);
     }
 }

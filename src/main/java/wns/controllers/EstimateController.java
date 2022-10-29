@@ -1,25 +1,21 @@
 package wns.controllers;
 
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import wns.constants.Messages;
-import wns.constants.PaginationConst;
+import wns.constants.StatusProject;
 import wns.dto.EstimateDTO;
 import wns.dto.EstimateNameDTO;
 import wns.entity.Estimate;
 import wns.entity.Project;
 import wns.services.EstimateNameService;
 import wns.services.EstimateService;
-import wns.services.PageableFilterService;
 import wns.services.ProjectService;
 import wns.utils.ExcelUtil;
 import wns.utils.ResponseHandler;
-
-import java.util.Optional;
 
 @Controller
 @RequestMapping("estimate")
@@ -55,8 +51,11 @@ public class EstimateController {
                                                      @RequestBody EstimateDTO dto)
     {
         Estimate estimate = dto.createEstimateFromDTO(projectService.getById(id));
+        Project project = estimate.getProject();
+        project.setStatus(StatusProject.IN_WORK);
         estimateService.save(estimate);
-        return ResponseHandler.generateResponse(Messages.REPLACE,"/");
+        projectService.save(project);
+        return ResponseHandler.generateResponse(Messages.REDIRECT,"/");
     }
 
     @PostMapping("/download-estimate/{id}")

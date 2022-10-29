@@ -7,7 +7,7 @@ public enum StatusTools {
     WAITING("В ожидании","Yellow"),
     BOOKING("Бронь","Orange"),
     REPAIR("В ремонте", "Gray"),
-    WRITENOFF("Списано", "Brown"),
+    WRITEOFF("Списано", "Brown"),
     SALE("Продано", "Blue");
 
     private final String value;

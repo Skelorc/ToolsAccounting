@@ -95,13 +95,7 @@
                                     <a th:href="@{/write-off/create}" class="btn btn-primary width green">Создать</a>
                                 </div>
                                 <div class="mb-3 text-right">
-                                    <a href="#" class="btn btn-primary width red">Удалить</a>
-                                </div>
-                                <div class="mb-3 text-right">
-                                    <a href="/write-off" class="btn btn-primary width orange">Обновить</a>
-                                </div>
-                                <div class="mb-3 text-right">
-                                    <a href="#" class="btn btn-primary width grey">Экспорт</a>
+                                    <span class="btn btn-primary width orange" id="back_repair">Вернуть на склад</span>
                                 </div>
                             </div>
                         </div>
@@ -124,19 +118,21 @@
                                 <tr th:each="status : ${list_statuses}">
                                     <td data-label="№" class="column-table">
                                         <div class="column-table_checkbox-wrapp">
-                                            <input class="column-table_checkbox" type="checkbox" id="" name=""><span class="tools-td-text table-td-text column-table_checkbox-number" th:utext="${statusStat.index+1}"></span>
+                                            <input class="column-table_checkbox ids" type="checkbox">
+                                            <input type="hidden" th:value="${status.id}">
+                                        </span>
                                         </div>
                                     </td>
-                                    <td data-label="Дата создания" th:utext="${status.created}"></td>
+                                    <td data-label="Дата создания" th:utext="${#temporals.format(status.created, 'dd-MM-yyyy HH:mm')}"></td>
                                     <td data-label="Всего сумма списания" th:utext="${status.priceOff}"></td>
                                     <td data-label="Сотрудник" th:utext="${status.employee}"></td>
                                     <td data-label="Примечание" th:utext="${status.note}"></td>
                                     <td data-label="Статус" th:utext="${status.statusTools.getValue()}"></td>
                                     <td data-label="Фотография отгрузки">
-                                        <span class="column-table__photo-mini" th:each="photo : ${status.photos_status}">
-                                            <a  rel="modal:open"  th:href="${'#'+photoStat.count +''+ status.tools.id}">
+                                        <span class="column-table__photo-mini" th:each="photo : ${status.photos}">
+                                            <a  rel="modal:open"  th:href="${'#'+photoStat.count +''+ status.tools_id}">
                                                 <img class="column-table__photo-mini_img" th:src="${photo}">
-                                                <div th:id="${photoStat.count +''+ status.tools.id}" class="modal">
+                                                <div th:id="${photoStat.count +''+ status.tools_id}" class="modal">
                                                     <img th:src="${photo}">
                                                 </div>
                                             </a>
@@ -154,8 +150,8 @@
                                 <ul class="pagination">
                                     <li class="page-item" th:if="${list_statuses.totalPages > 0}"
                                         th:each="page_number : ${page_numbers}">
-                                        <a class="page-link-m page-link" th:href="@{/write-off(size=${list_statuses.size}, page=${page_number})}"
-                                           th:text="${page_number}" th:class="${page_number==list_statuses.number + 1} ? active"></a>
+                                        <a class="page-link-m page-link" th:href="@{/write-off(size=${list_statuses.size}, page=${page_numberStat.index})}"
+                                           th:text="${page_numberStat.index}" th:class="${page_number==list_statuses.number + 1} ? active"></a>
                                     </li>
                                 </ul>
                             </nav>

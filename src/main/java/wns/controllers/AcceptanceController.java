@@ -33,7 +33,7 @@ public class AcceptanceController {
                        @RequestParam(value = "filter", required = false) Filter filter,
                        Model model) {
 
-        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, filter, PaginationConst.PROJECT,0);
+        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, filter, PaginationConst.PROJECT,-1);
         pageableFilterService.addPageNumbersToModel(paginated_list, model);
         model.addAttribute("list_projects", paginated_list);
         return "acceptance";

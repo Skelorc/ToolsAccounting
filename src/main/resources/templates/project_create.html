@@ -5,7 +5,7 @@
     <title>Создание проекта</title>
     <div th:replace="fragments/head :: header"></div>
 
-   <meta charset="UTF-8">
+ <!--  <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
    <meta name="robots" content="index, follow">
    <meta name="author" content="">
@@ -71,7 +71,7 @@
    <script src="/static/js/jquery.js" th:src="@{/js/jquery.js}"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"  th:src="@{/js/jquery.modal.js}"></script>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" />
-
+-->
 
 </head>
 
@@ -92,7 +92,7 @@
                                     <div class="mb-3 text-right">
                                         <a href="/" class="btn btn-primary width light-blue">Назад</a>
                                     </div>
-                                    <div class="mb-3 text-right">
+                                   <!-- <div class="mb-3 text-right">
                                         <a href="#" class="btn btn-primary width green">Сохранить</a>
                                     </div>
                                     <div class="mb-3 text-right">
@@ -114,16 +114,15 @@
                                     <div class="mb-3 text-right">
                                         <a href="#" class="btn btn-primary width light-blue">Единая
                                             система</a>
-                                    </div>
+                                    </div>-->
                                 </div>
 
-                                <form th:action="@{/projects/create}" method="post" th:object="${projectDTO}">
                                 <div class="bg-white p-3 edit-container d-block col-8 col-md-12">
                                     <div class="row form-creat__half-wrapp">
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Статус</label>
-                                                <select id="select_status_project" th:field="*{status}" name="status_tool" class="vs__selected-options main-secect__opions form-control">
+                                                <select id="status" name="status_tool" class="vs__selected-options main-secect__opions form-control">
                                                     <option class="vs__selected vs__dropdown-toggle" value="" disabled="">Выберите статус проекта
                                                     </option>
                                                     <option class="vs__selected vs__dropdown-toggle" th:each="status: ${T(wns.constants.StatusProject).values()}" th:value="${status}" th:text="${status.getStatus()}"></option>
@@ -134,7 +133,7 @@
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Наименование</label>
                                                 <span>
-                                                    <input id="name_project" th:field="*{name}" required placeholder="Имя проекта" name="fromComing" type="text" class="form-control" >
+                                                    <input id="name" required placeholder="Имя проекта" name="fromComing" type="text" class="form-control" >
                                                 </span>
                                             </div>
                                         </div>
@@ -142,7 +141,7 @@
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Начало</label>
                                                 <div class="vdpComponent vdpWithInput">
-                                                    <input id="date_start" required="required" th:field="*{start}" class="form-control" type="datetime-local" placeholder="дд.мм.гггг">
+                                                    <input id="start" required="required" class="form-control" type="datetime-local" placeholder="дд.мм.гггг">
                                                 </div>
                                             </div>
                                         </div>
@@ -150,14 +149,14 @@
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Окончание</label>
                                                 <div class="vdpComponent vdpWithInput">
-                                                    <input id="date_end" required="required" th:field="*{end}" class="form-control" type="datetime-local" placeholder="дд.мм.гггг">
+                                                    <input id="end" required="required" class="form-control" type="datetime-local" placeholder="дд.мм.гггг">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class=" form-creat__half_two-column">
                                             <div class="form-group">
                                                 <label class="d-block size">Укажите ссылки на фото через запятую</label>
-                                                <textarea id="photos" th:field="*{photos}" name="photos" class="form-control" style="height: 40px;"></textarea>
+                                                <textarea id="photos" name="photos" class="form-control" style="height: 40px;"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -165,7 +164,7 @@
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Тип аренды</label>
-                                                <select class="vs__selected-options main-secect__opions form-control" id="type" th:field="*{typeLease}">
+                                                <select class="vs__selected-options main-secect__opions form-control" id="typeLease">
                                                     <option class="vs__selected vs__dropdown-toggle" th:each="type: ${T(wns.constants.TypeLease).values()}" th:value="${type}" th:text="${type.getType()}"></option>
                                                 </select>
                                             </div>
@@ -173,7 +172,7 @@
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Класс</label>
-                                                <select class="vs__selected-options main-secect__opions form-control" id="classification" th:field="*{classification}">
+                                                <select class="vs__selected-options main-secect__opions form-control" id="classification">
                                                     <option class="vs__selected vs__dropdown-toggle" th:each="classification: ${T(wns.constants.ClassificationProject).values()}" th:value="${classification}" th:text="${classification.getValue()}"></option>
                                                 </select>
                                             </div>
@@ -182,7 +181,7 @@
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Создан</label>
                                                 <div class="vdpComponent vdpWithInput">
-                                                    <input id="created" th:field="*{created}" class="form-control" type="datetime-local" placeholder="дд.мм.гггг">
+                                                    <input id="created" class="form-control" type="datetime-local" placeholder="дд.мм.гггг">
                                                 </div>
                                             </div>
                                         </div>
@@ -194,7 +193,7 @@
                                                 <a href="/clients/create" title="Добавить Клиентa" class="btn btn-primary width btn-xs size" style="padding-top: 5px;">Новый клиент
                                                 </a>
                                             </div>
-                                            <select id="client" th:field="*{client_id}" required
+                                            <select id="client_id" required
                                                     class="vs__selected-options main-secect__opions form-control executor">
                                                 <option class="vs__selected vs__dropdown-toggle" value="" disabled>
                                                     Выберите клиента
@@ -207,7 +206,7 @@
                                     <div class="form-creat__half_two-column">
                                         <div class="form-group">
                                             <label class="d-block size">Примечание</label>
-                                            <textarea id="note" th:field="*{note}" name="" class="form-control" rows="4"></textarea>
+                                            <textarea id="note" name="" class="form-control" rows="4"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -217,23 +216,23 @@
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Итоговая сумма</label>
                                                 <span>
-                                                    <input id="sum" th:field="*{sum}" type="text" class="form-control" placeholder="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');">
+                                                    <input id="sum" type="text" class="form-control" placeholder="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');">
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class=" form-creat__half_two-column">
+                                        <!--<div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Себестоимость оборудования</label>
                                                 <span>
-                                                    <input id="priceTools" th:field="*{priceTools}" type="text" class="form-control" placeholder="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');">
+                                                    <input id="priceTools" type="text" class="form-control" placeholder="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');">
                                                 </span>
                                             </div>
-                                        </div>
+                                        </div>-->
                                         <div class="form-creat__half_two-column">
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Скидка на проект</label>
                                                 <span>
-                                                    <input id="discountByProject" th:field="*{discountByProject}" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');" class="form-control" placeholder="">
+                                                    <input id="discountByProject" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');" class="form-control" placeholder="">
                                                 </span>
                                             </div>
                                         </div>
@@ -241,17 +240,17 @@
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Сумма со скидкой</label>
                                                 <span>
-                                                    <input id="sumWithDiscount" th:field="*{sumWithDiscount}" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');" class="form-control" placeholder="">
+                                                    <input id="sumWithDiscount" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');" class="form-control" placeholder="">
                                                 </span>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row form-creat__half-wrapp">
+                                   <!-- <div class="row form-creat__half-wrapp">
                                         <div class="form-creat__half_two-column">
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Итоговая УСН</label>
                                                 <span>
-                                                    <input id="finalSumUsn" th:field="*{finalSumUsn}" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');" class="form-control" placeholder="">
+                                                    <input id="finalSumUsn" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');" class="form-control" placeholder="">
                                                 </span>
                                             </div>
                                         </div>
@@ -259,7 +258,7 @@
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Стоимость работ</label>
                                                 <span>
-                                                    <input id="priceWork" th:field="*{priceWork}" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');" class="form-control" placeholder="">
+                                                    <input id="priceWork" type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');" class="form-control" placeholder="">
                                                 </span>
                                             </div>
                                         </div>
@@ -267,7 +266,7 @@
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Оплачено</label>
                                                 <span>
-                                                    <input id="received" th:field="*{received}" type="text" class="form-control" placeholder="">
+                                                    <input id="received" type="text" class="form-control" placeholder="">
                                                 </span>
                                             </div>
                                         </div>
@@ -275,10 +274,10 @@
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Расчет неоплаченного остатка</label>
                                                 <span>
-                                                    <input id="remainder" th:field="*{remainder}" type="text" class="form-control" placeholder="">
+                                                    <input id="remainder" type="text" class="form-control" placeholder="">
                                                 </span>
                                             </div>
-                                        </div>
+                                        </div>-->
                                     </div>
                                 </div>
                                 <!-- Tab content -->
@@ -319,7 +318,8 @@
                                                 <div class="custom-ll__header__full__right">
                                                     <div class="custom-ll__header-wrapp">
                                                         <div class="header__search header__search_width zip-cod__input-width" >
-                                                            <input id="barcode_search_input  ml-3" type="search" name="barcode" placeholder="Введите штрих код" class="form-control">
+                                                            <input id="barcode_search_input"
+                                                                   type="search" name="barcode" placeholder="Введите штрих код" class="form-control ml-3">
                                                             <span class="header__search__btn"></span>
                                                         </div>
                                                     </div>
@@ -345,28 +345,30 @@
                                                 <th>Цена</th>
                                                 <th>Себестоимость</th>
                                                 <th>Комплект</th>
-
                                             </tr>
-                                            <tr th:each="tool: ${list_tools}" class="row-tool">
-                                                <td class="column-table">
-                                                    <div class="column-table_checkbox-wrapp">
-                                                        <input th:value="${tool.id}" th:field="*{tools_id}" class="column-table_checkbox" type="checkbox" name=""><span
-                                                            class="tools-td-text table-td-text column-table_checkbox-number"
-                                                            th:utext="${toolStat.index}"></span>
-                                                    </div>
-                                                </td>
-                                                <td data-label="Наименование" th:utext="${tool.name}"></td>
-                                                <td data-label="Штрихкод" class="barcode-tool" th:utext="${tool.barcode}"></td>
-                                                <td data-label="Группа" th:utext="${tool.category.getData()}"></td>
-                                                <td data-label="Марка\Модель" th:utext="${tool.model}"></td>
-                                                <td data-label="Серийный номер" th:utext="${tool.serialNumber}"></td>
-                                                <td data-label="Комментарий" th:utext="${tool.comment}"></td>
-                                                <td data-label="Характеристики" th:utext="${tool.characteristics}"></td>
-                                                <td data-label="Состояние" th:utext="${tool.state}"></td>
-                                                <td data-label="Цена" class="price-tool" th:utext="${tool.costPrice}"></td>
-                                                <td data-label="Себестоимость" th:utext="${tool.priceSell}"></td>
-                                                <td data-label="Комплект" th:utext="${tool.equip}"></td>
-                                            </tr>
+                                            <tbody>
+                                                <tr th:each="tool: ${list_tools}" class="row-tool">
+                                                    <td class="column-table">
+                                                        <div class="column-table_checkbox-wrapp">
+                                                            <input class="column-table_checkbox ids" type="checkbox" name="">
+                                                            <input th:value="${tool.id}" hidden="hidden" type="text">
+                                                            <span class="tools-td-text table-td-text column-table_checkbox-number"
+                                                                    th:utext="${toolStat.index}"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td data-label="Наименование" th:utext="${tool.name}"></td>
+                                                    <td data-label="Штрихкод" class="barcode-tool" th:utext="${tool.barcode}"></td>
+                                                    <td data-label="Группа" th:utext="${tool.category}"></td>
+                                                    <td data-label="Марка\Модель" th:utext="${tool.model}"></td>
+                                                    <td data-label="Серийный номер" th:utext="${tool.serialNumber}"></td>
+                                                    <td data-label="Комментарий" th:utext="${tool.comment}"></td>
+                                                    <td data-label="Характеристики" th:utext="${tool.characteristics}"></td>
+                                                    <td data-label="Состояние" th:utext="${tool.state}"></td>
+                                                    <td data-label="Цена" class="price-tool" th:utext="${tool.costPrice}"></td>
+                                                    <td data-label="Себестоимость" th:utext="${tool.priceSell}"></td>
+                                                    <td data-label="Комплект" th:utext="${tool.equip}"></td>
+                                                </tr>
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
@@ -377,7 +379,7 @@
                                             <span class="btn-pimary__groups_title size">Действия</span>
                                         </div>
                                         <div class="mb-3 text-right">
-                                            <button type="submit" class="btn btn-primary width orange">Создать проект и перейти в смету</button>
+                                            <button id="create_new_project" type="submit" class="btn btn-primary width orange">Создать проект и перейти в смету</button>
                                         </div>
                                         <div class="mb-3 text-right">
                                             <a href="#" class="btn btn-primary width red">Удалить</a>
@@ -388,31 +390,10 @@
                                             <!-- Bootstrap 4 -->
                                             <nav aria-label="Навигация по страницам">
                                                 <ul class="pagination">
-                                                    <li class="page-item disabled">
-                                                        <a class="page-link-m page-link" href="#">
-                                                            Первая
-                                                        </a>
-                                                    </li>
-                                                    <li class="page-item disabled">
-                                                        <a class="page-link-m page-link" href="#" aria-label="Предыдущая">
-                                                            <span aria-hidden="true">«</span>
-                                                            <span class="sr-only">Предыдущая</span>
-                                                        </a>
-                                                    </li>
                                                     <li class="page-item" th:if="${list_tools.totalPages > 0}"
                                                         th:each="page_number : ${page_numbers}">
-                                                        <a class="page-link-m page-link" th:href="@{/sale/create(size=${list_tools.size}, page=${page_numberStat.index})}" th:text="${page_numberStat.index}" th:class="${page_number==list_tools.number + 1} ? active"></a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link-m page-link" aria-label="Следующая">
-                                                            <span aria-hidden="true">»</span>
-                                                            <span class="sr-only">Следующая</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link-m page-link" href="#">
-                                                            Последняя
-                                                        </a>
+                                                        <a class="page-link-m page-link" th:href="@{/project/create(size=${list_tools.size}, page=${page_numberStat.index})}"
+                                                           th:text="${page_numberStat.index}" th:class="${page_number==list_tools.number + 1} ? active"></a>
                                                     </li>
                                                 </ul>
                                             </nav>
@@ -421,7 +402,6 @@
                                     </div>
 
                                 </div>
-                                </form>
                             </div>
                     </div>
                 </main>

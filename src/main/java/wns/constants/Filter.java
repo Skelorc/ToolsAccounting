@@ -12,14 +12,17 @@ public enum Filter {
     ONLEASE("В аренде"),
     REPAIR("В ремонте"),
     SALE("Продано"),
-    WRITE_OFF("Списано"),
+    WRITEOFF("Списано"),
     //estimate
     ESTIMATE("По смете"),
     //clients
     INDIVIDUAL("INDIVIDUAL"),
     LEGAL("LEGAL"),
     BLACKLIST("BLACKLIST"),
+    ALL_CLIENTS("Все клиенты"),
+    PROJECTS_BY_CLIENTS("Все проекты клиента"),
     //project
+    GET_TOOLS_BY_PROJECT("Получить оборудование по проекту"),
     ONE_TIME("Разовый"),
     LONG("Длинный"),
     TEST("Тестовый"),
