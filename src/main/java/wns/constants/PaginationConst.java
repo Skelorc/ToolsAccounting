@@ -11,6 +11,7 @@ public enum PaginationConst {
     CLIENT,
     STATUS,
     ESTIMATE,
+    ESTIMATE_NAME,
     CHANGE;
 
     @Override

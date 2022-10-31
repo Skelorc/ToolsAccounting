@@ -26,10 +26,19 @@ public class EstimateNameController {
     public String show(@RequestParam(value = "page", required = false) Optional<Integer> page,
                        @RequestParam(value = "size", required = false) Optional<Integer> size,
                        Model model) {
-        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, Filter.ESTIMATE_NAME, PaginationConst.TOOLS,-1);
+        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, Filter.ESTIMATE_NAME, PaginationConst.ESTIMATE_NAME,-1);
         pageableFilterService.addPageNumbersToModel(paginated_list, model);
         model.addAttribute("list_estimates", paginated_list);
+        model.addAttribute("estimateName", new EstimateName());
         return "estimate_name";
+    }
+
+    @PostMapping
+    public String create(@RequestAttribute EstimateName estimateName)
+    {
+        System.out.println(estimateName);
+        //estimateNameService.save(estimateName);
+        return "redirect:/estimate_name";
     }
 
     @GetMapping("/edit/{id}")

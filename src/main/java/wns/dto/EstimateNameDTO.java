@@ -17,12 +17,12 @@ import java.util.Objects;
 public class EstimateNameDTO {
     private long id;
     private String name;
-    private CategoryTools categoryTools;
+    private String categoryTools;
 
     public EstimateNameDTO(EstimateName estimateName) {
         this.id = estimateName.getId();
         this.name = estimateName.getName();
-        this.categoryTools = estimateName.getCategoryTools();
+        this.categoryTools = estimateName.getCategoryTools().getData();
     }
 
     @Override
