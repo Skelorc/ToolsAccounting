@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head class="head">
+    <title>Ассоциативный массив - Редактирование</title>
+    <div th:replace="fragments/head :: header"></div>
+</head>
+
+<body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
+<div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
+    <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
+        <div th:insert="fragments/menu_sidebar.html"></div>
+        <div class="b-overlay-wrap position-relative w-100" size="sm">
+            <div class="rih-page-wrapper">
+                <nav data-v-59295fda="" role="navigation" class="navbar navbar-admin navbar-fixed-top"
+                     th:insert="fragments/header_logout.html"></nav>
+                <main class="wrapper wrapper-content border-bottom">
+                    <div class="b-overlay-wrap position-relative">
+                        <div class="btn-pimary__groups mt-3 mb-3">
+                            <div class="btn-pimary__groups-wrapper vidacha-sozdach mb-3">
+                                <div class="mb-3 text-right">
+                                    <span class="btn-pimary__groups_title">Ассоциативный массив</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <form action="/estimate-name/edit" method="post" th:object="${estimateName}">
+                                <div class="bg-white p-3 col-8 col-md-12 col-sm-6 edit-container">
+                                    <div class="row form-creat__half-wrapp">
+                                        <div class=" form-creat__half_two-column col-12">
+                                            <div role="group col-12" class="form-group">
+                                                <label class="d-block font">Наименование в смете</label>
+                                                <div class="vdpComponent vdpWithInput">
+                                                    <input th:value="${estimateName.name}" th:field="*{name}"
+                                                           required="" type="text"
+                                                           placeholder="Наименование в смете">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row form-creat__half-wrapp">
+                                        <div class="form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block font">Группа</label>
+                                                <option class="vs__selected vs__dropdown-toggle"
+                                                        th:each="type : ${T(wns.constants.CategoryTools).values()}"
+                                                        th:text="${type.getData()}"
+                                                        th:value="${type}"
+                                                        th:selected="${type==estimateName.categoryTools}">
+                                                </option>
+                                                <select id="select_category_tool"
+                                                        class="vs__selected-options main-secect__opions form-control">
+                                                    <option class="vs__selected vs__dropdown-toggle"
+                                                            th:field="*{categoryTools}"
+                                                            value="" disabled>Выберите группу оборудования
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-4 mb-4 col-6 save-btn">
+                                    <div class="mb-3 text-right">
+                                        <button type="submit"
+                                                class="btn btn-primary width btn-add_vidacha green">Обновить
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="mb-3 text-right">
+                            <button id="remove_project" th:href="@{/estimate-name/delete/{id}(id=estimateName.id)}"
+                                    class="btn btn-primary width btn-add_vidacha red">Удалить ассоциативный массив
+                            </button>
+                        </div>
+                    </div>
+                </main>
+                <div th:insert="fragments/footer.html"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:insert="fragments/scripts.html"></div>
+</body>
+</html>

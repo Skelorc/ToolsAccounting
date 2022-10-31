@@ -7,10 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import wns.constants.*;
-import wns.dto.ClientDTO;
-import wns.dto.PageDataDTO;
-import wns.dto.ProjectDTO;
-import wns.dto.ToolsDTO;
+import wns.dto.*;
 import wns.entity.Project;
 import wns.entity.Tools;
 
@@ -25,7 +22,7 @@ public class PageableFilterService {
     private final ToolsService toolsService;
     private final ProjectService projectService;
     private final StatusService statusService;
-    private final EstimateService estimateService;
+    private final EstimateNameService estimateNameService;
     private final ClientsService clientsService;
 
     public Page<Object> getPageByFilter(PageDataDTO pageDataDTO) {
@@ -105,6 +102,8 @@ public class PageableFilterService {
             case PROJECTS_BY_CLIENTS:
                 list.addAll(clientsService.getById(id).getProjects().stream().map(ProjectDTO::new).collect(Collectors.toList()));
                 break;
+            case ESTIMATE_NAME:
+                list.addAll(estimateNameService.getAll().stream().map(EstimateNameDTO::getListTools).flatMap(x -> x.stream().map(ToolsDTO::new)).collect(Collectors.toList()));
             case WITHOUT_FILTER:
                 if (paginationConst.equals(PaginationConst.PROJECT)) {
                     list.addAll(projectService.getAll()

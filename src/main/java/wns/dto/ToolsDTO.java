@@ -38,6 +38,7 @@ public class ToolsDTO {
     private String project;
     private long id_project;
     private String estimateName;
+    private String categoryToolsFromEstimate;
     private long id_estimate_name;
     private String comment;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
@@ -80,6 +81,7 @@ public class ToolsDTO {
             this.project = "Нет проекта!";
         }
         this.estimateName = tools.getEstimateName().getName();
+        this.categoryToolsFromEstimate = tools.getEstimateName().getCategoryTools().getData();
         this.id_estimate_name = tools.getEstimateName().getId();
         this.comment = tools.getComment();
         this.creating = tools.getCreating();
