@@ -2921,7 +2921,8 @@ body {
     position: relative;
     overflow: hidden;
     border: 1px solid #efefef;
-    height: 41px;
+    height: 28px;
+    margin-left: 20px;
 }
 
 .custom-ll__header .header__search--always {

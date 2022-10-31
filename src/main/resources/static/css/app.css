@@ -9106,7 +9106,7 @@ pre code {
     padding: .375rem .75rem;
     font-size: 1rem;
     font-weight: 400;
-    line-height: 1.5;
+    line-height: calc(1.5 - 30%);
     color: #495057;
     background-color: #fff;
     background-clip: padding-box;
@@ -33215,9 +33215,10 @@ div.dt-button-info {
     color: inherit;
     display: block;
     padding: 6px 12px;
-    min-height: 40px;
+    max-height: 28px;
     transition: border-color .15s ease-in-out 0s,box-shadow .15s ease-in-out 0s;
-    width: 100%
+    width: calc(100% - 10%);
+
 }
 
 .form-control:focus,.has-success .form-control,.has-success .form-control:focus,.single-line:focus {
