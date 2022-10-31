@@ -26,7 +26,9 @@ public enum Filter {
     ONE_TIME("Разовый"),
     LONG("Длинный"),
     TEST("Тестовый"),
-    SUBLEASE_PROJECT("Субаренда");
+    SUBLEASE_PROJECT("Субаренда"),
+    //ассоциативный массив
+    ESTIMATE_NAME("Ассоциативный массив");
 
     private final String value;
 

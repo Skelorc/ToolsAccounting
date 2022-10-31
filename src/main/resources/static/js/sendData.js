@@ -13,7 +13,7 @@ $(document).ready(function () {
                 data: JSON.stringify(data),
                 dataType: "json",
                 success: function (res) {
-                    if(parseInt(res.response_code) == 200){
+                    if(parseIstatus_waitnt(res.response_code) == 200){
                         window.location.reload();
                     }
                     else if(parseInt(res.response_code) == 300){
@@ -175,7 +175,7 @@ $(document).ready(function () {
                 var id = $(this).next().attr("value");
                 var val = $(this)[0].checked;
                 if (val !== null) {
-                    formData[count] = {'id': id, 'status': status};
+                    formData[count] = {'id': id, 'statusTools': status};
                     count++;
                 }
             }
