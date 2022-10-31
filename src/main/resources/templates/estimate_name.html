@@ -100,32 +100,24 @@
                                 <tr class="text-center">
                                     <th class="first-th">#</th>
                                     <th>Наименование в смете</th>
-                                    <th>Наименование оборудования</th>
                                     <th>Группа</th>
                                 </tr>
                                 </thead>
                                 <tbody class="text-center">
-                                <tr th:each="tool : ${list_tools}">
+                                <tr th:each="estimate : ${list_estimates}">
                                     <td class="column-table">
                                         <div class="column-table_checkbox-wrapp " id="ids_tools">
                                             <input class="column-table_checkbox choose_tool ids" type="checkbox">
-                                            <input type="hidden" class="id_tool" th:value="${tool.id}">
+                                            <input type="hidden" class="id_tool" th:value="${estimate.id}">
                                             <span class="tools-td-text table-td-text column-table_checkbox-number tool_id"
-                                                  th:utext="${toolStat.index+1}"></span>
+                                                  th:utext="${estimateStat.index+1}"></span>
                                         </div>
                                     </td>
-                                    <td data-label="Наименование в смете" class="align-middle"><a class="nav-link"
-                                                                                                  style="font-size: medium"
-                                                                                                  th:utext="${tool.estimateName}"
-                                                                                                  th:href="@{/estimate-name/edit/{id}/(id=${tool.id_estimate_name})}"></a>
+                                    <td data-label="Наименование в смете" class="align-middle">
+                                        <a class="nav-link" style="font-size: medium" th:utext="${estimate.name}" th:href="@{/estimate-name/edit/{id}/(id=${estimate.id})}"></a>
                                     </td>
-                                    <td data-label="Наименование оборудования" class="align-middle">
-                                        <a class="nav-link"
-                                           style="font-size: medium"
-                                           th:utext="${tool.name}"></a></td>
-                                    <td data-label="Группа" class="align-middle"><h1 class="display-6"
-                                                                                     style="font-size: medium"
-                                                                                     th:utext="${tool.categoryToolsFromEstimate}"></h1>
+                                    <td data-label="Группа" class="align-middle">
+                                        <h1 class="display-6" style="font-size: medium" th:utext="${estimate.categoryTools.getData()}"  ></h1>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -136,12 +128,12 @@
                     <div class="pagination-control col-lg-12 order-lg-1">
                         <nav aria-label="Навигация по страницам">
                             <ul class="pagination">
-                                <li class="page-item" th:if="${list_tools.totalPages > 0}"
+                                <li class="page-item" th:if="${list_estimates.totalPages > 0}"
                                     th:each="page_number : ${page_numbers}">
                                     <a class="page-link-m page-link"
-                                       th:href="@{/tools(size=${list_tools.size}, page=${page_numberStat.index})}"
+                                       th:href="@{/estimate-name(size=${list_estimates.size}, page=${page_numberStat.index})}"
                                        th:text="${page_numberStat.index}"
-                                       th:class="${page_number==list_tools.number + 1} ? active"></a>
+                                       th:class="${page_number==list_estimates.number + 1} ? active"></a>
                                 </li>
                             </ul>
                         </nav>

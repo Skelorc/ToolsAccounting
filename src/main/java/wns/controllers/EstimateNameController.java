@@ -28,9 +28,7 @@ public class EstimateNameController {
                        Model model) {
         Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, Filter.ESTIMATE_NAME, PaginationConst.TOOLS,-1);
         pageableFilterService.addPageNumbersToModel(paginated_list, model);
-        model.addAttribute("list_tools", paginated_list);
-        model.addAttribute("estimateNameDTO", new EstimateNameDTO());
-        model.addAttribute("project_id", -1);
+        model.addAttribute("list_estimates", paginated_list);
         return "estimate_name";
     }
 

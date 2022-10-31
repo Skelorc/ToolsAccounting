@@ -103,7 +103,8 @@ public class PageableFilterService {
                 list.addAll(clientsService.getById(id).getProjects().stream().map(ProjectDTO::new).collect(Collectors.toList()));
                 break;
             case ESTIMATE_NAME:
-                list.addAll(estimateNameService.getAll().stream().map(EstimateNameDTO::getListTools).flatMap(x -> x.stream().map(ToolsDTO::new)).collect(Collectors.toList()));
+                list.addAll(estimateNameService.getAll());
+                break;
             case WITHOUT_FILTER:
                 if (paginationConst.equals(PaginationConst.PROJECT)) {
                     list.addAll(projectService.getAll()

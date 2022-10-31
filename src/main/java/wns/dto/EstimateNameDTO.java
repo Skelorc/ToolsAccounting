@@ -1,7 +1,10 @@
 package wns.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import wns.constants.CategoryTools;
+import wns.entity.EstimateName;
 import wns.entity.Tools;
 
 import java.util.ArrayList;
@@ -9,11 +12,18 @@ import java.util.List;
 import java.util.Objects;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class EstimateNameDTO {
     private long id;
     private String name;
     private CategoryTools categoryTools;
-    private List<Tools> listTools = new ArrayList<>();
+
+    public EstimateNameDTO(EstimateName estimateName) {
+        this.id = estimateName.getId();
+        this.name = estimateName.getName();
+        this.categoryTools = estimateName.getCategoryTools();
+    }
 
     @Override
     public String toString() {
