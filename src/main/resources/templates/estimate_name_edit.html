@@ -4,8 +4,8 @@
 
 <head class="head">
     <title>Ассоциативный массив - Редактирование</title>
-    <!-- <div th:replace="fragments/head :: header"></div> -->
-    <meta charset="UTF-8">
+    <div th:replace="fragments/head :: header"></div>
+    <!-- <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="robots" content="index, follow">
     <meta name="author" content="">
@@ -72,6 +72,9 @@
   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"  th:src="@{/js/jquery.modal.js}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" />
+=======
+    <div th:replace="fragments/head :: header"></div> -->
+
 </head>
 
 <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
@@ -93,6 +96,7 @@
                         </div>
 
                         <div class="row">
+
                             <form action="/estimate-name/edit" method="post" th:object="${estimateName}" style="margin: auto; width: 100%;">
                                 <div class="bg-white p-3 col-8 col-md-12 col-sm-6 edit-container d-block" style="margin: 0 auto;">
                                     <div class="row form-creat__half-wrapp">
@@ -101,6 +105,7 @@
                                                 <label class="d-block font size">Наименование в смете</label>
                                                 <div class="vdpComponent vdpWithInput">
                                                     <input class="form-control" style="margin-top: 35px;" th:value="${estimateName.name}" th:field="*{name}"
+
                                                            required="" type="text"
                                                            placeholder="Наименование в смете">
                                                 </div>
@@ -110,7 +115,10 @@
                                     <div class="row form-creat__half-wrapp">
                                         <div class="form-creat__half_two-column">
                                             <div role="group" class="form-group">
+
                                                 <label class="d-block font size">Группа</label>
+                                                <label class="d-block font">Группа</label>
+
                                                 <option class="vs__selected vs__dropdown-toggle"
                                                         th:each="type : ${T(wns.constants.CategoryTools).values()}"
                                                         th:text="${type.getData()}"

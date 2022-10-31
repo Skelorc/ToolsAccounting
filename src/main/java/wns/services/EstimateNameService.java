@@ -25,7 +25,7 @@ public class EstimateNameService implements MainService {
     public List<EstimateNameDTO> getAll()
     {
         return repo.findAll().stream()
-                .map(x -> modelMapper.map(x, EstimateNameDTO.class))
+                .map(EstimateNameDTO::new)
                 .collect(Collectors.toList());
     }
     public Messages save(EstimateNameDTO dto)
