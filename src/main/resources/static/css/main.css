@@ -82,7 +82,7 @@ svg {
 
 @font-face {
     font-family: "Ubuntu Regular";
-    src: url("./static/fonts/fonawesome/Ubuntu-Regular.woff2") format("woff2")
+    src: url("./static/fonts/fonawesome/Ubuntu-Regular.woff") format("woff")
 }
 
 .footer {
@@ -591,8 +591,8 @@ label {
     font-weight: 500;
     font-size: 13px;
     text-transform: uppercase;
-    color: #fff;
-    background-color: #faad65;
+    color: #b1b5c3;
+    background-color: #777e91;
     padding: 12px 21px;
     border: 0;
     outline: 0;
@@ -602,12 +602,12 @@ label {
 }
 
 .orange-btn[data-v-0839162a]:hover {
-    background-color: #f5a85f;
+    background-color: #16171a;
     box-shadow: 0 5px 4px 0 rgba(0, 0, 0, .3)
 }
 
 .orange-btn[data-v-0839162a]:active {
-    background-color: #faad65;
+    background-color: #16171a;
     box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .5)
 }
 
@@ -974,6 +974,7 @@ table.estimate th {
 }
 .main-secect {
     width: 100%;
+    max-height: 28px;
 }
 .main-secect__opions {
     border: 1px solid #e5e6e7;
@@ -1146,7 +1147,11 @@ margin-bottom: 15px;
     color: #5AAC7B
 }
 .vdatetime-input {
-    min-height: 30px !important;
+    max-height: 28px !important;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 20px;
 }
 
 /* лебл label названия */
@@ -1488,7 +1493,9 @@ td>.button:hover {
 /* MEDIA sidebar*/
 
 .nav-label {
+    font-family: "Roboto";
     font-size: 12px;
+    color: #fcfcfd;
 }
 
 @media (min-width: 768px) {
@@ -1660,6 +1667,9 @@ td>.button:hover {
         display: none;
     }
 }
-
+.vdatetime {
+    position: relative;
+    width: 200px;
+}
 
 /*********************/

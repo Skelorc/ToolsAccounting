@@ -120,8 +120,8 @@
                                                         </div>
                                                     </div>
                                                     <label class="d-block size-label">Выберите роль</label>
-                                                    <div class="admin-panel__select select">
-                                                        <select id="roles" th:field="*{roles}">
+                                                    <div class="admin-panel__select select" style="height: 28px;">
+                                                        <select id="roles" th:field="*{roles}" style="height: 28px;">
                                                             <option class="vs__selected" value="" disabled>Выберите роль</option>
                                                             <option class="vs__selected" th:each="role : ${roles}" th:value="${role.getValue()}" th:text="${role}" value="role"></option>
                                                         </select>

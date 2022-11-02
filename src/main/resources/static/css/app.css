@@ -31234,7 +31234,7 @@ h3,h4,h5 {
 
 .nav-header {
     padding: 33px 25px;
-    background-color: #2f4050;
+    background-color: #16171a;
     background-image: url(patterns/header-profile.png)
 }
 
@@ -40639,7 +40639,7 @@ body.body-small .navbar-header__title {
 }
 
 nav.navbar-admin {
-    background-color: var(--pallet-primary-color);
+    background-color: #16171a;
     min-width: 320px;
     border-bottom: none!important
 }
@@ -40713,7 +40713,7 @@ td .btn-rounded {
 .vdatetime-input {
     border: none;
     width: 100%;
-    height: 100%
+    height: 28px;
 }
 
 .widget-list {
