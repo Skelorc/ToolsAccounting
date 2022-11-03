@@ -2079,7 +2079,7 @@ fieldset[disabled] .vue-swatches {
 }
 
 .bg-white {
-    background-color: #fff!important
+    background-color: #1a1c21!important
 }
 
 .op-default {
@@ -9108,7 +9108,7 @@ pre code {
     font-weight: 400;
     line-height: calc(1.5 - 30%);
     color: #495057;
-    background-color: #fff;
+    background-color: transparent;
     background-clip: padding-box;
     border: 1px solid #ced4da;
     border-radius: .25rem;
@@ -9611,11 +9611,11 @@ a.btn.disabled,fieldset:disabled a.btn {
     border-color: #007bff
 }
 
-.btn-primary.focus,.btn-primary:focus,.btn-primary:hover {
+/* .btn-primary.focus,.btn-primary:focus,.btn-primary:hover {
     color: #fff;
     background-color: #0069d9;
     border-color: #0062cc
-}
+} */
 
 .btn-primary.focus,.btn-primary:focus {
     box-shadow: 0 0 0 .2rem rgba(38,143,255,.5)
@@ -31861,14 +31861,14 @@ button:focus {
 }
 
 .btn-primary {
-    color: #fff;
+    color:#777e91;
     background-color: #1ab394;
-    border-color: #1ab394
+    border-color: #777e91
 }
 
 .btn-primary.disabled,.btn-primary.focus,.btn-primary:disabled,.btn-primary:focus,.btn-primary:hover,.btn-primary:not(:disabled):not(.disabled).active,.btn-primary:not(:disabled):not(.disabled):active,.show>.btn-primary.dropdown-toggle {
-    background-color: #18a689;
-    border-color: #18a689;
+    /* background-color: #18a689;
+    border-color: #18a689; */
     color: #fff
 }
 
@@ -33208,9 +33208,9 @@ div.dt-button-info {
 }
 
 .form-control,.single-line {
-    background-color: #fff;
+    background-color: transparent;
     background-image: none;
-    border: 1px solid #e5e6e7;
+    border: 1px solid #777e91;
     border-radius: 20px;
     color: inherit;
     display: block;
@@ -41285,7 +41285,7 @@ a {
 }
 
 .edit-container {
-    background-color: #fff;
+    background-color: #1a1c21;
     margin-bottom: 30px;
     padding: 1rem;
     border-radius: 20px;

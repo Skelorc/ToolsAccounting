@@ -19,26 +19,26 @@ svg {
 }
 
 .light-blue {
-    background-color: rgb(160, 209, 255);
+    background-color: transparent;
 }
 .light-green {
     background-color: rgb(15, 255, 15);
 }
 .green {
-    background-color: green;
+    background-color: transparent;
 }
 
 .light-grey {
     background-color: rgb(179, 179, 179);
 }
 .grey {
-    background-color: grey;
+    background-color: transparent;
 }
 .red {
-    background-color: red;
+    background-color: transparent;
 }
 .orange {
-    background-color: orange;
+    background-color: transparent;
 }
 .pink {
     background-color: pink;
@@ -1538,6 +1538,7 @@ td>.button:hover {
 
 .size {
     font-size: 14px;
+    color: #777e91;
 }
 
 @media (min-width: 768px) {

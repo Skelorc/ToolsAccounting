@@ -2693,7 +2693,7 @@ body {
     overflow-x: hidden;
     position: relative;
     z-index: 2;
-    background-color: #f3f3f3;
+    background-color: #16171a;
     transition: all .4s
 }
 @media (min-width: 768px) {
@@ -4402,12 +4402,13 @@ body {
 
 @media (max-width:768px) {
     .login__logo {
-        width: 75%
+        width: 100%
     }
 }
 
 .login__link {
-    max-width: 20em
+    max-width: 100%;
+    
 }
 
 .login__link:hover,
