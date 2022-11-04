@@ -4,9 +4,9 @@
 
 <head class="head">
     <title th:text="${client.typeClient != null} ? 'Редактирование клиента' : 'Создать нового клиента'"></title>
-    <div th:replace="fragments/head :: header"></div>
+    <!-- <div th:replace="fragments/head :: header"></div>
 
-    <!-- <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="robots" content="index, follow">
     <meta name="author" content="">
@@ -85,7 +85,7 @@
                 <main class="wrapper wrapper-content border-bottom">
                     <div class="b-overlay-wrap position-relative">
                         <div class="tab-content">
-                            <div class="edit-container__header bg-white p-3 edit-container d-block col-8 col-md-12 col-lg-12 col-xl-12">
+                            <div class="edit-container__header p-3 edit-container d-block col-8 col-md-12 col-lg-12 col-xl-12">
                                 <div class="col-12 col-md-6 edit-container__header-select mb-3">
                                     <h3 class="my-3">
                                         Тип клиента
@@ -93,7 +93,7 @@
                                     <div class="v-select edit-container__select vs--single vs--searchable main-secect__wrapp">
                                         <div class="vs__dropdown-toggle main-secect">
                                             <select id="select_type_client" th:field="*{client.typeClient}"
-                                                    class="vs__selected-options main-secect__opions">
+                                                    class="vs__selected-options main-secect__opions" style="background-color: transparent;">
                                                 <option class="vs__selected vs__dropdown-toggle"
                                                         value="" disabled>Выберите тип клиента
                                                 </option>
@@ -128,7 +128,7 @@
                             </div>
 
                             <div id="individual" class="form-creat mb-3 col-12">
-                                <div class="bg-white p-3 edit-container d-block col-8 col-md-12 col-lg-12 col-xl-12">
+                                <div class=" p-3 edit-container d-block col-8 col-md-12 col-lg-12 col-xl-12">
                                     <div class="row form-creat__half-wrapp form-creat__half-wrapp_client">
                                         <div class="col-12 form-creat__half-title">
                                             <h3 class="my-3 form-creat__half-title_text">
@@ -159,7 +159,7 @@
 
                                     </div>
                                 </div>
-                                <div class="bg-white p-3 edit-container d-block col-8 col-md-12 col-lg-12 col-xl-12">
+                                <div class=" p-3 edit-container d-block col-8 col-md-12 col-lg-12 col-xl-12">
                                     <div class="row form-creat__half-wrapp form-creat__half-wrapp_client">
                                         <div class="col-12 form-creat__half-title">
                                             <h3 class="my-3 form-creat__half-title_text">
@@ -194,7 +194,7 @@
 
                                     </div>
                                 </div>
-                                <div class="bg-white p-3 edit-container d-block col-8 col-md-12 col-lg-12 col-xl-12">
+                                <div class="p-3 edit-container d-block col-8 col-md-12 col-lg-12 col-xl-12">
                                     <div class="row form-creat__half-wrapp form-creat__half-wrapp_client">
                                         <div class="col-12 form-creat__half-title">
                                             <h3 class="my-3 form-creat__half-title_text">
@@ -278,7 +278,7 @@
 
                                     </div>
                                 </div>
-                                <div class="bg-white p-3 edit-container d-block  col-8 col-md-12 col-lg-12 col-xl-12">
+                                <div class=" p-3 edit-container d-block  col-8 col-md-12 col-lg-12 col-xl-12">
                                     <div class="row form-creat__half-wrapp form-creat__half-wrapp_client">
                                         <div class="col-12 form-creat__half-title">
                                             <h3 class="my-3 form-creat__half-title_text">
@@ -355,7 +355,7 @@
                                 </div>
                             </div>
                             <div id="legal" class="form-creat mb-3 col-12">
-                                <div class="bg-white p-3 edit-container d-block">
+                                <div class="p-3 edit-container d-block">
                                     <div class="row form-creat__half-wrapp form-creat__half-wrapp_client">
                                         <div class="col-12 form-creat__half-title">
                                             <h3 class="my-3 form-creat__half-title_text">
@@ -388,7 +388,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="bg-white p-3 edit-container d-block">
+                                <div class="p-3 edit-container d-block">
                                     <div class="row form-creat__half-wrapp form-creat__half-wrapp_client">
                                         <div class="col-12 form-creat__half-title">
                                             <h3 class="my-3 form-creat__half-title_text">
@@ -444,7 +444,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="bg-white p-3 edit-container d-block">
+                                <div class=" p-3 edit-container d-block">
                                     <div class="row form-creat__half-wrapp form-creat__half-wrapp_client">
                                         <div class="col-12 form-creat__half-title">
                                             <h3 class="my-3 form-creat__half-title_text">
@@ -501,7 +501,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="bg-white p-3 edit-container d-block ">
+                                <div class="p-3 edit-container d-block ">
                                     <div class="row form-creat__half-wrapp form-creat__half-wrapp_client">
                                         <div class="col-12 form-creat__half-title">
                                             <h3 class="my-3 form-creat__half-title_text">

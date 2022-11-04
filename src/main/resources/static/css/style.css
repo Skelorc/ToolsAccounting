@@ -2917,10 +2917,10 @@ body {
     width: 100%;
     margin-bottom: 1rem;
     border-radius: 20px;
-    background-color: #fff;
+    background-color: transparent;
     position: relative;
     overflow: hidden;
-    border: 1px solid #efefef;
+    /* border: 1px solid #efefef; */
     height: 28px;
     margin-left: 20px;
 }

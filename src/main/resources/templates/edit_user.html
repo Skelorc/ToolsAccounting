@@ -68,8 +68,8 @@
     
     <script src="/static/js/jquery.js" th:src="@{/js/jquery.js}"></script>
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"  th:src="@{/js/jquery.modal.js}"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" /> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"  th:src="@{/js/jquery.modal.js}"></script> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" /> -->
 </head>
 
     <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
@@ -90,7 +90,7 @@
                                         </h2>
                                     </div>
                                     <div class="col-12 form-creat mb-3 admin-panel">
-                                        <div class="bg-white p-3 edit-container d-block col-8 col-md-12">
+                                        <div class="p-3 edit-container d-block col-8 col-md-12">
                                             <div class="row admin-panel-wrapp">
                                                 <div class="col-6 admin-panel__input-wrapp">
                                                         <h2 class="font-size">Редактирование пользователя</h2>
@@ -137,7 +137,7 @@
                                     </div>
                                 </div>
                                 <div class="tab-content">
-                                    <div class="col-md-12 col-8 bg-white p-3 edit-container d-block">
+                                    <div class="col-md-12 col-8 p-3 edit-container d-block">
                                         <div class="text-center">
                                             <h1 class="display-6 font-size">Хотите удалить этого пользователя?</h1>
                                             <form th:method="post" th:action="@{/admin-panel/delete/{id}(id=${user.getId()})}">

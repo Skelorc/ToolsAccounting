@@ -4,8 +4,8 @@
 
 <head class="head">
     <title>Ассоциативный массив - Редактирование</title>
-    <div th:replace="fragments/head :: header"></div>
-    <!-- <meta charset="UTF-8">
+    <!-- <div th:replace="fragments/head :: header"></div>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="robots" content="index, follow">
     <meta name="author" content="">
@@ -71,9 +71,9 @@
     <script src="/static/js/jquery.js" th:src="@{/js/jquery.js}"></script>
   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"  th:src="@{/js/jquery.modal.js}"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" />
-=======
-    <div th:replace="fragments/head :: header"></div> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" /> -->
+
+    <div th:replace="fragments/head :: header"></div>
 
 </head>
 
@@ -98,7 +98,7 @@
                         <div class="row">
 
                             <form action="/estimate-name/edit" method="post" th:object="${estimateName}" style="margin: auto; width: 100%;">
-                                <div class="bg-white p-3 col-8 col-md-12 col-sm-6 edit-container d-block" style="margin: 0 auto;">
+                                <div class="p-3 col-8 col-md-12 col-sm-6 edit-container d-block" style="margin: 0 auto;">
                                     <div class="row form-creat__half-wrapp">
                                         <div class=" form-creat__half_two-column col-12">
                                             <div role="group col-12" class="form-group">

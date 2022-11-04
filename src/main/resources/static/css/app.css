@@ -8859,7 +8859,7 @@ pre code {
 .table {
     width: 100%;
     margin-bottom: 1rem;
-    color: #212529
+    /* color: #212529 */
 }
 
 .table td,.table th {
@@ -31861,15 +31861,17 @@ button:focus {
 }
 
 .btn-primary {
-    color:#777e91;
-    background-color: #1ab394;
+    color:#fff;
+    background-color: #708090;
     border-color: #777e91
+
 }
 
 .btn-primary.disabled,.btn-primary.focus,.btn-primary:disabled,.btn-primary:focus,.btn-primary:hover,.btn-primary:not(:disabled):not(.disabled).active,.btn-primary:not(:disabled):not(.disabled):active,.show>.btn-primary.dropdown-toggle {
     /* background-color: #18a689;
     border-color: #18a689; */
-    color: #fff
+    color: #fff;
+    background: #1a1c21;
 }
 
 .btn-primary:not(:disabled):not(.disabled).active:focus,.btn-primary:not(:disabled):not(.disabled):active:focus,.show>.btn-primary.dropdown-toggle:focus {
@@ -40107,8 +40109,8 @@ table.dataTable {
     -moz-appearance: none;
     appearance: none;
     display: flex;
-    background-color: #fff;
-    border: 1px solid #e5e6e7;
+    background-color: transparent;
+    border: 1px solid #708090;
     white-space: normal;
     padding: 0;
     border-radius: 20px;
@@ -40116,7 +40118,7 @@ table.dataTable {
 }
 
 .v-select .vs__selected-options {
-    background-color: #fff;
+    background-color: transparent;
     display: flex;
     flex-basis: 100%;
     position: relative;
@@ -41297,7 +41299,7 @@ a {
 }
 
 .edit-container__header {
-    border-bottom: 1px solid #e7eaec;
+    /* border-bottom: 1px solid #e7eaec; */
     margin: 5px 0 1rem;
     padding-bottom: 1rem;
     /* font-size: 18px */
@@ -41876,9 +41878,9 @@ a {
     font-weight: 400;
     line-height: 1.5;
     color: #676a6c;
-    background-color: #fff;
+    background-color: transparent;
     background-clip: padding-box;
-    border: 1px solid #e5e6e7;
+    border: 1px solid #708090;
     border-radius: 20px;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out
 }
