@@ -23111,9 +23111,10 @@ td [data-item=state][data-v-eef6afb2] {
 
 .rent__time__group__label[data-v-89408aa2] {
     position: absolute;
-    top: 10px;
-    left: 12px;
-    bottom: 0;
+    /* top: 10px; */
+    /* left: 12px; */
+    right: 5px;
+    bottom: -10px;
     opacity: .67;
  
 }

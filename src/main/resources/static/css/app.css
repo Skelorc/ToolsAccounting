@@ -31862,7 +31862,7 @@ button:focus {
 
 .btn-primary {
     color:#fff;
-    background-color: #708090;
+    background-color: transparent;
     border-color: #777e91
 
 }
@@ -40612,7 +40612,8 @@ body.fixed-nav.fixed-nav-basic .navbar-fixed-top {
     padding: 16px 16px;
     height: 50px;
     width: 50px;
-    line-height: 1em
+    line-height: 1em;
+    display: none;
 }
 
 .navbar .navbar-header a i {
