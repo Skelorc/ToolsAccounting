@@ -4,7 +4,7 @@
 
 <head class="head">
     <title>Владельцы - Редактирование</title>
-    <!-- <div th:replace="fragments/head :: header"></div>
+    <div th:replace="fragments/head :: header"></div>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="robots" content="index, follow">
@@ -71,7 +71,7 @@
     <script src="/static/js/jquery.js" th:src="@{/js/jquery.js}"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"  th:src="@{/js/jquery.modal.js}"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" />
 
     <div th:replace="fragments/head :: header"></div>
 
@@ -103,7 +103,7 @@
                                         <div class=" form-creat__half_two-column col-12">
                                                 <label class="d-block font size">Имя владельца</label>
                                                 <div class="vdpComponent vdpWithInput">
-                                                    <input class="form-control" style="margin-top: 35px;" th:value="${owner.name}" th:field="*{name}"
+                                                    <input class="form-control"  th:value="${owner.name}" th:field="*{name}"
                                                            required="" type="text"
                                                            placeholder="Наименование в смете">
                                                 </div>
