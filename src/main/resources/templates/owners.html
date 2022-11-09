@@ -3,7 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head class="head">
-    <title>Ассоциативный массив</title>
+    <title>Владельцы</title>
     <div th:replace="fragments/head :: header"></div>
 
     <!-- <meta charset="UTF-8">
@@ -47,7 +47,7 @@
     <meta name="theme-color" content="#179d82">
     <meta th:name="_csrf" th:content="${_csrf.token}"/>
     <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
-    
+
 
     <link rel="preload" href="../static/fonts/fontawesome/fontawesome-all-css.css" as="style" th:href="@{/fonts/fontawesome/fontawesome-all-css.css}">
     <link rel="preload" href="../static/css/style.css" as="style" th:href="@{/css/style.css}">
@@ -66,11 +66,11 @@
     <link rel="stylesheet" href="../static/fonts/fontawesome/fontawesome-all-css.css" th:href="@{/fonts/fontawesome/fontawesome-all-css.css}">
     <link rel="stylesheet" href="../static/css/checkout.css" th:href="@{/css/checkout.css}">
     <link rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}">
-    
+
     <script src="/static/fonts/fontawesome/all.js" th:src="@{/fonts/fontawesome/all.js}"></script>
-    
+
     <script src="/static/js/jquery.js" th:src="@{/js/jquery.js}"></script>
-  
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"  th:src="@{/js/jquery.modal.js}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" /> -->
 </head>
@@ -95,7 +95,7 @@
 
                         <div class="row">
 
-                            <form th:action="@{/estimate-name}" method="post" th:object="${estimateName}"
+                            <form th:action="@{/owners}" method="post" th:object="${owner}"
                                   style="margin: auto; width: 100%;">
                                 <div class="p-3 col-8 col-md-12 edit-container d-block">
 
@@ -104,12 +104,11 @@
                                         <div class="row form-creat__half-wrapp">
                                             <div class=" form-creat__half_two-column col-12">
                                                 <div role="group col-12" class="form-group">
-                                                    <label class="d-block font">Наименование в смете</label>
+                                                    <label class="d-block font">Имя владельца</label>
                                                     <div class="vdpComponent vdpWithInput">
-
                                                         <input class="form-control" required="" type="text"
                                                                th:field="*{name}"
-                                                               placeholder="Наименование в смете">
+                                                               placeholder="Имя владельца">
                                                     </div>
                                                 </div>
                                             </div>
@@ -117,18 +116,12 @@
                                         <div class="row form-creat__half-wrapp">
                                             <div class="form-creat__half_two-column">
                                                 <div role="group" class="form-group">
-                                                    <label class="d-block font">Группа</label>
-                                                    <select id="select_category_tool" th:field="*{categoryTools}"
-                                                            class="vs__selected-options main-secect__opions form-control">
-                                                        <option class="vs__selected vs__dropdown-toggle"
-                                                                value="" disabled>Выберите группу оборудования
-                                                        </option>
-                                                        <option class="vs__selected vs__dropdown-toggle"
-                                                                th:each="type : ${T(wns.constants.CategoryTools).values()}"
-                                                                th:value="${type}"
-                                                                th:text="${type.getData()}">
-                                                        </option>
-                                                    </select>
+                                                    <label class="d-block font">Код</label>
+                                                    <div class="vdpComponent vdpWithInput">
+                                                        <input class="form-control" required="" type="text"
+                                                               th:field="*{code}"
+                                                               placeholder="Код">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -173,26 +166,26 @@
                                     <thead>
                                     <tr class="text-center">
                                         <th class="first-th">#</th>
-                                        <th>Наименование в смете</th>
-                                        <th>Группа</th>
+                                        <th>Имя владельца</th>
+                                        <th>Код</th>
                                     </tr>
                                     </thead>
                                     <tbody class="text-center">
-                                    <tr th:each="estimate : ${list_estimates}">
+                                    <tr th:each="owner : ${list_owner}">
                                         <td class="column-table">
                                             <div class="text-center" id="ids_tools">
-                                                <input type="hidden" class="id_tool" th:value="${estimate.id}">
+                                                <input type="hidden" class="id_tool" th:value="${owner.id}">
                                                 <span class="tools-td-text table-td-text column-table_checkbox-number tool_id"
-                                                      th:utext="${estimateStat.index+1}"></span>
+                                                      th:utext="${ownerStat.index+1}"></span>
                                             </div>
                                         </td>
-                                        <td data-label="Наименование в смете" class="align-middle">
-                                            <a class="nav-link" style="font-size: medium" th:utext="${estimate.name}"
-                                               th:href="@{/estimate-name/edit/{id}/(id=${estimate.id})}"></a>
+                                        <td data-label="Имя владельца" class="align-middle">
+                                            <a class="nav-link" style="font-size: medium" th:utext="${owner.name}"
+                                               th:href="@{/owners/edit/{id}/(id=${owner.id})}"></a>
                                         </td>
-                                        <td data-label="Группа" class="align-middle">
+                                        <td data-label="Код" class="align-middle">
                                             <h1 class="display-6" style="font-size: medium"
-                                                th:utext="${estimate.categoryTools}"></h1>
+                                                th:utext="${owner.code}"></h1>
                                         </td>
                                     </tr>
                                     </tbody>

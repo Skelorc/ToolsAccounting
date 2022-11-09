@@ -91,17 +91,25 @@
                         <a href="/estimate-name" class="btn btn-primary width grey">Ассоциативный массив</a>
                     </div>
                     <div class="mb-3 text-right">
-                        <button id="status_wait" class="btn btn-primary width yellow change_status">В ожидание
-                        </button>
+                        <a href="/owners" class="btn btn-primary width grey">Владельцы</a>
                     </div>
                     <div class="mb-3 text-right">
-                        <button id="status_instock" class="btn btn-primary width green change_status">На склад
-                        </button>
+                        <a href="/category" class="btn btn-primary width grey">Категории</a>
                     </div>
+
                 </div>
                 <div class="b-overlay-wrap position-relative custom-ll">
-                    <div class="row" >
-                        <div class="btn__under-table col-6 col-lg-12 order-lg-1" th:if="${project_id<0}">
+                    <div class="row">
+                        <label class="d-block size">Действия</label>
+                        <div class="mb-3 text-right">
+                            <button id="status_wait" class="btn btn-primary width yellow change_status">В ожидание
+                            </button>
+                        </div>
+                        <div class="mb-3 text-right">
+                            <button id="status_instock" class="btn btn-primary width green change_status">На склад
+                            </button>
+                        </div>
+                        <!--<div class="btn__under-table col-6 col-lg-12 order-lg-1" th:if="${project_id<0}">
                             <div class="mb-3 text-right">
                                 <a th:href="@{/tools}" class="btn btn-primary width btn-update_vidacha  grey">Все</a>
                             </div>
@@ -112,7 +120,7 @@
                             <div class="mb-3 text-right">
                                 <a th:href="@{/tools(filter=sublease)}"
                                    class="btn btn-primary width btn-update_vidacha  grey">Субаренда</a>
-                            </div>
+                            </div>-->
                         </div>
                         <div class="custom-ll__table table-responsive overflow-auto col-lg-12 order-lg-1">
                             <table class="table delivery w-table h-table in4dr-form transparent">

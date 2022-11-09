@@ -43,6 +43,8 @@ public class ClientsService implements MainService {
     public Client getById(long id) {
         return clientsRepo.findById(id).get();
     }
+
+    @Override
     public void delete(long id) {
         clientsRepo.deleteById(id);
     }

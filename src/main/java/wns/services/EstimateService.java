@@ -52,8 +52,9 @@ public class EstimateService implements MainService{
         return tools_by_groups;
     }
 
-    public void delete(Estimate estimate) {
-        estimateRepo.delete(estimate);
+    @Override
+    public void delete(long id) {
+        estimateRepo.deleteById(id);
     }
 
     public Estimate findById(long id) {

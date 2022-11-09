@@ -28,4 +28,13 @@ public class OwnerService implements MainService{
     public Owner findByName(String name) {
         return ownerRepo.findByNameIgnoreCase(name);
     }
+
+    public Owner findById(long id) {
+        return ownerRepo.findById(id).get();
+    }
+
+    @Override
+    public void delete(long id) {
+        ownerRepo.deleteById(id);
+    }
 }

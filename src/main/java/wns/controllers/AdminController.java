@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import wns.constants.Messages;
 import wns.constants.Roles;
 import wns.dto.UserDTO;
 import wns.entity.User;
@@ -55,7 +53,7 @@ public class AdminController {
 
     @PostMapping("/delete/{id}")
     public String deleteUser(@PathVariable(value = "id") long id){
-        userService.deleteUser(id);
+        userService.delete(id);
         return "redirect:/admin-panel";
     }
 }

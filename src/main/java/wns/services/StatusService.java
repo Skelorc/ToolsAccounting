@@ -34,4 +34,9 @@ public class StatusService implements MainService {
                 .map(StatusToolDTO::new)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public void delete(long id) {
+        repo.deleteById(id);
+    }
 }
