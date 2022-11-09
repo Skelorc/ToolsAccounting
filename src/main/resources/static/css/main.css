@@ -82,7 +82,7 @@ svg {
 
 @font-face {
     font-family: "Ubuntu Regular";
-    src: url("./static/fonts/fonawesome/Ubuntu-Regular.woff") format("woff")
+    src: url("./static/fonts/fonawesome/Ubuntu-Regular.woff2") format("woff2")
 }
 
 .footer {
