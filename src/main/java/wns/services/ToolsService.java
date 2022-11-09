@@ -3,15 +3,11 @@ package wns.services;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import wns.constants.EstimateSection;
 import wns.constants.Messages;
 import wns.constants.StatusTools;
 import wns.constants.TypeTools;
 import wns.dto.*;
-import wns.entity.EstimateName;
-import wns.entity.Project;
-import wns.entity.Status;
-import wns.entity.Tools;
+import wns.entity.*;
 import wns.repo.ToolsRepo;
 
 import java.time.LocalDateTime;
@@ -23,6 +19,8 @@ import java.util.stream.Collectors;
 public class ToolsService implements MainService {
     private final ToolsRepo toolsRepo;
     private final EstimateNameService estimateNameService;
+    private final CategoryService categoryService;
+    private final OwnerService ownerService;
     private final StatusService statusService;
 
     public List<Tools> getAll() {
@@ -37,21 +35,24 @@ public class ToolsService implements MainService {
                 .collect(Collectors.toList());
     }
 
-    public Messages createTools(Tools tools, long name_estimate_id, EstimateSection section, StatusTools status_tool) {
+    public Messages createTools(Tools tools, EstimateName estimateName, StatusTools statusTools, Category category, Owner owner) {
         Tools toolToSave = toolsRepo.findByName(tools.getName()).orElse(null);
         if (toolToSave == null) {
-            EstimateName estimateName = estimateNameService.getNameEstimateById(name_estimate_id);
-            tools.setStatus(StatusToolDTO.createStatusWithTools(tools, status_tool));
-            tools.setSection(section);
+            tools.setStatus(StatusToolDTO.createStatusWithTools(tools, statusTools));
             tools.setAmount(1);
-            tools.setCategory(estimateName.getCategoryTools());
+            tools.setCategory(category);
+            tools.setOwner(owner);
             tools.setEstimateName(estimateName);
-            estimateName.getListTools().add(tools);
             toolsRepo.save(tools);
-            estimateNameService.save(estimateName);
             return Messages.TOOLS_CREATE;
         } else
             return Messages.TOOLS_EXISTS;
+    }
+
+    public Messages updateTool(Tools tools)
+    {
+        System.out.println(tools);
+        return Messages.OK;
     }
 
     public Messages changeStatus(StatusToolDTO statusToolDTO) {
@@ -106,8 +107,6 @@ public class ToolsService implements MainService {
         statusService.save(status);
     }
 
-
-
     public void deleteToolFromProject(Tools tool)
     {
         tool.setProject(null);
@@ -135,16 +134,16 @@ public class ToolsService implements MainService {
         toolsRepo.save(tool);
     }
 
-    public List<ToolsDTO> findListByTypeToolsAndProject(TypeTools typeTools, long id)
+    public List<ToolsDTO> findListByStatusAndProject(StatusTools statusTools, long id)
     {
         if(id>=0)
         {
-            return toolsRepo.findAllByTypeTools(typeTools).stream()
+            return toolsRepo.findAllByStatus_StatusTools(statusTools).stream()
                     .filter(x -> (x.getProject()==null || x.getProject().getId()!=id))
                     .map(ToolsDTO::new)
                     .collect(Collectors.toList());
         }
-        return toolsRepo.findAllByTypeTools(typeTools).stream().map(ToolsDTO::new).collect(Collectors.toList());
+        return toolsRepo.findAllByStatus_StatusTools(statusTools).stream().map(ToolsDTO::new).collect(Collectors.toList());
     }
 
     public List<ToolsDTO> getToolsByStatuses(StatusTools statusTools)

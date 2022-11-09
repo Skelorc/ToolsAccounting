@@ -25,6 +25,7 @@ public class Client {
     private TypeClients typeClient;
     @Column(name = "full_name")
     private String fullName;
+    private String account;
     @Column(name = "legal_name")
     private String legalName;
     private int discount;

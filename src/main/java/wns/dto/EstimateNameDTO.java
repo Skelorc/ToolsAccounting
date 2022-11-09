@@ -1,8 +1,6 @@
 package wns.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import wns.constants.CategoryTools;
 import wns.entity.EstimateName;
 import wns.entity.Tools;
@@ -11,7 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class EstimateNameDTO {

@@ -4,7 +4,6 @@ public enum Filter {
     //tools
     WITHOUT_FILTER("null"),
     STOCK("Склад"),
-    SUBLEASE_TOOLS("Субаренда"),
     GROUPS("По группам"),
     //status
     INSTOCK("На складе"),

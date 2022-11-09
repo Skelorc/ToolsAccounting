@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import wns.constants.StatusTools;
 import wns.dto.StatusToolDTO;
-import wns.dto.ToolsDTO;
+import wns.entity.Owner;
 import wns.entity.Status;
 import wns.repo.StatusRepo;
 

@@ -4,9 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import wns.constants.CategoryTools;
 import wns.constants.EstimateSection;
-import wns.constants.TypeTools;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -22,12 +20,10 @@ public class ToolsEstimate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Enumerated(EnumType.STRING)
-    private TypeTools typeTools;
+    private String owner;
     private String name;
     private String barcode;
-    @Enumerated(EnumType.STRING)
-    private CategoryTools category;
+    private String category;
     private String model;
     @Enumerated(EnumType.STRING)
     private EstimateSection section;
@@ -60,7 +56,7 @@ public class ToolsEstimate {
     public String toString() {
         return "ToolsEstimate{" +
                 "id=" + id +
-                ", typeTools=" + typeTools +
+                ", typeTools=" + owner +
                 ", name='" + name + '\'' +
                 ", barcode='" + barcode + '\'' +
                 ", category=" + category +

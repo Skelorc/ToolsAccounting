@@ -105,16 +105,16 @@
                                 <div class="p-3 edit-container d-block col-8 col-md-12">
                                     <div data-v-4af8fa58="" class="rent__client form-creat__half_two-column mb-3">
                                         <div class="rent__client__buttons">
-                                            <label class="d-inline-block pl-2 mr-auto rent__client__buttons_title-mb">Исполнитель</label>
+                                            <label class="d-inline-block pl-2 mr-auto rent__client__buttons_title-mb">Покупатель</label>
                                             <button type="button" class="btn btn-primary width btn-xs"><a
-                                                    th:href="@{/clients}">Новый клиент</a>
+                                                    th:href="@{/clients}">Новый покупатель</a>
                                             </button>
                                         </div>
                                         <div class="mt-1 rent__client__selector mb-3">
                                             <div dir="auto" class="v-select vs--single vs--searchable">
-                                                <select class="vs__selected-options main-secect__opions form-control executor" id="sale_data">
+                                                <select class="vs__selected-options main-secect__opions form-control executor" id="sale_data" required>
                                                     <option class="vs__selected vs__dropdown-toggle"
-                                                            value="" disabled>Выберите исполнителя>
+                                                            value="" disabled>Выберите покупателя>
                                                     </option>
                                                     <option class="vs__selected vs__dropdown-toggle"
                                                             th:each="clientDTO : ${clients}"
@@ -128,7 +128,7 @@
                                             <div role="group" class="form-group">
                                                 <label class="d-block">Примечание</label>
                                                 <span>
-                                                    <textarea id="note_sale" required name="note" class="form-control"
+                                                    <textarea id="note_sale" name="note" class="form-control"
                                                               style="height: 40px;"></textarea>
                                                 </span>
                                             </div>

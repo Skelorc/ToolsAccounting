@@ -3,14 +3,13 @@ package wns.converters;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
-@Component
-public class StringToDateConverter implements Converter<String, LocalDateTime> {
+public class StringToDateConverter implements Converter<String, LocalDate> {
     @Override
-    public LocalDateTime convert(String source) {
+    public LocalDate convert(String source) {
         if(source.isEmpty())
-            return LocalDateTime.now();
-        return LocalDateTime.parse(source);
+            return LocalDate.now();
+        return LocalDate.parse(source);
     }
 }

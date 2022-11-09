@@ -34,11 +34,10 @@ public class EstimateNameController {
     }
 
     @PostMapping
-    public String create(@RequestAttribute EstimateName estimateName)
+    public String create(@ModelAttribute("estimateName") EstimateName estimateName)
     {
-        System.out.println(estimateName);
-        //estimateNameService.save(estimateName);
-        return "redirect:/estimate_name";
+        estimateNameService.save(estimateName);
+        return "redirect:/estimate-name";
     }
 
     @GetMapping("/edit/{id}")

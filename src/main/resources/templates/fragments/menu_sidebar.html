@@ -26,9 +26,9 @@
     </div>
     <ul id="side-menu" class="nav metismenu rih-nav__list">
         <li data-id="15" data-parent_id="2">
-            <a class="vidacha activ-page" th:href="@{/}" data-link="HumanClientApp"><b><i
-                    class="fa fa-users"></i></b>
-                <span class="nav-label">Выдача</span>
+            <a class="vidacha activ-page" th:href="@{/}" data-link="RentBookingApp" ><b><i
+                    class="fa fa-boxes" ></i></b>
+                <span class="nav-label">Проекты</span>
             </a>
         </li>
         <!--<li data-id="4" data-parent_id="2">
@@ -37,7 +37,7 @@
             </a>
         </li>-->
         <li data-id="310828" data-parent_id="2">
-            <a class="calendar" th:href="@{/calendar}" data-link="KitApp"><b><i class="fa fa-boxes"></i></b>
+            <a class="calendar" th:href="@{/calendar}" ><b><i class="fa fa-calendar-alt"></i></b>
                 <span class="nav-label">Календарь</span>
             </a>
         </li>
@@ -48,35 +48,36 @@
             </a>
         </li>
         <li data-id="170807" data-parent_id="2">
-            <a class="clients" th:href="@{/clients}" data-link="RentBookingApp"><b><i
-                    class="fa fa-calendar-alt"></i></b>
+            <a class="clients" th:href="@{/clients}" data-link="KitApp"><b><i
+                    class="fa fa-users"></i></b>
                 <span class="nav-label">Клиенты</span>
             </a>
         </li>
         <li data-id="22" data-parent_id="2">
             <a class="remont" href="/repair" th:href="@{/repair}" data-link="RentApp"><b><i
-                    class="fa fa-book"></i></b>
+                    class="fa fa-wrench"></i></b>
                 <span class="nav-label">Ремонт</span>
             </a>
         </li>
         <li data-id="9" data-parent_id="2">
-            <a class="spisanie" th:href="@{/write-off}"><b><i class="fa fa-shopping-cart"></i></b>
+            <a class="spisanie" th:href="@{/write-off}" data-link="LkSettingsBaseApp"><b><i class="fa fa-shopping-cart"></i></b>
                 <span class="nav-label">Списание</span>
             </a>
         </li>
         <li data-id="12" data-parent_id="2">
-            <a class="prodaza" th:href="@{/sale}"><b><i class="fa fa-wrench"></i></b>
+            <a class="prodaza" th:href="@{/sale}"><b><i class="fa fa-shopping-cart"></i></b>
                 <span class="nav-label">Продажа</span>
             </a>
         </li>
         <li data-id="12" data-parent_id="2" sec:authorize="hasAuthority('ADMIN')">
-            <a class="admin-panel" th:href="@{/admin-panel}"><b><i class="fa fa-wrench"></i></b>
+            <a class="admin-panel" th:href="@{/admin-panel}"><b><i
+                    class="fa fa-cogs"></i></b>
                 <span class="nav-label">Панель Администратора</span>
             </a>
         </li>
         <li data-id="5" data-parent_id="2">
-            <a class="otchety" href="/reports" data-link="LkSettingsBaseApp"><b><i
-                    class="fa fa-cogs"></i></b>
+            <a class="otchety" href="/reports" data-link="HumanClientApp" ><b><i
+                    class="fa fa-users"></i></b>
                 <span class="nav-label">Отчеты</span>
             </a>
         </li>
