@@ -1571,7 +1571,9 @@ td>.button:hover {
         display: block;
     } */
 }
-
+table.transparent{
+    background-color: transparent;
+}
 /* Table */ 
 @media (max-width: 1200px) {
    table.delivery {
