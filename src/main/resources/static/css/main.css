@@ -884,7 +884,7 @@ table.estimate td,table.estimate th {
     text-align: center;
 }
 table.estimate th {
-	background: #1ab394; 
+	background: transparent; 
 	color: #fff; 
 	font-weight: normal;
 }
