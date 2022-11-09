@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 public class ClientDTO {
     private long id;
     private TypeClients typeClient;
+    private String account;
     private String fullName;
     private String legalName;
     private int discount;
@@ -55,6 +56,7 @@ public class ClientDTO {
     public ClientDTO(Client client)
     {
         this.id = client.getId();
+        this.account = client.getAccount();
         this.typeClient = client.getTypeClient();
         this.fullName = client.getFullName();
         this.legalName = client.getLegalName();

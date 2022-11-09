@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import wns.constants.*;
 import wns.dto.*;
 import wns.entity.Project;
+import wns.entity.Status;
 import wns.entity.Tools;
 
 import java.util.*;
@@ -64,10 +65,7 @@ public class PageableFilterService {
                 list.addAll(tools.stream().map(ToolsDTO::new).collect(Collectors.toList()));
                 break;
             case STOCK:
-                list.addAll(toolsService.findListByTypeToolsAndProject(TypeTools.STOCK,id));
-                break;
-            case SUBLEASE_TOOLS:
-                list.addAll(toolsService.findListByTypeToolsAndProject(TypeTools.SUBLEASE_TOOLS,id));
+                list.addAll(toolsService.findListByStatusAndProject(StatusTools.INSTOCK,id));
                 break;
             case INSTOCK:
                 list.addAll(toolsService.getToolsByStatuses(StatusTools.INSTOCK));

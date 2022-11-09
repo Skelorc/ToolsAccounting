@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head class="head">
     <title>Добавить новое оборудование</title>
@@ -71,7 +71,7 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"  th:src="@{/js/jquery.modal.js}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" /> -->
-    
+
 </head>
 
 <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
@@ -80,7 +80,8 @@
         <div th:insert="fragments/menu_sidebar.html"></div>
         <div class="b-overlay-wrap position-relative w-100" size="sm">
             <div class="rih-page-wrapper">
-                <nav  role="navigation" class="navbar navbar-admin navbar-fixed-top" th:insert="fragments/header_logout.html"></nav>
+                <nav role="navigation" class="navbar navbar-admin navbar-fixed-top"
+                     th:insert="fragments/header_logout.html"></nav>
                 <main class="wrapper wrapper-content">
                     <div class="b-overlay-wrap position-relative">
                         <div class="form-creat mb-3 col-12">
@@ -91,44 +92,46 @@
                                 <div class="mb-3 text-right">
                                     <a href="/tools" class="btn btn-primary width light-blue">Назад</a>
                                 </div>
-                                <div class="mb-3 text-right">
-                                    <a href="#" class="btn btn-primary width green">Сохранить</a>
-                                </div>
+                                <!-- <div class="mb-3 text-right">
+                                     <a href="#" class="btn btn-primary width green">Сохранить</a>
+                                 </div>-->
                             </div>
-                            <form th:action="@{/tools/create}" method="post">
+                            <form th:action="@{/tools/create}" method="post" th:object="${tool}">
                                 <div class="p-3 edit-container d-block col-8 col-md-12">
                                     <div class="row form-creat__half-wrapp">
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Наименование</label>
                                                 <span>
-                                                    <input id="name" name="name" type="text" class="form-control" placeholder="Введите наименование">
+                                                    <input th:field="*{name}" type="text" class="form-control"
+                                                           placeholder="Введите наименование" required>
                                                 </span>
                                             </div>
                                         </div>
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block size">Вид оборудования</label>
+                                                <label class="d-block size">Владелец</label>
                                                 <select id="select_type_tool"
-                                                        name="typeTools"
-                                                        class="vs__selected-options main-secect__opions form-control select">
+                                                        name="owner"
+                                                        class="vs__selected-options main-secect__opions form-control select"
+                                                        required>
                                                     <option class="vs__selected vs__dropdown-toggle"
-                                                            value="" disabled>Выберите тип оборудования
+                                                            value="" disabled>Выберите владельца
                                                     </option>
                                                     <option class="vs__selected vs__dropdown-toggle"
-                                                            th:each="type : ${T(wns.constants.TypeTools).values()}"
-                                                            th:value="${type}"
-                                                            th:text="${type.getType()}"
-                                                    >
+                                                            th:each="owner : ${list_owners}"
+                                                            th:value="${owner.id}"
+                                                            th:text="${owner.name}">
                                                     </option>
-                                                </select >
+                                                </select>
                                             </div>
                                         </div>
-                                        <div class="form-creat__half_two-column" >
+                                        <div class="form-creat__half_two-column">
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Наименование в смете</label>
-                                                <select name="name_estimate_id"
-                                                        class="vs__selected-options main-secect__opions form-control select">
+                                                <select name="name_estimate"
+                                                        class="vs__selected-options main-secect__opions form-control select"
+                                                        required>
                                                     <option class="vs__selected vs__dropdown-toggle"
                                                             value="" disabled>Выберите наименование
                                                     </option>
@@ -140,18 +143,19 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="form-creat__half_two-column" >
+                                        <div class="form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block size">Выберите группу</label>
-                                                <select name="section"
-                                                        class="vs__selected-options main-secect__opions form-control select">
+                                                <label class="d-block size">Выберите категорию</label>
+                                                <select class="vs__selected-options main-secect__opions form-control select"
+                                                        name="category"
+                                                        required>
                                                     <option class="vs__selected vs__dropdown-toggle"
-                                                            value="" disabled>Выберите группу
+                                                            value="" disabled>Выберите категорию
                                                     </option>
                                                     <option class="vs__selected vs__dropdown-toggle"
-                                                            th:each="section : ${T(wns.constants.EstimateSection).values()}"
-                                                            th:value="${section}"
-                                                            th:text="${section.getValue()}">
+                                                            th:each="category : ${list_category}"
+                                                            th:value="${category.id}"
+                                                            th:text="${category.name}">
                                                     </option>
                                                 </select>
                                             </div>
@@ -160,7 +164,7 @@
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Штрих-код</label>
                                                 <span>
-                                                    <input id="barcode" name="barcode"
+                                                    <input th:field="*{barcode}" required
                                                            type="text" class="form-control"
                                                            placeholder="Введите штрих-код">
                                                 </span>
@@ -170,7 +174,7 @@
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Модель</label>
                                                 <span>
-                                                    <input name="model" type="text"
+                                                    <input th:field="*{model}" type="text"
                                                            class="form-control" placeholder="">
                                                 </span>
                                             </div>
@@ -179,18 +183,33 @@
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Серийный номер</label>
                                                 <span>
-                                                    <input name="serialNumber"
+                                                    <input th:field="*{serialNumber}" required
                                                            type="text" class="form-control"
                                                            aria-describedby="item-human-passport_serial">
                                                 </span>
                                             </div>
+                                        </div>
+                                        <div role="group" class="form-group">
+                                            <label class="d-block size">Выберите раздел сметы</label>
+                                            <select class="vs__selected-options main-secect__opions form-control select"
+                                                    th:field="*{section}"
+                                                    required>
+                                                <option class="vs__selected vs__dropdown-toggle"
+                                                        value="" disabled>Выберите раздел сметы
+                                                </option>
+                                                <option class="vs__selected vs__dropdown-toggle"
+                                                        th:each="section : ${T(wns.constants.EstimateSection).values()}"
+                                                        th:value="${section}"
+                                                        th:text="${section.getValue()}">
+                                                </option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="row form-creat__half-wrapp">
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Статус</label>
-                                                <select id="select_status_tool" name="status_tool"
+                                                <select name="status_tool" required
                                                         class="vs__selected-options main-secect__opions form-control">
                                                     <option class="vs__selected vs__dropdown-toggle"
                                                             value="" disabled>Выберите статус
@@ -207,7 +226,7 @@
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Характеристики</label>
                                                 <span>
-                                                    <input name="characteristics"
+                                                    <input th:field="*{characteristics}"
                                                            type="text" class="form-control" placeholder="">
                                                 </span>
                                             </div>
@@ -216,7 +235,7 @@
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Состояние</label>
                                                 <span>
-                                                    <input name="state" type="text"
+                                                    <input th:field="*{state}" type="text"
                                                            class="form-control" placeholder="">
                                                 </span>
                                             </div>
@@ -225,7 +244,7 @@
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Комплект</label>
                                                 <span>
-                                                    <input name="equip" type="text"
+                                                    <input th:field="*{equip}" type="text"
                                                            class="form-control" placeholder="">
                                                 </span>
                                             </div>
@@ -234,7 +253,7 @@
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Комментарий</label>
                                                 <span>
-                                                    <input name="comment" type="text"
+                                                    <input th:field="*{comment}" type="text"
                                                            class="form-control" placeholder="">
                                                 </span>
                                             </div>
@@ -243,7 +262,7 @@
                                             <div class="form-group">
                                                 <label class="d-block size">Дата создания</label>
                                                 <div class="vdpComponent vdpWithInput">
-                                                    <input name="creating" type="date"
+                                                    <input th:field="*{creating}" type="date"
                                                            placeholder="дд.мм.гггг">
                                                 </div>
                                             </div>
@@ -251,7 +270,7 @@
                                         <div class=" form-creat__half_two-column">
                                             <div class="form-group">
                                                 <label class="d-block size">Загрузите ваши фотографии на сервер</label>
-                                                <textarea name="photos"
+                                                <textarea th:field="*{photos}" required
                                                           class="form-control" id="note_individual"
                                                           style="height: 40px;"></textarea>
                                             </div>
@@ -259,152 +278,154 @@
                                     </div>
                                 </div>
                                 <div class="p-3 edit-container d-block  col-8 col-md-12">
-                                    <div class="row form-creat__half-wrapp">
-                                        <div class=" form-creat__half_two-column">
-                                            <div role="group" class="form-group">
-                                                <label class="d-block size">Себестоимость</label>
-                                                <span>
-                                                    <input name="costPrice" type="text"
+                                    <div sec:authorize="hasAnyAuthority('MANAGER','ADMIN')">
+                                        <div class="row form-creat__half-wrapp">
+                                            <div class=" form-creat__half_two-column">
+                                                <div role="group" class="form-group">
+                                                    <label class="d-block size">Себестоимость</label>
+                                                    <span>
+                                                    <input th:field="*{costPrice}" type="text"
                                                            class="form-control" placeholder=""
                                                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');">
                                                 </span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-creat__half_two-column">
-                                            <div role="group" class="form-group">
-                                                <label class="d-block size">Цена за сутки</label>
-                                                <span>
-                                                    <input name="priceByDay" type="text"
+                                            <div class="form-creat__half_two-column">
+                                                <div role="group" class="form-group">
+                                                    <label class="d-block size">Цена за сутки</label>
+                                                    <span>
+                                                    <input th:field="*{priceByDay}" type="text"
                                                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
                                                            class="form-control"
                                                            placeholder="">
                                                 </span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-creat__half_two-column">
-                                            <div role="group" class="form-group">
-                                                <label class="d-block size">Доход с оборудования</label>
-                                                <span>
-                                                    <input name="incomeFromTools"
+                                            <div class="form-creat__half_two-column">
+                                                <div role="group" class="form-group">
+                                                    <label class="d-block size">Доход с оборудования</label>
+                                                    <span>
+                                                    <input th:field="*{incomeFromTools}"
                                                            type="text"
                                                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
                                                            class="form-control"
                                                            placeholder="">
                                                 </span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-creat__half_two-column">
-                                            <div role="group" class="form-group">
-                                                <label class="d-block size">Цена продажи</label>
-                                                <span>
-                                                    <input name="priceSell" type="text"
+                                            <div class="form-creat__half_two-column">
+                                                <div role="group" class="form-group">
+                                                    <label class="d-block size">Цена продажи</label>
+                                                    <span>
+                                                    <input th:field="*{priceSell}" type="text"
                                                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
                                                            class="form-control"
                                                            placeholder="">
                                                 </span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-creat__half_two-column">
-                                            <div role="group" class="form-group">
-                                                <label class="d-block size">Доход с продажи</label>
-                                                <span>
-                                                    <input name="incomeSales" type="text"
+                                            <div class="form-creat__half_two-column">
+                                                <div role="group" class="form-group">
+                                                    <label class="d-block size">Доход с продажи</label>
+                                                    <span>
+                                                    <input th:field="*{incomeSales}" type="text"
                                                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
                                                            class="form-control"
                                                            placeholder="">
                                                 </span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-creat__half_two-column">
-                                            <div role="group" class="form-group">
-                                                <label class="d-block size">Доход инвестора (%)</label>
-                                                <span>
-                                                    <input
-                                                           name="incomeInvestorProcents" type="text"
-                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
-                                                           class="form-control"
-                                                           placeholder="">
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row form-creat__half-wrapp">
-                                        <div class="form-creat__half_two-column">
-                                            <div role="group" class="form-group">
-                                                <label class="d-block size">Доход инвестора</label>
-                                                <span>
-                                                    <input name="incomeInvestor"
+                                            <div class="form-creat__half_two-column">
+                                                <div role="group" class="form-group">
+                                                    <label class="d-block size">Доход инвестора (%)</label>
+                                                    <span>
+                                                    <input th:field="*{incomeInvestorProcents}"
                                                            type="text"
                                                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
                                                            class="form-control"
                                                            placeholder="">
                                                 </span>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="form-creat__half_two-column">
-                                            <div role="group" class="form-group">
-                                                <label class="d-block size">Сумма ремонта</label>
-                                                <span>
-                                                    <input name="repairAmount"
+                                        <div class="row form-creat__half-wrapp">
+                                            <div class="form-creat__half_two-column">
+                                                <div role="group" class="form-group">
+                                                    <label class="d-block size">Доход инвестора</label>
+                                                    <span>
+                                                    <input th:field="*{incomeInvestor}"
                                                            type="text"
                                                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
                                                            class="form-control"
                                                            placeholder="">
                                                 </span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class=" form-creat__half_two-column">
-                                            <div role="group" class="form-group">
-                                                <label class="d-block size">Кол-во отработанных смен</label>
-                                                <span>
-                                                    <input
-                                                           name="numberWorkingShifts" type="text"
-                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
-                                                           class="form-control"
-                                                           placeholder="">
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class=" form-creat__half_two-column">
-                                            <div role="group" class="form-group">
-                                                <label class="d-block size">Цена на субаренду</label>
-                                                <span>
-                                                    <input name="priceSublease"
+                                            <div class="form-creat__half_two-column">
+                                                <div role="group" class="form-group">
+                                                    <label class="d-block size">Сумма ремонта</label>
+                                                    <span>
+                                                    <input th:field="*{repairAmount}"
                                                            type="text"
                                                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
                                                            class="form-control"
                                                            placeholder="">
                                                 </span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class=" form-creat__half_two-column">
-                                            <div role="group" class="form-group">
-                                                <label class="d-block size">Плата за субаренду</label>
-                                                <span>
-                                                    <input name="paymentSublease"
+                                            <div class=" form-creat__half_two-column">
+                                                <div role="group" class="form-group">
+                                                    <label class="d-block size">Кол-во отработанных смен</label>
+                                                    <span>
+                                                    <input th:field="*{numberWorkingShifts}"
                                                            type="text"
                                                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
                                                            class="form-control"
                                                            placeholder="">
                                                 </span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class=" form-creat__half_two-column">
-                                            <div role="group" class="form-group">
-                                                <label class="d-block size">Доп.доход</label>
-                                                <span>
-                                                    <input name="incomeAdditional"
+                                            <div class=" form-creat__half_two-column">
+                                                <div role="group" class="form-group">
+                                                    <label class="d-block size">Цена на субаренду</label>
+                                                    <span>
+                                                    <input th:field="*{priceSublease}"
                                                            type="text"
                                                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
                                                            class="form-control"
                                                            placeholder="">
                                                 </span>
+                                                </div>
+                                            </div>
+                                            <div class=" form-creat__half_two-column">
+                                                <div role="group" class="form-group">
+                                                    <label class="d-block size">Плата за субаренду</label>
+                                                    <span>
+                                                    <input th:field="*{paymentSublease}"
+                                                           type="text"
+                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
+                                                           class="form-control"
+                                                           placeholder="">
+                                                </span>
+                                                </div>
+                                            </div>
+                                            <div class=" form-creat__half_two-column">
+                                                <div role="group" class="form-group">
+                                                    <label class="d-block size">Доп.доход</label>
+                                                    <span>
+                                                    <input th:field="*{incomeAdditional}"
+                                                           type="text"
+                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
+                                                           class="form-control"
+                                                           placeholder="">
+                                                </span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="mt-4 mb-4 col-4 save-btn">
-                                    <button type="submit" id="save_client"
+                                    <button type="submit"
                                             class="btn btn-lg btn-primary btn-primary_save w-100">
                                         <i class="fa fa-shopping-cart">
                                         </i>
@@ -419,8 +440,6 @@
         </div>
         <div th:insert="fragments/footer.html"></div>
     </div>
-</div>
-</div>
 </div>
 <div th:insert="fragments/scripts.html"></div>
 </body>

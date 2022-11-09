@@ -1,6 +1,7 @@
 package wns.entity;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import wns.constants.CategoryTools;
 import wns.constants.EstimateSection;
 import wns.constants.TypeTools;
@@ -20,15 +21,15 @@ public class Tools{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "type_tools")
-    @Enumerated(EnumType.STRING)
-    private TypeTools typeTools;
     private String name;
-
     private String barcode;
 
-    @Enumerated(EnumType.STRING)
-    private CategoryTools category;
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private Category category;
+
     private String model;
     @Column(name = "serial_number")
     private String serialNumber;
@@ -52,6 +53,13 @@ public class Tools{
     @JoinColumn(name = "projects_id")
     private Project project;
 
+
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "owners_id")
+    private Owner owner;
+
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
@@ -62,6 +70,7 @@ public class Tools{
 
     @Column(columnDefinition = "TEXT")
     private String comment;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private LocalDate creating;
 
     @Column(name = "cost_price")

@@ -36,15 +36,6 @@ public class EstimateController {
         return "estimate_create";
     }
 
-    @PostMapping("/create")
-    public Model createEstimateName(@ModelAttribute EstimateNameDTO dto, Model model)
-    {
-        model.addAttribute("message", estimateNameService.save(dto).getValue());
-        model.addAttribute("estimateDTO",new EstimateNameDTO());
-        model.addAttribute("all", estimateNameService.getAll());
-        return model;
-    }
-
     @PostMapping("/create/{id}")
     @ResponseBody
     public ResponseEntity<Object> createEstimateName(@PathVariable("id") long id,
@@ -65,7 +56,7 @@ public class EstimateController {
     {
         Estimate estimate = dto.createEstimateFromDTO(projectService.getById(id));
         String file_path = excelUtil.createDocument(estimate);
-        return ResponseHandler.generateResponse(Messages.RETURN_FILE_URL,"/estimates-files/"+file_path);
+        return ResponseHandler.generateResponse(Messages.RETURN_FILE_URL,"/"+file_path);
     }
 
 

@@ -1,21 +1,13 @@
 package wns.services;
 
 import lombok.AllArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import wns.constants.EstimateSection;
-import wns.constants.Messages;
-import wns.dto.ToolsEstimateDTO;
-import wns.entity.Estimate;
-import wns.entity.Project;
-import wns.entity.Tools;
-import wns.entity.ToolsEstimate;
+import wns.entity.*;
 import wns.repo.EstimateRepo;
 
 import java.time.Period;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -23,7 +15,7 @@ public class EstimateService implements MainService{
     private final EstimateRepo estimateRepo;
     private ToolsEstimateService toolsEstimateService;
     @Override
-    public  List<Estimate> getAll() {
+    public List<Estimate> getAll() {
        return estimateRepo.findAll();
     }
 

@@ -4,74 +4,74 @@
 
 <head class="head">
     <title th:text="${client.typeClient != null} ? 'Редактирование клиента' : 'Создать нового клиента'"></title>
-    <!-- <div th:replace="fragments/head :: header"></div>
+    <div th:replace="fragments/head :: header"></div>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="robots" content="index, follow">
-    <meta name="author" content="">
-    <meta property="og:url" content="https://site.ru">
-    <meta property="og:title" content="MAD DOG">
-    <meta property="og:image:type" content="image/jpeg">
-    <meta property="og:image:width" content="640">
-    <meta property="og:image:height" content="442">
-    <meta property="og:description" content="">
-    <meta property="og:site_name" content="Site-name">
+    <!--<meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+   <meta name="robots" content="index, follow">
+   <meta name="author" content="">
+   <meta property="og:url" content="https://site.ru">
+   <meta property="og:title" content="MAD DOG">
+   <meta property="og:image:type" content="image/jpeg">
+   <meta property="og:image:width" content="640">
+   <meta property="og:image:height" content="442">
+   <meta property="og:description" content="">
+   <meta property="og:site_name" content="Site-name">
 
-    <link rel="apple-touch-icon" sizes="57x57" href="https://lk.rentinhand.ru/img/icons/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="https://lk.rentinhand.ru/img/icons/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="https://lk.rentinhand.ru/img/icons/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="https://lk.rentinhand.ru/img/icons/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="https://lk.rentinhand.ru/img/icons/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="https://lk.rentinhand.ru/img/icons/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="https://lk.rentinhand.ru/img/icons/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="https://lk.rentinhand.ru/img/icons/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://lk.rentinhand.ru/img/icons/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"
-    href="https://lk.rentinhand.ru/img/icons/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://lk.rentinhand.ru/img/icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="https://lk.rentinhand.ru/img/icons/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://lk.rentinhand.ru/img/icons/favicon-16x16.png">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="author" content="Andrey">
-    <meta name="description" content="MAD DOG">
-    <meta name="keywords" content="MAD DOG">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta property="og:title" content="MAD DOG - сервис для учета и автоматизации проката">
-    <meta property="og:image" content="assets/img/icons/badge.jpg" th:src="@{/img/icons/badge.jpg}">
-    <meta property="og:image:type" content="image/jpeg">
-    <meta property="og:image:width" content="1024">
-    <meta property="og:image:height" content="1024">
-    <meta property="og:description" content="Программа для учёта инструментов">
-    <link rel="image_src" href="/static/img/icons/badge.jpg" th:href="@{/img/icons/badge.jpg}">
-    <meta name="theme-color" content="#179d82">
-    <meta th:name="_csrf" th:content="${_csrf.token}"/>
-    <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
- 
-    <link rel="preload" href="../static/fonts/fontawesome/fontawesome-all-css.css" as="style" th:href="@{/fonts/fontawesome/fontawesome-all-css.css}">
-    <link rel="preload" href="../static/css/style.css" as="style" th:href="@{/css/style.css}">
-    <link rel="preload" href="../static/css/app.css" as="style" th:href="@{/css/app.css}">
-    <link rel="preload" href="../static/css/media.css" as="style" th:href="@{/css/media.css}">
-    <link rel="preload" href="../static/css/checkout.css" as="style" th:href="@{/css/checkout.css}">
-    <link rel="preload" href="../static/css/main.css" as="style" th:href="@{/css/main.css}">
+   <link rel="apple-touch-icon" sizes="57x57" href="https://lk.rentinhand.ru/img/icons/apple-icon-57x57.png">
+   <link rel="apple-touch-icon" sizes="60x60" href="https://lk.rentinhand.ru/img/icons/apple-icon-60x60.png">
+   <link rel="apple-touch-icon" sizes="72x72" href="https://lk.rentinhand.ru/img/icons/apple-icon-72x72.png">
+   <link rel="apple-touch-icon" sizes="76x76" href="https://lk.rentinhand.ru/img/icons/apple-icon-76x76.png">
+   <link rel="apple-touch-icon" sizes="114x114" href="https://lk.rentinhand.ru/img/icons/apple-icon-114x114.png">
+   <link rel="apple-touch-icon" sizes="120x120" href="https://lk.rentinhand.ru/img/icons/apple-icon-120x120.png">
+   <link rel="apple-touch-icon" sizes="144x144" href="https://lk.rentinhand.ru/img/icons/apple-icon-144x144.png">
+   <link rel="apple-touch-icon" sizes="152x152" href="https://lk.rentinhand.ru/img/icons/apple-icon-152x152.png">
+   <link rel="apple-touch-icon" sizes="180x180" href="https://lk.rentinhand.ru/img/icons/apple-icon-180x180.png">
+   <link rel="icon" type="image/png" sizes="192x192"
+   href="https://lk.rentinhand.ru/img/icons/android-icon-192x192.png">
+   <link rel="icon" type="image/png" sizes="32x32" href="https://lk.rentinhand.ru/img/icons/favicon-32x32.png">
+   <link rel="icon" type="image/png" sizes="96x96" href="https://lk.rentinhand.ru/img/icons/favicon-96x96.png">
+   <link rel="icon" type="image/png" sizes="16x16" href="https://lk.rentinhand.ru/img/icons/favicon-16x16.png">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="author" content="Andrey">
+   <meta name="description" content="MAD DOG">
+   <meta name="keywords" content="MAD DOG">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta property="og:title" content="MAD DOG - сервис для учета и автоматизации проката">
+   <meta property="og:image" content="assets/img/icons/badge.jpg" th:src="@{/img/icons/badge.jpg}">
+   <meta property="og:image:type" content="image/jpeg">
+   <meta property="og:image:width" content="1024">
+   <meta property="og:image:height" content="1024">
+   <meta property="og:description" content="Программа для учёта инструментов">
+   <link rel="image_src" href="/static/img/icons/badge.jpg" th:href="@{/img/icons/badge.jpg}">
+   <meta name="theme-color" content="#179d82">
+   <meta th:name="_csrf" th:content="${_csrf.token}"/>
+   <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+
+   <link rel="preload" href="../static/fonts/fontawesome/fontawesome-all-css.css" as="style" th:href="@{/fonts/fontawesome/fontawesome-all-css.css}">
+   <link rel="preload" href="../static/css/style.css" as="style" th:href="@{/css/style.css}">
+   <link rel="preload" href="../static/css/app.css" as="style" th:href="@{/css/app.css}">
+   <link rel="preload" href="../static/css/media.css" as="style" th:href="@{/css/media.css}">
+   <link rel="preload" href="../static/css/checkout.css" as="style" th:href="@{/css/checkout.css}">
+   <link rel="preload" href="../static/css/main.css" as="style" th:href="@{/css/main.css}">
 
 
-    <link rel="stylesheet" href="../static/fonts/webfonts/fa-solid-900.ttf" th:href="@{/fonts/webfonts/fa-solid-900.ttf}">
-    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
-    <link rel="stylesheet" href="../static/css/app.css" th:href="@{/css/app.css}">
-    <link rel="stylesheet" href="../static/css/media.css" th:href="@{/css/media.css}">
-    <link rel="stylesheet" href="../static/css/animation-iror.css" th:href="@{/css/animation-iror.css}">
-    <link rel="stylesheet" href="../static/fonts/fontawesome/fontawesome.css" th:href="@{/fonts/fontawesome/fontawesome.css}">
-    <link rel="stylesheet" href="../static/fonts/fontawesome/fontawesome-all-css.css" th:href="@{/fonts/fontawesome/fontawesome-all-css.css}">
-    <link rel="stylesheet" href="../static/css/checkout.css" th:href="@{/css/checkout.css}">
-    <link rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}">
-    
-    <script src="/static/fonts/fontawesome/all.js" th:src="@{/fonts/fontawesome/all.js}"></script>
- 
-    <script src="/static/js/jquery.js" th:src="@{/js/jquery.js}"></script>
-   
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"  th:src="@{/js/jquery.modal.js}"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" /> -->
+   <link rel="stylesheet" href="../static/fonts/webfonts/fa-solid-900.ttf" th:href="@{/fonts/webfonts/fa-solid-900.ttf}">
+   <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+   <link rel="stylesheet" href="../static/css/app.css" th:href="@{/css/app.css}">
+   <link rel="stylesheet" href="../static/css/media.css" th:href="@{/css/media.css}">
+   <link rel="stylesheet" href="../static/css/animation-iror.css" th:href="@{/css/animation-iror.css}">
+   <link rel="stylesheet" href="../static/fonts/fontawesome/fontawesome.css" th:href="@{/fonts/fontawesome/fontawesome.css}">
+   <link rel="stylesheet" href="../static/fonts/fontawesome/fontawesome-all-css.css" th:href="@{/fonts/fontawesome/fontawesome-all-css.css}">
+   <link rel="stylesheet" href="../static/css/checkout.css" th:href="@{/css/checkout.css}">
+   <link rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}">
+
+   <script src="/static/fonts/fontawesome/all.js" th:src="@{/fonts/fontawesome/all.js}"></script>
+
+   <script src="/static/js/jquery.js" th:src="@{/js/jquery.js}"></script>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"  th:src="@{/js/jquery.modal.js}"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" /> -->
 </head>
 
 <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
@@ -92,7 +92,7 @@
                                     </h3>
                                     <div class="v-select edit-container__select vs--single vs--searchable main-secect__wrapp">
                                         <div class="vs__dropdown-toggle main-secect">
-                                            <select id="select_type_client" th:field="*{client.typeClient}"
+                                            <select id="select_type_client" th:field="*{client.typeClient}" required
                                                     class="vs__selected-options main-secect__opions" style="background-color: transparent;">
                                                 <option class="vs__selected vs__dropdown-toggle"
                                                         value="" disabled>Выберите тип клиента
@@ -123,6 +123,16 @@
                                                 </label>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="v-select edit-container__select vs--single vs--searchable main-secect__wrapp">
+                                    <div class="form-group col-lg-3">
+                                        <h3 class="my-3 form-creat__half-title_text">
+                                            Аккаунт в соц.сетях
+                                        </h3>
+                                        <span><input required th:value="${client.account}" th:name="account"
+                                                     id="account_individual" type="text" class="form-control"
+                                                     placeholder="Аккаунт в соц.сетях"></span>
                                     </div>
                                 </div>
                             </div>
@@ -183,7 +193,7 @@
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">E-mail</label>
                                                 <span>
-                                                            <input required th:name="email" th:value="${client.email}"
+                                                            <input th:name="email" th:value="${client.email}"
                                                                    id="email_individual"
                                                                    type="email"
                                                                    class="form-control input-width"
@@ -206,7 +216,7 @@
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Откуда пришел</label>
                                                 <span>
-                                                            <input required th:name="fromComing"
+                                                            <input th:name="fromComing"
                                                                    th:value="${client.fromComing}"
                                                                    id="fromComing_individual" type="text"
                                                                    class="form-control input-width"
@@ -218,7 +228,7 @@
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Лимит</label>
                                                 <span>
-                                                            <input required th:name="limited"
+                                                            <input th:name="limited"
                                                                    th:value="${client.limited}" id="limit_individual"
                                                                    type="text" class="form-control input-width"
                                                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
@@ -231,7 +241,7 @@
                                                 <div role="group" class="form-group">
                                                     <label class="d-block size">Примечание</label>
                                                     <span>
-                                                                <textarea required th:name="note"
+                                                                <textarea th:name="note"
                                                                           class="form-control input-width"
                                                                           th:value="${client.note}"
                                                                           th:text="${client.note}"
@@ -244,7 +254,7 @@
                                                 <div class="form-group">
                                                     <label class="d-block size">Дата рождения</label>
                                                     <div class="vdpComponent vdpWithInput">
-                                                        <input class="form-control input-width" required type="date"
+                                                        <input class="form-control input-width" type="date"
                                                                th:name="birthday" th:value="${client.birthday}"
                                                                id="birthday" placeholder="дд.мм.гггг">
                                                     </div>
@@ -255,7 +265,7 @@
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Оператор постановщик</label>
                                                 <span>
-                                                            <input required th:name="directorOfPhotography"
+                                                            <input th:name="directorOfPhotography"
                                                                    th:value="${client.directorOfPhotography}"
                                                                    id="directorOfPhotography" type="text"
                                                                    class="form-control  input-width"
@@ -267,7 +277,7 @@
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Продакшн</label>
                                                 <span>
-                                                            <input required th:name="production"
+                                                            <input th:name="production"
                                                                    th:value="${client.production}" id="production"
                                                                    type="text"
                                                                    class="form-control  input-width"
@@ -289,7 +299,7 @@
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Серия/Номер</label>
                                                 <span>
-                                                        <input required th:name="numberPassport"
+                                                        <input th:name="numberPassport"
                                                                th:value="${client.numberPassport}" id="numberPassport"
                                                                type="text"
                                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
@@ -302,7 +312,7 @@
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Кем выдан</label>
                                                 <span>
-                                                        <input required th:name="issuedBy" th:value="${client.issuedBy}"
+                                                        <input th:name="issuedBy" th:value="${client.issuedBy}"
                                                                id="issuedBy"
                                                                type="text" class="form-control input-width">
                                                     </span>
@@ -322,7 +332,7 @@
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Адрес фактический</label>
                                                 <span>
-                                                        <input required th:name="addressReal"
+                                                        <input th:name="addressReal"
                                                                th:value="${client.addressReal}" type="text"
                                                                class="form-control input-width"
                                                                id="addressReal_individual"
@@ -334,7 +344,7 @@
                                             <div class="form-group">
                                                 <label class="d-block size">Дата создания</label>
                                                 <div class="vdpComponent vdpWithInput">
-                                                    <input class="form-control" required type="date" th:name="dateCreating"
+                                                    <input class="form-control" type="date" th:name="dateCreating"
                                                            th:value="${client.dateCreating}"
                                                            id="dateCreating_individual" placeholder="дд.мм.гггг">
                                                 </div>
@@ -378,7 +388,7 @@
                                                 <div role="group" class="form-group">
                                                     <label class="d-block">Полное наименование</label>
                                                     <span>
-                                                            <input required th:name="legalName"
+                                                            <input th:name="legalName"
                                                                    th:value="${client.legalName}" type="text"
                                                                    id="legalName" class="form-control"
                                                                    placeholder="Введите ФИО/Наименование">
@@ -412,7 +422,7 @@
                                                 <div role="group" class="form-group">
                                                     <label class="d-block">E-mail</label>
                                                     <span>
-                                                            <input required th:name="email" th:value="${client.email}"
+                                                            <input th:name="email" th:value="${client.email}"
                                                                    id="email_legal" type="email"
                                                                    class="form-control" placeholder="Ваш email">
                                                         </span>
@@ -422,7 +432,7 @@
                                                 <div role="group" class="form-group">
                                                     <label class="d-block">Адрес фактический</label>
                                                     <span>
-                                                            <input required th:name="addressReal"
+                                                            <input th:name="addressReal"
                                                                    th:value="${client.addressReal}"
                                                                    id="addressReal_legal"
                                                                    type="text" class="form-control"
@@ -434,7 +444,7 @@
                                                 <div role="group" class="form-group">
                                                     <label class="d-block">Юридический адрес</label>
                                                     <span>
-                                                            <input required th:name="addressLegal"
+                                                            <input th:name="addressLegal"
                                                                    th:value="${client.addressLegal}" id="addressLegal"
                                                                    type="text" class="form-control"
                                                                    placeholder="Введите адрес">
@@ -456,7 +466,7 @@
                                                 <div role="group" class="form-group">
                                                     <label class="d-block">Откуда пришел</label>
                                                     <span>
-                                                            <input required th:name="fromComing"
+                                                            <input th:name="fromComing"
                                                                    th:value="${client.fromComing}" id="fromComing_legal"
                                                                    type="text" class="form-control"
                                                                    placeholder="Как или где узнали о нас?">
@@ -467,7 +477,7 @@
                                                 <div role="group" class="form-group">
                                                     <label class="d-block">Лимит</label>
                                                     <span>
-                                                            <input required th:name="limited"
+                                                            <input th:name="limited"
                                                                    th:value="${client.limited}" id="limit_legal"
                                                                    type="number" class="form-control"
                                                                    placeholder="9999999999,99">
@@ -490,7 +500,7 @@
                                                     <div role="group" class="form-group">
                                                         <label class="d-block">Примечание</label>
                                                         <span>
-                                                                <textarea required th:name="note"
+                                                                <textarea th:name="note"
                                                                           th:value="${client.note}"
                                                                           th:text="${client.note}" id="note_legal"
                                                                           class="form-control form-creat_textarea"></textarea>
@@ -513,7 +523,7 @@
                                                 <div role="group" class="form-group">
                                                     <label class="d-block">ИНН</label>
                                                     <span>
-                                                            <input required th:name="inn" th:value="${client.inn}"
+                                                            <input th:name="inn" th:value="${client.inn}"
                                                                    id="inn" type="text"
                                                                    plaсeholder="Введите ИНН"
                                                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
@@ -526,7 +536,7 @@
                                                 <div role="group" class="form-group">
                                                     <label class="d-block">КПП</label>
                                                     <span>
-                                                            <input required th:name="kpp" th:value="${client.kpp}"
+                                                            <input th:name="kpp" th:value="${client.kpp}"
                                                                    id="kpp" type="text"
                                                                    plaсeholder="Введите КПП"
                                                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
@@ -539,7 +549,7 @@
                                                 <div role="group" class="form-group">
                                                     <label class="d-block">ОГРН</label>
                                                     <span>
-                                                            <input required th:name="ogrn" th:value="${client.ogrn}"
+                                                            <input th:name="ogrn" th:value="${client.ogrn}"
                                                                    id="ogrn" type="text"
                                                                    plaсeholder="Введите ОГРН"
                                                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
@@ -552,7 +562,7 @@
                                                 <div role="group" class="form-group">
                                                     <label class="d-block">ФИО руководителя</label>
                                                     <span>
-                                                            <input required th:name="fullNameSupervisor"
+                                                            <input th:name="fullNameSupervisor"
                                                                    th:value="${client.fullNameSupervisor}"
                                                                    id="fullNameSupervisor" type="text"
                                                                    plaсeholder="ФИО руководителя"
@@ -564,7 +574,7 @@
                                                 <div role="group" class="form-group">
                                                     <label class="d-block">Должность руководителя</label>
                                                     <span>
-                                                            <input required th:name="jobTitleSupervisor"
+                                                            <input th:name="jobTitleSupervisor"
                                                                    th:value="${client.jobTitleSupervisor}"
                                                                    id="jobTitleSupervisor" type="text"
                                                                    class="form-control">
@@ -575,7 +585,7 @@
                                                 <div role="group" class="form-group">
                                                     <label class="d-block">В лице</label>
                                                     <span>
-                                                            <input required th:name="inFace" th:value="${client.inFace}"
+                                                            <input th:name="inFace" th:value="${client.inFace}"
                                                                    id="in_face" type="text"
                                                                    plaсeholder="В лице" class="form-control">
                                                         </span>
@@ -585,7 +595,7 @@
                                                 <div role="group" class="form-group">
                                                     <label class="d-block">На основании</label>
                                                     <span>
-                                                            <input required th:name="based" th:value="${client.based}"
+                                                            <input th:name="based" th:value="${client.based}"
                                                                    id="based" type="text"
                                                                    plaсeholder="На основании"
                                                                    class="form-control">
@@ -596,7 +606,7 @@
                                                 <div role="group" class="form-group">
                                                     <label class="d-block">Р/с</label>
                                                     <span>
-                                                            <input required th:name="rs" th:value="${client.rs}" id="rs"
+                                                            <input th:name="rs" th:value="${client.rs}" id="rs"
                                                                    type="text"
                                                                    plaсeholder="Введите р/с"
                                                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
@@ -609,7 +619,7 @@
                                                 <div role="group" class="form-group">
                                                     <label class="d-block">Банк</label>
                                                     <span>
-                                                            <input required th:name="bank" th:value="${client.bank}"
+                                                            <input th:name="bank" th:value="${client.bank}"
                                                                    id="bank" type="text"
                                                                    plaсeholder="Введите банк"
                                                                    class="form-control"
@@ -621,7 +631,7 @@
                                                 <div role="group" class="form-group">
                                                     <label class="d-block">К/с</label>
                                                     <span>
-                                                            <input required th:name="ks" th:value="${client.ks}" id="ks"
+                                                            <input th:name="ks" th:value="${client.ks}" id="ks"
                                                                    type="text"
                                                                    plaсeholder="Введите к/с"
                                                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
@@ -634,7 +644,7 @@
                                                 <div role="group" class="form-group">
                                                     <label class="d-block">БИК</label>
                                                     <span>
-                                                            <input required th:name="bik" th:value="${client.bik}"
+                                                            <input th:name="bik" th:value="${client.bik}"
                                                                    id="bik" type="text"
                                                                    plaсeholder="Введите БИК"
                                                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
@@ -647,7 +657,7 @@
                                                 <div class="form-group">
                                                     <label class="d-block">Дата создания</label>
                                                     <div class="vdpComponent vdpWithInput">
-                                                        <input required type="date" th:name="dateCreating"
+                                                        <input type="date" th:name="dateCreating"
                                                                th:value="${client.dateCreating}" id="dateCreating_legal"
                                                                placeholder="дд.мм.гггг">
                                                     </div>

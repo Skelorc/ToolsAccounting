@@ -105,7 +105,6 @@
                                                 <label class="d-block font size">Наименование в смете</label>
                                                 <div class="vdpComponent vdpWithInput">
                                                     <input class="form-control" style="margin-top: 35px;" th:value="${estimateName.name}" th:field="*{name}"
-
                                                            required="" type="text"
                                                            placeholder="Наименование в смете">
                                                 </div>
@@ -118,19 +117,18 @@
 
                                                 <label class="d-block font size">Группа</label>
                                                 <label class="d-block font">Группа</label>
-
-                                                <option class="vs__selected vs__dropdown-toggle"
-                                                        th:each="type : ${T(wns.constants.CategoryTools).values()}"
-                                                        th:text="${type.getData()}"
-                                                        th:value="${type}"
-                                                        th:selected="${type==estimateName.categoryTools}">
-                                                </option>
                                                 <select id="select_category_tool"
                                                         class="vs__selected-options main-secect__opions form-control">
                                                     <option class="vs__selected vs__dropdown-toggle"
                                                             th:field="*{categoryTools}"
                                                             value="" disabled>Выберите группу оборудования
                                                     </option>
+                                                <option class="vs__selected vs__dropdown-toggle"
+                                                        th:each="type : ${T(wns.constants.CategoryTools).values()}"
+                                                        th:text="${type.getData()}"
+                                                        th:value="${type}"
+                                                        th:selected="${type==estimateName.categoryTools}">
+                                                </option>
                                                 </select>
                                             </div>
                                         </div>

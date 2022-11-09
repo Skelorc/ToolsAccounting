@@ -108,7 +108,7 @@
                                 <tr>
                                     <th class="first-th">№</th>
                                     <th>Дата создания</th>
-                                    <th>Клиент</th>
+                                    <th>Покупатель</th>
                                     <th>Телефон</th>
                                     <th>Всего цена продажи</th>
                                     <th>Сотрудник</th>
@@ -126,7 +126,7 @@
                                         </div>
                                     </td>
                                     <td data-label="Дата создания" th:utext="${#temporals.format(status.created, 'dd-MM-yyyy HH:mm')}"></td>
-                                    <td data-label="Исполнитель" th:utext="${status.executor}"></td>
+                                    <td data-label="Покупатель" th:utext="${status.executor}"></td>
                                     <td data-label="Телефон" th:utext="${status.phone_number}"></td>
                                     <td data-label="Всего цена продажи" th:utext="${status.priceSell}"></td>
                                     <td data-label="Сотрудник" th:utext="${status.employee}"></td>

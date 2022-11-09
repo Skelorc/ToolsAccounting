@@ -92,29 +92,6 @@
                                     <div class="mb-3 text-right">
                                         <a href="/" class="btn btn-primary width light-blue">Назад</a>
                                     </div>
-                                   <!-- <div class="mb-3 text-right">
-                                        <a href="#" class="btn btn-primary width green">Сохранить</a>
-                                    </div>
-                                    <div class="mb-3 text-right">
-                                        <a href="#" class="btn btn-primary width red">Удалить</a>
-                                    </div>
-                                    <div class="mb-3 text-right">
-                                        <a href="#" class="btn btn-primary width orange">Обновить</a>
-                                    </div>
-                                    <div class="mb-3 text-right">
-                                        <a href="#" class="btn btn-primary width light-blue">Журнал</a>
-                                    </div>
-                                    <div class="mb-3 text-right">
-                                        <a href="#" class="btn btn-primary width grey">Документы</a>
-                                    </div>
-                                    <div class="mb-3 text-right">
-                                        <a href="#" class="btn btn-primary width orange">Выдать
-                                            оборудование</a>
-                                    </div>
-                                    <div class="mb-3 text-right">
-                                        <a href="#" class="btn btn-primary width light-blue">Единая
-                                            система</a>
-                                    </div>-->
                                 </div>
 
                                 <div class="p-3 edit-container d-block col-8 col-md-12">
@@ -122,8 +99,8 @@
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Статус</label>
-                                                <select id="status" name="status_tool" class="vs__selected-options main-secect__opions form-control">
-                                                    <option class="vs__selected vs__dropdown-toggle" value="" disabled="">Выберите статус проекта
+                                                <select id="status" name="status_tool" class="vs__selected-options main-secect__opions form-control" required>
+                                                    <option class="vs__selected vs__dropdown-toggle">Выберите статус проекта
                                                     </option>
                                                     <option class="vs__selected vs__dropdown-toggle" th:each="status: ${T(wns.constants.StatusProject).values()}" th:value="${status}" th:text="${status.getStatus()}"></option>
                                                 </select>
@@ -133,7 +110,7 @@
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Наименование</label>
                                                 <span>
-                                                    <input id="name" required placeholder="Имя проекта" name="fromComing" type="text" class="form-control" >
+                                                    <input id="name"  placeholder="Имя проекта" name="fromComing" type="text" class="form-control" required>
                                                 </span>
                                             </div>
                                         </div>
@@ -141,7 +118,7 @@
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Начало</label>
                                                 <div class="vdpComponent vdpWithInput">
-                                                    <input id="start" required="required" class="form-control" type="datetime-local" placeholder="дд.мм.гггг">
+                                                    <input id="start" class="form-control" type="datetime-local" placeholder="дд.мм.гггг" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -149,7 +126,7 @@
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Окончание</label>
                                                 <div class="vdpComponent vdpWithInput">
-                                                    <input id="end" required="required" class="form-control" type="datetime-local" placeholder="дд.мм.гггг">
+                                                    <input id="end"  class="form-control" type="datetime-local" placeholder="дд.мм.гггг" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -163,8 +140,8 @@
                                     <div class="row form-creat__half-wrapp">
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block size">Тип аренды</label>
-                                                <select class="vs__selected-options main-secect__opions form-control" id="typeLease">
+                                                <label class="d-block size">Собственник</label>
+                                                <select class="vs__selected-options main-secect__opions form-control" id="typeLease" required>
                                                     <option class="vs__selected vs__dropdown-toggle" th:each="type: ${T(wns.constants.TypeLease).values()}" th:value="${type}" th:text="${type.getType()}"></option>
                                                 </select>
                                             </div>
@@ -172,7 +149,7 @@
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Класс</label>
-                                                <select class="vs__selected-options main-secect__opions form-control" id="classification">
+                                                <select class="vs__selected-options main-secect__opions form-control" id="classification" required>
                                                     <option class="vs__selected vs__dropdown-toggle" th:each="classification: ${T(wns.constants.ClassificationProject).values()}" th:value="${classification}" th:text="${classification.getValue()}"></option>
                                                 </select>
                                             </div>
@@ -181,7 +158,23 @@
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Создан</label>
                                                 <div class="vdpComponent vdpWithInput">
-                                                    <input id="created" class="form-control" type="datetime-local" placeholder="дд.мм.гггг">
+                                                    <input id="created" class="form-control"  type="datetime-local" placeholder="дд.мм.гггг">
+                                                    <script th:inline="javascript">
+                                                        var date = new Date();
+                                                        var day =   date.getDate();
+                                                        var month = date.getMonth()+1;
+                                                        var year =  date.getFullYear();
+                                                        var hour =  date.getHours();
+                                                        var minutes =  date.getMinutes();
+
+                                                        if(day<10) day = "0"+day;
+                                                        if(month<10) month = "0"+month;
+                                                        if(hour<10) hour = "0"+hour;
+                                                        if(minutes<10) minutes = "0"+minutes;
+
+                                                        var needDate = year+"-"+month+"-"+day+"T"+hour + ":" + minutes;
+                                                        document.getElementById('created').value = needDate;
+                                                    </script>
                                                 </div>
                                             </div>
                                         </div>
@@ -342,7 +335,7 @@
                                                 <th>Коментарий</th>
                                                 <th>Характеристики</th>
                                                 <th>Состояние</th>
-                                                <th>Цена</th>
+                                                <th>Стоимость за смену</th>
                                                 <th>Себестоимость</th>
                                                 <th>Комплект</th>
                                             </tr>
@@ -364,8 +357,8 @@
                                                     <td data-label="Комментарий" th:utext="${tool.comment}"></td>
                                                     <td data-label="Характеристики" th:utext="${tool.characteristics}"></td>
                                                     <td data-label="Состояние" th:utext="${tool.state}"></td>
-                                                    <td data-label="Цена" class="price-tool" th:utext="${tool.costPrice}"></td>
-                                                    <td data-label="Себестоимость" th:utext="${tool.priceSell}"></td>
+                                                    <td data-label="Цена" class="price-tool" th:utext="${tool.priceByDay}"></td>
+                                                    <td data-label="Себестоимость" th:utext="${tool.costPrice}"></td>
                                                     <td data-label="Комплект" th:utext="${tool.equip}"></td>
                                                 </tr>
                                             </tbody>
@@ -403,7 +396,6 @@
 
                                 </div>
                             </div>
-                    </div>
                 </main>
                 <div th:insert="fragments/footer.html"></div>
             </div>

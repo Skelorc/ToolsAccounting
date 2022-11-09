@@ -16,6 +16,8 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import wns.services.AuthService;
 import wns.utils.MyAuthenticationFailureHandler;
 
+import java.security.SecureRandom;
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {

@@ -2,16 +2,13 @@ package wns.services;
 
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import wns.constants.Messages;
-import wns.constants.Roles;
+import wns.entity.Owner;
 import wns.entity.User;
 import wns.dto.UserDTO;
 import wns.repo.UsersRepo;
-import wns.utils.Mapper;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -45,7 +42,18 @@ public class UserService  implements MainService {
     }
 
     public void updateUser(User user) {
-        usersRepo.save(user);
+        User userFromDb = usersRepo.findById(user.getId()).get();
+        userFromDb.setUsername(user.getUsername());
+        userFromDb.setFullName(user.getFullName());
+        userFromDb.setPhoneNumber(user.getPhoneNumber());
+        if(!user.getPassword().isEmpty())
+        {
+            if(!passwordEncoder.matches(user.getPassword(),userFromDb.getPassword())) {
+                String encode = passwordEncoder.encode(user.getPassword());
+                userFromDb.setPassword(encode);
+            }
+        }
+        usersRepo.save(userFromDb);
     }
 
     public void deleteUser(long id) {

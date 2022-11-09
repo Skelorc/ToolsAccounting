@@ -6,7 +6,9 @@ import lombok.NoArgsConstructor;
 import wns.constants.CategoryTools;
 import wns.constants.EstimateSection;
 import wns.constants.TypeTools;
+import wns.entity.Category;
 import wns.entity.Estimate;
+import wns.entity.Owner;
 import wns.entity.Tools;
 
 import javax.persistence.*;
@@ -18,10 +20,10 @@ import java.time.Period;
 @AllArgsConstructor
 public class ToolsEstimateDTO {
     private long id;
-    private TypeTools typeTools;
+    private Owner typeTools;
     private String name;
     private String barcode;
-    private CategoryTools category;
+    private Category category;
     private String model;
     private EstimateSection section;
     private int amount;
@@ -33,7 +35,7 @@ public class ToolsEstimateDTO {
 
     public ToolsEstimateDTO(Tools tools, Estimate estimate) {
         this.id = tools.getId();
-        this.typeTools = tools.getTypeTools();
+        this.typeTools = tools.getOwner();
         this.name = tools.getName();
         this.barcode = tools.getBarcode();
         this.category = tools.getCategory();

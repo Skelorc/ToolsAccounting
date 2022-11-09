@@ -1,12 +1,12 @@
 package wns.services;
 
 import lombok.AllArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import wns.constants.Messages;
 import wns.constants.TypeClients;
 import wns.dto.ClientDTO;
 import wns.entity.Client;
+import wns.entity.Owner;
 import wns.repo.ClientsRepo;
 
 import java.util.List;

@@ -22,7 +22,7 @@ import java.util.Set;
 @EqualsAndHashCode
 public class ToolsDTO {
     private long id;
-    private TypeTools typeTools;
+    private String owner;
     private String name;
     private String barcode;
     private String category;
@@ -59,10 +59,10 @@ public class ToolsDTO {
 
     public ToolsDTO(Tools tools) {
         this.id = tools.getId();
-        this.typeTools = tools.getTypeTools();
+        this.owner = tools.getOwner().getName();
         this.name = tools.getName();
         this.barcode = tools.getBarcode();
-        this.category = tools.getCategory().getData();
+        this.category = tools.getCategory().getName();
         this.model = tools.getModel();
         this.serialNumber = tools.getSerialNumber();
         this.characteristics = tools.getCharacteristics();
