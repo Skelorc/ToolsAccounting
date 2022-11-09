@@ -31,4 +31,9 @@ public class CategoryService implements MainService {
     public Category findByName(String name) {
         return categoryRepo.findByNameIgnoreCase(name);
     }
+
+    @Override
+    public void delete(long id) {
+        categoryRepo.deleteById(id);
+    }
 }

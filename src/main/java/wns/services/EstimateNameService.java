@@ -39,6 +39,7 @@ public class EstimateNameService implements MainService {
         repo.save(estimateName);
     }
 
+    @Override
     public void delete(long id) {
         repo.deleteById(id);
     }

@@ -62,7 +62,7 @@ public class ProjectService implements MainService {
             for (Tools tool : tools) {
                 deleteToolFromProject(tool);
             }
-            projectRepo.delete(project);
+            delete(project.getId());
         }
     }
 
@@ -170,5 +170,10 @@ public class ProjectService implements MainService {
 
     public void save(Project project) {
         projectRepo.save(project);
+    }
+
+    @Override
+    public void delete(long id) {
+        projectRepo.deleteById(id);
     }
 }

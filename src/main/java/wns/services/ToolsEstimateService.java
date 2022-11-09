@@ -59,4 +59,9 @@ public class ToolsEstimateService implements MainService{
                 .filter(x -> x.getName().equals(tool.getName()))
                 .findAny().ifPresent(toolsEstimateRepo::delete);
     }
+
+    @Override
+    public void delete(long id) {
+        toolsEstimateRepo.deleteById(id);
+    }
 }

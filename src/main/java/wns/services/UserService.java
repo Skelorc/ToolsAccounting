@@ -56,8 +56,8 @@ public class UserService  implements MainService {
         usersRepo.save(userFromDb);
     }
 
-    public void deleteUser(long id) {
+    @Override
+    public void delete(long id) {
         usersRepo.deleteById(id);
     }
-
-   }
+}

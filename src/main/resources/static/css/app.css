@@ -31235,7 +31235,6 @@ h3,h4,h5 {
 .nav-header {
     padding: 33px 25px;
     background-color: #16171a;
-    background-image: url(patterns/header-profile.png)
 }
 
 .caret {
@@ -32573,7 +32572,6 @@ button.dim:active:before {
 }
 
 .chat-activity-list::-webkit-resizer {
-    background-image: url();
     background-repeat: no-repeat;
     width: 4px;
     height: 0

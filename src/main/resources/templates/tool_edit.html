@@ -94,7 +94,8 @@
                                     <a href="#" class="btn btn-primary width green">Сохранить</a>
                                 </div>
                             </div>
-                            <form th:action="@{/tools/edit}" method="post" th:object="${tool}">
+                            <form th:action="@{/tools/edit/{id}(id=${tool.id})}" method="post" th:object="${tool}">
+                                <input type="text" hidden="hidden" th:value="${tool.project}" th:field="*{project}">
                                 <div class="p-3 edit-container d-block col-8 col-md-12">
                                     <div class="row form-creat__half-wrapp">
                                         <div class=" form-creat__half_two-column">
@@ -208,9 +209,10 @@
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Статус</label>
+                                                <input type="text" hidden="hidden" th:value="${tool.status}" th:field="*{status}">
                                                 <select id="select_status_tool" name="status_tool"
                                                         class="vs__selected-options main-secect__opions form-control">
-                                                    <option class="vs__selected vs__dropdown-toggle" th:field="*{status}"
+                                                    <option class="vs__selected vs__dropdown-toggle" th:field="*{status.statusTools}"
                                                             value="" disabled>Выберите статус
                                                     </option>
                                                     <option class="vs__selected vs__dropdown-toggle"
@@ -425,8 +427,6 @@
                                 <div class="mt-4 mb-4 col-4 save-btn">
                                     <button type="submit" id="save_client"
                                             class="btn btn-lg btn-primary btn-primary_save w-100">
-                                        <i class="fa fa-shopping-cart">
-                                        </i>
                                         Обновить
                                     </button>
                                 </div>

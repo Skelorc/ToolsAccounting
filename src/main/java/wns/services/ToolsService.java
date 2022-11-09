@@ -49,10 +49,9 @@ public class ToolsService implements MainService {
             return Messages.TOOLS_EXISTS;
     }
 
-    public Messages updateTool(Tools tools)
+    public void updateTool(Tools tools)
     {
-        System.out.println(tools);
-        return Messages.OK;
+        toolsRepo.save(tools);
     }
 
     public Messages changeStatus(StatusToolDTO statusToolDTO) {
@@ -163,4 +162,8 @@ public class ToolsService implements MainService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public void delete(long id) {
+        toolsRepo.deleteById(id);
+    }
 }
