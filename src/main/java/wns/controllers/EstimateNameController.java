@@ -43,18 +43,17 @@ public class EstimateNameController {
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable long id, Model model)
     {
-        EstimateName estimateName = estimateNameService.getNameEstimateById(id);
-        model.addAttribute("estimateName",estimateName);
+        model.addAttribute("estimateName",estimateNameService.getNameEstimateById(id));
         return "estimate_name_edit";
     }
 
     @PostMapping("/edit/{id}")
-    public String update(@RequestAttribute("estimateNameDTO") EstimateNameDTO estimateNameDTO,@PathVariable("id") long id)
+    public String update(@ModelAttribute("estimateName") EstimateName estimateName)
     {
-        System.out.println(estimateNameDTO);
-        return "redirect:/estimate-name/edit/"+id;
+        estimateNameService.save(estimateName);
+        return "redirect:/estimate-name";
     }
-    @PostMapping("delete/{id}")
+    @PostMapping("/delete/{id}")
     public String delete(@PathVariable("id") long id)
     {
         estimateNameService.delete(id);

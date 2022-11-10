@@ -88,7 +88,7 @@
                         <div class="btn-pimary__groups mt-3 mb-3">
                             <div class="btn-pimary__groups-wrapper vidacha-sozdach mb-3">
                                 <div class="mb-3 text-right">
-                                    <span class="btn-pimary__groups_title">Ассоциативный массив</span>
+                                    <span class="btn-pimary__groups_title">Владельцы</span>
                                 </div>
                             </div>
                         </div>
@@ -98,9 +98,7 @@
                             <form th:action="@{/owners}" method="post" th:object="${owner}"
                                   style="margin: auto; width: 100%;">
                                 <div class="p-3 col-8 col-md-12 edit-container d-block">
-
                                     <div class="p-3 col-8 col-md-12 col-sm-6 edit-container d-block">
-
                                         <div class="row form-creat__half-wrapp">
                                             <div class=" form-creat__half_two-column col-12">
                                                 <div role="group col-12" class="form-group">
@@ -128,7 +126,7 @@
                                     </div>
                                     <div class="mt-4 mb-4 col-6 save-btn">
                                         <div class="mt-4 mb-4 col-6 save-btn">
-                                            <div class="mb-3 text-right">
+                                            <div class="mb-3 text-center">
                                                 <button type="submit"
                                                         class="btn btn-primary width btn-add_vidacha green">Сохранить
                                                 </button>
@@ -137,29 +135,6 @@
                                     </div>
                                 </div>
                             </form>
-                            <!--<div class="btn__under-table_wrapp col-6 order-lg-1">
-                                <div class="btn__under-table">
-                                    <div data-v-e551daac="" class="mb-3 text-right">
-                                        <a data-v-e551daac="" href="#"
-                                           class="btn btn-primary width-primary btn-add_vidacha grey">Единый список</a>
-                                    </div>
-                                    <div data-v-e551daac="" class="mb-3 text-right">
-                                        <a data-v-e551daac="" href="#"
-                                           class="btn btn-primary width-primary btn-open_vidacha  grey">Просмотр по
-                                            группам</a>
-                                    </div>
-                                    <div data-v-e551daac="" class="mb-3 text-right">
-                                        <a data-v-e551daac="" href="#"
-                                           class="btn btn-primary width-primary btn-delate_vidacha grey">Просмотр по
-                                            разделам сметы</a>
-                                    </div>
-                                    <div data-v-e551daac="" class="mb-3 text-right">
-                                        <a data-v-e551daac="" href="#"
-                                           class="btn btn-primary width-primary btn-update_vidacha  grey">Сбросить
-                                            фильтр</a>
-                                    </div>
-                                </div>
-                            </div>-->
 
                             <div class="custom-ll__table table-responsive">
                                 <table class="table delivery w-table h-table in4dr-form transparent">
@@ -205,6 +180,7 @@
                                     </li>
                                 </ul>
                             </nav>
+                        </div>
                         </div>
                 </main>
                 <div th:insert="fragments/footer.html"></div>

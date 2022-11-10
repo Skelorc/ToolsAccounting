@@ -9,20 +9,28 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class OwnerService implements MainService{
+public class OwnerService implements MainService {
     private final OwnerRepo ownerRepo;
+
     @Override
     public List<Owner> getAll() {
         return ownerRepo.findAll();
     }
 
-    public Owner getById(long id)
-    {
+    public Owner getById(long id) {
         return ownerRepo.findById(id).get();
     }
 
     public void save(Owner owner) {
-        ownerRepo.save(owner);
+        if (!ownerRepo.existsById(owner.getId()))
+            ownerRepo.save(owner);
+        else {
+            Owner old_owner = ownerRepo.findById(owner.getId()).get();
+            old_owner.setName(owner.getName());
+            old_owner.setCode(owner.getCode());
+            old_owner.setTools(owner.getTools());
+            ownerRepo.save(old_owner);
+        }
     }
 
     public Owner findByName(String name) {

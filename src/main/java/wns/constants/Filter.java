@@ -27,7 +27,9 @@ public enum Filter {
     TEST("Тестовый"),
     SUBLEASE_PROJECT("Субаренда"),
     //ассоциативный массив
-    ESTIMATE_NAME("Ассоциативный массив");
+    ESTIMATE_NAME("Ассоциативный массив"),
+    //Категория
+    CATEGORY("Категория");
 
     private final String value;
 

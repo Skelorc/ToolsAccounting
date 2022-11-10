@@ -22,6 +22,7 @@ public class Category {
     private long id;
     private String name;
     private String code;
+    private long numberTool;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Tools> tools = new ArrayList<>();
@@ -38,6 +39,7 @@ public class Category {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", code='" + code + '\'' +
+                ", numberTool='" + numberTool + '\'' +
                 '}';
     }
 

@@ -25,6 +25,7 @@ public class PageableFilterService {
     private final StatusService statusService;
     private final EstimateNameService estimateNameService;
     private final ClientsService clientsService;
+    private final CategoryService categoryService;
 
     public Page<Object> getPageByFilter(PageDataDTO pageDataDTO) {
         List<Object> list_data = new ArrayList<>();
@@ -102,6 +103,9 @@ public class PageableFilterService {
                 break;
             case ESTIMATE_NAME:
                 list.addAll(estimateNameService.getAll());
+                break;
+            case CATEGORY:
+                list.addAll(categoryService.getAll().stream().map(CategoryDTO::new).collect(Collectors.toList()));
                 break;
             case WITHOUT_FILTER:
                 if (paginationConst.equals(PaginationConst.PROJECT)) {

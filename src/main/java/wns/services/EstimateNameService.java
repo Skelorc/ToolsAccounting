@@ -10,6 +10,7 @@ import wns.entity.Tools;
 import wns.repo.EstimateNameRepo;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -26,9 +27,13 @@ public class EstimateNameService implements MainService {
     }
 
     public void save(EstimateName dto) {
-        EstimateName byName = repo.findByName(dto.getName());
-        if (byName == null) {
-            EstimateName estimateName = modelMapper.map(dto, EstimateName.class);
+        if (!repo.existsById(dto.getId())) {
+            repo.save(dto);
+        } else {
+            EstimateName estimateName = repo.findById(dto.getId()).get();
+            estimateName.setName(dto.getName());
+            estimateName.setCategoryTools(dto.getCategoryTools());
+            estimateName.setListTools(dto.getListTools());
             repo.save(estimateName);
         }
     }

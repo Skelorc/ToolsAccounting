@@ -121,7 +121,8 @@
                                                     <option class="vs__selected vs__dropdown-toggle"
                                                             th:each="owner : ${list_owners}"
                                                             th:value="${owner.id}"
-                                                            th:text="${owner.name}">
+                                                            th:text="${owner.name}"
+                                                            th:data-id="${owner.code}">
                                                     </option>
                                                 </select>
                                             </div>
@@ -155,7 +156,8 @@
                                                     <option class="vs__selected vs__dropdown-toggle"
                                                             th:each="category : ${list_category}"
                                                             th:value="${category.id}"
-                                                            th:text="${category.name}">
+                                                            th:text="${category.name}"
+                                                            th:data-id="${category.code}">
                                                     </option>
                                                 </select>
                                             </div>

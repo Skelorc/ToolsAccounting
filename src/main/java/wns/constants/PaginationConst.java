@@ -12,7 +12,7 @@ public enum PaginationConst {
     STATUS,
     ESTIMATE,
     ESTIMATE_NAME,
-    CHANGE;
+    CHANGE, CATEGORY;
 
     @Override
     public String toString() {

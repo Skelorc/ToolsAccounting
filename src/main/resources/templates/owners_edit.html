@@ -5,7 +5,8 @@
 <head class="head">
     <title>Владельцы - Редактирование</title>
     <div th:replace="fragments/head :: header"></div>
-    <!-- <meta charset="UTF-8">
+
+   <!-- <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="robots" content="index, follow">
     <meta name="author" content="">
@@ -71,9 +72,7 @@
     <script src="/static/js/jquery.js" th:src="@{/js/jquery.js}"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"  th:src="@{/js/jquery.modal.js}"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" /> -->
-
-    <div th:replace="fragments/head :: header"></div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" />-->
 
 </head>
 
@@ -90,14 +89,14 @@
                         <div class="btn-pimary__groups mt-3 mb-3">
                             <div class="btn-pimary__groups-wrapper vidacha-sozdach mb-3">
                                 <div class="mb-3 text-right">
-                                    <span class="btn-pimary__groups_title">Владельцы</span>
+                                    <span class="btn-pimary__groups_title">Владелец</span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="row">
 
-                            <form action="/estimate-name/edit" method="post" th:object="${owner}" style="margin: auto; width: 100%;">
+                            <form th:action="@{/owners/edit/{id}(id=${owner.id})}" method="post" th:object="${owner}" style="margin: auto; width: 100%;">
                                 <div class="p-3 col-8 col-md-12 col-sm-6 edit-container d-block" style="margin: 0 auto;">
                                     <div class="row form-creat__half-wrapp">
                                         <div class=" form-creat__half_two-column col-12">
@@ -138,9 +137,11 @@
                             </form>
                         </div>
                         <div class="mb-3 text-center">
-                            <button id="remove_project" th:href="@{/owners/delete/{id}(id=owner.id)}"
+                            <form th:action="@{/owners/delete/{id}(id=${owner.id})}" method="post">
+                            <button type="submit"
                                     class="btn btn-primary width btn-add_vidacha red">Удалить владельца
                             </button>
+                            </form>
                         </div>
                     </div>
                 </main>
