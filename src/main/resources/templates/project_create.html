@@ -16,21 +16,6 @@
    <meta property="og:image:height" content="442">
    <meta property="og:description" content="">
    <meta property="og:site_name" content="Site-name">
-
-   <link rel="apple-touch-icon" sizes="57x57" href="https://lk.rentinhand.ru/img/icons/apple-icon-57x57.png">
-   <link rel="apple-touch-icon" sizes="60x60" href="https://lk.rentinhand.ru/img/icons/apple-icon-60x60.png">
-   <link rel="apple-touch-icon" sizes="72x72" href="https://lk.rentinhand.ru/img/icons/apple-icon-72x72.png">
-   <link rel="apple-touch-icon" sizes="76x76" href="https://lk.rentinhand.ru/img/icons/apple-icon-76x76.png">
-   <link rel="apple-touch-icon" sizes="114x114" href="https://lk.rentinhand.ru/img/icons/apple-icon-114x114.png">
-   <link rel="apple-touch-icon" sizes="120x120" href="https://lk.rentinhand.ru/img/icons/apple-icon-120x120.png">
-   <link rel="apple-touch-icon" sizes="144x144" href="https://lk.rentinhand.ru/img/icons/apple-icon-144x144.png">
-   <link rel="apple-touch-icon" sizes="152x152" href="https://lk.rentinhand.ru/img/icons/apple-icon-152x152.png">
-   <link rel="apple-touch-icon" sizes="180x180" href="https://lk.rentinhand.ru/img/icons/apple-icon-180x180.png">
-   <link rel="icon" type="image/png" sizes="192x192"
-   href="https://lk.rentinhand.ru/img/icons/android-icon-192x192.png">
-   <link rel="icon" type="image/png" sizes="32x32" href="https://lk.rentinhand.ru/img/icons/favicon-32x32.png">
-   <link rel="icon" type="image/png" sizes="96x96" href="https://lk.rentinhand.ru/img/icons/favicon-96x96.png">
-   <link rel="icon" type="image/png" sizes="16x16" href="https://lk.rentinhand.ru/img/icons/favicon-16x16.png">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="author" content="Andrey">
    <meta name="description" content="MAD DOG">
@@ -72,7 +57,8 @@
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"  th:src="@{/js/jquery.modal.js}"></script>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" /> -->
 
-
+    <script type="text/javascript" src="../static/js/bootstrap-datepicker.js"></script>
+    <link rel="stylesheet" href="../static/css/datepicker.css">
 </head>
 
 <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
@@ -116,20 +102,24 @@
                                         </div>
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
-                                                <label class="d-block size">Начало</label>
+                                                <label class="d-block size">Выберите рабочие смены</label>
                                                 <div class="vdpComponent vdpWithInput">
-                                                    <input id="start" class="form-control" type="datetime-local" placeholder="дд.мм.гггг" required>
+                                                    <input id="word_date"  class="form-control form-control-date" required>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class=" form-creat__half_two-column">
-                                            <div role="group" class="form-group">
-                                                <label class="d-block size">Окончание</label>
-                                                <div class="vdpComponent vdpWithInput">
-                                                    <input id="end"  class="form-control" type="datetime-local" placeholder="дд.мм.гггг" required>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <script type="text/javascript">
+                                            $(document).ready(function(){
+                                                $('.form-control-date').datepicker({
+                                                    weekStart: 1,
+                                                    multidate: true,
+                                                    isRTL: false,
+                                                    format: 'dd.mm.yyyy',
+                                                    language: 'ru'
+                                                });
+
+                                            }); 
+                                        </script>
                                         <div class=" form-creat__half_two-column">
                                             <div class="form-group">
                                                 <label class="d-block size">Укажите ссылки на фото через запятую</label>
@@ -158,7 +148,7 @@
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Создан</label>
                                                 <div class="vdpComponent vdpWithInput">
-                                                    <input id="created" class="form-control"  type="datetime-local" placeholder="дд.мм.гггг">
+                                                    <input id="created" class="form-control"  type="datetime-local" placeholder="дд.мм.гггг" required>
                                                     <script th:inline="javascript">
                                                         var date = new Date();
                                                         var day =   date.getDate();

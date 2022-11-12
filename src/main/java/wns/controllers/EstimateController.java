@@ -1,6 +1,6 @@
 package wns.controllers;
 
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import wns.constants.Messages;
 import wns.constants.StatusProject;
 import wns.dto.EstimateDTO;
-import wns.dto.EstimateNameDTO;
 import wns.entity.Estimate;
 import wns.entity.Project;
 import wns.services.EstimateNameService;
@@ -17,14 +16,25 @@ import wns.services.ProjectService;
 import wns.utils.ExcelUtil;
 import wns.utils.ResponseHandler;
 
+import java.nio.file.FileSystems;
+
 @Controller
 @RequestMapping("estimate")
-@AllArgsConstructor
 public class EstimateController {
     private final EstimateNameService estimateNameService;
     private final EstimateService estimateService;
     private final ProjectService projectService;
     private final ExcelUtil excelUtil;
+
+    @Value("${fileurl}")
+    private String fileUrl;
+
+    public EstimateController(EstimateNameService estimateNameService, EstimateService estimateService, ProjectService projectService, ExcelUtil excelUtil) {
+        this.estimateNameService = estimateNameService;
+        this.estimateService = estimateService;
+        this.projectService = projectService;
+        this.excelUtil = excelUtil;
+    }
 
     @GetMapping("/create/{id}")
     public String showEstimateByProject(@PathVariable("id") long id, Model model)
@@ -56,7 +66,7 @@ public class EstimateController {
     {
         Estimate estimate = dto.createEstimateFromDTO(projectService.getById(id));
         String file_path = excelUtil.createDocument(estimate);
-        return ResponseHandler.generateResponse(Messages.RETURN_FILE_URL,"/"+file_path);
+        return ResponseHandler.generateResponse(Messages.RETURN_FILE_URL,FileSystems.getDefault().getSeparator()+ fileUrl + file_path);
     }
 
 

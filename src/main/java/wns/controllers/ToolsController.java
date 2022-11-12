@@ -31,7 +31,6 @@ public class ToolsController {
     private final PageableFilterService pageableFilterService;
     private final OwnerService ownerService;
     private final CategoryService categoryService;
-    private final Logger logger = LoggerFactory.getLogger(ToolsController.class);
 
     @GetMapping()
     public String show(@RequestParam(value = "page", required = false) Optional<Integer> page,
@@ -81,8 +80,6 @@ public class ToolsController {
         toolsService.updateTool(tools);
         return "redirect:/tools";
     }
-
-
 
     @PostMapping("/change-status")
     @ResponseBody

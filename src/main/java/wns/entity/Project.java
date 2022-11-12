@@ -10,10 +10,9 @@ import wns.constants.StatusProject;
 import wns.constants.TypeLease;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name ="projects")
@@ -80,6 +79,11 @@ public class Project{
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "estimate_id",referencedColumnName = "id")
     private Estimate estimate;
+
+    @ElementCollection(fetch = FetchType.LAZY)
+    @CollectionTable(name = "dates", joinColumns = @JoinColumn(name = "project_id"))
+    @Column(name="dates_id", columnDefinition="date")
+    private List<LocalDate> dates = new ArrayList<>();
 
     @Override
     public boolean equals(Object o) {

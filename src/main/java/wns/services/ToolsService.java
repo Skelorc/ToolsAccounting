@@ -3,6 +3,7 @@ package wns.services;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import wns.constants.DateCalendar;
 import wns.constants.Messages;
 import wns.constants.StatusTools;
 import wns.constants.TypeTools;
@@ -10,7 +11,9 @@ import wns.dto.*;
 import wns.entity.*;
 import wns.repo.ToolsRepo;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,9 +44,11 @@ public class ToolsService implements MainService {
             tools.setStatus(StatusToolDTO.createStatusWithTools(tools, statusTools));
             tools.setAmount(1);
             tools.setCategory(category);
+            category.setNumberTool(category.getNumberTool()+1);
             tools.setOwner(owner);
             tools.setEstimateName(estimateName);
             toolsRepo.save(tools);
+            categoryService.save(category);
             return Messages.TOOLS_CREATE;
         } else
             return Messages.TOOLS_EXISTS;
@@ -167,4 +172,6 @@ public class ToolsService implements MainService {
     public void delete(long id) {
         toolsRepo.deleteById(id);
     }
+
+
 }

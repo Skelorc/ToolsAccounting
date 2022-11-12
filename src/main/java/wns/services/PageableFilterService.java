@@ -108,6 +108,8 @@ public class PageableFilterService {
                 list.addAll(categoryService.getAll().stream().map(CategoryDTO::new).collect(Collectors.toList()));
                 break;
             case WITHOUT_FILTER:
+                if(paginationConst==null)
+                    break;
                 if (paginationConst.equals(PaginationConst.PROJECT)) {
                     list.addAll(projectService.getAll()
                             .stream()

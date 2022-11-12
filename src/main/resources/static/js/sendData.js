@@ -449,6 +449,10 @@ $(document).ready(function () {
             $("#alert_message").text('Укажите Имя проекта');
             $("#ex1").modal();
         }
+        else if($("#status").val() == ""){
+            $("#alert_message").text('Укажите статус проекта');
+            $("#ex1").modal();
+        }
         else if($("#start").val() == ""){
             $("#alert_message").text('Укажите дату начала проекта');
             $("#ex1").modal();
@@ -694,6 +698,10 @@ $(document).ready(function () {
             dataJSON['paginationConst'] = 'ESTIMATE_NAME';
             dataJSON['filter'] = 'ESTIMATE_NAME';
         }
+        else if(window.location.pathname.indexOf('category') > -1){
+            dataJSON['paginationConst'] = 'CATEGORY';
+            dataJSON['filter'] = 'CATEGORY';
+        }
         else if(window.location.pathname == "/") dataJSON['paginationConst'] = 'PROJECT';
 
 
@@ -765,6 +773,25 @@ $(document).ready(function () {
                                     '    <td data-label="Примечание">' + item.note + '</td>\n' +
                                     '    <td data-label="Тип">' + item.classification_name + '</td>\n' +
                                     '    <td data-label="Открыть смету"><a href="/estimate/create/' + item.id + '" title="Просмотр/редактирование сметы">Смета</a></td>\n' +
+                                    '</tr>';
+                            });
+                            $('table tbody:last').html(tableTR);
+                        }
+                        else if(dataJSON.paginationConst == 'CATEGORY' && dataJSON.filter == 'CATEGORY') {
+                            content.forEach(function (item, i, arr) {
+                                tableTR += '<tr>\n' +
+                                    '    <td class="column-table">\n' +
+                                    '        <div class="text-center" id="ids_tools">\n' +
+                                    '            <input type="hidden" class="id_tool" value="8">\n' +
+                                    '            <span class="tools-td-text table-td-text column-table_checkbox-number tool_id">'+item.id+'</span>\n' +
+                                    '        </div>\n' +
+                                    '    </td>\n' +
+                                    '    <td data-label="Название категории" class="align-middle">\n' +
+                                    '        <a class="nav-link" style="font-size: medium" href="/category/edit/'+item.id+'/">'+item.name+'</a>\n' +
+                                    '    </td>\n' +
+                                    '    <td data-label="Код" class="align-middle">\n' +
+                                    '        <h1 class="display-6" style="font-size: medium">'+item.code+'</h1>\n' +
+                                    '    </td>\n' +
                                     '</tr>';
                             });
                             $('table tbody:last').html(tableTR);
@@ -1415,7 +1442,7 @@ $(document).ready(function () {
 
     $('.add_transport').click(function (e) {
         var tableCell = '<tr class="sat_item">\n' +
-            '    <td class="first-th remove_transport" style="cursor: pointer; background: color: #fff; font-size: 20px;">-</td>\n' +
+            '    <td class="first-th remove_transport" style="cursor: pointer; background: #1ab394; color: #fff; font-size: 20px;">-</td>\n' +
             '    <td><input type="text" class="form-control__table fIn0_t" value="" placeholder="Наименование" style="font-size: 14px;"></td>\n' +
             '    <td><input type="text" class="form-control__table fIn1_t" placeholder="Цена за смену"></td>\n' +
             '    <td><input type="text" class="form-control__table fIn2_t" placeholder="Количество"></td>\n' +
@@ -1430,6 +1457,64 @@ $(document).ready(function () {
     $('body').on('click', '.remove_transport', function(e){
         $(this).parent().remove();
     });
+
+
+
+    //BAR CODE
+
+    var vlId = 0;
+    var clId = 000;
+    var xlId = 000;
+
+    function getVlID(sel){
+        qlId = 0;
+        var curVal = sel.val();
+        $(sel).find('option').each(function (index, value) {
+            if($(this).val() == curVal){
+                qlId = $(this).attr('data-id')
+            }
+        });
+        return qlId;
+    }
+
+    function getXlID(){
+
+        var xlId = 000;
+        sel = $("select[name='category']");
+        var curVal = sel.val();
+
+        $(sel).find('option').each(function (index, value) {
+            if($(this).val() == curVal){
+                if(typeof $(this).attr('data-number') !== "undefined"){
+                    var xlIdCur = $(this).attr('data-number');
+                    if(xlIdCur.length == 1) xlId = "00"+xlIdCur;
+                    else if(xlIdCur.length == 2) xlId = "0"+xlIdCur;
+                    console.log(xlId);
+                }
+            }
+        });
+        return xlId;
+    }
+
+    $("#select_type_tool").change(function() {
+        vlId = getVlID($(this));
+        clId = getVlID($("select[name='category']"));
+        xlId = getXlID();
+        $('#barcode').val(vlId+clId+xlId);
+    });
+    vlId = getVlID($("#select_type_tool") );
+
+
+    $("select[name='category']").change(function() {
+        clId = getVlID($(this));
+        vlId = getVlID($("#select_type_tool") );
+        xlId = getXlID();
+        $('#barcode').val(vlId+clId+xlId);
+    });
+    clId = getVlID($("select[name='category']"));
+
+    xlId = getXlID();
+    $('#barcode').val(vlId+clId+xlId);
 
 });
 

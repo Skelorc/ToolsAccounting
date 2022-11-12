@@ -22,6 +22,9 @@ public class ReportsController {
     @GetMapping("z")
     public String showTest(@RequestParam(value = "data", required = false) String test)
     {
+        System.out.println(test);
+        logger.warn(test);
+        logger.error(test);
         return "reports";
     }
 }

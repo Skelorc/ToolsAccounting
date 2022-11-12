@@ -10,9 +10,12 @@ import wns.constants.TypeLease;
 import wns.entity.Project;
 import wns.entity.Tools;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -53,6 +56,7 @@ public class ProjectDTO {
     private long remainder;
     private long estimate_id;
     private Set<Long> items = new HashSet<>();
+    private List<LocalDate> dates = new ArrayList<>();
 
 
     public ProjectDTO(Project project)
@@ -87,6 +91,7 @@ public class ProjectDTO {
         this.remainder = project.getRemainder();
         this.estimate_id = project.getEstimate().getId();
         this.items = project.getTools().stream().map(Tools::getId).collect(Collectors.toSet());
+        this.dates.addAll(project.getDates());
     }
 
     public Project createProjectFromDTO(ProjectDTO dto)

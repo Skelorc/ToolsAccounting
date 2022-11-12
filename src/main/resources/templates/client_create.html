@@ -17,21 +17,6 @@
    <meta property="og:image:height" content="442">
    <meta property="og:description" content="">
    <meta property="og:site_name" content="Site-name">
-
-   <link rel="apple-touch-icon" sizes="57x57" href="https://lk.rentinhand.ru/img/icons/apple-icon-57x57.png">
-   <link rel="apple-touch-icon" sizes="60x60" href="https://lk.rentinhand.ru/img/icons/apple-icon-60x60.png">
-   <link rel="apple-touch-icon" sizes="72x72" href="https://lk.rentinhand.ru/img/icons/apple-icon-72x72.png">
-   <link rel="apple-touch-icon" sizes="76x76" href="https://lk.rentinhand.ru/img/icons/apple-icon-76x76.png">
-   <link rel="apple-touch-icon" sizes="114x114" href="https://lk.rentinhand.ru/img/icons/apple-icon-114x114.png">
-   <link rel="apple-touch-icon" sizes="120x120" href="https://lk.rentinhand.ru/img/icons/apple-icon-120x120.png">
-   <link rel="apple-touch-icon" sizes="144x144" href="https://lk.rentinhand.ru/img/icons/apple-icon-144x144.png">
-   <link rel="apple-touch-icon" sizes="152x152" href="https://lk.rentinhand.ru/img/icons/apple-icon-152x152.png">
-   <link rel="apple-touch-icon" sizes="180x180" href="https://lk.rentinhand.ru/img/icons/apple-icon-180x180.png">
-   <link rel="icon" type="image/png" sizes="192x192"
-   href="https://lk.rentinhand.ru/img/icons/android-icon-192x192.png">
-   <link rel="icon" type="image/png" sizes="32x32" href="https://lk.rentinhand.ru/img/icons/favicon-32x32.png">
-   <link rel="icon" type="image/png" sizes="96x96" href="https://lk.rentinhand.ru/img/icons/favicon-96x96.png">
-   <link rel="icon" type="image/png" sizes="16x16" href="https://lk.rentinhand.ru/img/icons/favicon-16x16.png">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="author" content="Andrey">
    <meta name="description" content="MAD DOG">
@@ -108,7 +93,7 @@
                                 </div>
                                 <div class="col-6 form-creat__half">
                                     <div class="form-group col-lg-3">
-                                        <div class="p-svg p-curve p-jelly pretty " p-checkbox="">
+                                        <div class="p-svg p-curve p-jelly pretty " >
                                             <input th:name="inBlackList" th:value="${client.inBlackList}"
                                                    id="inBlackList" type="checkbox">
                                             <script>if ([[${client.inBlackList}]]) {
@@ -322,7 +307,7 @@
                                             <div class="form-group">
                                                 <label class="d-block size">Дата выдачи паспорта</label>
                                                 <div class="vdpComponent vdpWithInput">
-                                                    <input class="form-control" required type="date" th:name="dateIssuePassport"
+                                                    <input class="form-control" type="date" th:name="dateIssuePassport"
                                                            th:value="${client.dateIssuePassport}" id="dateIssuePassport"
                                                            placeholder="дд.мм.гггг">
                                                 </div>
@@ -680,8 +665,6 @@
                             <div class="mt-4 mb-4 col-4 save-btn">
                                 <button type="submit" id="save_client"
                                         class="btn btn-lg btn-primary btn-primary_save w-100">
-                                    <i class="fa fa-shopping-cart">
-                                    </i>
                                     Сохранить
                                 </button>
                             </div>

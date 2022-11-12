@@ -7,6 +7,7 @@ import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.ss.util.RegionUtil;
 import org.apache.poi.xssf.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
@@ -28,8 +29,8 @@ import java.util.Map;
 @NoArgsConstructor
 @Component
 public class ExcelUtil {
-    @Autowired
-    private ResourceLoader resourceLoader;
+    @Value("${filepath}")
+    private String path;
     private Workbook workbook;
     private Sheet sheet;
 
@@ -228,11 +229,10 @@ public class ExcelUtil {
 
 
     private String createFile(String name) {
-
         if (name.contains("\"")) {
             name = name.replaceAll("\"", "");
         }
-        File file_to_write = new File("estimates" + FileSystems.getDefault().getSeparator() + name + ".xlsx");
+        File file_to_write = new File(path + name + ".xlsx");
         try {
             FileOutputStream stream = new FileOutputStream(file_to_write);
             workbook.write(stream);
