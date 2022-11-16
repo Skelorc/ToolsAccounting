@@ -1,8 +1,8 @@
 package wns.repo;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 import wns.entity.ToolsEstimate;
 
-public interface ToolsEstimateRepo extends JpaRepository<ToolsEstimate,Long> {
+public interface ToolsEstimateRepo extends CrudRepository<ToolsEstimate,Long> {
     ToolsEstimate findByName(String name);
 }

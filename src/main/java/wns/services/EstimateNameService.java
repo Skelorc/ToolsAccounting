@@ -3,6 +3,7 @@ package wns.services;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import wns.aspects.ToLog;
 import wns.dto.EstimateNameDTO;
 import wns.entity.EstimateName;
 import wns.entity.Owner;
@@ -21,11 +22,12 @@ public class EstimateNameService implements MainService {
     private final ModelMapper modelMapper;
 
     public List<EstimateNameDTO> getAll() {
-        return repo.findAll().stream()
+        List<EstimateName> all = (List<EstimateName>) repo.findAll();
+        return all.stream()
                 .map(EstimateNameDTO::new)
                 .collect(Collectors.toList());
     }
-
+    @ToLog
     public void save(EstimateName dto) {
         if (!repo.existsById(dto.getId())) {
             repo.save(dto);
@@ -39,7 +41,7 @@ public class EstimateNameService implements MainService {
     }
 
     public void save(Tools tools_to_save, long id) {
-        EstimateName estimateName = repo.getById(id);
+        EstimateName estimateName = repo.findById(id).get();
         estimateName.getListTools().add(tools_to_save);
         repo.save(estimateName);
     }

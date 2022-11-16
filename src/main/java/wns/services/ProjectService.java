@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
+import wns.aspects.ToLog;
 import wns.constants.ClassificationProject;
 import wns.constants.Messages;
 import wns.constants.StatusProject;
@@ -24,29 +27,35 @@ public class ProjectService implements MainService {
     private final ModelMapper modelMapper;
     private final EstimateService estimateService;
     private final ToolsEstimateService toolsEstimateService;
+    private final WorkingShiftService workingShiftService;
 
     @Override
     public List<Project> getAll() {
-        return projectRepo.findAll();
+        return (List<Project>) projectRepo.findAll();
     }
 
+    @ToLog
+    @Transactional
     public Project createProject(ProjectDTO projectDTO) {
         Project project = projectRepo.findByName(projectDTO.getName());
         if (project == null) {
             try {
-                project = projectDTO.createProjectFromDTO(projectDTO);
+                project = ProjectDTO.createProjectFromDTO(projectDTO);
                 Client client = clientsService.getById(projectDTO.getClient_id());
                 client.getProjects().add(project);
                 project.setClient(client);
                 project.setPhoneNumber(client.getPhoneNumber());
-                clientsService.saveClient(client);
+                projectRepo.save(project);
                 Estimate estimate = estimateService.createEstimate(project);
                 project.setEstimate(estimate);
-                projectRepo.save(project);
                 for (Long id : projectDTO.getItems()) {
                     Tools tool = modelMapper.map(toolsService.findById(id), Tools.class);
                     toolsService.addToolToProject(tool,project);
                     toolsEstimateService.addToolEstimateToEstimate(project,tool);
+                }
+                for (WorkingShift workingShift : project.getWorkingShifts()) {
+                    workingShift.setProject(project);
+                    workingShiftService.save(workingShift);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -55,6 +64,7 @@ public class ProjectService implements MainService {
         return project;
     }
 
+    @ToLog
     public void deleteProjectsByListsId(List<Long> ids) {
         for (Long id : ids) {
             Project project = projectRepo.findById(id).get();
@@ -62,10 +72,14 @@ public class ProjectService implements MainService {
             for (Tools tool : tools) {
                 deleteToolFromProject(tool);
             }
+            for (WorkingShift workingShift : project.getWorkingShifts()) {
+                workingShiftService.delete(workingShift.getId());
+            }
             delete(project.getId());
         }
     }
 
+    @ToLog
     public Messages clearToolsFromProject(List<Long> list_id_tools) {
         for (Long id_tool : list_id_tools) {
             Tools tool = toolsService.getById(id_tool);
@@ -78,7 +92,7 @@ public class ProjectService implements MainService {
         return projectRepo.findById(id).get();
     }
 
-
+    @ToLog
     public Messages addToolsToProject(long id, List<Long> list_id) {
         try {
             Project project = projectRepo.findById(id).get();
@@ -92,6 +106,7 @@ public class ProjectService implements MainService {
         return Messages.PROJECT_UPDATE;
     }
 
+    @ToLog
     public Messages changeToolsInProject(long id_project, IdsDTO ids) {
         try {
             Project project = projectRepo.findById(id_project).get();
@@ -115,12 +130,14 @@ public class ProjectService implements MainService {
         }
     }
 
-    private void deleteToolFromProject(Tools tool) {
+    @Transactional
+    protected void deleteToolFromProject(Tools tool) {
         toolsEstimateService.deleteToolEstimateFromEstimate(tool);
         toolsService.deleteToolFromProject(tool);
     }
 
-    private void addToolToProject(Tools tools, Project project) {
+    @Transactional
+    protected void addToolToProject(Tools tools, Project project) {
         toolsService.addToolToProject(tools,project);
         toolsEstimateService.addToolEstimateToEstimate(project,tools);
     }
@@ -130,30 +147,10 @@ public class ProjectService implements MainService {
         return list_project.stream().map(ProjectDTO::new).collect(Collectors.toList());
     }
 
+    @ToLog
+    @Transactional
     public void updateProject(ProjectDTO dto) {
-        Project project = projectRepo.findById(dto.getId()).get();
-        project.setName(dto.getName());
-        project.setNumber(dto.getNumber());
-        project.setStatus(dto.getStatus());
-        project.setTypeLease(dto.getTypeLease());
-        project.setQuantity(dto.getQuantity());
-        project.setCreated(dto.getCreated());
-        project.setEmployee(SecurityContextHolder.getContext().getAuthentication().getName());
-        project.setStart(dto.getStart());
-        project.setEnd(dto.getEnd());
-        project.setPhotos(dto.getPhotos());
-        project.setDiscount(dto.getDiscount());
-        project.setNote(dto.getNote());
-        project.setSum(dto.getSum());
-        project.setFinalSumUsn(dto.getFinalSumUsn());
-        project.setPriceTools(dto.getPriceTools());
-        project.setDiscountByProject(dto.getDiscountByProject());
-        project.setSumWithDiscount(dto.getSumWithDiscount());
-        project.setReceived(dto.getReceived());
-        project.setRemainder(dto.getRemainder());
-        project.setClassification(dto.getClassification());
-        project.setPhoneNumber(dto.getPhoneNumber());
-        project.setPriceWork(dto.getPriceWork());
+        Project project = ProjectDTO.createProjectFromDTO(dto);
         Client client = clientsService.getById(dto.getClient_id());
         client.getProjects().add(project);
         project.setClient(client);

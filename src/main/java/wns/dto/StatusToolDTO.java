@@ -9,6 +9,7 @@ import wns.constants.StatusTools;
 import wns.entity.Status;
 import wns.entity.Tools;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
@@ -29,10 +30,10 @@ public class StatusToolDTO {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime created;
     private String employee;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private LocalDateTime start;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private LocalDateTime end;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate start;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate end;
     private String executor;
     private String phone_number;
     private String note;

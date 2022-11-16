@@ -17,7 +17,7 @@ public class ToolsEstimateService implements MainService{
 
     @Override
     public List<ToolsEstimate> getAll() {
-        return toolsEstimateRepo.findAll();
+        return (List<ToolsEstimate>) toolsEstimateRepo.findAll();
     }
 
     public void save(ToolsEstimate toolsEstimate)
@@ -35,6 +35,7 @@ public class ToolsEstimateService implements MainService{
         toolsEstimateRepo.delete(toolsEstimate);
     }
 
+
     public void addToolEstimateToEstimate(Project project, Tools tool) {
         Estimate estimate = project.getEstimate();
         ToolsEstimate toolsEstimate = new ToolsEstimate();
@@ -48,7 +49,7 @@ public class ToolsEstimateService implements MainService{
         toolsEstimate.setAmount(tool.getAmount());
         toolsEstimate.setPriceByDay(tool.getPriceByDay());
         toolsEstimate.setCreating(tool.getCreating());
-        toolsEstimate.setCountShifts(Period.between(estimate.getProject().getStart().toLocalDate(), estimate.getProject().getEnd().toLocalDate()).getDays());
+        toolsEstimate.setCountShifts(project.getWorkingShifts().size());
         toolsEstimateRepo.save(toolsEstimate);
     }
 

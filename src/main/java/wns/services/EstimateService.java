@@ -2,6 +2,7 @@ package wns.services;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import wns.aspects.ToLog;
 import wns.constants.EstimateSection;
 import wns.entity.*;
 import wns.repo.EstimateRepo;
@@ -16,7 +17,7 @@ public class EstimateService implements MainService{
     private ToolsEstimateService toolsEstimateService;
     @Override
     public List<Estimate> getAll() {
-       return estimateRepo.findAll();
+       return (List<Estimate>) estimateRepo.findAll();
     }
 
     public void save(Estimate estimate)
@@ -32,10 +33,11 @@ public class EstimateService implements MainService{
         estimate.setProject(project);
         estimate.setStart(project.getStart());
         estimate.setEnd(project.getEnd());
-        estimate.setCount_shifts(Period.between(estimate.getStart().toLocalDate(), estimate.getEnd().toLocalDate()).getDays());
+        estimate.setCount_shifts(estimate.getProject().getWorkingShifts().size());
         return estimate;
     }
 
+    @ToLog
     public Map<EstimateSection, List<ToolsEstimate>> getToolsEstimate(Estimate estimate) {
         List<ToolsEstimate> toolsEstimates = estimate.getToolsEstimates();
         Map<EstimateSection, List<ToolsEstimate>> tools_by_groups = new HashMap<>();

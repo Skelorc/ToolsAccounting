@@ -79,13 +79,13 @@
                                         <th colspan="2" rowspan="2">Съемочный период:</th>
                                         <td colspan="4"><span class="table-td-text" th:field="*{start}"
                                                               th:value="${estimate.start}"
-                                                              th:text="${#temporals.format(estimate.start, 'dd-MM-yyyy HH:mm')}">Подстановка даты начала проекта</span>
+                                                              th:text="${#temporals.format(estimate.start, 'dd-MM-yyyy')}">Подстановка даты начала проекта</span>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colspan="4"><span class="table-td-text" th:field="*{end}"
                                                               th:value="${estimate.end}"
-                                                              th:text="${#temporals.format(estimate.end, 'dd-MM-yyyy HH:mm')}">Подстановка даты окончания проекта</span>
+                                                              th:text="${#temporals.format(estimate.end, 'dd-MM-yyyy')}">Подстановка даты окончания проекта</span>
                                         </td>
                                     </tr>
                                     <tr>

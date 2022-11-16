@@ -2,6 +2,7 @@ package wns.services;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import wns.aspects.ToLog;
 import wns.entity.Owner;
 import wns.repo.OwnerRepo;
 
@@ -14,13 +15,14 @@ public class OwnerService implements MainService {
 
     @Override
     public List<Owner> getAll() {
-        return ownerRepo.findAll();
+        return (List<Owner>) ownerRepo.findAll();
     }
 
     public Owner getById(long id) {
         return ownerRepo.findById(id).get();
     }
 
+    @ToLog
     public void save(Owner owner) {
         if (!ownerRepo.existsById(owner.getId()))
             ownerRepo.save(owner);
