@@ -2,8 +2,9 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
 
 <head class="head">
-    <title>Выдача</title>
+    <title>Проекты</title>
     <div th:replace="fragments/head :: header"></div>
+
     <!-- <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="robots" content="index, follow">
@@ -30,7 +31,7 @@
     <meta name="theme-color" content="#179d82">
     <meta th:name="_csrf" th:content="${_csrf.token}"/>
     <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
- 
+
     <link rel="preload" href="../static/fonts/fontawesome/fontawesome-all-css.css" as="style" th:href="@{/fonts/fontawesome/fontawesome-all-css.css}">
     <link rel="preload" href="../static/css/style.css" as="style" th:href="@{/css/style.css}">
     <link rel="preload" href="../static/css/app.css" as="style" th:href="@{/css/app.css}">
@@ -48,11 +49,11 @@
     <link rel="stylesheet" href="../static/fonts/fontawesome/fontawesome-all-css.css" th:href="@{/fonts/fontawesome/fontawesome-all-css.css}">
     <link rel="stylesheet" href="../static/css/checkout.css" th:href="@{/css/checkout.css}">
     <link rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}">
-    
+
     <script src="/static/fonts/fontawesome/all.js" th:src="@{/fonts/fontawesome/all.js}"></script>
- 
+
     <script src="/static/js/jquery.js" th:src="@{/js/jquery.js}"></script>
-   
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"  th:src="@{/js/jquery.modal.js}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" /> -->
 </head>
@@ -62,18 +63,6 @@
         <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
              <div th:insert="fragments/menu_sidebar.html">
             </div>
-            <!--<div class="text-center" id="ex1">
-                <p id="alert_message" class="font-bold"></p>
-                <script th:inline="javascript">
-                    var message = [[${message}]];
-                    if (message){
-                        console.log(typeof message);
-                        console.log(message);
-                        $("#alert_message").text(message.toString());
-                        $("#ex1").modal();
-                    }
-                </script>
-            </div>-->
             <!--<nav role="navigation" class="rih-nav">
                 <div class="nav-header text-center sidebar-collapse__menu-logo rih-nav__header">
                     <a href="#" class="main-link">
@@ -309,11 +298,12 @@
                                 </div>
                             </div>
                         </div>
+                        </div>
                     </main>
                     <div th:insert="fragments/footer.html"></div>
-                    <!-- <footer class="row footer">
+                     <footer class="row footer">
                         <small class="col-12 pr-0"><b><a href="/" th:href="@{/}">Mad dog</a> © 2022</b>-<b>Все права защищены</b></small>
-                    </footer> -->
+                    </footer>
                 </div>
             </div>
         </div>
