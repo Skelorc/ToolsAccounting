@@ -64,9 +64,9 @@
         <div th:insert="fragments/menu_sidebar.html"></div>
         <div class="b-overlay-wrap position-relative w-100" size="sm">
             <div class="rih-page-wrapper">
-                <nav role="navigation" class="navbar navbar-admin navbar-fixed-top"
-                     th:insert="fragments/header_logout.html"></nav>
-                <main class="wrapper wrapper-content border-bottom">
+                <!-- <nav role="navigation" class="navbar navbar-admin navbar-fixed-top"
+                     th:insert="fragments/header_logout.html"></nav> -->
+                <main class="wrapper wrapper-content">
                     <div class="b-overlay-wrap position-relative custom-ll">
                         <div class="row">
                             <div class="custom-ll__table table-responsive overflow-auto col-lg-12 order-lg-1">
@@ -79,13 +79,13 @@
                                         <th colspan="2" rowspan="2">Съемочный период:</th>
                                         <td colspan="4"><span class="table-td-text" th:field="*{start}"
                                                               th:value="${estimate.start}"
-                                                              th:text="${#temporals.format(estimate.start, 'dd-MM-yyyy HH:mm')}">Подстановка даты начала проекта</span>
+                                                              th:text="${#temporals.format(estimate.start, 'dd-MM-yyyy')}">Подстановка даты начала проекта</span>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colspan="4"><span class="table-td-text" th:field="*{end}"
                                                               th:value="${estimate.end}"
-                                                              th:text="${#temporals.format(estimate.end, 'dd-MM-yyyy HH:mm')}">Подстановка даты окончания проекта</span>
+                                                              th:text="${#temporals.format(estimate.end, 'dd-MM-yyyy')}">Подстановка даты окончания проекта</span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -273,13 +273,13 @@
                                 </table>
                                 <div class="mt-4 mb-4 col-4 save-btn">
                                     <button type="submit" id="save_estimate"
-                                            class="btn btn-lg btn-primary btn-primary_save w-100">
+                                            class="btn btn-lg btn-primary btn-primary_save w-100 my-green">
                                         Сохранить смету
                                     </button>
                                 </div>
                                 <div class="mt-4 mb-4 col-4 save-btn">
                                     <button type="submit" id="estimate_load_file"
-                                            class="btn btn-lg btn-primary btn-primary_save w-100">
+                                            class="btn btn-lg btn-primary btn-primary_save w-100 my-green">
                                         Выгрузить
                                     </button>
                                 </div>

@@ -44,7 +44,7 @@ public class ToolsEstimateDTO {
         this.amount = tools.getAmount();
         this.priceByDay = tools.getPriceByDay();
         this.creating = tools.getCreating();
-        this.count_shifts = Period.between(estimate.getProject().getStart().toLocalDate(), estimate.getProject().getEnd().toLocalDate()).getDays();
+        this.count_shifts = estimate.getProject().getWorkingShifts().size();
         this.estimate = estimate;
     }
 

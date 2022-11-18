@@ -8,7 +8,7 @@
     <title>Создание проекта</title>
     <div th:replace="fragments/head :: header"></div>
 
-    <meta charset="UTF-8" />
+    <!-- <meta charset="UTF-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
@@ -160,7 +160,7 @@
       type="text/javascript"
       src="../static/js/bootstrap-datepicker.js"
     ></script>
-    <link rel="stylesheet" href="../static/css/datepicker.css" />
+    <link rel="stylesheet" href="../static/css/datepicker.css" /> -->
   </head>
 
   <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
@@ -173,11 +173,11 @@
         <div th:insert="fragments/menu_sidebar.html"></div>
         <div class="b-overlay-wrap position-relative w-100" size="sm">
           <div class="rih-page-wrapper">
-            <nav
+            <!-- <nav
               role="navigation"
               class="navbar navbar-admin navbar-fixed-top"
               th:insert="fragments/header_logout.html"
-            ></nav>
+            ></nav> -->
             <main class="wrapper wrapper-content border-bottom">
               <div class="b-overlay-wrap position-relative" size="sm">
                 <div class="project__creat mb-3">
@@ -188,11 +188,12 @@
                       <span class="btn-pimary__groups_title">Проект</span>
                     </div>
                     <div class="mb-3 text-right">
-                      <a href="/" class="btn btn-primary width light-blue"
+                      <a href="/" class="btn btn-primary width my-yellow"
                         >Назад</a
                       >
                     </div>
                   </div>
+
 
                   <div class="p-3 edit-container d-block col-8 col-md-12">
                     <div class="row form-creat__half-wrapp">
@@ -330,6 +331,107 @@
                               if (hour < 10) hour = '0' + hour;
                               if (minutes < 10) minutes = '0' + minutes;
 
+                                <div class="p-3 edit-container d-block col-8 col-md-12">
+                                    <div class="row form-creat__half-wrapp">
+                                        <div class=" form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block size">Статус</label>
+                                                <select id="status" name="status_tool" class="vs__selected-options main-secect__opions form-control" required>
+                                                    <option class="vs__selected vs__dropdown-toggle">Выберите статус проекта
+                                                    </option>
+                                                    <option class="vs__selected vs__dropdown-toggle" th:each="status: ${T(wns.constants.StatusProject).values()}" th:value="${status}" th:text="${status.getStatus()}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block size">Наименование</label>
+                                                <span>
+                                                    <input id="name"  placeholder="Имя проекта" name="fromComing" type="text" class="form-control" required>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class=" form-creat__half_two-column">
+                                            <button class="rabSM">Выберите рабочие смены</button>
+                                            <div role="group" class="form-group" style="display: none;">
+                                                <label class="d-block size">Выберите рабочие смены</label>
+                                                <div class="vdpComponent vdpWithInput">
+                                                    <input id="word_date"  class="form-control form-control-date" required readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <script type="text/javascript">
+                                           
+                                            let workingShifts = []
+                                            $(document).ready(function(){
+                                                $('.rabSM').datepicker({
+                                                  multidate: true,
+                                                    format: 'dd-mm-yyyy'
+                                                });
+
+
+                                                $('body').on('click','.clc_dt', function(){
+                                                    var curDate = $(this).attr('data-time');
+                                                    var curClass = $(this).attr('class');
+                                                    if(curClass.indexOf('active_d') <= -1){
+                                                        $(this).addClass('active_d');
+                                                        workingShifts.push(curDate)
+                                                    }
+                                                    else{
+                                                        $(this).removeClass('active_d');
+                                                        const index = workingShifts.indexOf(curDate)
+                                                        if(index > -1){
+                                                            workingShifts.splice(index, 1)
+                                                        }
+                                                    }
+                                                    workingShifts.sort((a, b) => {
+                                                        let firstValue  = (Number(a[0]+a[1]) + (Number(a[3]+a[4]) * 100) + (Number(a[6] + a[7] + a[8] + a[9]) * 100000))
+                                                        let secondValue = (Number(b[0]+b[1]) + (Number(b[3]+b[4]) * 100) + (Number(b[6] + b[7] + b[8] + b[9]) * 100000))
+                                                        
+                                                        return firstValue - secondValue
+                                                    })
+                                                    document.querySelector(".form-control-date").value = workingShifts.join()
+                                                });
+
+                                            });
+                                        </script>
+                                        <div class=" form-creat__half_two-column">
+                                            <div class="form-group">
+                                                <label class="d-block size">Укажите ссылки на фото через запятую</label>
+                                                <textarea id="photos" name="photos" class="form-control" style="height: 40px;"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row form-creat__half-wrapp">
+                                        <div class=" form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block size">Собственник</label>
+                                                <select class="vs__selected-options main-secect__opions form-control" id="typeLease" required>
+                                                    <option class="vs__selected vs__dropdown-toggle" th:each="type: ${T(wns.constants.TypeLease).values()}" th:value="${type}" th:text="${type.getType()}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block size">Класс</label>
+                                                <select class="vs__selected-options main-secect__opions form-control" id="classification" required>
+                                                    <option class="vs__selected vs__dropdown-toggle" th:each="classification: ${T(wns.constants.ClassificationProject).values()}" th:value="${classification}" th:text="${classification.getValue()}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class=" form-creat__half_two-column">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block size">Создан</label>
+                                                <div class="vdpComponent vdpWithInput">
+                                                    <input id="created" class="form-control"  type="datetime-local" placeholder="дд.мм.гггг" required>
+                                                    <script th:inline="javascript">
+                                                        var date = new Date();
+                                                        var day =   date.getDate();
+                                                        var month = date.getMonth()+1;
+                                                        var year =  date.getFullYear();
+                                                        var hour =  date.getHours();
+                                                        var minutes =  date.getMinutes();
+
                               var needDate =
                                 year +
                                 '-' +
@@ -346,6 +448,7 @@
                           </div>
                         </div>
                       </div>
+                                    </div>
                       <div class="form-creat__half_two-column">
                         <div class="mb-3 rent__client__buttons">
                           <span class="d-inline-block label-name size">
@@ -354,7 +457,7 @@
                           <a
                             href="/clients/create"
                             title="Добавить Клиентa"
-                            class="btn btn-primary width btn-xs size"
+                            class="btn btn-primary width btn-xs size my-green"
                             style="padding-top: 5px"
                             >Новый клиент
                           </a>
@@ -392,6 +495,7 @@
                       </div>
                     </div>
                   </div>
+                    </div>
                   <div class="p-3 edit-container d-block col-8 col-md-12">
                     <div class="row form-creat__half-wrapp">
                       <div class="form-creat__half_two-column">
@@ -408,14 +512,14 @@
                           </span>
                         </div>
                       </div>
-                      <!--<div class=" form-creat__half_two-column">
+                      <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Себестоимость оборудования</label>
                                                 <span>
                                                     <input id="priceTools" type="text" class="form-control" placeholder="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');">
                                                 </span>
                                             </div>
-                                        </div>-->
+                                        </div>
                       <div class="form-creat__half_two-column">
                         <div role="group" class="form-group">
                           <label class="d-block size">Скидка на проект</label>
@@ -445,7 +549,7 @@
                         </div>
                       </div>
                     </div>
-                    <!-- <div class="row form-creat__half-wrapp">
+                    <div class="row form-creat__half-wrapp">
                                         <div class="form-creat__half_two-column">
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Итоговая УСН</label>
@@ -494,13 +598,13 @@
                       <div class="mb-3 text-right">
                         <a
                           href="/tools/create"
-                          class="btn btn-primary width light-blue"
+                          class="btn btn-primary width my-yellow"
                           style="height: 100%"
-                          >Добавить</a
-                        >
+                          >Добавить</a>
+                        
                       </div>
                       <div class="mb-3 text-right">
-                        <a href="#" class="btn btn-primary width light-blue"
+                        <a href="#" class="btn btn-primary width my-yellow"
                           >Добавить оборудование из другого проекта</a
                         >
                       </div>
@@ -511,22 +615,22 @@
                 <div class="btn-pimary__groups-wrapper mb-3 order-lg-1">
                   <div class="btn__under-table">
                     <div class="mb-3 text-right">
-                      <a href="#" class="btn btn-primary width grey"
+                      <a href="#" class="btn btn-primary width my-yellow"
                         >Единый список</a
                       >
                     </div>
                     <div class="mb-3 text-right">
-                      <a href="#" class="btn btn-primary width grey"
+                      <a href="#" class="btn btn-primary width my-yellow"
                         >Просмотр по группам</a
                       >
                     </div>
                     <div class="mb-3 text-right">
-                      <a href="#" class="btn btn-primary width grey"
+                      <a href="#" class="btn btn-primary width my-yellow"
                         >Просмотр по разделам сметы</a
                       >
                     </div>
                     <div class="mb-3 text-right">
-                      <a href="#" class="btn btn-primary width grey"
+                      <a href="#" class="btn btn-primary width my-yellow"
                         >Сбросить фильтр</a
                       >
                     </div>
@@ -555,7 +659,7 @@
                   </div>
                 </div>
 
-                <div class="table__info table__vidacha-sozdat_wrapp mb-3">
+                <div class="table__info table__vidacha-sozdat_wrapp col-md-12 mb-3">
                   <div class="table__vidacha-sozdat">
                     <table
                       class="in4dr-form delivery h-table w-table transparent"
@@ -657,13 +761,13 @@
                       <button
                         id="create_new_project"
                         type="submit"
-                        class="btn btn-primary width orange"
+                        class="btn btn-primary width my-yellow"
                       >
                         Создать проект и перейти в смету
                       </button>
                     </div>
                     <div class="mb-3 text-right">
-                      <a href="#" class="btn btn-primary width red">Удалить</a>
+                      <a href="#" class="btn btn-primary width my-red">Удалить</a>
                     </div>
 
                     <div class="pagination-control col-lg-12 order-lg-1">
@@ -688,12 +792,14 @@
                   </div>
                 </div>
               </div>
-            </main>
+            
             <div th:insert="fragments/footer.html"></div>
+           
           </div>
         </div>
       </div>
     </div>
+     </main>
     <div th:insert="fragments/scripts.html"></div>
     <div>
       <script

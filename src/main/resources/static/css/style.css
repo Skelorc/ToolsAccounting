@@ -2687,18 +2687,23 @@ body {
 
 .rih-page-wrapper {
     padding: 0 15px;
-    margin: 55px 0 0 120px;
+    margin: 0 0 0 120px;
     width: calc(100% - 120px);
-    min-height: calc(100vh - 60px);
+    /* min-height: calc(100vh - 60px); */
+    min-height: 100vh;
     overflow-x: hidden;
     position: relative;
     z-index: 2;
-    background-color: #16171a;
+    /* background-color: #16171a; */
+    background-image: url('../img/img/bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     transition: all .4s
 }
 @media (min-width: 768px) {
     .rih-page-wrapper {
-        margin: 55px 0 0 220px;
+        margin: 0 0 0 220px;
     width: calc(100% - 220px);
     }
 }
@@ -2916,8 +2921,8 @@ body {
     display: inline-flex;
     width: 100%;
     margin-bottom: 1rem;
-    border-radius: 20px;
-    background-color: transparent;
+    /* border-radius: 20px; */
+    background-color: #fff;
     position: relative;
     overflow: hidden;
     /* border: 1px solid #efefef; */
@@ -2938,7 +2943,7 @@ body {
 
 .custom-ll__header .header__search input {
     padding: 6px 12px 6px 36px;
-    border-radius: 20px;
+    /* border-radius: 20px; */
     overflow: hidden
 }
 
@@ -3136,7 +3141,7 @@ body {
 .table tbody tr.table-empty td h4 {
     margin: 0;
     padding: .5rem;
-    color: #6c757d;
+    color: #000;
     opacity: .67
 }
 

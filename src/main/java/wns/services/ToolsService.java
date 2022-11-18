@@ -3,17 +3,17 @@ package wns.services;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import wns.constants.DateCalendar;
+import org.springframework.transaction.annotation.Transactional;
+import wns.aspects.ToLog;
 import wns.constants.Messages;
 import wns.constants.StatusTools;
-import wns.constants.TypeTools;
-import wns.dto.*;
+import wns.dto.Identifiers;
+import wns.dto.StatusToolDTO;
+import wns.dto.ToolsDTO;
 import wns.entity.*;
 import wns.repo.ToolsRepo;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,7 +27,7 @@ public class ToolsService implements MainService {
     private final StatusService statusService;
 
     public List<Tools> getAll() {
-        return toolsRepo.findAll();
+        return (List<Tools>) toolsRepo.findAll();
     }
 
     public List<Tools> getListToolsByStatus(StatusTools statusTools) {
@@ -38,6 +38,8 @@ public class ToolsService implements MainService {
                 .collect(Collectors.toList());
     }
 
+    @ToLog
+    @Transactional
     public Messages createTools(Tools tools, EstimateName estimateName, StatusTools statusTools, Category category, Owner owner) {
         Tools toolToSave = toolsRepo.findByName(tools.getName()).orElse(null);
         if (toolToSave == null) {
@@ -59,6 +61,7 @@ public class ToolsService implements MainService {
         toolsRepo.save(tools);
     }
 
+    @ToLog
     public Messages changeStatus(StatusToolDTO statusToolDTO) {
         if (statusToolDTO.getData() != null) {
             String[] data = statusToolDTO.getData().split(",");
@@ -106,6 +109,7 @@ public class ToolsService implements MainService {
     }
 
 
+    @Transactional
     public void save(Tools tool) {
         Status status = tool.getStatus();
         toolsRepo.save(tool);

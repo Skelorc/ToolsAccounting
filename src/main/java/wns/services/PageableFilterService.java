@@ -6,6 +6,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import wns.aspects.ToLog;
 import wns.constants.*;
 import wns.dto.*;
 import wns.entity.Project;
@@ -43,7 +44,7 @@ public class PageableFilterService {
         return findPaginated(page, size, list_data);
     }
 
-
+    @ToLog
     private void getDataByFilter(Filter filter, PaginationConst paginationConst, long id, List<Object> list) {
         if (filter == null)
             filter = Filter.WITHOUT_FILTER;

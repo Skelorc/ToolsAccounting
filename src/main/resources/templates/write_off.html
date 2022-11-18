@@ -5,8 +5,8 @@
     <title>Списание</title>
 
     <div th:replace="fragments/head :: header"></div>
-<!--    
-    <meta charset="UTF-8">
+   
+    <!-- <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="robots" content="index, follow">
@@ -71,16 +71,16 @@
         <div th:insert="fragments/menu_sidebar.html"></div>
         <div class="b-overlay-wrap position-relative w-100" size="sm">
             <div class="rih-page-wrapper">
-                <nav  role="navigation" class="navbar navbar-admin navbar-fixed-top" th:insert="fragments/header_logout.html"></nav>
+                <!-- <nav  role="navigation" class="navbar navbar-admin navbar-fixed-top" th:insert="fragments/header_logout.html"></nav> -->
                 <main class="wrapper wrapper-content ">
                     <div class="b-overlay-wrap position-relative edit-container d-block col-8 col-md-12">
                         <div class="btn-pimary__groups mt-3 mb-3">
                             <div class="btn-pimary__groups-wrapper vidacha-sozdach mb-3">
                                 <div class="mb-3 text-right">
-                                    <a th:href="@{/write-off/create}" class="btn btn-primary width green">Создать</a>
+                                    <a th:href="@{/write-off/create}" class="btn btn-primary width my-green">Создать</a>
                                 </div>
                                 <div class="mb-3 text-right">
-                                    <span class="btn btn-primary width orange" id="back_repair">Вернуть на склад</span>
+                                    <span class="btn btn-primary width my-yellow" id="back_repair">Вернуть на склад</span>
                                 </div>
                             </div>
                         </div>

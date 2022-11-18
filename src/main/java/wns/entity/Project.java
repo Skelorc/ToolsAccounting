@@ -39,10 +39,10 @@ public class Project{
     @Column(name = "created")
     private LocalDateTime created;
     private String employee;
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
-    private LocalDateTime start;
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
-    private LocalDateTime end;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate start;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate end;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "clients_id",nullable = false)
@@ -80,10 +80,8 @@ public class Project{
     @JoinColumn(name = "estimate_id",referencedColumnName = "id")
     private Estimate estimate;
 
-    @ElementCollection(fetch = FetchType.LAZY)
-    @CollectionTable(name = "dates", joinColumns = @JoinColumn(name = "project_id"))
-    @Column(name="dates_id", columnDefinition="date")
-    private List<LocalDate> dates = new ArrayList<>();
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<WorkingShift> workingShifts = new ArrayList<>();
 
     @Override
     public boolean equals(Object o) {

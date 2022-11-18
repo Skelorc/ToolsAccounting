@@ -1,92 +1,203 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
-
-<head class="head">
+<html
+  lang="en"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org/"
+>
+  <head class="head">
     <title>Отчеты</title>
     <div th:replace="fragments/head :: header"></div>
-    <!-- <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="robots" content="index, follow">
-    <meta name="author" content="">
-    <meta property="og:url" content="https://site.ru">
-    <meta property="og:title" content="MAD DOG">
-    <meta property="og:image:type" content="image/jpeg">
-    <meta property="og:image:width" content="640">
-    <meta property="og:image:height" content="442">
-    <meta property="og:description" content="">
-    <meta property="og:site_name" content="Site-name">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="author" content="Andrey">
-    <meta name="description" content="MAD DOG">
-    <meta name="keywords" content="MAD DOG">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta property="og:title" content="MAD DOG - сервис для учета и автоматизации проката">
-    <meta property="og:image" content="assets/img/icons/badge.jpg" th:src="@{/img/icons/badge.jpg}">
-    <meta property="og:image:type" content="image/jpeg">
-    <meta property="og:image:width" content="1024">
-    <meta property="og:image:height" content="1024">
-    <meta property="og:description" content="Программа для учёта инструментов">
-    <link rel="image_src" href="/static/img/icons/badge.jpg" th:href="@{/img/icons/badge.jpg}">
-    <meta name="theme-color" content="#179d82">
-    <meta th:name="_csrf" th:content="${_csrf.token}"/>
-    <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
-    <link rel="manifest" href="/templates/assets/json/manifest.json" th:href="@{/templates/assets/json/manifest.json}">&ndash;&gt;
+    <!-- <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="" />
+    <meta property="og:url" content="https://site.ru" />
+    <meta property="og:title" content="MAD DOG" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="640" />
+    <meta property="og:image:height" content="442" />
+    <meta property="og:description" content="" />
+    <meta property="og:site_name" content="Site-name" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="Andrey" />
+    <meta name="description" content="MAD DOG" />
+    <meta name="keywords" content="MAD DOG" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      property="og:title"
+      content="MAD DOG - сервис для учета и автоматизации проката"
+    />
+    <meta
+      property="og:image"
+      content="assets/img/icons/badge.jpg"
+      th:src="@{/img/icons/badge.jpg}"
+    />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1024" />
+    <meta property="og:image:height" content="1024" />
+    <meta
+      property="og:description"
+      content="Программа для учёта инструментов"
+    />
+    <link
+      rel="image_src"
+      href="/static/img/icons/badge.jpg"
+      th:href="@{/img/icons/badge.jpg}"
+    />
+    <meta name="theme-color" content="#179d82" />
+    <meta th:name="_csrf" th:content="${_csrf.token}" />
+    <meta th:name="_csrf_header" th:content="${_csrf.headerName}" />
+    <link
+      rel="manifest"
+      href="/templates/assets/json/manifest.json"
+      th:href="@{/templates/assets/json/manifest.json}"
+    />
+    &ndash;&gt;
 
-    <link rel="preload" href="../static/fonts/fontawesome/fontawesome-all-css.css" as="style" th:href="@{/fonts/fontawesome/fontawesome-all-css.css}">
-    <link rel="preload" href="../static/css/style.css" as="style" th:href="@{/css/style.css}">
-    <link rel="preload" href="../static/css/app.css" as="style" th:href="@{/css/app.css}">
-    <link rel="preload" href="../static/css/media.css" as="style" th:href="@{/css/media.css}">
-    <link rel="preload" href="../static/css/checkout.css" as="style" th:href="@{/css/checkout.css}">
-    <link rel="preload" href="../static/css/main.css" as="style" th:href="@{/css/main.css}">
+    <link
+      rel="preload"
+      href="../static/fonts/fontawesome/fontawesome-all-css.css"
+      as="style"
+      th:href="@{/fonts/fontawesome/fontawesome-all-css.css}"
+    />
+    <link
+      rel="preload"
+      href="../static/css/style.css"
+      as="style"
+      th:href="@{/css/style.css}"
+    />
+    <link
+      rel="preload"
+      href="../static/css/app.css"
+      as="style"
+      th:href="@{/css/app.css}"
+    />
+    <link
+      rel="preload"
+      href="../static/css/media.css"
+      as="style"
+      th:href="@{/css/media.css}"
+    />
+    <link
+      rel="preload"
+      href="../static/css/checkout.css"
+      as="style"
+      th:href="@{/css/checkout.css}"
+    />
+    <link
+      rel="preload"
+      href="../static/css/main.css"
+      as="style"
+      th:href="@{/css/main.css}"
+    />
 
+    <link
+      rel="stylesheet"
+      href="../static/fonts/webfonts/fa-solid-900.ttf"
+      th:href="@{/fonts/webfonts/fa-solid-900.ttf}"
+    />
+    <link
+      rel="stylesheet"
+      href="../static/css/style.css"
+      th:href="@{/css/style.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="../static/css/app.css"
+      th:href="@{/css/app.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="../static/css/media.css"
+      th:href="@{/css/media.css}"
+    />
+    <link
+      rel="stylesheet"
+      href=".../static/css/animation-iror.css"
+      th:href="@{/css/animation-iror.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="../static/fonts/fontawesome/fontawesome.css"
+      th:href="@{/fonts/fontawesome/fontawesome.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="../static/fonts/fontawesome/fontawesome-all-css.css"
+      th:href="@{/fonts/fontawesome/fontawesome-all-css.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="../static/css/checkout.css"
+      th:href="@{/css/checkout.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="../static/css/main.css"
+      th:href="@{/css/main.css}"
+    />
 
-    <link rel="stylesheet" href="../static/fonts/webfonts/fa-solid-900.ttf" th:href="@{/fonts/webfonts/fa-solid-900.ttf}">
-    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
-    <link rel="stylesheet" href="../static/css/app.css" th:href="@{/css/app.css}">
-    <link rel="stylesheet" href="../static/css/media.css" th:href="@{/css/media.css}">
-    <link rel="stylesheet" href=".../static/css/animation-iror.css" th:href="@{/css/animation-iror.css}">
-    <link rel="stylesheet" href="../static/fonts/fontawesome/fontawesome.css" th:href="@{/fonts/fontawesome/fontawesome.css}">
-    <link rel="stylesheet" href="../static/fonts/fontawesome/fontawesome-all-css.css" th:href="@{/fonts/fontawesome/fontawesome-all-css.css}">
-    <link rel="stylesheet" href="../static/css/checkout.css" th:href="@{/css/checkout.css}">
-    <link rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}">
-    
-    <script src="/static/fonts/fontawesome/all.js" th:src="@{/fonts/fontawesome/all.js}"></script>
-    
+    <script
+      src="/static/fonts/fontawesome/all.js"
+      th:src="@{/fonts/fontawesome/all.js}"
+    ></script>
+
     <script src="/static/js/jquery.js" th:src="@{/js/jquery.js}"></script>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"  th:src="@{/js/jquery.modal.js}"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" /> -->
-    
-</head>
 
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"
+      th:src="@{/js/jquery.modal.js}"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"
+      th:href="@{/css/jquery.modal.css}"
+    /> -->
+  </head>
 
-<body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
+  <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
     <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
-        <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
-            <div th:insert="fragments/menu_sidebar.html"></div>
-            <div class="b-overlay-wrap position-relative w-100" size="sm">
-                <div class="rih-page-wrapper">
-                    <nav role="navigation" class="navbar navbar-admin navbar-fixed-top"
-                        th:insert="fragments/header_logout.html"></nav>
-                    <main class="wrapper wrapper-content border-bottom">
-                        <div class="b-overlay-wrap position-relative" size="sm">
-                            <div class="row">
-                                <div class="btn-pimary__groups-wrapper mb-3">
-                                    <div  class="mb-3 text-right">
-                                        <a  href="#" class="btn btn-primary width green">Проекты</a>
-                                    </div>
-                                    <div  class="mb-3 text-right">
-                                        <a  href="#" class="btn btn-primary width red">Общий</a>
-                                    </div>
-                                    <div  class="mb-3 text-right">
-                                        <a  href="#" class="btn btn-primary width orange">Оборудование</a>
-                                    </div>
-                                    <div  class="mb-3 text-right">
-                                        <a  href="#" class="btn btn-primary width pink">Оборудование на проектах</a>
-                                    </div>
-                                    <div data-v-8271a922="" class="rent__time">
-                                        <span data-v-8271a922="" class="rent__time__group__label">
-                                            <!-- <svg data-v-8271a922="" class="svg-inline--fa fa-clock fa-w-16 mr-2"
+      <div
+        class="b-overlay-wrap position-relative w-100"
+        size="sm"
+        id="wrapper"
+      >
+        <div th:insert="fragments/menu_sidebar.html"></div>
+        <div class="b-overlay-wrap position-relative w-100" size="sm">
+          <div class="rih-page-wrapper">
+            <!-- <nav
+              role="navigation"
+              class="navbar navbar-admin navbar-fixed-top"
+              th:insert="fragments/header_logout.html"
+            ></nav> -->
+            <main class="wrapper wrapper-content">
+              <div class="b-overlay-wrap position-relative" size="sm">
+                <div class="row">
+                  <div class="btn-pimary__groups-wrapper mb-3">
+                    <div class="mb-3 text-right">
+                      <a href="#" class="btn btn-primary width my-green"
+                        >Проекты</a
+                      >
+                    </div>
+                    <div class="mb-3 text-right">
+                      <a href="#" class="btn btn-primary width my-red">Общий</a>
+                    </div>
+                    <div class="mb-3 text-right">
+                      <a href="#" class="btn btn-primary width my-yellow"
+                        >Оборудование</a
+                      >
+                    </div>
+                    <div class="mb-3 text-right">
+                      <a href="#" class="btn btn-primary width my-yellow"
+                        >Оборудование на проектах</a
+                      >
+                    </div>
+                    <div data-v-8271a922="" class="rent__time">
+                      <span data-v-8271a922="" class="rent__time__group__label">
+                        <!-- <svg data-v-8271a922="" class="svg-inline--fa fa-clock fa-w-16 mr-2"
                                                 aria-hidden="true" focusable="false" data-prefix="far"
                                                 data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg"
                                                 viewBox="0 0 512 512" data-fa-i2svg="">
@@ -94,306 +205,430 @@
                                                     d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z">
                                                 </path>
                                             </svg> -->
-                                            <!-- <i data-v-8271a922="" class="far fa-clock mr-2"></i> Font Awesome fontawesome.com -->
-                                            Даты с:
-                                        </span>
-                                        <div data-v-8271a922="" class="rent__time__group" style="margin-left: -5px;">
-                                            
-                                            <div data-v-8271a922="" class="vdatetime w-100 form-control">
-                                                <input type="date" class="vdatetime-input" placeholder="" style="background-color: transparent; color: #fff;">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div data-v-8271a922="" class="rent__time">
-                                        <span data-v-8271a922="" class="rent__time__group__label">
-                                            <!-- <svg data-v-8271a922="" class="svg-inline--fa fa-clock fa-w-16 mr-2"
-                                                aria-hidden="true" focusable="false" data-prefix="far"
-                                                data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 512 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z">
-                                                </path>
-                                            </svg> -->
-                                            <!-- <i data-v-8271a922="" class="far fa-clock mr-2"></i> Font Awesome fontawesome.com -->
-                                            Даты по:
-                                        </span>
-                                        <div data-v-8271a922="" class="rent__time__group" style="margin-left: -5px;">
-                                       
-                                            <div data-v-8271a922="" class="vdatetime w-100 form-control">
-                                                <input type="date" class="vdatetime-input" placeholder="" style="background-color: transparent; color: #fff;">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div  class="mb-3 text-right">
-                                        <a  href="#" class="btn btn-primary width orange">Календарь</a>
-                                    </div>
-                                    <div  class="mb-3 text-right">
-                                        <a  href="#" class="btn btn-primary width orange">Обновить</a>
-                                    </div>
-                                    <div  class="mb-3 text-right">
-                                        <a  href="#" class="btn btn-primary width пкун">Экспорт</a>
-                                    </div>
-                                </div>
-
-
-                                <!-- Таблица проекты -->
-                                <div class="order-lg-1 overflow-auto col-12">
-                                    <div class="custom-ll__table table-responsive">
-                                        <table class="table w-table h-table delivery in4dr-form transparent">
-                                            <tbody><tr>
-                                                <th class="first-th">#</th>
-                                                <th>Проект</th>
-                                                <th>Клиент</th>
-                                                <th>Телефон</th>
-                                                <th>Начало аренды</th>
-                                                <th>Окончание аренды</th>
-                                                <th>Дата и время создания</th>
-                                                <th>Сотрудник</th>
-                                                <th>Примечание</th>
-                                                <th>Фотографии отгрузки</th>
-                                                <th>Статус</th>
-                                            </tr>
-                                            <tr>
-                                                <td class="column-table">
-                                                    <div class="column-table_checkbox-wrapp">
-                                                        <input class="column-table_checkbox ids" type="checkbox">
-                                                        <input type="text" hidden="hidden" value="1">
-                                                        <span class="tools-td-text table-td-text column-table_checkbox-number">1</span>
-                                                    </div>
-                                                </td>
-                                                <td data-label="Проект"><a href="/projects/edit/1/" title="Редактирование проекта">"крутой проект"</a></td>
-                                                <td data-label="Клиент">Иванов сергей</td>
-                                                <td data-label="Телефон">+79887555454</td>
-                                                <td data-label="Начало аренды">10-10-2022 14:11</td>
-                                                <td data-label="Окончание аренды">21-10-2022 15:45</td>
-                                                <td data-label="Дата и время создания">2022-10-10T14:11</td>
-                                                <td data-label="Сотрудник">skelorc</td>
-                                                <td data-label="Примечание">какой то коммент</td>
-                                                <td data-label="Фотографии отгрузки">Фотографии будут</td>
-                                                <td data-label="Статус">Какой-то статус</td>
-                                            </tr>
-                                        </tbody></table>
-                                    </div>
-                                </div>
-
-                                <div class="pagination-control col-lg-12 order-lg-1 mt-3">
-                                    <!-- Bootstrap 4 -->
-                                    <nav aria-label="Навигация по страницам">
-                                        <ul class="pagination">
-                                            <li class="page-item disabled">
-                                                <a class="page-link-m page-link" href="#">
-                                                    Первая
-                                                </a>
-                                            </li>
-                                            <li class="page-item disabled">
-                                                <a class="page-link-m page-link" href="#" aria-label="Предыдущая">
-                                                    <span aria-hidden="true">«</span>
-                                                    <span class="sr-only">Предыдущая</span>
-                                                </a>
-                                            </li>
-                                            <li class="page-item active">
-                                                <a class="page-link-m page-link" href="#">1</a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link-m page-link" href="#">2</a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link-m page-link" href="#">3</a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link-m page-link" href="#" aria-label="Следующая">
-                                                    <span aria-hidden="true">»</span>
-                                                    <span class="sr-only">Следующая</span>
-                                                </a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link-m page-link" href="#">
-                                                    Последняя
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-
-                                <!-- Таблица "общий" -->
-                                <div class="order-lg-1 overflow-auto col-12">
-                                    <div class="custom-ll__table table-responsive">
-                                        <table class="table delivery w-table h-table in4dr-form transparent">
-                                            <tbody><tr>
-                                                <th class="first-th">#</th>
-                                                <th>Проект</th>
-                                                <th>Клиент</th>
-                                                <th>Телефон</th>
-                                                <th>Начало аренды</th>
-                                                <th>Окончание аренды</th>
-                                                <th>Дата и время создания</th>
-                                                <th>Сотрудник</th>
-                                                <th>Примечание</th>
-                                                <th>Фотографии отгрузки</th>
-                                                <th>Статус</th>
-                                                <th>Сумма</th>
-                                                <th>Скидка на проект</th>
-                                                <th>Сумма со скидкой</th>
-                                                <th>Стоимость оборудования</th>
-                                                <th>Стоимость работ</th>
-                                                <th>Оплачено</th>
-                                                <th>Остаток</th>
-                                            </tr>
-                                            <tr>
-                                                <td class="column-table">
-                                                    <div class="column-table_checkbox-wrapp">
-                                                        <input class="column-table_checkbox ids" type="checkbox">
-                                                        <input type="text" hidden="hidden" value="1">
-                                                        <span class="tools-td-text table-td-text column-table_checkbox-number">1</span>
-                                                    </div>
-                                                </td>
-                                                <td data-label="Проект"> <a href="/projects/edit/1/" title="Редактирование проекта">"крутой проект"</a></td>
-                                                <td data-label="Клиент">Иванов сергей</td>
-                                                <td data-label="Телефон">+79887555454</td>
-                                                <td data-label="Начало аренды">10-10-2022 14:11</td>
-                                                <td data-label="Окончание аренды">21-10-2022 15:45</td>
-                                                <td data-label="Дата и время создания">2022-10-10T14:11</td>
-                                                <td data-label="Сотрудник">skelorc</td>
-                                                <td data-label="Примечание">какой то коммент</td>
-                                                <td data-label="Фотографии отгрузки">Фотографии будут</td>
-                                                <td data-label="Статус">Какой-то статус</td>
-                                                <td data-label="Скидка на проект">Пример</td>
-                                                <td data-label="Сумма">Пример</td>
-                                                <td data-label="Сумма со скидкой">Пример</td>
-                                                <td data-label="Стоимость оборудования">Пример</td>
-                                                <td data-label="Стоимость работ">Пример</td>
-                                                <td data-label="Оплачено">Пример</td>
-                                                <td data-label="Остаток">Пример</td>
-                                            </tr>
-                                        </tbody></table>
-                                    </div>
-                                </div>
-
-                                <!-- Таблица оборудование -->
-                                <div class="order-lg-1 overflow-auto col-12">
-                                    <div class="custom-ll__table table-responsive">
-                                        <table class="table w-table h-table delivery in4dr-form transparent">
-                                            <tbody><tr>
-                                                <th class="first-th">#</th>
-                                                <th>Проект</th>
-                                                <th>Клиент</th>
-                                                <th>Телефон</th>
-                                                <th>Начало аренды</th>
-                                                <th>Окончание аренды</th>
-                                                <th>Дата и время создания</th>
-                                                <th>Сотрудник</th>
-                                                <th>Примечание</th>
-                                                <th>Фотографии отгрузки</th>
-                                                <th>Статус</th>
-                                                <th>Цена за сутки</th>
-                                                <th>Себестоимость</th>
-                                                <th>Доход с оборудования</th>
-                                                <th>Доход с продажи</th>
-                                                <th>Доход инвестора</th>
-                                                <th>Сумма ремонта</th>
-                                                <th>Цена продажи</th>
-                                                <th>Инвестиции</th>
-                                                <th>Количество смен</th>
-                                            </tr>
-                                            <tr>
-                                                <td data-label="#" class="column-table">
-                                                    <div class="column-table_checkbox-wrapp">
-                                                        <input class="column-table_checkbox ids" type="checkbox">
-                                                        <input type="text" hidden="hidden" value="1">
-                                                        <span class="tools-td-text table-td-text column-table_checkbox-number">1</span>
-                                                    </div>
-                                                </td>
-                                                <td data-label="Проект"><a href="/projects/edit/1/" title="Редактирование проекта">"крутой проект"</a></td>
-                                                <td data-label="Клиент">Иванов сергей</td>
-                                                <td data-label="Телефон">+79887555454</td>
-                                                <td data-label="Начало аренды">10-10-2022 14:11</td>
-                                                <td data-label="Окончание аренды">21-10-2022 15:45</td>
-                                                <td data-label="Дата и время создания">2022-10-10T14:11</td>
-                                                <td data-label="Сотрудник">skelorc</td>
-                                                <td data-label="Примечание">какой то коммент</td>
-                                                <td data-label="фотографии отгрузки">Фотографии будут</td>
-                                                <td data-label="Статус">Какой-то статус</td>
-                                                <td data-label="Цена за сутки">Пример</td>
-                                                <td data-label="Себестоимость">Пример</td>
-                                                <td data-label="Доход с оборудования">Пример</td>
-                                                <td data-label="Доход с продажи">Пример</td>
-                                                <td data-label="Доход инвестора">Пример</td>
-                                                <td data-label="Сумма ремонта">Пример</td>
-                                                <td data-label="Цена продажи">Пример</td>
-                                                <td data-label="Инвестиции">Пример</td>
-                                                <td data-label="Количество смен">Пример</td>
-                                            </tr>
-                                        </tbody></table>
-                                    </div>
-                                </div>
-                                <!-- Оборудование на проектах -->
-                                <div class="order-lg-1 overflow-auto col-12">
-                                    <div class="custom-ll__table table-responsive">
-                                        <table class="table w-table h-table delivery in4dr-form transparent">
-                                            <tbody><tr>
-                                                <th class="first-th">#</th>
-                                                <th>Проект</th>
-                                                <th>Клиент</th>
-                                                <th>Телефон</th>
-                                                <th>Начало аренды</th>
-                                                <th>Окончание аренды</th>
-                                                <th>Дата и время создания</th>
-                                                <th>Сотрудник</th>
-                                                <th>Примечание</th>
-                                                <th>Фотографии отгрузки</th>
-                                                <th>Статус</th>
-                                                <th>Текущий проект/th>
-                                                <th>Цена за сутки</th>
-                                                <th>Себестоимость</th>
-                                                <th>Доход с оборудования</th>
-                                                <th>Доход с продажи</th>
-                                                <th>Доход инвестора</th>
-                                                <th>Сумма ремонта</th>
-                                                <th>Цена продажи</th>
-                                                <th>Инвестиции</th>
-                                                <th>Количество смен</th>
-                                            </tr>
-                                            <tr>
-                                                <td class="column-table">
-                                                    <div class="column-table_checkbox-wrapp">
-                                                        <input class="column-table_checkbox ids" type="checkbox">
-                                                        <input type="text" hidden="hidden" value="1">
-                                                        <span class="tools-td-text table-td-text column-table_checkbox-number">1</span>
-                                                    </div>
-                                                </td>
-                                                <td data-label="Проект"><a href="/projects/edit/1/" title="Редактирование проекта">"крутой проект"</a></td>
-                                                <td data-label="Клиент">Иванов сергей</td>
-                                                <td data-label="Телефон">+79887555454</td>
-                                                <td data-label="Начало аренды">10-10-2022 14:11</td>
-                                                <td data-label="Окончание аренды">21-10-2022 15:45</td>
-                                                <td data-label="Дата и время создания">2022-10-10T14:11</td>
-                                                <td data-label="Сотрудник">skelorc</td>
-                                                <td data-label="Примечание">какой то коммент</td>
-                                                <td data-label="Фотографии отгрузки">Фотографии будут</td>
-                                                <td data-label="Статус" class="red">Какой-то статус</td>
-                                                <td data-label="Текущий проект" class="pink">Пример</td>
-                                                <td data-label="Цена за сутки">Пример</td>
-                                                <td data-label="Себестоимость">Пример</td>
-                                                <td data-label="Доход с оборудования">Пример</td>
-                                                <td data-label="Доход с продажи">Пример</td>
-                                                <td data-label="Доход инвестора">Пример</td>
-                                                <td data-label="Сумма ремонта">Пример</td>
-                                                <td data-label="Цена продажи">Пример</td>
-                                                <td data-label="Инвестиции">Пример</td>
-                                                <td data-label="Количество смен">Пример</td>
-                                            </tr>
-                                        </tbody></table>
-                                    </div>
-                                </div>
-                            </div>
+                        <!-- <i data-v-8271a922="" class="far fa-clock mr-2"></i> Font Awesome fontawesome.com -->
+                        Даты с:
+                      </span>
+                      <div
+                        data-v-8271a922=""
+                        class="rent__time__group"
+                        style="margin-left: -5px"
+                      >
+                        <div
+                          data-v-8271a922=""
+                          class="vdatetime w-100 form-control"
+                        >
+                          <input
+                            type="date"
+                            class="vdatetime-input"
+                            placeholder=""
+                            style="background-color: transparent; color: #fff"
+                          />
                         </div>
-                    </main>
-                    <div th:insert="fragments/footer.html"></div>
+                      </div>
+                    </div>
+                    <div data-v-8271a922="" class="rent__time">
+                      <span data-v-8271a922="" class="rent__time__group__label">
+                        <!-- <svg data-v-8271a922="" class="svg-inline--fa fa-clock fa-w-16 mr-2"
+                                                aria-hidden="true" focusable="false" data-prefix="far"
+                                                data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 512 512" data-fa-i2svg="">
+                                                <path fill="currentColor"
+                                                    d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z">
+                                                </path>
+                                            </svg> -->
+                        <!-- <i data-v-8271a922="" class="far fa-clock mr-2"></i> Font Awesome fontawesome.com -->
+                        Даты по:
+                      </span>
+                      <div
+                        data-v-8271a922=""
+                        class="rent__time__group"
+                        style="margin-left: -5px"
+                      >
+                        <div
+                          data-v-8271a922=""
+                          class="vdatetime w-100 form-control"
+                        >
+                          <input
+                            type="date"
+                            class="vdatetime-input"
+                            placeholder=""
+                            style="background-color: transparent; color: #fff"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mb-3 text-right">
+                      <a href="#" class="btn btn-primary width my-yellow"
+                        >Календарь</a
+                      >
+                    </div>
+                    <div class="mb-3 text-right">
+                      <a href="#" class="btn btn-primary width my-yellow"
+                        >Обновить</a
+                      >
+                    </div>
+                    <div class="mb-3 text-right">
+                      <a href="#" class="btn btn-primary width пкун my-yellow"
+                        >Экспорт</a
+                      >
+                    </div>
+                  </div>
+
+                  <!-- Таблица проекты -->
+                  <div class="order-lg-1 overflow-auto col-12">
+                    <div class="custom-ll__table table-responsive">
+                      <table
+                        class="table w-table h-table delivery in4dr-form transparent"
+                      >
+                        <tbody>
+                          <tr>
+                            <th class="first-th">#</th>
+                            <th>Проект</th>
+                            <th>Клиент</th>
+                            <th>Телефон</th>
+                            <th>Начало аренды</th>
+                            <th>Окончание аренды</th>
+                            <th>Дата и время создания</th>
+                            <th>Сотрудник</th>
+                            <th>Примечание</th>
+                            <th>Фотографии отгрузки</th>
+                            <th>Статус</th>
+                          </tr>
+                          <tr>
+                            <td class="column-table">
+                              <div class="column-table_checkbox-wrapp">
+                                <input
+                                  class="column-table_checkbox ids"
+                                  type="checkbox"
+                                />
+                                <input type="text" hidden="hidden" value="1" />
+                                <span
+                                  class="tools-td-text table-td-text column-table_checkbox-number"
+                                  >1</span
+                                >
+                              </div>
+                            </td>
+                            <td data-label="Проект">
+                              <a
+                                href="/projects/edit/1/"
+                                title="Редактирование проекта"
+                                >"крутой проект"</a
+                              >
+                            </td>
+                            <td data-label="Клиент">Иванов сергей</td>
+                            <td data-label="Телефон">+79887555454</td>
+                            <td data-label="Начало аренды">10-10-2022 14:11</td>
+                            <td data-label="Окончание аренды">
+                              21-10-2022 15:45
+                            </td>
+                            <td data-label="Дата и время создания">
+                              2022-10-10T14:11
+                            </td>
+                            <td data-label="Сотрудник">skelorc</td>
+                            <td data-label="Примечание">какой то коммент</td>
+                            <td data-label="Фотографии отгрузки">
+                              Фотографии будут
+                            </td>
+                            <td data-label="Статус">Какой-то статус</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div class="pagination-control col-lg-12 order-lg-1 mt-3">
+                    <!-- Bootstrap 4 -->
+                    <nav aria-label="Навигация по страницам">
+                      <ul class="pagination">
+                        <li class="page-item disabled">
+                          <a class="page-link-m page-link" href="#"> Первая </a>
+                        </li>
+                        <li class="page-item disabled">
+                          <a
+                            class="page-link-m page-link"
+                            href="#"
+                            aria-label="Предыдущая"
+                          >
+                            <span aria-hidden="true">«</span>
+                            <span class="sr-only">Предыдущая</span>
+                          </a>
+                        </li>
+                        <li class="page-item active">
+                          <a class="page-link-m page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link-m page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link-m page-link" href="#">3</a>
+                        </li>
+                        <li class="page-item">
+                          <a
+                            class="page-link-m page-link"
+                            href="#"
+                            aria-label="Следующая"
+                          >
+                            <span aria-hidden="true">»</span>
+                            <span class="sr-only">Следующая</span>
+                          </a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link-m page-link" href="#">
+                            Последняя
+                          </a>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
+
+                  <!-- Таблица "общий" -->
+                  <div class="order-lg-1 overflow-auto col-12">
+                    <div class="custom-ll__table table-responsive">
+                      <table
+                        class="table delivery w-table h-table in4dr-form transparent"
+                      >
+                        <tbody>
+                          <tr>
+                            <th class="first-th">#</th>
+                            <th>Проект</th>
+                            <th>Клиент</th>
+                            <th>Телефон</th>
+                            <th>Начало аренды</th>
+                            <th>Окончание аренды</th>
+                            <th>Дата и время создания</th>
+                            <th>Сотрудник</th>
+                            <th>Примечание</th>
+                            <th>Фотографии отгрузки</th>
+                            <th>Статус</th>
+                            <th>Сумма</th>
+                            <th>Скидка на проект</th>
+                            <th>Сумма со скидкой</th>
+                            <th>Стоимость оборудования</th>
+                            <th>Стоимость работ</th>
+                            <th>Оплачено</th>
+                            <th>Остаток</th>
+                          </tr>
+                          <tr>
+                            <td class="column-table">
+                              <div class="column-table_checkbox-wrapp">
+                                <input
+                                  class="column-table_checkbox ids"
+                                  type="checkbox"
+                                />
+                                <input type="text" hidden="hidden" value="1" />
+                                <span
+                                  class="tools-td-text table-td-text column-table_checkbox-number"
+                                  >1</span
+                                >
+                              </div>
+                            </td>
+                            <td data-label="Проект">
+                              <a
+                                href="/projects/edit/1/"
+                                title="Редактирование проекта"
+                                >"крутой проект"</a
+                              >
+                            </td>
+                            <td data-label="Клиент">Иванов сергей</td>
+                            <td data-label="Телефон">+79887555454</td>
+                            <td data-label="Начало аренды">10-10-2022 14:11</td>
+                            <td data-label="Окончание аренды">
+                              21-10-2022 15:45
+                            </td>
+                            <td data-label="Дата и время создания">
+                              2022-10-10T14:11
+                            </td>
+                            <td data-label="Сотрудник">skelorc</td>
+                            <td data-label="Примечание">какой то коммент</td>
+                            <td data-label="Фотографии отгрузки">
+                              Фотографии будут
+                            </td>
+                            <td data-label="Статус">Какой-то статус</td>
+                            <td data-label="Скидка на проект">Пример</td>
+                            <td data-label="Сумма">Пример</td>
+                            <td data-label="Сумма со скидкой">Пример</td>
+                            <td data-label="Стоимость оборудования">Пример</td>
+                            <td data-label="Стоимость работ">Пример</td>
+                            <td data-label="Оплачено">Пример</td>
+                            <td data-label="Остаток">Пример</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <!-- Таблица оборудование -->
+                  <div class="order-lg-1 overflow-auto col-12">
+                    <div class="custom-ll__table table-responsive">
+                      <table
+                        class="table w-table h-table delivery in4dr-form transparent"
+                      >
+                        <tbody>
+                          <tr>
+                            <th class="first-th">#</th>
+                            <th>Проект</th>
+                            <th>Клиент</th>
+                            <th>Телефон</th>
+                            <th>Начало аренды</th>
+                            <th>Окончание аренды</th>
+                            <th>Дата и время создания</th>
+                            <th>Сотрудник</th>
+                            <th>Примечание</th>
+                            <th>Фотографии отгрузки</th>
+                            <th>Статус</th>
+                            <th>Цена за сутки</th>
+                            <th>Себестоимость</th>
+                            <th>Доход с оборудования</th>
+                            <th>Доход с продажи</th>
+                            <th>Доход инвестора</th>
+                            <th>Сумма ремонта</th>
+                            <th>Цена продажи</th>
+                            <th>Инвестиции</th>
+                            <th>Количество смен</th>
+                          </tr>
+                          <tr>
+                            <td data-label="#" class="column-table">
+                              <div class="column-table_checkbox-wrapp">
+                                <input
+                                  class="column-table_checkbox ids"
+                                  type="checkbox"
+                                />
+                                <input type="text" hidden="hidden" value="1" />
+                                <span
+                                  class="tools-td-text table-td-text column-table_checkbox-number"
+                                  >1</span
+                                >
+                              </div>
+                            </td>
+                            <td data-label="Проект">
+                              <a
+                                href="/projects/edit/1/"
+                                title="Редактирование проекта"
+                                >"крутой проект"</a
+                              >
+                            </td>
+                            <td data-label="Клиент">Иванов сергей</td>
+                            <td data-label="Телефон">+79887555454</td>
+                            <td data-label="Начало аренды">10-10-2022 14:11</td>
+                            <td data-label="Окончание аренды">
+                              21-10-2022 15:45
+                            </td>
+                            <td data-label="Дата и время создания">
+                              2022-10-10T14:11
+                            </td>
+                            <td data-label="Сотрудник">skelorc</td>
+                            <td data-label="Примечание">какой то коммент</td>
+                            <td data-label="фотографии отгрузки">
+                              Фотографии будут
+                            </td>
+                            <td data-label="Статус">Какой-то статус</td>
+                            <td data-label="Цена за сутки">Пример</td>
+                            <td data-label="Себестоимость">Пример</td>
+                            <td data-label="Доход с оборудования">Пример</td>
+                            <td data-label="Доход с продажи">Пример</td>
+                            <td data-label="Доход инвестора">Пример</td>
+                            <td data-label="Сумма ремонта">Пример</td>
+                            <td data-label="Цена продажи">Пример</td>
+                            <td data-label="Инвестиции">Пример</td>
+                            <td data-label="Количество смен">Пример</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <!-- Оборудование на проектах -->
+                  <div class="order-lg-1 overflow-auto col-12">
+                    <div class="custom-ll__table table-responsive">
+                      <table
+                        class="table w-table h-table delivery in4dr-form transparent"
+                      >
+                        <tbody>
+                          <tr>
+                            <th class="first-th">#</th>
+                            <th>Проект</th>
+                            <th>Клиент</th>
+                            <th>Телефон</th>
+                            <th>Начало аренды</th>
+                            <th>Окончание аренды</th>
+                            <th>Дата и время создания</th>
+                            <th>Сотрудник</th>
+                            <th>Примечание</th>
+                            <th>Фотографии отгрузки</th>
+                            <th>Статус</th>
+                            <th>Текущий проект/th></th>
+                            <th>Цена за сутки</th>
+                            <th>Себестоимость</th>
+                            <th>Доход с оборудования</th>
+                            <th>Доход с продажи</th>
+                            <th>Доход инвестора</th>
+                            <th>Сумма ремонта</th>
+                            <th>Цена продажи</th>
+                            <th>Инвестиции</th>
+                            <th>Количество смен</th>
+                          </tr>
+                          <tr>
+                            <td class="column-table">
+                              <div class="column-table_checkbox-wrapp">
+                                <input
+                                  class="column-table_checkbox ids"
+                                  type="checkbox"
+                                />
+                                <input type="text" hidden="hidden" value="1" />
+                                <span
+                                  class="tools-td-text table-td-text column-table_checkbox-number"
+                                  >1</span
+                                >
+                              </div>
+                            </td>
+                            <td data-label="Проект">
+                              <a
+                                href="/projects/edit/1/"
+                                title="Редактирование проекта"
+                                >"крутой проект"</a
+                              >
+                            </td>
+                            <td data-label="Клиент">Иванов сергей</td>
+                            <td data-label="Телефон">+79887555454</td>
+                            <td data-label="Начало аренды">10-10-2022 14:11</td>
+                            <td data-label="Окончание аренды">
+                              21-10-2022 15:45
+                            </td>
+                            <td data-label="Дата и время создания">
+                              2022-10-10T14:11
+                            </td>
+                            <td data-label="Сотрудник">skelorc</td>
+                            <td data-label="Примечание">какой то коммент</td>
+                            <td data-label="Фотографии отгрузки">
+                              Фотографии будут
+                            </td>
+                            <td data-label="Статус" class="red">
+                              Какой-то статус
+                            </td>
+                            <td data-label="Текущий проект" class="pink">
+                              Пример
+                            </td>
+                            <td data-label="Цена за сутки">Пример</td>
+                            <td data-label="Себестоимость">Пример</td>
+                            <td data-label="Доход с оборудования">Пример</td>
+                            <td data-label="Доход с продажи">Пример</td>
+                            <td data-label="Доход инвестора">Пример</td>
+                            <td data-label="Сумма ремонта">Пример</td>
+                            <td data-label="Цена продажи">Пример</td>
+                            <td data-label="Инвестиции">Пример</td>
+                            <td data-label="Количество смен">Пример</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
                 </div>
-            </div>
+              </div>
+            </main>
+            <div th:insert="fragments/footer.html"></div>
+          </div>
         </div>
+      </div>
     </div>
     <div th:insert="fragments/scripts.html"></div>
-</body>
-
+  </body>
 </html>

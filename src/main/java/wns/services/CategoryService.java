@@ -16,7 +16,7 @@ public class CategoryService implements MainService {
 
     @Override
     public List<Category> getAll() {
-        return categoryRepo.findAll();
+        return (List<Category>) categoryRepo.findAll();
     }
 
     public Category getById(long id)

@@ -62,7 +62,7 @@
         <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
              <div th:insert="fragments/menu_sidebar.html">
             </div>
-            <!-- <div class="text-center" id="ex1">
+            <div class="text-center" id="ex1">
                 <p id="alert_message" class="font-bold"></p>
                 <script th:inline="javascript">
                     var message = [[${message}]];
@@ -79,6 +79,7 @@
                     <a href="#" class="main-link">
                         <div class="sidebar-collapse__menu-logo">
                             <img class="sidebar-collapse__menu-logo_img" th:src="@{/img/logo/mad-dog-logo.png}">
+                            <!-- <img class="sidebar-collapse__menu-logo_img" src="../static/img/logo/mad-dog-logo.png"> -->
                         </div>
                         <div class="sidebar-collapse__menu-title">
                             <h4 class="sidebar-collapse__menu-title_text">MAD DOG</h4>
@@ -145,25 +146,25 @@
                 <div class="text-center" id="ex1">
                     <p id="alert_message" class="font-bold"></p>
                 </div>
-            </nav> -->
+            </nav>
             <div class="b-overlay-wrap position-relative w-100" size="sm">
                 <div class="rih-page-wrapper">
-                    <nav data-v-537a461c role="navigation" class="navbar navbar-admin navbar-fixed-top"
-                    th:insert="fragments/header_logout.html">
-                        <div id="menu-toggle" class="navbar-header">
+                    <!-- <nav data-v-537a461c role="navigation" class="navbar navbar-admin navbar-fixed-top"
+                    th:insert="fragments/header_logout.html"></nav> -->
+                        <!-- <div id="menu-toggle" class="navbar-header">
                             <a class="navbar-minimalize minimalize-styl-2">
                                 <i class="fa fa-bars"></i>
                             </a>
-                        </div>
+                        </div> -->
                         <ul class="nav navbar-top-links navbar-right" style="flex-basis: 0px;">
                             <li id="logout">
-                                <form id="logoutForm" th:action="@{/logout}" method="post">
+                                <!-- <form id="logoutForm" th:action="@{/logout}" method="post">
                                     <a class="count-info"
                                         href="javascript: document.getElementById('logoutForm').submit()"
                                         role="menuitem"><i class="fa fa-sign-out-alt f-20">
                                             <input hidden type="submit" value="Sign Out">
                                         </i></a>
-                                </form>
+                                </form> -->
                             </li>
                         </ul>
                     </nav>
@@ -173,11 +174,11 @@
                             <div class=" col-lg-12 col-xl-12 col-md-6 col-sm-12 col-6 ml-2">
                                 <div  class="mb-3 text-right">
                                     <a href="/projects/create" th:href="@{/projects/create}"
-                                        class="btn btn-primary width btn-add_vidacha green" >Создать</a>
+                                        class="btn btn-primary width btn-add_vidacha my-green" >Создать</a>
                                 </div>
                                 <div  class="mb-3 text-right">
                                     <button id="remove_project" th:href="@{/projects/create}"
-                                       class="btn btn-primary width btn-add_vidacha red" >Удалить</button>
+                                       class="btn btn-primary width btn-add_vidacha my-red" >Удалить</button>
                                 </div>
                         </div>
                             <div data-v-e551daac="">
@@ -197,23 +198,23 @@
                                                 <div class="btn__under-table col-6 col-md-12 col-lg-12">
                                                     <div data-v-e551daac="" class="mb-3 text-right" style="margin-right: 50px;">
                                                         <a data-v-e551daac="" href="/"
-                                                            class="btn btn-primary width btn-add_vidacha grey">Все</a>
+                                                            class="btn btn-primary width btn-add_vidacha my-yellow">Все</a>
                                                     </div>
                                                     <div data-v-e551daac="" class="mb-3 text-right">
                                                         <a data-v-e551daac="" href="/?filter=one_time"
-                                                            class="btn btn-primary width btn-open_vidacha  grey">Разовые</a>
+                                                            class="btn btn-primary width btn-open_vidacha  my-yellow">Разовые</a>
                                                     </div>
                                                     <div data-v-e551daac="" class="mb-3 text-right">
                                                         <a data-v-e551daac="" href="/?filter=long"
-                                                            class="btn btn-primary width btn-delate_vidacha grey">Длинный</a>
+                                                            class="btn btn-primary width btn-delate_vidacha my-yellow">Длинный</a>
                                                     </div>
                                                     <div data-v-e551daac="" class="mb-3 text-right">
                                                         <a data-v-e551daac="" href="/?filter=sublease"
-                                                            class="btn btn-primary width btn-update_vidacha  grey">Субаренда</a>
+                                                            class="btn btn-primary width btn-update_vidacha  my-yellow">Субаренда</a>
                                                     </div>
                                                     <div data-v-e551daac="" class="mb-3 text-right">
                                                         <a data-v-e551daac="" href="/?filter=test"
-                                                            class="btn btn-primary width btn-update_vidacha  grey">Тест</a>
+                                                            class="btn btn-primary width btn-update_vidacha  my-yellow">Тест</a>
                                                     </div>
                                                 </div>
                                             </div>

@@ -1,30 +1,28 @@
 package wns.controllers;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import wns.services.ReportsService;
 
 @Controller
 @RequestMapping("reports")
+@RequiredArgsConstructor
 public class ReportsController {
 
-    Logger logger = LoggerFactory.getLogger(ReportsController.class);
+    private final ReportsService reportsService;
+
 
     @GetMapping
-    public String show()
-    {
+    public String show() {
         return "reports";
     }
 
     @GetMapping("z")
-    public String showTest(@RequestParam(value = "data", required = false) String test)
-    {
-        System.out.println(test);
-        logger.warn(test);
-        logger.error(test);
+    public String showTest(@RequestParam(value = "data", required = false) String test) {
+        reportsService.createTest();
         return "reports";
     }
 }

@@ -5,6 +5,7 @@
  * Improvements by Andrew Rowls
  * Licensed under the Apache License v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
  */
+
 .datepicker {
   padding: 4px;
   -webkit-border-radius: 4px;
@@ -98,8 +99,8 @@
 .table-striped .datepicker table tr th {
   background-color: transparent;
 }
-.datepicker table tr td.day:hover,
-.datepicker table tr td.day.focused {
+.datepicker table tr td.day span:hover,
+.datepicker table tr td.day.focused span {
   background: #eeeeee;
   cursor: pointer;
 }
@@ -139,6 +140,7 @@
 .datepicker table tr td.today:hover:hover,
 .datepicker table tr td.today.disabled:hover,
 .datepicker table tr td.today.disabled:hover:hover,
+.datepicker table tr td.today:active,
 .datepicker table tr td.today:active,
 .datepicker table tr td.today:hover:active,
 .datepicker table tr td.today.disabled:active,
@@ -326,6 +328,41 @@
 .datepicker table tr td.active.disabled:hover[disabled] {
   background-color: #0044cc;
 }
+.datepicker table tr td div.active_d:hover,
+.datepicker table tr td div.active_d:hover:hover,
+.datepicker table tr td div.active_d.disabled:hover,
+.datepicker table tr td div.active_d.disabled:hover:hover,
+.datepicker table tr td div.active_d:active,
+.datepicker table tr td div.active_d:hover:active,
+.datepicker table tr td div.active_d.disabled:active,
+.datepicker table tr td div.active_d.disabled:hover:active,
+.datepicker table tr td div.active_d,
+.datepicker table tr td div.active_d:hover.active,
+.datepicker table tr td div.active_d.disabled.active,
+.datepicker table tr td div.active_d.disabled:hover.active,
+.datepicker table tr td div.active_d.disabled,
+.datepicker table tr td div.active_d:hover.disabled,
+.datepicker table tr td div.active_d.disabled.disabled,
+.datepicker table tr td div.active_d.disabled:hover.disabled,
+.datepicker table tr td div.active_d[disabled],
+.datepicker table tr td div.active_d:hover[disabled],
+.datepicker table tr td div.active_d.disabled[disabled],
+.datepicker table tr td div.active_d.disabled:hover[disabled] {
+   background-color: #006dcc;
+  background-image: -moz-linear-gradient(to bottom, #0088cc, #0044cc);
+  background-image: -ms-linear-gradient(to bottom, #0088cc, #0044cc);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
+  background-image: -webkit-linear-gradient(to bottom, #0088cc, #0044cc);
+  background-image: -o-linear-gradient(to bottom, #0088cc, #0044cc);
+  background-image: linear-gradient(to bottom, #0088cc, #0044cc);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0088cc', endColorstr='#0044cc', GradientType=0);
+  border-color: #0044cc #0044cc #002a80;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
 .datepicker table tr td.active:active,
 .datepicker table tr td.active:hover:active,
 .datepicker table tr td.active.disabled:active,
@@ -337,12 +374,9 @@
   background-color: #003399 \9;
 }
 .datepicker table tr td span {
-  display: block;
-  width: 23%;
-  height: 54px;
-  line-height: 54px;
-  float: left;
-  margin: 1%;
+  width: 75px;
+  height: 23px;
+  display: inline-block;
   cursor: pointer;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -469,4 +503,45 @@
   border: 1px solid #ccc;
   margin-left: -5px;
   margin-right: -5px;
+}
+
+.day {
+  padding: 0 !important;
+}
+
+.active_d {
+  background-color: rgb(51, 88, 255) !important;
+  background-image: none !important;
+}
+
+.custom-day {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  justify-content: center;
+  position: relative;
+  padding: 0 4px;
+}
+
+.custom-day__day-time {
+  padding: 5px;
+}
+
+.custom-day__day-time_day {
+  padding: 0 4px;
+  padding-bottom: 6px;
+}
+.custom-day__day-time_night {
+  padding: 0 4px;
+  padding-top: 6px;
+}
+
+.custom-day__date {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  font-size: 16px;
+  text-shadow: 0px 0px 3px #FFFFFF;
 }

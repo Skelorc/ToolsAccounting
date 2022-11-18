@@ -9,6 +9,7 @@ import wns.constants.StatusProject;
 import wns.constants.TypeLease;
 import wns.entity.Project;
 import wns.entity.Tools;
+import wns.entity.WorkingShift;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -36,10 +37,10 @@ public class ProjectDTO {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime created;
     private String employee;
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
-    private LocalDateTime start;
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
-    private LocalDateTime end;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate start;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate end;
     private long client_id;
     private String client_name;
     private String phoneNumber;
@@ -56,7 +57,7 @@ public class ProjectDTO {
     private long remainder;
     private long estimate_id;
     private Set<Long> items = new HashSet<>();
-    private List<LocalDate> dates = new ArrayList<>();
+    private List<WorkingShift> workingShifts = new ArrayList<>();
 
 
     public ProjectDTO(Project project)
@@ -73,8 +74,8 @@ public class ProjectDTO {
         this.quantity = project.getQuantity();
         this.created = project.getCreated();
         this.employee = SecurityContextHolder.getContext().getAuthentication().getName();
-        this.start = project.getStart();
-        this.end = project.getEnd();
+        this.start = project.getWorkingShifts().get(0).getDateShift();
+        this.end = project.getWorkingShifts().get(project.getWorkingShifts().size()-1).getDateShift();
         this.client_id = project.getClient().getId();
         this.client_name = project.getClient().getFullName();
         this.phoneNumber = project.getPhoneNumber();
@@ -91,12 +92,12 @@ public class ProjectDTO {
         this.remainder = project.getRemainder();
         this.estimate_id = project.getEstimate().getId();
         this.items = project.getTools().stream().map(Tools::getId).collect(Collectors.toSet());
-        this.dates.addAll(project.getDates());
     }
 
-    public Project createProjectFromDTO(ProjectDTO dto)
+    public static Project createProjectFromDTO(ProjectDTO dto)
     {
         Project project = new Project();
+        project.setId(dto.getId());
         project.setName(dto.getName());
         project.setNumber(dto.getNumber());
         project.setStatus(dto.getStatus());
@@ -104,8 +105,8 @@ public class ProjectDTO {
         project.setQuantity(dto.getQuantity());
         project.setCreated(dto.getCreated());
         project.setEmployee(SecurityContextHolder.getContext().getAuthentication().getName());
-        project.setStart(dto.getStart());
-        project.setEnd(dto.getEnd());
+        project.setStart(dto.getWorkingShifts().get(0).getDateShift());
+        project.setEnd(dto.getWorkingShifts().get(dto.getWorkingShifts().size()-1).getDateShift());
         project.setPhotos(dto.getPhotos());
         project.setDiscount(dto.getDiscount());
         project.setNote(dto.getNote());
@@ -119,6 +120,7 @@ public class ProjectDTO {
         project.setClassification(dto.getClassification());
         project.setPhoneNumber(dto.getPhoneNumber());
         project.setPriceWork(dto.getPriceWork());
+        project.setWorkingShifts(dto.getWorkingShifts());
         return project;
     }
 

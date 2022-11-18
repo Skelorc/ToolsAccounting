@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import wns.aspects.ToLog;
 import wns.constants.Messages;
 import wns.entity.Owner;
 import wns.entity.User;
@@ -20,6 +21,7 @@ public class UserService  implements MainService {
     private final PasswordEncoder passwordEncoder;
     private final ModelMapper modelMapper;
 
+    @ToLog
     public Messages saveUser(User user) {
         User userFromDb = usersRepo.findByUsername(user.getUsername());
         if (userFromDb == null) {
@@ -31,7 +33,7 @@ public class UserService  implements MainService {
     }
 
     public List<UserDTO> getAll() {
-        List<User> all = usersRepo.findAll();
+        List<User> all = (List<User>) usersRepo.findAll();
         return all.stream()
                 .map(x -> modelMapper.map(x, UserDTO.class))
                 .collect(Collectors.toList());
@@ -41,6 +43,7 @@ public class UserService  implements MainService {
         return usersRepo.findById(id).get();
     }
 
+    @ToLog
     public void updateUser(User user) {
         User userFromDb = usersRepo.findById(user.getId()).get();
         userFromDb.setUsername(user.getUsername());

@@ -2,6 +2,7 @@ package wns.services;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import wns.aspects.ToLog;
 import wns.constants.Messages;
 import wns.constants.TypeClients;
 import wns.dto.ClientDTO;
@@ -18,14 +19,15 @@ public class ClientsService implements MainService {
     private final ClientsRepo clientsRepo;
 
     public List<Client> getAll() {
-        return clientsRepo.findAll();
+        return (List<Client>) clientsRepo.findAll();
     }
 
     public List<ClientDTO> getAllClientsDTO()
     {
-        return clientsRepo.findAll().stream().map(ClientDTO::new).collect(Collectors.toList());
+        List<Client> list = (List<Client>) clientsRepo.findAll();
+        return list.stream().map(ClientDTO::new).collect(Collectors.toList());
     }
-
+    @ToLog
     public Messages saveClient(Client client) {
         Client clientByFullName = clientsRepo.findClientByFullName(client.getFullName());
         if (clientByFullName == null) {
@@ -34,7 +36,7 @@ public class ClientsService implements MainService {
         } else
             return Messages.CLIENT_EXISTS;
     }
-
+    @ToLog
     public void updateClient(long id, Client client) {
         client.setId(id);
         clientsRepo.save(client);

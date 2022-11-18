@@ -5,8 +5,8 @@
 <head class="head">
     <title>Продажа-Создать</title>
     <div th:replace="fragments/head :: header"></div>
-
-    <!-- <meta charset="UTF-8">
+<!-- 
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="robots" content="index, follow">
     <meta name="author" content="">
@@ -66,9 +66,9 @@
         <div th:insert="fragments/menu_sidebar.html"></div>
         <div class="b-overlay-wrap position-relative w-100" size="sm">
             <div class="rih-page-wrapper">
-                <nav role="navigation" class="navbar navbar-admin navbar-fixed-top"
-                     th:insert="fragments/header_logout.html"></nav>
-                <main class="wrapper wrapper-content border-bottom">
+                <!-- <nav role="navigation" class="navbar navbar-admin navbar-fixed-top"
+                     th:insert="fragments/header_logout.html"></nav> -->
+                <main class="wrapper wrapper-content">
                     <div class="b-overlay-wrap position-relative">
                         <div class="btn-pimary__groups mt-3 mb-3">
                             <div class="btn-pimary__groups-wrapper vidacha-sozdach mb-3">
@@ -76,10 +76,10 @@
                                     <span class="btn-pimary__groups_title">Продажа</span>
                                 </div>
                                 <div class="mb-3 text-right">
-                                    <a href="/sale" class="btn btn-primary width grey">Назад</a>
+                                    <a href="/sale" class="btn btn-primary width my-yellow">Назад</a>
                                 </div>
                                 <div class="mb-3 text-right">
-                                    <a href="/tools/create" class="btn btn-primary width green">Добавить
+                                    <a href="/tools/create" class="btn btn-primary width my-green">Добавить
                                         оборудование</a>
                                 </div>
                             </div>
@@ -91,7 +91,7 @@
                                     <div data-v-4af8fa58="" class="rent__client form-creat__half_two-column mb-3">
                                         <div class="rent__client__buttons">
                                             <label class="d-inline-block pl-2 mr-auto rent__client__buttons_title-mb">Покупатель</label>
-                                            <button type="button" class="btn btn-primary width btn-xs"><a
+                                            <button type="button" class="btn btn-primary width btn-xs my-green"><a
                                                     th:href="@{/clients}">Новый покупатель</a>
                                             </button>
                                         </div>
@@ -232,7 +232,7 @@
                         <div class="btn-pimary__groups mt-3 mb-3">
                             <div class="btn-pimary__groups-wrapper mb-3">
                                 <div class="mb-3 text-right">
-                                    <input id="sale_on" type="submit" value="В продажу" class="btn btn-primary width orange">
+                                    <input id="sale_on" type="submit" value="В продажу" class="btn btn-primary width my-yellow">
                                 </div>
                             </div>
                         </div>

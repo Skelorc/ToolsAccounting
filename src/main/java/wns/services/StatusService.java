@@ -22,7 +22,7 @@ public class StatusService implements MainService {
 
     @Override
     public List<Status> getAll() {
-        return repo.findAll();
+        return (List<Status>) repo.findAll();
     }
 
     public List<Status> getListByStatuses(StatusTools statusTools) {
