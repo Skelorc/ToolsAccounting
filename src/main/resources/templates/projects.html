@@ -62,7 +62,7 @@
         <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
              <div th:insert="fragments/menu_sidebar.html">
             </div>
-            <div class="text-center" id="ex1">
+            <!--<div class="text-center" id="ex1">
                 <p id="alert_message" class="font-bold"></p>
                 <script th:inline="javascript">
                     var message = [[${message}]];
@@ -73,13 +73,13 @@
                         $("#ex1").modal();
                     }
                 </script>
-            </div>
-            <nav role="navigation" class="rih-nav">
+            </div>-->
+            <!--<nav role="navigation" class="rih-nav">
                 <div class="nav-header text-center sidebar-collapse__menu-logo rih-nav__header">
                     <a href="#" class="main-link">
                         <div class="sidebar-collapse__menu-logo">
                             <img class="sidebar-collapse__menu-logo_img" th:src="@{/img/logo/mad-dog-logo.png}">
-                            <!-- <img class="sidebar-collapse__menu-logo_img" src="../static/img/logo/mad-dog-logo.png"> -->
+                           &lt;!&ndash;  <img class="sidebar-collapse__menu-logo_img" src="../static/img/logo/mad-dog-logo.png"> &ndash;&gt;
                         </div>
                         <div class="sidebar-collapse__menu-title">
                             <h4 class="sidebar-collapse__menu-title_text">MAD DOG</h4>
@@ -91,11 +91,6 @@
                         <a class="vidacha activ-page" th:href="@{/}" data-link="HumanClientApp"><b><i
                                 class="fa fa-users"></i></b>
                             <span class="nav-label">Выдача</span>
-                        </a>
-                    </li>
-                    <li data-id="4" data-parent_id="2">
-                        <a class="priemka" th:href="@{/acceptance}"><b><i class="fa fa-user-tie"></i></b>
-                            <span class="nav-label">Приемка</span>
                         </a>
                     </li>
                     <li data-id="310828" data-parent_id="2">
@@ -146,27 +141,27 @@
                 <div class="text-center" id="ex1">
                     <p id="alert_message" class="font-bold"></p>
                 </div>
-            </nav>
+            </nav>-->
             <div class="b-overlay-wrap position-relative w-100" size="sm">
                 <div class="rih-page-wrapper">
-                    <!-- <nav data-v-537a461c role="navigation" class="navbar navbar-admin navbar-fixed-top"
-                    th:insert="fragments/header_logout.html"></nav> -->
-                        <!-- <div id="menu-toggle" class="navbar-header">
+                     <nav data-v-537a461c role="navigation" class="navbar navbar-admin navbar-fixed-top"
+                    th:insert="fragments/header_logout.html"></nav>
+                         <div id="menu-toggle" class="navbar-header">
                             <a class="navbar-minimalize minimalize-styl-2">
                                 <i class="fa fa-bars"></i>
                             </a>
-                        </div> -->
-                        <ul class="nav navbar-top-links navbar-right" style="flex-basis: 0px;">
+                        </div>
+                        <!--<ul class="nav navbar-top-links navbar-right" style="flex-basis: 0px;">
                             <li id="logout">
-                                <!-- <form id="logoutForm" th:action="@{/logout}" method="post">
+                                 <form id="logoutForm" th:action="@{/logout}" method="post">
                                     <a class="count-info"
                                         href="javascript: document.getElementById('logoutForm').submit()"
                                         role="menuitem"><i class="fa fa-sign-out-alt f-20">
                                             <input hidden type="submit" value="Sign Out">
                                         </i></a>
-                                </form> -->
+                                </form>
                             </li>
-                        </ul>
+                        </ul>-->
                     </nav>
                     <main class="wrapper wrapper-content edit-container d-block col-8 col-md-12 mt-3">
                         <div data-v-e551daac="">
