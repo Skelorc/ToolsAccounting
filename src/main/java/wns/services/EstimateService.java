@@ -33,7 +33,7 @@ public class EstimateService implements MainService{
         estimate.setProject(project);
         estimate.setStart(project.getStart());
         estimate.setEnd(project.getEnd());
-        estimate.setCount_shifts(estimate.getProject().getWorkingShifts().size());
+
         return estimate;
     }
 

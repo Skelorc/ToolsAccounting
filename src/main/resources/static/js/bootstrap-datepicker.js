@@ -414,6 +414,16 @@
 			this.place();
 			this._attachSecondaryEvents();
 			this._trigger('show');
+
+			// ! show the calendar
+			let selectedDates = document.querySelector(".form-control-date").value.split(",")
+			selectedDates.forEach(element => {
+				let btnForElement = document.querySelector('[data-time="' + element + '"]')
+				if(btnForElement){
+					btnForElement.classList.add("active_d")
+				}
+			});
+			// !
 		},
 
 		hide: function(){
@@ -998,7 +1008,7 @@
 							}
 							this.showMode(-1);
 							this.fill();
-							let selectedDates = document.querySelector(".form-control.date").value.split(",")
+							let selectedDates = document.querySelector(".form-control-date").value.split(",")
 							selectedDates.forEach(element => {
 								let btnForElement = document.querySelector('[data-time="' + element + '"]')
 								if(btnForElement){

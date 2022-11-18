@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html
-  lang="en"
-  xmlns="http://www.w3.org/1999/xhtml"
-  xmlns:th="http://www.thymeleaf.org/"
+        lang="en"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org/"
 >
-  <head class="head">
+<head class="head">
     <title>Клиенты</title>
     <div th:replace="fragments/head :: header"></div>
 
@@ -151,279 +151,277 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"
       th:href="@{/css/jquery.modal.css}"
     /> -->
-  </head>
+</head>
 
-  <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
-    <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
-      <div
-        class="b-overlay-wrap position-relative w-100"
-        size="sm"
-        id="wrapper"
-      >
+<body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
+<div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
+    <div
+            class="b-overlay-wrap position-relative w-100"
+            size="sm"
+            id="wrapper"
+    >
         <div th:insert="fragments/menu_sidebar.html"></div>
         <div class="b-overlay-wrap position-relative w-100" size="sm">
-          <div class="rih-page-wrapper">
-            <!-- <nav role="navigation" class="navbar navbar-admin navbar-fixed-top"
-                     th:insert="fragments/header_logout.html"></nav> -->
-            <main class="wrapper wrapper-content">
-              <div class="col-8 col-md-12" data-v-e551daac="">
-                <div
-                  class="btn-pimary__groups-wrapper vidacha-sozdach mb-3 paddin-l-r-15"
-                >
-                  <div data-v-e551daac="" class="mb-3 text-right">
-                    <a
-                      data-v-e551daac=""
-                      href="/clients/create"
-                      th:href="@{/clients/create}"
-                      class="btn btn-primary width btn-add_vidacha my-green"
-                      >Создать</a
-                    >
-                  </div>
-                  <!--<div data-v-e551daac="" class="mb-3 text-right">
-                                <a data-v-e551daac="" href="#" class="btn btn-primary width btn-update_vidacha grey">Экспорт</a>
-                            </div>-->
-                </div>
-                <div data-v-e551daac="">
-                  <div
-                    data-v-e551daac=""
-                    class="b-overlay-wrap position-relative custom-ll"
-                  >
-                    <div class="row">
-                      <div class="custom-ll__header" style="margin-left: -40px">
-                        <div class="custom-ll__header__full show">
-                          <div class="custom-ll__header__full__right">
-                            <form
-                              class="custom-ll__header-form"
-                              th:action="@{/clients}"
-                              method="post"
-                            >
-                              <div class="custom-ll__header-wrapp">
-                                <div
-                                  class="header__search header__search_width header__search_width-clients"
-                                  style="width: 365px"
-                                >
-                                  <input
-                                    type="search"
-                                    name="username"
-                                    placeholder="Поиск"
-                                    class="form-control"
-                                    style="height: 44px; width: 390px"
-                                  />
-                                  <span
-                                    class="header__search__btn"
-                                    style="margin-top: -6px"
-                                    ><i class="fa fa-search"></i
-                                  ></span>
-                                </div>
-                                <div class="header__filter">
-                                  <input
-                                    type="submit"
-                                    value="Найти"
-                                    class="btn btn-default custom-ll__filter-button collapsed search-btn my-green"
-                                    aria-expanded="false"
-                                    aria-controls="filterbar"
-                                    style="overflow-anchor: none"
-                                  />
-                                </div>
-                              </div>
-                            </form>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="pagination-control col-lg-12 order-lg-1">
-                        <div class="btn__under-table">
-                          <div
-                            data-v-e551daac=""
-                            class="mb-3 text-right"
-                            style="margin-right: 50px"
-                          >
-                            <a
-                              data-v-e551daac=""
-                              href="/clients"
-                              class="btn btn-primary width btn-add_vidacha my-yellow"
-                              >Все</a
-                            >
-                          </div>
-                          <div data-v-e551daac="" class="mb-3 text-right">
-                            <a
-                              data-v-e551daac=""
-                              href="#"
-                              th:href="@{/clients(filter=individual)}"
-                              class="btn btn-primary width btn-open_vidacha my-yellow"
-                              >Физ.лица</a
-                            >
-                          </div>
-                          <div data-v-e551daac="" class="mb-3 text-right">
-                            <a
-                              data-v-e551daac=""
-                              href="#"
-                              th:href="@{/clients(filter=legal)}"
-                              class="btn btn-primary width btn-delate_vidacha my-yellow"
-                              >Юр.лица</a
-                            >
-                          </div>
-                          <div data-v-e551daac="" class="mb-3 text-right">
-                            <a
-                              data-v-e551daac=""
-                              href="#"
-                              th:href="@{/clients(filter=blacklist)}"
-                              class="btn btn-primary width btn-update_vidacha my-yellow"
-                              >Черный список</a
-                            >
-                          </div>
-                        </div>
-                      </div>
-                      <div class="pagination-control col-lg-12 order-lg-1">
+            <div class="rih-page-wrapper">
+                <!-- <nav role="navigation" class="navbar navbar-admin navbar-fixed-top"
+                         th:insert="fragments/header_logout.html"></nav> -->
+                <main class="wrapper wrapper-content">
+                    <div class="col-8 col-md-12" data-v-e551daac="">
                         <div
-                          class="custom-ll__table table-responsive overflow-auto"
+                                class="btn-pimary__groups-wrapper vidacha-sozdach mb-3 paddin-l-r-15"
                         >
-                          <table
-                            class="table in4dr-form delivery h-table w-table transparent"
-                          >
-                            <thead>
-                              <tr>
-                                <th class="first-th">№</th>
-                                <th>ФИО</th>
-                                <th>Телефон</th>
-                                <th>Скидка</th>
-                                <th>Кол-во проектов</th>
-                                <th>Примечание</th>
-                                <th>Договор</th>
-                                <th>Черный список</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr th:each="clientDTO : ${list_clients}">
-                                <td class="column-table">
-                                  <div class="column-table_checkbox-wrapp">
-                                    <input
-                                      class="column-table_checkbox"
-                                      type="checkbox"
-                                      id=""
-                                      name=""
-                                    />
-                                    <input
-                                      hidden="hidden"
-                                      th:value="${clientDTO.id}"
-                                    />
-                                    <span
-                                      class="tools-td-text table-td-text column-table_checkbox-number"
-                                      th:utext="${clientDTOStat.index+1}"
-                                    ></span>
-                                  </div>
-                                </td>
-                                <td data-label="ФИО" class="align-middle">
-                                  <a
-                                    class="nav-link"
-                                    style="font-size: medium"
-                                    th:href="@{/clients/edit/{id}/(id=${clientDTO.id})}"
-                                    th:utext="${clientDTO.fullName}"
-                                  ></a>
-                                </td>
-                                <td data-label="Телефон">
-                                  <span
-                                    class="tools-td-text table-td-text"
-                                    th:utext="${clientDTO.phoneNumber}"
-                                  ></span>
-                                </td>
-                                <td data-label="Скидка">
-                                  <span
-                                    class="tools-td-text table-td-text"
-                                    th:utext="${clientDTO.discount}"
-                                  ></span>
-                                </td>
-
-                                <td data-label="Кол-во проектов">
-                                  <span class="tools-td-text table-td-text"
-                                    >Количество проектов</span
-                                  >
-                                </td>
-
-                                <td data-label="Примечание">
-                                  <span
-                                    class="tools-td-text table-td-text"
-                                    th:utext="${clientDTO.note}"
-                                  ></span>
-                                </td>
-
-                                <td data-label="Договор">
-                                  <span class="tools-td-text table-td-text"
-                                    >Договор</span
-                                  >
-                                </td>
-                                <td data-label="Черный список">
-                                  <span
-                                    class="tools-td-text table-td-text"
-                                    th:utext="${clientDTO.inBlackList}"
-                                  ></span>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
+                            <div data-v-e551daac="" class="mb-3 text-right">
+                                <a
+                                        data-v-e551daac=""
+                                        href="/clients/create"
+                                        th:href="@{/clients/create}"
+                                        class="btn btn-primary width btn-add_vidacha my-green"
+                                >Создать</a
+                                >
+                            </div>
+                            <!--<div data-v-e551daac="" class="mb-3 text-right">
+                                          <a data-v-e551daac="" href="#" class="btn btn-primary width btn-update_vidacha grey">Экспорт</a>
+                                      </div>-->
                         </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div
-                        class="custom__search--mobile col-6 col-sm-12 col-md-12"
-                      >
-                        <div class="custom-ll__header__full show">
-                          <div
-                            class="custom-ll__header__full__right search__flex"
-                          >
+                        <div data-v-e551daac="">
                             <div
-                              class="header__search header__search_width form-m"
+                                    data-v-e551daac=""
+                                    class="b-overlay-wrap position-relative custom-ll"
                             >
-                              <input
-                                type="search"
-                                placeholder="Поиск"
-                                class="form-control header__filter--mobile"
-                              />
+                                <div class="row">
+                                    <div class="custom-ll__header" style="margin-left: -40px">
+                                        <div class="custom-ll__header__full show">
+                                            <div class="custom-ll__header__full__right">
+                                                <form
+                                                        class="custom-ll__header-form"
+                                                        th:action="@{/clients}"
+                                                        method="post"
+                                                >
+                                                    <div class="custom-ll__header-wrapp">
+                                                        <div
+                                                                class="header__search header__search_width header__search_width-clients"
+                                                                style="width: 365px"
+                                                        >
+                                                            <input
+                                                                    type="search"
+                                                                    name="username"
+                                                                    placeholder="Поиск"
+                                                                    class="form-control"
+                                                                    style="height: 44px; width: 390px"
+                                                            />
+                                                            <span
+                                                                    class="header__search__btn"
+                                                                    style="margin-top: -6px"
+                                                            ><i class="fa fa-search"></i
+                                                            ></span>
+                                                        </div>
+                                                        <div class="header__filter">
+                                                            <input
+                                                                    type="submit"
+                                                                    value="Найти"
+                                                                    class="btn btn-default custom-ll__filter-button collapsed search-btn my-green"
+                                                                    aria-expanded="false"
+                                                                    aria-controls="filterbar"
+                                                                    style="overflow-anchor: none"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pagination-control col-lg-12 order-lg-1">
+                                        <div class="btn__under-table">
+                                            <div
+                                                    data-v-e551daac=""
+                                                    class="mb-3 text-right"
+                                                    style="margin-right: 50px"
+                                            >
+                                                <a
+                                                        data-v-e551daac=""
+                                                        href="/clients"
+                                                        class="btn btn-primary width btn-add_vidacha my-yellow"
+                                                >Все</a
+                                                >
+                                            </div>
+                                            <div data-v-e551daac="" class="mb-3 text-right">
+                                                <a
+                                                        data-v-e551daac=""
+                                                        href="#"
+                                                        th:href="@{/clients(filter=individual)}"
+                                                        class="btn btn-primary width btn-open_vidacha my-yellow"
+                                                >Физ.лица</a
+                                                >
+                                            </div>
+                                            <div data-v-e551daac="" class="mb-3 text-right">
+                                                <a
+                                                        data-v-e551daac=""
+                                                        href="#"
+                                                        th:href="@{/clients(filter=legal)}"
+                                                        class="btn btn-primary width btn-delate_vidacha my-yellow"
+                                                >Юр.лица</a
+                                                >
+                                            </div>
+                                            <div data-v-e551daac="" class="mb-3 text-right">
+                                                <a
+                                                        data-v-e551daac=""
+                                                        href="#"
+                                                        th:href="@{/clients(filter=blacklist)}"
+                                                        class="btn btn-primary width btn-update_vidacha my-yellow"
+                                                >Черный список</a
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pagination-control col-lg-12 order-lg-1">
+                                        <div
+                                                class="custom-ll__table table-responsive overflow-auto"
+                                        >
+                                            <table
+                                                    class="table in4dr-form delivery h-table w-table transparent"
+                                            >
+                                                <thead>
+                                                <tr>
+                                                    <th class="first-th">№</th>
+                                                    <th>ФИО</th>
+                                                    <th>Телефон</th>
+                                                    <th>Скидка</th>
+                                                    <th>Кол-во проектов</th>
+                                                    <th>Примечание</th>
+                                                    <th>Договор</th>
+                                                    <th>Черный список</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr th:each="clientDTO : ${list_clients}">
+                                                    <td class="column-table">
+                                                        <div class="column-table_checkbox-wrapp">
+                                                            <input
+                                                                    class="column-table_checkbox"
+                                                                    type="checkbox"
+                                                                    id=""
+                                                                    name=""
+                                                            />
+                                                            <input
+                                                                    hidden="hidden"
+                                                                    th:value="${clientDTO.id}"
+                                                            />
+                                                            <span
+                                                                    class="tools-td-text table-td-text column-table_checkbox-number"
+                                                                    th:utext="${clientDTOStat.index+1}"
+                                                            ></span>
+                                                        </div>
+                                                    </td>
+                                                    <td data-label="ФИО" class="align-middle">
+                                                        <a
+                                                                class="nav-link"
+                                                                style="font-size: medium"
+                                                                th:href="@{/clients/edit/{id}/(id=${clientDTO.id})}"
+                                                                th:utext="${clientDTO.fullName}"
+                                                        ></a>
+                                                    </td>
+                                                    <td data-label="Телефон">
+                                  <span
+                                          class="tools-td-text table-td-text"
+                                          th:utext="${clientDTO.phoneNumber}"
+                                  ></span>
+                                                    </td>
+                                                    <td data-label="Скидка">
+                                  <span
+                                          class="tools-td-text table-td-text"
+                                          th:utext="${clientDTO.discount}"
+                                  ></span>
+                                                    </td>
+
+                                                    <td data-label="Кол-во проектов">
+                                  <span class="tools-td-text table-td-text"
+                                  >Количество проектов</span
+                                  >
+                                                    </td>
+
+                                                    <td data-label="Примечание">
+                                  <span
+                                          class="tools-td-text table-td-text"
+                                          th:utext="${clientDTO.note}"
+                                  ></span>
+                                                    </td>
+
+                                                    <td data-label="Договор">
+                                  <span class="tools-td-text table-td-text"
+                                  >Договор</span
+                                  >
+                                                    </td>
+                                                    <td data-label="Черный список">
+                                  <span
+                                          class="tools-td-text table-td-text"
+                                          th:utext="${clientDTO.inBlackList}"
+                                  ></span>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div
+                                            class="custom__search--mobile col-6 col-sm-12 col-md-12"
+                                    >
+                                        <div class="custom-ll__header__full show">
+                                            <div
+                                                    class="custom-ll__header__full__right search__flex"
+                                            >
+                                                <div
+                                                        class="header__search header__search_width form-m"
+                                                >
+                                                    <input
+                                                            type="search"
+                                                            placeholder="Поиск"
+                                                            class="form-control header__filter--mobile"
+                                                    />
+                                                </div>
+                                                <div class="header__filter">
+                                                    <button
+                                                            type="button"
+                                                            class="btn btn-default custom-ll__filter-button collapsed search-btn"
+                                                            aria-expanded="false"
+                                                            aria-controls="filterbar"
+                                                            style="overflow-anchor: none"
+                                                    >
+                                                        Поиск
+                                                        <i class="fas fa-filter"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pagination-control col-lg-12 order-lg-1">
+                                    <!-- Bootstrap 4 -->
+                                    <nav aria-label="Навигация по страницам">
+                                        <ul class="pagination">
+                                            <li
+                                                    class="page-item"
+                                                    th:if="${list_clients.totalPages > 0}"
+                                                    th:each="page_number : ${page_numbers}">
+                                                <a      class="page-link-m page-link"
+                                                        th:href="@{/clients(size=${list_clients.size}, page=${page_numberStat.index})}"
+                                                        th:text="${page_numberStat.index}"
+                                                        th:class="${page_number==list_clients.number + 1} ? active"
+                                                ></a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
                             </div>
-                            <div class="header__filter">
-                              <button
-                                type="button"
-                                class="btn btn-default custom-ll__filter-button collapsed search-btn"
-                                aria-expanded="false"
-                                aria-controls="filterbar"
-                                style="overflow-anchor: none"
-                              >
-                                Поиск
-                                <i class="fas fa-filter"></i>
-                              </button>
-                            </div>
-                          </div>
                         </div>
-                      </div>
                     </div>
-                    <div class="pagination-control col-lg-12 order-lg-1">
-                      <!-- Bootstrap 4 -->
-                      <nav aria-label="Навигация по страницам">
-                        <ul class="pagination">
-                          <li
-                            class="page-item"
-                            th:if="${list_clients.totalPages > 0}"
-                            th:each="page_number : ${page_numbers}"
-                          >
-                            <a
-                              class="page-link-m page-link"
-                              th:href="@{/clients(size=${list_clients.size}, page=${page_numberStat.index})}"
-                              th:text="${page_numberStat.index}"
-                              th:class="${page_number==list_clients.number + 1} ? active"
-                            ></a>
-                          </li>
-                        </ul>
-                      </nav>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </main>
-            <div th:insert="fragments/footer.html"></div>
-          </div>
+                </main>
+                <div th:insert="fragments/footer.html"></div>
+            </div>
         </div>
-      </div>
     </div>
-    <div th:insert="fragments/scripts.html"></div>
-  </body>
+</div>
+<div th:insert="fragments/scripts.html"></div>
+</body>
 </html>

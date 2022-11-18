@@ -1077,7 +1077,7 @@ table.estimate th {
 .form-control {
     height: 28px !important;
 margin-bottom: 15px;
-color: #fff;
+    color: #495057;
 }
 @media (min-width: 768px) {
     .form-control {
