@@ -167,113 +167,12 @@
             id="wrapper"
     >
         <div th:insert="fragments/menu_sidebar.html"></div>
-        <div class="b-overlay-wrap position-relative w-100" size="sm">
-<<<<<<< HEAD
-          <div class="rih-page-wrapper">
-            <!-- <nav role="navigation" class="navbar navbar-admin navbar-fixed-top"
-                     th:insert="fragments/header_logout.html"></nav> -->
-            <main class="wrapper wrapper-content">
-              <div class="b-overlay-wrap position-relative" size="sm">
-                <div class="row">
-                  <div
-                    class="btn-pimary__groups-wrapper primary-calendar col-6 col-sm-8 col-md-12 vidacha-sozdach mb-3 vidacha-sozdach"
-                  >
-                    <label class="d-block size">Выберите даты</label>
-                    <div class="mb-3 text-right" style="margin-left: 10px">
-                      <a
-                        href="/calendar"
-                        class="btn btn-primary width my-yellow"
-                        >Обновить</a
-                      >
-                    </div>
-                    <div
-                      role="group"
-                      class="form-group"
-                      style="margin-top: -5px; margin-right: 20px"
-                    >
-                      <label class="d-block size">От</label>
-                      <div class="vdpComponent vdpWithInput">
-                        <input
-                          name="date_start"
-                          class="form-control"
-                          type="datetime-local"
-                          placeholder="дд.мм.гггг"
-                        />
-                      </div>
-                    </div>
-                    <div
-                      role="group"
-                      class="form-group"
-                      style="margin-top: -5px; margin-right: 20px"
-                    >
-                      <label class="d-block size">До</label>
-                      <div class="vdpComponent vdpWithInput">
-                        <input
-                          name="date_end"
-                          class="form-control"
-                          type="datetime-local"
-                          placeholder="дд.мм.гггг"
-                        />
-                      </div>
-                    </div>
-                    <div
-                      role="group"
-                      class="form-group"
-                      style="margin-top: 5px; margin-right: 20px"
-                    >
-                      <label class="d-block size">Формат</label>
-                      <select
-                        name="format"
-                        class="vs__selected-options main-secect__opions form-control my-select"
-                        required
-                      >
-                        <option class="vs__selected vs__dropdown-toggle">
-                          Выберите формат
-                        </option>
-                        <option
-                          class="vs__selected vs__dropdown-toggle"
-                          th:each="format: ${T(wns.constants.DateCalendar).values()}"
-                          th:value="${format}"
-                          th:text="${format.getValue()}"
-                        ></option>
-                      </select>
-                    </div>
-                    <div
-                      role="group"
-                      class="form-group"
-                      style="margin-top: 5px; margin-right: 20px"
-                    >
-                      <label class="d-block size">Тип</label>
-                      <select
-                        name="format"
-                        class="vs__selected-options main-secect__opions form-control my-select"
-                        required
-                      >
-                        <option class="vs__selected vs__dropdown-toggle">
-                          Выберите тип данных
-                        </option>
-                        <option class="vs__selected vs__dropdown-toggle">
-                          Проект
-                        </option>
-                        <option class="vs__selected vs__dropdown-toggle">
-                          Оборудование
-                        </option>
-                      </select>
-                    </div>
-                    <div class="mb-3 text-right">
-                      <button
-                        type="submit"
-                        class="btn btn-primary width my-yellow viewCalendar"
-                      >
-                        Отобразить
-                      </button>
-                    </div>
-                  </div>
-=======
+        
+
             <div class="rih-page-wrapper">
-                <nav role="navigation" class="navbar navbar-admin navbar-fixed-top"
-                     th:insert="fragments/header_logout.html"></nav>
-                <main class="wrapper wrapper-content border-bottom">
+                <!-- <nav role="navigation" class="navbar navbar-admin navbar-fixed-top"
+                     th:insert="fragments/header_logout.html"></nav> -->
+                <main class="wrapper wrapper-content">
                     <div class="b-overlay-wrap position-relative" size="sm">
                         <div class="row">
                             <div
@@ -283,8 +182,8 @@
                                 <div class="mb-3 text-right" style="margin-left: 10px">
                                     <a href="/calendar" class="btn btn-primary width my-yellow">Обновить</a>
                                 </div>
-                                <div role="group" class="form-group">
-                                    <label class="d-block size">От</label>
+                                <div role="group" class="form-group" style="margin-top: -10px; margin-right: 20px">
+                                    <label class="d-block size" style="text-align: center; ">От</label>
                                     <div class="vdpComponent vdpWithInput">
                                         <input name="date_start"
                                                 class="form-control"
@@ -292,8 +191,8 @@
                                                 placeholder="дд.мм.гггг"/>
                                     </div>
                                 </div>
-                                <div role="group" class="form-group">
-                                    <label class="d-block size">До</label>
+                                <div role="group" class="form-group" style="margin-top: -10px; margin-right: 20px">
+                                    <label class="d-block size" style="text-align: center;">До</label>
                                     <div class="vdpComponent vdpWithInput">
                                         <input
                                                 name="date_end"
@@ -303,11 +202,11 @@
                                         />
                                     </div>
                                 </div>
-                                <div role="group" class="form-group">
-                                    <label class="d-block size">Формат</label>
+                                <div role="group" class="form-group" style="margin-right: 20px;">
+                                    <label class="d-block size" style="text-align: center;">Формат</label>
                                     <select
                                             name="format"
-                                            class="vs__selected-options main-secect__opions form-control"
+                                            class="vs__selected-options main-secect__opions form-control my-select"
                                             required
                                     >
                                         <option class="vs__selected vs__dropdown-toggle">
@@ -322,10 +221,10 @@
                                     </select>
                                 </div>
                                 <div role="group" class="form-group">
-                                    <label class="d-block size">Тип</label>
+                                    <label class="d-block size" style="text-align: center;">Тип</label>
                                     <select
                                             name="format"
-                                            class="vs__selected-options main-secect__opions form-control"
+                                            class="vs__selected-options main-secect__opions form-control my-select"
                                             required
                                     >
                                         <option class="vs__selected vs__dropdown-toggle">
@@ -347,7 +246,7 @@
                                     </button>
                                 </div>
                             </div>
->>>>>>> 335ba3c38b7e1da0814e2458f0b4b519724ec4fd
+
 
                             <!-- Tab content -->
                             <div id="tools" class="tabcontent mb-3">

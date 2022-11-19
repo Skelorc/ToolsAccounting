@@ -54,8 +54,8 @@
 
    <script src="/static/js/jquery.js" th:src="@{/js/jquery.js}"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"  th:src="@{/js/jquery.modal.js}"></script>
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" /> -->
-    <link rel="stylesheet" href="/static/css/datepicker.css" th:href="@{/css/datepicker.css}">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" />
+    <link rel="stylesheet" href="/static/css/datepicker.css" th:href="@{/css/datepicker.css}"> -->
 </head>
 
 <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
@@ -63,7 +63,7 @@
     <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
         <div th:insert="fragments/menu_sidebar.html"></div>
         <div class="b-overlay-wrap position-relative w-100" size="sm">
-<<<<<<< HEAD
+
           <div class="rih-page-wrapper">
             <!-- <nav
               role="navigation"
@@ -222,7 +222,7 @@
                               if (month < 10) month = '0' + month;
                               if (hour < 10) hour = '0' + hour;
                               if (minutes < 10) minutes = '0' + minutes;
-=======
+
             <div class="rih-page-wrapper">
                 <nav  role="navigation" class="navbar navbar-admin navbar-fixed-top" th:insert="fragments/header_logout.html"></nav>
                 <main class="wrapper wrapper-content border-bottom">
@@ -236,7 +236,7 @@
                                         <a href="/" class="btn btn-primary width light-blue">Назад</a>
                                     </div>
                                 </div>
->>>>>>> 335ba3c38b7e1da0814e2458f0b4b519724ec4fd
+
 
                                 <div class="p-3 edit-container d-block col-8 col-md-12">
                                     <div class="row form-creat__half-wrapp">
@@ -320,7 +320,7 @@
                                                 <span class="d-inline-block label-name size">
                                                     Укажите клиента
                                                 </span>
-                                                <a href="/clients/create" title="Добавить Клиентa" class="btn btn-primary width btn-xs size" style="padding-top: 5px;">Новый клиент
+                                                <a href="/clients/create" title="Добавить Клиентa" class="btn btn-primary width btn-xs size my-green" style="padding-top: 5px;">Новый клиент
                                                 </a>
                                             </div>
                                             <select id="client_id" required
@@ -333,72 +333,10 @@
                                             </select>
                                         </div>
                                     </div>
-<<<<<<< HEAD
-                      <div class="form-creat__half_two-column">
-                        <div class="mb-3 rent__client__buttons">
-                          <span class="d-inline-block label-name size">
-                            Укажите клиента
-                          </span>
-                          <a
-                            href="/clients/create"
-                            title="Добавить Клиентa"
-                            class="btn btn-primary width btn-xs size my-green"
-                            style="padding-top: 5px"
-                            >Новый клиент
-                          </a>
-                        </div>
-                        <select
-                          id="client_id"
-                          required
-                          class="vs__selected-options main-secect__opions form-control executor my-select"
-                        >
-                          <option
-                            class="vs__selected vs__dropdown-toggle"
-                            value=""
-                            disabled
-                          >
-                            Выберите клиента
-                          </option>
-                          <option
-                            class="vs__selected vs__dropdown-toggle"
-                            th:each="client : ${clients}"
-                            th:value="${client.id}"
-                            th:text="${client.fullName}"
-                          ></option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form-creat__half_two-column">
-                      <div class="form-group">
-                        <label class="d-block size">Примечание</label>
-                        <textarea
-                          id="note"
-                          name=""
-                          class="form-control"
-                          rows="4"
-                        ></textarea>
-                      </div>
-                    </div>
-                  </div>
-                    </div>
-                  <div class="p-3 edit-container d-block col-8 col-md-12">
-                    <div class="row form-creat__half-wrapp">
-                      <div class="form-creat__half_two-column">
-                        <div role="group" class="form-group">
-                          <label class="d-block size">Итоговая сумма</label>
-                          <span>
-                            <input
-                              id="sum"
-                              type="text"
-                              class="form-control"
-                              placeholder=""
-                              oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
-                            />
-                          </span>
-                        </div>
-                      </div>
+
+                     
                       <div class=" form-creat__half_two-column">
-=======
+
                                     <div class="form-creat__half_two-column">
                                         <div class="form-group">
                                             <label class="d-block size">Примечание</label>
@@ -416,15 +354,15 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <!--<div class=" form-creat__half_two-column">
->>>>>>> 335ba3c38b7e1da0814e2458f0b4b519724ec4fd
+                                        <div class=" form-creat__half_two-column">
+d
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Себестоимость оборудования</label>
                                                 <span>
                                                     <input id="priceTools" type="text" class="form-control" placeholder="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');">
                                                 </span>
                                             </div>
-                                        </div>-->
+                                        </div>
                                         <div class="form-creat__half_two-column">
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Скидка на проект</label>
@@ -485,10 +423,10 @@
                                                 <span class="btn-pimary__groups_title size">Список оборудования</span>
                                             </div>
                                             <div class="mb-3 text-right">
-                                                <a href="/tools/create" class="btn btn-primary width light-blue"  style="height: 100%;">Добавить</a>
+                                                <a href="/tools/create" class="btn btn-primary width my-green"  style="height: 100%;">Добавить</a>
                                             </div>
                                             <div class="mb-3 text-right ">
-                                                <a href="#" class="btn btn-primary width light-blue">Добавить
+                                                <a href="#" class="btn btn-primary width my-green">Добавить
                                                     оборудование из другого проекта</a>
                                             </div>
                                         </div>
@@ -499,16 +437,16 @@
                                 <div class="btn-pimary__groups-wrapper mb-3 order-lg-1">
                                     <div class="btn__under-table">
                                         <div class="mb-3 text-right">
-                                            <a href="#" class="btn btn-primary width grey">Единый список</a>
+                                            <a href="#" class="btn btn-primary width my-yellow">Единый список</a>
                                         </div>
                                         <div class="mb-3 text-right">
-                                            <a href="#" class="btn btn-primary width grey">Просмотр по группам</a>
+                                            <a href="#" class="btn btn-primary width my-yellow">Просмотр по группам</a>
                                         </div>
                                         <div class="mb-3 text-right">
-                                            <a href="#" class="btn btn-primary width grey">Просмотр по разделам сметы</a>
+                                            <a href="#" class="btn btn-primary width my-yellow">Просмотр по разделам сметы</a>
                                         </div>
                                         <div class="mb-3 text-right">
-                                            <a href="#" class="btn btn-primary width grey">Сбросить фильтр</a>
+                                            <a href="#" class="btn btn-primary width my-red">Сбросить фильтр</a>
                                         </div>
                                         <div class="custom-ll__header-zipcode custom-ll__header-zipcode_project ml-3">
                                             <div class="custom-ll__header__full show">
@@ -576,10 +514,10 @@
                                             <span class="btn-pimary__groups_title size">Действия</span>
                                         </div>
                                         <div class="mb-3 text-right">
-                                            <button id="create_new_project" type="submit" class="btn btn-primary width orange">Создать проект и перейти в смету</button>
+                                            <button id="create_new_project" type="submit" class="btn btn-primary width my-yellow">Создать проект и перейти в смету</button>
                                         </div>
                                         <div class="mb-3 text-right">
-                                            <a href="#" class="btn btn-primary width red">Удалить</a>
+                                            <a href="#" class="btn btn-primary width my-red">Удалить</a>
                                         </div>
 
 
@@ -600,7 +538,7 @@
 
                                 </div>
                             </div>
-<<<<<<< HEAD
+
                           </div>
                         </div>
                       </div>
@@ -608,116 +546,7 @@
                   </div>
                 </div>
 
-                <div class="table__info table__vidacha-sozdat_wrapp col-md-12 mb-3">
-                  <div class="table__vidacha-sozdat">
-                    <table
-                      class="in4dr-form delivery h-table w-table transparent"
-                    >
-                      <tr>
-                        <th class="first-th">#</th>
-                        <th>Наименование</th>
-                        <th>Штрихкод</th>
-                        <th>Группа</th>
-                        <th>Марка/Модель</th>
-                        <th>Серийный номер</th>
-                        <th>Коментарий</th>
-                        <th>Характеристики</th>
-                        <th>Состояние</th>
-                        <th>Стоимость за смену</th>
-                        <th>Себестоимость</th>
-                        <th>Комплект</th>
-                      </tr>
-                      <tbody>
-                        <tr th:each="tool: ${list_tools}" class="row-tool">
-                          <td class="column-table">
-                            <div class="column-table_checkbox-wrapp">
-                              <input
-                                class="column-table_checkbox ids"
-                                type="checkbox"
-                                name=""
-                              />
-                              <input
-                                th:value="${tool.id}"
-                                hidden="hidden"
-                                type="text"
-                              />
-                              <span
-                                class="tools-td-text table-td-text column-table_checkbox-number"
-                                th:utext="${toolStat.index}"
-                              ></span>
-                            </div>
-                          </td>
-                          <td
-                            data-label="Наименование"
-                            th:utext="${tool.name}"
-                          ></td>
-                          <td
-                            data-label="Штрихкод"
-                            class="barcode-tool"
-                            th:utext="${tool.barcode}"
-                          ></td>
-                          <td
-                            data-label="Группа"
-                            th:utext="${tool.category}"
-                          ></td>
-                          <td
-                            data-label="Марка\Модель"
-                            th:utext="${tool.model}"
-                          ></td>
-                          <td
-                            data-label="Серийный номер"
-                            th:utext="${tool.serialNumber}"
-                          ></td>
-                          <td
-                            data-label="Комментарий"
-                            th:utext="${tool.comment}"
-                          ></td>
-                          <td
-                            data-label="Характеристики"
-                            th:utext="${tool.characteristics}"
-                          ></td>
-                          <td
-                            data-label="Состояние"
-                            th:utext="${tool.state}"
-                          ></td>
-                          <td
-                            data-label="Цена"
-                            class="price-tool"
-                            th:utext="${tool.priceByDay}"
-                          ></td>
-                          <td
-                            data-label="Себестоимость"
-                            th:utext="${tool.costPrice}"
-                          ></td>
-                          <td
-                            data-label="Комплект"
-                            th:utext="${tool.equip}"
-                          ></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-
-                <div class="btn-pimary__groups mt-3 mb-3">
-                  <div class="btn-pimary__groups-wrapper mb-3">
-                    <div class="mb-3 text-right">
-                      <span class="btn-pimary__groups_title size"
-                        >Действия</span
-                      >
-                    </div>
-                    <div class="mb-3 text-right">
-                      <button
-                        id="create_new_project"
-                        type="submit"
-                        class="btn btn-primary width my-green"
-                      >
-                        Создать проект и перейти в смету
-                      </button>
-                    </div>
-                    <div class="mb-3 text-right">
-                      <a href="#" class="btn btn-primary width my-red">Удалить</a>
-                    </div>
+                
 
                     <div class="pagination-control col-lg-12 order-lg-1">
                       <!-- Bootstrap 4 -->
@@ -745,11 +574,11 @@
             <div th:insert="fragments/footer.html"></div>
            
           </div>
-=======
+
                 </main>
                 <div th:insert="fragments/footer.html"></div>
             </div>
->>>>>>> 335ba3c38b7e1da0814e2458f0b4b519724ec4fd
+
         </div>
     </div>
 </div>
