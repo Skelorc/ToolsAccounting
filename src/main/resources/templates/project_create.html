@@ -4,7 +4,7 @@
 <head class="head">
     <title>Создание проекта</title>
     <div th:replace="fragments/head :: header"></div>
-  <!-- <meta charset="UTF-8">
+  <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
    <meta name="robots" content="index, follow">
    <meta name="author" content="">
@@ -55,13 +55,98 @@
    <script src="/static/js/jquery.js" th:src="@{/js/jquery.js}"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"  th:src="@{/js/jquery.modal.js}"></script>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" />
-    <link rel="stylesheet" href="/static/css/datepicker.css" th:href="@{/css/datepicker.css}"> -->
+    <link rel="stylesheet" href="/static/css/datepicker.css" th:href="@{/css/datepicker.css}">
 </head>
 
 <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
 <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
     <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
         <div th:insert="fragments/menu_sidebar.html"></div>
+      <div class="text-center" id="ex1">
+    <p id="alert_message" class="font-bold"></p>
+    <script th:inline="javascript">
+        var message = [[${message}]];
+        if (message){
+            console.log(typeof message);
+            console.log(message);
+            $("#alert_message").text(message.toString());
+            $("#ex1").modal();
+        }
+    </script>
+</div>
+<nav role="navigation" class="rih-nav">
+    <div class="nav-header text-center sidebar-collapse__menu-logo rih-nav__header">
+        <a href="#" class="main-link">
+            <div class="sidebar-collapse__menu-logo">
+                <img class="sidebar-collapse__menu-logo_img" th:src="@{/img/logo/mad-dog-logo.png}">
+            </div>
+            <div class="sidebar-collapse__menu-title">
+                <h4 class="sidebar-collapse__menu-title_text">MAD DOG</h4>
+            </div>
+        </a>
+    </div>
+    <ul id="side-menu" class="nav metismenu rih-nav__list">
+        <li data-id="15" data-parent_id="2">
+            <a class="vidacha activ-page" th:href="@{/}" data-link="RentBookingApp" ><b><i
+                    class="fa fa-boxes" ></i></b>
+                <span class="nav-label">Проекты</span>
+            </a>
+        </li>
+        <!--<li data-id="4" data-parent_id="2">
+            <a class="priemka" th:href="@{/acceptance}"><b><i class="fa fa-user-tie"></i></b>
+                <span class="nav-label">Приемка</span>
+            </a>
+        </li>-->
+        <li data-id="310828" data-parent_id="2">
+            <a class="calendar" th:href="@{/calendar}" ><b><i class="fa fa-calendar-alt"></i></b>
+                <span class="nav-label">Календарь</span>
+            </a>
+        </li>
+        <li data-id="8" data-parent_id="2">
+            <a class="tools" th:href="@{/tools}" data-link="InventoryApp"><b><i
+                    class="fa fa-cubes"></i></b>
+                <span class="nav-label">Оборудование</span>
+            </a>
+        </li>
+        <li data-id="170807" data-parent_id="2">
+            <a class="clients" th:href="@{/clients}" data-link="KitApp"><b><i
+                    class="fa fa-users"></i></b>
+                <span class="nav-label">Клиенты</span>
+            </a>
+        </li>
+        <li data-id="22" data-parent_id="2">
+            <a class="remont" href="/repair" th:href="@{/repair}" data-link="RentApp"><b><i
+                    class="fa fa-wrench"></i></b>
+                <span class="nav-label">Ремонт</span>
+            </a>
+        </li>
+        <li data-id="9" data-parent_id="2">
+            <a class="spisanie" th:href="@{/write-off}" data-link="LkSettingsBaseApp"><b><i class="fa fa-shopping-cart"></i></b>
+                <span class="nav-label">Списание</span>
+            </a>
+        </li>
+        <li data-id="12" data-parent_id="2">
+            <a class="prodaza" th:href="@{/sale}"><b><i class="fa fa-shopping-cart"></i></b>
+                <span class="nav-label">Продажа</span>
+            </a>
+        </li>
+        <li data-id="12" data-parent_id="2" sec:authorize="hasAuthority('ADMIN')">
+            <a class="admin-panel" th:href="@{/admin-panel}"><b><i
+                    class="fa fa-cogs"></i></b>
+                <span class="nav-label">Панель Администратора</span>
+            </a>
+        </li>
+        <li data-id="5" data-parent_id="2">
+            <a class="otchety" href="/reports" data-link="HumanClientApp" ><b><i
+                    class="fa fa-users"></i></b>
+                <span class="nav-label">Отчеты</span>
+            </a>
+        </li>
+    </ul>
+    <div class="text-center" id="ex1">
+        <p id="alert_message" class="font-bold"></p>
+    </div>
+</nav>
         <div class="b-overlay-wrap position-relative w-100" size="sm">
 
           <div class="rih-page-wrapper">
@@ -240,97 +325,11 @@
                               if (day < 10) day = '0' + day;
                               if (month < 10) month = '0' + month;
                               if (hour < 10) hour = '0' + hour;
-                              if (minutes < 10) minutes = '0' + minutes;
-
-            <div class="rih-page-wrapper">
-                <nav  role="navigation" class="navbar navbar-admin navbar-fixed-top" th:insert="fragments/header_logout.html"></nav>
-                <main class="wrapper wrapper-content border-bottom">
-                    <div class="b-overlay-wrap position-relative" size="sm">
-                            <div class="project__creat mb-3">
-                                <div class="btn-pimary__groups-wrapper vidacha-sozdach mb-3 vidacha-sozdach">
-                                    <div class="mb-3 text-right">
-                                        <span class="btn-pimary__groups_title">Проект</span>
-                                    </div>
-                                    <div class="mb-3 text-right">
-                                        <a href="/" class="btn btn-primary width light-blue">Назад</a>
-                                    </div>
-                                </div>
-
-
-                                <div class="p-3 edit-container d-block col-8 col-md-12">
-                                    <div class="row form-creat__half-wrapp">
-                                        <div class=" form-creat__half_two-column">
-                                            <div role="group" class="form-group">
-                                                <label class="d-block size">Статус</label>
-                                                <select id="status" name="status_tool" class="vs__selected-options main-secect__opions form-control my-select" required>
-                                                    <option class="vs__selected vs__dropdown-toggle">Выберите статус проекта
-                                                    </option>
-                                                    <option class="vs__selected vs__dropdown-toggle" th:each="status: ${T(wns.constants.StatusProject).values()}" th:value="${status}" th:text="${status.getStatus()}"></option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-creat__half_two-column">
-                                            <div role="group" class="form-group">
-                                                <label class="d-block size">Наименование</label>
-                                                <span>
-                                                    <input id="name"  placeholder="Имя проекта" name="fromComing" type="text" class="form-control" required>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class=" form-creat__half_two-column">
-                                            <button class="rabSM">Выберите рабочие смены</button>
-                                            <div role="group" class="form-group" style="display: none;">
-                                                <label class="d-block size">Выберите рабочие смены</label>
-                                                <div class="vdpComponent vdpWithInput">
-                                                    <input id="word_date"  class="form-control form-control-date" required readonly>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class=" form-creat__half_two-column">
-                                            <div class="form-group">
-                                                <label class="d-block size">Укажите ссылки на фото через запятую</label>
-                                                <textarea id="photos" name="photos" class="form-control" style="height: 40px;"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row form-creat__half-wrapp">
-                                        <div class=" form-creat__half_two-column">
-                                            <div role="group" class="form-group">
-                                                <label class="d-block size">Собственник</label>
-                                                <select class="vs__selected-options main-secect__opions form-control" id="typeLease" required>
-                                                    <option class="vs__selected vs__dropdown-toggle" th:each="type: ${T(wns.constants.TypeLease).values()}" th:value="${type}" th:text="${type.getType()}"></option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class=" form-creat__half_two-column">
-                                            <div role="group" class="form-group">
-                                                <label class="d-block size">Класс</label>
-                                                <select class="vs__selected-options main-secect__opions form-control my-select" id="classification" required>
-                                                    <option class="vs__selected vs__dropdown-toggle" th:each="classification: ${T(wns.constants.ClassificationProject).values()}" th:value="${classification}" th:text="${classification.getValue()}"></option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class=" form-creat__half_two-column">
-                                            <div role="group" class="form-group">
-                                                <label class="d-block size">Создан</label>
-                                                <div class="vdpComponent vdpWithInput">
-                                                    <input id="created" class="form-control"  type="datetime-local" placeholder="дд.мм.гггг" required>
-                                                    <script th:inline="javascript">
-                                                        var date = new Date();
-                                                        var day =   date.getDate();
-                                                        var month = date.getMonth()+1;
-                                                        var year =  date.getFullYear();
-                                                        var hour =  date.getHours();
-                                                        var minutes =  date.getMinutes();
-
-                                                        if(day<10) day = "0"+day;
-                                                        if(month<10) month = "0"+month;
-                                                        if(hour<10) hour = "0"+hour;
-                                                        if(minutes<10) minutes = "0"+minutes;
-
-                                                        var needDate = year+"-"+month+"-"+day+"T"+hour + ":" + minutes;
-                                                        document.getElementById('created').value = needDate;
-                                                    </script>
+                              if (minutes <script 10) minutes = '0' + minutes;
+</script>
+           
+                  
+                            
                                                 </div>
                                             </div>
                                         </div>
@@ -343,7 +342,7 @@
                                                 </a>
                                             </div>
                                             <select id="client_id" required
-                                                    class="vs__selected-options main-secect__opions form-control executor">
+                                                    class="vs__selected-options main-secect__opions form-control executor my-select">
                                                 <option class="vs__selected vs__dropdown-toggle" value="" disabled>
                                                     Выберите клиента
                                                 </option>
@@ -354,25 +353,26 @@
                                     </div>
 
                      
-                      <div class=" form-creat__half_two-column">
+                    
 
+                                    
+                                
+                                <div class="edit-container col-8 col-md-6">
+                                  <div class="row form-creat__half-wrapp">
                                     <div class="form-creat__half_two-column">
                                         <div class="form-group">
                                             <label class="d-block size">Примечание</label>
                                             <textarea id="note" name="" class="form-control" rows="4"></textarea>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="p-3 edit-container d-block  col-8 col-md-12">
-                                    <div class="row form-creat__half-wrapp">
-                                        <div class=" form-creat__half_two-column">
+                                        <!-- <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Итоговая сумма</label>
                                                 <span>
                                                     <input id="sum" type="text" class="form-control" placeholder="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');">
                                                 </span>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class=" form-creat__half_two-column">
 
                                             <div role="group" class="form-group">
@@ -398,7 +398,9 @@
                                                 </span>
                                             </div>
                                         </div>
-                                    </div>
+                                   
+                                </div>
+                                </div>
                                    <!-- <div class="row form-creat__half-wrapp">
                                         <div class="form-creat__half_two-column">
                                             <div role="group" class="form-group">
@@ -431,9 +433,9 @@
                                                     <input id="remainder" type="text" class="form-control" placeholder="">
                                                 </span>
                                             </div>
-                                        </div>-->
-                                    </div>
-                                </div>
+                                        </div>
+                                    </div> -->
+                                
                                 <!-- Tab content -->
                                 <div class="tabcontent mb-3">
                                     <div class="project__creat">
