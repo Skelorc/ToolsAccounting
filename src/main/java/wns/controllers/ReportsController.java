@@ -22,7 +22,7 @@ public class ReportsController {
 
     @GetMapping("z")
     public String showTest(@RequestParam(value = "data", required = false) String test) {
-        reportsService.createTest();
+        //reportsService.createTest();
         return "reports";
     }
 }

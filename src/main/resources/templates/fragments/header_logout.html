@@ -1,7 +1,7 @@
 <ul class="nav navbar-top-links navbar-right" style="flex-basis: 0px">
   <li id="logout">
-    <form id="logoutForm" th:action="@{/logout}" method="post">
-      <span
+    <form id="logoutForm"  class="form-flex" th:action="@{/logout}" method="post">
+      <span style="margin-right: 10px"
         class="count-info"
         th:text="${#authentication.getPrincipal().getUsername()}"
       ></span>

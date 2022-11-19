@@ -31043,7 +31043,7 @@ h4.ui-pnotify-title {
 }
 @font-face {
     font-family: "Ubuntu Regular";
-    src: url("../fonts/fontawesome/Ubuntu-Regular.woff2") format("woff2")
+    src: url("/static/fonts/fontawesome/Ubuntu-Regular.woff2") format("woff2")
 }
 h1,h2,h3,h4,h5,h6 {
     font-weight: 100
