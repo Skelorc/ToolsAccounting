@@ -73,6 +73,7 @@ svg {
     max-width: 1800px;
     margin: auto;
     padding: 20px 0px 60px;
+   
 }
 
 .paddin-l-r-15 {
@@ -535,7 +536,21 @@ label {
     /* border-radius: 20px; */
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
-
+.vdpComponent input[type=date]::placeholder {
+    color: grey !important;
+}
+.vdpComponent input[type=date]::-webkit-input-placeholder {
+    color: grey !important;
+}
+.vdpComponent input[type=date]:-moz-placeholder {
+    color: grey !important;
+}
+.vdpComponent input[type=date]::-moz-placeholder {
+    color: grey !important;
+}
+.vdpComponent input[type=date]:-ms-input-placeholder {
+    color: grey !important;
+}
 .vdpComponent input[type=time] {
     display: block;
     width: 100%;
@@ -1726,5 +1741,14 @@ table.transparent{
     vertical-align: middle;
     padding: 0 0 0 0;
     
+}
+
+.form-flex {
+    display: flex;
+}
+.align-label {
+    align-self: center;
+    margin-right: 10px;
+    padding-top: 10px;
 }
 /*********************/

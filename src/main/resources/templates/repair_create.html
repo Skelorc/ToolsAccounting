@@ -9,7 +9,7 @@
     <title>Ремонт-Создать</title>
     <div th:replace="fragments/head :: header"></div>
 
-    <!-- <meta charset="UTF-8" />
+    <meta charset="UTF-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
@@ -157,7 +157,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"
       th:href="@{/css/jquery.modal.css}"
-    /> -->
+    />
   </head>
 
   <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
@@ -170,13 +170,12 @@
         <div th:insert="fragments/menu_sidebar.html"></div>
         <div class="b-overlay-wrap position-relative w-100" size="sm">
           <div class="rih-page-wrapper">
-             <nav
+            <nav
               role="navigation"
               class="navbar navbar-admin navbar-fixed-top"
               th:insert="fragments/header_logout.html"
             ></nav>
-            <main class="wrapper wrapper-content border-bottom">
-              <div class="b-overlay-wrap position-relative">
+            <main class="wrapper wrapper-content n-relative">
                 <div class="btn-pimary__groups mt-3 mb-3">
                   <div class="btn-pimary__groups-wrapper vidacha-sozdach mb-3">
                     <div class="mb-3 text-right">

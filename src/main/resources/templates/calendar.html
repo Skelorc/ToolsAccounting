@@ -8,7 +8,7 @@
     <title>Календарь</title>
     <div th:replace="fragments/head :: header"></div>
 
-    <!-- <meta charset="UTF-8" />
+    <meta charset="UTF-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
@@ -156,7 +156,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"
       th:href="@{/css/jquery.modal.css}"
-    /> -->
+    />
 </head>
 
 <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
@@ -172,41 +172,59 @@
             <div class="rih-page-wrapper">
                 <!-- <nav role="navigation" class="navbar navbar-admin navbar-fixed-top"
                      th:insert="fragments/header_logout.html"></nav> -->
+                     <!-- <ul class="nav navbar-top-links navbar-right" style="flex-basis: 0px">
+  <li id="logout">
+    <form id="logoutForm" th:action="@{/logout}" method="post">
+      <span
+        class="count-info"
+        th:text="${#authentication.getPrincipal().getUsername()}"
+      ></span>
+      <a
+        class="count-info"
+        href="javascript: document.getElementById('logoutForm').submit()"
+        role="menuitem"
+      >
+        <i class="fa fa-sign-out-alt f-20">
+          <input hidden type="submit" value="Sign Out" /> </i
+      ></a>
+    </form>
+  </li>
+</ul> -->
                 <main class="wrapper wrapper-content">
                     <div class="b-overlay-wrap position-relative" size="sm">
                         <div class="row">
                             <div
                                     class="btn-pimary__groups-wrapper primary-calendar col-6 col-sm-8 col-md-12 vidacha-sozdach mb-3 vidacha-sozdach"
                             >
-                                <label class="d-block size">Выберите даты</label>
-                                <div class="mb-3 text-right" style="margin-left: 10px">
+                                <label class="d-block size" style="margin-top: 10px;">Выберите даты</label>
+                                <div class="mb-3 text-right" style="margin-left: 10px; margin-top: 10px">
                                     <a href="/calendar" class="btn btn-primary width my-yellow">Обновить</a>
                                 </div>
-                                <div role="group" class="form-group" style="margin-top: -10px; margin-right: 20px">
-                                    <label class="d-block size" style="text-align: center; ">От</label>
+                                <div role="group" class="form-group form-flex" style="margin-right: 20px;">
+                                    <label class="d-block size align-label" style="text-align: center;">От</label>
                                     <div class="vdpComponent vdpWithInput">
                                         <input name="date_start"
                                                 class="form-control"
                                                 type="date"
-                                                placeholder="дд.мм.гггг"/>
+                                                placeholder="дд.мм.гггг" style="margin-top: 10px; margin-right: 20px;"/>
                                     </div>
                                 </div>
-                                <div role="group" class="form-group" style="margin-top: -10px; margin-right: 20px">
-                                    <label class="d-block size" style="text-align: center;">До</label>
+                                <div role="group" class="form-group form-flex" style="margin-right: 20px;">
+                                    <label class="d-block size align-label" style="text-align: center;">До</label>
                                     <div class="vdpComponent vdpWithInput">
                                         <input
                                                 name="date_end"
                                                 class="form-control"
                                                 type="date"
-                                                placeholder="дд.мм.гггг"
+                                                placeholder="дд.мм.гггг" style="margin-top: 10px; margin-right: 20px;"
                                         />
                                     </div>
                                 </div>
-                                <div role="group" class="form-group" style="margin-right: 20px;">
-                                    <label class="d-block size" style="text-align: center;">Формат</label>
+                                <div role="group" class="form-group form-flex style="margin-right: 20px;">
+                                    <label class="d-block size align-label" style="text-align: center; ">Формат</label>
                                     <select
                                             name="format"
-                                            class="vs__selected-options main-secect__opions form-control my-select"
+                                            class="vs__selected-options main-secect__opions form-control my-select" style="margin-top: 10px; margin-right: 20px;"
                                             required
                                     >
                                         <option class="vs__selected vs__dropdown-toggle">
@@ -220,11 +238,11 @@
                                         ></option>
                                     </select>
                                 </div>
-                                <div role="group" class="form-group">
-                                    <label class="d-block size" style="text-align: center;">Тип</label>
+                                <div role="group" class="form-group form-flex">
+                                    <label class="d-block size align-label">Тип</label>
                                     <select
                                             name="format"
-                                            class="vs__selected-options main-secect__opions form-control my-select"
+                                            class="vs__selected-options main-secect__opions form-control my-select" style="margin-top: 10px;"
                                             required
                                     >
                                         <option class="vs__selected vs__dropdown-toggle">
@@ -238,7 +256,7 @@
                                         </option>
                                     </select>
                                 </div>
-                                <div class="mb-3 text-right">
+                                <div class="mb-3 text-right" style="margin-top: 10px;">
                                     <button
                                             type="submit"
                                             class="btn btn-primary width my-yellow viewCalendar">
