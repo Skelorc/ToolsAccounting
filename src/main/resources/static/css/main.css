@@ -116,6 +116,7 @@ select {
     border: none;
     padding: 0 1em 0 0;
     margin: 0;
+    vertical-align: middle;
     width: 100%;
     font-family: inherit;
     font-size: inherit;
@@ -138,7 +139,7 @@ select::-ms-expand {
     max-height: 28px;
     /* font-size: 1.25rem; */
     cursor: pointer;
-    line-height: 1.1;
+    /* line-height: 1.1; */
             background-color: #fff;}
     /* background-image: linear-gradient(to top, #f9f9f9, #fff 33%);  */
 
@@ -883,11 +884,13 @@ table.estimate td,table.estimate th {
     text-align: center;
 }
 table.estimate th {
-	background: transparent; 
-	color: #fff; 
+	background: #fff; 
+	color: #000; 
 	font-weight: normal;
 }
-
+table.estimate td {
+    background-color: #fff;
+}
 /*********************/
 
 
@@ -978,6 +981,7 @@ table.estimate th {
 }
 .main-secect__opions {
     /* border: 1px solid #e5e6e7; */
+   
     
 }
 
@@ -1077,7 +1081,9 @@ table.estimate th {
 .form-control {
     height: 28px !important;
 margin-bottom: 15px;
-color: #fff;
+color: #000;
+text-align: center;
+
 }
 @media (min-width: 768px) {
     .form-control {
@@ -1102,24 +1108,24 @@ color: #fff;
     box-shadow: none;
 }
  input::placeholder {
-    color: #000 !important;
+    color: #f7f7f7 !important;
 }
 input::-webkit-input-placeholder {
-    color: #000000 !important;
+    color: grey!important;
 }
 input::-ms-input-placeholder {
-    color: #000000 !important;
+    color: grey !important;
 }
 input:-moz-placeholder {
-    color: #000000 !important;
+    color: grey !important;
     opacity: 1;
 }
 input::-moz-placeholder {
-    color: #000000 !important;
+    color: grey!important;
     opacity: 1;
 }
 input:-ms-input-placeholder {
-    color: #000000 !important;
+    color: grey !important;
 }
 
 /*********************/
@@ -1710,5 +1716,11 @@ table.transparent{
     background-color: #ff0000;
     color: #000;
     font-family: "Ubuntu Regular";
+}
+
+.my-select {
+    vertical-align: middle;
+    padding: 0 0 0 0;
+    
 }
 /*********************/

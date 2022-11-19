@@ -203,10 +203,10 @@
                           <select
                             id="status"
                             name="status_tool"
-                            class="vs__selected-options main-secect__opions form-control"
+                            class="vs__selected-options main-secect__opions form-control my-select"
                             required
                           >
-                            <option class="vs__selected vs__dropdown-toggle">
+                            <option class="vs__selected vs__dropdown-toggle my-select">
                               Выберите статус проекта
                             </option>
                             <option
@@ -294,7 +294,7 @@
                         <div role="group" class="form-group">
                           <label class="d-block size">Класс</label>
                           <select
-                            class="vs__selected-options main-secect__opions form-control"
+                            class="vs__selected-options main-secect__opions form-control my-select"
                             id="classification"
                             required
                           >
@@ -336,7 +336,7 @@
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Статус</label>
-                                                <select id="status" name="status_tool" class="vs__selected-options main-secect__opions form-control" required>
+                                                <select id="status" name="status_tool" class="vs__selected-options main-secect__opions form-control my-select" required>
                                                     <option class="vs__selected vs__dropdown-toggle">Выберите статус проекта
                                                     </option>
                                                     <option class="vs__selected vs__dropdown-toggle" th:each="status: ${T(wns.constants.StatusProject).values()}" th:value="${status}" th:text="${status.getStatus()}"></option>
@@ -414,7 +414,7 @@
                                         <div class="form-creat__half_two-column">
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Класс</label>
-                                                <select class="vs__selected-options main-secect__opions form-control" id="classification" required>
+                                                <select class="vs__selected-options main-secect__opions form-control my-select" id="classification" required>
                                                     <option class="vs__selected vs__dropdown-toggle" th:each="classification: ${T(wns.constants.ClassificationProject).values()}" th:value="${classification}" th:text="${classification.getValue()}"></option>
                                                 </select>
                                             </div>
@@ -465,7 +465,7 @@
                         <select
                           id="client_id"
                           required
-                          class="vs__selected-options main-secect__opions form-control executor"
+                          class="vs__selected-options main-secect__opions form-control executor my-select"
                         >
                           <option
                             class="vs__selected vs__dropdown-toggle"
@@ -761,7 +761,7 @@
                       <button
                         id="create_new_project"
                         type="submit"
-                        class="btn btn-primary width my-yellow"
+                        class="btn btn-primary width my-green"
                       >
                         Создать проект и перейти в смету
                       </button>

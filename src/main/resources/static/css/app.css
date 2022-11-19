@@ -9107,7 +9107,7 @@ pre code {
     font-size: 1rem;
     font-weight: 400;
     line-height: calc(1.5 - 30%);
-    color: #495057;
+    color: #000;
     background-color: transparent;
     background-clip: padding-box;
     border: 1px solid #ced4da;
@@ -9162,7 +9162,7 @@ input[type=date].form-control,input[type=datetime-local].form-control,input[type
 }
 
 select.form-control:-moz-focusring {
-    color: transparent;
+    color: #000;
     text-shadow: 0 0 0 #495057
 }
 
@@ -40126,7 +40126,8 @@ table.dataTable {
     position: relative;
     overflow: hidden;
     text-overflow: ellipsis;
-    min-height: 38px
+    min-height: 38px;
+    color: #000;
 }
 
 .v-select .vs__selected-options .vs__selected {
@@ -41450,7 +41451,7 @@ a {
     position: relative;
     display: inline-block;
     font-size: 10px;
-    color: #303030
+    color: #000
 }
 
 .vdpComponent.vdpWithInput>input {

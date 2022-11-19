@@ -201,7 +201,7 @@
                                     </tr>
                                     <tr>
                                         <td class="first-th add_transport"
-                                            style="cursor: pointer; background: transparent; color: #fff; font-size: 20px;">
+                                            style="cursor: pointer; background: #fff; color: #000; font-size: 20px;">
                                             +
                                         </td>
                                         <th colspan="7" class="sat">Обслуживание и транспорт</th>
@@ -210,7 +210,7 @@
                                         <tr class="sat_item" th:each="tool :${list_tools.value}">
                                             <div th:unless="${tool.section.toString()!='SERVICE'}">
                                                 <td class="first-th remove_transport"
-                                                    style="cursor: pointer; background: transparent; color: #fff; font-size: 20px;">
+                                                    style="cursor: pointer; background: #fff; color: #000; font-size: 20px;">
                                                     -
                                                 </td>
                                                 <td><input type="text" class="form-control__table fIn0_t"

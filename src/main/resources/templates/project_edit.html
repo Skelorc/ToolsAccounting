@@ -197,7 +197,7 @@
                           <select
                             id="status"
                             th:value="${project.status}"
-                            class="vs__selected-options main-secect__opions form-control"
+                            class="vs__selected-options main-secect__opions form-control my-select"
                           >
                             <option
                               class="vs__selected vs__dropdown-toggle"
@@ -285,7 +285,7 @@
                         <div role="group" class="form-group">
                           <label class="d-block size">Тип аренды</label>
                           <select
-                            class="vs__selected-options main-secect__opions form-control"
+                            class="vs__selected-options main-secect__opions form-control my-select"
                             id="typeLease"
                             th:value="${project.typeLease}"
                           >
@@ -304,7 +304,7 @@
                         <div role="group" class="form-group">
                           <label class="d-block size">Класс</label>
                           <select
-                            class="vs__selected-options main-secect__opions form-control"
+                            class="vs__selected-options main-secect__opions form-control my-select"
                             id="classification"
                             th:value="${project.classification}"
                           >
@@ -350,7 +350,7 @@
                           id="client_id"
                           th:value="${project.client.getId()}"
                           required
-                          class="vs__selected-options main-secect__opions form-control executor"
+                          class="vs__selected-options main-secect__opions form-control executor my-select"
                         >
                           <option
                             class="vs__selected vs__dropdown-toggle"
