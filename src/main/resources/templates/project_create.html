@@ -68,9 +68,27 @@
             <nav
               role="navigation"
               class="navbar navbar-admin navbar-fixed-top"
-              th:insert="fragments/header_logout.html"
-            ></nav>
-  
+              th:insert="fragments/header_logout.html">
+               <!-- <ul class="nav navbar-top-links navbar-right">
+  <li id="logout" style="float: right;">
+    <form id="logoutForm" th:action="@{/logout}" method="post">
+      <span
+        class="count-info"
+        th:text="${#authentication.getPrincipal().getUsername()}"
+      ></span>
+      <a
+        class="count-info"
+        href="javascript: document.getElementById('logoutForm').submit()"
+        role="menuitem"
+      >
+        <i class="fa fa-sign-out-alt f-20">
+          <input hidden type="submit" value="Sign Out" /> </i
+      ></a>
+    </form>
+  </li>
+</ul> -->
+            </nav>
+ 
             <main class="wrapper wrapper-content">
               <div class="b-overlay-wrap position-relative" size="sm">
                 <div class="project__creat mb-3">

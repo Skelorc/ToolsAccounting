@@ -31103,6 +31103,7 @@ h3,h4,h5 {
 
 .nav.navbar-right>li>a {
     color: #fff;
+    float: right;
 }
 
 .navbar-default .nav>li>a:focus,.navbar-default .nav>li>a:hover {
@@ -31711,7 +31712,8 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
 }
 
 .top-navigation .navbar-right {
-    margin-right: 10px
+    margin-right: 10px;
+    float: right;
 }
 
 .top-navigation .navbar-nav .dropdown-menu {
@@ -39406,7 +39408,7 @@ body.rtls .stat-percent {
 }
 
 body.rtls .navbar-right {
-    float: left!important
+    float: right!important
 }
 
 body.rtls .navbar-top-links li:last-child {
@@ -40645,9 +40647,11 @@ body.body-small .navbar-header__title {
 }
 
 nav.navbar-admin {
-    background-color: #16171a;
+    background-color: transparent;
     min-width: 320px;
-    border-bottom: none!important
+    border-bottom: none!important;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .wrapper-content .ibox {
@@ -42072,4 +42076,8 @@ img {
 
 .bgc-primary:active {
     background-color: var(--pallet-primary-color)!important
+}
+.right {
+   position: relative;
+   right: 0;
 }
