@@ -58,6 +58,7 @@ public class ProjectDTO {
     private long estimate_id;
     private Set<Long> items = new HashSet<>();
     private List<WorkingShift> workingShifts = new ArrayList<>();
+    private List<WorkingShiftDTO> workingShiftDTOList = new ArrayList<>();
 
 
     public ProjectDTO(Project project)
@@ -92,6 +93,7 @@ public class ProjectDTO {
         this.remainder = project.getRemainder();
         this.estimate_id = project.getEstimate().getId();
         this.items = project.getTools().stream().map(Tools::getId).collect(Collectors.toSet());
+        this.workingShiftDTOList = project.getWorkingShifts().stream().map(WorkingShiftDTO::new).collect(Collectors.toList());
     }
 
     public static Project createProjectFromDTO(ProjectDTO dto)
@@ -120,7 +122,6 @@ public class ProjectDTO {
         project.setClassification(dto.getClassification());
         project.setPhoneNumber(dto.getPhoneNumber());
         project.setPriceWork(dto.getPriceWork());
-        project.setWorkingShifts(dto.getWorkingShifts());
         return project;
     }
 

@@ -60,7 +60,7 @@ public class ExcelUtil {
 
         Cell cell_period = period.createCell(num_cell);
         cell_period.getRow().setHeightInPoints(cell_period.getSheet().getDefaultRowHeightInPoints() * 2);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         cell_period.setCellValue("Съёмочный период: начало - " + estimate.getStart().format(formatter) + ",\nокончание - " + estimate.getEnd().format(formatter));
         cell_period.setCellStyle(headerStyle);
         sheet.autoSizeColumn(num_cell, true);

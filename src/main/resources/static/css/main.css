@@ -1081,9 +1081,13 @@ table.estimate td {
 .form-control {
     height: 28px !important;
 margin-bottom: 15px;
+<<<<<<< HEAD
 color: #000;
 text-align: center;
 
+=======
+    color: #495057;
+>>>>>>> 335ba3c38b7e1da0814e2458f0b4b519724ec4fd
 }
 @media (min-width: 768px) {
     .form-control {

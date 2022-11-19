@@ -20,6 +20,7 @@ public class WorkingShift {
 
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private LocalDate dateShift;
+    @Enumerated(EnumType.STRING)
     private TypeShift typeShift;
 
     @ToString.Exclude

@@ -1,5 +1,7 @@
 package wns.controllers;
 
+import com.fasterxml.jackson.core.JsonEncoding;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +32,7 @@ public class ProjectsController {
     private final ClientsService clientsService;
     private final ToolsService toolsService;
     private final PageableFilterService pageableFilterService;
+    private final ObjectMapper mapper;
 
     @GetMapping
     public String show(@RequestParam(value = "page", required = false) Optional<Integer> page,
@@ -75,7 +78,7 @@ public class ProjectsController {
         pageableFilterService.addPageNumbersToModel(paginated_list, model);
         model.addAttribute("clients", clientsService.getAll());
         model.addAttribute("list_tools", paginated_list);
-        model.addAttribute("project", projectService.getById(id));
+        model.addAttribute("project",projectService.getById(id));
         return "project_edit";
     }
 

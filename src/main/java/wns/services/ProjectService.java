@@ -42,21 +42,22 @@ public class ProjectService implements MainService {
             try {
                 project = ProjectDTO.createProjectFromDTO(projectDTO);
                 Client client = clientsService.getById(projectDTO.getClient_id());
-                client.getProjects().add(project);
                 project.setClient(client);
                 project.setPhoneNumber(client.getPhoneNumber());
-                projectRepo.save(project);
                 Estimate estimate = estimateService.createEstimate(project);
+                estimate.setCount_shifts(projectDTO.getWorkingShifts().size());
                 project.setEstimate(estimate);
+                projectRepo.save(project);
                 for (Long id : projectDTO.getItems()) {
                     Tools tool = modelMapper.map(toolsService.findById(id), Tools.class);
                     toolsService.addToolToProject(tool,project);
                     toolsEstimateService.addToolEstimateToEstimate(project,tool);
                 }
-                for (WorkingShift workingShift : project.getWorkingShifts()) {
+                for (WorkingShift workingShift : projectDTO.getWorkingShifts()) {
                     workingShift.setProject(project);
                     workingShiftService.save(workingShift);
                 }
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -155,6 +156,10 @@ public class ProjectService implements MainService {
         client.getProjects().add(project);
         project.setClient(client);
         project.setPhoneNumber(client.getPhoneNumber());
+        for (WorkingShift workingShift : dto.getWorkingShifts()) {
+            workingShift.setProject(project);
+            workingShiftService.save(workingShift);
+        }
         clientsService.saveClient(client);
         projectRepo.save(project);
     }

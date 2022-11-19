@@ -2,8 +2,9 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
 
 <head class="head">
-    <title>Выдача</title>
+    <title>Проекты</title>
     <div th:replace="fragments/head :: header"></div>
+
     <!-- <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="robots" content="index, follow">
@@ -30,7 +31,7 @@
     <meta name="theme-color" content="#179d82">
     <meta th:name="_csrf" th:content="${_csrf.token}"/>
     <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
- 
+
     <link rel="preload" href="../static/fonts/fontawesome/fontawesome-all-css.css" as="style" th:href="@{/fonts/fontawesome/fontawesome-all-css.css}">
     <link rel="preload" href="../static/css/style.css" as="style" th:href="@{/css/style.css}">
     <link rel="preload" href="../static/css/app.css" as="style" th:href="@{/css/app.css}">
@@ -48,11 +49,11 @@
     <link rel="stylesheet" href="../static/fonts/fontawesome/fontawesome-all-css.css" th:href="@{/fonts/fontawesome/fontawesome-all-css.css}">
     <link rel="stylesheet" href="../static/css/checkout.css" th:href="@{/css/checkout.css}">
     <link rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}">
-    
+
     <script src="/static/fonts/fontawesome/all.js" th:src="@{/fonts/fontawesome/all.js}"></script>
- 
+
     <script src="/static/js/jquery.js" th:src="@{/js/jquery.js}"></script>
-   
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"  th:src="@{/js/jquery.modal.js}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" /> -->
 </head>
@@ -62,6 +63,7 @@
         <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
              <div th:insert="fragments/menu_sidebar.html">
             </div>
+<<<<<<< HEAD
             <!-- <div class="text-center" id="ex1">
                 <p id="alert_message" class="font-bold"></p>
                 <script th:inline="javascript">
@@ -75,11 +77,18 @@
                 </script>
             </div>
             <nav role="navigation" class="rih-nav">
+=======
+            <!--<nav role="navigation" class="rih-nav">
+>>>>>>> 335ba3c38b7e1da0814e2458f0b4b519724ec4fd
                 <div class="nav-header text-center sidebar-collapse__menu-logo rih-nav__header">
                     <a href="#" class="main-link">
                         <div class="sidebar-collapse__menu-logo">
                             <img class="sidebar-collapse__menu-logo_img" th:src="@{/img/logo/mad-dog-logo.png}">
+<<<<<<< HEAD
                           
+=======
+                           &lt;!&ndash;  <img class="sidebar-collapse__menu-logo_img" src="../static/img/logo/mad-dog-logo.png"> &ndash;&gt;
+>>>>>>> 335ba3c38b7e1da0814e2458f0b4b519724ec4fd
                         </div>
                         <div class="sidebar-collapse__menu-title">
                             <h4 class="sidebar-collapse__menu-title_text">MAD DOG</h4>
@@ -91,11 +100,6 @@
                         <a class="vidacha activ-page" th:href="@{/}" data-link="HumanClientApp"><b><i
                                 class="fa fa-users"></i></b>
                             <span class="nav-label">Выдача</span>
-                        </a>
-                    </li>
-                    <li data-id="4" data-parent_id="2">
-                        <a class="priemka" th:href="@{/acceptance}"><b><i class="fa fa-user-tie"></i></b>
-                            <span class="nav-label">Приемка</span>
                         </a>
                     </li>
                     <li data-id="310828" data-parent_id="2">
@@ -146,19 +150,34 @@
                 <div class="text-center" id="ex1">
                     <p id="alert_message" class="font-bold"></p>
                 </div>
+<<<<<<< HEAD
             </nav> -->
             <div class="b-overlay-wrap position-relative w-100" size="sm">
                 <div class="rih-page-wrapper">
                     <!--<nav data-v-537a461c role="navigation" class="navbar navbar-admin navbar-fixed-top"
                     th:insert="fragments/header_logout.html"></nav> 
                         <div id="menu-toggle" class="navbar-header">
+=======
+            </nav>-->
+            <div class="b-overlay-wrap position-relative w-100" size="sm">
+                <div class="rih-page-wrapper">
+                     <nav data-v-537a461c role="navigation" class="navbar navbar-admin navbar-fixed-top"
+                    th:insert="fragments/header_logout.html"></nav>
+                         <div id="menu-toggle" class="navbar-header">
+>>>>>>> 335ba3c38b7e1da0814e2458f0b4b519724ec4fd
                             <a class="navbar-minimalize minimalize-styl-2">
                                 <i class="fa fa-bars"></i>
                             </a>
                         </div>
+<<<<<<< HEAD
                         <ul class="nav navbar-top-links navbar-right" style="flex-basis: 0px;">
                             <li id="logout">
                                 <form id="logoutForm" th:action="@{/logout}" method="post">
+=======
+                        <!--<ul class="nav navbar-top-links navbar-right" style="flex-basis: 0px;">
+                            <li id="logout">
+                                 <form id="logoutForm" th:action="@{/logout}" method="post">
+>>>>>>> 335ba3c38b7e1da0814e2458f0b4b519724ec4fd
                                     <a class="count-info"
                                         href="javascript: document.getElementById('logoutForm').submit()"
                                         role="menuitem"><i class="fa fa-sign-out-alt f-20">
@@ -166,8 +185,13 @@
                                         </i></a>
                                 </form>
                             </li>
+<<<<<<< HEAD
                         </ul>
                     </nav> -->
+=======
+                        </ul>-->
+                    </nav>
+>>>>>>> 335ba3c38b7e1da0814e2458f0b4b519724ec4fd
                     <main class="wrapper wrapper-content edit-container d-block col-8 col-md-12 mt-3">
                         <div data-v-e551daac="">
                             <div class="row">
@@ -314,11 +338,12 @@
                                 </div>
                             </div>
                         </div>
+                        </div>
                     </main>
                     <div th:insert="fragments/footer.html"></div>
-                    <!-- <footer class="row footer">
+                     <footer class="row footer">
                         <small class="col-12 pr-0"><b><a href="/" th:href="@{/}">Mad dog</a> © 2022</b>-<b>Все права защищены</b></small>
-                    </footer> -->
+                    </footer>
                 </div>
             </div>
         </div>
