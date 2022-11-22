@@ -44,7 +44,9 @@ $(document).ready(function () {
             });
             formData = {
                 typeClient: $("#select_type_client :selected").val(),
+                role_client_id: $("#role_client_id :selected").val(),
                 inBlackList,
+                account: $("#account").val(),
                 fullName: $("#fullName_individual").val(),
                 discount: $("#discount_individual").val(),
                 phoneNumber: $("#phoneNumber_individual").val(),
@@ -70,7 +72,9 @@ $(document).ready(function () {
             7
             formData = {
                 typeClient: $("#select_type_client :selected").val(),
+                role_client_id: $("#role_client_id :selected").val(),
                 inBlackList,
+                account: $("#account").val(),
                 fullName: $("#fullName_legal").val(),
                 legalName: $("#legalName").val(),
                 discount: $("#discount_legal").val(),

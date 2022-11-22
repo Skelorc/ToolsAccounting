@@ -13,6 +13,7 @@ import wns.dto.ClientDTO;
 import wns.entity.Client;
 import wns.services.PageableFilterService;
 import wns.services.ClientsService;
+import wns.services.RoleClientService;
 import wns.utils.ResponseHandler;
 
 import java.util.List;
@@ -24,6 +25,7 @@ import java.util.Optional;
 public class ClientsController {
     private final ClientsService clientsService;
     private final PageableFilterService pageableFilterService;
+    private final RoleClientService roleClientService;
 
     @GetMapping()
     public String showPage(@RequestParam(value = "page", required = false) Optional<Integer> page,
@@ -45,16 +47,17 @@ public class ClientsController {
 
     @GetMapping("/create")
     public String creatingClient(Model model) {
-        ClientDTO client = new ClientDTO();
-        model.addAttribute("client", client);
+        model.addAttribute("client", new ClientDTO());
+        model.addAttribute("roles_client", roleClientService.getAll());
         return "client_create";
     }
 
     @PostMapping("/create")
     @ResponseBody
     public ResponseEntity<Object> create(@RequestBody Client client) {
-        Messages message = clientsService.saveClient(client);
-        return ResponseHandler.generateResponse(message);
+        System.out.println(client);
+        //Messages message = clientsService.saveClient(client);
+        return ResponseHandler.generateResponse(Messages.OK);
     }
 
 

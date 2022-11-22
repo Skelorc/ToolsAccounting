@@ -15,7 +15,7 @@ import java.util.*;
 @AllArgsConstructor
 @Getter
 @Setter
-@Builder
+
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -81,6 +81,10 @@ public class Client {
     @CollectionTable(name = "photos_clients", joinColumns = @JoinColumn(name = "clients_id"))
     @Column(columnDefinition = "TEXT")
     private Set<String> photos = new HashSet<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "role_client_id", nullable = false)
+    private RoleClient roleClient;
     private long rented;
 
     @Override

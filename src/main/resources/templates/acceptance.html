@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html
-  lang="en"
-  xmlns="http://www.w3.org/1999/xhtml"
-  xmlns:th="http://www.thymeleaf.org/"
+        lang="en"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org/"
 >
-  <head class="head">
+<head class="head">
     <title>Приемка</title>
     <div th:replace="fragments/head :: header"></div>
     <!-- <meta charset="UTF-8" />
@@ -139,9 +139,9 @@
       src="../static/fonts/fontawesome/all.js"
       th:src="@{/fonts/fontawesome/all.js}"
     ></script>
-    <!--JQuery-->
+   JQuery
     <script src="../static/js/jquery.js" th:src="@{/js/jquery.js}"></script>
-    <!-- jQuery Modal -->
+   jQuery Modal
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"
       th:src="@{/js/jquery.modal.js}"
@@ -152,218 +152,201 @@
       th:href="@{/css/jquery.modal.css}"
     />
     -->
-  </head>
+</head>
 
-  <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
-    <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
-      <div
-        class="b-overlay-wrap position-relative w-100"
-        size="sm"
-        id="wrapper"
-      >
+<body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
+<div class="b-overlay-wrap position-relative w-100" id="wrapper" size="sm">
+    <div class="b-overlay-wrap position-relative w-100"
+         id="wrapper"
+         size="sm">
         <div th:insert="fragments/menu_sidebar.html"></div>
         <div class="b-overlay-wrap position-relative w-100" size="sm">
-          <div class="rih-page-wrapper">
-            <!-- <nav
-              data-v-537a461c
-              role="navigation"
-              class="navbar navbar-admin navbar-fixed-top"
-              th:insert="fragments/header_logout.html"
-            ></nav> -->
-            <main class="wrapper wrapper-content col-8 col-md-12 mt-3">
-              <div>
-                <div class="wrapper__btn-primary col-sm-6 col-6 col-md-12">
-                  <div class="mb-3 text-right">
-                    <a
-                      href="/acceptance/create"
-                      th:href="@{/acceptance/create}"
-                      class="btn btn-primary width btn-add_vidacha my-green"
-                      >Создать</a
-                    >
-                  </div>
-                  <div class="mb-3 text-right">
-                    <a
-                      href="#"
-                      class="btn btn-primary width btn-open_vidacha my-red"
-                      >Закрыть</a
-                    >
-                  </div>
-                  <div class="mb-3 text-right">
-                    <a
-                      href="#"
-                      class="btn btn-primary width btn-update_vidacha my-yellow"
-                      >Обновить</a
-                    >
-                  </div>
-                  <div class="mb-3 text-right">
-                    <a
-                      href="#"
-                      class="btn btn-primary width btn-delate_vidacha my-green"
-                      >Поиск по штрихкоду</a
-                    >
-                  </div>
-                </div>
-                <div>
-                  <div class="b-overlay-wrap position-relative custom-ll ml-3">
-                    <div class="row">
-                      <div class="custom-ll__table table-responsive">
-                        <table
-                          class="table w-table in4dr-form delivery transparent"
-                        >
-                          <tbody>
-                            <tr>
-                              <th class="first-th">#</th>
-                              <th>Проект</th>
-                              <th>Клиент</th>
-                              <th>Телефон</th>
-                              <th>Начало аренды</th>
-                              <th>Окончание аренды</th>
-                              <th>Дата и время создания</th>
-                              <th>Сотрудник</th>
-                              <th>Примечание</th>
-                              <th>Фотoграфии отгрузки</th>
-                            </tr>
-                            <tr th:each="project : ${list_projects}">
-                              <td class="column-table">
-                                <div class="column-table_checkbox-wrapp">
-                                  <input
-                                    class="column-table_checkbox"
-                                    type="checkbox"
-                                  />
-                                  <span
-                                    class="tools-td-text table-td-text column-table_checkbox-number"
-                                    th:utext="${projectStat.index+1}"
-                                  ></span>
-                                </div>
-                              </td>
-                              <td data-label="Проект">
-                                <a
-                                  th:href="@{/acceptance/create/{id}/(id=${project.getId()})}"
-                                  th:utext="${project.name}"
-                                  title="Принять проект"
-                                ></a>
-                              </td>
-                              <td
-                                data-label="Клиент"
-                                th:utext="${project.client_name}"
-                              ></td>
-                              <td
-                                data-label="Телефон"
-                                th:utext="${project.phoneNumber}"
-                              ></td>
-                              <td
-                                data-label="Начало аренды"
-                                th:utext="${project.start}"
-                              ></td>
-                              <td
-                                data-label="Дата и время создания"
-                                th:utext="${project.end}"
-                              ></td>
-                              <td
-                                data-label="Сотрудник"
-                                th:utext="${project.created}"
-                              ></td>
-                              <td
-                                data-label="Примечание"
-                                th:utext="${project.employee}"
-                              ></td>
-                              <td
-                                data-label="Фотографии отгрузки"
-                                th:utext="${project.note}"
-                              ></td>
-                              <td>
+            <div class="rih-page-wrapper">
+                <!-- <nav
+                  data-v-537a461c
+                  role="navigation"
+                  class="navbar navbar-admin navbar-fixed-top"
+                  th:insert="fragments/header_logout.html"
+                ></nav> -->
+                <main class="wrapper wrapper-content col-8 col-md-12 mt-3">
+                    <div>
+                        <div class="wrapper__btn-primary col-sm-6 col-6 col-md-12">
+                            <div class="mb-3 text-right">
+                                <a class="btn btn-primary width btn-add_vidacha my-green" href="/acceptance/create"
+                                   th:href="@{/acceptance/create}">Создать</a>
+                            </div>
+                            <div class="mb-3 text-right">
+                                <a class="btn btn-primary width btn-open_vidacha my-red" href="#">Закрыть</a>
+                            </div>
+                            <div class="mb-3 text-right">
+                                <a class="btn btn-primary width btn-update_vidacha my-yellow"
+                                   href="#"
+                                >Обновить</a
+                                >
+                            </div>
+                            <div class="mb-3 text-right">
+                                <a class="btn btn-primary width btn-delate_vidacha my-green" href="#">Поиск по штрихкоду</a>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="b-overlay-wrap position-relative custom-ll ml-3">
+                                <div class="row">
+                                    <div class="custom-ll__table table-responsive">
+                                        <table class="table w-table in4dr-form delivery transparent">
+                                            <tbody>
+                                            <tr>
+                                                <th class="first-th">#</th>
+                                                <th>Проект</th>
+                                                <th>Клиент</th>
+                                                <th>Телефон</th>
+                                                <th>Начало аренды</th>
+                                                <th>Окончание аренды</th>
+                                                <th>Дата и время создания</th>
+                                                <th>Сотрудник</th>
+                                                <th>Примечание</th>
+                                                <th>Фотoграфии отгрузки</th>
+                                            </tr>
+                                            <tr th:each="project : ${list_projects}">
+                                                <td class="column-table">
+                                                    <div class="column-table_checkbox-wrapp">
+                                                        <input
+                                                                class="column-table_checkbox"
+                                                                type="checkbox"
+                                                        />
+                                                        <span
+                                                                class="tools-td-text table-td-text column-table_checkbox-number"
+                                                                th:utext="${projectStat.index+1}"
+                                                        ></span>
+                                                    </div>
+                                                </td>
+                                                <td data-label="Проект">
+                                                    <a
+                                                            th:href="@{/acceptance/create/{id}/(id=${project.getId()})}"
+                                                            th:utext="${project.name}"
+                                                            title="Принять проект"
+                                                    ></a>
+                                                </td>
+                                                <td
+                                                        data-label="Клиент"
+                                                        th:utext="${project.client_name}"
+                                                ></td>
+                                                <td
+                                                        data-label="Телефон"
+                                                        th:utext="${project.phoneNumber}"
+                                                ></td>
+                                                <td
+                                                        data-label="Начало аренды"
+                                                        th:utext="${project.start}"
+                                                ></td>
+                                                <td
+                                                        data-label="Дата и время создания"
+                                                        th:utext="${project.end}"
+                                                ></td>
+                                                <td
+                                                        data-label="Сотрудник"
+                                                        th:utext="${project.created}"
+                                                ></td>
+                                                <td
+                                                        data-label="Примечание"
+                                                        th:utext="${project.employee}"
+                                                ></td>
+                                                <td
+                                                        data-label="Фотографии отгрузки"
+                                                        th:utext="${project.note}"
+                                                ></td>
+                                                <td>
                                 <span
-                                  class="column-table__photo-mini"
-                                  th:each="photo : ${project.photos}"
+                                        class="column-table__photo-mini"
+                                        th:each="photo : ${project.photos}"
                                 >
                                   <a
-                                    rel="modal:open"
-                                    th:href="${'#'+project.id+''+photoStat.count}"
+                                          rel="modal:open"
+                                          th:href="${'#'+project.id+''+photoStat.count}"
                                   >
                                     <img
-                                      class="column-table__photo-mini_img"
-                                      th:src="${photo}"
+                                            class="column-table__photo-mini_img"
+                                            th:src="${photo}"
                                     />
                                     <div
-                                      th:id="${project.id+''+photoStat.count}"
-                                      class="modal"
+                                            class="modal"
+                                            th:id="${project.id+''+photoStat.count}"
                                     >
-                                      <img th:src="${photo}" />
+                                      <img th:src="${photo}"/>
                                     </div>
                                   </a>
                                 </span>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="btn-pimary__groups-wrapper order-lg-1">
-                        <div
-                          class="btn-pimary__groups-wrapper btn__under-table"
-                        >
-                          <div
-                            class="mb-3 text-right"
-                            style="margin-right: 50px"
-                          >
-                            <a href="#" class="btn btn-primary width my-yellow"
-                              >Все</a
-                            >
-                          </div>
-                          <div class="mb-3 text-right">
-                            <a href="#" class="btn btn-primary width my-yellow"
-                              >Разовые</a
-                            >
-                          </div>
-                          <div class="mb-3 text-right">
-                            <a href="#" class="btn btn-primary width my-yellow"
-                              >Длинные</a
-                            >
-                          </div>
-                          <div class="mb-3 text-right">
-                            <a href="#" class="btn btn-primary width my-yellow"
-                              >Субаренда</a
-                            >
-                          </div>
-                          <div class="mb-3 text-right">
-                            <a href="#" class="btn btn-primary width my-yellow"
-                              >Тест</a
-                            >
-                          </div>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="btn-pimary__groups-wrapper order-lg-1">
+                                        <div
+                                                class="btn-pimary__groups-wrapper btn__under-table"
+                                        >
+                                            <div
+                                                    class="mb-3 text-right"
+                                                    style="margin-right: 50px"
+                                            >
+                                                <a class="btn btn-primary width my-yellow" href="#"
+                                                >Все</a
+                                                >
+                                            </div>
+                                            <div class="mb-3 text-right">
+                                                <a class="btn btn-primary width my-yellow" href="#"
+                                                >Разовые</a
+                                                >
+                                            </div>
+                                            <div class="mb-3 text-right">
+                                                <a class="btn btn-primary width my-yellow" href="#"
+                                                >Длинные</a
+                                                >
+                                            </div>
+                                            <div class="mb-3 text-right">
+                                                <a class="btn btn-primary width my-yellow" href="#"
+                                                >Субаренда</a
+                                                >
+                                            </div>
+                                            <div class="mb-3 text-right">
+                                                <a class="btn btn-primary width my-yellow" href="#"
+                                                >Тест</a
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pagination-control col-lg-12 order-lg-1">
+                                        <!-- Bootstrap 4 -->
+                                        <nav aria-label="Навигация по страницам">
+                                            <ul class="pagination">
+                                                <li
+                                                        class="page-item"
+                                                        th:each="page_number : ${page_numbers}"
+                                                        th:if="${list_projects.totalPages > 0}"
+                                                >
+                                                    <a
+                                                            class="page-link-m page-link"
+                                                            th:class="${page_number==list_projects.number + 1} ? active"
+                                                            th:href="@{/(size=${list_projects.size}, page=${page_numberStat.index})}"
+                                                            th:text="${page_numberStat.index}"
+                                                    ></a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <div
+                                        class="b-sidebar-backdrop bg-dark"
+                                        style="display: none"
+                                ></div>
+                            </div>
                         </div>
-                      </div>
-                      <div class="pagination-control col-lg-12 order-lg-1">
-                        <!-- Bootstrap 4 -->
-                        <nav aria-label="Навигация по страницам">
-                          <ul class="pagination">
-                            <li
-                              class="page-item"
-                              th:if="${list_projects.totalPages > 0}"
-                              th:each="page_number : ${page_numbers}"
-                            >
-                              <a
-                                class="page-link-m page-link"
-                                th:href="@{/(size=${list_projects.size}, page=${page_numberStat.index})}"
-                                th:text="${page_numberStat.index}"
-                                th:class="${page_number==list_projects.number + 1} ? active"
-                              ></a>
-                            </li>
-                          </ul>
-                        </nav>
-                      </div>
                     </div>
-                    <div
-                      class="b-sidebar-backdrop bg-dark"
-                      style="display: none"
-                    ></div>
-                  </div>
-                </div>
-              </div>
-            </main>
-            <div th:insert="fragments/footer.html"></div>
-          </div>
+                </main>
+                <div th:insert="fragments/footer.html"></div>
+            </div>
         </div>
-      </div>
     </div>
-    <div th:insert="fragments/scripts.html"></div>
-  </body>
+</div>
+<div th:insert="fragments/scripts.html"></div>
+</body>
 </html>
