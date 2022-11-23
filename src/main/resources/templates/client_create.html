@@ -158,7 +158,7 @@
                                     <h3 class="my-3">Тип клиента</h3>
                                     <div class="v-select edit-container__select vs--single vs--searchable main-secect__wrapp">
                                         <div class="vs__dropdown-toggle main-secect">
-                                            <select id="select_type_client" th:field="*{client.typeClient}" required
+                                            <select id="select_type_client" required
                                                     class="vs__selected-options main-secect__opions my-select"
                                                     style="background-color: transparent">
                                                 <option class="vs__selected vs__dropdown-toggle" value="" disabled>
@@ -167,8 +167,8 @@
                                                 <option
                                                         class="vs__selected vs__dropdown-toggle"
                                                         th:each="type : ${T(wns.constants.TypeClients).values()}"
-                                                        th:value="${type}"
                                                         th:text="${type.getType()}"
+                                                        th:selected="${type==client.typeClient}"
                                                 ></option>
                                             </select>
                                         </div>
@@ -187,8 +187,7 @@
                                                 }
                                             </script>
                                             <div class="state p-primary">
-                                                <label class="size"
-                                                >В черном списке
+                                                <label class="size">В черном списке
                                                     <svg slot="extra" viewBox="0 0 20 20" class="svg svg-icon">
                                                         <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"
                                                               style="stroke: white; fill: white">
@@ -214,7 +213,7 @@
                                             <h3 class="my-3">Роль контакта</h3>
                                             <div class="v-select edit-container__select vs--single vs--searchable main-secect__wrapp">
                                                 <div class="vs__dropdown-toggle main-secect">
-                                                    <select id="role_client_id" th:field="*{client.roleClientId}" required
+                                                    <select id="role_client_id" required
                                                             class="vs__selected-options main-secect__opions my-select"
                                                             style="background-color: transparent">
                                                         <option class="vs__selected vs__dropdown-toggle" value="" disabled>
@@ -225,6 +224,7 @@
                                                                 th:each="role : ${roles_client}"
                                                                 th:value="${role.id}"
                                                                 th:text="${role.role}"
+                                                                th:selected="${client.typeClient !=null && client.roleClient.role==role.role}"
                                                         ></option>
                                                     </select>
                                                 </div>

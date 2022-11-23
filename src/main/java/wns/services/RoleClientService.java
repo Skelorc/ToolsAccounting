@@ -38,4 +38,10 @@ public class RoleClientService implements MainService {
     public RoleClient getById(long roleClientId) {
         return repo.findById(roleClientId).get();
     }
+
+    public void update(RoleClient roleClient) {
+        RoleClient roleClient1 = repo.findById(roleClient.getId()).get();
+        roleClient1.setRole(roleClient.getRole());
+        repo.save(roleClient1);
+    }
 }

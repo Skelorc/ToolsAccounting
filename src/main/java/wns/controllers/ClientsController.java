@@ -69,6 +69,7 @@ public class ClientsController {
         pageableFilterService.addPageNumbersToModel(paginated_list, model);
         model.addAttribute("client", client);
         model.addAttribute("list_projects", paginated_list);
+        model.addAttribute("roles_client", roleClientService.getAll());
         return "client_create";
     }
 
