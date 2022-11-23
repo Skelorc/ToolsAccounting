@@ -22,7 +22,7 @@ public class RoleClientController {
     }
 
     @PostMapping
-    public String create(@ModelAttribute("role") RoleClient roleClient)
+    public String create(@ModelAttribute("role_client") RoleClient roleClient)
     {
         roleClientService.save(roleClient);
         return "redirect:/role-clients";
