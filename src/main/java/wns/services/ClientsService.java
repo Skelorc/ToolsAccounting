@@ -8,6 +8,7 @@ import wns.constants.TypeClients;
 import wns.dto.ClientDTO;
 import wns.entity.Client;
 import wns.entity.Owner;
+import wns.entity.RoleClient;
 import wns.repo.ClientsRepo;
 
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class ClientsService implements MainService {
     private final ClientsRepo clientsRepo;
+    private final RoleClientService roleClientService;
 
     public List<Client> getAll() {
         return (List<Client>) clientsRepo.findAll();
@@ -27,19 +29,29 @@ public class ClientsService implements MainService {
         List<Client> list = (List<Client>) clientsRepo.findAll();
         return list.stream().map(ClientDTO::new).collect(Collectors.toList());
     }
+
     @ToLog
-    public Messages saveClient(Client client) {
-        Client clientByFullName = clientsRepo.findClientByFullName(client.getFullName());
-        if (clientByFullName == null) {
+    public Messages saveClient(ClientDTO dto) {
+        Client client = clientsRepo.findClientByFullName(dto.getFullName());
+        if (client == null) {
+            client = dto.createClient();
+            RoleClient roleClient =  roleClientService.getById(dto.getRoleClientId());
+            client.setRoleClient(roleClient);
             clientsRepo.save(client);
-            return Messages.CLIENT_CREATE;
+            return Messages.OK;
         } else
             return Messages.CLIENT_EXISTS;
     }
+
     @ToLog
-    public void updateClient(long id, Client client) {
-        client.setId(id);
-        clientsRepo.save(client);
+    public Messages updateClient(Client client) {
+        try {
+            clientsRepo.save(client);
+            return Messages.CLIENT_UPDATE;
+        }catch (Exception e)
+        {
+            return Messages.CLIENT_NOT_FOUND;
+        }
     }
 
     public Client getById(long id) {

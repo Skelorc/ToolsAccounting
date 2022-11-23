@@ -204,14 +204,10 @@
                                         <h3 class="my-3 form-creat__half-title_text">
                                             Аккаунт в соц.сетях
                                         </h3>
-                                        <span><input
-                                                required
-                                                th:value="${client.account}"
-                                                th:name="account"
-                                                id="account"
-                                                type="text"
-                                                class="form-control"
-                                                placeholder="Аккаунт в соц.сетях"></span>
+                                        <span>
+                                            <input required th:value="${client.account}" th:name="account" id="account"
+                                                type="text" class="form-control" placeholder="Аккаунт в соц.сетях">
+                                        </span>
                                     </div>
                                     <div class="form-group col-lg-3">
                                         <div class="p-svg p-curve p-jelly pretty">
@@ -235,6 +231,11 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="v-select edit-container__select vs--single vs--searchable main-secect__wrapp">
+                                        <div class="form-group col-lg-3">
+                                            <a href="/role-clients" th:href="@{/role-clients}"
+                                               class="btn btn-primary width btn-add_vidacha my-green">Добавить новую роль</a>
+                                        </div>
                                 </div>
                             </div>
                             <div id="individual" class="form-creat mb-3 col-12">

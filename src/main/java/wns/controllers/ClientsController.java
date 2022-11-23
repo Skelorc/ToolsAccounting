@@ -54,10 +54,9 @@ public class ClientsController {
 
     @PostMapping("/create")
     @ResponseBody
-    public ResponseEntity<Object> create(@RequestBody Client client) {
-        System.out.println(client);
-        //Messages message = clientsService.saveClient(client);
-        return ResponseHandler.generateResponse(Messages.OK);
+    public ResponseEntity<Object> create(@RequestBody ClientDTO client) {
+        Messages message = clientsService.saveClient(client);
+        return ResponseHandler.generateResponse(message);
     }
 
 
@@ -75,8 +74,9 @@ public class ClientsController {
 
     @PostMapping("/edit/{id}")
     public ResponseEntity<Object> updateClient(@PathVariable("id") long id, @RequestBody Client client) {
-        clientsService.updateClient(id, client);
-        return ResponseHandler.generateResponse(Messages.OK);
+        client.setId(id);
+        Messages messages = clientsService.updateClient(client);
+        return ResponseHandler.generateResponse(messages);
     }
 
     @PostMapping("/delete/{id}")

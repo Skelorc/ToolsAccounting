@@ -35,4 +35,7 @@ public class RoleClientService implements MainService {
         repo.deleteById(id);
     }
 
+    public RoleClient getById(long roleClientId) {
+        return repo.findById(roleClientId).get();
+    }
 }

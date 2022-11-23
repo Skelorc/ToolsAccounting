@@ -40,7 +40,7 @@ public class ProjectService implements MainService {
         Project project = projectRepo.findByName(projectDTO.getName());
         if (project == null) {
             try {
-                project = ProjectDTO.createProjectFromDTO(projectDTO);
+                project = projectDTO.createProjectFromDTO();
                 Client client = clientsService.getById(projectDTO.getClient_id());
                 project.setClient(client);
                 project.setPhoneNumber(client.getPhoneNumber());
@@ -151,7 +151,7 @@ public class ProjectService implements MainService {
     @ToLog
     @Transactional
     public void updateProject(ProjectDTO dto) {
-        Project project = ProjectDTO.createProjectFromDTO(dto);
+        Project project = dto.createProjectFromDTO();
         Client client = clientsService.getById(dto.getClient_id());
         client.getProjects().add(project);
         project.setClient(client);
@@ -160,7 +160,7 @@ public class ProjectService implements MainService {
             workingShift.setProject(project);
             workingShiftService.save(workingShift);
         }
-        clientsService.saveClient(client);
+        clientsService.updateClient(client);
         projectRepo.save(project);
     }
 

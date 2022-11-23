@@ -94,12 +94,53 @@ public class ClientDTO {
         this.rented = client.getRented();
     }
 
+    public Client createClient()
+    {
+        Client client = new Client();
+        client.setTypeClient(typeClient);
+        client.setFullName(fullName);
+        client.setAccount(account);
+        client.setLegalName(legalName);
+        client.setDiscount(discount);
+        client.setPhoneNumber(phoneNumber);
+        client.setEmail(email);
+        client.setFromComing(fromComing);
+        client.setLimited(limited);
+        client.setNote(note);
+        client.setBirthday(birthday);
+        client.setInBlackList(inBlackList);
+        client.setDirectorOfPhotography(directorOfPhotography);
+        client.setProduction(production);
+        client.setNumberPassport(numberPassport);
+        client.setIssuedBy(issuedBy);
+        client.setDateIssuePassport(dateIssuePassport);
+        client.setAddressReal(addressReal);
+        client.setAddressLegal(addressLegal);
+        client.setInn(inn);
+        client.setKpp(kpp);
+        client.setOgrn(ogrn);
+        client.setFullNameSupervisor(fullNameSupervisor);
+        client.setJobTitleSupervisor(jobTitleSupervisor);
+        client.setInFace(inFace);
+        client.setBased(based);
+        client.setRs(rs);
+        client.setBank(bank);
+        client.setKs(ks);
+        client.setBik(bik);
+        client.setDateCreating(dateCreating);
+        client.setPhotos(photos);
+        client.setRented(rented);
+        return client;
+    }
+
 
     @Override
     public String toString() {
         return "ClientDTO{" +
                 "id=" + id +
                 ", typeClient=" + typeClient +
+                ", account=" + account +
+                ", roleClientId=" + roleClientId +
                 ", fullName='" + fullName + '\'' +
                 ", legalName='" + legalName + '\'' +
                 ", discount=" + discount +

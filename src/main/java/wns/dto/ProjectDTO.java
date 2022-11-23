@@ -96,32 +96,32 @@ public class ProjectDTO {
         this.workingShiftDTOList = project.getWorkingShifts().stream().map(WorkingShiftDTO::new).collect(Collectors.toList());
     }
 
-    public static Project createProjectFromDTO(ProjectDTO dto)
+    public Project createProjectFromDTO()
     {
         Project project = new Project();
-        project.setId(dto.getId());
-        project.setName(dto.getName());
-        project.setNumber(dto.getNumber());
-        project.setStatus(dto.getStatus());
-        project.setTypeLease(dto.getTypeLease());
-        project.setQuantity(dto.getQuantity());
-        project.setCreated(dto.getCreated());
+        project.setId(id);
+        project.setName(name);
+        project.setNumber(number);
+        project.setStatus(status);
+        project.setTypeLease(typeLease);
+        project.setQuantity(quantity);
+        project.setCreated(created);
         project.setEmployee(SecurityContextHolder.getContext().getAuthentication().getName());
-        project.setStart(dto.getWorkingShifts().get(0).getDateShift());
-        project.setEnd(dto.getWorkingShifts().get(dto.getWorkingShifts().size()-1).getDateShift());
-        project.setPhotos(dto.getPhotos());
-        project.setDiscount(dto.getDiscount());
-        project.setNote(dto.getNote());
-        project.setSum(dto.getSum());
-        project.setFinalSumUsn(dto.getFinalSumUsn());
-        project.setPriceTools(dto.getPriceTools());
-        project.setDiscountByProject(dto.getDiscountByProject());
-        project.setSumWithDiscount(dto.getSumWithDiscount());
-        project.setReceived(dto.getReceived());
-        project.setRemainder(dto.getRemainder());
-        project.setClassification(dto.getClassification());
-        project.setPhoneNumber(dto.getPhoneNumber());
-        project.setPriceWork(dto.getPriceWork());
+        project.setStart(workingShifts.get(0).getDateShift());
+        project.setEnd(workingShifts.get(workingShifts.size()-1).getDateShift());
+        project.setPhotos(photos);
+        project.setDiscount(discount);
+        project.setNote(note);
+        project.setSum(sum);
+        project.setFinalSumUsn(finalSumUsn);
+        project.setPriceTools(priceTools);
+        project.setDiscountByProject(discountByProject);
+        project.setSumWithDiscount(sumWithDiscount);
+        project.setReceived(received);
+        project.setRemainder(remainder);
+        project.setClassification(classification);
+        project.setPhoneNumber(phoneNumber);
+        project.setPriceWork(priceWork);
         return project;
     }
 

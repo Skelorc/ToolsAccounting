@@ -19,5 +19,5 @@ public class RoleClient {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "roleClient", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Client> client;
+    private List<Client> clients;
 }
