@@ -1751,4 +1751,55 @@ table.transparent{
     margin-right: 10px;
     padding-top: 10px;
 }
+.table-tr{
+    display: flex;
+justify-content: space-between;
+ 
+}
+.table-box {
+    max-width: 1200px;
+}
+ @media (min-width: 414px) {
+        .table-tr {
+            flex-direction: column;
+        }
+        .table-box {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+.form-border {
+    border: 1px solid #000;
+    padding: 10px;
+}
+.table-td {
+    border: none;
+}
+.table-box-tr {
+    display: flex;
+    justify-content: space-around;
+  
+}
+  @media (min-width: 414px) {
+    .table-box-tr {
+        justify-content: space-between;
+        flex-direction: column;
+        }
+    }
+        @media (min-width: 1200px) {
+        .table-box {
+            display: block;
+        }
+         .table-tr {
+            flex-direction: row;
+         }
+         .table-box-tr {
+            flex-direction: row;
+         }
+    }
+    .table-box{
+        background-color: #fff;
+        padding: 20px 20px;
+    }
 /*********************/
