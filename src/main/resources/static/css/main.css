@@ -1802,4 +1802,9 @@ justify-content: space-between;
         background-color: #fff;
         padding: 20px 20px;
     }
+    .form-control-none {
+        background-color: transparent;
+        border: none;
+        
+    }
 /*********************/
