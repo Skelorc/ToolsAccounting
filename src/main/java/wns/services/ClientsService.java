@@ -11,6 +11,7 @@ import wns.entity.Owner;
 import wns.entity.RoleClient;
 import wns.repo.ClientsRepo;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,6 +32,7 @@ public class ClientsService implements MainService {
     }
 
     @ToLog
+    @Transactional
     public Messages saveClient(ClientDTO dto) {
         Client client = clientsRepo.findClientByFullName(dto.getFullName());
         if (client == null) {

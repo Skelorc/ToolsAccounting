@@ -21,6 +21,7 @@ public enum Filter {
     ALL_CLIENTS("Все клиенты"),
     PROJECTS_BY_CLIENTS("Все проекты клиента"),
     //project
+    ALL_PROJECTS("Все проекты"),
     GET_TOOLS_BY_PROJECT("Получить оборудование по проекту"),
     ONE_TIME("Разовый"),
     LONG("Длинный"),

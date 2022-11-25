@@ -38,7 +38,7 @@ public class ProjectsController {
     public String show(@RequestParam(value = "page", required = false) Optional<Integer> page,
                        @RequestParam(value = "size", required = false) Optional<Integer> size,
                        Model model) {
-        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, Filter.WITHOUT_FILTER, PaginationConst.PROJECT,-1);
+        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, Filter.ALL_PROJECTS, PaginationConst.PROJECT,-1);
         pageableFilterService.addPageNumbersToModel(paginated_list, model);
         model.addAttribute("list_projects", paginated_list);
         return "projects";

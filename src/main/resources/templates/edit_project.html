@@ -66,11 +66,11 @@
         <div class="b-overlay-wrap position-relative w-100" size="sm">
 
           <div class="rih-page-wrapper">
-            <!-- <nav
+             <nav
               role="navigation"
               class="navbar navbar-admin navbar-fixed-top"
               th:insert="fragments/header_logout.html"
-            ></nav> -->
+            ></nav>
             <main class="wrapper wrapper-content">
               <div class="b-overlay-wrap position-relative" size="sm">
                 <div class="project__creat mb-3">
@@ -440,7 +440,7 @@
 
                   <div class="btn-pimary__groups-wrapper mb-3 order-lg-1">
                     <div class="btn__under-table">
-                      <div class="mb-3 text-right">
+                     <!-- <div class="mb-3 text-right">
                         <a href="#" class="btn btn-primary width my-yellow"
                           >Единый список</a
                         >
@@ -462,7 +462,7 @@
                       </div>
                       <div
                         class="custom-ll__header custom-ll__header-zipcode custom-ll__header-zipcode_project"
-                      >
+                      >-->
                         <div class="custom-ll__header__full show">
                           <div class="custom-ll__header__full__right">
                             <div class="custom-ll__header-wrapp">
@@ -508,7 +508,7 @@
                                                             th:each="status: ${T(wns.constants.StatusProject).values()}"
                                                             th:value="${status}"
                                                             th:text="${status.getStatus()}"
-                                                    th:if="${status==project.status}" selected></option>
+                                                            th:selected="${status==project.status}"></option>
                                                 </select>
                                             </div>
                                         </div>

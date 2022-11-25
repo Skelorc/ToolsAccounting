@@ -180,9 +180,7 @@
                       class="col-12 col-lg-3 edit-container__header-select mb-3"
                     >
                       <h3 class="my-3">Тип клиента</h3>
-                      <div
-                        class="v-select edit-container__select vs--single vs--searchable main-secect__wrapp"
-                      >
+                      <div class="v-select edit-container__select vs--single vs--searchable main-secect__wrapp">
                         <div class="vs__dropdown-toggle main-secect">
                           <select
                             id="select_type_client"
@@ -201,7 +199,8 @@
                               class="vs__selected vs__dropdown-toggle"
                               th:each="type : ${T(wns.constants.TypeClients).values()}"
                               th:text="${type.getType()}"
-                              th:selected="${type==client.typeClient}"
+                              th:value="${type}"
+                              th:selected="${client.typeClient !=null && client.typeClient==type}"
                             ></option>
                           </select>
                         </div>
@@ -1107,9 +1106,11 @@
                     if (typeClient !== null) {
                         $('#save_client').css("display", "none");
                         if (typeClient === 'INDIVIDUAL') {
+                          console.log(typeClient);
                             $('#individual').css("display", "block");
                             $('#legal').css("display", "none");
                         } else {
+                          console.log(typeClient);
                             $('#individual').css("display", "none");
                             $('#legal').css("display", "block");
                         }

@@ -25,15 +25,12 @@ private final PageableFilterService pageableFilterService;
     @GetMapping
     public String showByDate(@RequestParam(value ="page", required = false) Optional<Integer> page,
                              @RequestParam(value ="size", required = false) Optional<Integer> size,
-                             @RequestParam(value ="filter", required = false) Filter filter,
-                             @RequestParam(value ="paginationConst", required = false) PaginationConst paginationConst,
                              Model model)
     {
-        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, filter, paginationConst, -1);
+        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, Filter.ALL_PROJECTS, PaginationConst.PROJECT, -1);
         pageableFilterService.addPageNumbersToModel(paginated_list, model);
         model.addAttribute("list_data", paginated_list);
         return "calendar";
     }
-
 
 }
