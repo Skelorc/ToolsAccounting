@@ -1,77 +1,184 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
-
-<head class="head">
+<html
+  lang="en"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org/"
+>
+  <head class="head">
     <title>Редактирование проекта</title>
-     <div th:replace="fragments/head :: header"></div>
-   <!-- <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-      <meta name="robots" content="index, follow">
-      <meta name="author" content="">
-      <meta property="og:url" content="https://site.ru">
-      <meta property="og:title" content="MAD DOG">
-      <meta property="og:image:type" content="image/jpeg">
-      <meta property="og:image:width" content="640">
-      <meta property="og:image:height" content="442">
-      <meta property="og:description" content="">
-      <meta property="og:site_name" content="Site-name">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="author" content="Andrey">
-      <meta name="description" content="MAD DOG">
-      <meta name="keywords" content="MAD DOG">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta property="og:title" content="MAD DOG - сервис для учета и автоматизации проката">
-      <meta property="og:image" content="assets/img/icons/badge.jpg" th:src="@{/img/icons/badge.jpg}">
-      <meta property="og:image:type" content="image/jpeg">
-      <meta property="og:image:width" content="1024">
-      <meta property="og:image:height" content="1024">
-      <meta property="og:description" content="Программа для учёта инструментов">
-      <link rel="image_src" href="/static/img/icons/badge.jpg" th:href="@{/img/icons/badge.jpg}">
-      <meta name="theme-color" content="#179d82">
-      <meta th:name="_csrf" th:content="${_csrf.token}"/>
-      <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
-      <link rel="manifest" href="/templates/assets/json/manifest.json" th:href="@{/templates/assets/json/manifest.json}">&ndash;&gt;
+    <div th:replace="fragments/head :: header"></div>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="" />
+    <meta property="og:url" content="https://site.ru" />
+    <meta property="og:title" content="MAD DOG" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="640" />
+    <meta property="og:image:height" content="442" />
+    <meta property="og:description" content="" />
+    <meta property="og:site_name" content="Site-name" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="Andrey" />
+    <meta name="description" content="MAD DOG" />
+    <meta name="keywords" content="MAD DOG" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      property="og:title"
+      content="MAD DOG - сервис для учета и автоматизации проката"
+    />
+    <meta
+      property="og:image"
+      content="assets/img/icons/badge.jpg"
+      th:src="@{/img/icons/badge.jpg}"
+    />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1024" />
+    <meta property="og:image:height" content="1024" />
+    <meta
+      property="og:description"
+      content="Программа для учёта инструментов"
+    />
+    <link
+      rel="image_src"
+      href="/static/img/icons/badge.jpg"
+      th:href="@{/img/icons/badge.jpg}"
+    />
+    <meta name="theme-color" content="#179d82" />
+    <meta th:name="_csrf" th:content="${_csrf.token}" />
+    <meta th:name="_csrf_header" th:content="${_csrf.headerName}" />
+    <link
+      rel="manifest"
+      href="/templates/assets/json/manifest.json"
+      th:href="@{/templates/assets/json/manifest.json}"
+    />
+    &ndash;&gt;
 
-      <link rel="preload" href="../static/fonts/fontawesome/fontawesome-all-css.css" as="style" th:href="@{/fonts/fontawesome/fontawesome-all-css.css}">
-      <link rel="preload" href="../static/css/style.css" as="style" th:href="@{/css/style.css}">
-      <link rel="preload" href="../static/css/app.css" as="style" th:href="@{/css/app.css}">
-      <link rel="preload" href="../static/css/media.css" as="style" th:href="@{/css/media.css}">
-      <link rel="preload" href="../static/css/checkout.css" as="style" th:href="@{/css/checkout.css}">
-      <link rel="preload" href="../static/css/main.css" as="style" th:href="@{/css/main.css}">
+    <link
+      rel="preload"
+      href="../static/fonts/fontawesome/fontawesome-all-css.css"
+      as="style"
+      th:href="@{/fonts/fontawesome/fontawesome-all-css.css}"
+    />
+    <link
+      rel="preload"
+      href="../static/css/style.css"
+      as="style"
+      th:href="@{/css/style.css}"
+    />
+    <link
+      rel="preload"
+      href="../static/css/app.css"
+      as="style"
+      th:href="@{/css/app.css}"
+    />
+    <link
+      rel="preload"
+      href="../static/css/media.css"
+      as="style"
+      th:href="@{/css/media.css}"
+    />
+    <link
+      rel="preload"
+      href="../static/css/checkout.css"
+      as="style"
+      th:href="@{/css/checkout.css}"
+    />
+    <link
+      rel="preload"
+      href="../static/css/main.css"
+      as="style"
+      th:href="@{/css/main.css}"
+    />
 
+    <link
+      rel="stylesheet"
+      href="../static/fonts/webfonts/fa-solid-900.ttf"
+      th:href="@{/fonts/webfonts/fa-solid-900.ttf}"
+    />
+    <link
+      rel="stylesheet"
+      href="../static/css/style.css"
+      th:href="@{/css/style.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="../static/css/app.css"
+      th:href="@{/css/app.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="../static/css/media.css"
+      th:href="@{/css/media.css}"
+    />
+    <link
+      rel="stylesheet"
+      href=".../static/css/animation-iror.css"
+      th:href="@{/css/animation-iror.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="../static/fonts/fontawesome/fontawesome.css"
+      th:href="@{/fonts/fontawesome/fontawesome.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="../static/fonts/fontawesome/fontawesome-all-css.css"
+      th:href="@{/fonts/fontawesome/fontawesome-all-css.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="../static/css/checkout.css"
+      th:href="@{/css/checkout.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="../static/css/main.css"
+      th:href="@{/css/main.css}"
+    />
 
-      <link rel="stylesheet" href="../static/fonts/webfonts/fa-solid-900.ttf" th:href="@{/fonts/webfonts/fa-solid-900.ttf}">
-      <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
-      <link rel="stylesheet" href="../static/css/app.css" th:href="@{/css/app.css}">
-      <link rel="stylesheet" href="../static/css/media.css" th:href="@{/css/media.css}">
-      <link rel="stylesheet" href=".../static/css/animation-iror.css" th:href="@{/css/animation-iror.css}">
-      <link rel="stylesheet" href="../static/fonts/fontawesome/fontawesome.css" th:href="@{/fonts/fontawesome/fontawesome.css}">
-      <link rel="stylesheet" href="../static/fonts/fontawesome/fontawesome-all-css.css" th:href="@{/fonts/fontawesome/fontawesome-all-css.css}">
-      <link rel="stylesheet" href="../static/css/checkout.css" th:href="@{/css/checkout.css}">
-      <link rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}">
-      
-      <script src="/static/fonts/fontawesome/all.js" th:src="@{/fonts/fontawesome/all.js}"></script>
-      
-      <script src="/static/js/jquery.js" th:src="@{/js/jquery.js}"></script>
-      
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"  th:src="@{/js/jquery.modal.js}"></script>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" />
-    <link rel="stylesheet" href="/static/css/datepicker.css" th:href="@{/css/datepicker.css}"> -->
-</head>
+    <script
+      src="/static/fonts/fontawesome/all.js"
+      th:src="@{/fonts/fontawesome/all.js}"
+    ></script>
 
-<body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
-<div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
+    <script src="/static/js/jquery.js" th:src="@{/js/jquery.js}"></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"
+      th:src="@{/js/jquery.modal.js}"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"
+      th:href="@{/css/jquery.modal.css}"
+    />
+    <link
+      rel="stylesheet"
+      href="/static/css/datepicker.css"
+      th:href="@{/css/datepicker.css}"
+    />
+  </head>
+
+  <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
     <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
+      <div
+        class="b-overlay-wrap position-relative w-100"
+        size="sm"
+        id="wrapper"
+      >
         <div th:insert="fragments/menu_sidebar.html"></div>
         <div class="b-overlay-wrap position-relative w-100" size="sm">
-
           <div class="rih-page-wrapper">
-             <nav
+            <nav
               role="navigation"
               class="navbar navbar-admin navbar-fixed-top"
               th:insert="fragments/header_logout.html"
             ></nav>
-            <main class="wrapper wrapper-content">
+            <main class="wrapper wrapper-content border-bottom">
               <div class="b-overlay-wrap position-relative" size="sm">
                 <div class="project__creat mb-3">
                   <div
@@ -95,7 +202,7 @@
                           <select
                             id="status"
                             th:value="${project.status}"
-                            class="vs__selected-options main-secect__opions form-control my-select"
+                            class="vs__selected-options main-secect__opions form-control"
                           >
                             <option
                               class="vs__selected vs__dropdown-toggle"
@@ -109,8 +216,7 @@
                               th:each="status: ${T(wns.constants.StatusProject).values()}"
                               th:value="${status}"
                               th:text="${status.getStatus()}"
-                              th:if="${status==project.status}"
-                              selected
+                              th:selected="${status==project.status}"
                             ></option>
                           </select>
                         </div>
@@ -137,29 +243,37 @@
                         </div>
                       </div>
                       <div class="form-creat__half_two-column">
-                        <div role="group" class="form-group">
-                          <label class="d-block size">Начало</label>
+                        <button class="rabSM">Выберите рабочие смены</button>
+                        <div
+                          role="group"
+                          class="form-group"
+                          style="display: none"
+                        >
+                          <label class="d-block size"
+                            >Выберите рабочие смены</label
+                          >
                           <div class="vdpComponent vdpWithInput">
                             <input
-                              id="start"
-                              th:value="${project.start}"
-                              class="form-control"
-                              type="datetime-local"
-                              placeholder="дд.мм.гггг"
+                              id="word_date"
+                              class="form-control form-control-date"
+                              required
+                              readonly
                             />
                           </div>
                         </div>
-                      </div>
-                      <div class="form-creat__half_two-column">
-                        <div role="group" class="form-group">
-                          <label class="d-block size">Окончание</label>
-                          <div class="vdpComponent vdpWithInput">
+                        <div id="working_shift">
+                          <div th:each="shift : ${project.workingShifts}">
                             <input
-                              id="end"
-                              th:value="${project.end}"
-                              class="form-control"
-                              type="datetime-local"
-                              placeholder="дд.мм.гггг"
+                              class="dateShift"
+                              type="text"
+                              hidden="hidden"
+                              th:value="${shift.dateShift}"
+                            />
+                            <input
+                              class="typeShift"
+                              type="text"
+                              hidden="hidden"
+                              th:value="${shift.typeShift}"
                             />
                           </div>
                         </div>
@@ -183,7 +297,7 @@
                         <div role="group" class="form-group">
                           <label class="d-block size">Тип аренды</label>
                           <select
-                            class="vs__selected-options main-secect__opions form-control my-select"
+                            class="vs__selected-options main-secect__opions form-control"
                             id="typeLease"
                             th:value="${project.typeLease}"
                           >
@@ -202,7 +316,7 @@
                         <div role="group" class="form-group">
                           <label class="d-block size">Класс</label>
                           <select
-                            class="vs__selected-options main-secect__opions form-control my-select"
+                            class="vs__selected-options main-secect__opions form-control"
                             id="classification"
                             th:value="${project.classification}"
                           >
@@ -421,7 +535,7 @@
                           id="update_project"
                           style="padding: 5px"
                           type="submit"
-                          class="btn btn-primary width my-yellow"
+                          class="btn btn-primary width my-green"
                         >
                           Обновить проект
                         </button>
@@ -430,7 +544,7 @@
                         <button
                           id="close_project"
                           type="submit"
-                          class="btn btn-primary width btn-add_vidacha my-green"
+                          class="btn btn-primary width btn-add_vidacha my-red"
                         >
                           Закрыть проект
                         </button>
@@ -440,7 +554,7 @@
 
                   <div class="btn-pimary__groups-wrapper mb-3 order-lg-1">
                     <div class="btn__under-table">
-                     <!-- <div class="mb-3 text-right">
+                      <div class="mb-3 text-right">
                         <a href="#" class="btn btn-primary width my-yellow"
                           >Единый список</a
                         >
@@ -456,13 +570,13 @@
                         >
                       </div>
                       <div class="mb-3 text-right">
-                        <a href="#" class="btn btn-primary width my-yellow"
+                        <a href="#" class="btn btn-primary width my-red"
                           >Сбросить фильтр</a
                         >
                       </div>
                       <div
                         class="custom-ll__header custom-ll__header-zipcode custom-ll__header-zipcode_project"
-                      >-->
+                      >
                         <div class="custom-ll__header__full show">
                           <div class="custom-ll__header__full__right">
                             <div class="custom-ll__header-wrapp">
@@ -478,368 +592,196 @@
                                 />
                                 <span class="header__search__btn"></span>
                               </div>
-
-            <div class="rih-page-wrapper">
-                <nav  role="navigation" class="navbar navbar-admin navbar-fixed-top" th:insert="fragments/header_logout.html"></nav>
-                <main class="wrapper wrapper-content border-bottom">
-                    <div class="b-overlay-wrap position-relative" size="sm">
-                        <div class="project__creat mb-3">
-                            <div class="btn-pimary__groups-wrapper vidacha-sozdach mb-3 vidacha-sozdach">
-                                <div class="mb-3 text-right">
-                                    <span class="btn-pimary__groups_title">Проект</span>
-                                </div>
-                                <div class="mb-3 text-right">
-                                    <a href="/" class="btn btn-primary width my-yellow">Назад</a>
-                                </div>
-
                             </div>
-
-                                <div class="p-3 edit-container d-block col-8 col-md-12">
-                                    <div class="row form-creat__half-wrapp">
-                                        <div class=" form-creat__half_two-column">
-                                            <div role="group" class="form-group">
-                                                <label class="d-block size">Статус</label>
-                                                <select id="status" th:value="${project.status}"
-                                                        class="vs__selected-options main-secect__opions form-control">
-                                                    <option class="vs__selected vs__dropdown-toggle" value=""
-                                                            disabled="">Выберите статус проекта
-                                                    </option>
-                                                    <option class="vs__selected vs__dropdown-toggle"
-                                                            th:each="status: ${T(wns.constants.StatusProject).values()}"
-                                                            th:value="${status}"
-                                                            th:text="${status.getStatus()}"
-                                                            th:selected="${status==project.status}"></option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-creat__half_two-column">
-                                            <div role="group" class="form-group">
-                                                <label class="d-block size">Наименование</label>
-                                                <span>
-                                                    <input id="name" th:value="${project.name}" required="" name="fromComing" type="text" class="form-control" placeholder="Имя проекта">
-                                                    <input id="project_id" hidden="hidden" th:value="${project.id}">
-                                                </span>
-                                            </div>
-                                        </div>
-                                       <div class=" form-creat__half_two-column">
-                                            <button class="rabSM">Выберите рабочие смены</button>
-                                            <div role="group" class="form-group" style="display: none;">
-                                                <label class="d-block size">Выберите рабочие смены</label>
-                                                <div class="vdpComponent vdpWithInput">
-                                                    <input id="word_date"  class="form-control form-control-date" required readonly>
-                                                </div>
-                                            </div>
-                                            <div id="working_shift">
-                                           <div th:each="shift : ${project.workingShifts}">
-                                               <input class="dateShift" type="text" hidden="hidden" th:value="${shift.dateShift}">
-                                               <input class="typeShift" type="text" hidden="hidden" th:value="${shift.typeShift}">
-                                           </div>
-                                           </div>
-                                        </div>
-                                        <div class=" form-creat__half_two-column">
-                                            <div class="form-group">
-                                                <label class="d-block size">Укажите ссылки на фото через запятую</label>
-                                                <textarea id="photos" th:value="${project.photos}" class="form-control" style="height: 40px;"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row form-creat__half-wrapp">
-                                        <div class=" form-creat__half_two-column">
-                                            <div role="group" class="form-group">
-                                                <label class="d-block size">Тип аренды</label>
-                                                <select class="vs__selected-options main-secect__opions form-control"
-                                                        id="typeLease" th:value="${project.typeLease}">
-                                                    <option class="vs__selected vs__dropdown-toggle"
-                                                            th:each="type: ${T(wns.constants.TypeLease).values()}"
-                                                            th:value="${type}" th:text="${type.getType()}"
-                                                            th:if="${type==project.typeLease}" selected></option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class=" form-creat__half_two-column">
-                                            <div role="group" class="form-group">
-                                                <label class="d-block size">Класс</label>
-                                                <select class="vs__selected-options main-secect__opions form-control"
-                                                        id="classification" th:value="${project.classification}">
-                                                    <option class="vs__selected vs__dropdown-toggle"
-                                                            th:each="classification: ${T(wns.constants.ClassificationProject).values()}"
-                                                            th:value="${classification}"
-                                                            th:text="${classification.getValue()}"
-                                                            th:if="${classification==project.classification}" selected></option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class=" form-creat__half_two-column">
-                                            <div role="group" class="form-group">
-                                                <label class="d-block size">Создан</label>
-                                                <div class="vdpComponent vdpWithInput">
-                                                    <input id="created" th:value="${project.created}" class="form-control"
-                                                           type="datetime-local" placeholder="дд.мм.гггг">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-creat__half_two-column">
-                                            <div class="mb-3 rent__client__buttons">
-                                                <span class="d-inline-block label-name  size">
-                                                    Укажите клиента
-                                                </span>
-                                                <a href="/clients" title="Добавить Клиентa" class="btn btn-primary width btn-xs size" style="padding-top: 5px;">Новый клиент
-                                                </a>
-                                            </div>
-                                            <select id="client_id"  th:value="${project.client.getId()}" required
-                                                    class="vs__selected-options main-secect__opions form-control executor my-select">
-                                                <option class="vs__selected vs__dropdown-toggle" value="" disabled>
-                                                    Выберите клиента
-                                                </option>
-                                                <option class="vs__selected vs__dropdown-toggle"
-                                                        th:each="client : ${clients}"
-                                                        th:value="${client.id}"
-                                                        th:text="${client.fullName}"
-                                                th:if="${client.id==project.client.getId()}" selected>
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-creat__half_two-column">
-                                        <div class="form-group">
-                                            <label class="d-block size">Примечание</label>
-                                            <textarea id="note" th:value="${project.note}" name="" class="form-control" rows="4"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="p-3 edit-container d-block col-8 col-md-12">
-                                    <div class="row form-creat__half-wrapp">
-                                        <div class=" form-creat__half_two-column">
-                                            <div role="group" class="form-group">
-                                                <label class="d-block size">Итоговая сумма</label>
-                                                <span>
-                                                    <input id="sum" th:value="${project.estimate.allByProject}"
-                                                           type="text" class="form-control" placeholder=""
-                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');">
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class=" form-creat__half_two-column">
-                                            <div role="group" class="form-group">
-                                                <label class="d-block size">Себестоимость оборудования</label>
-                                                <span>
-                                                    <input id="priceTools" th:value="${project.estimate.allByProject}" type="text"
-                                                           class="form-control" placeholder=""
-                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');">
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="form-creat__half_two-column">
-                                            <div role="group" class="form-group">
-                                                <label class="d-block size">Скидка на проект</label>
-                                                <span>
-                                                    <input id="discountByProject"
-                                                           th:value="${project.estimate.discountByTools}" type="text"
-                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');" class="form-control" placeholder="">
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="form-creat__half_two-column">
-                                            <div role="group" class="form-group">
-                                                <label class="d-block size">Сумма со скидкой</label>
-                                                <span>
-                                                    <input id="sumWithDiscount"
-                                                           th:value="${project.estimate.allByProjectWithDiscount}" type="text"
-                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');" class="form-control" placeholder="">
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row form-creat__half-wrapp">
-                                        <div class="form-creat__half_two-column">
-                                            <div role="group" class="form-group">
-                                                <label class="d-block size">Итоговая УСН</label>
-                                                <span>
-                                                    <input id="finalSumUsn"
-                                                           th:value="${project.estimate.finalSumWithUsn}" type="text"
-                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
-                                                           class="form-control" placeholder="">
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="form-creat__half_two-column">
-                                            <div role="group" class="form-group">
-                                                <label class="d-block size">Стоимость работ</label>
-                                                <span>
-                                                    <input id="priceWork"
-                                                           th:value="${project.estimate.allByService}" type="text"
-                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');" class="form-control" placeholder="">
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class=" form-creat__half_two-column">
-                                            <div role="group" class="form-group">
-                                                <label class="d-block size">Оплачено</label>
-                                                <span>
-                                                    <input id="received" th:value="${project.received}" type="text" class="form-control" placeholder="">
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class=" form-creat__half_two-column">
-                                            <div role="group" class="form-group">
-                                                <label class="d-block size">Расчет неоплаченного остатка</label>
-                                                <span>
-                                                    <input id="remainder"
-                                                           th:value="${project.remainder}" type="text" class="form-control" placeholder="">
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="btn-pimary__groups mt-3 mb-3">
-                                    <div class="btn-pimary__groups-wrapper mb-3">
-                                        <div class="mb-3 text-right">
-                                            <span class="btn-pimary__groups_title size">Действия</span>
-                                        </div>
-                                        <div class="mb-3 text-right">
-                                            <button id="update_project" style="padding: 5px;" type="submit" class="btn btn-primary width orange">Обновить
-                                                проект
-                                            </button>
-                                        </div>
-                                        <div class="mb-3 text-right">
-                                            <button id="close_project" type="submit"
-                                               class="btn btn-primary width btn-add_vidacha green" >Закрыть проект</button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="btn-pimary__groups-wrapper mb-3 order-lg-1">
-                                    <div class="btn__under-table">
-                                        <div class="mb-3 text-right">
-                                            <a href="#" class="btn btn-primary width grey">Единый список</a>
-                                        </div>
-                                        <div class="mb-3 text-right">
-                                            <a href="#" class="btn btn-primary width grey">Просмотр по группам</a>
-                                        </div>
-                                        <div class="mb-3 text-right">
-                                            <a href="#" class="btn btn-primary width grey">Просмотр по разделам сметы</a>
-                                        </div>
-                                        <div class="mb-3 text-right">
-                                            <a href="#" class="btn btn-primary width grey">Сбросить фильтр</a>
-                                        </div>
-                                        <div class="custom-ll__header custom-ll__header-zipcode custom-ll__header-zipcode_project">
-                                            <div class="custom-ll__header__full show">
-                                                <div class="custom-ll__header__full__right">
-                                                    <div class="custom-ll__header-wrapp">
-                                                        <div class="header__search header__search_width zip-cod__input-width">
-                                                            <input id="barcode_search_input" type="search"
-                                                                   name="barcode" placeholder="Введите штрих код"
-                                                                   class="form-control">
-                                                            <span class="header__search__btn"></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="table__info table__vidacha-sozdat_wrapp mb-3">
-                                    <div class="table__vidacha-sozdat">
-                                        <table class="in4dr-form delivery w-table h-table transparent">
-                                            <tr >
-                                                <th class="first-th">#</th>
-                                                <th>Наименование</th>
-                                                <th>Штрихкод</th>
-                                                <th>Группа</th>
-                                                <th>Марка/Модель</th>
-                                                <th>Серийный номер</th>
-                                                <th>Коментарий</th>
-                                                <th>Характеристики</th>
-                                                <th>Состояние</th>
-                                                <th>Цена</th>
-                                                <th>Себестоимость</th>
-                                                <th>Комплект</th>
-                                            </tr>
-                                           <tbody>
-                                                <tr th:each="tool : ${list_tools}" class="row-tool">
-                                                    <td class="column-table">
-                                                        <div class="column-table_checkbox-wrapp">
-                                                            <input class="column-table_checkbox choose_tool ids" type="checkbox">
-                                                            <input class="id_tool id_ob" type="text" th:value="${tool.id}" hidden="hidden">
-                                                            <span
-                                                                    class="tools-td-text table-td-text column-table_checkbox-number tool_id"
-                                                                    th:utext="${toolStat.index+1}">
-                                                            </span>
-                                                        </div>
-                                                    </td>
-                                                    <td data-label="Наименование" th:utext="${tool.name}"></td>
-                                                    <td data-label="Штрихкод" class="barcode-tool" th:utext="${tool.barcode}"></td>
-                                                    <td data-label="Группа" th:utext="${tool.category}"></td>
-                                                    <td data-label="Марка\Модель" th:utext="${tool.model}"></td>
-                                                    <td data-label="Серийный номер" th:utext="${tool.serialNumber}"></td>
-                                                    <td data-label="Коментарий" th:utext="${tool.comment}"></td>
-                                                    <td data-label="Характеристики" th:utext="${tool.characteristics}"></td>
-                                                    <td data-label="Состояние" th:utext="${tool.state}"></td>
-                                                    <td data-label="Цена" class="price-tool" th:utext="${tool.costPrice}"></td>
-                                                    <td data-label="Себестоимость" th:utext="${tool.priceSell}"></td>
-                                                    <td data-label="Комплект" th:utext="${tool.equip}"></td>
-                                                </tr>
-                                           </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            <!-- Tab content -->
-                            <div class="tabcontent mb-3">
-                                <div class="project__creat">
-                                    <div class="wrapper__btn-primary vidacha-sozdach col-md-12 col-8">
-                                        <div class="mb-3 text-right">
-                                            <span class="btn-pimary__groups_title  size">Действия с оборудованием</span>
-                                        </div>
-                                        <a style="display: inline-flex; margin-right: 10px;" th:href="@{/tools/add-tool-to-project/{id}/(id=${project.id})}">
-                                            <div style="display: inline-flex;" >
-                                                <input type="submit" class="btn btn-primary width light-blue" value="Добавить">
-                                            </div>
-                                        </a>
-                                        <div style="display: inline-flex; margin-right: 10px;">
-                                            <input id="replaceBtn" type="submit" class="btn btn-primary width light-blue" value="Заменить">
-                                        </div>
-                                        <div style="display: inline-flex; margin-right: 10px;">
-                                            <input id="replaceBtnOther" type="submit" class="btn btn-primary width light-blue" value="Добавить оборудование из другого проекта">
-                                        </div>
-                                        <div style="display: inline-flex; margin-right: 10px;">
-                                            <a th:href="@{/estimate/create/{id}(id=${project.getId()})}" type="submit" class="btn btn-primary width light-blue">Открыть смету</a>
-                                        </div>
-                                        <div style="display: inline-flex; margin-right: 10px;">
-                                            <input id="removeBtn" type="submit" class="btn btn-primary width red" value="Удалить">
-                                        </div>
-                                    
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="pagination-control col-lg-12 order-lg-1">
-                                <!-- Bootstrap 4 -->
-                                <nav aria-label="Навигация по страницам">
-                                    <ul class="pagination">
-                                        <li class="page-item" th:if="${list_tools.totalPages > 0}"
-                                            th:each="page_number : ${page_numbers}">
-                                            <a class="page-link-m page-link" th:href="@{/projects/edit/{id}/(size=${list_tools.size}, page=${page_numberStat.index}, id=${project.getId()})}"
-                                               th:text="${page_numberStat.index}" th:class="${page_number==list_tools.number + 1} ? active"></a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-
+                          </div>
                         </div>
+                      </div>
                     </div>
-                </main>
-                <div th:insert="fragments/footer.html"></div>
-            </div>
+                  </div>
+
+                  <div class="table__info table__vidacha-sozdat_wrapp mb-3">
+                    <div class="table__vidacha-sozdat">
+                      <table
+                        class="in4dr-form delivery w-table h-table transparent"
+                      >
+                        <tr>
+                          <th class="first-th">#</th>
+                          <th>Наименование</th>
+                          <th>Штрихкод</th>
+                          <th>Группа</th>
+                          <th>Марка/Модель</th>
+                          <th>Серийный номер</th>
+                          <th>Коментарий</th>
+                          <th>Характеристики</th>
+                          <th>Состояние</th>
+                          <th>Цена</th>
+                          <th>Себестоимость</th>
+                          <th>Комплект</th>
+                        </tr>
+                        <tbody>
+                          <tr th:each="tool : ${list_tools}" class="row-tool">
+                            <td class="column-table">
+                              <div class="column-table_checkbox-wrapp">
+                                <input
+                                  class="column-table_checkbox choose_tool ids"
+                                  type="checkbox"
+                                />
+                                <input
+                                  class="id_tool id_ob"
+                                  type="text"
+                                  th:value="${tool.id}"
+                                  hidden="hidden"
+                                />
+                                <span
+                                  class="tools-td-text table-td-text column-table_checkbox-number tool_id"
+                                  th:utext="${toolStat.index+1}"
+                                >
+                                </span>
+                              </div>
+                            </td>
+                            <td
+                              data-label="Наименование"
+                              th:utext="${tool.name}"
+                            ></td>
+                            <td
+                              data-label="Штрихкод"
+                              class="barcode-tool"
+                              th:utext="${tool.barcode}"
+                            ></td>
+                            <td
+                              data-label="Группа"
+                              th:utext="${tool.category}"
+                            ></td>
+                            <td
+                              data-label="Марка\Модель"
+                              th:utext="${tool.model}"
+                            ></td>
+                            <td
+                              data-label="Серийный номер"
+                              th:utext="${tool.serialNumber}"
+                            ></td>
+                            <td
+                              data-label="Коментарий"
+                              th:utext="${tool.comment}"
+                            ></td>
+                            <td
+                              data-label="Характеристики"
+                              th:utext="${tool.characteristics}"
+                            ></td>
+                            <td
+                              data-label="Состояние"
+                              th:utext="${tool.state}"
+                            ></td>
+                            <td
+                              data-label="Цена"
+                              class="price-tool"
+                              th:utext="${tool.costPrice}"
+                            ></td>
+                            <td
+                              data-label="Себестоимость"
+                              th:utext="${tool.priceSell}"
+                            ></td>
+                            <td
+                              data-label="Комплект"
+                              th:utext="${tool.equip}"
+                            ></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <!-- Tab content -->
+                  <div class="tabcontent mb-3">
+                    <div class="project__creat">
+                      <div
+                        class="wrapper__btn-primary vidacha-sozdach col-md-12 col-8"
+                      >
+                        <div class="mb-3 text-right">
+                          <span class="btn-pimary__groups_title size"
+                            >Действия с оборудованием</span
+                          >
+                        </div>
+                        <a
+                          style="display: inline-flex; margin-right: 10px"
+                          th:href="@{/tools/add-tool-to-project/{id}/(id=${project.id})}"
+                        >
+                          <div style="display: inline-flex">
+                            <input
+                              type="submit"
+                              class="btn btn-primary width my-yellow"
+                              value="Добавить"
+                            />
+                          </div>
+                        </a>
+                        <div style="display: inline-flex; margin-right: 10px">
+                          <input
+                            id="replaceBtn"
+                            type="submit"
+                            class="btn btn-primary width my-yellow"
+                            value="Заменить"
+                          />
+                        </div>
+                        <div style="display: inline-flex; margin-right: 10px">
+                          <input
+                            id="replaceBtnOther"
+                            type="submit"
+                            class="btn btn-primary width my-yellow"
+                            value="Добавить оборудование из другого проекта"
+                          />
+                        </div>
+                        <div style="display: inline-flex; margin-right: 10px">
+                          <a
+                            th:href="@{/estimate/create/{id}(id=${project.getId()})}"
+                            type="submit"
+                            class="btn btn-primary width my-yellow"
+                            >Открыть смету</a
+                          >
+                        </div>
+                        <div style="display: inline-flex; margin-right: 10px">
+                          <input
+                            id="removeBtn"
+                            type="submit"
+                            class="btn btn-primary width my-red"
+                            value="Удалить"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="pagination-control col-lg-12 order-lg-1">
+                    <!-- Bootstrap 4 -->
+                    <nav aria-label="Навигация по страницам">
+                      <ul class="pagination">
+                        <li
+                          class="page-item"
+                          th:if="${list_tools.totalPages > 0}"
+                          th:each="page_number : ${page_numbers}"
+                        >
+                          <a
+                            class="page-link-m page-link"
+                            th:href="@{/projects/edit/{id}/(size=${list_tools.size}, page=${page_numberStat.index}, id=${project.getId()})}"
+                            th:text="${page_numberStat.index}"
+                            th:class="${page_number==list_tools.number + 1} ? active"
+                          ></a>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </main>
+            <div th:insert="fragments/footer.html"></div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-<div th:insert="fragments/scripts.html"></div>
-<div>
-    <script th:src="@{/js/calendar.js}"></script>
-    <script th:src="@{/js/bootstrap-datepicker.js}"></script>
-    <script th:src="@{/js/TotalCounter.js}"></script>
-    <script th:src="@{/js/SearchBarcode.js}"></script>
-</div>
-</body>
+    <div th:insert="fragments/scripts.html"></div>
+    <div>
+      <script th:src="@{/js/calendar.js}"></script>
+      <script th:src="@{/js/bootstrap-datepicker.js}"></script>
+      <script th:src="@{/js/TotalCounter.js}"></script>
+      <script th:src="@{/js/SearchBarcode.js}"></script>
+    </div>
+  </body>
 </html>
