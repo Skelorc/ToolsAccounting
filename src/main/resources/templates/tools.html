@@ -84,6 +84,19 @@
 
                 </div>
                 <div class="b-overlay-wrap position-relative custom-ll">
+                    <div class="custom-ll__header__full show">
+                        <div class="custom-ll__header__full__right">
+                            <div class="header__search header__search_width">
+                                <label for="barcode_search_input">Поиск по штрихкоду</label><input
+                                        type="search"
+                                        id="barcode_search_input"
+                                        name="barcode"
+                                        placeholder="Поиск"
+                                        class="form-control"
+                                />
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <label class="d-block size">Действия</label>
                         <div class="mb-3 text-right">
@@ -93,19 +106,6 @@
                         <div class="mb-3 text-right">
                             <button id="status_instock" class="btn btn-primary width green change_status my-yellow">На склад
                             </button>
-                        </div>
-                        <!--<div class="btn__under-table col-6 col-lg-12 order-lg-1" th:if="${project_id<0}">
-                            <div class="mb-3 text-right">
-                                <a th:href="@{/tools}" class="btn btn-primary width btn-update_vidacha  grey">Все</a>
-                            </div>
-                            <div class="mb-3 text-right">
-                                <a th:href="@{/tools(filter=stock)}"
-                                   class="btn btn-primary width btn-update_vidacha  grey">Склад</a>
-                            </div>
-                            <div class="mb-3 text-right">
-                                <a th:href="@{/tools(filter=sublease)}"
-                                   class="btn btn-primary width btn-update_vidacha  grey">Субаренда</a>
-                            </div>-->
                         </div>
                         <div class="custom-ll__table table-responsive overflow-auto col-lg-12 order-lg-1">
                             <table class="table delivery w-table h-table in4dr-form transparent">
@@ -141,7 +141,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="tool : ${list_tools}">
+                                <tr th:each="tool : ${list_tools}" class="row-tool">
                                     <td class="column-table">
                                         <div class="column-table_checkbox-wrapp " id="ids_tools">
                                             <input class="column-table_checkbox choose_tool ids" type="checkbox">
@@ -155,7 +155,7 @@
                                            th:utext="${tool.name}"></a></td>
                                     <td data-label="Группа" ><span class="tools-td-text table-td-text tool_category"
                                               th:utext="${tool.category}"></span></td>
-                                    <td data-label="Штрихкод"><span class="tools-td-text table-td-text tool_barcode"
+                                    <td data-label="Штрихкод"><span class="tools-td-text table-td-text barcode-tool"
                                               th:utext="${tool.barcode}"></span></td>
                                     <td data-label="В смете"><span class="tools-td-text table-td-text tool_estimateName"
                                               th:utext="${tool.estimateName}"></span></td>
@@ -246,7 +246,10 @@
             <div th:insert="fragments/footer.html"></div>
         </div>
     </div>
-</div>
+<script
+        src="/static/js/SearchBarcode.js"
+        th:src="@{/js/SearchBarcode.js}"
+></script>
 <div th:insert="fragments/scripts.html"></div>
 </body>
 
