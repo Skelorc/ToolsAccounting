@@ -1,77 +1,90 @@
-<html
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
-<nav role="navigation" class="rih-nav">
-    <div class="nav-header text-center sidebar-collapse__menu-logo rih-nav__header">
-        <a href="#" class="main-link">
-            <div class="sidebar-collapse__menu-logo">
-                <img class="sidebar-collapse__menu-logo_img" th:src="@{/img/logo/mad-dog-logo.png}">
-            </div>
-            <div class="sidebar-collapse__menu-title">
-                <h4 class="sidebar-collapse__menu-title_text">MAD DOG</h4>
-            </div>
-        </a>
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+  <nav role="navigation" class="rih-nav">
+    <div
+      class="nav-header text-center sidebar-collapse__menu-logo rih-nav__header"
+    >
+      <a href="#" class="main-link">
+        <div class="sidebar-collapse__menu-logo">
+          <img
+            class="sidebar-collapse__menu-logo_img"
+            th:src="@{/img/logo/logo.svg}"
+          />
+        </div>
+        <div class="sidebar-collapse__menu-title">
+          <h4 class="sidebar-collapse__menu-title_text">MAD DOG</h4>
+        </div>
+      </a>
     </div>
     <ul id="side-menu" class="nav metismenu rih-nav__list">
-        <li data-id="15" data-parent_id="2">
-            <a class="vidacha activ-page" th:href="@{/}" data-link="RentBookingApp" ><b><i
-                    class="fa fa-boxes" ></i></b>
-                <span class="nav-label">Проекты</span>
-            </a>
-        </li>
-        <!--<li data-id="4" data-parent_id="2">
+      <li data-id="15" data-parent_id="2">
+        <a class="vidacha activ-page" th:href="@{/}" data-link="RentBookingApp"
+          ><b><i class="fa fa-boxes"></i></b>
+          <span class="nav-label">Проекты</span>
+        </a>
+      </li>
+      <!--<li data-id="4" data-parent_id="2">
             <a class="priemka" th:href="@{/acceptance}"><b><i class="fa fa-user-tie"></i></b>
                 <span class="nav-label">Приемка</span>
             </a>
         </li>-->
-        <li data-id="310828" data-parent_id="2">
-            <a class="calendar" th:href="@{/calendar}" ><b><i class="fa fa-calendar-alt"></i></b>
-                <span class="nav-label">Календарь</span>
-            </a>
-        </li>
-        <li data-id="8" data-parent_id="2">
-            <a class="tools" th:href="@{/tools}" data-link="InventoryApp"><b><i
-                    class="fa fa-cubes"></i></b>
-                <span class="nav-label">Оборудование</span>
-            </a>
-        </li>
-        <li data-id="170807" data-parent_id="2">
-            <a class="clients" th:href="@{/clients}" data-link="KitApp"><b><i
-                    class="fa fa-users"></i></b>
-                <span class="nav-label">Контакты</span>
-            </a>
-        </li>
-        <li data-id="22" data-parent_id="2">
-            <a class="remont" href="/repair" th:href="@{/repair}" data-link="RentApp"><b><i
-                    class="fa fa-wrench"></i></b>
-                <span class="nav-label">Ремонт</span>
-            </a>
-        </li>
-        <li data-id="9" data-parent_id="2">
-            <a class="spisanie" th:href="@{/write-off}" data-link="LkSettingsBaseApp"><b><i class="fa fa-shopping-cart"></i></b>
-                <span class="nav-label">Списание</span>
-            </a>
-        </li>
-        <li data-id="12" data-parent_id="2">
-            <a class="prodaza" th:href="@{/sale}"><b><i class="fa fa-shopping-cart"></i></b>
-                <span class="nav-label">Продажа</span>
-            </a>
-        </li>
-        <li data-id="12" data-parent_id="2" sec:authorize="hasAuthority('ADMIN')">
-            <a class="admin-panel" th:href="@{/admin-panel}"><b><i
-                    class="fa fa-cogs"></i></b>
-                <span class="nav-label">Панель Администратора</span>
-            </a>
-        </li>
-        <li data-id="5" data-parent_id="2">
-            <a class="otchety" href="/reports" data-link="HumanClientApp" ><b><i
-                    class="fa fa-users"></i></b>
-                <span class="nav-label">Отчеты</span>
-            </a>
-        </li>
+      <li data-id="310828" data-parent_id="2">
+        <a class="calendar" th:href="@{/calendar}"
+          ><b><i class="fa fa-calendar-alt"></i></b>
+          <span class="nav-label">Календарь</span>
+        </a>
+      </li>
+      <li data-id="8" data-parent_id="2">
+        <a class="tools" th:href="@{/tools}" data-link="InventoryApp"
+          ><b><i class="fa fa-cubes"></i></b>
+          <span class="nav-label">Оборудование</span>
+        </a>
+      </li>
+      <li data-id="170807" data-parent_id="2">
+        <a class="clients" th:href="@{/clients}" data-link="KitApp"
+          ><b><i class="fa fa-users"></i></b>
+          <span class="nav-label">Контакты</span>
+        </a>
+      </li>
+      <li data-id="22" data-parent_id="2">
+        <a
+          class="remont"
+          href="/repair"
+          th:href="@{/repair}"
+          data-link="RentApp"
+          ><b><i class="fa fa-wrench"></i></b>
+          <span class="nav-label">Ремонт</span>
+        </a>
+      </li>
+      <li data-id="9" data-parent_id="2">
+        <a
+          class="spisanie"
+          th:href="@{/write-off}"
+          data-link="LkSettingsBaseApp"
+          ><b><i class="fa fa-shopping-cart"></i></b>
+          <span class="nav-label">Списание</span>
+        </a>
+      </li>
+      <li data-id="12" data-parent_id="2">
+        <a class="prodaza" th:href="@{/sale}"
+          ><b><i class="fa fa-shopping-cart"></i></b>
+          <span class="nav-label">Продажа</span>
+        </a>
+      </li>
+      <li data-id="12" data-parent_id="2" sec:authorize="hasAuthority('ADMIN')">
+        <a class="admin-panel" th:href="@{/admin-panel}"
+          ><b><i class="fa fa-cogs"></i></b>
+          <span class="nav-label">Панель Администратора</span>
+        </a>
+      </li>
+      <li data-id="5" data-parent_id="2">
+        <a class="otchety" href="/reports" data-link="HumanClientApp"
+          ><b><i class="fa fa-users"></i></b>
+          <span class="nav-label">Отчеты</span>
+        </a>
+      </li>
     </ul>
     <div class="text-center" id="ex1">
-        <p id="alert_message" class="font-bold"></p>
+      <p id="alert_message" class="font-bold"></p>
     </div>
-</nav>
-
+  </nav>
+</html>
