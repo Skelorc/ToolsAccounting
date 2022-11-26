@@ -38831,13 +38831,9 @@ ul.unstyled {
 }
 
 .footer {
-  background: none repeat scroll 0 0 #fff;
-  border-top: 1px solid #e7eaec;
-  bottom: 0;
-  left: 0;
+  background: #fff;
   padding: 10px 20px;
-  position: absolute;
-  right: 0;
+  text-align: center;
 }
 
 .footer.fixed,

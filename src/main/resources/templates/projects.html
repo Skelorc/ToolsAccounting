@@ -399,19 +399,11 @@
                                         </nav>
                                     </div>
                                     <div class="row">
-                                        <div
-                                                class="custom__search--mobile col-6 col-sm-12 col-md-12"
-                                        >
+                                        <div class="custom__search--mobile col-6 col-sm-12 col-md-12">
                                             <div class="custom-ll__header__full show">
-                                                <div
-                                                        class="custom-ll__header__full__right search__flex"
-                                                >
-                                                    <div
-                                                            class="header__search header__search_width form-m"
-                                                    >
-                                                        <input
-                                                                type="search"
-                                                                placeholder="Поиск"
+                                                <div class="custom-ll__header__full__right search__flex">
+                                                    <div class="header__search header__search_width form-m">
+                                                        <input type="search" placeholder="Поиск"
                                                                 class="form-control header__filter--mobile"
                                                         />
                                                     </div>
@@ -442,6 +434,10 @@
                 </main>
                 <div th:insert="fragments/scripts.html"></div>
                 <div th:insert="fragments/footer.html"></div>
+                <script
+                        src="/static/js/SearchBarcode.js"
+                        th:src="@{/js/SearchBarcode.js}"
+                ></script>
                 <!-- <footer class="row footer">
                   <small class="col-12 pr-0"
                     ><b><a href="/" th:href="@{/}">Mad dog</a> © 2022</b>-<b
@@ -455,10 +451,7 @@
 </div>
 
 <div>
-    <script
-            src="/static/js/SearchBarcode.js"
-            th:src="@{/js/SearchBarcode.js}"
-    ></script>
+
 </div>
 </body>
 </html>

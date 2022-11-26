@@ -79,7 +79,7 @@ public class ProjectsController {
         model.addAttribute("clients", clientsService.getAll());
         model.addAttribute("list_tools", paginated_list);
         model.addAttribute("project",projectService.getById(id));
-        return "project_edit";
+        return "edit_project";
     }
 
     @PostMapping("/projects/edit")

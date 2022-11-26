@@ -44,9 +44,7 @@ $(document).ready(function () {
             });
             formData = {
                 typeClient: $("#select_type_client :selected").val(),
-                roleClientId: $("#role_client_id :selected").val(),
                 inBlackList,
-                account: $("#account").val(),
                 fullName: $("#fullName_individual").val(),
                 discount: $("#discount_individual").val(),
                 phoneNumber: $("#phoneNumber_individual").val(),
@@ -69,11 +67,10 @@ $(document).ready(function () {
             photos_arr.forEach(function (item, i, arr) {
                 photos_arr[i] = photos_arr[i].trim();
             });
+            7
             formData = {
                 typeClient: $("#select_type_client :selected").val(),
-                roleClientId: $("#role_client_id :selected").val(),
                 inBlackList,
-                account: $("#account").val(),
                 fullName: $("#fullName_legal").val(),
                 legalName: $("#legalName").val(),
                 discount: $("#discount_legal").val(),
@@ -452,18 +449,22 @@ $(document).ready(function () {
             $("#alert_message").text('Укажите Имя проекта');
             $("#ex1").modal();
         }
-        else if($("#status").val() == ""){
+        else if($("#status").val() == "" || $("#status").val() == "Выберите статус проекта"){
             $("#alert_message").text('Укажите статус проекта');
             $("#ex1").modal();
         }
-        else if($("#start").val() == ""){
-            $("#alert_message").text('Укажите дату начала проекта');
+        else if(workingShifts.length == 0){
+            $("#alert_message").text('Выберите рабочие смены');
             $("#ex1").modal();
         }
-        else if($("#end").val() == ""){
-            $("#alert_message").text('Укажите дату окончания проекта');
-            $("#ex1").modal();
-        }
+        // else if($("#start").val() == ""){
+        //     $("#alert_message").text('Укажите дату начала проекта');
+        //     $("#ex1").modal();
+        // }
+        // else if($("#end").val() == ""){
+        //     $("#alert_message").text('Укажите дату окончания проекта');
+        //     $("#ex1").modal();
+        // }
         else if($("#created").val() == ""){
             $("#alert_message").text('Укажите дату создания проекта');
             $("#ex1").modal();
@@ -477,11 +478,27 @@ $(document).ready(function () {
             checkedIds.forEach(function (item, i, arr) {
                 newIds.push(item.id);
             });
+
+
+            var workingShiftsNew = [];
+            workingShifts.forEach(function (item, i, arr) {
+                var curItem = item.split("-");
+                var nSH = {};
+                curItem[1] = parseInt(curItem[1]);
+                curItem[1] = curItem[1] + 1;
+                if(curItem[1].length <= 9) curItem[1] = "0"+curItem[1];
+                nSH['dateShift'] = curItem[2]+"-"+curItem[1]+"-"+curItem[0];
+                nSH['typeShift'] = curItem[3].toUpperCase();
+                workingShiftsNew.push(nSH);
+            });
+            console.log(workingShiftsNew);
+
             var postData = {
                 'status': $("#status").find(":selected").val(),
                 'name': $("#name").val(),
-                'start': $("#start").val(),
-                'end': $("#end").val(),
+                'workingShifts': workingShiftsNew,
+                // 'start': $("#start").val(),
+                // 'end': $("#end").val(),
 
                 'typeLease': $("#typeLease").find(":selected").val(),
                 'classification': $("#classification").val(),
@@ -1518,6 +1535,32 @@ $(document).ready(function () {
 
     xlId = getXlID();
     $('#barcode').val(vlId+clId+xlId);
+
+
+    $('.viewCalendar').click(function (e) {
+        dataJSON = {};
+        dataJSON['paginationConst'] = 'TOOLS';
+        dataJSON['filter'] = 'WITHOUT_FILTER';
+        dataJSON['page'] = 0;
+        dataJSON['size'] = 100;
+
+        $.ajax({
+            contentType: "application/json; charset=utf-8",
+            type: 'POST',
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader(header, token);
+            },
+            url: '/calendar',
+            dataType: "json",
+            data: JSON.stringify(dataJSON),
+            success: function (res) {
+                if (res.response_code == 200) {
+                    console.log(res);
+                }
+            }
+        });
+
+    });
 
 });
 

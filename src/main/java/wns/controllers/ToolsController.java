@@ -71,7 +71,7 @@ public class ToolsController {
         model.addAttribute("list_owners", ownerService.getAll());
         model.addAttribute("list_category", categoryService.getAll());
         model.addAttribute("list_names_estimate", estimateNameService.getAll());
-        return "tool_edit";
+        return "edit_tool";
     }
 
     @PostMapping("/edit/{id}")

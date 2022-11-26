@@ -1,6 +1,14 @@
 /*********************/
 /*Global styls*/
 
+.active_d{
+    background: #566b7c;
+    color: #fff;
+}
+.clc_dt:hover{
+    cursor: pointer;
+}
+
 th {
     padding: 5px;
     min-width: 150px;
@@ -74,6 +82,7 @@ svg {
     margin: auto;
     padding: 20px 0px 60px;
    margin-top: 60px;
+   min-height: 1000px;
 }
 
 .paddin-l-r-15 {

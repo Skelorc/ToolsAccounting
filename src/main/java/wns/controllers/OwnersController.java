@@ -33,7 +33,7 @@ public class OwnersController {
     public String edit(@PathVariable("id") long id, Model model)
     {
         model.addAttribute("owner",ownerService.findById(id));
-        return "owners_edit";
+        return "edit_owners";
     }
 
     @PostMapping("/edit/{id}")

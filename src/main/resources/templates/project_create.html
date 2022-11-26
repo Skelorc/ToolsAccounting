@@ -200,9 +200,7 @@
                                     </div>
                                     <div class="form-creat__half_two-column">
                                         <div role="group" class="form-group">
-                                            <label class="d-block size"
-                                            >Выберите рабочие смены</label
-                                            >
+                                            <label class="d-block size">Выберите рабочие смены</label>
                                             <div class="vdpComponent vdpWithInput">
                                                 <input
                                                         id="word_date"
@@ -295,6 +293,8 @@
                                                     if (month < 10) month = '0' + month;
                                                     if (hour < 10) hour = '0' + hour;
                                                     if (minutes < 10) minutes = '0' + minutes;
+
+                                                    $("#created").val(year+"-"+month+"-"+day+"T"+hour+":"+minutes);
                                                 </script>
                                             </div>
                                         </div>
@@ -574,10 +574,6 @@
 </div>
 
 <div th:insert="fragments/footer.html"></div>
-
-
-<div th:insert="fragments/footer.html"></div>
-
 <div th:insert="fragments/scripts.html"></div>
 <div>
     <script th:src="@{/js/calendar.js}"></script>
