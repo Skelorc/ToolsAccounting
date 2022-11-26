@@ -43959,6 +43959,7 @@ table.dataTable {
   text-overflow: ellipsis;
   min-height: 38px;
   color: #000;
+  font-family: "Ubuntu Regular";
 }
 
 .v-select .vs__selected-options .vs__selected {
