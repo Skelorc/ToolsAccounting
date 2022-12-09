@@ -1,14 +1,10 @@
 <!DOCTYPE html>
-<html
-  lang="en"
-  xmlns="http://www.w3.org/1999/xhtml"
-  xmlns:th="http://www.thymeleaf.org/"
-  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
->
-  <head class="head">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head class="head">
     <title
-      th:text="${client.typeClient != null} ? 'Редактирование клиента' : 'Создать нового клиента'"
-    ></title>
+            th:text="${client.typeClient != null} ? 'Редактирование клиента' : 'Создать нового клиента'">
+    </title>
     <div th:replace="fragments/head :: header"></div>
     <!-- <meta charset="UTF-8" />
     <meta
@@ -153,1134 +149,707 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"
       th:href="@{/css/jquery.modal.css}"
     /> -->
-  </head>
+</head>
 
-  <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
+<body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
+<div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
     <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
-      <div
-        class="b-overlay-wrap position-relative w-100"
-        size="sm"
-        id="wrapper"
-      >
         <div th:insert="fragments/menu_sidebar.html"></div>
         <div class="b-overlay-wrap position-relative w-100" size="sm">
-          <div class="rih-page-wrapper">
-            <nav
-              role="navigation"
-              class="navbar navbar-admin navbar-fixed-top"
-              th:insert="fragments/header_logout.html"
-            ></nav>
-            <main class="wrapper wrapper-content">
-              <div class="b-overlay-wrap position-relative">
-                <div class="tab-content">
-                  <div
-                    class="edit-container__header p-3 col-8 col-md-12 col-lg-12 col-xl-12 d-lg-flex"
-                  >
-                    <div
-                      class="col-12 col-lg-3 edit-container__header-select mb-3"
-                    >
-                      <h3 class="my-3">Тип клиента</h3>
-                      <div
-                        class="v-select edit-container__select vs--single vs--searchable main-secect__wrapp"
-                      >
-                        <div class="vs__dropdown-toggle main-secect my-select">
-                          <select
-                            id="select_type_client"
-                            required
-                            class="vs__selected-options main-secect__opions"
-                            style="
+            <div class="rih-page-wrapper">
+                <nav role="navigation" class="navbar navbar-admin navbar-fixed-top"
+                     th:insert="fragments/header_logout.html"></nav>
+                <main class="wrapper wrapper-content">
+                    <div class="b-overlay-wrap position-relative">
+                        <div class="tab-content">
+                            <div class="edit-container__header p-3 col-8 col-md-12 col-lg-12 col-xl-12 d-lg-flex">
+                                <div class="col-12 col-lg-3 edit-container__header-select mb-3">
+                                    <h3 class="my-3">Тип клиента</h3>
+                                    <div class="v-select edit-container__select vs--single vs--searchable main-secect__wrapp">
+                                        <div class="vs__dropdown-toggle main-secect my-select">
+                                            <select id="select_type_client" required
+                                                    class="vs__selected-options main-secect__opions" style="
                               text-align: center;
                               padding-left: 0;
                               padding-bottom: 10px;
-                            "
-                          >
-                            <option
-                              class="vs__selected vs__dropdown-toggle"
-                              value=""
-                              disabled
-                            >
-                              Выберите тип контакта
-                            </option>
-                            <option
-                              class="vs__selected vs__dropdown-toggle"
-                              th:each="type : ${T(wns.constants.TypeClients).values()}"
-                              th:text="${type.getType()}"
-                              th:value="${type}"
-                              th:selected="${client.typeClient !=null && client.typeClient==type}"
-                            ></option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="col-3 form-creat__half"
-                      style="margin-top: 50px"
-                    >
-                      <div class="form-group col-lg-3">
-                        <div class="p-svg p-curve p-jelly pretty">
-                          <input
-                            th:name="inBlackList"
-                            th:value="${client.inBlackList}"
-                            id="inBlackList"
-                            type="checkbox"
-                          />
-                          <script>
-                            if ([[${client.inBlackList}]]) {
-                                $('#inBlackList').click();
-                            }
-                          </script>
-                          <div class="state p-primary">
-                            <label class="size"
-                              >В черном списке
-                              <svg
-                                slot="extra"
-                                viewBox="0 0 20 20"
-                                class="svg svg-icon"
-                              >
-                                <path
-                                  d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"
-                                  style="stroke: white; fill: white"
-                                ></path>
-                              </svg>
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="v-select edit-container__select vs--single vs--searchable main-secect__wrapp d-lg-flex col-lg-6"
-                    >
-                      <div class="form-group col-lg-3">
-                        <h3 class="my-3 form-creat__half-title_text">
-                          Аккаунт в соц.сетях
-                        </h3>
-                        <span>
-                          <input
-                            required
-                            th:value="${client.account}"
-                            th:name="account"
-                            id="account"
-                            type="text"
-                            class="form-control"
-                            placeholder="Аккаунт в соц.сетях"
-                          />
-                        </span>
-                      </div>
-                      <div class="form-group col-lg-3" style="margin-top: 5px">
-                        <div class="p-svg p-curve p-jelly pretty">
-                          <h3 class="my-3">Роль контакта</h3>
-                          <div
-                            class="v-select edit-container__select vs--single vs--searchable main-secect__wrapp"
-                          >
-                            <div class="vs__dropdown-toggle main-secect">
-                              <select
-                                id="role_client_id"
-                                required
-                                class="vs__selected-options main-secect__opions my-select"
-                                style="
+                            ">
+                                                <option class="vs__selected vs__dropdown-toggle" value="" disabled>
+                                                    Выберите тип контакта
+                                                </option>
+                                                <option class="vs__selected vs__dropdown-toggle"
+                                                        th:each="type : ${T(wns.constants.TypeClients).values()}"
+                                                        th:text="${type.getType()}"
+                                                        th:value="${type}"
+                                                        th:selected="${client.typeClient !=null && client.typeClient==type}">
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3 form-creat__half" style="margin-top: 50px">
+                                    <div class="form-group col-lg-3">
+                                        <div class="p-svg p-curve p-jelly pretty">
+                                            <input th:name="inBlackList" th:value="${client.inBlackList}"
+                                                   id="inBlackList"
+                                                   type="checkbox"/>
+                                            <script>
+                                                if ([[${client.inBlackList}]]) {
+                                                    $('#inBlackList').click();
+                                                }
+                                            </script>
+                                            <div class="state p-primary">
+                                                <label class="size">В черном списке
+                                                    <svg slot="extra" viewBox="0 0 20 20" class="svg svg-icon">
+                                                        <path
+                                                                d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"
+                                                                style="stroke: white; fill: white"></path>
+                                                    </svg>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="v-select edit-container__select vs--single vs--searchable main-secect__wrapp d-lg-flex col-lg-6">
+                                    <div class="form-group col-lg-3">
+                                        <h3 class="my-3 form-creat__half-title_text">
+                                            Аккаунт в соц.сетях
+                                        </h3>
+                                        <input required th:value="${client.account}" th:name="account" id="account"
+                                               type="text" class="form-control"
+                                               placeholder="Аккаунт в соц.сетях"/>
+                                    </div>
+                                    <div class="form-group col-lg-3" style="margin-top: 5px">
+                                        <div class="p-svg p-curve p-jelly pretty">
+                                            <h3 class="my-3">Роль контакта</h3>
+                                            <div class="v-select edit-container__select vs--single vs--searchable main-secect__wrapp">
+                                                <div class="vs__dropdown-toggle main-secect">
+                                                    <select id="role_client_id" required
+                                                            class="vs__selected-options main-secect__opions my-select"
+                                                            style="
                                   text-align: center;
                                   padding-left: 0;
                                   padding-bottom: 10px;
-                                "
-                              >
-                                <option
-                                  class="vs__selected vs__dropdown-toggle"
-                                  value=""
-                                  disabled
-                                >
-                                  Выберите роль контакта
-                                </option>
-                                <option
-                                  class="vs__selected vs__dropdown-toggle"
-                                  th:each="role : ${roles_client}"
-                                  th:value="${role.id}"
-                                  th:text="${role.role}"
-                                  th:selected="${client.typeClient !=null && client.roleClient.role==role.role}"
-                                ></option>
-                              </select>
+                                ">
+                                                        <option class="vs__selected vs__dropdown-toggle" value=""
+                                                                disabled>
+                                                            Выберите роль контакта
+                                                        </option>
+                                                        <option class="vs__selected vs__dropdown-toggle"
+                                                                th:each="role : ${roles_client}"
+                                                                th:value="${role.id}"
+                                                                th:text="${role.role}"
+                                                                th:selected="${client.typeClient !=null && client.roleClient.role==role.role}">
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="v-select edit-container__select vs--single vs--searchable main-secect__wrapp"
+                                         style="margin-top: 50px">
+                                        <div class="form-group col-lg-3">
+                                            <a href="/role-clients" th:href="@{/role-clients}"
+                                               class="btn btn-primary width btn-add_vidacha my-green"
+                                               style="width: 200px">Добавить новую роль</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        class="v-select edit-container__select vs--single vs--searchable main-secect__wrapp"
-                        style="margin-top: 50px"
-                      >
-                        <div class="form-group col-lg-3">
-                          <a
-                            href="/role-clients"
-                            th:href="@{/role-clients}"
-                            class="btn btn-primary width btn-add_vidacha my-green"
-                            style="width: 200px"
-                            >Добавить новую роль</a
-                          >
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div id="individual" class="form-creat mb-3 col-12">
-                    <div class="p-3 col-8 col-md-12 col-lg-12 col-xl-12">
-                      <div
-                        class="row form-creat__half-wrapp form-creat__half-wrapp_client"
-                      >
-                        <div class="col-12 form-creat__half-title">
-                          <h3
-                            class="my-3 form-creat__half-title_text"
-                            style="text-align: center"
-                          >
-                            Основное
-                          </h3>
-                        </div>
-                        <div class="col-12 col-lg-6 form-creat__half">
-                          <div role="group" class="form-group">
-                            <label class="d-block size">ФИО/Наименование</label>
-                            <span
-                              ><input
-                                required
-                                th:value="${client.fullName}"
-                                th:name="fullName"
-                                id="fullName_individual"
-                                type="text"
-                                class="form-control"
-                                placeholder="Введите ФИО/Наименование"
-                            /></span>
-                          </div>
-                        </div>
-                        <div class="col-12 col-lg-6 form-creat__half">
-                          <div role="group" class="form-group">
-                            <label class="d-block size ml-3">Скидки</label>
-                            <span>
-                              <input
-                                required
-                                th:value="${client.discount}"
-                                th:name="discount"
-                                id="discount_individual"
-                                type="text"
-                                class="form-control"
-                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
-                                placeholder="Введите скидку в процентах"
-                              />
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="p-3 col-8 col-md-12 col-lg-12 col-xl-12">
-                      <div
-                        class="row form-creat__half-wrapp form-creat__half-wrapp_client"
-                      >
-                        <div class="col-12 form-creat__half-title">
-                          <h3
-                            class="my-3 form-creat__half-title_text"
-                            style="text-align: center"
-                          >
-                            Контакты
-                          </h3>
+                            <div id="individual" class="form-creat mb-3 col-12">
+                                <div class="p-3 col-8 col-md-12 col-lg-12 col-xl-12">
+                                    <div class="row form-creat__half-wrapp form-creat__half-wrapp_client">
+                                        <div class="col-12 form-creat__half-title">
+                                            <h3 class="my-3 form-creat__half-title_text" style="text-align: center">
+                                                Основное
+                                            </h3>
+                                        </div>
+                                        <div class="col-12 col-lg-6 form-creat__half">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block size">ФИО/Наименование</label>
+                                                <input required th:value="${client.fullName}" th:name="fullName"
+                                                       id="fullName_individual"
+                                                       type="text" class="form-control"
+                                                       placeholder="Введите ФИО/Наименование">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-lg-6 form-creat__half">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block size ml-3">Скидки</label>
+                                                <input required th:value="${client.discount}" th:name="discount"
+                                                       id="discount_individual"
+                                                       type="text" class="form-control"
+                                                       oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                                       placeholder="Введите скидку в процентах"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-3 col-8 col-md-12 col-lg-12 col-xl-12">
+                                    <div class="row form-creat__half-wrapp form-creat__half-wrapp_client">
+                                        <div class="col-12 form-creat__half-title">
+                                            <h3 class="my-3 form-creat__half-title_text" style="text-align: center">
+                                                Контакты
+                                            </h3>
+                                        </div>
+                                        <div class="form-creat__half col-12 col-md-6">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block size">Телефон</label>
+                                                <input required th:name="phoneNumber" th:value="${client.phoneNumber}"
+                                                       id="phoneNumber_individual"
+                                                       class="form-control input-width" placeholder="+7-999-999-99-99"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6 form-creat__half">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block size">E-mail</label>
+                                                <input th:name="email" th:value="${client.email}" id="email_individual"
+                                                       type="email" class="form-control input-width"
+                                                       placeholder="Ваш email"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-3 col-8 col-md-12 col-lg-12 col-xl-12">
+                                    <div class="row form-creat__half-wrapp form-creat__half-wrapp_client">
+                                        <div class="col-12 form-creat__half-title">
+                                            <h3 class="my-3 form-creat__half-title_text">
+                                                Дополнительно
+                                            </h3>
+                                        </div>
+                                        <div class="col-12 col-md-6 form-creat__half">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block size">Откуда пришел</label>
+                                                <input th:name="fromComing" th:value="${client.fromComing}"
+                                                       id="fromComing_individual" type="text"
+                                                       class="form-control input-width"
+                                                       placeholder="Как или где узнали о нас?"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6 form-creat__half">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block size">Лимит</label>
+                                                <input th:name="limited" th:value="${client.limited}"
+                                                       id="limit_individual"
+                                                       type="text" class="form-control input-width"
+                                                       oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                                       placeholder="9999999999,99"/>
+                                            </div>
+                                        </div>
+                                        <div class="anomalia col-12 input-flex">
+                                            <div class="col-12 col-md-6 form-creat__half">
+                                                <div role="group" class="form-group">
+                                                    <label class="d-block size">Примечание</label>
+                                                    <textarea th:name="note" class="form-control input-width"
+                                                              th:value="${client.note}"
+                                                              th:text="${client.note}" id="note_individual"
+                                                              style="height: 40px">
+                                                    </textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6 form-creat__half mt-3">
+                                                <div class="form-group">
+                                                    <label class="d-block size">Дата рождения</label>
+                                                    <div class="vdpComponent vdpWithInput">
+                                                        <input class="form-control input-width" type="date"
+                                                               th:name="birthday" th:value="${client.birthday}"
+                                                               id="birthday"
+                                                               placeholder="дд.мм.гггг"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6 form-creat__half">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block size">Оператор постановщик</label>
+                                                <input th:name="directorOfPhotography"
+                                                       th:value="${client.directorOfPhotography}"
+                                                       id="directorOfPhotography" type="text"
+                                                       class="form-control input-width" placeholder="Введите ФИО"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6 form-creat__half">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block size">Продакшн</label>
+                                                <input th:name="production" th:value="${client.production}"
+                                                       id="production"
+                                                       type="text" class="form-control input-width"
+                                                       placeholder="Введите название"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-3 col-8 col-md-12 col-lg-12 col-xl-12">
+                                    <div class="row form-creat__half-wrapp form-creat__half-wrapp_client">
+                                        <div class="col-12 form-creat__half-title">
+                                            <h3 class="my-3 form-creat__half-title_text" style="text-align: center">
+                                                Паспортные данные
+                                            </h3>
+                                        </div>
+                                        <div class="col-12 col-md-6 form-creat__half">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block size">Серия/Номер</label>
+                                                <input th:name="numberPassport" th:value="${client.numberPassport}"
+                                                       id="numberPassport"
+                                                       type="text"
+                                                       oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                                       class="form-control input-width"
+                                                       aria-describedby="item-human-passport_serial"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6 form-creat__half">
+                                            <div role="group" class="form-group">
+                                                <label class="d-block size">Кем выдан</label>
+                                                <input th:name="issuedBy" th:value="${client.issuedBy}" id="issuedBy"
+                                                       type="text"
+                                                       class="form-control input-width"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6 form-creat__half">
+                                            <div class="form-group">
+                                                <label class="d-block size">Дата выдачи паспорта</label>
+                                                <div class="vdpComponent vdpWithInput">
+                                                    <input class="form-control" type="date" th:name="dateIssuePassport"
+                                                           th:value="${client.dateIssuePassport}"
+                                                           id="dateIssuePassport" placeholder="дд.мм.гггг"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12 form-creat__half">
+                                            <div role="group" class="form-group" style="margin-top: 10px">
+                                                <label class="d-block size">Адрес фактический</label>
+                                                <input th:name="addressReal" th:value="${client.addressReal}"
+                                                       type="text" class="form-control input-width"
+                                                       id="addressReal_individual" placeholder="Введите адрес"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12 form-creat__half">
+                                            <div class="form-group">
+                                                <label class="d-block size">Дата создания</label>
+                                                <div class="vdpComponent vdpWithInput">
+                                                    <input class="form-control" type="date" th:name="dateCreating"
+                                                           th:value="${client.dateCreating}"
+                                                           id="dateCreating_individual" placeholder="дд.мм.гггг"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12 form-creat__half">
+                                            <div class="form-group">
+                                                <label class="d-block size">Загрузите ваши фотографии на сервер</label>
+                                                <textarea th:value="${client.photos}" th:text="${client.photos}"
+                                                          name="photos"
+                                                          class="form-control input-width" id="photos_individual"
+                                                          style="height: 40px; margin-top: -3px">
+                                                </textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="legal" class="form-creat mb-3 col-12">
+                                <div class="p-3 edit-container d-block">
+                                    <div class="row form-creat__half-wrapp form-creat__half-wrapp_client">
+                                        <div class="col-12 form-creat__half-title">
+                                            <h3 class="my-3 form-creat__half-title_text">
+                                                Основное
+                                            </h3>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="col-6 form-creat__half">
+                                                <div role="group" class="form-group">
+                                                    <label class="d-block">ФИО/Наименование</label>
+                                                    <input required th:name="fullName" th:value="${client.fullName}"
+                                                           id="fullName_legal"
+                                                           type="text" class="form-control"
+                                                           placeholder="Введите ФИО/Наименование"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 form-creat__half">
+                                                <div role="group" class="form-group">
+                                                    <label class="d-block">Полное наименование</label>
+                                                    <input th:name="legalName" th:value="${client.legalName}"
+                                                           type="text" id="legalName"
+                                                           class="form-control" placeholder="Введите ФИО/Наименование"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-3">
+                                    <div class="row form-creat__half-wrapp form-creat__half-wrapp_client">
+                                        <div class="col-12 form-creat__half-title">
+                                            <h3 class="my-3 form-creat__half-title_text">
+                                                Контакты
+                                            </h3>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-creat__half col-6">
+                                                <div role="group" class="form-group">
+                                                    <label class="d-block">Телефон</label>
+                                                    <input required th:name="phoneNumber"
+                                                           th:value="${client.phoneNumber}" id="phoneNumber_legal"
+                                                           name="phoneNumber" class="form-control"
+                                                           placeholder="+7-999-99-99"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 form-creat__half">
+                                                <div role="group" class="form-group">
+                                                    <label class="d-block">E-mail</label>
+                                                    <input th:name="email" th:value="${client.email}" id="email_legal"
+                                                           type="email" class="form-control" placeholder="Ваш email"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 form-creat__half">
+                                                <div role="group" class="form-group">
+                                                    <label class="d-block">Адрес фактический</label>
+                                                    <input th:name="addressReal" th:value="${client.addressReal}"
+                                                           id="addressReal_legal" type="text" class="form-control"
+                                                           placeholder="Введите адрес"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 form-creat__half">
+                                                <div role="group" class="form-group">
+                                                    <label class="d-block">Юридический адрес</label>
+                                                    <input th:name="addressLegal" th:value="${client.addressLegal}"
+                                                           id="addressLegal" type="text" class="form-control"
+                                                           placeholder="Введите адрес"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-3">
+                                    <div class="row form-creat__half-wrapp form-creat__half-wrapp_client">
+                                        <div class="col-12 form-creat__half-title">
+                                            <h3 class="my-3 form-creat__half-title_text">
+                                                Дополнительно
+                                            </h3>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="col-6 form-creat__half">
+                                                <div role="group" class="form-group">
+                                                    <label class="d-block">Откуда пришел</label>
+                                                    <input th:name="fromComing" th:value="${client.fromComing}"
+                                                           id="fromComing_legal" type="text" class="form-control"
+                                                           placeholder="Как или где узнали о нас?"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 form-creat__half">
+                                                <div role="group" class="form-group">
+                                                    <label class="d-block">Лимит</label>
+                                                    <input th:name="limited" th:value="${client.limited}"
+                                                           id="limit_legal" type="number" class="form-control"
+                                                           placeholder="9999999999,99"/>
+                                                </div>
+                                            </div>
+                                            <div class="anomalia">
+                                                <div class="col-6 form-creat__half">
+                                                    <div role="group" class="form-group">
+                                                        <label class="d-block">Скидки</label>
+                                                        <input required th:name="discount" th:value="${client.discount}"
+                                                               id="discount_legal" type="text" class="form-control"
+                                                               placeholder="Введите скидку в процентах"/>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 form-creat__half">
+                                                    <div role="group" class="form-group">
+                                                        <label class="d-block">Примечание</label>
+                                                        <textarea th:name="note" th:value="${client.note}"
+                                                                  th:text="${client.note}" id="note_legal"
+                                                                  class="form-control form-creat_textarea"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-3">
+                                    <div class="row form-creat__half-wrapp form-creat__half-wrapp_client">
+                                        <div class="col-12 form-creat__half-title">
+                                            <h3 class="my-3 form-creat__half-title_text">
+                                                Данные организации
+                                            </h3>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="col-6 form-creat__half">
+                                                <div role="group" class="form-group">
+                                                    <label class="d-block">ИНН</label>
+                                                    <input th:name="inn" th:value="${client.inn}" id="inn" type="text"
+                                                           plaсeholder="Введите ИНН"
+                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                                           class="form-control"
+                                                           aria-describedby="item-human-passport_serial"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 form-creat__half">
+                                                <div role="group" class="form-group">
+                                                    <label class="d-block">КПП</label>
+                                                    <input th:name="kpp" th:value="${client.kpp}" id="kpp" type="text"
+                                                           plaсeholder="Введите КПП"
+                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                                           class="form-control"
+                                                           aria-describedby="item-human-passport_serial"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 form-creat__half">
+                                                <div role="group" class="form-group">
+                                                    <label class="d-block">ОГРН</label>
+                                                    <input th:name="ogrn" th:value="${client.ogrn}" id="ogrn"
+                                                           type="text"
+                                                           plaсeholder="Введите ОГРН"
+                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                                           class="form-control"
+                                                           aria-describedby="item-human-passport_serial"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 form-creat__half">
+                                                <div role="group" class="form-group">
+                                                    <label class="d-block">ФИО руководителя</label>
+                                                    <input th:name="fullNameSupervisor"
+                                                           th:value="${client.fullNameSupervisor}"
+                                                           id="fullNameSupervisor"
+                                                           type="text" plaсeholder="ФИО руководителя"
+                                                           class="form-control"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 form-creat__half">
+                                                <div role="group" class="form-group">
+                                                    <label class="d-block">Должность руководителя</label>
+                                                    <input th:name="jobTitleSupervisor"
+                                                           th:value="${client.jobTitleSupervisor}"
+                                                           id="jobTitleSupervisor"
+                                                           type="text" class="form-control"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 form-creat__half">
+                                                <div role="group" class="form-group">
+                                                    <label class="d-block">В лице</label>
+                                                    <input th:name="inFace" th:value="${client.inFace}" id="in_face"
+                                                           type="text" plaсeholder="В лице" class="form-control"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 form-creat__half">
+                                                <div role="group" class="form-group">
+                                                    <label class="d-block">На основании</label>
+                                                    <input th:name="based" th:value="${client.based}" id="based"
+                                                           type="text" plaсeholder="На основании" class="form-control"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 form-creat__half">
+                                                <div role="group" class="form-group">
+                                                    <label class="d-block">Р/с</label>
+                                                    <input th:name="rs" th:value="${client.rs}" id="rs" type="text"
+                                                           plaсeholder="Введите р/с"
+                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                                           class="form-control"
+                                                           aria-describedby="item-human-passport_serial"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 form-creat__half">
+                                                <div role="group" class="form-group">
+                                                    <label class="d-block">Банк</label>
+                                                    <input th:name="bank" th:value="${client.bank}" id="bank"
+                                                           type="text"
+                                                           plaсeholder="Введите банк" class="form-control"
+                                                           aria-describedby="item-human-passport_serial"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 form-creat__half">
+                                                <div role="group" class="form-group">
+                                                    <label class="d-block">К/с</label>
+                                                    <input th:name="ks" th:value="${client.ks}" id="ks" type="text"
+                                                           plaсeholder="Введите к/с"
+                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                                           class="form-control"
+                                                           aria-describedby="item-human-passport_serial"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 form-creat__half">
+                                                <div role="group" class="form-group">
+                                                    <label class="d-block">БИК</label>
+                                                    <input th:name="bik" th:value="${client.bik}" id="bik"
+                                                           type="text"
+                                                           plaсeholder="Введите БИК"
+                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                                           class="form-control"
+                                                           aria-describedby="item-human-passport_serial"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 form-creat__half">
+                                                <div class="form-group">
+                                                    <label class="d-block">Дата создания</label>
+                                                    <div class="vdpComponent vdpWithInput">
+                                                        <input type="date" th:name="dateCreating"
+                                                               th:value="${client.dateCreating}" id="dateCreating_legal"
+                                                               placeholder="дд.мм.гггг"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 form-creat__half">
+                                                <div class="form-group">
+                                                    <p>Загрузите ваши фотографии на сервер</p>
+                                                    <textarea th:value="${client.photos}" th:text="${client.photos}"
+                                                              name="photos" class="form-control"
+                                                              id="photos_legal" style="height: 40px"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 mb-4 col-4 save-btn">
+                                <button type="submit" id="save_client"
+                                        class="btn btn-lg btn-primary btn-primary_save w-100 my-green">
+                                    Сохранить
+                                </button>
+                            </div>
+                            <div id="edit_buttons"
+                                 class="btn-pimary__groups-wrapper btn-pimary__groups-wrapper_client mb-3">
+                                <div class="mb-3 text-right">
+                                    <input type="text" hidden="hidden" id="client_id" th:value="${client.getId()}"/>
+                                    <input class="btn btn-primary width my-green" type="submit" id="update_client"
+                                           th:value="Обновить"/>
+                                </div>
+                                <div class="mb-3 text-right">
+                                    <form th:action="@{/clients/delete/{id}(id=${client.getId()})}" th:method="post">
+                                        <input class="btn btn-primary width my-red" type="submit" id="delete_client"
+                                               th:value="Удалить"/>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="col-12" sec:authorize="hasAuthority('ADMIN')">
+                                <div class="form-creat__itog mb-3 d-flex flex-wrap col-6 flex-md-nowrap">
+                                    <h3 class="form-creat__itog-title form-creat__itog-title_text"
+                                        th:value="${client.rented}">
+                                        Арендовал на сумму
+                                    </h3>
+                                    <div class="project__all-data all-data_input mb-3 col-12 col-md-6"
+                                         style="margin-top: -15px">
+                                        <span type="text" class="vdatetime-input form-control span-input"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <script th:inline="javascript">
+                                var typeClient = [[${client.typeClient}]];
+                                if (typeClient !== null) {
+                                    $('#save_client').css("display", "none");
+                                    if (typeClient === 'INDIVIDUAL') {
+                                        console.log(typeClient);
+                                        $('#individual').css("display", "block");
+                                        $('#legal').css("display", "none");
+                                    } else {
+                                        console.log(typeClient);
+                                        $('#individual').css("display", "none");
+                                        $('#legal').css("display", "block");
+                                    }
+                                } else {
+                                    $('#edit_buttons').css("display", "none");
+                                }
+                            </script>
                         </div>
 
-                        <div class="form-creat__half col-12 col-md-6">
-                          <div role="group" class="form-group">
-                            <label class="d-block size">Телефон</label>
-                            <span>
-                              <input
-                                required
-                                th:name="phoneNumber"
-                                th:value="${client.phoneNumber}"
-                                id="phoneNumber_individual"
-                                class="form-control input-width"
-                                placeholder="+7-999-999-99-99"
-                              />
-                            </span>
-                          </div>
+                        <div class="btn-pimary__groups mt-3 mb-3">
+                            <div class="btn-pimary__groups-wrapper col-6 col-md-12 vidacha-sozdach mb-3">
+                                <div class="mb-3 text-right">
+                                    <span class="btn-pimary__groups_title">История</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-12 col-md-6 form-creat__half">
-                          <div role="group" class="form-group">
-                            <label class="d-block size">E-mail</label>
-                            <span>
-                              <input
-                                th:name="email"
-                                th:value="${client.email}"
-                                id="email_individual"
-                                type="email"
-                                class="form-control input-width"
-                                placeholder="Ваш email"
-                              />
-                            </span>
-                          </div>
+                        <div class="table__info table__vidacha-sozdat_wrapp mb-3">
+                            <div class="table__vidacha-sozdat">
+                                <table class="in4dr-form delivery w-table h-table transparent">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Проект</th>
+                                        <th>Клиент</th>
+                                        <th>Телефон</th>
+                                        <th>Начало аренды</th>
+                                        <th>Окончание аренды</th>
+                                        <th>Дата и время создания</th>
+                                        <th>Сотрудник</th>
+                                        <th>Примечание</th>
+                                        <th>Фотографии отгрузки</th>
+                                    </tr>
+                                    <tbody>
+                                    <tr th:each="project : ${list_projects}">
+                                        <td data-label="Номер" class="column-table">
+                                            <input hidden="hidden" th:value="${project.id}"/>
+                                            <span class="tools-td-text table-td-text column-table_checkbox-number"
+                                                  th:utext="${projectStat.index+1}"></span>
+                                        </td>
+                                        <td data-label="Проект">
+                                            <a th:href="@{/projects/edit/{id}/(id=${project.getId()})}"
+                                               th:utext="${project.name}" title="Редактирование проекта"></a>
+                                        </td>
+                                        <td data-label="Клиент">
+                                            <span class="tools-td-text table-td-text"
+                                                  th:utext="${client.fullName}"></span>
+                                        </td>
+                                        <td data-label="Телефон">
+                                            <span class="tools-td-text table-td-text"
+                                                  th:utext="${client.phoneNumber}"></span>
+                                        </td>
+                                        <td data-label="Начало аренды">
+                                            <span class="tools-td-text table-td-text"
+                                                  th:utext="${#temporals.format(project.start, 'dd-MM-yyyy HH:mm')}"></span>
+                                        </td>
+                                        <td data-label="Окончание аренды">
+                                            <span class="tools-td-text table-td-text"
+                                                  th:utext="${#temporals.format(project.end, 'dd-MM-yyyy HH:mm')}"></span>
+                                        </td>
+                                        <td data-label="Дата и время создания">
+                                            <span class="tools-td-text table-td-text"
+                                                  th:utext="${#temporals.format(project.created, 'dd-MM-yyyy HH:mm')}"></span>
+                                        </td>
+                                        <td data-label="Сотрудник">
+                                            <span class="tools-td-text table-td-text"
+                                                  th:utext="${project.employee}"></span>
+                                        </td>
+                                        <td data-label="Примечание">
+                                            <span class="tools-td-text table-td-text" th:utext="${project.note}"></span>
+                                        </td>
+                                        <td data-label="Фотографии отгрузки">
+                                            <span class="tool_photos">
+                                              <span class="column-table__photo-mini"
+                                                    th:each="photo : ${project.photos}">
+                                                <a rel="modal:open" th:href="${'#'+photoStat.count+project.id}">
+                                                  <img class="column-table__photo-mini_img" th:src="${photo}"/>
+                                                  <div th:id="${photoStat.count+''+project.id}" class="modal">
+                                                    <img th:src="${photo}"/>
+                                                  </div>
+                                                </a>
+                                              </span>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                      </div>
+                        <div class="pagination-control col-lg-12 order-lg-1">
+                            <!-- Bootstrap 4 -->
+                            <nav aria-label="Навигация по страницам">
+                                <ul class="pagination">
+                                    <li class="page-item" th:if="${list_projects.totalPages > 0}"
+                                        th:each="page_number : ${page_numbers}">
+                                        <a class="page-link-m page-link"
+                                           th:href="@{/clients/edit(size=${list_projects.size}, page=${page_numberStat.index})}"
+                                           th:text="${page_numberStat.index}"
+                                           th:class="${page_number==list_projects.number + 1} ? active"></a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
                     </div>
-                    <div class="p-3 col-8 col-md-12 col-lg-12 col-xl-12">
-                      <div
-                        class="row form-creat__half-wrapp form-creat__half-wrapp_client"
-                      >
-                        <div class="col-12 form-creat__half-title">
-                          <h3 class="my-3 form-creat__half-title_text">
-                            Дополнительно
-                          </h3>
-                        </div>
-
-                        <div class="col-12 col-md-6 form-creat__half">
-                          <div role="group" class="form-group">
-                            <label class="d-block size">Откуда пришел</label>
-                            <span>
-                              <input
-                                th:name="fromComing"
-                                th:value="${client.fromComing}"
-                                id="fromComing_individual"
-                                type="text"
-                                class="form-control input-width"
-                                placeholder="Как или где узнали о нас?"
-                              />
-                            </span>
-                          </div>
-                        </div>
-                        <div class="col-12 col-md-6 form-creat__half">
-                          <div role="group" class="form-group">
-                            <label class="d-block size">Лимит</label>
-                            <span>
-                              <input
-                                th:name="limited"
-                                th:value="${client.limited}"
-                                id="limit_individual"
-                                type="text"
-                                class="form-control input-width"
-                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
-                                placeholder="9999999999,99"
-                              />
-                            </span>
-                          </div>
-                        </div>
-                        <div class="anomalia col-12 input-flex">
-                          <div class="col-12 col-md-6 form-creat__half">
-                            <div role="group" class="form-group">
-                              <label class="d-block size">Примечание</label>
-                              <span>
-                                <textarea
-                                  th:name="note"
-                                  class="form-control input-width"
-                                  th:value="${client.note}"
-                                  th:text="${client.note}"
-                                  id="note_individual"
-                                  style="height: 40px"
-                                ></textarea>
-                              </span>
-                            </div>
-                          </div>
-                          <div class="col-12 col-md-6 form-creat__half mt-3">
-                            <div class="form-group">
-                              <label class="d-block size">Дата рождения</label>
-                              <div class="vdpComponent vdpWithInput">
-                                <input
-                                  class="form-control input-width"
-                                  type="date"
-                                  th:name="birthday"
-                                  th:value="${client.birthday}"
-                                  id="birthday"
-                                  placeholder="дд.мм.гггг"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-12 col-md-6 form-creat__half">
-                          <div role="group" class="form-group">
-                            <label class="d-block size"
-                              >Оператор постановщик</label
-                            >
-                            <span>
-                              <input
-                                th:name="directorOfPhotography"
-                                th:value="${client.directorOfPhotography}"
-                                id="directorOfPhotography"
-                                type="text"
-                                class="form-control input-width"
-                                placeholder="Введите ФИО"
-                              />
-                            </span>
-                          </div>
-                        </div>
-                        <div class="col-12 col-md-6 form-creat__half">
-                          <div role="group" class="form-group">
-                            <label class="d-block size">Продакшн</label>
-                            <span>
-                              <input
-                                th:name="production"
-                                th:value="${client.production}"
-                                id="production"
-                                type="text"
-                                class="form-control input-width"
-                                placeholder="Введите название"
-                              />
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="p-3 col-8 col-md-12 col-lg-12 col-xl-12">
-                      <div
-                        class="row form-creat__half-wrapp form-creat__half-wrapp_client"
-                      >
-                        <div class="col-12 form-creat__half-title">
-                          <h3
-                            class="my-3 form-creat__half-title_text"
-                            style="text-align: center"
-                          >
-                            Паспортные данные
-                          </h3>
-                        </div>
-                        <div class="col-12 col-md-6 form-creat__half">
-                          <div role="group" class="form-group">
-                            <label class="d-block size">Серия/Номер</label>
-                            <span>
-                              <input
-                                th:name="numberPassport"
-                                th:value="${client.numberPassport}"
-                                id="numberPassport"
-                                type="text"
-                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
-                                class="form-control input-width"
-                                aria-describedby="item-human-passport_serial"
-                              />
-                            </span>
-                          </div>
-                        </div>
-                        <div class="col-12 col-md-6 form-creat__half">
-                          <div role="group" class="form-group">
-                            <label class="d-block size">Кем выдан</label>
-                            <span>
-                              <input
-                                th:name="issuedBy"
-                                th:value="${client.issuedBy}"
-                                id="issuedBy"
-                                type="text"
-                                class="form-control input-width"
-                              />
-                            </span>
-                          </div>
-                        </div>
-                        <div class="col-12 col-md-6 form-creat__half">
-                          <div class="form-group">
-                            <label class="d-block size"
-                              >Дата выдачи паспорта</label
-                            >
-                            <div class="vdpComponent vdpWithInput">
-                              <input
-                                class="form-control"
-                                type="date"
-                                th:name="dateIssuePassport"
-                                th:value="${client.dateIssuePassport}"
-                                id="dateIssuePassport"
-                                placeholder="дд.мм.гггг"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6 col-12 form-creat__half">
-                          <div
-                            role="group"
-                            class="form-group"
-                            style="margin-top: 10px"
-                          >
-                            <label class="d-block size"
-                              >Адрес фактический</label
-                            >
-                            <span>
-                              <input
-                                th:name="addressReal"
-                                th:value="${client.addressReal}"
-                                type="text"
-                                class="form-control input-width"
-                                id="addressReal_individual"
-                                placeholder="Введите адрес"
-                              />
-                            </span>
-                          </div>
-                        </div>
-                        <div class="col-md-6 col-12 form-creat__half">
-                          <div class="form-group">
-                            <label class="d-block size">Дата создания</label>
-                            <div class="vdpComponent vdpWithInput">
-                              <input
-                                class="form-control"
-                                type="date"
-                                th:name="dateCreating"
-                                th:value="${client.dateCreating}"
-                                id="dateCreating_individual"
-                                placeholder="дд.мм.гггг"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6 col-12 form-creat__half">
-                          <div class="form-group">
-                            <label class="d-block size"
-                              >Загрузите ваши фотографии на сервер</label
-                            >
-                            <span>
-                              <textarea
-                                th:value="${client.photos}"
-                                th:text="${client.photos}"
-                                name="photos"
-                                class="form-control input-width"
-                                id="photos_individual"
-                                style="height: 40px; margin-top: -3px"
-                              ></textarea>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div id="legal" class="form-creat mb-3 col-12">
-                    <div class="p-3 edit-container d-block">
-                      <div
-                        class="row form-creat__half-wrapp form-creat__half-wrapp_client"
-                      >
-                        <div class="col-12 form-creat__half-title">
-                          <h3 class="my-3 form-creat__half-title_text">
-                            Основное
-                          </h3>
-                        </div>
-                        <div class="col-12">
-                          <div class="col-6 form-creat__half">
-                            <div role="group" class="form-group">
-                              <label class="d-block">ФИО/Наименование</label>
-                              <span>
-                                <input
-                                  required
-                                  th:name="fullName"
-                                  th:value="${client.fullName}"
-                                  id="fullName_legal"
-                                  type="text"
-                                  class="form-control"
-                                  placeholder="Введите ФИО/Наименование"
-                                />
-                              </span>
-                            </div>
-                          </div>
-                          <div class="col-6 form-creat__half">
-                            <div role="group" class="form-group">
-                              <label class="d-block">Полное наименование</label>
-                              <span>
-                                <input
-                                  th:name="legalName"
-                                  th:value="${client.legalName}"
-                                  type="text"
-                                  id="legalName"
-                                  class="form-control"
-                                  placeholder="Введите ФИО/Наименование"
-                                />
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="p-3">
-                      <div
-                        class="row form-creat__half-wrapp form-creat__half-wrapp_client"
-                      >
-                        <div class="col-12 form-creat__half-title">
-                          <h3 class="my-3 form-creat__half-title_text">
-                            Контакты
-                          </h3>
-                        </div>
-                        <div class="col-12">
-                          <div class="form-creat__half col-6">
-                            <div role="group" class="form-group">
-                              <label class="d-block">Телефон</label>
-                              <span>
-                                <input
-                                  required
-                                  th:name="phoneNumber"
-                                  th:value="${client.phoneNumber}"
-                                  id="phoneNumber_legal"
-                                  name="phoneNumber"
-                                  class="form-control"
-                                  placeholder="+7-999-99-99"
-                                />
-                              </span>
-                            </div>
-                          </div>
-                          <div class="col-6 form-creat__half">
-                            <div role="group" class="form-group">
-                              <label class="d-block">E-mail</label>
-                              <span>
-                                <input
-                                  th:name="email"
-                                  th:value="${client.email}"
-                                  id="email_legal"
-                                  type="email"
-                                  class="form-control"
-                                  placeholder="Ваш email"
-                                />
-                              </span>
-                            </div>
-                          </div>
-                          <div class="col-6 form-creat__half">
-                            <div role="group" class="form-group">
-                              <label class="d-block">Адрес фактический</label>
-                              <span>
-                                <input
-                                  th:name="addressReal"
-                                  th:value="${client.addressReal}"
-                                  id="addressReal_legal"
-                                  type="text"
-                                  class="form-control"
-                                  placeholder="Введите адрес"
-                                />
-                              </span>
-                            </div>
-                          </div>
-                          <div class="col-6 form-creat__half">
-                            <div role="group" class="form-group">
-                              <label class="d-block">Юридический адрес</label>
-                              <span>
-                                <input
-                                  th:name="addressLegal"
-                                  th:value="${client.addressLegal}"
-                                  id="addressLegal"
-                                  type="text"
-                                  class="form-control"
-                                  placeholder="Введите адрес"
-                                />
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="p-3">
-                      <div
-                        class="row form-creat__half-wrapp form-creat__half-wrapp_client"
-                      >
-                        <div class="col-12 form-creat__half-title">
-                          <h3 class="my-3 form-creat__half-title_text">
-                            Дополнительно
-                          </h3>
-                        </div>
-                        <div class="col-12">
-                          <div class="col-6 form-creat__half">
-                            <div role="group" class="form-group">
-                              <label class="d-block">Откуда пришел</label>
-                              <span>
-                                <input
-                                  th:name="fromComing"
-                                  th:value="${client.fromComing}"
-                                  id="fromComing_legal"
-                                  type="text"
-                                  class="form-control"
-                                  placeholder="Как или где узнали о нас?"
-                                />
-                              </span>
-                            </div>
-                          </div>
-                          <div class="col-6 form-creat__half">
-                            <div role="group" class="form-group">
-                              <label class="d-block">Лимит</label>
-                              <span>
-                                <input
-                                  th:name="limited"
-                                  th:value="${client.limited}"
-                                  id="limit_legal"
-                                  type="number"
-                                  class="form-control"
-                                  placeholder="9999999999,99"
-                                />
-                              </span>
-                            </div>
-                          </div>
-                          <div class="anomalia">
-                            <div class="col-6 form-creat__half">
-                              <div role="group" class="form-group">
-                                <label class="d-block">Скидки</label>
-                                <span>
-                                  <input
-                                    required
-                                    th:name="discount"
-                                    th:value="${client.discount}"
-                                    id="discount_legal"
-                                    type="text"
-                                    class="form-control"
-                                    placeholder="Введите скидку в процентах"
-                                  />
-                                </span>
-                              </div>
-                            </div>
-                            <div class="col-6 form-creat__half">
-                              <div role="group" class="form-group">
-                                <label class="d-block">Примечание</label>
-                                <span>
-                                  <textarea
-                                    th:name="note"
-                                    th:value="${client.note}"
-                                    th:text="${client.note}"
-                                    id="note_legal"
-                                    class="form-control form-creat_textarea"
-                                  ></textarea>
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="p-3">
-                      <div
-                        class="row form-creat__half-wrapp form-creat__half-wrapp_client"
-                      >
-                        <div class="col-12 form-creat__half-title">
-                          <h3 class="my-3 form-creat__half-title_text">
-                            Данные организации
-                          </h3>
-                        </div>
-                        <div class="col-12">
-                          <div class="col-6 form-creat__half">
-                            <div role="group" class="form-group">
-                              <label class="d-block">ИНН</label>
-                              <span>
-                                <input
-                                  th:name="inn"
-                                  th:value="${client.inn}"
-                                  id="inn"
-                                  type="text"
-                                  plaсeholder="Введите ИНН"
-                                  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
-                                  class="form-control"
-                                  aria-describedby="item-human-passport_serial"
-                                />
-                              </span>
-                            </div>
-                          </div>
-                          <div class="col-6 form-creat__half">
-                            <div role="group" class="form-group">
-                              <label class="d-block">КПП</label>
-                              <span>
-                                <input
-                                  th:name="kpp"
-                                  th:value="${client.kpp}"
-                                  id="kpp"
-                                  type="text"
-                                  plaсeholder="Введите КПП"
-                                  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
-                                  class="form-control"
-                                  aria-describedby="item-human-passport_serial"
-                                />
-                              </span>
-                            </div>
-                          </div>
-                          <div class="col-6 form-creat__half">
-                            <div role="group" class="form-group">
-                              <label class="d-block">ОГРН</label>
-                              <span>
-                                <input
-                                  th:name="ogrn"
-                                  th:value="${client.ogrn}"
-                                  id="ogrn"
-                                  type="text"
-                                  plaсeholder="Введите ОГРН"
-                                  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
-                                  class="form-control"
-                                  aria-describedby="item-human-passport_serial"
-                                />
-                              </span>
-                            </div>
-                          </div>
-                          <div class="col-6 form-creat__half">
-                            <div role="group" class="form-group">
-                              <label class="d-block">ФИО руководителя</label>
-                              <span>
-                                <input
-                                  th:name="fullNameSupervisor"
-                                  th:value="${client.fullNameSupervisor}"
-                                  id="fullNameSupervisor"
-                                  type="text"
-                                  plaсeholder="ФИО руководителя"
-                                  class="form-control"
-                                />
-                              </span>
-                            </div>
-                          </div>
-                          <div class="col-6 form-creat__half">
-                            <div role="group" class="form-group">
-                              <label class="d-block"
-                                >Должность руководителя</label
-                              >
-                              <span>
-                                <input
-                                  th:name="jobTitleSupervisor"
-                                  th:value="${client.jobTitleSupervisor}"
-                                  id="jobTitleSupervisor"
-                                  type="text"
-                                  class="form-control"
-                                />
-                              </span>
-                            </div>
-                          </div>
-                          <div class="col-6 form-creat__half">
-                            <div role="group" class="form-group">
-                              <label class="d-block">В лице</label>
-                              <span>
-                                <input
-                                  th:name="inFace"
-                                  th:value="${client.inFace}"
-                                  id="in_face"
-                                  type="text"
-                                  plaсeholder="В лице"
-                                  class="form-control"
-                                />
-                              </span>
-                            </div>
-                          </div>
-                          <div class="col-6 form-creat__half">
-                            <div role="group" class="form-group">
-                              <label class="d-block">На основании</label>
-                              <span>
-                                <input
-                                  th:name="based"
-                                  th:value="${client.based}"
-                                  id="based"
-                                  type="text"
-                                  plaсeholder="На основании"
-                                  class="form-control"
-                                />
-                              </span>
-                            </div>
-                          </div>
-                          <div class="col-6 form-creat__half">
-                            <div role="group" class="form-group">
-                              <label class="d-block">Р/с</label>
-                              <span>
-                                <input
-                                  th:name="rs"
-                                  th:value="${client.rs}"
-                                  id="rs"
-                                  type="text"
-                                  plaсeholder="Введите р/с"
-                                  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
-                                  class="form-control"
-                                  aria-describedby="item-human-passport_serial"
-                                />
-                              </span>
-                            </div>
-                          </div>
-                          <div class="col-6 form-creat__half">
-                            <div role="group" class="form-group">
-                              <label class="d-block">Банк</label>
-                              <span>
-                                <input
-                                  th:name="bank"
-                                  th:value="${client.bank}"
-                                  id="bank"
-                                  type="text"
-                                  plaсeholder="Введите банк"
-                                  class="form-control"
-                                  aria-describedby="item-human-passport_serial"
-                                />
-                              </span>
-                            </div>
-                          </div>
-                          <div class="col-6 form-creat__half">
-                            <div role="group" class="form-group">
-                              <label class="d-block">К/с</label>
-                              <span>
-                                <input
-                                  th:name="ks"
-                                  th:value="${client.ks}"
-                                  id="ks"
-                                  type="text"
-                                  plaсeholder="Введите к/с"
-                                  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
-                                  class="form-control"
-                                  aria-describedby="item-human-passport_serial"
-                                />
-                              </span>
-                            </div>
-                          </div>
-                          <div class="col-6 form-creat__half">
-                            <div role="group" class="form-group">
-                              <label class="d-block">БИК</label>
-                              <span>
-                                <input
-                                  th:name="bik"
-                                  th:value="${client.bik}"
-                                  id="bik"
-                                  type="text"
-                                  plaсeholder="Введите БИК"
-                                  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
-                                  class="form-control"
-                                  aria-describedby="item-human-passport_serial"
-                                />
-                              </span>
-                            </div>
-                          </div>
-                          <div class="col-6 form-creat__half">
-                            <div class="form-group">
-                              <label class="d-block">Дата создания</label>
-                              <div class="vdpComponent vdpWithInput">
-                                <input
-                                  type="date"
-                                  th:name="dateCreating"
-                                  th:value="${client.dateCreating}"
-                                  id="dateCreating_legal"
-                                  placeholder="дд.мм.гггг"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-6 form-creat__half">
-                            <div class="form-group">
-                              <p>Загрузите ваши фотографии на сервер</p>
-                              <p>
-                                <textarea
-                                  th:value="${client.photos}"
-                                  th:text="${client.photos}"
-                                  name="photos"
-                                  class="form-control"
-                                  id="photos_legal"
-                                  style="height: 40px"
-                                ></textarea>
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="mt-4 mb-4 col-4 save-btn">
-                    <button
-                      type="submit"
-                      id="save_client"
-                      class="btn btn-lg btn-primary btn-primary_save w-100 my-green"
-                    >
-                      Сохранить
-                    </button>
-                  </div>
-                  <div
-                    id="edit_buttons"
-                    class="btn-pimary__groups-wrapper btn-pimary__groups-wrapper_client mb-3"
-                  >
-                    <div class="mb-3 text-right">
-                      <input
-                        type="text"
-                        hidden="hidden"
-                        id="client_id"
-                        th:value="${client.getId()}"
-                      />
-                      <input
-                        class="btn btn-primary width my-green"
-                        type="submit"
-                        id="update_client"
-                        th:value="Обновить"
-                      />
-                    </div>
-                    <div class="mb-3 text-right">
-                      <form
-                        th:action="@{/clients/delete/{id}(id=${client.getId()})}"
-                        th:method="post"
-                      >
-                        <input
-                          class="btn btn-primary width my-red"
-                          type="submit"
-                          id="delete_client"
-                          th:value="Удалить"
-                        />
-                      </form>
-                    </div>
-                  </div>
-
-                  <div class="col-12" sec:authorize="hasAuthority('ADMIN')">
-                    <div
-                      class="form-creat__itog mb-3 d-flex flex-wrap col-6 flex-md-nowrap"
-                    >
-                      <h3
-                        class="form-creat__itog-title form-creat__itog-title_text"
-                        th:value="${client.rented}"
-                      >
-                        Арендовал на сумму
-                      </h3>
-                      <div
-                        class="project__all-data all-data_input mb-3 col-12 col-md-6"
-                        style="margin-top: -15px"
-                      >
-                        <span
-                          type="text"
-                          class="vdatetime-input form-control span-input"
-                        ></span>
-                      </div>
-                    </div>
-                  </div>
-                  <script th:inline="javascript">
-                    var typeClient = [[${client.typeClient}]];
-                    if (typeClient !== null) {
-                        $('#save_client').css("display", "none");
-                        if (typeClient === 'INDIVIDUAL') {
-                          console.log(typeClient);
-                            $('#individual').css("display", "block");
-                            $('#legal').css("display", "none");
-                        } else {
-                          console.log(typeClient);
-                            $('#individual').css("display", "none");
-                            $('#legal').css("display", "block");
-                        }
-                    } else {
-                        $('#edit_buttons').css("display", "none");
-                    }
-                  </script>
-                </div>
-
-                <div class="btn-pimary__groups mt-3 mb-3">
-                  <div
-                    class="btn-pimary__groups-wrapper col-6 col-md-12 vidacha-sozdach mb-3"
-                  >
-                    <div class="mb-3 text-right">
-                      <span class="btn-pimary__groups_title">История</span>
-                    </div>
-                    <!-- <div class="mb-3 text-right">
-                                                 <a href="#" class="btn btn-primary width green">Обновить</a>
-                                             </div>
-                                             <div class="mb-3 text-right">
-                                                 <a href="#" class="btn btn-primary width grey">Экспорт</a>
-                                             </div>-->
-                  </div>
-                </div>
-                <div class="table__info table__vidacha-sozdat_wrapp mb-3">
-                  <div class="table__vidacha-sozdat">
-                    <table
-                      class="in4dr-form delivery w-table h-table transparent"
-                    >
-                      <tr>
-                        <th>#</th>
-                        <th>Проект</th>
-                        <th>Клиент</th>
-                        <th>Телефон</th>
-                        <th>Начало аренды</th>
-                        <th>Окончание аренды</th>
-                        <th>Дата и время создания</th>
-                        <th>Сотрудник</th>
-                        <th>Примечание</th>
-                        <th>Фотографии отгрузки</th>
-                      </tr>
-                      <tbody>
-                        <tr th:each="project : ${list_projects}">
-                          <td data-label="Номер" class="column-table">
-                            <input hidden="hidden" th:value="${project.id}" />
-                            <span
-                              class="tools-td-text table-td-text column-table_checkbox-number"
-                              th:utext="${projectStat.index+1}"
-                            ></span>
-                          </td>
-                          <td data-label="Проект">
-                            <a
-                              th:href="@{/projects/edit/{id}/(id=${project.getId()})}"
-                              th:utext="${project.name}"
-                              title="Редактирование проекта"
-                            ></a>
-                          </td>
-                          <td data-label="Клиент">
-                            <span
-                              class="tools-td-text table-td-text"
-                              th:utext="${client.fullName}"
-                            ></span>
-                          </td>
-                          <td data-label="Телефон">
-                            <span
-                              class="tools-td-text table-td-text"
-                              th:utext="${client.phoneNumber}"
-                            ></span>
-                          </td>
-                          <td data-label="Начало аренды">
-                            <span
-                              class="tools-td-text table-td-text"
-                              th:utext="${#temporals.format(project.start, 'dd-MM-yyyy HH:mm')}"
-                            ></span>
-                          </td>
-                          <td data-label="Окончание аренды">
-                            <span
-                              class="tools-td-text table-td-text"
-                              th:utext="${#temporals.format(project.end, 'dd-MM-yyyy HH:mm')}"
-                            ></span>
-                          </td>
-                          <td data-label="Дата и время создания">
-                            <span
-                              class="tools-td-text table-td-text"
-                              th:utext="${#temporals.format(project.created, 'dd-MM-yyyy HH:mm')}"
-                            ></span>
-                          </td>
-                          <td data-label="Сотрудник">
-                            <span
-                              class="tools-td-text table-td-text"
-                              th:utext="${project.employee}"
-                            ></span>
-                          </td>
-                          <td data-label="Примечание">
-                            <span
-                              class="tools-td-text table-td-text"
-                              th:utext="${project.note}"
-                            ></span>
-                          </td>
-                          <td data-label="Фотографии отгрузки">
-                            <span class="tool_photos">
-                              <span
-                                class="column-table__photo-mini"
-                                th:each="photo : ${project.photos}"
-                              >
-                                <a
-                                  rel="modal:open"
-                                  th:href="${'#'+photoStat.count+project.id}"
-                                >
-                                  <img
-                                    class="column-table__photo-mini_img"
-                                    th:src="${photo}"
-                                  />
-                                  <div
-                                    th:id="${photoStat.count+''+project.id}"
-                                    class="modal"
-                                  >
-                                    <img th:src="${photo}" />
-                                  </div>
-                                </a>
-                              </span>
-                            </span>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-                <div class="pagination-control col-lg-12 order-lg-1">
-                  <!-- Bootstrap 4 -->
-                  <nav aria-label="Навигация по страницам">
-                    <ul class="pagination">
-                      <li
-                        class="page-item"
-                        th:if="${list_projects.totalPages > 0}"
-                        th:each="page_number : ${page_numbers}"
-                      >
-                        <a
-                          class="page-link-m page-link"
-                          th:href="@{/clients/edit(size=${list_projects.size}, page=${page_numberStat.index})}"
-                          th:text="${page_numberStat.index}"
-                          th:class="${page_number==list_projects.number + 1} ? active"
-                        ></a>
-                      </li>
-                    </ul>
-                  </nav>
-                </div>
-              </div>
-            </main>
-            <div th:insert="fragments/footer.html"></div>
-          </div>
+                </main>
+                <div th:insert="fragments/footer.html"></div>
+            </div>
         </div>
-      </div>
     </div>
-    <div th:insert="fragments/scripts.html"></div>
-    <div>
-      <script
-        src="/static/js/changeTypeClients.js"
-        th:src="@{/js/changeTypeClients.js}"
-      ></script>
-    </div>
-  </body>
+</div>
+<div th:insert="fragments/scripts.html"></div>
+<div>
+    <script src="/static/js/changeTypeClients.js" th:src="@{/js/changeTypeClients.js}"></script>
+</div>
+</body>
 </html>
