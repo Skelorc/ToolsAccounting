@@ -1,10 +1,5 @@
 <!DOCTYPE html>
-<html
-  lang="en"
-  xmlns="http://www.w3.org/1999/xhtml"
-  xmlns:th="http://www.thymeleaf.org/"
-  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
   <head class="head">
     <title>Владельцы - Редактирование</title>
     <div th:replace="fragments/head :: header"></div>
@@ -156,20 +151,11 @@
 
   <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
     <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
-      <div
-        class="b-overlay-wrap position-relative w-100"
-        size="sm"
-        id="wrapper"
-      >
+      <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
         <div th:insert="fragments/menu_sidebar.html"></div>
         <div class="b-overlay-wrap position-relative w-100" size="sm">
           <div class="rih-page-wrapper">
-             <nav
-              data-v-59295fda=""
-              role="navigation"
-              class="navbar navbar-admin navbar-fixed-top"
-              th:insert="fragments/header_logout.html"
-            ></nav>
+             <nav role="navigation" class="navbar navbar-admin navbar-fixed-top" th:insert="fragments/header_logout.html"></nav>
             <main class="wrapper wrapper-content">
               <div class="b-overlay-wrap position-relative">
                 <div class="btn-pimary__groups mt-3 mb-3">
@@ -179,30 +165,15 @@
                     </div>
                   </div>
                 </div>
-
                 <div class="row">
-                  <form
-                    th:action="@{/owners/edit/{id}(id=${owner.id})}"
-                    method="post"
-                    th:object="${owner}"
-                    style="margin: auto; width: 100%"
-                  >
-                    <div
-                      class="p-3 col-8 col-md-12 col-sm-6 edit-container d-block"
-                      style="margin: 0 auto"
-                    >
+                  <form th:action="@{/owners/edit/{id}(id=${owner.id})}" method="post" th:object="${owner}" style="margin: auto; width: 100%">
+                    <div class="p-3 col-8 col-md-12 col-sm-6 edit-container d-block" style="margin: 0 auto">
                       <div class="row form-creat__half-wrapp">
                         <div class="form-creat__half_two-column col-12">
                           <label class="d-block font size">Имя владельца</label>
                           <div class="vdpComponent vdpWithInput">
-                            <input
-                              class="form-control"
-                              th:value="${owner.name}"
-                              th:field="*{name}"
-                              required=""
-                              type="text"
-                              placeholder="Наименование в смете"
-                            />
+                            <input class="form-control" th:value="${owner.name}" th:field="*{name}" required
+                              type="text" placeholder="Наименование в смете"/>
                           </div>
                         </div>
                       </div>
@@ -214,14 +185,7 @@
                                 <div role="group" class="form-group">
                                   <label class="d-block font">Код</label>
                                   <div class="vdpComponent vdpWithInput">
-                                    <input
-                                      class="form-control"
-                                      required=""
-                                      type="text"
-                                      th:field="*{code}"
-                                      th:value="${owner.code}"
-                                      placeholder="Код"
-                                    />
+                                    <input class="form-control" required type="text" th:field="*{code}" th:value="${owner.code}" placeholder="Код"/>
                                   </div>
                                 </div>
                               </div>
@@ -232,10 +196,7 @@
                     </div>
                     <div class="mt-4 mb-4 col-6 save-btn">
                       <div class="mb-3 text-center">
-                        <button
-                          type="submit"
-                          class="btn btn-primary width btn-add_vidacha my-green"
-                        >
+                        <button type="submit" class="btn btn-primary width btn-add_vidacha my-green">
                           Обновить
                         </button>
                       </div>
@@ -243,14 +204,8 @@
                   </form>
                 </div>
                 <div class="mb-3 text-center">
-                  <form
-                    th:action="@{/owners/delete/{id}(id=${owner.id})}"
-                    method="post"
-                  >
-                    <button
-                      type="submit"
-                      class="btn btn-primary width btn-add_vidacha my-red"
-                    >
+                  <form th:action="@{/owners/delete/{id}(id=${owner.id})}" method="post">
+                    <button type="submit" class="btn btn-primary width btn-add_vidacha my-red">
                       Удалить владельца
                     </button>
                   </form>
