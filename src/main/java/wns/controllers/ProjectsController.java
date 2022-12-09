@@ -1,6 +1,5 @@
 package wns.controllers;
 
-import com.fasterxml.jackson.core.JsonEncoding;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import wns.constants.Filter;
 import wns.constants.Messages;
 import wns.constants.PaginationConst;
-import wns.constants.StatusProject;
 import wns.dto.IdsDTO;
 import wns.dto.ProjectDTO;
 import wns.entity.Project;
@@ -21,7 +19,7 @@ import wns.services.ProjectService;
 import wns.services.ToolsService;
 import wns.utils.ResponseHandler;
 
-import java.util.*;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("")

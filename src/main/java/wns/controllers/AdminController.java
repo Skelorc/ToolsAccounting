@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import wns.constants.Roles;
 import wns.dto.UserDTO;
 import wns.entity.User;
+import wns.repo.UsersRepo;
 import wns.services.UserService;
 
 import java.util.List;
@@ -17,7 +18,6 @@ import java.util.List;
 public class AdminController {
 
     private final UserService userService;
-
     @GetMapping
     public String showRegistrationPage(@ModelAttribute("message") String message,Model model)
     {
