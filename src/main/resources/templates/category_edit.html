@@ -1,11 +1,7 @@
 <!DOCTYPE html>
-<html
-  lang="en"
-  xmlns="http://www.w3.org/1999/xhtml"
-  xmlns:th="http://www.thymeleaf.org/"
-  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
->
-  <head class="head">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head class="head">
     <title>Редактирование категории</title>
     <div th:replace="fragments/head :: header"></div>
 
@@ -152,111 +148,82 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"
       th:href="@{/css/jquery.modal.css}"
     /> -->
-  </head>
+</head>
 
-  <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
+<body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
+<div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
     <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
-      <div
-        class="b-overlay-wrap position-relative w-100"
-        size="sm"
-        id="wrapper"
-      >
         <div th:insert="fragments/menu_sidebar.html"></div>
         <div class="b-overlay-wrap position-relative w-100" size="sm">
-          <div class="rih-page-wrapper">
-             <nav data-v-59295fda="" role="navigation" class="navbar navbar-admin navbar-fixed-top"
+            <div class="rih-page-wrapper">
+                <nav role="navigation" class="navbar navbar-admin navbar-fixed-top"
                      th:insert="fragments/header_logout.html"></nav>
-            <main class="wrapper wrapper-content">
-              <div class="b-overlay-wrap position-relative">
-                <div class="btn-pimary__groups mt-3 mb-3">
-                  <div class="btn-pimary__groups-wrapper vidacha-sozdach mb-3">
-                    <div class="mb-3 text-right">
-                      <span class="btn-pimary__groups_title">Категория</span>
-                    </div>
-                  </div>
-                </div>
+                <main class="wrapper wrapper-content">
+                    <div class="b-overlay-wrap position-relative">
+                        <div class="btn-pimary__groups mt-3 mb-3">
+                            <div class="btn-pimary__groups-wrapper vidacha-sozdach mb-3">
+                                <div class="mb-3 text-right">
+                                    <span class="btn-pimary__groups_title">Категория</span>
+                                </div>
+                            </div>
+                        </div>
 
-                <div class="row">
-                  <form
-                    th:action="@{/category/edit/{id}(id=${category.id})}"
-                    method="post"
-                    th:object="${category}"
-                    style="margin: auto; width: 100%"
-                  >
-                    <div class="p-3 col-8 col-md-12 d-block">
-                      <div class="p-3 col-8 col-md-12 col-sm-6">
-                        <div class="row form-creat__half-wrapp">
-                          <div class="form-creat__half_two-column col-12">
-                            <div role="group col-12" class="form-group">
-                              <label class="d-block font"
-                                >Название категории</label
-                              >
-                              <div class="vdpComponent vdpWithInput">
-                                <input
-                                  class="form-control"
-                                  required=""
-                                  type="text"
-                                  th:field="*{name}"
-                                  th:value="${category.name}"
-                                  placeholder="Название категории"
-                                />
-                              </div>
-                            </div>
-                          </div>
+                        <div class="row">
+                            <form th:action="@{/category/edit/{id}(id=${category.id})}" method="post"
+                                  th:object="${category}"
+                                  style="margin: auto; width: 100%">
+                                <div class="p-3 col-8 col-md-12 d-block">
+                                    <div class="p-3 col-8 col-md-12 col-sm-6">
+                                        <div class="row form-creat__half-wrapp">
+                                            <div class="form-creat__half_two-column col-12">
+                                                <div role="group col-12" class="form-group">
+                                                    <label class="d-block font">Название категории</label>
+                                                    <div class="vdpComponent vdpWithInput">
+                                                        <input class="form-control" required type="text"
+                                                               th:field="*{name}" th:value="${category.name}"
+                                                               placeholder="Название категории"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row form-creat__half-wrapp">
+                                            <div class="form-creat__half_two-column">
+                                                <div role="group" class="form-group">
+                                                    <label class="d-block font">Код</label>
+                                                    <div class="vdpComponent vdpWithInput">
+                                                        <input class="form-control" required type="text" th:field="*{code}" th:value="${category.code}"
+                                                                placeholder="Код"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 mb-4 col-6 save-btn">
+                                        <div class="mt-4 mb-4 col-6 save-btn">
+                                            <div class="mb-3 text-center">
+                                                <button type="submit" class="btn btn-primary width btn-add_vidacha my-green">
+                                                    Сохранить
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                        <div class="row form-creat__half-wrapp">
-                          <div class="form-creat__half_two-column">
-                            <div role="group" class="form-group">
-                              <label class="d-block font">Код</label>
-                              <div class="vdpComponent vdpWithInput">
-                                <input
-                                  class="form-control"
-                                  required=""
-                                  type="text"
-                                  th:field="*{code}"
-                                  th:value="${category.code}"
-                                  placeholder="Код"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="mt-4 mb-4 col-6 save-btn">
-                        <div class="mt-4 mb-4 col-6 save-btn">
-                          <div class="mb-3 text-center">
-                            <button
-                              type="submit"
-                              class="btn btn-primary width btn-add_vidacha my-green"
-                            >
-                              Сохранить
-                            </button>
-                          </div>
-                        </div>
-                      </div>
                     </div>
-                  </form>
-                </div>
-              </div>
-              <div class="mb-3 text-center">
-                <form
-                  th:action="@{/category/delete/{id}(id=${category.id})}"
-                  method="post"
-                >
-                  <button
-                    type="submit"
-                    class="btn btn-primary width btn-add_vidacha my-red"
-                  >
-                    Удалить категорию
-                  </button>
-                </form>
-              </div>
-            </main>
-            <div th:insert="fragments/footer.html"></div>
-          </div>
+                    <div class="mb-3 text-center">
+                        <form th:action="@{/category/delete/{id}(id=${category.id})}" method="post">
+                            <button type="submit" class="btn btn-primary width btn-add_vidacha my-red">
+                                Удалить категорию
+                            </button>
+                        </form>
+                    </div>
+                </main>
+                <div th:insert="fragments/footer.html"></div>
+            </div>
         </div>
-      </div>
     </div>
-    <div th:insert="fragments/scripts.html"></div>
-  </body>
+</div>
+<div th:insert="fragments/scripts.html"></div>
+</body>
 </html>
