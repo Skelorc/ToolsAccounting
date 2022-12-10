@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head class="head">
     <title>Списание</title>
 
     <div th:replace="fragments/head :: header"></div>
-   
     <!-- <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -62,7 +62,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" /> 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" /> -->
-
 </head>
 
 <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
@@ -71,7 +70,8 @@
         <div th:insert="fragments/menu_sidebar.html"></div>
         <div class="b-overlay-wrap position-relative w-100" size="sm">
             <div class="rih-page-wrapper">
-                 <nav  role="navigation" class="navbar navbar-admin navbar-fixed-top" th:insert="fragments/header_logout.html"></nav>
+                <nav role="navigation" class="navbar navbar-admin navbar-fixed-top"
+                     th:insert="fragments/header_logout.html"></nav>
                 <main class="wrapper wrapper-content ">
                     <div class="b-overlay-wrap position-relative edit-container d-block col-8 col-md-12">
                         <div class="btn-pimary__groups mt-3 mb-3">
@@ -80,7 +80,8 @@
                                     <a th:href="@{/write-off/create}" class="btn btn-primary width my-green">Создать</a>
                                 </div>
                                 <div class="mb-3 text-right">
-                                    <span class="btn btn-primary width my-yellow" id="back_repair">Вернуть на склад</span>
+                                    <span class="btn btn-primary width my-yellow"
+                                          id="back_repair">Вернуть на склад</span>
                                 </div>
                             </div>
                         </div>
@@ -88,15 +89,15 @@
                         <div class="custom-ll__table table-responsive">
                             <table class="table w-table h-table delivery in4dr-form transparent">
                                 <thead>
-                                    <tr>
-                                        <th class="first-th">№</th>
-                                        <th>Дата создания</th>
-                                        <th>Всего сумма списания</th>
-                                        <th>Сотрудник</th>
-                                        <th>Примечание</th>
-                                        <th>Статус</th>
-                                        <th>Фотографии отгрузки</th>
-                                    </tr>
+                                <tr>
+                                    <th class="first-th">№</th>
+                                    <th>Дата создания</th>
+                                    <th>Всего сумма списания</th>
+                                    <th>Сотрудник</th>
+                                    <th>Примечание</th>
+                                    <th>Статус</th>
+                                    <th>Фотографии отгрузки</th>
+                                </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
@@ -105,17 +106,17 @@
                                         <div class="column-table_checkbox-wrapp">
                                             <input class="column-table_checkbox ids" type="checkbox">
                                             <input type="hidden" th:value="${status.id}">
-                                        </span>
                                         </div>
                                     </td>
-                                    <td data-label="Дата создания" th:utext="${#temporals.format(status.created, 'dd-MM-yyyy HH:mm')}"></td>
+                                    <td data-label="Дата создания"
+                                        th:utext="${#temporals.format(status.created, 'dd-MM-yyyy HH:mm')}"></td>
                                     <td data-label="Всего сумма списания" th:utext="${status.priceOff}"></td>
                                     <td data-label="Сотрудник" th:utext="${status.employee}"></td>
                                     <td data-label="Примечание" th:utext="${status.note}"></td>
                                     <td data-label="Статус" th:utext="${status.statusTools.getValue()}"></td>
                                     <td data-label="Фотография отгрузки">
                                         <span class="column-table__photo-mini" th:each="photo : ${status.photos}">
-                                            <a  rel="modal:open"  th:href="${'#'+photoStat.count +''+ status.tools_id}">
+                                            <a rel="modal:open" th:href="${'#'+photoStat.count +''+ status.tools_id}">
                                                 <img class="column-table__photo-mini_img" th:src="${photo}">
                                                 <div th:id="${photoStat.count +''+ status.tools_id}" class="modal">
                                                     <img th:src="${photo}">
@@ -123,7 +124,6 @@
                                             </a>
                                         </span>
                                     </td>
-                                </tr>
                                 </tr>
                                 </tbody>
                             </table>
@@ -135,8 +135,10 @@
                                 <ul class="pagination">
                                     <li class="page-item" th:if="${list_statuses.totalPages > 0}"
                                         th:each="page_number : ${page_numbers}">
-                                        <a class="page-link-m page-link" th:href="@{/write-off(size=${list_statuses.size}, page=${page_numberStat.index})}"
-                                           th:text="${page_numberStat.index}" th:class="${page_number==list_statuses.number + 1} ? active"></a>
+                                        <a class="page-link-m page-link"
+                                           th:href="@{/write-off(size=${list_statuses.size}, page=${page_numberStat.index})}"
+                                           th:text="${page_numberStat.index}"
+                                           th:class="${page_number==list_statuses.number + 1} ? active"></a>
                                     </li>
                                 </ul>
                             </nav>
