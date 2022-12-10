@@ -1,11 +1,7 @@
 <!DOCTYPE html>
-<html
-  lang="en"
-  xmlns="http://www.w3.org/1999/xhtml"
-  xmlns:th="http://www.thymeleaf.org/"
-  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
->
-  <head class="head">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head class="head">
     <title>Владельцы</title>
     <div th:replace="fragments/head :: header"></div>
 
@@ -152,161 +148,119 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"
       th:href="@{/css/jquery.modal.css}"
     /> -->
-  </head>
+</head>
 
-  <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
+<body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
+<div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
     <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
-      <div
-        class="b-overlay-wrap position-relative w-100"
-        size="sm"
-        id="wrapper"
-      >
         <div th:insert="fragments/menu_sidebar.html"></div>
         <div class="b-overlay-wrap position-relative w-100" size="sm">
-          <div class="rih-page-wrapper">
-             <nav data-v-59295fda="" role="navigation" class="navbar navbar-admin navbar-fixed-top"
+            <div class="rih-page-wrapper">
+                <nav role="navigation" class="navbar navbar-admin navbar-fixed-top"
                      th:insert="fragments/header_logout.html"></nav>
-            <main class="wrapper wrapper-content">
-              <div class="b-overlay-wrap position-relative">
-                <div class="btn-pimary__groups mt-3 mb-3">
-                  <div class="btn-pimary__groups-wrapper vidacha-sozdach mb-3">
-                    <div class="mb-3 text-right">
-                      <span class="btn-pimary__groups_title">Владельцы</span>
+                <main class="wrapper wrapper-content">
+                    <div class="b-overlay-wrap position-relative">
+                        <div class="btn-pimary__groups mt-3 mb-3">
+                            <div class="btn-pimary__groups-wrapper vidacha-sozdach mb-3">
+                                <div class="mb-3 text-right">
+                                    <span class="btn-pimary__groups_title">Владельцы</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <form th:action="@{/owners}" method="post" th:object="${owner}"
+                                  style="margin: auto; width: 100%">
+                                <div class="p-3 col-8 col-md-12 edit-container d-block">
+                                    <div class="p-3 col-8 col-md-12 col-sm-6 edit-container d-block">
+                                        <div class="row form-creat__half-wrapp">
+                                            <div class="form-creat__half_two-column col-12">
+                                                <div role="group col-12" class="form-group">
+                                                    <label class="d-block font">Имя владельца</label>
+                                                    <div class="vdpComponent vdpWithInput">
+                                                        <input class="form-control" required="" type="text"
+                                                               th:field="*{name}" placeholder="Имя владельца"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row form-creat__half-wrapp">
+                                            <div class="form-creat__half_two-column">
+                                                <div role="group" class="form-group">
+                                                    <label class="d-block font">Код</label>
+                                                    <div class="vdpComponent vdpWithInput">
+                                                        <input class="form-control" required="" type="text"
+                                                               th:field="*{code}" placeholder="Код"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 mb-4 col-6 save-btn">
+                                        <div class="mt-4 mb-4 col-6 save-btn">
+                                            <div class="mb-3 text-center">
+                                                <button type="submit"
+                                                        class="btn btn-primary width btn-add_vidacha my-green">
+                                                    Сохранить
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="custom-ll__table table-responsive">
+                                <table class="table delivery w-table h-table in4dr-form transparent">
+                                    <thead>
+                                    <tr class="text-center">
+                                        <th class="first-th">#</th>
+                                        <th>Имя владельца</th>
+                                        <th>Код</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="text-center">
+                                    <tr th:each="owner : ${list_owner}">
+                                        <td class="column-table">
+                                            <div class="text-center" id="ids_tools">
+                                                <input type="hidden" class="id_tool" th:value="${owner.id}"/>
+                                                <span class="tools-td-text table-td-text column-table_checkbox-number tool_id"
+                                                      th:utext="${ownerStat.index+1}">
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td data-label="Имя владельца" class="align-middle">
+                                            <a class="nav-link" style="font-size: medium" th:utext="${owner.name}"
+                                               th:href="@{/owners/edit/{id}/(id=${owner.id})}">
+                                            </a>
+                                        </td>
+                                        <td data-label="Код" class="align-middle">
+                                            <h1 class="display-6" style="font-size: medium"
+                                                th:utext="${owner.code}"></h1>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="pagination-control col-lg-12 order-lg-1">
+                            <nav aria-label="Навигация по страницам">
+                                <ul class="pagination">
+                                    <li class="page-item" th:if="${list_estimates.totalPages > 0}"
+                                        th:each="page_number : ${page_numbers}">
+                                        <a class="page-link-m page-link"
+                                           th:href="@{/estimate-name(size=${list_estimates.size}, page=${page_numberStat.index})}"
+                                           th:text="${page_numberStat.index}"
+                                           th:class="${page_number==list_estimates.number + 1} ? active"></a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
                     </div>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <form
-                    th:action="@{/owners}"
-                    method="post"
-                    th:object="${owner}"
-                    style="margin: auto; width: 100%"
-                  >
-                    <div class="p-3 col-8 col-md-12 edit-container d-block">
-                      <div
-                        class="p-3 col-8 col-md-12 col-sm-6 edit-container d-block"
-                      >
-                        <div class="row form-creat__half-wrapp">
-                          <div class="form-creat__half_two-column col-12">
-                            <div role="group col-12" class="form-group">
-                              <label class="d-block font">Имя владельца</label>
-                              <div class="vdpComponent vdpWithInput">
-                                <input
-                                  class="form-control"
-                                  required=""
-                                  type="text"
-                                  th:field="*{name}"
-                                  placeholder="Имя владельца"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row form-creat__half-wrapp">
-                          <div class="form-creat__half_two-column">
-                            <div role="group" class="form-group">
-                              <label class="d-block font">Код</label>
-                              <div class="vdpComponent vdpWithInput">
-                                <input
-                                  class="form-control"
-                                  required=""
-                                  type="text"
-                                  th:field="*{code}"
-                                  placeholder="Код"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="mt-4 mb-4 col-6 save-btn">
-                        <div class="mt-4 mb-4 col-6 save-btn">
-                          <div class="mb-3 text-center">
-                            <button
-                              type="submit"
-                              class="btn btn-primary width btn-add_vidacha my-green"
-                            >
-                              Сохранить
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </form>
-
-                  <div class="custom-ll__table table-responsive">
-                    <table
-                      class="table delivery w-table h-table in4dr-form transparent"
-                    >
-                      <thead>
-                        <tr class="text-center">
-                          <th class="first-th">#</th>
-                          <th>Имя владельца</th>
-                          <th>Код</th>
-                        </tr>
-                      </thead>
-                      <tbody class="text-center">
-                        <tr th:each="owner : ${list_owner}">
-                          <td class="column-table">
-                            <div class="text-center" id="ids_tools">
-                              <input
-                                type="hidden"
-                                class="id_tool"
-                                th:value="${owner.id}"
-                              />
-                              <span
-                                class="tools-td-text table-td-text column-table_checkbox-number tool_id"
-                                th:utext="${ownerStat.index+1}"
-                              ></span>
-                            </div>
-                          </td>
-                          <td data-label="Имя владельца" class="align-middle">
-                            <a
-                              class="nav-link"
-                              style="font-size: medium"
-                              th:utext="${owner.name}"
-                              th:href="@{/owners/edit/{id}/(id=${owner.id})}"
-                            ></a>
-                          </td>
-                          <td data-label="Код" class="align-middle">
-                            <h1
-                              class="display-6"
-                              style="font-size: medium"
-                              th:utext="${owner.code}"
-                            ></h1>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-
-                <div class="pagination-control col-lg-12 order-lg-1">
-                  <nav aria-label="Навигация по страницам">
-                    <ul class="pagination">
-                      <li
-                        class="page-item"
-                        th:if="${list_estimates.totalPages > 0}"
-                        th:each="page_number : ${page_numbers}"
-                      >
-                        <a
-                          class="page-link-m page-link"
-                          th:href="@{/estimate-name(size=${list_estimates.size}, page=${page_numberStat.index})}"
-                          th:text="${page_numberStat.index}"
-                          th:class="${page_number==list_estimates.number + 1} ? active"
-                        ></a>
-                      </li>
-                    </ul>
-                  </nav>
-                </div>
-              </div>
-            </main>
-            <div th:insert="fragments/footer.html"></div>
-          </div>
+                </main>
+                <div th:insert="fragments/footer.html"></div>
+            </div>
         </div>
-      </div>
     </div>
-    <div th:insert="fragments/scripts.html"></div>
-  </body>
+</div>
+<div th:insert="fragments/scripts.html"></div>
+</body>
 </html>
