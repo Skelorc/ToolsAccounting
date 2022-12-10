@@ -1,10 +1,6 @@
 <!DOCTYPE html>
-<html
-  lang="en"
-  xmlns="http://www.w3.org/1999/xhtml"
-  xmlns:th="http://www.thymeleaf.org/"
->
-  <head class="head">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+<head class="head">
     <title>Редактирование пользователя</title>
     <div th:replace="fragments/head :: header"></div>
     <!-- <meta charset="UTF-8" />
@@ -150,145 +146,99 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"
       th:href="@{/css/jquery.modal.css}"
     /> -->
-  </head>
+</head>
 
-  <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
+<body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
+<div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
     <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
-      <div
-        class="b-overlay-wrap position-relative w-100"
-        size="sm"
-        id="wrapper"
-      >
         <div th:insert="fragments/menu_sidebar.html"></div>
         <div class="b-overlay-wrap position-relative w-100" size="sm">
-          <div class="rih-page-wrapper">
-             <nav  role="navigation" class="navbar navbar-admin navbar-fixed-top" th:insert="fragments/header_logout.html"></nav>
-            <main class="wrapper wrapper-content">
-              <div class="b-overlay-wrap position-relative">
-                <div class="tab-content">
-                  <div class="col-12 edit-container__header-select">
-                    <h2 class="login__heading">Изменить данные пользователя</h2>
-                  </div>
-                  <div class="col-12 form-creat mb-3 admin-panel">
-                    <div class="p-3 col-8 col-md-12">
-                      <div class="row admin-panel-wrapp">
-                        <div class="col-6 admin-panel__input-wrapp">
-                          <h2 class="font-size">Редактирование пользователя</h2>
-                          <form
-                            th:action="@{/admin-panel/edit/{id}(id=${user.id})}"
-                            method="post"
-                            th:object="${user}"
-                          >
-                            <div class="admin-panel__input-box">
-                              <div role="group" class="form-group">
-                                <label class="d-block size"
-                                  >Логин пользователя</label
-                                >
-                                <span>
-                                  <input
-                                    class="form-control"
-                                    type="text"
-                                    placeholder="Enter Username"
-                                    th:field="*{username}"
-                                    th:value="${user.getUsername()}"
-                                  />
-                                </span>
-                              </div>
+            <div class="rih-page-wrapper">
+                <nav role="navigation" class="navbar navbar-admin navbar-fixed-top"
+                     th:insert="fragments/header_logout.html"></nav>
+                <main class="wrapper wrapper-content">
+                    <div class="b-overlay-wrap position-relative">
+                        <div class="tab-content">
+                            <div class="col-12 edit-container__header-select">
+                                <h2 class="login__heading">Изменить данные пользователя</h2>
                             </div>
-                            <div class="admin-panel__input-box">
-                              <div role="group" class="form-group">
-                                <label class="d-block size"
-                                  >Обновить пароль пользователя</label
-                                >
-                                <span>
-                                  <input
-                                    class="form-control"
-                                    type="password"
-                                    placeholder="Enter Password"
-                                    th:field="*{password}"
-                                    th:value="${user.getPassword()}"
-                                  />
-                                </span>
-                              </div>
+                            <div class="col-12 form-creat mb-3 admin-panel">
+                                <div class="p-3 col-8 col-md-12">
+                                    <div class="row admin-panel-wrapp">
+                                        <div class="col-6 admin-panel__input-wrapp">
+                                            <h2 class="font-size">Редактирование пользователя</h2>
+                                            <form th:action="@{/admin-panel/edit/{id}(id=${user.id})}" method="post"
+                                                  th:object="${user}">
+                                                <div class="admin-panel__input-box">
+                                                    <div role="group" class="form-group">
+                                                        <label class="d-block size">Логин пользователя</label>
+                                                        <input class="form-control" type="text"
+                                                               placeholder="Enter Username"
+                                                               th:field="*{username}" th:value="${user.getUsername()}"/>
+                                                    </div>
+                                                </div>
+                                                <div class="admin-panel__input-box">
+                                                    <div role="group" class="form-group">
+                                                        <label class="d-block size">Обновить пароль пользователя</label>
+                                                        <input class="form-control" type="password"
+                                                               placeholder="Enter Password"
+                                                               th:field="*{password}" th:value="${user.getPassword()}"/>
+                                                    </div>
+                                                </div>
+                                                <div class="admin-panel__input-box">
+                                                    <div role="group" class="form-group">
+                                                        <label class="d-block size">Обновить ФИО пользователя</label>
+                                                        <input class="form-control" type="text"
+                                                               placeholder="Введите ФИО"
+                                                               th:field="*{fullName}" th:value="${user.getFullName()}"/>
+                                                    </div>
+                                                </div>
+                                                <label class="d-block">Выберите новую роль</label>
+                                                <div class="admin-panel__select select">
+                                                    <select th:field="*{roles}">
+                                                        <option class="vs__selected my-select" selected disabled
+                                                                th:value="${user.getRoles()}"
+                                                                th:text="${'Текущая роль - '+ user.getRoles().getValue()}">
+                                                        </option>
+                                                        <option class="vs__selected" th:each="role : ${roles}"
+                                                                th:value="${role}"
+                                                                th:text="${role}"
+                                                                value="role">
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div class="login__button-position">
+                                                    <button class="admin-panel__btn my-green" type="submit"
+                                                            value="submit">
+                                                        Обновить
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="admin-panel__input-box">
-                              <div role="group" class="form-group">
-                                <label class="d-block size"
-                                  >Обновить ФИО пользователя</label
-                                >
-                                <span>
-                                  <input
-                                    class="form-control"
-                                    type="text"
-                                    placeholder="Введите ФИО"
-                                    th:field="*{fullName}"
-                                    th:value="${user.getFullName()}"
-                                  />
-                                </span>
-                              </div>
-                            </div>
-                            <label class="d-block">Выберите новую роль</label>
-                            <div class="admin-panel__select select">
-                              <select th:field="*{roles}">
-                                <option
-                                  class="vs__selected my-select"
-                                  selected
-                                  disabled
-                                  th:value="${user.getRoles()}"
-                                  th:text="${'Текущая роль - '+ user.getRoles().getValue()}"
-                                ></option>
-                                <option
-                                  class="vs__selected"
-                                  th:each="role : ${roles}"
-                                  th:value="${role}"
-                                  th:text="${role}"
-                                  value="role"
-                                ></option>
-                              </select>
-                              <span class="focus"></span>
-                            </div>
-                            <div class="login__button-position">
-                              <button
-                                class="admin-panel__btn my-green"
-                                type="submit"
-                                value="submit"
-                              >
-                                Обновить
-                              </button>
-                            </div>
-                          </form>
                         </div>
-                      </div>
+                        <div class="tab-content">
+                            <div class="col-md-12 col-8 p-3 edit-container">
+                                <div class="text-center">
+                                    <h1 class="display-6 font-size">
+                                        Хотите удалить этого пользователя?
+                                    </h1>
+                                    <form th:method="post" th:action="@{/admin-panel/delete/{id}(id=${user.getId()})}">
+                                        <input style="border: none; padding: 10px" class="my-red" type="submit"
+                                               value="Удалить этого пользователя из базы данных!"/>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                </div>
-                <div class="tab-content">
-                  <div class="col-md-12 col-8 p-3 edit-container">
-                    <div class="text-center">
-                      <h1 class="display-6 font-size">
-                        Хотите удалить этого пользователя?
-                      </h1>
-                      <form
-                        th:method="post"
-                        th:action="@{/admin-panel/delete/{id}(id=${user.getId()})}"
-                      >
-                        <input
-                          style="border: none; padding: 10px"
-                          class="my-red"
-                          type="submit"
-                          value="Удалить этого пользователя из базы данных!"
-                        />
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </main>
-            <div th:insert="fragments/footer.html"></div>
-          </div>
+                </main>
+                <div th:insert="fragments/footer.html"></div>
+            </div>
         </div>
-      </div>
     </div>
-    <div th:insert="fragments/scripts.html"></div>
-  </body>
+</div>
+<div th:insert="fragments/scripts.html"></div>
+</body>
 </html>
