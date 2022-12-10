@@ -66,7 +66,7 @@
         <div th:insert="fragments/menu_sidebar.html"></div>
         <div class="b-overlay-wrap position-relative w-100" size="sm">
             <div class="rih-page-wrapper">
-                 <nav data-v-59295fda="" role="navigation" class="navbar navbar-admin navbar-fixed-top"
+                <nav data-v-59295fda="" role="navigation" class="navbar navbar-admin navbar-fixed-top"
                      th:insert="fragments/header_logout.html"></nav>
                 <main class="wrapper wrapper-content">
                     <div class="b-overlay-wrap position-relative">
@@ -79,19 +79,15 @@
                         </div>
 
                         <div class="row">
-
                             <form th:action="@{/estimate-name}" method="post" th:object="${estimateName}"
                                   style="margin: auto; width: 100%;">
                                 <div class="p-3 col-8 col-md-12 edit-container d-block">
-
                                     <div class="p-3 col-8 col-md-12 col-sm-6 edit-container d-block">
-
                                         <div class="row form-creat__half-wrapp">
                                             <div class=" form-creat__half_two-column col-12">
                                                 <div role="group col-12" class="form-group">
                                                     <label class="d-block font">Наименование в смете</label>
                                                     <div class="vdpComponent vdpWithInput">
-
                                                         <input class="form-control" required="" type="text"
                                                                th:field="*{name}"
                                                                placeholder="Наименование в смете">
@@ -198,6 +194,7 @@
                                 </ul>
                             </nav>
                         </div>
+                    </div>
                 </main>
                 <div th:insert="fragments/footer.html"></div>
             </div>
