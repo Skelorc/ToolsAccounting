@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<html
-  lang="en"
-  xmlns="http://www.w3.org/1999/xhtml"
-  xmlns:th="http://www.thymeleaf.org/"
->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
   <head class="head">
     <title>Отчеты</title>
     <div th:replace="fragments/head :: header"></div>
@@ -160,126 +156,59 @@
 
   <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
     <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
-      <div
-        class="b-overlay-wrap position-relative w-100"
-        size="sm"
-        id="wrapper"
-      >
+      <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
         <div th:insert="fragments/menu_sidebar.html"></div>
         <div class="b-overlay-wrap position-relative w-100" size="sm">
           <div class="rih-page-wrapper">
-             <nav
-              role="navigation"
-              class="navbar navbar-admin navbar-fixed-top"
-              th:insert="fragments/header_logout.html"
-            ></nav>
+             <nav role="navigation" class="navbar navbar-admin navbar-fixed-top" th:insert="fragments/header_logout.html"></nav>
             <main class="wrapper wrapper-content">
               <div class="b-overlay-wrap position-relative" size="sm">
                 <div class="row">
                   <div class="btn-pimary__groups-wrapper mb-3">
                     <div class="mb-3 text-right">
-                      <a href="#" class="btn btn-primary width my-green"
-                        >Проекты</a
-                      >
+                      <a href="#" class="btn btn-primary width my-green">Проекты</a>
                     </div>
                     <div class="mb-3 text-right">
                       <a href="#" class="btn btn-primary width my-red">Общий</a>
                     </div>
                     <div class="mb-3 text-right">
-                      <a href="#" class="btn btn-primary width my-yellow"
-                        >Оборудование</a
-                      >
+                      <a href="#" class="btn btn-primary width my-yellow">Оборудование</a>
                     </div>
                     <div class="mb-3 text-right">
-                      <a href="#" class="btn btn-primary width my-yellow"
-                        >Оборудование на проектах</a
-                      >
+                      <a href="#" class="btn btn-primary width my-yellow">Оборудование на проектах</a>
                     </div>
-                    <div data-v-8271a922="" class="rent__time">
-                      <span data-v-8271a922="" class="rent__time__group__label">
-                        <!-- <svg data-v-8271a922="" class="svg-inline--fa fa-clock fa-w-16 mr-2"
-                                                aria-hidden="true" focusable="false" data-prefix="far"
-                                                data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 512 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z">
-                                                </path>
-                                            </svg> -->
-                        <!-- <i data-v-8271a922="" class="far fa-clock mr-2"></i> Font Awesome fontawesome.com -->
-                        Даты с:
-                      </span>
-                      <div
-                        data-v-8271a922=""
-                        class="rent__time__group"
-                        style="margin-left: -5px"
-                      >
-                        <div
-                          data-v-8271a922=""
-                          class="vdatetime w-100 form-control"
-                        >
-                          <input
-                            type="date"
-                            class="vdatetime-input"
-                            placeholder=""
-                            style="background-color: transparent; color: #fff"
-                          />
+                    <div class="rent__time">
+                      <div class="rent__time__group" style="margin-left: -5px">
+                        <div class="vdatetime w-100 form-control">
+                          <input type="date" class="vdatetime-input" placeholder="" style="background-color: transparent; color: #fff"/>
                         </div>
                       </div>
                     </div>
-                    <div data-v-8271a922="" class="rent__time">
-                      <span data-v-8271a922="" class="rent__time__group__label">
-                        <!-- <svg data-v-8271a922="" class="svg-inline--fa fa-clock fa-w-16 mr-2"
-                                                aria-hidden="true" focusable="false" data-prefix="far"
-                                                data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 512 512" data-fa-i2svg="">
-                                                <path fill="currentColor"
-                                                    d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z">
-                                                </path>
-                                            </svg> -->
-                        <!-- <i data-v-8271a922="" class="far fa-clock mr-2"></i> Font Awesome fontawesome.com -->
+                    <div class="rent__time">
+                      <span class="rent__time__group__label">
                         Даты по:
                       </span>
-                      <div
-                        data-v-8271a922=""
-                        class="rent__time__group"
-                        style="margin-left: -5px"
-                      >
-                        <div
-                          data-v-8271a922=""
-                          class="vdatetime w-100 form-control"
-                        >
-                          <input
-                            type="date"
-                            class="vdatetime-input"
-                            placeholder=""
-                            style="background-color: transparent; color: #fff"
-                          />
+                      <div class="rent__time__group" style="margin-left: -5px">
+                        <div class="vdatetime w-100 form-control">
+                          <input type="date" class="vdatetime-input" placeholder="" style="background-color: transparent; color: #fff"/>
                         </div>
                       </div>
                     </div>
                     <div class="mb-3 text-right">
-                      <a href="#" class="btn btn-primary width my-yellow"
-                        >Календарь</a
-                      >
+                      <a href="#" class="btn btn-primary width my-yellow">Календарь</a>
                     </div>
                     <div class="mb-3 text-right">
-                      <a href="#" class="btn btn-primary width my-yellow"
-                        >Обновить</a
-                      >
+                      <a href="#" class="btn btn-primary width my-yellow">Обновить</a>
                     </div>
                     <div class="mb-3 text-right">
-                      <a href="#" class="btn btn-primary width пкун my-yellow"
-                        >Экспорт</a
-                      >
+                      <a href="#" class="btn btn-primary width пкун my-yellow">Экспорт</a>
                     </div>
                   </div>
 
                   <!-- Таблица проекты -->
                   <div class="order-lg-1 overflow-auto col-12">
                     <div class="custom-ll__table table-responsive">
-                      <table
-                        class="table w-table h-table delivery in4dr-form transparent"
-                      >
+                      <table class="table w-table h-table delivery in4dr-form transparent">
                         <tbody>
                           <tr>
                             <th class="first-th">#</th>
@@ -297,23 +226,13 @@
                           <tr>
                             <td class="column-table">
                               <div class="column-table_checkbox-wrapp">
-                                <input
-                                  class="column-table_checkbox ids"
-                                  type="checkbox"
-                                />
+                                <input class="column-table_checkbox ids" type="checkbox"/>
                                 <input type="text" hidden="hidden" value="1" />
-                                <span
-                                  class="tools-td-text table-td-text column-table_checkbox-number"
-                                  >1</span
-                                >
+                                <span class="tools-td-text table-td-text column-table_checkbox-number">1</span>
                               </div>
                             </td>
                             <td data-label="Проект">
-                              <a
-                                href="/projects/edit/1/"
-                                title="Редактирование проекта"
-                                >"крутой проект"</a
-                              >
+                              <a href="/projects/edit/1/" title="Редактирование проекта">"крутой проект"</a>
                             </td>
                             <td data-label="Клиент">Иванов сергей</td>
                             <td data-label="Телефон">+79887555454</td>
