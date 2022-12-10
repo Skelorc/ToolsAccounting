@@ -66,7 +66,7 @@
         <div th:insert="fragments/menu_sidebar.html"></div>
         <div class="b-overlay-wrap position-relative w-100" size="sm">
             <div class="rih-page-wrapper">
-                 <nav role="navigation" class="navbar navbar-admin navbar-fixed-top"
+                <nav role="navigation" class="navbar navbar-admin navbar-fixed-top"
                      th:insert="fragments/header_logout.html"></nav>
                 <main class="wrapper wrapper-content">
                     <div class="b-overlay-wrap position-relative">
@@ -97,7 +97,8 @@
                                         </div>
                                         <div class="mt-1 rent__client__selector mb-3">
                                             <div dir="auto" class="v-select vs--single vs--searchable">
-                                                <select class="vs__selected-options main-secect__opions form-control executor my-select" id="sale_data" required>
+                                                <select class="vs__selected-options main-secect__opions form-control executor my-select"
+                                                        id="sale_data" required>
                                                     <option class="vs__selected vs__dropdown-toggle"
                                                             value="" disabled>Выберите покупателя>
                                                     </option>
@@ -112,19 +113,15 @@
                                         <div class="form-creat__half_two-column">
                                             <div role="group" class="form-group">
                                                 <label class="d-block">Примечание</label>
-                                                <span>
-                                                    <textarea id="note_sale" name="note" class="form-control"
-                                                              style="height: 40px;"></textarea>
-                                                </span>
+                                                <textarea id="note_sale" name="note" class="form-control"
+                                                          style="height: 40px;"></textarea>
                                             </div>
                                         </div>
                                         <div class=" form-creat__half_two-column">
                                             <div role="group" class="form-group">
                                                 <label class="d-block">Фотографии</label>
-                                                <span>
-                                                    <textarea id="photos_sale" name="photos" class="form-control"
-                                                              style="height: 40px;"></textarea>
-                                                </span>
+                                                <textarea id="photos_sale" name="photos" class="form-control"
+                                                          style="height: 40px;"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -232,7 +229,8 @@
                         <div class="btn-pimary__groups mt-3 mb-3">
                             <div class="btn-pimary__groups-wrapper mb-3">
                                 <div class="mb-3 text-right">
-                                    <input id="sale_on" type="submit" value="В продажу" class="btn btn-primary width my-yellow">
+                                    <input id="sale_on" type="submit" value="В продажу"
+                                           class="btn btn-primary width my-yellow">
                                 </div>
                             </div>
                         </div>
@@ -251,6 +249,7 @@
                                 </ul>
                             </nav>
                         </div>
+                    </div>
                 </main>
                 <div th:insert="fragments/footer.html"></div>
             </div>
