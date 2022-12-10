@@ -138,75 +138,51 @@
         <div class="b-overlay-wrap position-relative w-100" size="sm">
 
             <div class="rih-page-wrapper">
-                <nav
-                        role="navigation"
-                        class="navbar navbar-admin navbar-fixed-top"
-                        th:insert="fragments/header_logout.html">
+                <nav role="navigation" class="navbar navbar-admin navbar-fixed-top"
+                     th:insert="fragments/header_logout.html">
                 </nav>
-
                 <main class="wrapper wrapper-content">
                     <div class="b-overlay-wrap position-relative" size="sm">
                         <div class="project__creat mb-3">
-                            <div
-                                    class="btn-pimary__groups-wrapper vidacha-sozdach mb-3 vidacha-sozdach"
-                            >
+                            <div class="btn-pimary__groups-wrapper vidacha-sozdach mb-3 vidacha-sozdach">
                                 <div class="mb-3 text-right">
                                     <span class="btn-pimary__groups_title">Проект</span>
                                 </div>
                                 <div class="mb-3 text-right">
-                                    <a href="/" class="btn btn-primary width my-yellow"
-                                    >Назад</a
-                                    >
+                                    <a href="/" class="btn btn-primary width my-yellow">Назад</a>
                                 </div>
                             </div>
-
                             <div class="p-3 edit-container d-block col-8 col-md-12">
                                 <div class="row form-creat__half-wrapp">
                                     <div class="form-creat__half_two-column">
                                         <div role="group" class="form-group">
                                             <label class="d-block size">Статус</label>
-                                            <select
-                                                    id="status"
-                                                    name="status_tool"
+                                            <select id="status" name="status_tool"
                                                     class="vs__selected-options main-secect__opions form-control my-select"
-                                                    required
-                                            >
+                                                    required>
                                                 <option class="vs__selected vs__dropdown-toggle my-select">
                                                     Выберите статус проекта
                                                 </option>
-                                                <option
-                                                        class="vs__selected vs__dropdown-toggle"
+                                                <option class="vs__selected vs__dropdown-toggle"
                                                         th:each="status: ${T(wns.constants.StatusProject).values()}"
                                                         th:value="${status}"
-                                                        th:text="${status.getStatus()}"
-                                                ></option>
+                                                        th:text="${status.getStatus()}">
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-creat__half_two-column">
                                         <div role="group" class="form-group">
                                             <label class="d-block size">Наименование</label>
-                                            <span>
-                            <input
-                                    id="name"
-                                    placeholder="Имя проекта"
-                                    name="fromComing"
-                                    type="text"
-                                    class="form-control"
-                                    required
-                            />
-                          </span>
+                                            <input id="name" placeholder="Имя проекта" name="fromComing" type="text"
+                                                   class="form-control" required/>
                                         </div>
                                     </div>
                                     <div class="form-creat__half_two-column">
                                         <div role="group" class="form-group">
                                             <label class="d-block size">Выберите рабочие смены</label>
                                             <div class="vdpComponent vdpWithInput">
-                                                <input
-                                                        id="word_date"
-                                                        class="form-control form-control-date"
-                                                        required
-                                                />
+                                                <input id="word_date" class="form-control form-control-date" required/>
                                             </div>
                                         </div>
                                     </div>
@@ -223,15 +199,9 @@
                                     </script>
                                     <div class="form-creat__half_two-column">
                                         <div class="form-group">
-                                            <label class="d-block size"
-                                            >Укажите ссылки на фото через запятую</label
-                                            >
-                                            <textarea
-                                                    id="photos"
-                                                    name="photos"
-                                                    class="form-control"
-                                                    style="height: 40px"
-                                            ></textarea>
+                                            <label class="d-block size">Укажите ссылки на фото через запятую</label>
+                                            <textarea id="photos" name="photos" class="form-control"
+                                                      style="height: 40px"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -239,34 +209,28 @@
                                     <div class="form-creat__half_two-column">
                                         <div role="group" class="form-group">
                                             <label class="d-block size">Собственник</label>
-                                            <select
-                                                    class="vs__selected-options main-secect__opions form-control my-select"
-                                                    id="typeLease"
-                                                    required
-                                            >
+                                            <select class="vs__selected-options main-secect__opions form-control my-select"
+                                                    id="typeLease" required>
                                                 <option
                                                         class="vs__selected vs__dropdown-toggle"
                                                         th:each="type: ${T(wns.constants.TypeLease).values()}"
                                                         th:value="${type}"
-                                                        th:text="${type.getType()}"
-                                                ></option>
+                                                        th:text="${type.getType()}">
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-creat__half_two-column">
                                         <div role="group" class="form-group">
                                             <label class="d-block size">Класс</label>
-                                            <select
-                                                    class="vs__selected-options main-secect__opions form-control my-select"
-                                                    id="classification"
-                                                    required
-                                            >
+                                            <select class="vs__selected-options main-secect__opions form-control my-select"
+                                                    id="classification" required>
                                                 <option
                                                         class="vs__selected vs__dropdown-toggle"
                                                         th:each="classification: ${T(wns.constants.ClassificationProject).values()}"
                                                         th:value="${classification}"
-                                                        th:text="${classification.getValue()}"
-                                                ></option>
+                                                        th:text="${classification.getValue()}">
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
@@ -274,13 +238,8 @@
                                         <div role="group" class="form-group">
                                             <label class="d-block size">Создан</label>
                                             <div class="vdpComponent vdpWithInput">
-                                                <input
-                                                        id="created"
-                                                        class="form-control"
-                                                        type="datetime-local"
-                                                        placeholder="дд.мм.гггг"
-                                                        required
-                                                />
+                                                <input id="created" class="form-control" type="datetime-local"
+                                                       placeholder="дд.мм.гггг" required/>
                                                 <script th:inline="javascript">
                                                     var date = new Date();
                                                     var day = date.getDate();
@@ -294,7 +253,7 @@
                                                     if (hour < 10) hour = '0' + hour;
                                                     if (minutes < 10) minutes = '0' + minutes;
 
-                                                    $("#created").val(year+"-"+month+"-"+day+"T"+hour+":"+minutes);
+                                                    $("#created").val(year + "-" + month + "-" + day + "T" + hour + ":" + minutes);
                                                 </script>
                                             </div>
                                         </div>
@@ -343,31 +302,25 @@
 
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Себестоимость оборудования</label>
-                                                <span>
-                                                    <input id="priceTools" type="text" class="form-control"
-                                                           placeholder=""
-                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');">
-                                                </span>
+                                                <input id="priceTools" type="text" class="form-control"
+                                                       placeholder=""
+                                                       oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');">
                                             </div>
                                         </div>
                                         <div class="form-creat__half_two-column">
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Скидка на проект</label>
-                                                <span>
-                                                    <input id="discountByProject" type="text"
-                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
-                                                           class="form-control" placeholder="">
-                                                </span>
+                                                <input id="discountByProject" type="text"
+                                                       oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
+                                                       class="form-control" placeholder="">
                                             </div>
                                         </div>
                                         <div class="form-creat__half_two-column">
                                             <div role="group" class="form-group">
                                                 <label class="d-block size">Сумма со скидкой</label>
-                                                <span>
-                                                    <input id="sumWithDiscount" type="text"
-                                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
-                                                           class="form-control" placeholder="">
-                                                </span>
+                                                <input id="sumWithDiscount" type="text"
+                                                       oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
+                                                       class="form-control" placeholder="">
                                             </div>
                                         </div>
 
@@ -523,7 +476,6 @@
                                             <a href="#" class="btn btn-primary width my-red">Удалить</a>
                                         </div>
 
-
                                         <div class="pagination-control col-lg-12 order-lg-1">
                                             <!-- Bootstrap 4 -->
                                             <nav aria-label="Навигация по страницам">
@@ -538,12 +490,9 @@
                                                 </ul>
                                             </nav>
                                         </div>
-
                                     </div>
-
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </main>
