@@ -40,6 +40,6 @@ public class SaleController {
         model.addAttribute("clients", clientsService.getAll());
         model.addAttribute("list_tools", paginated);
         model.addAttribute("status", new StatusToolDTO());
-        return "sale_create";
+        return "create_sale";
     }
 }

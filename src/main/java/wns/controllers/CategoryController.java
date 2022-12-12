@@ -45,7 +45,7 @@ public class CategoryController {
     public String edit(@PathVariable("id") long id, Model model)
     {
         model.addAttribute("category",categoryService.getById(id));
-        return "category_edit";
+        return "edit_category";
     }
 
     @PostMapping("/edit/{id}")

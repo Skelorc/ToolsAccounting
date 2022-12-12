@@ -44,7 +44,7 @@ public class EstimateNameController {
     public String edit(@PathVariable long id, Model model)
     {
         model.addAttribute("estimateName",estimateNameService.getNameEstimateById(id));
-        return "estimate_name_edit";
+        return "edit_estimate_name";
     }
 
     @PostMapping("/edit/{id}")

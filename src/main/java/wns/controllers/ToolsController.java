@@ -52,7 +52,7 @@ public class ToolsController {
         model.addAttribute("list_owners", ownerService.getAll());
         model.addAttribute("list_category", categoryService.getAll());
         model.addAttribute("list_names_estimate", estimateNameService.getAll());
-        return "tool_create";
+        return "create_tool";
     }
 
     @PostMapping("/create")

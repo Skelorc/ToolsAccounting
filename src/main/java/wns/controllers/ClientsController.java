@@ -49,7 +49,7 @@ public class ClientsController {
     public String creatingClient(Model model) {
         model.addAttribute("client", new ClientDTO());
         model.addAttribute("roles_client", roleClientService.getAll());
-        return "client_create";
+        return "create_client";
     }
 
     @PostMapping("/create")
@@ -70,7 +70,7 @@ public class ClientsController {
         model.addAttribute("client", client);
         model.addAttribute("list_projects", paginated_list);
         model.addAttribute("roles_client", roleClientService.getAll());
-        return "client_create";
+        return "create_client";
     }
 
     @PostMapping("/edit/{id}")

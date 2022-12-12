@@ -42,6 +42,6 @@ public class OffsController {
         model.addAttribute("list_tools", paginated);
         model.addAttribute("status", new StatusToolDTO());
         model.addAttribute("message", message);
-        return "write_off_create";
+        return "create_write_off";
     }
 }

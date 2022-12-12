@@ -43,7 +43,7 @@ public class EstimateController {
         Estimate estimate = project.getEstimate();
         model.addAttribute("estimate", estimate);
         model.addAttribute("map_tools", estimateService.getToolsEstimate(estimate));
-        return "estimate_create";
+        return "create_estimate";
     }
 
     @PostMapping("/create/{id}")

@@ -58,7 +58,7 @@ public class ProjectsController {
         model.addAttribute("clients", clientsService.getAll());
         model.addAttribute("list_tools", paginated_list);
         model.addAttribute("projectDTO", new ProjectDTO());
-        return "project_create";
+        return "create_project";
     }
 
     @PostMapping("/projects/create")

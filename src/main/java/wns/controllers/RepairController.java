@@ -49,7 +49,7 @@ public class RepairController {
         pageableFilterService.addPageNumbersToModel(paginated, model);
         model.addAttribute("clients", clientsService.getAll());
         model.addAttribute("list_tools", paginated);
-        return "repair_create";
+        return "create_repair";
     }
 
     @PostMapping("/create")
