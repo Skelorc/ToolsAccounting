@@ -9,6 +9,7 @@ import wns.constants.TypeTools;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -41,35 +42,11 @@ public class Tools{
     private int amount;
     private String state;
 
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "status_tools_id",referencedColumnName = "id",nullable = false)
-    private Status status;
 
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "projects_id")
-    private Project project;
-
-
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "owners_id")
-    private Owner owner;
-
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "estimate_name_id")
-    private EstimateName estimateName;
     @Enumerated(EnumType.STRING)
     private EstimateSection section;
 
-    @Column(columnDefinition = "TEXT")
-    private String comment;
+
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private LocalDate creating;
 
@@ -98,9 +75,41 @@ public class Tools{
     @Column(name = "income_additional")
     private int incomeAdditional;
 
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "status_tools_id",referencedColumnName = "id",nullable = false)
+    private Status status;
+
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "projects_id")
+    private Project project;
+
+
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "owners_id")
+    private Owner owner;
+
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "estimate_name_id")
+    private EstimateName estimateName;
+
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @OneToMany(mappedBy = "tools", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Comments> commentsList;
+
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "photos_tools", joinColumns = @JoinColumn(name = "tools_id"))
     @Column(columnDefinition = "TEXT")
     private Set<String> photos = new HashSet<>();
+
+
 
 }

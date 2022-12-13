@@ -5,6 +5,19 @@ $(document).ready(function(){
         format: 'dd-mm-yyyy'
     });
 
+    $('body').on('click','tr', function(){
+        if(this.textContent == 'Ð’Ñ‹Ð±Ñ€Ð°Ñ‚ÑŒ Ñ‚ÐµÐºÑƒÑ‰Ð¸Ð¹ Ð¼ÐµÑÑÑ†'){
+            var counter = 1;
+            $('body .custom-day__date').each(function() {
+                var curDate = parseInt($(this).text());
+                if(curDate <= counter && curDate >= counter){
+                    counter = counter + 1;
+                    $(this).parent().find('.clc_dt').click();
+                }
+            });
+        }
+    });
+
     $('body').on('click','.clc_dt', function(){
         var curDate = $(this).attr('data-time');
         var curClass = $(this).attr('class');

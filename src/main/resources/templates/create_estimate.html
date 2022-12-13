@@ -90,7 +90,7 @@
                                     </tr>
                                     <tr>
                                         <th colspan="3">Количество смен:</th>
-                                        <td colspan="3"><span class="table-td-text" th:text="${estimate.count_shifts}">Посчет исходя из дат проекта</span>
+                                        <td colspan="3"><input class="table-td-text" th:value="${estimate.count_shifts}" th:text="${estimate.count_shifts}">Посчет исходя из дат проекта</input>
                                         </td>
                                     </tr>
                                     <tr>
@@ -103,8 +103,20 @@
                                     </tr>
                                     <tr>
                                         <th>Оператор:</th>
-                                        <td colspan="5"><span class="table-td-text"
-                                                              th:text="${estimate.project.client.directorOfPhotography}">Постановка из карточки контакта</span>
+                                        <td colspan="5">
+                                            <label class="d-block size">Оператор:</label>
+                                            <select id="status" name="status_tool"
+                                                    class="vs__selected-options main-secect__opions form-control my-select"
+                                                    required>
+                                                <option class="vs__selected vs__dropdown-toggle my-select">
+                                                    Выберите оператора
+                                                </option>
+                                                <option class="vs__selected vs__dropdown-toggle"
+                                                        th:each="operator: ${list_clients}"
+                                                        th:value="${operator}"
+                                                        th:text="${operator.fullName}">
+                                                </option>
+                                            </select>
                                         </td>
                                     </tr>
                                     <tr>
@@ -172,7 +184,7 @@
                                     </div>
                                     <tr>
                                         <td rowspan="4" class="first-th"></td>
-                                        <th colspan="3">Всего по проекту:</th>
+                                        <th colspan="3">Всего за проекту:</th>
                                         <td colspan="4">
                                             <span class="table-td-text ">
                                             <input required="" type="text"
@@ -195,7 +207,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th colspan="3">Всего по проекту с учетом скидки:</th>
+                                        <th colspan="3">Всего за проект с учетом скидки:</th>
                                         <td colspan="4">
                                             <span class="table-td-text">
                                                 <input required="" type="text"

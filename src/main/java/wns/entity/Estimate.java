@@ -29,6 +29,7 @@ public class Estimate {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate end;
     private int count_shifts;
+    private String operator;
     @Column(name = "all_by_project")
     private long allByProject;
     @Column(name = "discount_by_tools")

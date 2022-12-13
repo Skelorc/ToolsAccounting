@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
 <head class="head">
-    <title>Клиенты</title>
+    <title>Контакты</title>
     <div th:replace="fragments/head :: header"></div>
-
     <!-- <meta charset="UTF-8" />
     <meta
       name="viewport"
@@ -161,7 +160,7 @@
                     <div class="col-8 col-md-12">
                         <div class="btn-pimary__groups-wrapper vidacha-sozdach mb-3 paddin-l-r-15">
                             <div class="mb-3 text-right">
-                                <a href="/clients/create" th:href="@{/clients/create}"
+                                <a href="/clients/create" th:href="@{/contacts/create}"
                                    class="btn btn-primary width btn-add_vidacha my-green">Создать</a>
                             </div>
                         </div>
@@ -170,7 +169,7 @@
                                 <div class="custom-ll__header" style="margin-left: -40px">
                                     <div class="custom-ll__header__full show">
                                         <div class="custom-ll__header__full__right">
-                                            <form class="custom-ll__header-form" th:action="@{/clients}" method="post">
+                                            <form class="custom-ll__header-form" th:action="@{/contacts}" method="post">
                                                 <div class="custom-ll__header-wrapp">
                                                     <div class="header__search header__search_width header__search_width-clients"
                                                          style="width: 365px">
@@ -190,33 +189,33 @@
                                         </div>
                                     </div>
                                 </div>
-                                 <div class="pagination-control col-lg-12 order-lg-1">
-                                   <div class="btn__under-table">
-                                     <div class="mb-3 text-right" style="margin-right: 50px">
-                                       <a href="/clients" class="btn btn-primary width btn-add_vidacha my-yellow">Все</a>
-                                     </div>
-                                     <div class="mb-3 text-right">
-                                       <a href="#" th:href="@{/clients(filter=individual)}"
-                                         class="btn btn-primary width btn-open_vidacha my-yellow">Физ.лица</a>
-                                     </div>
-                                     <div  class="mb-3 text-right">
-                                       <a
-                                         href="#"
-                                         th:href="@{/clients(filter=legal)}"
-                                         class="btn btn-primary width btn-delate_vidacha my-yellow"
-                                         >Юр.лица</a
-                                       >
-                                     </div>
-                                     <div class="mb-3 text-right">
-                                       <a
-                                         href="#"
-                                         th:href="@{/clients(filter=blacklist)}"
-                                         class="btn btn-primary width btn-update_vidacha my-yellow"
-                                         >Черный список</a
-                                       >
-                                     </div>
-                                   </div>
-                                 </div>
+                                <div class="pagination-control col-lg-12 order-lg-1">
+                                    <div class="btn__under-table">
+                                        <div class="mb-3 text-right" style="margin-right: 50px">
+                                            <a href="/clients" class="btn btn-primary width btn-add_vidacha my-yellow">Все</a>
+                                        </div>
+                                        <div class="mb-3 text-right">
+                                            <a href="#" th:href="@{/contacts(filter=individual)}"
+                                               class="btn btn-primary width btn-open_vidacha my-yellow">Физ.лица</a>
+                                        </div>
+                                        <div  class="mb-3 text-right">
+                                            <a
+                                                    href="#"
+                                                    th:href="@{/contacts(filter=legal)}"
+                                                    class="btn btn-primary width btn-delate_vidacha my-yellow"
+                                            >Юр.лица</a
+                                            >
+                                        </div>
+                                        <div class="mb-3 text-right">
+                                            <a
+                                                    href="#"
+                                                    th:href="@{/contacts(filter=blacklist)}"
+                                                    class="btn btn-primary width btn-update_vidacha my-yellow"
+                                            >Черный список</a
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="pagination-control col-lg-12 order-lg-1">
                                     <div class="custom-ll__table table-responsive overflow-auto">
@@ -234,7 +233,7 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr th:each="clientDTO : ${list_clients}">
+                                       <!--     <tr th:each="clientDTO : ${list_clients}">
                                                 <td class="column-table">
                                                     <div class="column-table_checkbox-wrapp">
                                                         <input class="column-table_checkbox" type="checkbox" id=""
@@ -272,7 +271,7 @@
                                                     <span class="tools-td-text table-td-text"
                                                           th:utext="${clientDTO.inBlackList}"></span>
                                                 </td>
-                                            </tr>
+                                            </tr>-->
                                             </tbody>
                                         </table>
                                     </div>

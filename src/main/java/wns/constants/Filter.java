@@ -2,7 +2,7 @@ package wns.constants;
 
 public enum Filter {
     //tools
-    WITHOUT_FILTER("null"),
+    ALL_TOOLS("Всё оборудование"),
     STOCK("Склад"),
     GROUPS("По группам"),
     //status
@@ -30,7 +30,9 @@ public enum Filter {
     //ассоциативный массив
     ESTIMATE_NAME("Ассоциативный массив"),
     //Категория
-    CATEGORY("Категория");
+    CATEGORY("Категория"),
+    //Контакты
+    ALL_CONTACTS("Все контакты");
 
     private final String value;
 
@@ -50,8 +52,6 @@ public enum Filter {
 
     public static Filter getFilterByString(String filter)
     {
-        if(filter == null)
-            return Filter.WITHOUT_FILTER;
         return Filter.valueOf(filter.toUpperCase());
     }
 }

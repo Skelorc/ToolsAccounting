@@ -6,10 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import wns.constants.Filter;
-import wns.constants.PaginationConst;
+import wns.dto.PageDataDTO;
 import wns.entity.Category;
-import wns.entity.EstimateName;
-import wns.entity.Owner;
 import wns.services.CategoryService;
 import wns.services.PageableFilterService;
 
@@ -27,8 +25,8 @@ public class CategoryController {
                        @RequestParam(value = "size", required = false) Optional<Integer> size,
                        Model model)
     {
-        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, Filter.CATEGORY, PaginationConst.CATEGORY,-1);
-        pageableFilterService.addPageNumbersToModel(paginated_list, model);
+        Page<Object> paginated_list = pageableFilterService.getListData(new PageDataDTO(page, size, Filter.CATEGORY));
+        pageableFilterService.addPageNumbers(paginated_list, model);
         model.addAttribute("list_category",paginated_list);
         model.addAttribute("category",new Category());
         return "category";

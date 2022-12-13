@@ -26,7 +26,7 @@ public class PaginationController {
     @PostMapping()
     @ResponseBody
     public ResponseEntity<Object> pagination(@RequestBody PageDataDTO pageDataDTO) {
-        Page<Object> paginated_list = pageableFilterService.getPageByFilter(pageDataDTO);
+        Page<Object> paginated_list = pageableFilterService.getListData(pageDataDTO);
         int totalPages = paginated_list.getTotalPages();
         List<Integer> pageNumbers = null;
         if (totalPages > 0) {

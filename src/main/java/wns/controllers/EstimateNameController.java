@@ -7,8 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import wns.constants.Filter;
-import wns.constants.PaginationConst;
-import wns.dto.EstimateNameDTO;
+import wns.dto.PageDataDTO;
 import wns.entity.EstimateName;
 import wns.services.EstimateNameService;
 import wns.services.PageableFilterService;
@@ -26,8 +25,8 @@ public class EstimateNameController {
     public String show(@RequestParam(value = "page", required = false) Optional<Integer> page,
                        @RequestParam(value = "size", required = false) Optional<Integer> size,
                        Model model) {
-        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, Filter.ESTIMATE_NAME, PaginationConst.ESTIMATE_NAME,-1);
-        pageableFilterService.addPageNumbersToModel(paginated_list, model);
+        Page<Object> paginated_list = pageableFilterService.getListData(new PageDataDTO(page, size, Filter.ESTIMATE_NAME));
+        pageableFilterService.addPageNumbers(paginated_list, model);
         model.addAttribute("list_estimates", paginated_list);
         model.addAttribute("estimateName", new EstimateName());
         return "estimate_name";

@@ -4,9 +4,12 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import wns.constants.Filter;
-import wns.constants.PaginationConst;
+import wns.dto.PageDataDTO;
 import wns.dto.StatusToolDTO;
 import wns.services.ClientsService;
 import wns.services.PageableFilterService;
@@ -24,8 +27,8 @@ public class OffsController {
     public String show(@RequestParam(value = "page", required = false) Optional<Integer> page,
                        @RequestParam(value = "size", required = false) Optional<Integer> size,
                        Model model) {
-        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, Filter.WRITEOFF,PaginationConst.STATUS,-1);
-        pageableFilterService.addPageNumbersToModel(paginated_list, model);
+        Page<Object> paginated_list = pageableFilterService.getListData(new PageDataDTO(page, size, Filter.WRITEOFF));
+        pageableFilterService.addPageNumbers(paginated_list, model);
         model.addAttribute("list_statuses", paginated_list);
         return "write_off";
     }
@@ -36,8 +39,8 @@ public class OffsController {
                          @ModelAttribute("message") String message,
                          Model model)
     {
-        Page<Object> paginated = pageableFilterService.getPageByFilter(page, size, Filter.WAITING, PaginationConst.TOOLS,-1);
-        pageableFilterService.addPageNumbersToModel(paginated, model);
+        Page<Object> paginated = pageableFilterService.getListData(new PageDataDTO(page, size, Filter.WAITING));
+        pageableFilterService.addPageNumbers(paginated, model);
         model.addAttribute("clients", clientsService.getAll());
         model.addAttribute("list_tools", paginated);
         model.addAttribute("status", new StatusToolDTO());

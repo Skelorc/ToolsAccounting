@@ -82,9 +82,7 @@ public class Client {
     @Column(columnDefinition = "TEXT")
     private Set<String> photos = new HashSet<>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "role_client_id", nullable = false)
-    private RoleClient roleClient;
+
     private long rented;
 
     @Override

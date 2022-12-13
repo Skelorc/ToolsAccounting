@@ -168,8 +168,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <form class="form-control form-control-none" th:action="@{/role-clients}" method="post"
-                                  th:object="${role_client}">
+                            <form class="form-control form-control-none" th:action="@{/role-contacts}" method="post"
+                                  th:object="${role_contact}">
                                 <div class="p-3 edit-container d-block col-lg-12">
                                     <div class="p-3 edit-container d-block">
                                         <div class="row form-creat__half-wrapp">
@@ -219,14 +219,14 @@
                                         </td>
                                         <td data-label="Роль" class="align-middle">
                                             <a class="nav-link" style="font-size: medium" th:utext="${role.role}"
-                                               th:href="@{/role-clients/edit/{id}/(id=${role.id})}">
+                                               th:href="@{/role-contacts/edit/{id}/(id=${role.id})}">
                                             </a>
                                         </td>
                                         <td data-label="Контакты" class="align-middle">
-                                            <div th:each="client: *{role.clients}">
+                                            <div th:each="contact: *{role.contacts}">
                                                 <a class="tools-td-text table-td-text column-table_checkbox-number tool_id"
-                                                   th:text="${client.fullName}"
-                                                   th:href="@{/clients/edit/{id}/(id=${client.id})}">
+                                                   th:text="${contact.name}"
+                                                   th:href="@{/contacts/edit/{id}/(id=${contact.id})}">
                                                 </a>
                                             </div>
                                         </td>

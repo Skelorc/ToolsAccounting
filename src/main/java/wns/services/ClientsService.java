@@ -7,8 +7,6 @@ import wns.constants.Messages;
 import wns.constants.TypeClients;
 import wns.dto.ClientDTO;
 import wns.entity.Client;
-import wns.entity.Owner;
-import wns.entity.RoleClient;
 import wns.repo.ClientsRepo;
 
 import javax.transaction.Transactional;
@@ -19,7 +17,6 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class ClientsService implements MainService {
     private final ClientsRepo clientsRepo;
-    private final RoleClientService roleClientService;
 
     public List<Client> getAll() {
         return (List<Client>) clientsRepo.findAll();
@@ -37,8 +34,6 @@ public class ClientsService implements MainService {
         Client client = clientsRepo.findClientByFullName(dto.getFullName());
         if (client == null) {
             client = dto.createClient();
-            RoleClient roleClient =  roleClientService.getById(dto.getRoleClientId());
-            client.setRoleClient(roleClient);
             clientsRepo.save(client);
             return Messages.OK;
         } else

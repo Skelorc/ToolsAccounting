@@ -1,5 +1,7 @@
 package wns.controllers;
 
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,7 @@ import wns.constants.StatusProject;
 import wns.dto.EstimateDTO;
 import wns.entity.Estimate;
 import wns.entity.Project;
+import wns.services.ClientsService;
 import wns.services.EstimateNameService;
 import wns.services.EstimateService;
 import wns.services.ProjectService;
@@ -20,21 +23,16 @@ import java.nio.file.FileSystems;
 
 @Controller
 @RequestMapping("estimate")
+@RequiredArgsConstructor
 public class EstimateController {
     private final EstimateNameService estimateNameService;
     private final EstimateService estimateService;
     private final ProjectService projectService;
+    private final ClientsService clientsService;
     private final ExcelUtil excelUtil;
 
     @Value("${fileurl}")
     private String fileUrl;
-
-    public EstimateController(EstimateNameService estimateNameService, EstimateService estimateService, ProjectService projectService, ExcelUtil excelUtil) {
-        this.estimateNameService = estimateNameService;
-        this.estimateService = estimateService;
-        this.projectService = projectService;
-        this.excelUtil = excelUtil;
-    }
 
     @GetMapping("/create/{id}")
     public String showEstimateByProject(@PathVariable("id") long id, Model model)
@@ -43,6 +41,7 @@ public class EstimateController {
         Estimate estimate = project.getEstimate();
         model.addAttribute("estimate", estimate);
         model.addAttribute("map_tools", estimateService.getToolsEstimate(estimate));
+        model.addAttribute("list_clients", clientsService.getAll());
         return "create_estimate";
     }
 

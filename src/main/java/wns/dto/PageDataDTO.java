@@ -1,8 +1,9 @@
 package wns.dto;
 
 import lombok.*;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import wns.constants.Filter;
-import wns.constants.PaginationConst;
 
 import java.util.Optional;
 
@@ -11,10 +12,61 @@ import java.util.Optional;
 @Data
 @ToString
 @EqualsAndHashCode
-public class PageDataDTO {
+public class PageDataDTO implements Pageable {
+
     private Optional<Integer> page;
     private Optional<Integer> size;
     private Filter filter;
-    private PaginationConst paginationConst;
     private long id = -1;
+
+    public PageDataDTO(Optional<Integer> page, Optional<Integer> size, Filter filter) {
+        this.page = page;
+        this.size = size;
+        this.filter = filter;
+    }
+
+    @Override
+    public int getPageNumber() {
+        return page.get();
+    }
+
+    @Override
+    public int getPageSize() {
+        return size.get();
+    }
+
+    @Override
+    public long getOffset() {
+        return (long)this.page.get() * (long)this.size.get();
+    }
+
+    @Override
+    public Sort getSort() {
+        return null;
+    }
+
+    @Override
+    public Pageable next() {
+        return null;
+    }
+
+    @Override
+    public Pageable previousOrFirst() {
+        return null;
+    }
+
+    @Override
+    public Pageable first() {
+        return null;
+    }
+
+    @Override
+    public Pageable withPage(int pageNumber) {
+        return null;
+    }
+
+    @Override
+    public boolean hasPrevious() {
+        return false;
+    }
 }

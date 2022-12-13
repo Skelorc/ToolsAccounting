@@ -9,8 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import wns.constants.Filter;
 import wns.constants.Messages;
-import wns.constants.PaginationConst;
 import wns.constants.StatusTools;
+import wns.dto.PageDataDTO;
 import wns.dto.StatusToolDTO;
 import wns.services.ClientsService;
 import wns.services.PageableFilterService;
@@ -35,8 +35,8 @@ public class RepairController {
     public String show(@RequestParam(value = "page", required = false) Optional<Integer> page,
                        @RequestParam(value = "size", required = false) Optional<Integer> size,
                        Model model) {
-        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, Filter.REPAIR,PaginationConst.STATUS,-1);
-        pageableFilterService.addPageNumbersToModel(paginated_list, model);
+        Page<Object> paginated_list = pageableFilterService.getListData(new PageDataDTO(page, size, Filter.REPAIR));
+        pageableFilterService.addPageNumbers(paginated_list, model);
         model.addAttribute("list_statuses", paginated_list);
         return "repair";
     }
@@ -45,8 +45,8 @@ public class RepairController {
     public String showCreatePage(@RequestParam(value = "page", required = false) Optional<Integer> page,
                                  @RequestParam(value = "size", required = false) Optional<Integer> size,
                                  Model model) {
-        Page<Object> paginated = pageableFilterService.getPageByFilter(page, size,Filter.WAITING, PaginationConst.STATUS,-1);
-        pageableFilterService.addPageNumbersToModel(paginated, model);
+        Page<Object> paginated = pageableFilterService.getListData(new PageDataDTO(page, size,Filter.WAITING));
+        pageableFilterService.addPageNumbers(paginated, model);
         model.addAttribute("clients", clientsService.getAll());
         model.addAttribute("list_tools", paginated);
         return "create_repair";

@@ -23,6 +23,7 @@ public class EstimateDTO {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime end;
     private int countShifts;
+    private String operator;
     private Project project;
     private List<ToolsEstimate> toolsEstimates = new ArrayList<>();
     private EstimateFieldsDTO params;

@@ -66,7 +66,7 @@ public class ExcelUtil {
         sheet.autoSizeColumn(num_cell, true);
 
         Cell cell_operator = operator.createCell(num_cell);
-        cell_operator.setCellValue("Оператор: " + estimate.getProject().getClient().getDirectorOfPhotography());
+        cell_operator.setCellValue("Оператор: " + estimate.getOperator());
         cell_operator.setCellStyle(headerStyle);
 
         Cell cell_client = client.createCell(num_cell);
@@ -251,7 +251,7 @@ public class ExcelUtil {
         sheet.addMergedRegion(new CellRangeAddress(num_row, num_row, 0, 4));
         Row row = sheet.createRow(num_row);
         Cell cell = row.createCell(0);
-        cell.setCellValue("Всего по проекту:");
+        cell.setCellValue("Всего за проект:");
         cell.setCellStyle(section_style);
         cell = row.createCell(5);
         cell.setCellValue(estimate.getAllByProject());
@@ -271,7 +271,7 @@ public class ExcelUtil {
         sheet.addMergedRegion(new CellRangeAddress(num_row, num_row, 0, 4));
         row = sheet.createRow(num_row);
         cell = row.createCell(0);
-        cell.setCellValue("Всего по проекту с учетом скидки:");
+        cell.setCellValue("Всего за проект с учетом скидки:");
         cell.setCellStyle(section_style);
         cell = row.createCell(5);
         cell.setCellValue(estimate.getAllByProjectWithDiscount());
@@ -284,6 +284,32 @@ public class ExcelUtil {
         cell.setCellValue("Оборудование и транспорт");
         cell.setCellStyle(section_style);
         num_row++;
+
+        Cell cell_name_tool = row.createCell(0);
+        cell_name_tool.setCellValue("Наименование");
+        cell_name_tool.setCellStyle(section_style);
+        sheet.autoSizeColumn(cell_name_tool.getColumnIndex());
+
+        Cell cell_price = row.createCell(1);
+        cell_price.setCellValue("Стоимость (руб.)");
+        cell_price.setCellStyle(section_style);
+        sheet.autoSizeColumn(cell_price.getColumnIndex());
+
+        Cell cell_amount = row.createCell(2);
+        cell_amount.setCellValue("Ед. Техники");
+        cell_amount.setCellStyle(section_style);
+        sheet.autoSizeColumn(cell_amount.getColumnIndex());
+
+        Cell cell_days = row.createCell(3);
+        cell_days.setCellValue("Дней");
+        cell_days.setCellStyle(section_style);
+        sheet.autoSizeColumn(cell_days.getColumnIndex());
+
+
+        Cell cell_sum = row.createCell(5);
+        cell_sum.setCellValue("Сумма");
+        cell_sum.setCellStyle(section_style);
+        sheet.autoSizeColumn(cell_sum.getColumnIndex());
 
 
         XSSFCellStyle styleForSection = createStyleForSection();

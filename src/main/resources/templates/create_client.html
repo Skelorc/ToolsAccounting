@@ -218,41 +218,7 @@
                                                type="text" class="form-control"
                                                placeholder="Аккаунт в соц.сетях"/>
                                     </div>
-                                    <div class="form-group col-lg-3" style="margin-top: 5px">
-                                        <div class="p-svg p-curve p-jelly pretty">
-                                            <h3 class="my-3">Роль контакта</h3>
-                                            <div class="v-select edit-container__select vs--single vs--searchable main-secect__wrapp">
-                                                <div class="vs__dropdown-toggle main-secect">
-                                                    <select id="role_client_id" required
-                                                            class="vs__selected-options main-secect__opions my-select"
-                                                            style="
-                                  text-align: center;
-                                  padding-left: 0;
-                                  padding-bottom: 10px;
-                                ">
-                                                        <option class="vs__selected vs__dropdown-toggle" value=""
-                                                                disabled>
-                                                            Выберите роль контакта
-                                                        </option>
-                                                        <option class="vs__selected vs__dropdown-toggle"
-                                                                th:each="role : ${roles_client}"
-                                                                th:value="${role.id}"
-                                                                th:text="${role.role}"
-                                                                th:selected="${client.typeClient !=null && client.roleClient.role==role.role}">
-                                                        </option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="v-select edit-container__select vs--single vs--searchable main-secect__wrapp"
-                                         style="margin-top: 50px">
-                                        <div class="form-group col-lg-3">
-                                            <a href="/role-clients" th:href="@{/role-clients}"
-                                               class="btn btn-primary width btn-add_vidacha my-green"
-                                               style="width: 200px">Добавить новую роль</a>
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
                             <div id="individual" class="form-creat mb-3 col-12">

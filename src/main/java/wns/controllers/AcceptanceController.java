@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import wns.constants.Filter;
-import wns.constants.PaginationConst;
-import wns.entity.Client;
+import wns.dto.PageDataDTO;
 import wns.entity.Tools;
 import wns.services.ClientsService;
 import wns.services.PageableFilterService;
@@ -32,9 +31,8 @@ public class AcceptanceController {
                        @RequestParam(value = "size", required = false) Optional<Integer> size,
                        @RequestParam(value = "filter", required = false) Filter filter,
                        Model model) {
-
-        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, filter, PaginationConst.PROJECT,-1);
-        pageableFilterService.addPageNumbersToModel(paginated_list, model);
+        Page<Object> paginated_list = pageableFilterService.getListData(new PageDataDTO(page, size, filter));
+        pageableFilterService.addPageNumbers(paginated_list, model);
         model.addAttribute("list_projects", paginated_list);
         return "acceptance";
     }

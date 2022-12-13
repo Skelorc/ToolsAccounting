@@ -6,11 +6,11 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "role_client")
+@Table(name = "role_contact")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class RoleClient {
+public class RoleContact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -18,6 +18,8 @@ public class RoleClient {
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @OneToMany(mappedBy = "roleClient", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Client> clients;
+    @OneToMany(mappedBy = "roleContact", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Contact> contacts;
+
+
 }

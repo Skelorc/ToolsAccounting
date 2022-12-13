@@ -284,7 +284,7 @@
                                                 <li class="page-item" th:if="${list_projects.totalPages > 0}"
                                                     th:each="page_number : ${page_numbers}">
                                                     <a class="page-link-m page-link"
-                                                       th:href="@{/(size=${list_projects.size}, page=${page_numberStat.index})}"
+                                                       th:href="@{/(size=${list_projects.size}, page=${page_numberStat.index}, filter=${list_projects.size})}"
                                                        th:text="${page_numberStat.index}"
                                                        th:class="${page_number==list_projects.number + 1} ? active">
                                                     </a>

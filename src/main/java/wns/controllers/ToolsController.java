@@ -1,8 +1,6 @@
 package wns.controllers;
 
 import lombok.AllArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -10,12 +8,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import wns.constants.*;
 import wns.dto.EstimateNameDTO;
+import wns.dto.PageDataDTO;
 import wns.dto.StatusToolDTO;
 import wns.entity.Category;
 import wns.entity.EstimateName;
 import wns.entity.Owner;
 import wns.entity.Tools;
-import wns.repo.CategoryRepo;
 import wns.services.*;
 import wns.utils.ResponseHandler;
 
@@ -36,8 +34,8 @@ public class ToolsController {
     public String show(@RequestParam(value = "page", required = false) Optional<Integer> page,
                        @RequestParam(value = "size", required = false) Optional<Integer> size,
                        Model model) {
-        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, Filter.WITHOUT_FILTER, PaginationConst.TOOLS,-1);
-        pageableFilterService.addPageNumbersToModel(paginated_list, model);
+        Page<Object> paginated_list = pageableFilterService.getListData(new PageDataDTO(page, size, Filter.ALL_TOOLS));
+        pageableFilterService.addPageNumbers(paginated_list, model);
         model.addAttribute("list_tools", paginated_list);
         model.addAttribute("estimateDTO", new EstimateNameDTO());
         model.addAttribute("project_id", -1);
@@ -101,8 +99,8 @@ public class ToolsController {
                                 @RequestParam(value = "size", required = false) Optional<Integer> size,
                                 @PathVariable(value = "id",required = false) long id,
                                 Model model) {
-        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size, Filter.STOCK,PaginationConst.TOOLS, id);
-        pageableFilterService.addPageNumbersToModel(paginated_list, model);
+        Page<Object> paginated_list = pageableFilterService.getListData(new PageDataDTO(page, size, Filter.STOCK, id));
+        pageableFilterService.addPageNumbers(paginated_list, model);
         model.addAttribute("list_tools", paginated_list);
         model.addAttribute("project_id", id);
         return "tools";
@@ -115,8 +113,8 @@ public class ToolsController {
                                 @PathVariable("id") long project_id,
                                 @RequestParam(value = "ids", required = false) List<Long> ids_tools,
                                 Model model) {
-        Page<Object> paginated_list = pageableFilterService.getPageByFilter(page, size,filter,PaginationConst.CHANGE,project_id);
-        pageableFilterService.addPageNumbersToModel(paginated_list, model);
+        Page<Object> paginated_list = pageableFilterService.getListData(new PageDataDTO(page, size,filter,project_id));
+        pageableFilterService.addPageNumbers(paginated_list, model);
         model.addAttribute("list_tools", paginated_list);
         model.addAttribute("ids", ids_tools);
         model.addAttribute("project_id", project_id);

@@ -83,7 +83,6 @@ public class ToolsDTO {
         this.estimateName = tools.getEstimateName().getName();
         this.categoryToolsFromEstimate = tools.getEstimateName().getCategoryTools().getData();
         this.id_estimate_name = tools.getEstimateName().getId();
-        this.comment = tools.getComment();
         this.creating = tools.getCreating();
         this.costPrice = tools.getCostPrice();
         this.priceByDay = tools.getPriceByDay();
