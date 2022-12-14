@@ -27,7 +27,6 @@ public class RepairController {
 
     private final ClientsService clientsService;
     private final ToolsService toolsService;
-    private final StatusService statusService;
     private final PageableFilterService pageableFilterService;
 
 

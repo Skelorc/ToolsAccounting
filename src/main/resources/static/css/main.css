@@ -579,7 +579,7 @@ label {
 .vdpComponent {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 /* стрнаница логин login*/
@@ -1046,9 +1046,18 @@ table.estimate td {
 }
 
 .form-creat__half-wrapp {
-    
     display: inline-flex;
     margin: auto;
+}
+
+.form-creat__half-wrapp_1 {
+    display: flex;
+    flex: 60%;
+}
+
+.form-creat__half-wrapp_2 {
+    display: flex;
+    flex: 30%;
 }
 /* Media Form page tools.html */
 
@@ -1817,3 +1826,7 @@ justify-content: space-between;
         
     }
 /*********************/
+
+.form_wrapper {
+ 
+}

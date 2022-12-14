@@ -5,7 +5,7 @@
     <title>Создание нового контакта</title>
     <div th:replace="fragments/head :: header"></div>
 
-    <!-- <meta charset="UTF-8" />
+    <meta charset="UTF-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
@@ -126,6 +126,7 @@
       href="../static/css/checkout.css"
       th:href="@{/css/checkout.css}"
     />
+
     <link
       rel="stylesheet"
       href="../static/css/main.css"
@@ -147,7 +148,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"
       th:href="@{/css/jquery.modal.css}"
-    /> -->
+    />
 </head>
 
 <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
@@ -167,31 +168,31 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <form th:action="@{/contacts}" method="post" th:object="${contact}"
+                        <div class="row" style="border: 1px solid red;">
+                            <form th:action="@{/contacts/create}" method="post" th:object="${contact}"
                                   style="margin: auto; width: 100%">
-                                <div class="p-3 col-8 col-md-12 col-sm-6 edit-container d-block" style="margin: 0 auto">
-                                    <div class="row form-creat__half-wrapp">
+                                <div class="p-3 col-8 col-md-12 col-sm-6  d-flex form_wrapper" style="margin: 0 auto">
+                                    <div class="row form-creat__half-wrapp_1" style="border: 1px solid red;">
                                         <div class="form-creat__half_two-column col-12">
-                                            <label class="d-block font size">ФИО</label>
+                                            <label class="d-block font size" style="text-align: center; padding-top: 3%;">ФИО</label>
                                             <div class="vdpComponent vdpWithInput">
                                                 <input class="form-control" th:value="${contact.name}"
                                                        th:field="*{name}" required
-                                                       type="text" placeholder="Наименование в смете"/>
+                                                       type="text" placeholder="ФИО"/>
                                             </div>
                                         </div>
 
                                         <div class="form-creat__half_two-column col-12">
-                                            <label class="d-block font size">Серия и номер паспорта</label>
+                                            <label class="d-block font size" style="text-align: center; padding-top: 3%;">Серия и номер паспорта</label>
                                             <div class="vdpComponent vdpWithInput">
                                                 <input class="form-control" th:value="${contact.numberPassport}"
                                                        th:field="*{numberPassport}" required
-                                                       type="text" placeholder="Наименование в смете"/>
+                                                       type="text" placeholder="Серия и номер паспорта"/>
                                             </div>
                                         </div>
                                         <div class="row form-creat__half-wrapp">
                                             <div role="group" class="form-group">
-                                                <label class="d-block font">Комментарий</label>
+                                                <label class="d-block font" style="text-align: center; padding-top: 3%;">Комментарий</label>
                                                 <div class="vdpComponent vdpWithInput">
                                                     <input class="form-control" required type="text" name="comment"
                                                            placeholder="Комментарий"/>
@@ -199,7 +200,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row form-creat__half-wrapp">
+                                    <div class="row form-creat__half-wrapp_2" style="border: 1px solid red;">
                                         <div class="form-creat__half_two-column">
                                             <div role="group" class="form-group">
                                                 <h3 class="my-3">Роль контакта</h3>
@@ -210,11 +211,7 @@
                                                 </div>
                                                 <div class="vs__dropdown-toggle main-secect my-select">
                                                     <select th:field="*{roleContact}" required
-                                                            class="vs__selected-options main-secect__opions" style="
-                              text-align: center;
-                              padding-left: 0;
-                              padding-bottom: 10px;
-                            ">
+                                                            class="vs__selected-options main-secect__opions" style="text-align: center; padding-left: 0;padding-bottom: 10px;">
                                                         <option class="vs__selected vs__dropdown-toggle" value=""
                                                                 disabled>
                                                             Выберите тип контакта
@@ -240,11 +237,18 @@
                                                     <div role="group" class="form-group">
                                                         <label class="d-block font">Дата выдачи</label>
                                                         <div class="vdpComponent vdpWithInput">
-                                                            <input class="form-control" required type="datetime-local"
+                                                            <input class="form-control" required type="date"
                                                                    th:field="*{dateIssuePassport}"
                                                                    th:value="${contact.dateIssuePassport}"
                                                                    placeholder="Дата выдачи"/>
                                                         </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-creat__half_two-column">
+                                                    <div class="form-group">
+                                                        <label class="d-block size">Загрузите ваши фотографии на сервер</label>
+                                                        <textarea required class="form-control"
+                                                                  name="photos" style="height: 40px"></textarea>
                                                     </div>
                                                 </div>
                                             </div>

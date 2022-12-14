@@ -21,4 +21,8 @@ public class CommentsService implements MainService{
     public void delete(long id) {
         commentsRepo.deleteById(id);
     }
+
+    public void save(Comments comments) {
+        commentsRepo.save(comments);
+    }
 }

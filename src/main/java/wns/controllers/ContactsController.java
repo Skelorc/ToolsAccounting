@@ -4,9 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import wns.constants.Filter;
 import wns.dto.PageDataDTO;
 import wns.entity.Contact;
@@ -31,7 +29,7 @@ public class ContactsController {
                            Model model) {
         Page<Object> paginated_list = pageableFilterService.getListData(new PageDataDTO(page, size, Filter.ALL_CONTACTS));
         pageableFilterService.addPageNumbers(paginated_list, model);
-        model.addAttribute("list_clients", paginated_list);
+        model.addAttribute("list_contacts", paginated_list);
         return "contacts";
     }
 
@@ -41,5 +39,14 @@ public class ContactsController {
         model.addAttribute("contact", new Contact());
         model.addAttribute("roles_contacts", roleContactService.getAll());
         return "create_contact";
+    }
+
+    @PostMapping("/create")
+    public String createContact(@ModelAttribute("contact") Contact contact,
+                                @RequestParam("comment") String comment,
+                                @RequestParam("photos") String photos)
+    {
+        contactsService.saveContact(contact, comment,photos);
+        return "redirect:/contacts/create";
     }
 }

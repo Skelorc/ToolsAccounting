@@ -37,7 +37,7 @@ public class StatusToolDTO {
     private String executor;
     private String phone_number;
     private String note;
-    private Set<String> photos = new HashSet<>();
+    private Set<String> photos;
     private List<Identifiers> items;
     private long price;
     private long priceRepair;

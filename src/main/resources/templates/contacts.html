@@ -198,25 +198,17 @@
                                             <a href="#" th:href="@{/contacts(filter=individual)}"
                                                class="btn btn-primary width btn-open_vidacha my-yellow">Физ.лица</a>
                                         </div>
-                                        <div  class="mb-3 text-right">
-                                            <a
-                                                    href="#"
-                                                    th:href="@{/contacts(filter=legal)}"
-                                                    class="btn btn-primary width btn-delate_vidacha my-yellow"
-                                            >Юр.лица</a
-                                            >
+                                        <div class="mb-3 text-right">
+                                            <a href="#" th:href="@{/contacts(filter=legal)}"
+                                               class="btn btn-primary width btn-delate_vidacha my-yellow">Юр.лица</a>
                                         </div>
                                         <div class="mb-3 text-right">
-                                            <a
-                                                    href="#"
-                                                    th:href="@{/contacts(filter=blacklist)}"
-                                                    class="btn btn-primary width btn-update_vidacha my-yellow"
-                                            >Черный список</a
-                                            >
+                                            <a href="#" th:href="@{/contacts(filter=blacklist)}"
+                                               class="btn btn-primary width btn-update_vidacha my-yellow">Черный
+                                                список</a>
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="pagination-control col-lg-12 order-lg-1">
                                     <div class="custom-ll__table table-responsive overflow-auto">
                                         <table class="table in4dr-form delivery h-table w-table transparent">
@@ -224,54 +216,31 @@
                                             <tr>
                                                 <th class="first-th">№</th>
                                                 <th>ФИО</th>
-                                                <th>Телефон</th>
-                                                <th>Скидка</th>
-                                                <th>Кол-во проектов</th>
-                                                <th>Примечание</th>
-                                                <th>Договор</th>
-                                                <th>Черный список</th>
+                                                <th>Роль</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                       <!--     <tr th:each="clientDTO : ${list_clients}">
+                                            <tr th:each="contact : ${list_contacts}">
                                                 <td class="column-table">
                                                     <div class="column-table_checkbox-wrapp">
                                                         <input class="column-table_checkbox" type="checkbox" id=""
                                                                name=""/>
-                                                        <input hidden="hidden" th:value="${clientDTO.id}"/>
+                                                        <input hidden="hidden" th:value="${contact.id}"/>
                                                         <span
                                                                 class="tools-td-text table-td-text column-table_checkbox-number"
-                                                                th:utext="${clientDTOStat.index+1}"></span>
+                                                                th:utext="${contactStat.index+1}"></span>
                                                     </div>
                                                 </td>
                                                 <td data-label="ФИО" class="align-middle">
                                                     <a class="nav-link" style="font-size: medium"
-                                                       th:href="@{/clients/edit/{id}/(id=${clientDTO.id})}"
-                                                       th:utext="${clientDTO.fullName}"></a>
+                                                       th:href="@{/contacts/edit/{id}/(id=${contact.id})}"
+                                                       th:utext="${contact.name}"></a>
                                                 </td>
                                                 <td data-label="Телефон">
                                                     <span class="tools-td-text table-td-text"
-                                                          th:utext="${clientDTO.phoneNumber}"></span>
+                                                          th:utext="${contact.roleContact.role}"></span>
                                                 </td>
-                                                <td data-label="Скидка">
-                                                    <span class="tools-td-text table-td-text"
-                                                          th:utext="${clientDTO.discount}"></span>
-                                                </td>
-                                                <td data-label="Кол-во проектов">
-                                                    <span class="tools-td-text table-td-text">Количество проектов</span>
-                                                </td>
-                                                <td data-label="Примечание">
-                                                    <span class="tools-td-text table-td-text"
-                                                          th:utext="${clientDTO.note}"></span>
-                                                </td>
-                                                <td data-label="Договор">
-                                                    <span class="tools-td-text table-td-text">Договор</span>
-                                                </td>
-                                                <td data-label="Черный список">
-                                                    <span class="tools-td-text table-td-text"
-                                                          th:utext="${clientDTO.inBlackList}"></span>
-                                                </td>
-                                            </tr>-->
+                                            </tr>
                                             </tbody>
                                         </table>
                                     </div>

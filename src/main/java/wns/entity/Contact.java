@@ -47,5 +47,16 @@ public class Contact {
     private Set<String> photos = new HashSet<>();
 
 
-
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", numberPassport='" + numberPassport + '\'' +
+                ", issuedBy='" + issuedBy + '\'' +
+                ", dateIssuePassport=" + dateIssuePassport +
+                ", roleContact=" + roleContact.getRole() +
+                ", photos=" + photos.toString() +
+                '}';
+    }
 }

@@ -80,7 +80,6 @@ public class ProjectsController {
     @PostMapping("/projects/edit")
     @ResponseBody
     public ResponseEntity<Object> updateProject(@RequestBody ProjectDTO projectDTO) {
-        System.out.println(projectDTO);
         projectService.updateProject(projectDTO);
         return ResponseHandler.generateResponse(Messages.REDIRECT, "/");
     }

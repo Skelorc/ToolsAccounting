@@ -2,9 +2,7 @@ package wns.services;
 
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 import wns.aspects.ToLog;
 import wns.constants.ClassificationProject;
@@ -15,7 +13,8 @@ import wns.dto.ProjectDTO;
 import wns.entity.*;
 import wns.repo.ProjectRepo;
 
-import java.util.*;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
