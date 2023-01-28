@@ -28,7 +28,7 @@ public class EstimateDTO {
     private List<ToolsEstimate> toolsEstimates = new ArrayList<>();
     private EstimateFieldsDTO params;
 
-    public Estimate createEstimateFromDTO(Project project)
+    public Estimate createEstimateFromProject(Project project)
     {
         Estimate estimate = project.getEstimate();
         estimate.setAllByProject(params.getAllByPRoject());

@@ -32,7 +32,8 @@ public enum Filter {
     //Категория
     CATEGORY("Категория"),
     //Контакты
-    ALL_CONTACTS("Все контакты");
+    ALL_CONTACTS("Все контакты"),
+    CONTACTS_BY_ROLE("Контакты по роли");
 
     private final String value;
 

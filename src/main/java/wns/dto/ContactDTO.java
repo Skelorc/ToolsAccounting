@@ -20,7 +20,7 @@ public class ContactDTO {
     private String issuedBy;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dateIssuePassport;
-    private String roleClient;
+    private String roleContact;
     private List<String> commentsList;
     private Set<String> photos;
 
@@ -30,7 +30,7 @@ public class ContactDTO {
         this.numberPassport = contact.getNumberPassport();
         this.issuedBy = contact.getIssuedBy();
         this.dateIssuePassport = contact.getDateIssuePassport();
-        this.roleClient = contact.getRoleContact().getRole();
+        this.roleContact = contact.getRoleContact().getRole();
         this.commentsList = contact.getCommentsList().stream().map(Comments::getText).collect(Collectors.toList());
         this.photos = contact.getPhotos();
     }

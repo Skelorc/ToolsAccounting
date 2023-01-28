@@ -69,6 +69,7 @@ public class PageableFilterService {
             case ALL_CONTACTS -> list.addAll(contactsService.getAll()
                     .stream().map(ContactDTO::new).collect(Collectors.toList()));
             case ALL_TOOLS -> list.addAll(toolsService.getAll().stream().map(ToolsDTO::new).collect(Collectors.toList()));
+            case CONTACTS_BY_ROLE -> list.addAll(contactsService.getContactByRoleId(id).stream().map(ContactDTO::new).collect(Collectors.toList()));
         }
         return list;
     }

@@ -1,9 +1,11 @@
 package wns.services;/*Author Skelorc*/
 
 import lombok.AllArgsConstructor;
+import org.apache.batik.svggen.SVGGraphics2D;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import wns.aspects.ToLog;
 import wns.entity.Comments;
 import wns.entity.Contact;
 import wns.repo.ContactsRepo;
@@ -29,6 +31,7 @@ public class ContactsService implements MainService{
     }
 
     @Transactional
+    @ToLog
     public void saveContact(Contact contact, String comment, String photos) {
         contact.setPhotos(new HashSet<>(Arrays.asList(photos.split(","))));
         contactsRepo.save(contact);
@@ -38,5 +41,13 @@ public class ContactsService implements MainService{
         comments.setNameOfCommentator(SecurityContextHolder.getContext().getAuthentication().getName());
         comments.setContact(contact);
         commentsService.save(comments);
+    }
+
+    public Contact findById(long id) {
+        return contactsRepo.findById(id).get();
+    }
+
+    public List<Contact> getContactByRoleId(long id) {
+        return contactsRepo.getContactsByRoleContact_Id(id);
     }
 }

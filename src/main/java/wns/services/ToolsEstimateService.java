@@ -3,6 +3,7 @@ package wns.services;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import wns.entity.*;
 import wns.repo.ToolsEstimateRepo;
 
@@ -53,6 +54,7 @@ public class ToolsEstimateService implements MainService{
         toolsEstimateRepo.save(toolsEstimate);
     }
 
+    @Transactional
     public void deleteToolEstimateFromEstimate(Tools tool) {
         Project project = tool.getProject();
         Estimate estimate = project.getEstimate();

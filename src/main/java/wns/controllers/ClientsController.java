@@ -25,7 +25,6 @@ import java.util.Optional;
 public class ClientsController {
     private final ClientsService clientsService;
     private final PageableFilterService pageableFilterService;
-    private final RoleContactService roleContactService;
 
     @GetMapping()
     public String showPage(@RequestParam(value = "page", required = false) Optional<Integer> page,
@@ -48,7 +47,6 @@ public class ClientsController {
     @GetMapping("/create")
     public String creatingClient(Model model) {
         model.addAttribute("client", new ClientDTO());
-        model.addAttribute("roles_client", roleContactService.getAll());
         return "create_client";
     }
 
@@ -69,7 +67,6 @@ public class ClientsController {
         Client client = clientsService.getById(id);
         model.addAttribute("client", client);
         model.addAttribute("list_projects", paginated_list);
-        model.addAttribute("roles_client", roleContactService.getAll());
         return "create_client";
     }
 

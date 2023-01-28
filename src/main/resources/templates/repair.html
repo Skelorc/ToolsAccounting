@@ -1,264 +1,97 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head class="head">
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" th:href="@{/img/logo/favicon.ico}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/repair.css}">
+
+    <meta th:name="_csrf" th:content="${_csrf.token}"/>
+    <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <!--JQuery-->
+    <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+    <!-- jQuery Modal -->
+    <script type="text/javascript" th:src="@{/js/jquery.modal.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/jquery.modal.css}"/>
     <title>Ремонт</title>
-    <div th:replace="fragments/head :: header"></div>
-    <!-- 
-    <meta charset="UTF-8" />
-
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
-    <meta name="robots" content="index, follow" />
-    <meta name="author" content="" />
-    <meta property="og:url" content="https://site.ru" />
-    <meta property="og:title" content="MAD DOG" />
-    <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:width" content="640" />
-    <meta property="og:image:height" content="442" />
-    <meta property="og:description" content="" />
-    <meta property="og:site_name" content="Site-name" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="author" content="Andrey" />
-    <meta name="description" content="MAD DOG" />
-    <meta name="keywords" content="MAD DOG" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      property="og:title"
-      content="MAD DOG - сервис для учета и автоматизации проката"
-    />
-    <meta
-      property="og:image"
-      content="assets/img/icons/badge.jpg"
-      th:src="@{/img/icons/badge.jpg}"
-    />
-    <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:width" content="1024" />
-    <meta property="og:image:height" content="1024" />
-    <meta
-      property="og:description"
-      content="Программа для учёта инструментов"
-    />
-    <link
-      rel="image_src"
-      href="/static/img/icons/badge.jpg"
-      th:href="@{/img/icons/badge.jpg}"
-    />
-    <meta name="theme-color" content="#179d82" />
-    <meta th:name="_csrf" th:content="${_csrf.token}" />
-    <meta th:name="_csrf_header" th:content="${_csrf.headerName}" />
-    <link
-      rel="manifest"
-      href="/templates/assets/json/manifest.json"
-      th:href="@{/templates/assets/json/manifest.json}"
-    />
-    &ndash;&gt;
-
-    <link
-      rel="preload"
-      href="../static/fonts/fontawesome/fontawesome-all-css.css"
-      as="style"
-      th:href="@{/fonts/fontawesome/fontawesome-all-css.css}"
-    />
-    <link
-      rel="preload"
-      href="../static/css/style.css"
-      as="style"
-      th:href="@{/css/style.css}"
-    />
-    <link
-      rel="preload"
-      href="../static/css/app.css"
-      as="style"
-      th:href="@{/css/app.css}"
-    />
-    <link
-      rel="preload"
-      href="../static/css/media.css"
-      as="style"
-      th:href="@{/css/media.css}"
-    />
-    <link
-      rel="preload"
-      href="../static/css/checkout.css"
-      as="style"
-      th:href="@{/css/checkout.css}"
-    />
-    <link
-      rel="preload"
-      href="../static/css/main.css"
-      as="style"
-      th:href="@{/css/main.css}"
-    />
-
-    <link
-      rel="stylesheet"
-      href="../static/fonts/webfonts/fa-solid-900.ttf"
-      th:href="@{/fonts/webfonts/fa-solid-900.ttf}"
-    />
-    <link
-      rel="stylesheet"
-      href="../static/css/style.css"
-      th:href="@{/css/style.css}"
-    />
-    <link
-      rel="stylesheet"
-      href="../static/css/app.css"
-      th:href="@{/css/app.css}"
-    />
-    <link
-      rel="stylesheet"
-      href="../static/css/media.css"
-      th:href="@{/css/media.css}"
-    />
-    <link
-      rel="stylesheet"
-      href=".../static/css/animation-iror.css"
-      th:href="@{/css/animation-iror.css}"
-    />
-    <link
-      rel="stylesheet"
-      href="../static/fonts/fontawesome/fontawesome.css"
-      th:href="@{/fonts/fontawesome/fontawesome.css}"
-    />
-    <link
-      rel="stylesheet"
-      href="../static/fonts/fontawesome/fontawesome-all-css.css"
-      th:href="@{/fonts/fontawesome/fontawesome-all-css.css}"
-    />
-    <link
-      rel="stylesheet"
-      href="../static/css/checkout.css"
-      th:href="@{/css/checkout.css}"
-    />
-    <link
-      rel="stylesheet"
-      href="../static/css/main.css"
-      th:href="@{/css/main.css}"
-    />
-
-    <script
-      src="/static/fonts/fontawesome/all.js"
-      th:src="@{/fonts/fontawesome/all.js}"
-    ></script>
-
-    <script src="/static/js/jquery.js" th:src="@{/js/jquery.js}"></script>
-
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"
-      th:src="@{/js/jquery.modal.js}"
-    ></script>
-
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"
-      th:href="@{/css/jquery.modal.css}"
-    />
-
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"
-      th:href="@{/css/jquery.modal.css}"
-    /> -->
 </head>
-
-<body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
-<div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
-    <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
-        <div th:insert="fragments/menu_sidebar.html"></div>
-        <div class="b-overlay-wrap position-relative w-100" size="sm">
-            <div class="rih-page-wrapper">
-                <nav role="navigation" class="navbar navbar-admin navbar-fixed-top"
-                     th:insert="fragments/header_logout.html"></nav>
-                <main class="wrapper wrapper-content">
-                    <div class="b-overlay-wrap position-relative edit-container d-block col-8 col-md-12">
-                        <div class="btn-pimary__groups mt-3 mb-3">
-                            <div class="btn-pimary__groups-wrapper vidacha-sozdach mb-3">
-                                <div class="mb-3 text-right">
-                                    <a th:href="@{/repair/create}" class="btn btn-primary width my-green">Создать</a>
-                                </div>
-                                <div class="mb-3 text-right">
-                                    <span class="btn btn-primary width my-yellow"
-                                          id="back_repair">Вернуть на склад</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="custom-ll__table table-responsive">
-                            <table class="table delivery w-table h-table in4dr-form transparent">
-                                <thead>
-                                <tr>
-                                    <th class="first-th">№</th>
-                                    <th>Дата создания</th>
-                                    <th>Название оборудования</th>
-                                    <th>Исполнитель</th>
-                                    <th>Телефон</th>
-                                    <th>Начало ремонта</th>
-                                    <th>Окончание ремонта</th>
-                                    <th>Всего цена ремонта</th>
-                                    <th>Сотрудник</th>
-                                    <th>Примечание</th>
-                                    <th>Статус</th>
-                                    <th>Фотографии</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="status : ${list_statuses}">
-                                    <td data-label="№" class="column-table">
-                                        <div class="column-table_checkbox-wrapp">
-                                            <input class="column-table_checkbox ids" type="checkbox"/>
-                                            <input type="hidden" th:value="${status.id}"/>
-                                        </div>
-                                    </td>
-
-                                    <td data-label="Дата создания"
-                                        th:utext="${#temporals.format(status.created, 'dd-MM-yyyy HH:mm')}"></td>
-                                    <td data-label="Название оборудования" th:utext="${status.tools}"></td>
-                                    <td data-label="Исполнитель" th:utext="${status.executor}"></td>
-                                    <td data-label="Телефон" th:utext="${status.phone_number}"></td>
-                                    <td data-label="Начало ремонта"
-                                        th:utext="${#temporals.format(status.start, 'dd-MM-yyyy HH:mm')}"></td>
-                                    <td data-label="Окончание ремонта"
-                                        th:utext="${#temporals.format(status.end, 'dd-MM-yyyy HH:mm')}"></td>
-                                    <td data-label="Всего цена ремонта" th:utext="${status.priceRepair}"></td>
-                                    <td data-label="Сотрудник" th:utext="${status.employee}"></td>
-                                    <td data-label="Примечание" th:utext="${status.note}"></td>
-                                    <td data-label="Статус" th:utext="${status.statusTools.getValue()}"></td>
-                                    <td data-label="Фотографии">
-                                          <span class="column-table__photo-mini" th:each="photo : ${status.photos}">
-                                            <a rel="modal:open" th:href="${'#'+photoStat.count +''+ status.tools_id}">
-                                              <img class="column-table__photo-mini_img" th:src="${photo}"/>
-                                              <div th:id="${photoStat.count +''+ status.tools_id}" class="modal">
-                                                <img th:src="${photo}"/>
-                                              </div>
-                                            </a>
-                                          </span>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- Modal HTML embedded directly into document -->
-
-                        <div class="pagination-control col-lg-12 order-lg-1">
-                            <!-- Bootstrap 4 -->
-                            <nav aria-label="Навигация по страницам">
-                                <ul class="pagination">
-                                    <li class="page-item" th:if="${list_statuses.totalPages > 0}"
-                                        th:each="page_number : ${page_numbers}">
-                                        <a class="page-link-m page-link"
-                                           th:href="@{/repair(size=${list_statuses.size}, page=${page_numberStat.index})}"
-                                           th:text="${page_numberStat.index}"
-                                           th:class="${page_number==list_statuses.number + 1} ? active">
+<body>
+<div class="projects_wrapper d-flex">
+    <div class="projects_wrapper__main d-flex">
+        <div th:replace="fragments/menu_sidebar.html"></div>
+        <div class="main_general d-flex">
+            <div class="main_general__content d-flex">
+                <div class="main_general__content_buttons d-flex pad-0_3">
+                    <a th:href="@{/repair/create}" class="content_buttons__create d-flex">
+                        Создать
+                    </a>
+                    <a href="#" class="content_buttons__other d-flex" id="back_repair">
+                        Вернуть на склад
+                    </a>
+                </div>
+                <div class="main_general__content_table d-flex pad-0_3">
+                    <table class="content_table__info">
+                        <tr class="content_table__info_name">
+                            <th class="content_table__info_pos">#</th>
+                            <th class="content_table__info_pos">Дата создания</th>
+                            <th class="content_table__info_pos">Название оборудования</th>
+                            <th class="content_table__info_pos">Исполнитель</th>
+                            <th class="content_table__info_pos">Телефон</th>
+                            <th class="content_table__info_pos">Начало ремонта</th>
+                            <th class="content_table__info_pos">Окончание ремонта</th>
+                            <th class="content_table__info_pos">Всего цена ремонта</th>
+                            <th class="content_table__info_pos">Сотрудник</th>
+                            <th class="content_table__info_pos">Примечание</th>
+                            <th class="content_table__info_pos">Статус</th>
+                            <th class="content_table__info_pos">Фотографии</th>
+                        </tr>
+                        <tr class="content_table__info_line" th:each="status : ${list_statuses}">
+                            <td class="content_table__info_column">
+                                <input class="column-table_checkbox ids" type="checkbox"/>
+                                <input type="hidden" th:value="${status.id}"/>
+                            </td>
+                            <td class="content_table__info_column"
+                                th:utext="${#temporals.format(status.created, 'dd-MM-yyyy HH:mm')}"></td>
+                            <td class="content_table__info_column" th:utext="${status.tools}"></td>
+                            <td class="content_table__info_column" th:utext="${status.executor}"></td>
+                            <td class="content_table__info_column" th:utext="${status.phone_number}"></td>
+                            <td class="content_table__info_column"
+                                th:utext="${#temporals.format(status.start, 'dd-MM-yyyy HH:mm')}"></td>
+                            <td class="content_table__info_column"
+                                th:utext="${#temporals.format(status.end, 'dd-MM-yyyy HH:mm')}"></td>
+                            <td class="content_table__info_column" th:utext="${status.priceRepair}"></td>
+                            <td class="content_table__info_column" th:utext="${status.employee}"></td>
+                            <td class="content_table__info_column" th:utext="${status.note}"></td>
+                            <td class="content_table__info_column" th:utext="${status.statusTools.getValue()}"></td>
+                            <td class="content_table__info_column">
+                                <span th:each="photo : ${status.photos}">
+                                        <a rel="modal:open" th:href="${'#'+photoStat.count +''+ status.tools_id}">
+                                          <img th:src="${photo}"/>
+                                          <div th:id="${photoStat.count +''+ status.tools_id}" class="modal">
+                                            <img th:src="${photo}"/>
+                                          </div>
                                         </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </main>
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="pagination-control col-lg-12 order-lg-1">
+                    <!-- Bootstrap 4 -->
+                    <nav aria-label="Навигация по страницам">
+                        <ul class="pagination">
+                            <li class="page-item" th:if="${list_statuses.totalPages > 0}"
+                                th:each="page_number : ${page_numbers}">
+                                <a class="page-link-m page-link"
+                                   th:href="@{/repair(size=${list_statuses.size}, page=${page_numberStat.index})}"
+                                   th:text="${page_numberStat.index}"
+                                   th:class="${page_number==list_statuses.number + 1} ? active">
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
                 <div th:insert="fragments/footer.html"></div>
             </div>
         </div>

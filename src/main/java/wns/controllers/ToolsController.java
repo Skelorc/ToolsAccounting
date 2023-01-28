@@ -10,10 +10,7 @@ import wns.constants.*;
 import wns.dto.EstimateNameDTO;
 import wns.dto.PageDataDTO;
 import wns.dto.StatusToolDTO;
-import wns.entity.Category;
-import wns.entity.EstimateName;
-import wns.entity.Owner;
-import wns.entity.Tools;
+import wns.entity.*;
 import wns.services.*;
 import wns.utils.ResponseHandler;
 
@@ -25,10 +22,12 @@ import java.util.Optional;
 @AllArgsConstructor
 public class ToolsController {
     private final ToolsService toolsService;
+    private final CategoryService categoryService;
+    private final StatusService statusService;
     private final EstimateNameService estimateNameService;
     private final PageableFilterService pageableFilterService;
+    private final RoleContactService roleContactService;
     private final OwnerService ownerService;
-    private final CategoryService categoryService;
 
     @GetMapping()
     public String show(@RequestParam(value = "page", required = false) Optional<Integer> page,
@@ -48,6 +47,7 @@ public class ToolsController {
     public String create(Model model) {
         model.addAttribute("tool", new Tools());
         model.addAttribute("list_owners", ownerService.getAll());
+        model.addAttribute("roles_contacts", roleContactService.getAll());
         model.addAttribute("list_category", categoryService.getAll());
         model.addAttribute("list_names_estimate", estimateNameService.getAll());
         return "create_tool";
@@ -60,6 +60,7 @@ public class ToolsController {
                               @RequestParam("category") Category category,
                               @RequestParam("status_tool") StatusTools status_tool) {
         toolsService.createTools(tool, estimateNameDTO, status_tool,category,owner);
+        categoryService.save(category);
         return "redirect:/tools/create";
     }
 
@@ -82,8 +83,8 @@ public class ToolsController {
     @PostMapping("/change-status")
     @ResponseBody
     public ResponseEntity<Object> changeStatusTool(@RequestBody StatusToolDTO statusToolDTO) {
-        System.out.println(statusToolDTO);
-        toolsService.changeStatus(statusToolDTO);
+        List<Status> statusList = toolsService.changeStatus(statusToolDTO);
+        statusList.forEach(statusService::save);
         if(statusToolDTO.getStatusTools().equals(StatusTools.WRITEOFF))
             return ResponseHandler.generateResponse(Messages.REDIRECT,"/write-off");
         if(statusToolDTO.getStatusTools().equals(StatusTools.SALE))

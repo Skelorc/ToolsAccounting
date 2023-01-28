@@ -338,10 +338,10 @@ $(document).ready(function () {
         console.log(checkedIds);
 
         if (window.location.pathname.indexOf('add-tool-to-project') > -1) {
-            $("#btn_replace_tools_to_project").text("Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ");
+            $("#btn_replace_tools_to_project").text("Добавить");
         }
         if (window.location.pathname.indexOf('replace-tool') > -1) {
-            $("#btn_replace_tools_to_project").text("Ð—Ð°Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ");
+            $("#btn_replace_tools_to_project").text("Заменить");
         }
 
         if (window.location.pathname.indexOf('/tools/add-tool-to-project') > -1 || window.location.pathname.indexOf('/tools/replace-tool') > -1) {
@@ -405,11 +405,11 @@ $(document).ready(function () {
 
     $('body').on('click','#write-off_on, #sale_on', function(){
         if($("#write-off_note, #note_sale").val() == ""){
-            $("#alert_message").text('Ð£ÐºÐ°Ð¶Ð¸Ñ‚Ðµ Ð¿Ñ€Ð¸Ð¼ÐµÑ‡Ð°Ð½Ð¸Ðµ');
+            $("#alert_message").text('Укажите примечание');
             $("#ex1").modal();
         }
         else if($("#write-off_photos, #photos_sale").val() == ""){
-            $("#alert_message").text('Ð£ÐºÐ°Ð¶Ð¸Ñ‚Ðµ Ñ„Ð¾Ñ‚Ð¾Ð³Ñ€Ð°Ñ„Ð¸Ð¸');
+            $("#alert_message").text('Укажите фотографии');
             $("#ex1").modal();
         }
         else{
@@ -446,31 +446,31 @@ $(document).ready(function () {
     $('body').on('click','#create_new_project, #update_project',function(){
 
         if($("#name").val() == ""){
-            $("#alert_message").text('Ð£ÐºÐ°Ð¶Ð¸Ñ‚Ðµ Ð˜Ð¼Ñ Ð¿Ñ€Ð¾ÐµÐºÑ‚Ð°');
+            $("#alert_message").text('Укажите Имя проекта');
             $("#ex1").modal();
         }
-        else if($("#status").val() == "" || $("#status").val() == "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ ÑÑ‚Ð°Ñ‚ÑƒÑ Ð¿Ñ€Ð¾ÐµÐºÑ‚Ð°"){
-            $("#alert_message").text('Ð£ÐºÐ°Ð¶Ð¸Ñ‚Ðµ ÑÑ‚Ð°Ñ‚ÑƒÑ Ð¿Ñ€Ð¾ÐµÐºÑ‚Ð°');
+        else if($("#status").val() == "" || $("#status").val() == "Выберите статус проекта"){
+            $("#alert_message").text('Укажите статус проекта');
             $("#ex1").modal();
         }
         else if(workingShifts.length == 0){
-            $("#alert_message").text('Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ€Ð°Ð±Ð¾Ñ‡Ð¸Ðµ ÑÐ¼ÐµÐ½Ñ‹');
+            $("#alert_message").text('Выберите рабочие смены');
             $("#ex1").modal();
         }
             // else if($("#start").val() == ""){
-            //     $("#alert_message").text('Ð£ÐºÐ°Ð¶Ð¸Ñ‚Ðµ Ð´Ð°Ñ‚Ñƒ Ð½Ð°Ñ‡Ð°Ð»Ð° Ð¿Ñ€Ð¾ÐµÐºÑ‚Ð°');
+            //     $("#alert_message").text('Укажите дату начала проекта');
             //     $("#ex1").modal();
             // }
             // else if($("#end").val() == ""){
-            //     $("#alert_message").text('Ð£ÐºÐ°Ð¶Ð¸Ñ‚Ðµ Ð´Ð°Ñ‚Ñƒ Ð¾ÐºÐ¾Ð½Ñ‡Ð°Ð½Ð¸Ñ Ð¿Ñ€Ð¾ÐµÐºÑ‚Ð°');
+            //     $("#alert_message").text('Укажите дату окончания проекта');
             //     $("#ex1").modal();
         // }
         else if($("#created").val() == ""){
-            $("#alert_message").text('Ð£ÐºÐ°Ð¶Ð¸Ñ‚Ðµ Ð´Ð°Ñ‚Ñƒ ÑÐ¾Ð·Ð´Ð°Ð½Ð¸Ñ Ð¿Ñ€Ð¾ÐµÐºÑ‚Ð°');
+            $("#alert_message").text('Укажите дату создания проекта');
             $("#ex1").modal();
         }
         else if($("#client_id").val() == ""){
-            $("#alert_message").text('Ð£ÐºÐ°Ð¶Ð¸Ñ‚Ðµ ÐºÐ»Ð¸ÐµÐ½Ñ‚Ð°');
+            $("#alert_message").text('Укажите клиента');
             $("#ex1").modal();
         }
         else{
@@ -484,9 +484,7 @@ $(document).ready(function () {
             workingShifts.forEach(function (item, i, arr) {
                 var curItem = item.split("-");
                 var nSH = {};
-                curItem[1] = parseInt(curItem[1]);
-                curItem[1] = curItem[1] + 1;
-                if(curItem[1].length <= 9) curItem[1] = "0"+curItem[1];
+
                 nSH['dateShift'] = curItem[2]+"-"+curItem[1]+"-"+curItem[0];
                 nSH['typeShift'] = curItem[3].toUpperCase();
                 workingShiftsNew.push(nSH);
@@ -511,7 +509,7 @@ $(document).ready(function () {
             };
             if($(this).attr('id') == 'create_new_project'){
                 if(Object.keys(checkedIds).length <= 0) {
-                    $("#alert_message").text('Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð½ÑƒÐ¶Ð½Ñ‹Ðµ Ð½Ð°Ð¸Ð¼ÐµÐ½Ð¾Ð²Ð°Ð½Ð¸Ñ!');
+                    $("#alert_message").text('Выберите нужные наименования!');
                     $("#ex1").modal();
                 }
                 else send_data('/projects/create', "POST", postData);
@@ -532,7 +530,7 @@ $(document).ready(function () {
             send_data('/projects/close', "POST", postData);
         }
         else{
-            $("#alert_message").text('Ð Ð°ÑÑ‡ÐµÑ‚ Ð½ÐµÐ¾Ð¿Ð»Ð°Ñ‡ÐµÐ½Ð½Ð¾Ð³Ð¾ Ð¾ÑÑ‚Ð°Ñ‚ÐºÐ° Ð´Ð¾Ð»Ð¶ÐµÐ½ Ð±Ñ‹Ñ‚ÑŒ Ñ€Ð°Ð²ÐµÐ½ 0!');
+            $("#alert_message").text('Расчет неоплаченного остатка должен быть равен 0!');
             $("#ex1").modal();
         }
     });
@@ -542,15 +540,15 @@ $(document).ready(function () {
         if(Object.keys(checkedIds).length > 0) {
 
             if($("#start_repair").val() == ""){
-                $("#alert_message").text('Ð£ÐºÐ°Ð¶Ð¸Ñ‚Ðµ Ð´Ð°Ñ‚Ñƒ Ð½Ð°Ñ‡Ð°Ð»Ð° Ñ€ÐµÐ¼Ð¾Ð½Ñ‚Ð°');
+                $("#alert_message").text('Укажите дату начала ремонта');
                 $("#ex1").modal();
             }
             else if($("#start_repair").val() == ""){
-                $("#alert_message").text('Ð£ÐºÐ°Ð¶Ð¸Ñ‚Ðµ Ð´Ð°Ñ‚Ñƒ ÐºÐ¾Ð½Ñ†Ð° Ñ€ÐµÐ¼Ð¾Ð½Ñ‚Ð°');
+                $("#alert_message").text('Укажите дату конца ремонта');
                 $("#ex1").modal();
             }
             else if($("#photos_repair").val() == ""){
-                $("#alert_message").text('Ð£ÐºÐ°Ð¶Ð¸Ñ‚Ðµ Ñ„Ð¾Ñ‚Ð¾Ð³Ñ€Ð°Ñ„Ð¸Ð¸');
+                $("#alert_message").text('Укажите фотографии');
                 $("#ex1").modal();
             }
             else{
@@ -569,7 +567,7 @@ $(document).ready(function () {
             }
         }
         else{
-            $("#alert_message").text('Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð½ÑƒÐ¶Ð½Ñ‹Ðµ Ð½Ð°Ð¸Ð¼ÐµÐ½Ð¾Ð²Ð°Ð½Ð¸Ñ Ð¸ ÑƒÐºÐ°Ð¶Ð¸Ñ‚Ðµ Ñ†ÐµÐ½Ñƒ Ñ€ÐµÐ¼Ð¾Ð½Ñ‚Ð°!');
+            $("#alert_message").text('Выберите нужные наименования и укажите цену ремонта!');
             $("#ex1").modal();
         }
     });
@@ -604,55 +602,55 @@ $(document).ready(function () {
         var current_status = $(this).text();
         var row = $(this).parent().parent();
 
-        if(current_status == 'Ð¡Ð¾Ð·Ð´Ð°Ð½'){
+        if(current_status == 'Создан'){
             row.css("background-color", "orange");
             row.css("color", "#fff");
         }
-        else if(current_status == 'Ð’ Ñ€Ð°Ð±Ð¾Ñ‚Ðµ'){
+        else if(current_status == 'В работе'){
             row.css("background-color", "red");
             row.css("color", "#fff");
         }
-        else if(current_status == 'ÐŸÑ€Ð¾Ð´Ð»Ñ‘Ð½'){
+        else if(current_status == 'Продлён'){
             row.css("background-color", "red");
             row.css("color", "#fff");
         }
-        else if(current_status == 'ÐŸÑ€Ð¾ÑÑ€Ð¾Ñ‡ÐµÐ½'){
+        else if(current_status == 'Просрочен'){
             row.css("background-color", "brown");
             row.css("color", "#fff");
         }
-        else if(current_status == 'ÐžÐ¶Ð¸Ð´Ð°ÐµÑ‚ Ð¾Ð¿Ð»Ð°Ñ‚Ñ‹'){
+        else if(current_status == 'Ожидает оплаты'){
             row.css("background-color", "yellow");
             row.css("color", "#000");
         }
-        else if(current_status == 'Ð—Ð°ÐºÑ€Ñ‹Ñ‚'){
+        else if(current_status == 'Закрыт'){
             row.css("background-color", "green");
             row.css("color", "#fff");
         }
-        else if(current_status == 'Ð’ Ð°Ñ€ÐµÐ½Ð´Ðµ'){
+        else if(current_status == 'В аренде'){
             row.css("background-color", "red");
             row.css("color", "#fff");
         }
-        else if(current_status == 'ÐÐ° ÑÐºÐ»Ð°Ð´e'){
+        else if(current_status == 'На складe'){
             row.css("background-color", "green");
             row.css("color", "#fff");
         }
-        else if(current_status == 'Ð’ Ð¾Ð¶Ð¸Ð´Ð°Ð½Ð¸Ð¸'){
+        else if(current_status == 'В ожидании'){
             row.css("background-color", "yellow");
             row.css("color", "#000");
         }
-        else if(current_status == 'Ð‘Ñ€Ð¾Ð½ÑŒ'){
+        else if(current_status == 'Бронь'){
             row.css("background-color", "orange");
             row.css("color", "#fff");
         }
-        else if(current_status == 'Ð’ Ñ€ÐµÐ¼Ð¾Ð½Ñ‚Ðµ'){
+        else if(current_status == 'В ремонте'){
             row.css("background-color", "gray");
             row.css("color", "#fff");
         }
-        else if(current_status == 'Ð¡Ð¿Ð¸ÑÐ°Ð½Ð¾'){
+        else if(current_status == 'Списано'){
             row.css("background-color", "brown");
             row.css("color", "#fff");
         }
-        else if(current_status == 'ÐŸÑ€Ð¾Ð´Ð°Ð½Ð¾'){
+        else if(current_status == 'Продано'){
             row.css("background-color", "blue");
             row.css("color", "#fff");
         }
@@ -674,55 +672,46 @@ $(document).ready(function () {
         else dataJSON['filter'] = 'WITHOUT_FILTER';
 
         if(window.location.pathname.indexOf('tools/add-tool-to-project') > -1){
-            dataJSON['paginationConst'] = 'TOOLS_ADD';
             dataJSON['filter'] = 'INSTOCK';
         }
         else if(window.location.pathname.indexOf('tool') > -1){
-            dataJSON['paginationConst'] = 'TOOLS';
+            dataJSON['filter'] = 'ALL_TOOLS';
         }
         else if(window.location.pathname.indexOf('repair/create') > -1 ||
             window.location.pathname.indexOf('write-off/create') > -1 ||
             window.location.pathname.indexOf('sale/create') > -1){
-            dataJSON['paginationConst'] = 'TOOLS';
             dataJSON['filter'] = 'WAITING';
         }
         else if(window.location.pathname.indexOf('repair') > -1){
-            dataJSON['paginationConst'] = 'TOOLS';
             dataJSON['filter'] = 'REPAIR';
         }
         else if(window.location.pathname.indexOf('sale') > -1){
-            dataJSON['paginationConst'] = 'TOOLS';
             dataJSON['filter'] = 'SALE';
         }
         else if(window.location.pathname.indexOf('write-off') > -1){
-            dataJSON['paginationConst'] = 'TOOLS';
             dataJSON['filter'] = 'WRITEOFF';
         }
         else if(window.location.pathname.indexOf('projects/create') > -1){
-            dataJSON['paginationConst'] = 'PROJECT_CREATE';
             dataJSON['filter'] = 'INSTOCK';
         }
         else if(window.location.pathname.indexOf('projects/edit') > -1){
-            dataJSON['paginationConst'] = 'PROJECT';
             dataJSON['filter'] = 'GET_TOOLS_BY_PROJECT';
         }
         else if(window.location.pathname.indexOf('clients/edit') > -1){
-            dataJSON['paginationConst'] = 'CLIENT';
             dataJSON['filter'] = 'PROJECTS_BY_CLIENTS';
         }
         else if(window.location.pathname.indexOf('clients') > -1){
-            dataJSON['paginationConst'] = 'CLIENT';
             dataJSON['filter'] = 'ALL_CLIENTS';
         }
         else if(window.location.pathname.indexOf('estimate-name') > -1){
-            dataJSON['paginationConst'] = 'ESTIMATE_NAME';
             dataJSON['filter'] = 'ESTIMATE_NAME';
         }
         else if(window.location.pathname.indexOf('category') > -1){
-            dataJSON['paginationConst'] = 'CATEGORY';
             dataJSON['filter'] = 'CATEGORY';
         }
-        else if(window.location.pathname == "/") dataJSON['paginationConst'] = 'PROJECT';
+        else if(window.location.pathname == "/"){
+            dataJSON['filter'] = 'ALL_PROJECTS';
+        }
 
 
         if(typeof $("#project_id").val() !== 'undefined'){
@@ -749,19 +738,19 @@ $(document).ready(function () {
                         var content = res.data[1].content;
                         var tableTR = '';
 
-                        if(dataJSON.paginationConst == 'PROJECT' && dataJSON.filter != 'GET_TOOLS_BY_PROJECT') {
+                        if(dataJSON.filter == 'PROJECT' && dataJSON.filter != 'GET_TOOLS_BY_PROJECT') {
                             content.forEach(function (item, i, arr) {
                                 if(typeof item.start !== 'undefined') item.start = getTimeFormat(item.start);
                                 if(typeof item.end !== 'undefined') item.end = getTimeFormat(item.end);
                                 if(typeof item.created !== 'undefined') item.created = getTimeFormat(item.created);
 
                                 var color_tr = "";
-                                if(item.status_value == 'Ð¡Ð¾Ð·Ð´Ð°Ð½') color_tr = "style='background-color: orange; color: #fff;'";
-                                else if(item.status_value == 'Ð’ Ñ€Ð°Ð±Ð¾Ñ‚Ðµ') color_tr = "style='background-color: red; color: #fff;'";
-                                else if(item.status_value == 'ÐŸÑ€Ð¾Ð´Ð»Ñ‘Ð½') color_tr = "style='background-color: red; color: #fff;'";
-                                else if(item.status_value == 'ÐŸÑ€Ð¾ÑÑ€Ð¾Ñ‡ÐµÐ½') color_tr = "style='background-color: brown; color: #fff;'";
-                                else if(item.status_value == 'ÐžÐ¶Ð¸Ð´Ð°ÐµÑ‚ Ð¾Ð¿Ð»Ð°Ñ‚Ñ‹') color_tr = "style='background-color: yellow; color: #000;'";
-                                else if(item.status_value == 'Ð—Ð°ÐºÑ€Ñ‹Ñ‚') color_tr = "style='background-color: gray; color: #fff;'";
+                                if(item.status_value == 'Создан') color_tr = "style='background-color: orange; color: #fff;'";
+                                else if(item.status_value == 'В работе') color_tr = "style='background-color: red; color: #fff;'";
+                                else if(item.status_value == 'Продлён') color_tr = "style='background-color: red; color: #fff;'";
+                                else if(item.status_value == 'Просрочен') color_tr = "style='background-color: brown; color: #fff;'";
+                                else if(item.status_value == 'Ожидает оплаты') color_tr = "style='background-color: yellow; color: #000;'";
+                                else if(item.status_value == 'Закрыт') color_tr = "style='background-color: gray; color: #fff;'";
 
                                 tableTR += '<tr '+color_tr+'>\n' +
                                     '    <td data-label="#" class="column-table">\n' +
@@ -780,24 +769,24 @@ $(document).ready(function () {
                                     '            <span class="tools-td-text table-td-text column-table_checkbox-number">' + item.id + '</span>\n' +
                                     '        </div>\n' +
                                     '    </td>\n' +
-                                    '    <td data-label="ÐŸÑ€Ð¾ÐµÐºÑ‚"><a href="/projects/edit/' + item.id + '/" title="Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð¿Ñ€Ð¾ÐµÐºÑ‚Ð°">' + item.name + '</a></td>\n' +
-                                    '    <td data-label="Ð¡Ñ‚Ð°Ñ‚ÑƒÑ">\n' +
+                                    '    <td data-label="Проект"><a href="/projects/edit/' + item.id + '/" title="Редактирование проекта">' + item.name + '</a></td>\n' +
+                                    '    <td data-label="Статус">\n' +
                                     '   <span class="tool_status">'+item.status_value+'</span>\n' +
                                     '   </td>\n' +
-                                    '    <td data-label="ÐšÐ»Ð¸ÐµÐ½Ñ‚">' + item.client_name + '</td>\n' +
-                                    '    <td data-label="Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½">' + item.phoneNumber + '</td>\n' +
-                                    '    <td data-label="ÐÐ°Ñ‡Ð°Ð»Ð¾ Ð°Ñ€ÐµÐ½Ð´Ñ‹">' + item.start + '</td>\n' +
-                                    '    <td data-label="ÐžÐºÐ¾Ð½Ñ‡Ð°Ð½Ð¸Ðµ Ð°Ñ€ÐµÐ½Ð´Ñ‹">' + item.end + '</td>\n' +
-                                    '    <td data-label="Ð”Ð°Ñ‚Ð° Ð¸ Ð²Ñ€ÐµÐ¼Ñ ÑÐ¾Ð·Ð´Ð°Ð½Ð¸Ñ">' + item.created + '</td>\n' +
-                                    '    <td data-label="Ð¡Ð¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸Ðº">' + item.employee + '</td>\n' +
-                                    '    <td data-label="ÐŸÑ€Ð¸Ð¼ÐµÑ‡Ð°Ð½Ð¸Ðµ">' + item.note + '</td>\n' +
-                                    '    <td data-label="Ð¢Ð¸Ð¿">' + item.classification_name + '</td>\n' +
-                                    '    <td data-label="ÐžÑ‚ÐºÑ€Ñ‹Ñ‚ÑŒ ÑÐ¼ÐµÑ‚Ñƒ"><a href="/estimate/create/' + item.id + '" title="ÐŸÑ€Ð¾ÑÐ¼Ð¾Ñ‚Ñ€/Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ ÑÐ¼ÐµÑ‚Ñ‹">Ð¡Ð¼ÐµÑ‚Ð°</a></td>\n' +
+                                    '    <td data-label="Клиент">' + item.client_name + '</td>\n' +
+                                    '    <td data-label="Телефон">' + item.phoneNumber + '</td>\n' +
+                                    '    <td data-label="Начало аренды">' + item.start + '</td>\n' +
+                                    '    <td data-label="Окончание аренды">' + item.end + '</td>\n' +
+                                    '    <td data-label="Дата и время создания">' + item.created + '</td>\n' +
+                                    '    <td data-label="Сотрудник">' + item.employee + '</td>\n' +
+                                    '    <td data-label="Примечание">' + item.note + '</td>\n' +
+                                    '    <td data-label="Тип">' + item.classification_name + '</td>\n' +
+                                    '    <td data-label="Открыть смету"><a href="/estimate/create/' + item.id + '" title="Просмотр/редактирование сметы">Смета</a></td>\n' +
                                     '</tr>';
                             });
                             $('table tbody:last').html(tableTR);
                         }
-                        else if(dataJSON.paginationConst == 'CATEGORY' && dataJSON.filter == 'CATEGORY') {
+                        else if(dataJSON.filter == 'CATEGORY') {
                             content.forEach(function (item, i, arr) {
                                 tableTR += '<tr>\n' +
                                     '    <td class="column-table">\n' +
@@ -806,17 +795,17 @@ $(document).ready(function () {
                                     '            <span class="tools-td-text table-td-text column-table_checkbox-number tool_id">'+item.id+'</span>\n' +
                                     '        </div>\n' +
                                     '    </td>\n' +
-                                    '    <td data-label="ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ ÐºÐ°Ñ‚ÐµÐ³Ð¾Ñ€Ð¸Ð¸" class="align-middle">\n' +
+                                    '    <td data-label="Название категории" class="align-middle">\n' +
                                     '        <a class="nav-link" style="font-size: medium" href="/category/edit/'+item.id+'/">'+item.name+'</a>\n' +
                                     '    </td>\n' +
-                                    '    <td data-label="ÐšÐ¾Ð´" class="align-middle">\n' +
+                                    '    <td data-label="Код" class="align-middle">\n' +
                                     '        <h1 class="display-6" style="font-size: medium">'+item.code+'</h1>\n' +
                                     '    </td>\n' +
                                     '</tr>';
                             });
                             $('table tbody:last').html(tableTR);
                         }
-                        else if(dataJSON.paginationConst == 'ESTIMATE_NAME' && dataJSON.filter == 'ESTIMATE_NAME') {
+                        else if(dataJSON.filter == 'ESTIMATE_NAME') {
                             content.forEach(function (item, i, arr) {
                                 tableTR += '<tr>\n' +
                                     '   <td class="column-table">\n' +
@@ -826,49 +815,49 @@ $(document).ready(function () {
                                     '           <span class="tools-td-text table-td-text column-table_checkbox-number tool_id">'+item.id+'</span>\n' +
                                     '       </div>\n' +
                                     '   </td>\n' +
-                                    '   <td data-label="ÐÐ°Ð¸Ð¼ÐµÐ½Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð² ÑÐ¼ÐµÑ‚Ðµ" class="align-middle">\n' +
+                                    '   <td data-label="Наименование в смете" class="align-middle">\n' +
                                     '       <a class="nav-link" style="font-size: medium" href="/estimate-name/edit/1/">'+item.name+'</a>\n' +
                                     '   </td>\n' +
-                                    '   <td data-label="Ð“Ñ€ÑƒÐ¿Ð¿Ð°" class="align-middle">\n' +
+                                    '   <td data-label="Группа" class="align-middle">\n' +
                                     '       <h1 class="display-6" style="font-size: medium">'+item.categoryTools+'</h1>\n' +
                                     '   </td>\n' +
                                     '</tr>';
                             });
                             $('table tbody:last').html(tableTR);
                         }
-                        else if(dataJSON.paginationConst == 'CLIENT' && dataJSON.filter == 'PROJECTS_BY_CLIENTS') {
+                        else if(dataJSON.filter == 'PROJECTS_BY_CLIENTS') {
                             content.forEach(function (item, i, arr) {
                                 if(typeof item.start !== 'undefined') item.start = getTimeFormat(item.start);
                                 if(typeof item.end !== 'undefined') item.end = getTimeFormat(item.end);
                                 if(typeof item.created !== 'undefined') item.created = getTimeFormat(item.created);
 
                                 tableTR += '<tr>\n' +
-                                    '   <td data-label="ÐÐ¾Ð¼ÐµÑ€" class="column-table">\n' +
+                                    '   <td data-label="Номер" class="column-table">\n' +
                                     '       <input value="'+item.id+'" hidden="hidden">\n' +
                                     '       <span class="tools-td-text table-td-text column-table_checkbox-number">'+item.id+'</span>\n' +
                                     '   </td>\n' +
-                                    '   <td data-label="ÐŸÑ€Ð¾ÐµÐºÑ‚">\n' +
-                                    '       <a href="/projects/edit/1/" title="Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð¿Ñ€Ð¾ÐµÐºÑ‚Ð°">'+item.name+'</a>\n' +
+                                    '   <td data-label="Проект">\n' +
+                                    '       <a href="/projects/edit/1/" title="Редактирование проекта">'+item.name+'</a>\n' +
                                     '   </td>\n' +
-                                    '   <td data-label="ÐšÐ»Ð¸ÐµÐ½Ñ‚">\n' +
+                                    '   <td data-label="Клиент">\n' +
                                     '       <span class="tools-td-text table-td-text">'+item.client_name+'</span>\n' +
                                     '   </td>\n' +
-                                    '   <td data-label="Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½">\n' +
+                                    '   <td data-label="Телефон">\n' +
                                     '       <span class="tools-td-text table-td-text">'+item.phoneNumber+'</span>\n' +
                                     '   </td>\n' +
-                                    '   <td data-label="ÐÐ°Ñ‡Ð°Ð»Ð¾ Ð°Ñ€ÐµÐ½Ð´Ñ‹">\n' +
+                                    '   <td data-label="Начало аренды">\n' +
                                     '       <span class="tools-td-text table-td-text">'+item.start+'</span>\n' +
                                     '   </td>\n' +
-                                    '   <td data-label="ÐžÐºÐ¾Ð½Ñ‡Ð°Ð½Ð¸Ðµ Ð°Ñ€ÐµÐ½Ð´Ñ‹">\n' +
+                                    '   <td data-label="Окончание аренды">\n' +
                                     '       <span class="tools-td-text table-td-text">'+item.end+'</span>\n' +
                                     '   </td>\n' +
-                                    '   <td data-label="Ð”Ð°Ñ‚Ð° Ð¸ Ð²Ñ€ÐµÐ¼Ñ ÑÐ¾Ð·Ð´Ð°Ð½Ð¸Ñ">\n' +
+                                    '   <td data-label="Дата и время создания">\n' +
                                     '       <span class="tools-td-text table-td-text">'+item.created+'</span>\n' +
                                     '   </td>\n' +
-                                    '   <td data-label="Ð¡Ð¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸Ðº">\n' +
+                                    '   <td data-label="Сотрудник">\n' +
                                     '       <span class="tools-td-text table-td-text">'+item.employee+'</span>\n' +
                                     '   </td>\n' +
-                                    '   <td data-label="ÐŸÑ€Ð¸Ð¼ÐµÑ‡Ð°Ð½Ð¸Ðµ">\n' +
+                                    '   <td data-label="Примечание">\n' +
                                     '       <span class="tools-td-text table-td-text">'+item.note+'</span>\n' +
                                     '   </td>\n';
 
@@ -885,17 +874,17 @@ $(document).ready(function () {
                                                 '   </a>\n' +
                                                 '</span>';
                                         });
-                                        tableTR += '<td data-label="Ð¤Ð¾Ñ‚Ð¾Ð³Ñ€Ð°Ñ„Ð¸Ð¸ Ð¾Ñ‚Ð³Ñ€ÑƒÐ·ÐºÐ¸">'+photos_code+'</td>\n';
+                                        tableTR += '<td data-label="Фотографии отгрузки">'+photos_code+'</td>\n';
                                     }
-                                    else tableTR += '<td data-label="Ð¤Ð¾Ñ‚Ð¾Ð³Ñ€Ð°Ñ„Ð¸Ð¸ Ð¾Ñ‚Ð³Ñ€ÑƒÐ·ÐºÐ¸"></td>\n';
+                                    else tableTR += '<td data-label="Фотографии отгрузки"></td>\n';
                                 }
-                                else tableTR += '<td data-label="Ð¤Ð¾Ñ‚Ð¾Ð³Ñ€Ð°Ñ„Ð¸Ð¸ Ð¾Ñ‚Ð³Ñ€ÑƒÐ·ÐºÐ¸"></td>\n';
+                                else tableTR += '<td data-label="Фотографии отгрузки"></td>\n';
 
                                 tableTR +=    '</tr>';
                             });
                             $('table tbody:last').html(tableTR);
                         }
-                        else if(dataJSON.paginationConst == 'CLIENT' && dataJSON.filter == 'ALL_CLIENTS') {
+                        else if(dataJSON.filter == 'ALL_CLIENTS') {
                             content.forEach(function (item, i, arr) {
 
 
@@ -909,34 +898,31 @@ $(document).ready(function () {
                                 else var tableTRCheck = '<input class="column-table_checkbox ids" type="checkbox">\n';
 
                                 tableTR += '<tr>\n' +
-                                    '   <td class="column-table">\n' +
-                                    '       <div class="column-table_checkbox-wrapp">\n' +
+                                    '   <td class="content_table__info_column row-tool">\n' +
+                                    '       <div >\n' +
                                     '           '+tableTRCheck+'<input hidden="hidden" value="'+item.id+'"><span class="tools-td-text table-td-text column-table_checkbox-number">'+item.id+'</span>\n' +
                                     '       </div>\n' +
                                     '   </td>\n' +
-                                    '   <td data-label="Ð¤Ð˜Ðž" class="align-middle">\n' +
-                                    '       <a class="nav-link" style="font-size: medium" href="/clients/edit/'+item.id+'/">'+item.fullName+'</a>\n' +
+                                    '   <td class="content_table__info_column barcode-tool" data-label="ФИО" >\n' +
+                                    '       <a class="nav-link" href="/clients/edit/'+item.id+'/">'+item.fullName+'</a>\n' +
                                     '   </td>\n' +
-                                    '   <td data-label="Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½"><span class="tools-td-text table-td-text">'+item.phoneNumber+'</span>\n' +
+                                    '   <td class="content_table__info_column" data-label="Телефон"><span class="tools-td-text table-td-text">'+item.phoneNumber+'</span>\n' +
                                     '   </td>\n' +
-                                    '   <td data-label="Ð¡ÐºÐ¸Ð´ÐºÐ°"><span class="tools-td-text table-td-text">'+item.discount+'</span>\n' +
-                                    '   </td><td data-label="ÐšÐ¾Ð»-Ð²Ð¾ Ð¿Ñ€Ð¾ÐµÐºÑ‚Ð¾Ð²"><span class="tools-td-text table-td-text">ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾\n' +
-                                    '           Ð¿Ñ€Ð¾ÐµÐºÑ‚Ð¾Ð²</span>\n' +
-                                    '   </td><td data-label="ÐŸÑ€Ð¸Ð¼ÐµÑ‡Ð°Ð½Ð¸Ðµ"><span class="tools-td-text table-td-text">ÐŸÑ€Ð¸Ð¼ÐµÑ‡Ð°Ð½Ð¸Ðµ Ð¾ Ð¸Ð½Ð´Ð¸Ð²Ð¸Ð´ÑƒÐ°Ð»ÑŒÐ½Ð¾Ð¼</span>\n' +
-                                    '   </td><td data-label="Ð”Ð¾Ð³Ð¾Ð²Ð¾Ñ€"><span class="tools-td-text table-td-text">Ð”Ð¾Ð³Ð¾Ð²Ð¾Ñ€</span>\n' +
-                                    '   </td><td data-label="Ð§ÐµÑ€Ð½Ñ‹Ð¹ ÑÐ¿Ð¸ÑÐ¾Ðº"><span class="tools-td-text table-td-text">false</span>\n' +
+                                    '   <td class="content_table__info_column" data-label="Скидка"><span class="tools-td-text table-td-text">'+item.discount+'</span>\n' +
+                                    '   </td><td class="content_table__info_column" data-label="Примечание"><span class="tools-td-text table-td-text">Примечание о индивидуальном</span>\n' +
+                                    '   </td><td class="content_table__info_column" data-label="Черный список"><span class="tools-td-text table-td-text">false</span>\n' +
                                     '   </td>\n' +
                                     '</tr>';
                             });
                             $('table tbody:last').html(tableTR);
                         }
-                        else if(dataJSON.paginationConst == 'TOOLS' && dataJSON.filter == 'SALE') {
+                        else if(dataJSON.filter == 'SALE') {
                             content.forEach(function (item, i, arr) {
                                 if(typeof item.created !== 'undefined') item.created = getTimeFormat(item.created);
 
                                 tableTR += '<tr>\n' +
-                                    '   <td data-label="â„–" class="column-table">\n' +
-                                    '       <div class="column-table_checkbox-wrapp">\n';
+                                    '   <td data-label="№" class="content_table__info_column">\n' +
+                                    '       <div class="content_table__info_column">\n';
                                 var checked = false;
                                 var curId = item.id
                                 checkedIds.forEach(function (item, i, arr) {
@@ -949,13 +935,13 @@ $(document).ready(function () {
                                 tableTR +=    '<input type="hidden" value="'+item.id+'">\n' +
                                     '       </div>\n' +
                                     '   </td>\n' +
-                                    '   <td data-label="Ð”Ð°Ñ‚Ð° ÑÐ¾Ð·Ð´Ð°Ð½Ð¸Ñ">'+item.created+'</td>\n' +
-                                    '   <td data-label="Ð˜ÑÐ¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»ÑŒ">'+item.executor+'</td>\n' +
-                                    '   <td data-label="Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½">'+item.phone_number+'</td>\n' +
-                                    '   <td data-label="Ð’ÑÐµÐ³Ð¾ Ñ†ÐµÐ½Ð° Ð¿Ñ€Ð¾Ð´Ð°Ð¶Ð¸">'+item.priceSell+'</td>\n' +
-                                    '   <td data-label="Ð¡Ð¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸Ðº">'+item.employee+'</td>\n' +
-                                    '   <td data-label="ÐŸÑ€Ð¸Ð¼ÐµÑ‡Ð°Ð½Ð¸Ðµ">'+item.note+'</td>\n' +
-                                    '   <td data-label="Ð¡Ñ‚Ð°Ñ‚ÑƒÑ">'+item.status_value+'</td>\n';
+                                    '   <td data-label="Дата создания">'+item.created+'</td>\n' +
+                                    '   <td data-label="Исполнитель">'+item.executor+'</td>\n' +
+                                    '   <td data-label="Телефон">'+item.phone_number+'</td>\n' +
+                                    '   <td data-label="Всего цена продажи">'+item.priceSell+'</td>\n' +
+                                    '   <td data-label="Сотрудник">'+item.employee+'</td>\n' +
+                                    '   <td data-label="Примечание">'+item.note+'</td>\n' +
+                                    '   <td data-label="Статус">'+item.status_value+'</td>\n';
                                 if(typeof item.photos !== 'undefined') {
                                     if (item.photos.length > 0) {
                                         var photos_code = '';
@@ -969,17 +955,16 @@ $(document).ready(function () {
                                                 '   </a>\n' +
                                                 '</span>';
                                         });
-                                        tableTR += '<td data-label="Ð¤Ð¾Ñ‚Ð¾Ð³Ñ€Ð°Ñ„Ð¸Ð¸">'+photos_code+'</td>\n';
+                                        tableTR += '<td data-label="Фотографии">'+photos_code+'</td>\n';
                                     }
-                                    else tableTR += '<td data-label="Ð¤Ð¾Ñ‚Ð¾Ð³Ñ€Ð°Ñ„Ð¸Ð¸"></td>\n';
+                                    else tableTR += '<td data-label="Фотографии"></td>\n';
                                 }
-                                else tableTR += '<td data-label="Ð¤Ð¾Ñ‚Ð¾Ð³Ñ€Ð°Ñ„Ð¸Ð¸"></td>\n';
+                                else tableTR += '<td data-label="Фотографии"></td>\n';
                                 tableTR +=    '</tr>';
                             });
                             $('table tbody:last').html(tableTR);
                         }
-                        else if((dataJSON.paginationConst == 'PROJECT_CREATE' && dataJSON.filter == 'INSTOCK') ||
-                            (dataJSON.paginationConst == 'PROJECT' && dataJSON.filter == 'GET_TOOLS_BY_PROJECT')){
+                        else if(dataJSON.filter == 'INSTOCK' || dataJSON.filter == 'GET_TOOLS_BY_PROJECT'){
                             content.forEach(function (item, i, arr) {
 
 
@@ -1004,24 +989,23 @@ $(document).ready(function () {
                                     '   <span className="tools-td-text table-td-text column-table_checkbox-number">'+item.id+'</span>\n' +
                                     '       </div>\n' +
                                     '   </td>\n' +
-                                    '   <td data-label="ÐÐ°Ð¸Ð¼ÐµÐ½Ð¾Ð²Ð°Ð½Ð¸Ðµ">'+item.name+'</td>\n' +
-                                    '   <td data-label="Ð¨Ñ‚Ñ€Ð¸Ñ…ÐºÐ¾Ð´" class="barcode-tool">'+item.barcode+'</td>\n' +
-                                    '   <td data-label="Ð“Ñ€ÑƒÐ¿Ð¿Ð°">'+item.category+'</td>\n' +
-                                    '   <td data-label="ÐœÐ°Ñ€ÐºÐ°\\ÐœÐ¾Ð´ÐµÐ»ÑŒ">'+item.model+'</td>\n' +
-                                    '   <td data-label="Ð¡ÐµÑ€Ð¸Ð¹Ð½Ñ‹Ð¹ Ð½Ð¾Ð¼ÐµÑ€">'+item.serialNumber+'</td>\n' +
-                                    '   <td data-label="ÐšÐ¾Ð¼Ð¼ÐµÐ½Ñ‚Ð°Ñ€Ð¸Ð¹">'+item.comment+'</td>\n' +
-                                    '   <td data-label="Ð¥Ð°Ñ€Ð°ÐºÑ‚ÐµÑ€Ð¸ÑÑ‚Ð¸ÐºÐ¸">'+item.characteristics+'</td>\n' +
-                                    '   <td data-label="Ð¡Ð¾ÑÑ‚Ð¾ÑÐ½Ð¸Ðµ">'+item.state+'</td>\n' +
-                                    '   <td data-label="Ð¦ÐµÐ½Ð°" class="price-tool">'+item.costPrice+'</td>\n' +
-                                    '   <td data-label="Ð¡ÐµÐ±ÐµÑÑ‚Ð¾Ð¸Ð¼Ð¾ÑÑ‚ÑŒ">'+item.priceSell+'</td>\n' +
-                                    '   <td data-label="ÐšÐ¾Ð¼Ð¿Ð»ÐµÐºÑ‚">'+item.equip+'</td>\n' +
+                                    '   <td data-label="Наименование">'+item.name+'</td>\n' +
+                                    '   <td data-label="Штрихкод" class="barcode-tool">'+item.barcode+'</td>\n' +
+                                    '   <td data-label="Группа">'+item.category+'</td>\n' +
+                                    '   <td data-label="Марка\\Модель">'+item.model+'</td>\n' +
+                                    '   <td data-label="Серийный номер">'+item.serialNumber+'</td>\n' +
+                                    '   <td data-label="Комментарий">'+item.comment+'</td>\n' +
+                                    '   <td data-label="Характеристики">'+item.characteristics+'</td>\n' +
+                                    '   <td data-label="Состояние">'+item.state+'</td>\n' +
+                                    '   <td data-label="Цена" class="price-tool">'+item.costPrice+'</td>\n' +
+                                    '   <td data-label="Себестоимость">'+item.priceSell+'</td>\n' +
+                                    '   <td data-label="Комплект">'+item.equip+'</td>\n' +
                                     '</tr>';
                             });
 
                             $('table tbody:last').html(tableTR);
                         }
-                        else if((dataJSON.paginationConst == 'TOOLS' && dataJSON.filter == 'INSTOCK') ||
-                            (dataJSON.paginationConst == 'TOOLS' && dataJSON.filter == 'WAITING') ) {
+                        else if(dataJSON.filter == 'INSTOCK' || dataJSON.filter == 'WAITING') {
                             content.forEach(function (item, i, arr) {
 
                                 if(typeof item.start !== 'undefined') item.start = getTimeFormat(item.start);
@@ -1050,26 +1034,26 @@ $(document).ready(function () {
                                 tableTR += '<input type="hidden" value="'+item.id+'">\n' +
                                     '       </div>\n' +
                                     '   </td>\n' +
-                                    '   <td data-label="ÐÐ°Ð¸Ð¼ÐµÐ½Ð¾Ð²Ð°Ð½Ð¸Ðµ">'+item.name+'</td>\n' +
-                                    '   <td data-label="Ð¦ÐµÐ½Ð° Ñ€ÐµÐ¼Ð¾Ð½Ñ‚Ð°" class="td-whith-input">\n' +
-                                    '       <input class="form-control input-without-style repair_price" type="text" placeholder="Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ†ÐµÐ½Ñƒ" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\').replace(/(\\..*?)\\..*/g,\'$1\');" aria-describedby="item-human-passport_serial" id="tools_id_with_prices0.price" name="tools_id_with_prices[0].price" value="'+priceVal+'">\n' +
+                                    '   <td data-label="Наименование">'+item.name+'</td>\n' +
+                                    '   <td data-label="Цена ремонта" class="td-whith-input">\n' +
+                                    '       <input class="form-control input-without-style repair_price" type="text" placeholder="Введите цену" oninput="this.value = this.value.replace(/[^0-9.]/g, \'\').replace(/(\\..*?)\\..*/g,\'$1\');" aria-describedby="item-human-passport_serial" id="tools_id_with_prices0.price" name="tools_id_with_prices[0].price" value="'+priceVal+'">\n' +
                                     '   </td>\n' +
-                                    '   <td data-label="Ð¨Ñ‚Ñ€Ð¸Ñ…ÐºÐ¾Ð´" class="barcode-tool">'+item.barcode+'</td>\n' +
-                                    '   <td data-label="Ð“Ñ€ÑƒÐ¿Ð¿Ð°">'+item.category+'</td>\n' +
-                                    '   <td data-label="ÐœÐ°Ñ€ÐºÐ°\\ÐœÐ¾Ð´ÐµÐ»ÑŒ">'+item.model+'</td>\n' +
-                                    '   <td data-label="Ð¡ÐµÑ€Ð¸Ð¹Ð½Ñ‹Ð¹ Ð½Ð¾Ð¼ÐµÑ€">'+item.serialNumber+'</td>\n' +
-                                    '   <td data-label="ÐšÐ¾Ð¼Ð¼ÐµÐ½Ñ‚Ð°Ñ€Ð¸Ð¹">'+item.comment+'</td>\n' +
-                                    '   <td data-label="Ð¥Ð°Ñ€Ð°ÐºÑ‚ÐµÑ€Ð¸ÑÑ‚Ð¸ÐºÐ¸">'+item.characteristics+'</td>\n' +
-                                    '   <td data-label="Ð¡Ð¾ÑÑ‚Ð¾ÑÐ½Ð¸Ðµ">'+item.state+'</td>\n' +
-                                    '   <td data-label="Ð¦ÐµÐ½Ð°">'+item.costPrice+'</td>\n' +
-                                    '   <td data-label="Ð¡ÐµÐ±ÐµÑÑ‚Ð¾Ð¸Ð¼Ð¾ÑÑ‚ÑŒ">'+item.priceSell+'</td>\n' +
-                                    '   <td data-label="ÐšÐ¾Ð¼Ð¿Ð»ÐµÐºÑ‚">'+item.equip+'</td>\n' +
+                                    '   <td data-label="Штрихкод" class="barcode-tool">'+item.barcode+'</td>\n' +
+                                    '   <td data-label="Группа">'+item.category+'</td>\n' +
+                                    '   <td data-label="Марка\\Модель">'+item.model+'</td>\n' +
+                                    '   <td data-label="Серийный номер">'+item.serialNumber+'</td>\n' +
+                                    '   <td data-label="Комментарий">'+item.comment+'</td>\n' +
+                                    '   <td data-label="Характеристики">'+item.characteristics+'</td>\n' +
+                                    '   <td data-label="Состояние">'+item.state+'</td>\n' +
+                                    '   <td data-label="Цена">'+item.costPrice+'</td>\n' +
+                                    '   <td data-label="Себестоимость">'+item.priceSell+'</td>\n' +
+                                    '   <td data-label="Комплект">'+item.equip+'</td>\n' +
                                     '</tr>';
                             });
 
                             $('table tbody:last').html(tableTR);
                         }
-                        else if(dataJSON.paginationConst == 'TOOLS' && dataJSON.filter == 'WRITEOFF') {
+                        else if(dataJSON.filter == 'WRITEOFF') {
                             content.forEach(function (item, i, arr) {
 
                                 if(typeof item.start !== 'undefined') item.start = getTimeFormat(item.start);
@@ -1077,7 +1061,7 @@ $(document).ready(function () {
                                 if(typeof item.created !== 'undefined') item.created = getTimeFormat(item.created);
 
                                 tableTR += '<tr>\n' +
-                                    '   <td data-label="â„–" class="column-table">\n' +
+                                    '   <td data-label="№" class="column-table">\n' +
                                     '       <div class="column-table_checkbox-wrapp">\n';
 
 
@@ -1093,11 +1077,11 @@ $(document).ready(function () {
                                 tableTR += '<input type="hidden" value="'+item.id+'">' +
                                     '       </div>\n' +
                                     '   </td>\n' +
-                                    '   <td data-label="Ð”Ð°Ñ‚Ð° ÑÐ¾Ð·Ð´Ð°Ð½Ð¸Ñ">'+item.created+'</td>\n' +
-                                    '   <td data-label="Ð’ÑÐµÐ³Ð¾ ÑÑƒÐ¼Ð¼Ð° ÑÐ¿Ð¸ÑÐ°Ð½Ð¸Ñ">'+item.priceOff+'</td>\n' +
-                                    '   <td data-label="Ð¡Ð¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸Ðº">'+item.employee+'</td>\n' +
-                                    '   <td data-label="ÐŸÑ€Ð¸Ð¼ÐµÑ‡Ð°Ð½Ð¸Ðµ">'+item.note+'</td>\n' +
-                                    '   <td data-label="Ð¡Ñ‚Ð°Ñ‚ÑƒÑ">'+item.status_value+'</td>';
+                                    '   <td data-label="Дата создания">'+item.created+'</td>\n' +
+                                    '   <td data-label="Всего сумма списания">'+item.priceOff+'</td>\n' +
+                                    '   <td data-label="Сотрудник">'+item.employee+'</td>\n' +
+                                    '   <td data-label="Примечание">'+item.note+'</td>\n' +
+                                    '   <td data-label="Статус">'+item.status_value+'</td>';
                                 if(typeof item.photos !== 'undefined') {
                                     if (item.photos.length > 0) {
                                         var photos_code = '';
@@ -1111,17 +1095,17 @@ $(document).ready(function () {
                                                 '   </a>\n' +
                                                 '</span>';
                                         });
-                                        tableTR += '<td data-label="Ð¤Ð¾Ñ‚Ð¾Ð³Ñ€Ð°Ñ„Ð¸Ð¸">'+photos_code+'</td>\n';
+                                        tableTR += '<td data-label="Фотографии">'+photos_code+'</td>\n';
                                     }
-                                    else tableTR += '<td data-label="Ð¤Ð¾Ñ‚Ð¾Ð³Ñ€Ð°Ñ„Ð¸Ð¸"></td>\n';
+                                    else tableTR += '<td data-label="Фотографии"></td>\n';
                                 }
-                                else tableTR += '<td data-label="Ð¤Ð¾Ñ‚Ð¾Ð³Ñ€Ð°Ñ„Ð¸Ð¸"></td>\n';
+                                else tableTR += '<td data-label="Фотографии"></td>\n';
 
                                 tableTR += '</tr>';
                             });
                             $('table tbody:last').html(tableTR);
                         }
-                        else if(dataJSON.paginationConst == 'TOOLS' && dataJSON.filter == 'REPAIR') {
+                        else if(dataJSON.filter == 'REPAIR') {
                             content.forEach(function (item, i, arr) {
 
                                 if(typeof item.start !== 'undefined') item.start = getTimeFormat(item.start);
@@ -1129,7 +1113,7 @@ $(document).ready(function () {
                                 if(typeof item.created !== 'undefined') item.created = getTimeFormat(item.created);
 
                                 tableTR += '<tr>\n' +
-                                    '   <td data-label="â„–" class="column-table">\n' +
+                                    '   <td data-label="№" class="column-table">\n' +
                                     '       <div class="column-table_checkbox-wrapp">\n';
 
 
@@ -1145,16 +1129,16 @@ $(document).ready(function () {
                                 tableTR += '<input type="hidden" value="'+item.id+'">' +
                                     '       </div>\n' +
                                     '   </td>\n' +
-                                    '   <td data-label="Ð”Ð°Ñ‚Ð° ÑÐ¾Ð·Ð´Ð°Ð½Ð¸Ñ">'+item.created+'</td>\n' +
-                                    '   <td data-label="ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ Ð¾Ð±Ð¾Ñ€ÑƒÐ´Ð¾Ð²Ð°Ð½Ð¸Ñ">'+item.tools+'</td>\n' +
-                                    '   <td data-label="Ð˜ÑÐ¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»ÑŒ">'+item.executor+'</td>\n' +
-                                    '   <td data-label="Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½">'+item.phone_number+'</td>\n' +
-                                    '   <td data-label="ÐÐ°Ñ‡Ð°Ð»Ð¾ Ñ€ÐµÐ¼Ð¾Ð½Ñ‚Ð°">'+item.start+'</td>\n' +
-                                    '   <td data-label="ÐžÐºÐ¾Ð½Ñ‡Ð°Ð½Ð¸Ðµ Ñ€ÐµÐ¼Ð¾Ð½Ñ‚Ð°">'+item.end+'</td>\n' +
-                                    '   <td data-label="Ð’ÑÐµÐ³Ð¾ Ñ†ÐµÐ½Ð° Ñ€ÐµÐ¼Ð¾Ð½Ñ‚Ð°">'+item.priceRepair+'</td>\n' +
-                                    '   <td data-label="Ð¡Ð¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸Ðº">'+item.employee+'</td>\n' +
-                                    '   <td data-label="ÐŸÑ€Ð¸Ð¼ÐµÑ‡Ð°Ð½Ð¸Ðµ">'+item.note+'</td>\n' +
-                                    '   <td data-label="Ð¡Ñ‚Ð°Ñ‚ÑƒÑ">'+item.status_value+'</td>\n';
+                                    '   <td data-label="Дата создания">'+item.created+'</td>\n' +
+                                    '   <td data-label="Название оборудования">'+item.tools+'</td>\n' +
+                                    '   <td data-label="Исполнитель">'+item.executor+'</td>\n' +
+                                    '   <td data-label="Телефон">'+item.phone_number+'</td>\n' +
+                                    '   <td data-label="Начало ремонта">'+item.start+'</td>\n' +
+                                    '   <td data-label="Окончание ремонта">'+item.end+'</td>\n' +
+                                    '   <td data-label="Всего цена ремонта">'+item.priceRepair+'</td>\n' +
+                                    '   <td data-label="Сотрудник">'+item.employee+'</td>\n' +
+                                    '   <td data-label="Примечание">'+item.note+'</td>\n' +
+                                    '   <td data-label="Статус">'+item.status_value+'</td>\n';
                                 if(typeof item.photos !== 'undefined') {
                                     if (item.photos.length > 0) {
                                         var photos_code = '';
@@ -1168,27 +1152,26 @@ $(document).ready(function () {
                                                 '   </a>\n' +
                                                 '</span>';
                                         });
-                                        tableTR += '<td data-label="Ð¤Ð¾Ñ‚Ð¾Ð³Ñ€Ð°Ñ„Ð¸Ð¸">'+photos_code+'</td>\n';
+                                        tableTR += '<td data-label="Фотографии">'+photos_code+'</td>\n';
                                     }
-                                    else tableTR += '<td data-label="Ð¤Ð¾Ñ‚Ð¾Ð³Ñ€Ð°Ñ„Ð¸Ð¸"></td>\n';
+                                    else tableTR += '<td data-label="Фотографии"></td>\n';
                                 }
-                                else tableTR += '<td data-label="Ð¤Ð¾Ñ‚Ð¾Ð³Ñ€Ð°Ñ„Ð¸Ð¸"></td>\n';
+                                else tableTR += '<td data-label="Фотографии"></td>\n';
 
                                 tableTR += '</tr>';
                             });
                             $('table tbody:last').html(tableTR);
                         }
-                        else if((dataJSON.paginationConst == 'TOOLS') ||
-                            (dataJSON.paginationConst == 'TOOLS_ADD' && dataJSON.filter == 'INSTOCK')){
+                        else if(dataJSON.filter == 'INSTOCK'){
                             content.forEach(function(item, i, arr) {
                                 var color_tr = "";
-                                if(item.status_string == 'Ð’ Ð°Ñ€ÐµÐ½Ð´Ðµ') color_tr = "style='background-color: red; color: #fff;'";
-                                else if(item.status_string == 'ÐÐ° ÑÐºÐ»Ð°Ð´e') color_tr = "style='background-color: green; color: #fff;'";
-                                else if(item.status_string == 'Ð’ Ð¾Ð¶Ð¸Ð´Ð°Ð½Ð¸Ð¸') color_tr = "style='background-color: yellow; color: #000;'";
-                                else if(item.status_string == 'Ð‘Ñ€Ð¾Ð½ÑŒ') color_tr = "style='background-color: orange; color: #fff;'";
-                                else if(item.status_string == 'Ð’ Ñ€ÐµÐ¼Ð¾Ð½Ñ‚Ðµ') color_tr = "style='background-color: gray; color: #fff;'";
-                                else if(item.status_string == 'Ð¡Ð¿Ð¸ÑÐ°Ð½Ð¾') color_tr = "style='background-color: brown; color: #fff;'";
-                                else if(item.status_string == 'ÐŸÑ€Ð¾Ð´Ð°Ð½Ð¾') color_tr = "style='background-color: blue; color: #fff;'";
+                                if(item.status_string == 'В аренде') color_tr = "style='background-color: red; color: #fff;'";
+                                else if(item.status_string == 'На складe') color_tr = "style='background-color: green; color: #fff;'";
+                                else if(item.status_string == 'В ожидании') color_tr = "style='background-color: yellow; color: #000;'";
+                                else if(item.status_string == 'Бронь') color_tr = "style='background-color: orange; color: #fff;'";
+                                else if(item.status_string == 'В ремонте') color_tr = "style='background-color: gray; color: #fff;'";
+                                else if(item.status_string == 'Списано') color_tr = "style='background-color: brown; color: #fff;'";
+                                else if(item.status_string == 'Продано') color_tr = "style='background-color: blue; color: #fff;'";
 
                                 tableTR += '<tr '+color_tr+'>\n' +
                                     '<td>' +
@@ -1443,12 +1426,12 @@ $(document).ready(function () {
 
         var allJson = {
             'toolsEstimates' : items,
+            'operator': $('#operator :selected').val(),
             'params': {
                 'id': $('.estimate_id_value').val(),
                 'allByPRoject': $('.fsIn1').val(),
                 'discountByTools': $('.fsIn2').val(),
                 'allByProjectWithDiscount': $('.fsIn3').val(),
-
                 'allByService': $('.fsIn1_t').val(),
                 'finalSumByProject': $('.fsIn2_t').val(),
                 'procentUsn': $('.fsIn3_USN_t').val(),
@@ -1463,11 +1446,11 @@ $(document).ready(function () {
     $('.add_transport').click(function (e) {
         var tableCell = '<tr class="sat_item">\n' +
             '    <td class="first-th remove_transport" style="cursor: pointer; background: #1ab394; color: #fff; font-size: 20px;">-</td>\n' +
-            '    <td><input type="text" class="form-control__table fIn0_t" value="" placeholder="ÐÐ°Ð¸Ð¼ÐµÐ½Ð¾Ð²Ð°Ð½Ð¸Ðµ" style="font-size: 14px;"></td>\n' +
-            '    <td><input type="text" class="form-control__table fIn1_t" placeholder="Ð¦ÐµÐ½Ð° Ð·Ð° ÑÐ¼ÐµÐ½Ñƒ"></td>\n' +
-            '    <td><input type="text" class="form-control__table fIn2_t" placeholder="ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾"></td>\n' +
-            '    <td><input type="text" class="form-control__table fIn3_t" placeholder="ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ ÑÐ¼ÐµÐ½"></td>\n' +
-            '    <td><input type="text" class="form-control__table fIn4_t" placeholder="Ð¡ÐºÐ¸Ð´ÐºÐ°"></td>\n' +
+            '    <td><input type="text" class="form-control__table fIn0_t" value="" placeholder="Наименование" style="font-size: 14px;"></td>\n' +
+            '    <td><input type="text" class="form-control__table fIn1_t" placeholder="Цена за смену"></td>\n' +
+            '    <td><input type="text" class="form-control__table fIn2_t" placeholder="Количество"></td>\n' +
+            '    <td><input type="text" class="form-control__table fIn3_t" placeholder="Количество смен"></td>\n' +
+            '    <td><input type="text" class="form-control__table fIn4_t" placeholder="Скидка"></td>\n' +
             '    <td><span class="table-td-text fIn5_t"></span></td>\n' +
             '    <td><span class="table-td-text fIn6_t"></span></td>\n' +
             '</tr>';
@@ -1539,7 +1522,6 @@ $(document).ready(function () {
 
     $('.viewCalendar').click(function (e) {
         dataJSON = {};
-        dataJSON['paginationConst'] = 'TOOLS';
         dataJSON['filter'] = 'WITHOUT_FILTER';
         dataJSON['page'] = 0;
         dataJSON['size'] = 100;

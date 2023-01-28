@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" th:href="@{/img/logo/favicon.ico}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/edit_contact.css}">
+	<title>Редактирование контакта</title>
+</head>
+<body>
+    <div class="projects_wrapper d-flex">
+        <div class="projects_wrapper__main d-flex">
+            <div th:replace="fragments/menu_sidebar.html"></div>
+            <div class="main_general d-flex">
+                <div class="main_general__content d-flex">
+                    <div class="main_general__content_article d-flex pad-0_3">
+
+                        <div class="content_article__name d-flex">
+                            <div class="content_article__name_text d-flex">
+                                Контакт
+                            </div>
+                        </div>
+                        <form th:action="@{/contacts/edit}" method="post" th:object="${contact}" class="content_article__form d-flex fd-col">
+                           <div class="content_article__form_group_up d-flex">
+                                <div class="form_group_up__left d-flex fd-col">
+                                    <div class="form_group_up__left_item">
+                                        <label class="left_item__text">ФИО</label>
+                                        <input class="left_item__input" th:value="${contact.name}"
+                                               th:field="*{name}" required type="text" placeholder="ФИО">
+                                    </div>
+                                    <div class="form_group_up__left_item">
+                                        <label class="left_item__text">Серия и номер паспорта</label>
+                                        <input class="left_item__input" th:value="${contact.numberPassport}"
+                                               th:field="*{numberPassport}" required type="text" placeholder="Серия и номер паспорта">
+                                    </div>
+                                    <div class="form_group_up__left_item">
+                                        <label class="left_item__text">Комментарий</label>
+                                        <input class="left_item__input" required type="text" name="comment" placeholder="Комментарий">
+                                    </div>
+                                </div>
+                                <div class="form_group_up__right d-flex fd-col">
+                                    <div class="form_group_up__right_item">
+                                        Роль контакта
+                                    </div>
+                                    <div class="form_group_up__right_item__link">
+                                        <a href="/role-contacts" class="right_item__link">
+                                            Добавить роль
+                                        </a>
+                                    </div>
+                                    <div class="form_group_up__right_item">
+                                        <select th:field="*{roleContact}" required class="vs__selected-options main-secect__opions">
+                                            <option class="vs__selected vs__dropdown-toggle" value=""
+                                                    disabled>
+                                                Выберите тип контакта
+                                            </option>
+                                            <option class="vs__selected vs__dropdown-toggle" value="1">Менеджер</option>
+                                            <option class="vs__selected vs__dropdown-toggle"
+                                                    th:each="role : ${roles_contacts}"
+                                                    th:text="${role.role}"
+                                                    th:value="${role.id}"
+                                                    th:selected="${contact.roleContact.id==role.id}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form_group_up__right_item__other">
+                                        <div class="right_item__left d-flex">
+                                            <label class="right_item__other_text">Кем выдан</label>
+                                            <input class="right_item__other_input" required type="text"
+                                                   th:field="*{issuedBy}" th:value="${contact.issuedBy}" placeholder="Кем выдан">
+                                        </div>
+                                        <div class="right_item__right d-flex">
+                                            <label class="right_item__other_text">Дата выдачи</label>
+                                            <input class="right_item__other_input" required type="date"
+                                                   th:field="*{dateIssuePassport}"
+                                                   th:value="${contact.dateIssuePassport}" placeholder="Дата выдачи">
+                                        </div>
+                                    </div>
+                                    <div class="form_group_up__right_item">
+                                        <label class="right_item__text">Загрузите ваши фотографии на сервер</label>
+                                        <textarea rows="4" required th:utext="${contact.photos}"
+                                                  name="photos" class="right_item__textarea"></textarea>
+                                    </div>
+                                
+                                </div> 
+                            </div>
+                            <div class="content_article__form_buttons d-flex">
+                                <button type="submit" class="form_buttons__send">
+                                    Обновить
+                                </button>
+                                <form th:action="@{/contacts/delete/{id}(id=${contact.id})}" method="post">
+                                    <button type="submit" class="form_buttons__send_red">
+                                        Удалить контакт
+                                    </button>
+                                </form>
+                            </div>
+                        </form>
+                    </div>
+                    <div th:insert="fragments/footer.html"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:insert="fragments/scripts.html"></div>
+</body>
+</html>

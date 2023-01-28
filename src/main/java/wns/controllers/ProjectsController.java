@@ -12,13 +12,17 @@ import wns.constants.Messages;
 import wns.dto.IdsDTO;
 import wns.dto.PageDataDTO;
 import wns.dto.ProjectDTO;
-import wns.entity.Project;
-import wns.services.ClientsService;
-import wns.services.PageableFilterService;
-import wns.services.ProjectService;
+import wns.dto.WorkingShiftDTO;
+import wns.entity.*;
+import wns.services.*;
 import wns.utils.ResponseHandler;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+
+import static wns.constants.Messages.PROJECT_UPDATE;
 
 @Controller
 @RequestMapping("")
@@ -27,13 +31,16 @@ public class ProjectsController {
 
     private final ProjectService projectService;
     private final ClientsService clientsService;
+    private final ToolsService toolsService;
+    private final ToolsEstimateService toolsEstimateService;
+    private final WorkingShiftService workingShiftService;
     private final PageableFilterService pageableFilterService;
 
     @GetMapping
     public String show(@RequestParam(value = "page", required = false) Optional<Integer> page,
                        @RequestParam(value = "size", required = false) Optional<Integer> size,
                        Model model) {
-        Page<Object> paginated_list = pageableFilterService.getListData(new PageDataDTO(page,size,Filter.ALL_PROJECTS));
+        Page<Object> paginated_list = pageableFilterService.getListData(new PageDataDTO(page, size, Filter.ALL_PROJECTS));
         pageableFilterService.addPageNumbers(paginated_list, model);
         model.addAttribute("list_projects", paginated_list);
         return "projects";
@@ -41,8 +48,19 @@ public class ProjectsController {
 
     @PostMapping("/projects/delete")
     @ResponseBody
-    public ResponseEntity<Object> deleteProject(@RequestBody IdsDTO ids) {
-        projectService.deleteProjectsByListsId(ids.getIds());
+    public ResponseEntity<Object> deleteProject(@RequestBody IdsDTO idsDTO) {
+        for (Long id : idsDTO.getIds()) {
+            Project project = projectService.getById(id);
+            Set<Tools> tools = project.getTools();
+            projectService.delete(project.getId());
+            for (Tools tool : tools) {
+                toolsEstimateService.deleteToolEstimateFromEstimate(tool);
+                toolsService.deleteToolFromProject(tool);
+            }
+            for (WorkingShift workingShift : project.getWorkingShifts()) {
+                workingShiftService.delete(workingShift.getId());
+            }
+        }
         return ResponseHandler.generateResponse(Messages.DELETE, "/projects");
     }
 
@@ -61,7 +79,26 @@ public class ProjectsController {
     @PostMapping("/projects/create")
     @ResponseBody
     public ResponseEntity<Object> createProject(@RequestBody ProjectDTO projectDTO) {
-        Project project = projectService.createProject(projectDTO);
+        List<WorkingShiftDTO> workingShifts = projectDTO.getWorkingShifts();
+        projectDTO.setStart(workingShifts.get(0).getDateShift());
+        projectDTO.setEnd(workingShifts.get(workingShifts.size()-1).getDateShift());
+        Client client = clientsService.getById(projectDTO.getClient_id());
+        Estimate estimate = new Estimate();
+        estimate.setStart(projectDTO.getStart());
+        estimate.setEnd(projectDTO.getEnd());
+        estimate.setCount_shifts(workingShifts.size());
+        Project project = projectService.createProject(projectDTO, client, estimate);
+        for (Long id : projectDTO.getItems()) {
+            Tools tool = toolsService.findById(id);
+            toolsService.addToolToProject(tool, project);
+            toolsEstimateService.addToolEstimateToEstimate(project, tool);
+        }
+        for (WorkingShiftDTO shiftDTO : workingShifts) {
+            WorkingShift workingShift = shiftDTO.creteWorkingShiftFromDTO(shiftDTO);
+            workingShift.setDateShift(shiftDTO.getDateShift());
+            workingShift.setProject(project);
+            workingShiftService.save(workingShift);
+        }
         return ResponseHandler.generateResponse(Messages.REDIRECT, "/estimate/create/" + project.getId());
     }
 
@@ -80,7 +117,20 @@ public class ProjectsController {
     @PostMapping("/projects/edit")
     @ResponseBody
     public ResponseEntity<Object> updateProject(@RequestBody ProjectDTO projectDTO) {
-        projectService.updateProject(projectDTO);
+        List<WorkingShift> workingShiftList = new ArrayList<>();
+        Project project = projectDTO.createProjectFromDTO();
+        project.setStart(workingShiftList.get(0).getDateShift());
+        project.setEnd(workingShiftList.get(workingShiftList.size()-1).getDateShift());
+        Client client = clientsService.getById(projectDTO.getClient_id());
+        client.getProjects().add(project);
+        project.setClient(client);
+        project.setPhoneNumber(client.getPhoneNumber());
+        for (WorkingShift workingShift : workingShiftList) {
+            workingShift.setProject(project);
+            workingShiftService.save(workingShift);
+        }
+        clientsService.updateClient(client);
+        projectService.save(project);
         return ResponseHandler.generateResponse(Messages.REDIRECT, "/");
     }
 
@@ -94,22 +144,45 @@ public class ProjectsController {
     @PostMapping("/projects/add-tool/{id}")
     @ResponseBody
     public ResponseEntity<Object> addToolsToProject(@PathVariable("id") long id, @RequestBody IdsDTO ids) {
-        Messages messages = projectService.addToolsToProject(id, ids.getNew_ids());
-        return ResponseHandler.generateResponse(messages, "/projects/edit/" + id + "/");
+        Project project = projectService.getById(id);
+        for (Long id_tool : ids.getIds()) {
+            Tools tool = toolsService.findById(id_tool);
+            toolsService.addToolToProject(tool, project);
+            toolsEstimateService.addToolEstimateToEstimate(project, tool);
+        }
+        return ResponseHandler.generateResponse(PROJECT_UPDATE, "/projects/edit/" + id + "/");
     }
 
     @PostMapping("/projects/change-tools/{id}")
     @ResponseBody
     public ResponseEntity<Object> changeTools(@PathVariable("id") long project_id, @RequestBody IdsDTO ids) {
-        Messages messages = projectService.changeToolsInProject(project_id, ids);
-        return ResponseHandler.generateResponse(messages, "/projects/edit/" + project_id + "/");
+        Project project = projectService.getById(project_id);
+        for (Tools old_tool : project.getTools()) {
+            List<Long> old_ids = ids.getOld_ids();
+            for (Long old_id : old_ids) {
+                if (old_tool.getId() == old_id) {
+                    toolsEstimateService.deleteToolEstimateFromEstimate(old_tool);
+                    toolsService.deleteToolFromProject(old_tool);
+                }
+            }
+        }
+        for (Long new_id : ids.getNew_ids()) {
+            Tools new_tool = toolsService.findById(new_id);
+            toolsService.addToolToProject(new_tool, project);
+            toolsEstimateService.addToolEstimateToEstimate(project, new_tool);
+        }
+        return ResponseHandler.generateResponse(Messages.REDIRECT, "/projects/edit/" + project_id + "/");
     }
 
     @PostMapping("/projects/remove-tool/{id}")
     @ResponseBody
     public ResponseEntity<Object> deleteTools(@PathVariable("id") long id, @RequestBody IdsDTO ids) {
-        Messages messages = projectService.clearToolsFromProject(ids.getIds());
-        return ResponseHandler.generateResponse(messages, "/projects/edit/" + id);
+        for (Long id_tool : ids.getIds()) {
+            Tools tool = toolsService.getById(id_tool);
+            toolsEstimateService.deleteToolEstimateFromEstimate(tool);
+            toolsService.deleteToolFromProject(tool);
+        }
+        return ResponseHandler.generateResponse(Messages.REDIRECT, "/projects/edit/" + id);
     }
 
 }

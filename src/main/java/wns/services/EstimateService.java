@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import wns.aspects.ToLog;
 import wns.constants.EstimateSection;
+import wns.dto.ProjectDTO;
 import wns.entity.*;
 import wns.repo.EstimateRepo;
 
@@ -25,16 +26,6 @@ public class EstimateService implements MainService{
         estimate.getToolsEstimates().forEach(x -> x.setEstimate(estimate));
         estimate.getToolsEstimates().forEach(x -> toolsEstimateService.save(x));
         estimateRepo.save(estimate);
-    }
-
-    public Estimate createEstimate(Project project)
-    {
-        Estimate estimate = new Estimate();
-        estimate.setProject(project);
-        estimate.setStart(project.getStart());
-        estimate.setEnd(project.getEnd());
-
-        return estimate;
     }
 
     @ToLog

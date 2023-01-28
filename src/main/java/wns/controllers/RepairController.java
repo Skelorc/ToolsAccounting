@@ -12,12 +12,14 @@ import wns.constants.Messages;
 import wns.constants.StatusTools;
 import wns.dto.PageDataDTO;
 import wns.dto.StatusToolDTO;
+import wns.entity.Status;
 import wns.services.ClientsService;
 import wns.services.PageableFilterService;
 import wns.services.StatusService;
 import wns.services.ToolsService;
 import wns.utils.ResponseHandler;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -27,6 +29,7 @@ public class RepairController {
 
     private final ClientsService clientsService;
     private final ToolsService toolsService;
+    private final StatusService statusService;
     private final PageableFilterService pageableFilterService;
 
 
@@ -55,7 +58,8 @@ public class RepairController {
     @ResponseBody
     public ResponseEntity<Object> createRepair(@RequestBody StatusToolDTO statusToolDTO) {
         statusToolDTO.setStatusTools(StatusTools.REPAIR);
-        toolsService.changeStatus(statusToolDTO);
+        List<Status> statusList = toolsService.changeStatus(statusToolDTO);
+        statusList.forEach(statusService::save);
         return ResponseHandler.generateResponse(Messages.OK,"/repair");
     }
 }

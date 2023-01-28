@@ -2695,7 +2695,7 @@ body {
     position: relative;
     z-index: 2;
     /* background-color: #16171a; */
-    background-image: url('../img/img/bg.jpg');
+    background-image: url('../img/images/bg.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

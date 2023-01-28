@@ -6,7 +6,7 @@ $(document).ready(function(){
     });
 
     $('body').on('click','tr', function(){
-        if(this.textContent == 'Ð’Ñ‹Ð±Ñ€Ð°Ñ‚ÑŒ Ñ‚ÐµÐºÑƒÑ‰Ð¸Ð¹ Ð¼ÐµÑÑÑ†'){
+        if(this.textContent == 'Выберите рабочие смены'){
             var counter = 1;
             $('body .custom-day__date').each(function() {
                 var curDate = parseInt($(this).text());
@@ -38,6 +38,7 @@ $(document).ready(function(){
 
             return firstValue - secondValue
         })
+        console.log(workingShifts.join());
         document.querySelector(".form-control-date").value = workingShifts.join()
     });
 

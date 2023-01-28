@@ -57,13 +57,10 @@ public class ProjectDTO {
     private long remainder;
     private long estimate_id;
     private Set<Long> items = new HashSet<>();
-    private List<WorkingShift> workingShifts = new ArrayList<>();
-    private List<WorkingShiftDTO> workingShiftDTOList = new ArrayList<>();
-
+    private List<WorkingShiftDTO> workingShifts = new ArrayList<>();
 
     public ProjectDTO(Project project)
     {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         this.id = project.getId();
         this.classification = project.getClassification();
         this.classification_name = project.getClassification().getValue();
@@ -93,7 +90,6 @@ public class ProjectDTO {
         this.remainder = project.getRemainder();
         this.estimate_id = project.getEstimate().getId();
         this.items = project.getTools().stream().map(Tools::getId).collect(Collectors.toSet());
-        this.workingShiftDTOList = project.getWorkingShifts().stream().map(WorkingShiftDTO::new).collect(Collectors.toList());
     }
 
     public Project createProjectFromDTO()
@@ -107,8 +103,6 @@ public class ProjectDTO {
         project.setQuantity(quantity);
         project.setCreated(created);
         project.setEmployee(SecurityContextHolder.getContext().getAuthentication().getName());
-        project.setStart(workingShifts.get(0).getDateShift());
-        project.setEnd(workingShifts.get(workingShifts.size()-1).getDateShift());
         project.setPhotos(photos);
         project.setDiscount(discount);
         project.setNote(note);

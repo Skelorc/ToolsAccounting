@@ -1,6 +1,5 @@
 package wns.controllers;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -50,9 +49,10 @@ public class EstimateController {
     public ResponseEntity<Object> createEstimateName(@PathVariable("id") long id,
                                                      @RequestBody EstimateDTO dto)
     {
-        Estimate estimate = dto.createEstimateFromDTO(projectService.getById(id));
+        Estimate estimate = dto.createEstimateFromProject(projectService.getById(id));
         Project project = estimate.getProject();
         project.setStatus(StatusProject.IN_WORK);
+        estimate.setOperator(dto.getOperator());
         estimateService.save(estimate);
         projectService.save(project);
         return ResponseHandler.generateResponse(Messages.REDIRECT,"/");
@@ -63,7 +63,7 @@ public class EstimateController {
     public ResponseEntity<Object> downloadEstimate(@PathVariable("id") long id,
                                                    @RequestBody EstimateDTO dto)
     {
-        Estimate estimate = dto.createEstimateFromDTO(projectService.getById(id));
+        Estimate estimate = dto.createEstimateFromProject(projectService.getById(id));
         String file_path = excelUtil.createDocument(estimate);
         return ResponseHandler.generateResponse(Messages.RETURN_FILE_URL,FileSystems.getDefault().getSeparator()+ fileUrl + file_path);
     }
