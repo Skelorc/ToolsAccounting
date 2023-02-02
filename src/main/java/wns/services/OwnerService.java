@@ -2,6 +2,7 @@ package wns.services;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import wns.aspects.ToLog;
 import wns.entity.Owner;
 import wns.repo.OwnerRepo;
@@ -10,14 +11,16 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class OwnerService implements MainService {
+@Transactional
+public class OwnerService {
     private final OwnerRepo ownerRepo;
 
-    @Override
+    @Transactional(readOnly = true)
     public List<Owner> getAll() {
         return (List<Owner>) ownerRepo.findAll();
     }
 
+    @Transactional(readOnly = true)
     public Owner getById(long id) {
         return ownerRepo.findById(id).get();
     }
@@ -34,16 +37,15 @@ public class OwnerService implements MainService {
             ownerRepo.save(old_owner);
         }
     }
-
+    @Transactional(readOnly = true)
     public Owner findByName(String name) {
         return ownerRepo.findByNameIgnoreCase(name);
     }
-
+    @Transactional(readOnly = true)
     public Owner findById(long id) {
         return ownerRepo.findById(id).get();
     }
 
-    @Override
     public void delete(long id) {
         ownerRepo.deleteById(id);
     }

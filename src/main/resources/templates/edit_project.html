@@ -13,6 +13,12 @@
     <!-- jQuery Modal -->
     <script type="text/javascript" th:src="@{/js/jquery.modal.js}"></script>
     <link rel="stylesheet" th:href="@{/css/jquery.modal.css}"/>
+
+    <script th:replace="fragments/scripts.html"></script>
+    <script th:src="@{/js/calendar.js}"></script>
+    <script th:src="@{/js/bootstrap-datepicker.js}"></script>
+    <script th:src="@{/js/TotalCounter.js}"></script>
+    <script th:src="@{/js/SearchBarcode.js}"></script>
     <title>Mad Dog</title>
 </head>
 <body>
@@ -34,29 +40,40 @@
                 <div class="content_article__form1 d-flex pad-0_3">
                     <div class="content_article__form1_left d-flex fd-col">
                         <div class="form1_left__status d-flex fd-col mar-tp_1">
-                            <label class="d-form1_left__status_text">Статус</label>
-                            <select id="status" th:value="${project.status}" class="form1_left__status_select"
-                                    required="">
-                                <option class="form1_left__status_option" value="" disabled>
-                                    Выберите статус проекта
-                                </option>
-                                <option class="form1_left__status_option"
-                                        th:each="status: ${T(wns.constants.StatusProject).values()}"
-                                        th:value="${status}"
-                                        th:text="${status.getStatus()}"
-                                        th:selected="${status==project.status}">
-                                </option>
-                            </select>
-                        </div>
-                        <div class="form1_left__name d-flex fd-col mar-tp_1">
-                            <label class="form1_left__name_text">Наименование</label>
-                            <input id="name" th:value="${project.name}" required name="fromComing"
-                                   placeholder="Имя проекта" type="text" class="form1_left__input">
-                        </div>
-                        <div class="form1_left__worked d-flex fd-col mar-tp_1 vdpComponent vdpWithInput">
-                            <label class="form1_left__worked_text">Укажите время занятости</label>
-                            <input type="text" class="form1_left__input form-control form-control-date" required/>
-                        </div>
+                            <div class="form1_left__name d-flex fd-col mar-tp_1">
+                                <label class="form1_left__name_text">Наименование</label>
+                                <input id="name" th:value="${project.name}" required name="fromComing"
+                                       placeholder="Имя проекта" type="text" class="form1_left__input">
+                                <input id="project_id" hidden="hidden" th:value="${project.id}"/>
+                            </div>
+                            <div class="form1_right__owner d-flex fd-col mar-tp_1">
+                                <label class="form1_right__owner_text">Тип аренды</label>
+                                <select class="form1_right__owner_select" id="typeLease"
+                                        th:value="${project.typeLease}">
+                                    <option class="form1_right__owner_option"
+                                            th:each="type: ${T(wns.constants.TypeLease).values()}"
+                                            th:value="${type}"
+                                            th:text="${type.getType()}"
+                                            th:selected="${type==project.typeLease}">
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form1_right__class d-flex fd-col mar-tp_1">
+                                <label class="form1_right__class_text">Класс</label>
+                                <select class="form1_right__class_select" id="classification"
+                                        th:value="${project.classification}">
+                                    <option class="form1_right__class_option"
+                                            th:each="classification: ${T(wns.constants.ClassificationProject).values()}"
+                                            th:value="${classification}"
+                                            th:text="${classification.getValue()}"
+                                            th:selected="${classification==project.classification}">
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form1_left__worked d-flex fd-col mar-tp_1 vdpComponent vdpWithInput" style="margin-top: 2.3%">
+                                <label class="form1_left__worked_text">Укажите время занятости</label>
+                                <input type="text" class="form1_left__input form-control form-control-date" required/>
+                            </div>
                             <script type="text/javascript">
                                 $(document).ready(function () {
                                     $('.form-control-date').datepicker({
@@ -68,66 +85,18 @@
                                     });
                                 });
                             </script>
-                        <div id="working_shift">
-                            <div th:each="shift : ${project.workingShifts}">
-                                <input class="dateShift" type="text" hidden="hidden"
-                                       th:value="${shift.dateShift}"/>
-                                <input class="typeShift" type="text" hidden="hidden"
-                                       th:value="${shift.typeShift}"/>
+                            <div id="working_shift">
+                                <div th:each="shift : ${project.workingShifts}">
+                                    <input class="dateShift" type="text" hidden="hidden"
+                                           th:value="${shift.dateShift}"/>
+                                    <input class="typeShift" type="text" hidden="hidden"
+                                           th:value="${shift.typeShift}"/>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form1_left__photo d-flex fd-col mar-tp_1">
-                            <label class="form1_left__photo_text">Укажите ссылки на фото через запятую</label>
-                            <textarea id="photos" th:value="${project.photos}"
-                                      class="form1_left__input" style="height: 16%;"></textarea>
                         </div>
                     </div>
                     <div class="content_article__form1_right d-flex fd-col">
-                        <div class="form1_right__owner d-flex fd-col mar-tp_1">
-                            <label class="form1_right__owner_text">Тип аренды</label>
-                            <select class="form1_right__owner_select" id="typeLease"
-                                    th:value="${project.typeLease}">
-                                <option class="form1_right__owner_option"
-                                        th:each="type: ${T(wns.constants.TypeLease).values()}"
-                                        th:value="${type}"
-                                        th:text="${type.getType()}"
-                                        th:if="${type==project.typeLease}"
-                                        selected>
-                                </option>
-                            </select>
-                        </div>
-                        <div class="form1_right__class d-flex fd-col mar-tp_1">
-                            <label class="form1_right__class_text">Класс</label>
-                            <select class="form1_right__class_select" id="classification"
-                                    th:value="${project.classification}">
-                                <option class="form1_right__class_option"
-                                        th:each="classification: ${T(wns.constants.ClassificationProject).values()}"
-                                        th:value="${classification}"
-                                        th:text="${classification.getValue()}"
-                                        th:if="${classification==project.classification}"
-                                        selected>
-                                </option>
-                            </select>
-                        </div>
-                        <div class="form1_right__calendar d-flex fd-col mar-tp_1">
-                            <label class="form1_right__calendar_text">Создан</label>
-                            <input id="created" th:value="${project.created}" class="form1_right__input"
-                                   type="datetime-local" placeholder="дд.мм.гггг">
-                            <script>
-                                var date = new Date();
-                                var day = date.getDate();
-                                var month = date.getMonth() + 1;
-                                var year = date.getFullYear();
-                                var hour = date.getHours();
-                                var minutes = date.getMinutes();
-                                if (day < 10) day = '0' + day;
-                                if (month < 10) month = '0' + month;
-                                if (hour < 10) hour = '0' + hour;
-                                if (minutes < 10) minutes = '0' + minutes;
-                                $("#created").val(year + "-" + month + "-" + day + "T" + hour + ":" + minutes);
-                            </script>
-                        </div>
-                        <div class="form1_right__client d-flex fd-col" style="margin-top: 0.5%;">
+                        <div class="form1_left__photo d-flex fd-col mar-tp_1">
                             <div class="form1_right__client_button">
                                         <span class="client_button__text">
                                             Укажите клиента
@@ -146,14 +115,57 @@
                                         th:each="client : ${clients}"
                                         th:value="${client.id}"
                                         th:text="${client.fullName}"
-                                        th:if="${client.id==project.client.getId()}"
-                                        selected>
+                                        th:selected="${client.id==project.client.getId()}">
                                 </option>
                             </select>
+                            <label class="d-form1_left__status_text" style="margin-top: 1%;">Статус</label>
+                            <select id="status" th:value="${project.status}" class="form1_left__status_select"
+                                    required="">
+                                <option class="form1_left__status_option" value="" disabled>
+                                    Выберите статус проекта
+                                </option>
+                                <option class="form1_left__status_option"
+                                        th:each="status: ${T(wns.constants.StatusProject).values()}"
+                                        th:value="${status}"
+                                        th:text="${status.getStatus()}"
+                                        th:selected="${status==project.status}">
+                                </option>
+                            </select>
+                            <label class="form1_left__photo_text" style="margin-top: 1%">Укажите ссылки на фото через запятую</label>
+                            <textarea id="photos" th:text="${''+project.photos}"
+                                      rows="1" class="form1_left__input" style="height: 9%;"></textarea>
+                        </div>
+
+                        <div class="form1_right__calendar d-flex fd-col">
+                            <label class="form1_right__calendar_text">Создан</label>
+                            <input id="created" th:value="${project.created}" class="form1_right__input"
+                                   type="datetime-local" placeholder="дд.мм.гггг">
+                            <script>
+                                var date = new Date();
+                                var day = date.getDate();
+                                var month = date.getMonth() + 1;
+                                var year = date.getFullYear();
+                                var hour = date.getHours();
+                                var minutes = date.getMinutes();
+                                if (day < 10) day = '0' + day;
+                                if (month < 10) month = '0' + month;
+                                if (hour < 10) hour = '0' + hour;
+                                if (minutes < 10) minutes = '0' + minutes;
+                                $("#created").val(year + "-" + month + "-" + day + "T" + hour + ":" + minutes);
+                            </script>
+                        </div>
+                        <div class="form1_right__client d-flex fd-col" style="margin-top: 0.5%;">
+
+
+                            <div class="form2_left__note d-flex fd-col">
+                                <label class="form2_left__note_text">Примечание</label>
+                                <textarea id="note" th:value="${project.note}" class="form2_left__input" rows="4"
+                                          style="height: 14%;" placeholder="0"></textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="content_article__form2 d-flex pad-0_3">
+                <!--<div class="content_article__form2 d-flex pad-0_3">
                     <div class="content_article__form2_left d-flex fd-col">
                         <div class="form2_left__price d-flex fd-col mar-bt_1">
                             <label class="d-block size">Себестоимость оборудования</label>
@@ -174,11 +186,7 @@
                                    type="text" class="form2_left__input" placeholder="0"
                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"/>
                         </div>
-                        <div class="form2_left__note d-flex fd-col">
-                            <label class="form2_left__note_text">Примечание</label>
-                            <textarea id="note" th:value="${project.note}" class="form2_left__input" rows="4"
-                                      style="height: 16%;" placeholder="0"></textarea>
-                        </div>
+
                     </div>
                     <div class="content_article__form2_right d-flex fd-col">
                         <div class="form2_right__price d-flex fd-col mar-bt_1">
@@ -210,12 +218,12 @@
                                       style="height: 16%;" placeholder="0"></textarea>
                         </div>
                     </div>
-                </div>
+                </div>-->
                 <div class="content_article__buttons1 d-flex pad-0_3">
                     <div class="content_article__buttons1_text d-flex">
                         Действия
                     </div>
-                    <button type="submit" id="update_project" class="content_article__buttons1_green d-flex">
+                    <button id="update_project" type="submit" class="content_article__buttons1_green d-flex">
                         Обновить проект
                     </button>
                     <button id="close_project" type="submit" class="content_article__buttons1_red d-flex">
@@ -280,13 +288,17 @@
                     <div class="content_article__buttons3_text d-flex">
                         Действия с оборудованием
                     </div>
-                    <a th:href="@{/tools/add-tool-to-project/{id}/(id=${project.id})}" class="content_article__buttons3_yellow d-flex" style="width: 6%">
+                    <a th:href="@{/tools/add-tool-to-project/{id}/(id=${project.id})}"
+                       class="content_article__buttons3_yellow d-flex" style="width: 6%">
                         Добавить
                     </a>
-                    <input id="replaceBtn" type="submit" class="content_article__buttons3_yellow d-flex" value="Заменить" style="width: 6%">
+                    <input id="replaceBtn" type="submit" class="content_article__buttons3_yellow d-flex"
+                           value="Заменить" style="width: 6%">
                     <input th:href="@{/estimate/create/{id}(id=${project.getId()})}" id="replaceBtnOther" type="submit"
-                           class="content_article__buttons3_yellow d-flex" style="width: 22%;" value="Добавить оборудование из другого проекта">
-                    <a th:href="@{/estimate/create/{id}(id=${project.getId()})}" type="submit" class="content_article__buttons3_yellow d-flex">
+                           class="content_article__buttons3_yellow d-flex" style="width: 22%;"
+                           value="Добавить оборудование из другого проекта">
+                    <a th:href="@{/estimate/create/{id}(id=${project.getId()})}" type="submit"
+                       class="content_article__buttons3_yellow d-flex">
                         Открыть смету
                     </a>
                     <input id="removeBtn" type="submit" class="content_article__buttons3_red d-flex" value="Удалить">
@@ -313,11 +325,6 @@
         </div>
     </div>
 </div>
-<div>
-    <script th:src="@{/js/calendar.js}"></script>
-    <script th:src="@{/js/bootstrap-datepicker.js}"></script>
-    <script th:src="@{/js/TotalCounter.js}"></script>
-    <script th:src="@{/js/SearchBarcode.js}"></script>
-</div>
+
 </body>
 </html>

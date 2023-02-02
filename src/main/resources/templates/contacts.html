@@ -25,7 +25,8 @@
                 </a>
             </div>
             <div class="main_general__content_search d-flex pad-0_3">
-                <input class="content_search__input f-size_14 " id="barcode_search_input" name="username" type="search" placeholder="ФИО">
+                <input class="content_search__input f-size_14 " id="barcode_search_input" name="username" type="search"
+                       placeholder="ФИО">
             </div>
 
             <form th:action="@{/contacts/filter}" method="get" class="main_general__content_form d-flex pad-0_3">
@@ -65,7 +66,18 @@
                                th:href="@{/contacts/edit/{id}/(id=${contact.id})}"
                                th:utext="${contact.name}"></a>
                         </td>
-                        <td class="content_table__info_column" th:utext="${contact.roleContact}"></td>
+                        <td class="content_table__info_column">
+                            <span class="tool_photos">
+                                <span th:each="photo : ${contact.photos}">
+                                    <a rel="modal:open" th:href="${'#'+photoStat.count+contact.id}">
+                                        <img class="info_column__img1" th:src="${photo}">
+                                        <div th:id="${photoStat.count+''+contact.id}" class="modal">
+                                            <img class="info_column__img2" th:src="${photo}">
+                                        </div>
+                                    </a>
+                                </span>
+                            </span>
+                        </td>
                     </tr>
                 </table>
             </div>

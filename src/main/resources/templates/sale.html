@@ -57,7 +57,7 @@
                             <td class="content_table__info_column">
                                 <span th:each="photo : ${status.photos}">
                                     <a rel="modal:open" th:href="${'#'+photoStat.count +''+ status.tools_id}">
-                                      <img th:src="${photo}"/>
+                                      <img th:src="${photo}"/ class="content_table__info_column__img">
                                       <div th:id="${photoStat.count +''+ status.tools_id}" class="modal">
                                         <img th:src="${photo}"/>
                                       </div>

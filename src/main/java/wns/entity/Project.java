@@ -50,7 +50,7 @@ public class Project{
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(name = "photos_projects", joinColumns = @JoinColumn(name = "projects_id"))
     @Column(columnDefinition = "TEXT")
     private Set<String> photos;

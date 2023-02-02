@@ -3,12 +3,14 @@ package wns.dto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import wns.constants.ClassificationProject;
 import wns.constants.StatusProject;
 import wns.constants.TypeLease;
 import wns.entity.Project;
 import wns.entity.Tools;
+import wns.entity.User;
 import wns.entity.WorkingShift;
 
 import java.time.LocalDate;
@@ -71,9 +73,12 @@ public class ProjectDTO {
         this.typeLease = project.getTypeLease();
         this.quantity = project.getQuantity();
         this.created = project.getCreated();
-        this.employee = SecurityContextHolder.getContext().getAuthentication().getName();
-        this.start = project.getWorkingShifts().get(0).getDateShift();
-        this.end = project.getWorkingShifts().get(project.getWorkingShifts().size()-1).getDateShift();
+        User authentication = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        this.employee = authentication.getFullName();
+        if(!project.getWorkingShifts().isEmpty()) {
+            this.start = project.getWorkingShifts().get(0).getDateShift();
+            this.end = project.getWorkingShifts().get(project.getWorkingShifts().size() - 1).getDateShift();
+        }
         this.client_id = project.getClient().getId();
         this.client_name = project.getClient().getFullName();
         this.phoneNumber = project.getPhoneNumber();
@@ -102,7 +107,8 @@ public class ProjectDTO {
         project.setTypeLease(typeLease);
         project.setQuantity(quantity);
         project.setCreated(created);
-        project.setEmployee(SecurityContextHolder.getContext().getAuthentication().getName());
+        User authentication = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        project.setEmployee(authentication.getFullName());
         project.setPhotos(photos);
         project.setDiscount(discount);
         project.setNote(note);
@@ -120,4 +126,16 @@ public class ProjectDTO {
     }
 
 
+    public Project updateProjectFromDTO(Project project) {
+        project.setStart(workingShifts.get(0).getDateShift());
+        project.setEnd(workingShifts.get(workingShifts.size() - 1).getDateShift());
+        project.setName(name);
+        project.setStatus(status);
+        project.setPhotos(photos);
+        project.setTypeLease(typeLease);
+        project.setClassification(classification);
+        project.setCreated(created);
+        project.setNote(note);
+        return project;
+    }
 }

@@ -2,6 +2,7 @@ package wns.services;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import wns.aspects.ToLog;
 import wns.constants.EstimateSection;
 import wns.dto.ProjectDTO;
@@ -13,10 +14,12 @@ import java.util.*;
 
 @Service
 @AllArgsConstructor
-public class EstimateService implements MainService{
+@Transactional
+public class EstimateService {
     private final EstimateRepo estimateRepo;
-    private ToolsEstimateService toolsEstimateService;
-    @Override
+    private final ToolsEstimateService toolsEstimateService;
+
+    @Transactional(readOnly = true)
     public List<Estimate> getAll() {
        return (List<Estimate>) estimateRepo.findAll();
     }
@@ -24,10 +27,11 @@ public class EstimateService implements MainService{
     public void save(Estimate estimate)
     {
         estimate.getToolsEstimates().forEach(x -> x.setEstimate(estimate));
-        estimate.getToolsEstimates().forEach(x -> toolsEstimateService.save(x));
+        estimate.getToolsEstimates().forEach(toolsEstimateService::save);
         estimateRepo.save(estimate);
     }
 
+    @Transactional(readOnly = true)
     @ToLog
     public Map<EstimateSection, List<ToolsEstimate>> getToolsEstimate(Estimate estimate) {
         List<ToolsEstimate> toolsEstimates = estimate.getToolsEstimates();
@@ -45,11 +49,11 @@ public class EstimateService implements MainService{
         return tools_by_groups;
     }
 
-    @Override
     public void delete(long id) {
         estimateRepo.deleteById(id);
     }
 
+    @Transactional(readOnly = true)
     public Estimate findById(long id) {
         return estimateRepo.findById(id).get();
     }

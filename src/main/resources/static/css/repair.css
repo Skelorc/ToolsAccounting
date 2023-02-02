@@ -206,8 +206,14 @@ body {
 
 .content_table__info_column {
     background: white;
-    height: 5vh;
+    height: 6vh;
     border: 1px solid black;
+}
+
+.content_table__info_column__img {
+    display: block;
+    height: 150%;
+    width: 100%;
 }
 /* table end */
 

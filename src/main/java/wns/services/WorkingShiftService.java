@@ -2,6 +2,7 @@ package wns.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import wns.entity.WorkingShift;
 import wns.repo.WorkingShiftRepo;
 
@@ -9,7 +10,8 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class WorkingShiftService implements MainService{
+@Transactional
+public class WorkingShiftService {
     private final WorkingShiftRepo repo;
 
     public void save(WorkingShift workingShift)
@@ -17,18 +19,18 @@ public class WorkingShiftService implements MainService{
         repo.save(workingShift);
     }
 
+    @Transactional(readOnly = true)
     public WorkingShift findById(long id)
     {
         return repo.findById(id).get();
     }
 
-    @Override
+    @Transactional(readOnly = true)
     public  List<WorkingShift> getAll() {
         return (List<WorkingShift>) repo.findAll();
     }
 
-    @Override
-    public void delete(long id) {
-        repo.deleteById(id);
+    public void delete(WorkingShift workingShift) {
+        repo.delete(workingShift);
     }
 }

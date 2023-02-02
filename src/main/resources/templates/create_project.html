@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
     <link rel="icon" th:href="@{/img/logo/favicon.ico}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/create_project.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/datepicker.css}">
@@ -12,231 +12,267 @@
     <!-- jQuery Modal -->
     <script type="text/javascript" th:src="@{/js/jquery.modal.js}"></script>
     <link rel="stylesheet" th:href="@{/css/jquery.modal.css}"/>
-	<title>Создание проекта</title>
+    <title>Создание проекта</title>
 </head>
 <body>
-    <div class="projects_wrapper d-flex">
-        <div class="projects_wrapper__main d-flex">
-            <div th:replace="fragments/menu_sidebar.html"></div>
-            <div class="main_general d-flex">
-                <div class="main_general__content d-flex">
-                    <div class="content_article__buttons d-flex">
-                        <div class="content_article__buttons_text d-flex">
-                            Создание проекта
-                        </div>
-                        <a href="/" class="content_article__buttons_back d-flex">
-                            Назад
-                        </a>
+<div class="projects_wrapper d-flex">
+    <div class="projects_wrapper__main d-flex">
+        <div th:replace="fragments/menu_sidebar.html"></div>
+        <div class="main_general d-flex">
+            <div class="main_general__content d-flex">
+                <div class="content_article__buttons d-flex">
+                    <div class="content_article__buttons_text d-flex">
+                        Создание проекта
                     </div>
-                        <div class="content_article__form1 d-flex pad-0_3">
-                            <div class="content_article__form1_left d-flex fd-col">
-                                <div class="form1_left__status d-flex fd-col mar-tp_1">
-                                    <label class="d-form1_left__status_text">Статус</label>
-                                    <select id="status" name="status_tool" class="form1_left__status_select" required>
-                                        <option class="form1_left__status_option">
-                                            Выберите статус проекта
-                                        </option>
-                                        <option class="form1_left__owner_option"
-                                                th:each="status: ${T(wns.constants.StatusProject).values()}"
-                                                th:value="${status}"
-                                                th:text="${status.getStatus()}">
-                                        </option>
-                                    </select>            
-                                </div>
-                                <div class="form1_left__name d-flex fd-col mar-tp_1">
-                                    <label class="form1_left__name_text">Наименование</label>
-                                    <input id="name" placeholder="Имя проекта" name="fromComing" type="text" class="form1_left__input" required>
-                                </div>
-                                <div class="form1_left__worked d-flex fd-col mar-tp_1 vdpComponent vdpWithInput">
-                                    <label class="form1_left__worked_text">Укажите время занятости</label>
-                                    <input type="text" class="form1_left__input form-control form-control-date" required/>
-                                </div>
-                                <script type="text/javascript">
-                                    $(document).ready(function () {
-                                        $('.form-control-date').datepicker({
-                                            weekStart: 1,
-                                            multidate: true,
-                                            isRTL: false,
-                                            format: 'dd.mm.yyyy',
-                                            language: 'en',
-                                        });
-                                    });
-                                </script>
-                                <div class="form1_left__photo d-flex fd-col mar-tp_1">
-                                    <label class="form1_left__photo_text">Укажите ссылки на фото через запятую</label>
-                                    <textarea id="photos" name="photos" class="form1_left__input_textarea" rows="1"></textarea>
-                                </div>
+                    <a href="/" class="content_article__buttons_back d-flex">
+                        Назад
+                    </a>
+                </div>
+                <div class="content_article__form1 d-flex pad-0_3">
+                    <div class="content_article__form1_left d-flex fd-col">
+                        <div class="form1_left__status d-flex fd-col mar-tp_1">
+                            <div class="form1_left__name d-flex fd-col mar-tp_1">
+                                <label class="form1_left__name_text">Наименование</label>
+                                <input id="name" placeholder="Имя проекта" name="fromComing" type="text"
+                                       class="form1_left__input" required>
                             </div>
-                            <div class="content_article__form1_right d-flex fd-col">
-                                <div class="form1_right__owner d-flex fd-col mar-tp_1">
-                                    <label class="form1_right__owner_text">Собственник</label>
-                                    <select class="form1_right__owner_select"
-                                            id="typeLease" required>
-                                        <option
-                                                class="form1_right__owner_option"
-                                                th:each="type: ${T(wns.constants.TypeLease).values()}"
-                                                th:value="${type}"
-                                                th:text="${type.getType()}">
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="form1_right__class d-flex fd-col mar-tp_1">
-                                    <label class="form1_right__class_text">Класс</label>
-                                    <select class="form1_right__class_select" id="classification" required>
-                                        <option
-                                                class="form1_right__class_option"
-                                                th:each="classification: ${T(wns.constants.ClassificationProject).values()}"
-                                                th:value="${classification}"
-                                                th:text="${classification.getValue()}">
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="form1_right__calendar d-flex fd-col mar-tp_1">
-                                    <label class="form1_right__calendar_text">Создан</label>
-                                    <input id="created" class="form1_right__input" type="datetime-local" placeholder="дд.мм.гггг" required>
-                                    <script>
-                                        var date = new Date();
-                                        var day = date.getDate();
-                                        var month = date.getMonth() + 1;
-                                        var year = date.getFullYear();
-                                        var hour = date.getHours();
-                                        var minutes = date.getMinutes();
-                                            if (day < 10) day = '0' + day;
-                                            if (month < 10) month = '0' + month;
-                                            if (hour < 10) hour = '0' + hour;
-                                            if (minutes < 10) minutes = '0' + minutes; 
-                                        $("#created").val(year+"-"+month+"-"+day+"T"+hour+":"+minutes);
+                            <div class="form1_right__owner d-flex fd-col mar-tp_1">
+                                <label class="form1_right__owner_text">Тип аренды</label>
+                                <select class="form1_right__owner_select"
+                                        id="typeLease" required>
+                                    <option
+                                            class="form1_right__owner_option"
+                                            id="tip_tip"
+                                            th:each="type: ${T(wns.constants.TypeLease).values()}"
+                                            th:value="${type}"
+                                            th:text="${type.getType()}">
+                                    </option>
+
+
+                                    <script type="text/javascript">
+                                        let actOpt = getElementById("tip_tip")
+                                        let addFoto = getElementById("photos")
+                                        if (actOpt.value = 'Субаренда') {
+                                            addFoto.setAttribute('required', '')
+                                        }
+                                        console.log(actOpt.value)
                                     </script>
-                                </div>
-                                <div class="form1_right__client d-flex fd-col" style="margin-top: 0.5%;"> 
-                                    <div class="form1_right__client_button">
-                                        <span class="client_button__text">
+
+
+                                </select>
+                            </div>
+                            <div class="form1_right__class d-flex fd-col mar-tp_1">
+                                <label class="form1_right__class_text">Класс</label>
+                                <select class="form1_right__class_select" id="classification" required>
+                                    <option
+                                            class="form1_right__class_option"
+                                            th:each="classification: ${T(wns.constants.ClassificationProject).values()}"
+                                            th:value="${classification}"
+                                            th:text="${classification.getValue()}">
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form1_left__worked d-flex fd-col mar-tp_1 vdpComponent vdpWithInput"
+                                 style="margin-top: 2.4%">
+                                <label class="form1_left__worked_text">Укажите время занятости</label>
+                                <input type="text" class="form1_left__input form-control form-control-date" required/>
+                            </div>
+                            <script type="text/javascript">
+                                $(document).ready(function () {
+                                    $('.form-control-date').datepicker({
+                                        weekStart: 1,
+                                        multidate: true,
+                                        isRTL: false,
+                                        format: 'dd.mm.yyyy',
+                                        language: 'en',
+                                    });
+                                });
+                            </script>
+                        </div>
+                    </div>
+                    <div class="content_article__form1_right d-flex fd-col">
+                        <div class="form1_right__client d-flex fd-col" style="margin-top: 0.5%;">
+                            <div class="form1_right__client_button">
+                                        <span class="client_button__text" style="margin-top: 1.5%;">
                                             Укажите клиента
                                         </span>
-                                        <a href="/clients/create" title="Добавить Клиентa" class="client_button__link" style="padding-top: 5px;">
-                                            Новый клиент
-                                        </a>
-                                    </div>
-                                    <select id="client_id" required class="form1_right__client_select">
-                                        <option class="form1_right__client_option" value="" disabled="">
-                                            Выберите клиента
-                                        </option>
-                                        <option class="form1_right__client_option"
-                                                th:each="client : ${clients}" th:value="${client.id}"
-                                                th:text="${client.fullName}">
-                                        </option>
-                                    </select>
-                    
-                                </div>
+                                <a href="/clients/create" title="Добавить Клиентa" class="client_button__link"
+                                   style="padding-top: 5px;">
+                                    Новый клиент
+                                </a>
                             </div>
-                        </div>
-                        <div class="content_article__form2 d-flex pad-0_3">
-                            <div class="content_article__form2_left d-flex fd-col">
-                                <div class="form2_left__note d-flex fd-col">
-                                    <label class="form2_left__note_text">Примечание</label>
-                                    <textarea id="note" name="" class="form2_left__input" rows="1" style="height: 20%;"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="content_article__buttons1 d-flex pad-0_3">
-                            <div class="content_article__buttons1_text d-flex">
-                              Список оборудования
-                            </div>  
-                            <a href="/tools/create" class="content_article__buttons1_green d-flex">
-                                Добавить
-                            </a>
-                            <a href="#" class="content_article__buttons1_green d-flex" style="width: 22%;">
-                                Добавить оборудование из другого проекта
-                            </a>
-                        </div>
-                        <div class="content_article__buttons2 d-flex pad-0_3">
-                            <a href="#" class="content_article__buttons2_yellow d-flex" style="width: 10%;">
-                                Единый список
-                            </a>
-                            
-                            <a href="#" class="content_article__buttons2_yellow d-flex" style="width: 13%;">
-                                Просмотр по группам
-                            </a>
-                            
-                            <a href="#" class="content_article__buttons2_yellow d-flex">
-                                Просмотр по разделам сметы
-                            </a>
-                            <a href="#" class="content_article__buttons2_red d-flex">
-                                Сбросить фильтр
-                            </a>
-                            <input id="barcode_search_input" type="search" name="barcode" placeholder="Введите штрих код" class="content_article__buttons2_input">
-                        </div>
-                        <div class="content_article__table d-flex">
-                            <table class="content_table__info">
-                                <tr class="content_table__info_name">
-                                    <th class="content_table__info_pos">#</th>
-                                    <th class="content_table__info_pos">Наименование</th>
-                                    <th class="content_table__info_pos">Штрихкод</th>
-                                    <th class="content_table__info_pos">Группа</th>
-                                    <th class="content_table__info_pos">Марка/Модель</th>
-                                    <th class="content_table__info_pos">Серийный номер</th>
-                                    <th class="content_table__info_pos">Коментарий</th>
-                                    <th class="content_table__info_pos">Характеристики</th>
-                                    <th class="content_table__info_pos">Состояние</th>
-                                    <th class="content_table__info_pos">Стоимость за смену</th>
-                                    <th class="content_table__info_pos">Себестоимость</th>
-                                    <th class="content_table__info_pos">Комплект</th>
-                                </tr>
-                                <tr class="content_table__info_line row-tool" th:each="tool: ${list_tools}">
-                                    <td class="content_table__info_column">
-                                            <input class="ids" type="checkbox" name="">
-                                            <input th:value="${tool.id}" hidden="hidden" type="text">
-                                            <span  th:utext="${toolStat.index}"></span>
-                                    </td>
-                                    <td class="content_table__info_column" th:utext="${tool.name}"></td>
-                                    <td class="content_table__info_column barcode-tool" th:utext="${tool.barcode}"></td>
-                                    <td class="content_table__info_column" th:utext="${tool.category}"></td>
-                                    <td class="content_table__info_column" th:utext="${tool.model}"></td>
-                                    <td class="content_table__info_column" th:utext="${tool.serialNumber}"></td>
-                                    <td class="content_table__info_column" th:utext="${tool.comment}"></td>
-                                    <td class="content_table__info_column" th:utext="${tool.characteristics}"></td>
-                                    <td class="content_table__info_column" th:utext="${tool.state}"></td>
-                                    <td class="content_table__info_column price-tool" th:utext="${tool.priceByDay}"></td>
-                                    <td class="content_table__info_column" th:utext="${tool.costPrice}"></td>
-                                    <td class="content_table__info_column" th:utext="${tool.equip}"></td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="content_article__buttons3 d-flex pad-0_3">
-                            <div class="content_article__buttons3_text d-flex">
-                                Действия
-                            </div>  
-                            <button id="create_new_project" type="submit" class="content_article__buttons3_yellow d-flex">
-                                Создать проект и перейти в смету
-                            </button>
-                            <a href="#" class="content_article__buttons3_red d-flex">
-                                Удалить
-                            </a>
-                        </div>
+                            <select id="client_id" required class="form1_right__client_select">
+                                <option class="form1_right__client_option" value="" disabled="">
+                                    Выберите клиента
+                                </option>
+                                <option class="form1_right__client_option"
+                                        th:each="client : ${clients}" th:value="${client.id}"
+                                        th:text="${client.fullName}">
+                                </option>
+                            </select>
 
-                    <div class="pagination-control col-lg-12 order-lg-1">
-                        <!-- Bootstrap 4 -->
-                        <nav aria-label="Навигация по страницам">
-                            <ul class="pagination">
-                                <li class="page-item" th:if="${list_tools.totalPages > 0}"
-                                    th:each="page_number : ${page_numbers}">
-                                    <a class="page-link-m page-link"
-                                       th:href="@{/project/create(size=${list_tools.size}, page=${page_numberStat.index})}"
-                                       th:text="${page_numberStat.index}"
-                                       th:class="${page_number==list_tools.number + 1} ? active"></a>
-                                </li>
-                            </ul>
-                        </nav>
+                            <label class="d-form1_left__status_text" style="margin-top: 1%;">Статус</label>
+                            <select id="status" name="status_tool" class="form1_left__status_select" required>
+                                <option class="form1_left__status_option">
+                                    Выберите статус проекта
+                                </option>
+                                <option class="form1_left__owner_option"
+                                        th:each="status: ${T(wns.constants.StatusProject).values()}"
+                                        th:value="${status}"
+                                        th:text="${status.getStatus()}">
+                                </option>
+                            </select>
+                            <div class="form1_left__photo d-flex fd-col mar-tp_1">
+                                <label class="form1_left__photo_text">
+                                    Укажите ссылки на фото через запятую
+                                </label>
+                                <textarea id="photos" name="photos" class="form1_left__input_textarea"
+                                          rows="1"></textarea>
+                            </div>
+                            <div class="form1_right__calendar d-flex fd-col">
+                                <label class="form1_right__calendar_text">Создан</label>
+                                <input id="created" class="form1_right__input" type="datetime-local"
+                                       placeholder="дд.мм.гггг" required>
+                                <script>
+                                    var date = new Date();
+                                    var day = date.getDate();
+                                    var month = date.getMonth() + 1;
+                                    var year = date.getFullYear();
+                                    var hour = date.getHours();
+                                    var minutes = date.getMinutes();
+                                    if (day < 10) day = '0' + day;
+                                    if (month < 10) month = '0' + month;
+                                    if (hour < 10) hour = '0' + hour;
+                                    if (minutes < 10) minutes = '0' + minutes;
+                                    $("#created").val(year + "-" + month + "-" + day + "T" + hour + ":" + minutes);
+                                </script>
+                            </div>
+                            <div class="content_article__form2 d-flex">
+                                <div class="content_article__form2_left d-flex fd-col" style="width: 100%;">
+                                    <div class="form2_left__note d-flex fd-col mar-tp_1">
+                                        <label class="form2_left__note_text">Примечание</label>
+                                        <textarea id="note" name="" class="form2_left__input" rows="1"
+                                                  style="height: 20%;"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div th:insert="fragments/footer.html"></div>
                 </div>
+
+                <div class="content_article__buttons1 d-flex pad-0_3">
+                    <div class="content_article__buttons1_text d-flex">
+                        Список оборудования
+                    </div>
+                    <a href="/tools/create" class="content_article__buttons1_green d-flex">
+                        Добавить
+                    </a>
+                    <button type="submit" id="addToolsFromAnotherProjects"
+                            class="content_article__buttons1_green d-flex" style="width: 22%; font-size: 16px;">
+                        Добавить оборудование из другого проекта
+                    </button>
+                </div>
+                <div class="content_article__buttons2 d-flex pad-0_3">
+                    <button href="#" class="content_article__buttons2_yellow d-flex" style="width: 10%;">
+                        Единый список
+                    </button>
+
+                    <div class="look_group d-flex">
+                        <select class="look_group__select" id="category_tools">
+                            <option class="look_group__option"
+                                    th:each="category: ${T(wns.constants.CategoryTools).values()}"
+                                    th:value="${category}"
+                                    th:text="${category.getData()}">
+                            </option>
+                        </select>
+                    </div>
+                    <button type="button" class="content_article__buttons2_yellow d-flex" id="get_tools_by_category" style="width: 13%;">
+                        Просмотр по группам
+                    </button>
+
+                    <div class="look_group d-flex">
+                        <select class="look_group__select" id="estimate_section">
+                            <option class="look_group__option"
+                                    th:each="section: ${T(wns.constants.EstimateSection).values()}"
+                                    th:value="${section}"
+                                    th:text="${section.getValue()}">
+                            </option>
+                        </select>
+                    </div>
+                    <a href="#" class="content_article__buttons2_yellow d-flex">
+                        Просмотр по разделам сметы
+                    </a>
+                    <a href="#" class="content_article__buttons2_red d-flex">
+                        Сбросить фильтр
+                    </a>
+                    <input id="barcode_search_input" type="search" name="barcode" placeholder="Введите штрих код"
+                           class="content_article__buttons2_input">
+                </div>
+                <div class="content_article__table d-flex">
+                    <table class="content_table__info">
+                        <tr class="content_table__info_name">
+                            <th class="content_table__info_pos">#</th>
+                            <th class="content_table__info_pos">Наименование</th>
+                            <th class="content_table__info_pos">Штрихкод</th>
+                            <th class="content_table__info_pos">Группа</th>
+                            <th class="content_table__info_pos">Марка/Модель</th>
+                            <th class="content_table__info_pos">Серийный номер</th>
+                            <th class="content_table__info_pos">Коментарий</th>
+                            <th class="content_table__info_pos">Характеристики</th>
+                            <th class="content_table__info_pos">Состояние</th>
+                            <th class="content_table__info_pos">Стоимость за смену</th>
+                            <th class="content_table__info_pos">Себестоимость</th>
+                            <th class="content_table__info_pos">Комплект</th>
+                        </tr>
+                        <tr class="content_table__info_line row-tool" th:each="tool: ${list_tools}">
+                            <td class="content_table__info_column">
+                                <input class="ids" type="checkbox" name="">
+                                <input th:value="${tool.id}" hidden="hidden" type="text">
+                                <span th:utext="${toolStat.index}"></span>
+                            </td>
+                            <td class="content_table__info_column" th:utext="${tool.name}"></td>
+                            <td class="content_table__info_column barcode-tool" th:utext="${tool.barcode}"></td>
+                            <td class="content_table__info_column" th:utext="${tool.category}"></td>
+                            <td class="content_table__info_column" th:utext="${tool.model}"></td>
+                            <td class="content_table__info_column" th:utext="${tool.serialNumber}"></td>
+                            <td class="content_table__info_column" th:utext="${tool.comment}"></td>
+                            <td class="content_table__info_column" th:utext="${tool.characteristics}"></td>
+                            <td class="content_table__info_column" th:utext="${tool.state}"></td>
+                            <td class="content_table__info_column price-tool" th:utext="${tool.priceByDay}"></td>
+                            <td class="content_table__info_column" th:utext="${tool.costPrice}"></td>
+                            <td class="content_table__info_column" th:utext="${tool.equip}"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="content_article__buttons3 d-flex pad-0_3">
+                    <button id="create_new_project" type="submit" class="content_article__buttons3_yellow d-flex">
+                        Создать проект и перейти в смету
+                    </button>
+                </div>
+
+                <div class="pagination-control col-lg-12 order-lg-1">
+                    <!-- Bootstrap 4 -->
+                    <nav aria-label="Навигация по страницам">
+                        <ul class="pagination">
+                            <li class="page-item" th:if="${list_tools.totalPages > 0}"
+                                th:each="page_number : ${page_numbers}">
+                                <a class="page-link-m page-link"
+                                   th:href="@{/project/create(size=${list_tools.size}, page=${page_numberStat.index})}"
+                                   th:text="${page_numberStat.index}"
+                                   th:class="${page_number==list_tools.number + 1} ? active"></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div th:insert="fragments/footer.html"></div>
             </div>
         </div>
     </div>
-    <div th:insert="fragments/scripts.html"></div>
+</div>
+<div th:insert="fragments/scripts.html"></div>
 
-    <script type="text/javascript" th:src="@{/js/bootstrap-datepicker.js}"></script>
-    <script type="text/javascript" th:src="@{/js/calendar.js}"></script>
-    <script type="text/javascript" th:src="@{/js/SearchBarcode.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap-datepicker.js}"></script>
+<script type="text/javascript" th:src="@{/js/calendar.js}"></script>
+<script type="text/javascript" th:src="@{/js/SearchBarcode.js}"></script>
 </body>
 </html>

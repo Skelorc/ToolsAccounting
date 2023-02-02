@@ -32,8 +32,10 @@ public class ToolsController {
     @GetMapping()
     public String show(@RequestParam(value = "page", required = false) Optional<Integer> page,
                        @RequestParam(value = "size", required = false) Optional<Integer> size,
+                       @RequestParam(value = "category", required = false) CategoryTools categoryTools,
+                       @RequestParam(value = "section", required = false) EstimateSection section,
                        Model model) {
-        Page<Object> paginated_list = pageableFilterService.getListData(new PageDataDTO(page, size, Filter.ALL_TOOLS));
+        Page<Object> paginated_list = pageableFilterService.getListData(new PageDataDTO(page, size, Filter.ALL_TOOLS,categoryTools,section));
         pageableFilterService.addPageNumbers(paginated_list, model);
         model.addAttribute("list_tools", paginated_list);
         model.addAttribute("estimateDTO", new EstimateNameDTO());
@@ -121,5 +123,4 @@ public class ToolsController {
         model.addAttribute("project_id", project_id);
         return "tools";
     }
-
 }

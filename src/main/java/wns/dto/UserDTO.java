@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
 import wns.constants.Roles;
+import wns.entity.User;
 
 import java.util.Objects;
 
@@ -20,6 +21,15 @@ public class UserDTO {
     private String phoneNumber;
     private String fullName;
     private Roles roles;
+
+    public UserDTO(User user) {
+        this.id = user.getId();
+        this.username = user.getUsername();
+        this.password = user.getPassword();
+        this.phoneNumber = user.getPhoneNumber();
+        this.fullName = user.getFullName();
+        this.roles = user.getRoles();
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -7,6 +7,7 @@ import wns.constants.TypeShift;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 @Table(name = "working_shift")
@@ -28,4 +29,18 @@ public class WorkingShift {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "projects_id")
     private Project project;
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        WorkingShift that = (WorkingShift) o;
+        return Objects.equals(dateShift, that.dateShift) && typeShift == that.typeShift;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(dateShift, typeShift);
+    }
 }

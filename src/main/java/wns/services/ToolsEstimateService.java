@@ -12,11 +12,11 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class ToolsEstimateService implements MainService{
+@Transactional
+public class ToolsEstimateService {
     private final ToolsEstimateRepo toolsEstimateRepo;
-    private final ModelMapper modelMapper;
 
-    @Override
+    @Transactional(readOnly = true)
     public List<ToolsEstimate> getAll() {
         return (List<ToolsEstimate>) toolsEstimateRepo.findAll();
     }
@@ -27,7 +27,6 @@ public class ToolsEstimateService implements MainService{
     }
 
     public void saveList(List<ToolsEstimate> list_tools_estimates) {
-
         list_tools_estimates.forEach(toolsEstimateRepo::save);
     }
 
@@ -54,7 +53,6 @@ public class ToolsEstimateService implements MainService{
         toolsEstimateRepo.save(toolsEstimate);
     }
 
-    @Transactional
     public void deleteToolEstimateFromEstimate(Tools tool) {
         Project project = tool.getProject();
         Estimate estimate = project.getEstimate();
@@ -63,7 +61,6 @@ public class ToolsEstimateService implements MainService{
                 .findAny().ifPresent(toolsEstimateRepo::delete);
     }
 
-    @Override
     public void delete(long id) {
         toolsEstimateRepo.deleteById(id);
     }

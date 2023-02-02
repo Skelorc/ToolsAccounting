@@ -46,12 +46,9 @@ $(document).ready(function(){
     $('#working_shift div').each(function(){
         var dateShift = $(this).find(".dateShift").val().split("-");
         var typeShift = $(this).find(".typeShift").val().toLowerCase();
-
-        dateShift[1] = parseInt(dateShift[1]);
-        dateShift[1] = dateShift[1] - 1;
-        if(dateShift[1].length <= 9) dateShift[1] = "0"+dateShift[1];
-
+        
         workingShifts.push(dateShift[2]+"-"+dateShift[1]+"-"+dateShift[0]+"-"+typeShift);
+
         workingShiftStr = workingShiftStr+dateShift[2]+"-"+dateShift[1]+"-"+dateShift[0]+"-"+typeShift+",";
     });
     if(workingShiftStr.length > 0){

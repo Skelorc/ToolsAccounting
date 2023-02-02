@@ -17,20 +17,20 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class ContactsService implements MainService{
+@Transactional
+public class ContactsService {
     private final ContactsRepo contactsRepo;
     private final CommentsService commentsService;
-    @Override
+
+    @Transactional(readOnly = true)
     public List<Contact> getAll() {
         return (List<Contact>) contactsRepo.findAll();
     }
 
-    @Override
     public void delete(long id) {
         contactsRepo.deleteById(id);
     }
 
-    @Transactional
     @ToLog
     public void saveContact(Contact contact, String comment, String photos) {
         contact.setPhotos(new HashSet<>(Arrays.asList(photos.split(","))));
@@ -43,10 +43,12 @@ public class ContactsService implements MainService{
         commentsService.save(comments);
     }
 
+    @Transactional(readOnly = true)
     public Contact findById(long id) {
         return contactsRepo.findById(id).get();
     }
 
+    @Transactional(readOnly = true)
     public List<Contact> getContactByRoleId(long id) {
         return contactsRepo.getContactsByRoleContact_Id(id);
     }

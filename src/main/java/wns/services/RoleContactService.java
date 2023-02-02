@@ -2,6 +2,7 @@ package wns.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import wns.entity.RoleContact;
 import wns.repo.RoleContactRepo;
 
@@ -9,31 +10,33 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class RoleContactService implements MainService {
+@Transactional
+
+public class RoleContactService {
 
     private final RoleContactRepo repo;
-
 
     public void save(RoleContact roleClient)
     {
         repo.save(roleClient);
     }
 
+    @Transactional(readOnly = true)
     public RoleContact getByRole(String role)
     {
         return repo.findByRole(role);
     }
 
-    @Override
+    @Transactional(readOnly = true)
     public  List<RoleContact> getAll() {
         return (List<RoleContact>) repo.findAll();
     }
 
-    @Override
     public void delete(long id) {
         repo.deleteById(id);
     }
 
+    @Transactional(readOnly = true)
     public RoleContact getById(long roleClientId) {
         return repo.findById(roleClientId).get();
     }

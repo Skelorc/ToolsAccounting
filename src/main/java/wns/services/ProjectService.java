@@ -17,16 +17,16 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
-public class ProjectService implements MainService {
+@Transactional
+public class ProjectService {
     private final ProjectRepo projectRepo;
 
-    @Override
+    @Transactional(readOnly = true)
     public List<Project> getAll() {
         return (List<Project>) projectRepo.findAll();
     }
 
     @ToLog
-    @Transactional
     public Project createProject(ProjectDTO projectDTO, Client client, Estimate estimate) {
         Project project = projectRepo.findByName(projectDTO.getName());
         if (project == null) {
@@ -36,7 +36,6 @@ public class ProjectService implements MainService {
                 project.setStart(projectDTO.getStart());
                 project.setEnd(projectDTO.getEnd());
                 project.setPhoneNumber(client.getPhoneNumber());
-
                 project.setEstimate(estimate);
                 projectRepo.save(project);
             } catch (Exception e) {
@@ -46,10 +45,12 @@ public class ProjectService implements MainService {
         return project;
     }
 
+    @Transactional(readOnly = true)
     public Project getById(long id) {
         return projectRepo.findById(id).get();
     }
 
+    @Transactional(readOnly = true)
     public List<ProjectDTO> findListByClassification(ClassificationProject classificationProject) {
         List<Project> list_project = projectRepo.findAllByClassification(classificationProject);
         return list_project.stream().map(ProjectDTO::new).collect(Collectors.toList());
@@ -65,7 +66,6 @@ public class ProjectService implements MainService {
         projectRepo.save(project);
     }
 
-    @Override
     public void delete(long id) {
         projectRepo.deleteById(id);
     }

@@ -8,6 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import wns.constants.StatusTools;
 import wns.entity.Status;
 import wns.entity.Tools;
+import wns.entity.User;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -50,7 +51,8 @@ public class StatusToolDTO {
         status.setStatusTools(status_tool);
         status.setTools(tools);
         status.setCreated(LocalDateTime.now());
-        status.setEmployee(SecurityContextHolder.getContext().getAuthentication().getName());
+        User authentication = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        status.setEmployee(authentication.getFullName());
         status.setPhotos(tools.getPhotos());
         return status;
     }

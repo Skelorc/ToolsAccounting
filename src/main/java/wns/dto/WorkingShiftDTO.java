@@ -18,11 +18,11 @@ public class WorkingShiftDTO {
     private TypeShift typeShift;
     private long project_id;
 
-    public WorkingShift creteWorkingShiftFromDTO(WorkingShiftDTO dto)
+    public WorkingShift creteWorkingShiftFromDTO()
     {
         WorkingShift workingShift = new WorkingShift();
-        workingShift.setDateShift(dto.getDateShift());
-        workingShift.setTypeShift(dto.getTypeShift());
+        workingShift.setDateShift(dateShift);
+        workingShift.setTypeShift(typeShift);
         return workingShift;
     }
 

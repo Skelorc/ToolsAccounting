@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import wns.aspects.ToLog;
 import wns.constants.*;
@@ -30,13 +31,15 @@ public class PageableFilterService {
     private final ContactsService contactsService;
 
     public Page<Object> getListData(PageDataDTO pageDataDTO) {
-        List<Object> list = getDataByFilter(pageDataDTO.getFilter(), pageDataDTO.getId());
+        List<Object> list = getDataByFilter(pageDataDTO);
         return findPaginated(pageDataDTO.getPage(), pageDataDTO.getSize(),list);
     }
 
-
+    @Transactional(readOnly = true)
     @ToLog
-    private List<Object> getDataByFilter(Filter filter, long id) {
+    protected List<Object> getDataByFilter(PageDataDTO pageDataDTO) {
+        Filter filter = pageDataDTO.getFilter();
+        long id = pageDataDTO.getId();
         List<Object> list = new ArrayList<>();
         switch (filter) {
             case ONE_TIME -> list.addAll(projectService.findListByClassification(ClassificationProject.ONE_TIME));
@@ -68,7 +71,17 @@ public class PageableFilterService {
                     .collect(Collectors.toList()));
             case ALL_CONTACTS -> list.addAll(contactsService.getAll()
                     .stream().map(ContactDTO::new).collect(Collectors.toList()));
-            case ALL_TOOLS -> list.addAll(toolsService.getAll().stream().map(ToolsDTO::new).collect(Collectors.toList()));
+            case ALL_TOOLS -> {
+                list.addAll(toolsService.getAll().stream().map(ToolsDTO::new).collect(Collectors.toList()));
+                if(pageDataDTO.getCategoryTools()!=null)
+                {
+                    System.out.println(pageDataDTO.getCategoryTools().getData());
+                }
+                if(pageDataDTO.getSection()!=null)
+                {
+                    System.out.println(pageDataDTO.getSection().getValue());
+                }
+            }
             case CONTACTS_BY_ROLE -> list.addAll(contactsService.getContactByRoleId(id).stream().map(ContactDTO::new).collect(Collectors.toList()));
         }
         return list;

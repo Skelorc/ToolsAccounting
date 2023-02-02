@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import wns.aspects.ToLog;
 import wns.constants.Messages;
 import wns.entity.Owner;
@@ -16,29 +17,29 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
-public class UserService  implements MainService {
+@Transactional
+public class UserService {
     private final UsersRepo usersRepo;
     private final PasswordEncoder passwordEncoder;
-    private final ModelMapper modelMapper;
 
     @ToLog
-    public Messages saveUser(User user) {
+    public void saveUser(User user) {
         User userFromDb = usersRepo.findByUsername(user.getUsername());
         if (userFromDb == null) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             usersRepo.save(user);
-            return Messages.USER_CREATE;
-        } else
-            return Messages.USER_EXISTS;
+        }
     }
 
+    @Transactional(readOnly = true)
     public List<UserDTO> getAll() {
         List<User> all = (List<User>) usersRepo.findAll();
         return all.stream()
-                .map(x -> modelMapper.map(x, UserDTO.class))
+                .map(UserDTO::new)
                 .collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
     public User getUserByID(long id) {
         return usersRepo.findById(id).get();
     }
@@ -59,7 +60,6 @@ public class UserService  implements MainService {
         usersRepo.save(userFromDb);
     }
 
-    @Override
     public void delete(long id) {
         usersRepo.deleteById(id);
     }

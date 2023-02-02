@@ -20,16 +20,16 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
-public class ToolsService implements MainService {
+@Transactional
+public class ToolsService {
     private final ToolsRepo toolsRepo;
 
-
+    @Transactional(readOnly = true)
     public List<Tools> getAll() {
         return (List<Tools>) toolsRepo.findAll();
     }
 
     @ToLog
-    @Transactional
     public void createTools(Tools tools, EstimateName estimateName, StatusTools statusTools, Category category, Owner owner) {
         Tools toolToSave = toolsRepo.findByName(tools.getName()).orElse(null);
         if (toolToSave == null) {
@@ -47,6 +47,7 @@ public class ToolsService implements MainService {
         toolsRepo.save(tools);
     }
 
+    @Transactional(readOnly = true)
     @ToLog
     public List<Status> changeStatus(StatusToolDTO statusToolDTO) {
         if (statusToolDTO.getData() != null) {
@@ -82,11 +83,8 @@ public class ToolsService implements MainService {
         return statusList;
     }
 
+    @Transactional(readOnly = true)
     public Tools findById(long id) {
-        return toolsRepo.findById(id).get();
-    }
-
-    public Tools getById(long id) {
         return toolsRepo.findById(id).get();
     }
 
@@ -115,6 +113,7 @@ public class ToolsService implements MainService {
         toolsRepo.save(tool);
     }
 
+    @Transactional(readOnly = true)
     public List<ToolsDTO> findListByStatusAndProject(StatusTools statusTools, long id) {
         if (id >= 0) {
             return toolsRepo.findAllByStatus_StatusTools(statusTools).stream()
@@ -125,13 +124,14 @@ public class ToolsService implements MainService {
         return toolsRepo.findAllByStatus_StatusTools(statusTools).stream().map(ToolsDTO::new).collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
     public List<ToolsDTO> getToolsByStatuses(StatusTools statusTools) {
         return toolsRepo.findAllByStatus_StatusTools(statusTools)
                 .stream()
                 .map(ToolsDTO::new)
                 .collect(Collectors.toList());
     }
-
+    @Transactional(readOnly = true)
     public List<ToolsDTO> getToolsByStatusesAndNotProject(StatusTools statusTools, long id) {
         List<Tools> allByStatusTools = toolsRepo.findAllByStatus_StatusTools(statusTools);
         return allByStatusTools.stream()
@@ -140,7 +140,6 @@ public class ToolsService implements MainService {
                 .collect(Collectors.toList());
     }
 
-    @Override
     public void delete(long id) {
         toolsRepo.deleteById(id);
     }
