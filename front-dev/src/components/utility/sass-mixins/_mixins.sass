@@ -1,0 +1,41 @@
+//adaptivity
+=adapt($screenWidth)
+    @media screen and (max-width: $screenWidth)
+        @content
+
+//font-family+wight+style
+=font($font: r)
+  @if $font == r
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+    font-style: normal
+    font-weight: normal
+  @if $font == b
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+    font-style: normal
+    font-weight: bold
+  @if $font == l
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+    font-style: normal
+    font-weight: light
+  @if $font == i
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+    font-style: italic
+    font-weight: normal
+
+//font-size
+=fz($val)
+  font-size: $val + px
+  +adapt($laptop)
+    font-size: $val - $val / 8 + px
+  +adapt($phone_r)
+    font-size: $val - $val / 4 + px
+
+//margins
+=mb($val)
+  margin-bottom: $val + px
+  +adapt($laptop)
+    margin-bottom: $val - $val / 4 + px
+  +adapt($phone_r)
+    margin-bottom: $val - $val / 2 + px
+
+

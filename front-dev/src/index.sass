@@ -1,0 +1,75 @@
+// ? imports (i.e. for tailwind)
+@tailwind base
+@tailwind components
+@tailwind utilities
+
+@import ./components/utility/layout/page/page
+@import ./components/utility/controls/btn/btn
+@import ./components/utility/layout/container/container
+@import ./components/utility/layout/section/section
+@import ./components/utility/sass-mixins/mixins
+
+
+
+// ? variables
+:root
+  // * colors
+  --backgroundWhite: #fff
+  --backgoundGray:   #fafafa
+  --backgoundGrayDarker:      #b6b6b6
+  --backgoundGrayDarkest:     #808080
+  --backgoundGrayTransparent:    rgba(#fafafa, .3 )
+  --backgroundBlack:  #000
+  --fontWhite:        #fff
+  --fontBlack:        #070707
+  --corpBlack:        #434343
+  --accentOrange:     #f7550a
+  --accentGreen:      #104d38
+  --brandGray:        #333
+  // * paddings
+  --containerSidePadding: 12px
+  // --containerWidth:       1000px
+  // * margins
+  --interSectionGap:      50px
+// * breakpoints
+  --desctop_xl:  1920px
+  --desctop_l:   1440px
+  --desctop_r:   1280px
+  --desctop_s:   1024px
+  --laptop:      920px
+  --tablet:      768px
+  --phone_l:     640px
+  --phone_r:     440px
+  --phone_s:     320px
+// ? normalize css
+// * 
+//   box-sizing: border-box
+//   outline: none
+//   z-index: 1
+//   &:hover
+//     outline: none
+//   &:focus
+//     outline: none
+
+h1, h2, h3, h4, h5, h6
+  line-height: 1.05
+
+
+html 
+  width: 100%
+  font-size: 16px
+  line-height: 1.42
+  scroll-behavior: smooth
+  font-family: Palatino, sans-serif
+  overflow-y: scroll
+
+body
+  background-color: var(--backgroundBlack)
+  color: var(--fontWhite)
+  @media screen and (max-width: 100px)
+    font-size: 14px
+  @media screen and (max-width: 768px)
+    font-size: 12px
+
+main
+  margin-bottom: auto
