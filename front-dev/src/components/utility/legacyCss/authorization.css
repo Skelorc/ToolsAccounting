@@ -1,0 +1,120 @@
+@font-face {
+  font-family: "Ubuntu-Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: url("/static/fonts/fontawesome/Ubuntu-Regular.woff2") format('woff2');
+  src: url("/static/fonts/fontawesome/Ubuntu-Regular.woff2") format('woff');
+}
+
+body {
+    font-size: 0;
+    padding: 0;
+    margin: 0;
+    font-family: Ubuntu-Regular;
+}
+
+/* quick styles */
+.d-flex {
+    display: flex;
+}
+
+.fd_col {
+    flex-direction: column;
+}
+
+.f-size_14 {
+    font-size: 14px;
+}
+
+.pad-0_3 {
+    padding: 0 3%;
+}
+/* quick styles end */
+
+.wrapper {
+    height: 100vh;
+    width: 100%;
+}
+
+.login_left__panel {
+    flex: 50%;
+    background: #16171a;
+    box-sizing: border-box;
+    flex-direction: column;
+    text-decoration: none;
+}
+
+.login_left__panel_img {
+    margin-top: 15%;
+    flex: 55%;
+}
+
+.login_left__panel_text {
+    font-size: 26px;
+    color: #676a6c;;
+    text-align: center;
+    flex: 25%;
+    margin-top: 2%;
+}
+
+.login_right__panel {
+    flex: 50%;
+    font-size: 18px;
+    align-self: center;
+}
+
+.login_right__panel_form {
+    width: 100%;
+    align-items: center;
+}
+
+.panel_form__text {
+    font-size: 26px;
+    margin-bottom: 3%;
+}
+
+.panel_form__input {
+    color: #676a6c;
+    width: 45%;
+}
+
+.panel_form__input_login {
+    margin-bottom: 5%;
+}
+
+.input_login__text {
+    margin-bottom: 1%;
+}
+
+.input_login__input {
+    border-radius: 20px;
+    height: 26px;
+}
+
+.input_password__text {
+    margin-bottom: 1%;
+}
+
+.input_password__input {
+    border-radius: 20px;
+    height: 26px;
+}
+
+.panel_form__input_button {
+    margin-top: 3%;
+    width: 40%;
+    justify-content: center;
+}
+
+.input_button__button {
+    font-size: 18px;
+    border-radius: 20px;
+    width: 85%;
+    color: #b1b5c3;
+    background: #777e91;
+    height: 40px;
+}
+
+.input_button__button:hover {
+    background: black;
+}

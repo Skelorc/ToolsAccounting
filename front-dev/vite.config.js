@@ -8,7 +8,7 @@ export default defineConfig({
   },
   build: {
     target: "esnext",
-    outDir: "back-test/dist",
+    // outDir: "back-test/dist",
   },
   publicDir: "src/assets",
 });
