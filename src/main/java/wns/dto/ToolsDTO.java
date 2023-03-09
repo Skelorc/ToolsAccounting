@@ -75,14 +75,16 @@ public class ToolsDTO {
         if (tools.getProject() != null) {
             this.project = tools.getProject().getName();
             this.id_project = tools.getProject().getId();
-        }
-        else
-        {
+        } else {
             this.project = "Нет проекта!";
         }
         this.estimateName = tools.getEstimateName().getName();
-        this.categoryToolsFromEstimate = tools.getEstimateName().getCategoryTools().getData();
+        this.categoryToolsFromEstimate = tools.getEstimateName().getCategory().getData();
         this.id_estimate_name = tools.getEstimateName().getId();
+        if (tools.getCommentsList().isEmpty())
+            comment = "Нет комментария";
+        else
+            comment = tools.getCommentsList().get(tools.getCommentsList().size() - 1).getText();
         this.creating = tools.getCreating();
         this.costPrice = tools.getCostPrice();
         this.priceByDay = tools.getPriceByDay();

@@ -3,7 +3,7 @@ package wns.constants;
 public enum TypeLease {
 
     STRAIGHT("Прямая"),
-    SUBLEASE("Субаренда");
+    SUBLEASE("Даем в субаренду");
 
     private final String type;
 

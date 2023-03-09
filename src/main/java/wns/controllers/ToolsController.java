@@ -2,20 +2,30 @@ package wns.controllers;
 
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import wns.constants.*;
+import wns.constants.EstimateSection;
+import wns.constants.Filter;
+import wns.constants.Messages;
+import wns.constants.StatusTools;
 import wns.dto.EstimateNameDTO;
 import wns.dto.PageDataDTO;
 import wns.dto.StatusToolDTO;
+import wns.dto.ToolsDTO;
 import wns.entity.*;
 import wns.services.*;
 import wns.utils.ResponseHandler;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Controller
 @RequestMapping("tools")
@@ -32,17 +42,14 @@ public class ToolsController {
     @GetMapping()
     public String show(@RequestParam(value = "page", required = false) Optional<Integer> page,
                        @RequestParam(value = "size", required = false) Optional<Integer> size,
-                       @RequestParam(value = "category", required = false) CategoryTools categoryTools,
-                       @RequestParam(value = "section", required = false) EstimateSection section,
                        Model model) {
-        Page<Object> paginated_list = pageableFilterService.getListData(new PageDataDTO(page, size, Filter.ALL_TOOLS,categoryTools,section));
+        Page<Object> paginated_list = pageableFilterService.getListData(new PageDataDTO(page, size, Filter.ALL_TOOLS));
         pageableFilterService.addPageNumbers(paginated_list, model);
         model.addAttribute("list_tools", paginated_list);
         model.addAttribute("estimateDTO", new EstimateNameDTO());
         model.addAttribute("project_id", -1);
         return "tools";
     }
-
 
     @GetMapping
     @RequestMapping("/create")
@@ -113,8 +120,8 @@ public class ToolsController {
     public String showToolsPage(@RequestParam(value = "page", required = false) Optional<Integer> page,
                                 @RequestParam(value = "size", required = false) Optional<Integer> size,
                                 @RequestParam(value = "filter", required = false) Filter filter,
-                                @PathVariable("id") long project_id,
                                 @RequestParam(value = "ids", required = false) List<Long> ids_tools,
+                                @PathVariable(value = "id", required = false) long project_id,
                                 Model model) {
         Page<Object> paginated_list = pageableFilterService.getListData(new PageDataDTO(page, size,filter,project_id));
         pageableFilterService.addPageNumbers(paginated_list, model);

@@ -1,6 +1,7 @@
 package wns.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.poi.util.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -15,10 +16,12 @@ import wns.services.ClientsService;
 import wns.services.EstimateNameService;
 import wns.services.EstimateService;
 import wns.services.ProjectService;
-import wns.utils.ExcelUtil;
+import wns.utils.excel.ExcelEstimate;
 import wns.utils.ResponseHandler;
 
-import java.nio.file.FileSystems;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.time.LocalDate;
 
 @Controller
 @RequestMapping("estimate")
@@ -28,7 +31,7 @@ public class EstimateController {
     private final EstimateService estimateService;
     private final ProjectService projectService;
     private final ClientsService clientsService;
-    private final ExcelUtil excelUtil;
+    private final ExcelEstimate excelEstimate;
 
     @Value("${fileurl}")
     private String fileUrl;
@@ -59,13 +62,11 @@ public class EstimateController {
     }
 
     @PostMapping("/download-estimate/{id}")
-    @ResponseBody
-    public ResponseEntity<Object> downloadEstimate(@PathVariable("id") long id,
-                                                   @RequestBody EstimateDTO dto)
-    {
-        Estimate estimate = dto.createEstimateFromProject(projectService.getById(id));
-        String file_path = excelUtil.createDocument(estimate);
-        return ResponseHandler.generateResponse(Messages.RETURN_FILE_URL,FileSystems.getDefault().getSeparator()+ fileUrl + file_path);
+    public String downloadEstimate(@PathVariable("id") long id) throws IOException {
+        Estimate estimate = estimateService.findById(id);
+        excelEstimate.createEstimate(estimate);
+        File file = excelEstimate.createFileFromWorkBook("Smeta - "+estimate.getProject().getId()+"-"+estimate.getId()+ ", data -" + LocalDate.now().toString());
+        return "redirect:/"+fileUrl+file.getName();
     }
 
 

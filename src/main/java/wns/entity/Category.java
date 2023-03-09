@@ -15,8 +15,6 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Category {
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -26,11 +24,18 @@ public class Category {
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Tools> tools = new ArrayList<>();
+    @OneToOne(mappedBy = "category")
+    private EstimateName estimateName;
 
 
     public Category(String name,String code) {
         this.name = name;
         this.code = code;
+    }
+
+    public String getData()
+    {
+        return code + " " + name;
     }
 
     @Override

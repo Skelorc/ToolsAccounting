@@ -50,6 +50,7 @@ public class UserService {
         userFromDb.setUsername(user.getUsername());
         userFromDb.setFullName(user.getFullName());
         userFromDb.setPhoneNumber(user.getPhoneNumber());
+        userFromDb.setRoles(user.getRoles());
         if(!user.getPassword().isEmpty())
         {
             if(!passwordEncoder.matches(user.getPassword(),userFromDb.getPassword())) {

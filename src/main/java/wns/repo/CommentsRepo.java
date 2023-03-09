@@ -1,7 +1,7 @@
 package wns.repo;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import wns.entity.Comments;
 
-public interface CommentsRepo extends CrudRepository<Comments, Long> {
+public interface CommentsRepo extends PagingAndSortingRepository<Comments, Long> {
 }

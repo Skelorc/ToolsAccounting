@@ -40,9 +40,9 @@ public class ProjectDTO {
     private LocalDateTime created;
     private String employee;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate start;
+    private LocalDateTime start;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate end;
+    private LocalDateTime end;
     private long client_id;
     private String client_name;
     private String phoneNumber;
@@ -75,10 +75,8 @@ public class ProjectDTO {
         this.created = project.getCreated();
         User authentication = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         this.employee = authentication.getFullName();
-        if(!project.getWorkingShifts().isEmpty()) {
-            this.start = project.getWorkingShifts().get(0).getDateShift();
-            this.end = project.getWorkingShifts().get(project.getWorkingShifts().size() - 1).getDateShift();
-        }
+        this.start = project.getStart();
+        this.end = project.getEnd();
         this.client_id = project.getClient().getId();
         this.client_name = project.getClient().getFullName();
         this.phoneNumber = project.getPhoneNumber();
@@ -127,8 +125,8 @@ public class ProjectDTO {
 
 
     public Project updateProjectFromDTO(Project project) {
-        project.setStart(workingShifts.get(0).getDateShift());
-        project.setEnd(workingShifts.get(workingShifts.size() - 1).getDateShift());
+        project.setStart(start);
+        project.setEnd(end);
         project.setName(name);
         project.setStatus(status);
         project.setPhotos(photos);

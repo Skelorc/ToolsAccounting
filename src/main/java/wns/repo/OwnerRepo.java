@@ -1,8 +1,8 @@
 package wns.repo;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import wns.entity.Owner;
 
-public interface OwnerRepo extends CrudRepository<Owner, Long> {
+public interface OwnerRepo extends PagingAndSortingRepository<Owner, Long> {
     Owner findByNameIgnoreCase(String name);
 }

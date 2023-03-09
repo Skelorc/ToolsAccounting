@@ -1,25 +1,25 @@
 package wns.controllers;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.apache.poi.util.IOUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import wns.constants.Filter;
 import wns.constants.Messages;
-import wns.dto.IdsDTO;
-import wns.dto.PageDataDTO;
-import wns.dto.ProjectDTO;
-import wns.dto.WorkingShiftDTO;
+import wns.dto.*;
 import wns.entity.*;
 import wns.services.*;
+import wns.utils.excel.ExcelArray;
+import wns.utils.excel.ExcelShipment;
 import wns.utils.ResponseHandler;
 
-import java.util.ArrayList;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -27,32 +27,43 @@ import java.util.stream.Collectors;
 
 import static wns.constants.Messages.PROJECT_UPDATE;
 
-@Controller
+@RequiredArgsConstructor
 @RequestMapping("")
-@AllArgsConstructor
+@Controller
 public class ProjectsController {
 
     private final ProjectService projectService;
     private final ClientsService clientsService;
     private final ToolsService toolsService;
+    private final CategoryService categoryService;
     private final ToolsEstimateService toolsEstimateService;
     private final WorkingShiftService workingShiftService;
     private final EstimateService estimateService;
     private final PageableFilterService pageableFilterService;
+    private final ExcelShipment excelShipment;
+    private final ExcelArray excelArray;
+
+    @Value("${fileurl}")
+    private String fileUrl;
 
     @GetMapping
     public String show(@RequestParam(value = "page", required = false) Optional<Integer> page,
                        @RequestParam(value = "size", required = false) Optional<Integer> size,
                        @RequestParam(value = "filter", required = false, defaultValue = "ALL_PROJECTS") String filter,
                        Model model) {
-
         Page<Object> paginated_list = pageableFilterService.getListData(new PageDataDTO(page, size, Filter.valueOf(filter)));
         pageableFilterService.addPageNumbers(paginated_list, model);
         model.addAttribute("list_projects", paginated_list);
         return "projects";
     }
 
-
+    @GetMapping("/projects/by-date")
+    public String showProjectsByDate(@RequestParam("date")LocalDate localDate, Model model)
+    {
+        Set<ProjectDTO> projectsByDateShift = projectService.findProjectsByDateShift(localDate).stream().map(ProjectDTO::new).collect(Collectors.toSet());
+        model.addAttribute("list_projects",projectsByDateShift);
+        return "projects";
+    }
 
     @GetMapping("/projects/create")
     public String showCreatingPage(@RequestParam(value = "page", required = false) Optional<Integer> page,
@@ -62,6 +73,7 @@ public class ProjectsController {
         pageableFilterService.addPageNumbers(paginated_list, model);
         model.addAttribute("clients", clientsService.getAll());
         model.addAttribute("list_tools", paginated_list);
+        model.addAttribute("list_categories", categoryService.getAll());
         model.addAttribute("projectDTO", new ProjectDTO());
         return "create_project";
     }
@@ -70,12 +82,12 @@ public class ProjectsController {
     @ResponseBody
     public ResponseEntity<Object> createProject(@RequestBody ProjectDTO projectDTO) {
         List<WorkingShiftDTO> workingShifts = projectDTO.getWorkingShifts();
-        projectDTO.setStart(workingShifts.get(0).getDateShift());
-        projectDTO.setEnd(workingShifts.get(workingShifts.size() - 1).getDateShift());
+        projectDTO.setStart(projectDTO.getStart());
+        projectDTO.setEnd(projectDTO.getEnd());
         Client client = clientsService.getById(projectDTO.getClient_id());
         Estimate estimate = new Estimate();
-        estimate.setStart(projectDTO.getStart());
-        estimate.setEnd(projectDTO.getEnd());
+        estimate.setStart(projectDTO.getStart().toLocalDate());
+        estimate.setEnd(projectDTO.getEnd().toLocalDate());
         estimate.setCount_shifts(workingShifts.size());
         Project project = projectService.createProject(projectDTO, client, estimate);
         for (WorkingShiftDTO shiftDTO : workingShifts) {
@@ -193,4 +205,19 @@ public class ProjectsController {
         return ResponseHandler.generateResponse(Messages.REDIRECT, "/projects/edit/" + id);
     }
 
+    @PostMapping("/projects/download-shipment/{id}")
+    public String downloadShipment(@PathVariable("id") long id) throws IOException {
+        Estimate estimate = projectService.getById(id).getEstimate();
+        excelShipment.createShipment(estimate);
+        File file = excelShipment.createFileFromWorkBook("Otgruzka - "+estimate.getProject().getId()+"-"+estimate.getId()+ ", data -" + LocalDate.now().toString());
+        return "redirect:/"+fileUrl+file.getName();
+    }
+
+    @PostMapping("/projects/download-array/{id}")
+    public String downloadArray(@PathVariable("id") long id) throws IOException {
+        Estimate estimate = projectService.getById(id).getEstimate();
+        excelArray.createArray(estimate);
+        File file = excelArray.createFileFromWorkBook("Spisok - "+estimate.getProject().getId()+"-"+estimate.getId()+ ", data -" + LocalDate.now().toString());
+        return "redirect:/"+fileUrl+file.getName();
+    }
 }

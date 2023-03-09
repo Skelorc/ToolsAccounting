@@ -1,12 +1,8 @@
 package wns.dto;
 
 import lombok.*;
-import wns.constants.CategoryTools;
 import wns.entity.EstimateName;
-import wns.entity.Tools;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -17,11 +13,21 @@ public class EstimateNameDTO {
     private long id;
     private String name;
     private String categoryTools;
+    private long categoryId;
 
     public EstimateNameDTO(EstimateName estimateName) {
         this.id = estimateName.getId();
         this.name = estimateName.getName();
-        this.categoryTools = estimateName.getCategoryTools().getData();
+        this.categoryTools = estimateName.getCategory().getName();
+        this.categoryId = estimateName.getCategory().getId();
+    }
+
+    public EstimateName createEstimateNameDTO()
+    {
+        EstimateName estimateName = new EstimateName();
+        estimateName.setId(id);
+        estimateName.setName(name);
+        return estimateName;
     }
 
     @Override

@@ -35,6 +35,9 @@ public class ToolsEstimate {
     private int countShifts;
     private int discount;
 
+    private long totalByDay;
+    private long totalByDayWithDiscount;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "estimate_id",nullable = false)
     private Estimate estimate;

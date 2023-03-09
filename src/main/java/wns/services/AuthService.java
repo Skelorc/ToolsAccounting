@@ -22,7 +22,7 @@ public class AuthService implements UserDetailsService {
         User user = usersRepo.findByUsername(fullName);
         if(user == null)
         {
-            throw new UsernameNotFoundException("User not found");
+            throw new UsernameNotFoundException("Пользователь с таким логином не существует!");
         }
         user.set_active(true);
         return user;

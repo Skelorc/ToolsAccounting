@@ -1,11 +1,14 @@
 package wns.services;
 
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import wns.aspects.ToLog;
-import wns.constants.Messages;
+import wns.constants.EstimateSection;
 import wns.constants.StatusTools;
 import wns.dto.Identifiers;
 import wns.dto.StatusToolDTO;
@@ -17,6 +20,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 @AllArgsConstructor
@@ -28,6 +32,13 @@ public class ToolsService {
     public List<Tools> getAll() {
         return (List<Tools>) toolsRepo.findAll();
     }
+
+    @Transactional(readOnly = true)
+    public Page<ToolsDTO> getAll(Pageable paging) {
+        List<ToolsDTO> all = toolsRepo.findAll(paging).stream().map(ToolsDTO::new).collect(Collectors.toList());
+        return new PageImpl<>(all);
+    }
+
 
     @ToLog
     public void createTools(Tools tools, EstimateName estimateName, StatusTools statusTools, Category category, Owner owner) {
@@ -100,8 +111,8 @@ public class ToolsService {
     public void addToolToProject(Tools tool, Project project) {
         Status status = StatusToolDTO.createStatusWithTools(tool, StatusTools.ONLEASE);
         status.setCreated(project.getCreated());
-        status.setStart(project.getStart());
-        status.setEnd(project.getEnd());
+        status.setStart(project.getStart().toLocalDate());
+        status.setEnd(project.getEnd().toLocalDate());
         status.setEmployee(SecurityContextHolder.getContext().getAuthentication().getName());
         status.setExecutor(project.getClient().getFullName());
         status.setNote(project.getNote());
@@ -143,6 +154,8 @@ public class ToolsService {
     public void delete(long id) {
         toolsRepo.deleteById(id);
     }
-
-
+    @Transactional(readOnly = true)
+    public List<Tools> getToolsBySection(String section) {
+        return toolsRepo.findAllBySection(EstimateSection.valueOf(section));
+    }
 }

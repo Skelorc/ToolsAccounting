@@ -39,5 +39,8 @@ public class CategoryService {
         categoryRepo.deleteById(id);
     }
 
-
+    @Transactional(readOnly = true)
+    public Category findById(long categoryId) {
+        return categoryRepo.findById(categoryId).get();
+    }
 }

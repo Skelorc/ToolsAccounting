@@ -1,8 +1,8 @@
 package wns.repo;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import wns.entity.Category;
 
-public interface CategoryRepo extends CrudRepository<Category, Long> {
+public interface CategoryRepo extends PagingAndSortingRepository<Category, Long> {
     Category findByNameIgnoreCase(String name);
 }

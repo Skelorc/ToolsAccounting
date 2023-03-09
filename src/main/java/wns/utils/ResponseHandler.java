@@ -25,6 +25,8 @@ public class ResponseHandler {
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
 
+
+
     public static ResponseEntity<Object> generateResponse(Messages message,String redirect_url, Object responseObj) {
 
         Map<String, Object> map = new HashMap<>();

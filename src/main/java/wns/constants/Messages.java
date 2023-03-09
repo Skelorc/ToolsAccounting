@@ -2,7 +2,7 @@ package wns.constants;
 
 public enum Messages {
 
-    OK("Create!","200"),
+    OK("Accept!","200"),
     RETURN_FILE_URL("File!","300"),
     REDIRECT("Create! Redirect!","300"),
     CLIENT_CREATE("Клиент сохранён!","200"),

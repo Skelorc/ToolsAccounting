@@ -30,6 +30,10 @@ public class WorkingShift {
     @JoinColumn(name = "projects_id")
     private Project project;
 
+    public WorkingShift(LocalDate dateShift, TypeShift typeShift) {
+        this.dateShift = dateShift;
+        this.typeShift = typeShift;
+    }
 
     @Override
     public boolean equals(Object o) {

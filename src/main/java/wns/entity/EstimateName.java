@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import wns.constants.CategoryTools;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -22,8 +21,9 @@ public class EstimateName {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
-    @Enumerated(EnumType.STRING)
-    private CategoryTools categoryTools;
+    @OneToOne
+    @JoinColumn(name = "category_id",referencedColumnName = "id")
+    private Category category;
     @OneToMany(mappedBy = "estimateName", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Tools> listTools = new ArrayList<>();
 
@@ -32,7 +32,7 @@ public class EstimateName {
         return "EstimateName{" +
                 "id=" + id +
                 ", nameEstimate='" + name + '\'' +
-                ", categoryTools=" + categoryTools +
+                ", categoryTools=" + category +
                 '}';
     }
 
@@ -41,11 +41,11 @@ public class EstimateName {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EstimateName that = (EstimateName) o;
-        return id == that.id && Objects.equals(name, that.name) && categoryTools == that.categoryTools;
+        return id == that.id && Objects.equals(name, that.name) && category == that.category;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, categoryTools);
+        return Objects.hash(id, name, category);
     }
 }

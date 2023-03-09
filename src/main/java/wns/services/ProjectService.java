@@ -12,6 +12,7 @@ import wns.entity.Estimate;
 import wns.entity.Project;
 import wns.repo.ProjectRepo;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -68,5 +69,13 @@ public class ProjectService {
 
     public void delete(long id) {
         projectRepo.deleteById(id);
+    }
+
+    public Project getByName(String name) {
+        return projectRepo.findByName(name);
+    }
+
+    public List<Project> findProjectsByDateShift(LocalDate localDate) {
+        return projectRepo.findAllByWorkingShifts_DateShift(localDate);
     }
 }

@@ -5,6 +5,7 @@ public enum Filter {
     ALL_TOOLS("Всё оборудование"),
     STOCK("Склад"),
     GROUPS("По группам"),
+    TOOLS_BY_FILTER("Оборудование по фильтру"),
     //status
     INSTOCK("На складе"),
     WAITING("В ожидании"),

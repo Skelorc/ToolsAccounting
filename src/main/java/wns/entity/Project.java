@@ -39,10 +39,10 @@ public class Project{
     @Column(name = "created")
     private LocalDateTime created;
     private String employee;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate start;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate end;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+    private LocalDateTime start;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+    private LocalDateTime end;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "clients_id",nullable = false)
@@ -53,7 +53,7 @@ public class Project{
     @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(name = "photos_projects", joinColumns = @JoinColumn(name = "projects_id"))
     @Column(columnDefinition = "TEXT")
-    private Set<String> photos;
+    private Set<String> photos = new HashSet<>();
 
     private int discount;
     @Column(columnDefinition = "TEXT")

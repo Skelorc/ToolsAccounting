@@ -10,8 +10,8 @@ import org.springframework.ui.Model;
 import wns.aspects.ToLog;
 import wns.constants.*;
 import wns.dto.*;
+import wns.entity.Category;
 import wns.entity.Project;
-import wns.entity.Status;
 import wns.entity.Tools;
 
 import java.util.*;
@@ -32,7 +32,7 @@ public class PageableFilterService {
 
     public Page<Object> getListData(PageDataDTO pageDataDTO) {
         List<Object> list = getDataByFilter(pageDataDTO);
-        return findPaginated(pageDataDTO.getPage(), pageDataDTO.getSize(),list);
+        return findPaginated(pageDataDTO.getPage(), pageDataDTO.getSize(), list);
     }
 
     @Transactional(readOnly = true)
@@ -71,16 +71,19 @@ public class PageableFilterService {
                     .collect(Collectors.toList()));
             case ALL_CONTACTS -> list.addAll(contactsService.getAll()
                     .stream().map(ContactDTO::new).collect(Collectors.toList()));
-            case ALL_TOOLS -> {
-                list.addAll(toolsService.getAll().stream().map(ToolsDTO::new).collect(Collectors.toList()));
-                if(pageDataDTO.getCategoryTools()!=null)
-                {
-                    System.out.println(pageDataDTO.getCategoryTools().getData());
+            case ALL_TOOLS -> list.addAll(toolsService.getAll().stream().map(ToolsDTO::new).collect(Collectors.toList()));
+            case TOOLS_BY_FILTER -> {
+                Set<ToolsDTO> setData = new LinkedHashSet<>();
+                if (pageDataDTO.getCategoryId() == 0) {
+                    setData.addAll(toolsService.getToolsByStatuses(StatusTools.INSTOCK));
+                } else {
+                    Category category = categoryService.findById(pageDataDTO.getCategoryId());
+                    setData.addAll(category.getTools().stream().filter(x -> x.getStatus().getStatusTools().equals(StatusTools.INSTOCK)).map(ToolsDTO::new).collect(Collectors.toList()));
                 }
-                if(pageDataDTO.getSection()!=null)
-                {
-                    System.out.println(pageDataDTO.getSection().getValue());
+                if (!pageDataDTO.getSection().isEmpty()) {
+                    setData.addAll(toolsService.getToolsBySection(pageDataDTO.getSection()).stream().map(ToolsDTO::new).collect(Collectors.toList()));
                 }
+                list.addAll(setData);
             }
             case CONTACTS_BY_ROLE -> list.addAll(contactsService.getContactByRoleId(id).stream().map(ContactDTO::new).collect(Collectors.toList()));
         }
@@ -88,7 +91,7 @@ public class PageableFilterService {
     }
 
     private <T> PageImpl<T> findPaginated(Optional<Integer> page, Optional<Integer> size,
-                                         List<T> list) {
+                                          List<T> list) {
         int currentPage = page.orElse(0);
         int pageSize = size.orElse(100);
         int startItem = currentPage * pageSize;

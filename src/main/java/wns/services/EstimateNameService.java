@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import wns.aspects.ToLog;
 import wns.dto.EstimateNameDTO;
+import wns.entity.Category;
 import wns.entity.EstimateName;
 import wns.entity.Owner;
 import wns.entity.Tools;
@@ -31,17 +32,20 @@ public class EstimateNameService {
     }
 
     @ToLog
-    public void save(EstimateName dto) {
-        if (!repo.existsById(dto.getId())) {
-            repo.save(dto);
-        } else {
-            EstimateName estimateName = repo.findById(dto.getId()).get();
-            estimateName.setName(dto.getName());
-            estimateName.setCategoryTools(dto.getCategoryTools());
-            estimateName.setListTools(dto.getListTools());
-            repo.save(estimateName);
-        }
+    public void save(EstimateNameDTO dto, Category category) {
+        EstimateName estimateName = dto.createEstimateNameDTO();
+        estimateName.setCategory(category);
+        estimateName.setId(dto.getId());
+        repo.save(estimateName);
     }
+
+    public void save(EstimateNameDTO dto) {
+        EstimateName estimateName = dto.createEstimateNameDTO();
+        estimateName.setId(dto.getId());
+        repo.save(estimateName);
+    }
+
+
 
     public void save(Tools tools_to_save, long id) {
         EstimateName estimateName = repo.findById(id).get();

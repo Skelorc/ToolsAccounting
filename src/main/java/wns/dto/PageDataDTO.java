@@ -3,8 +3,6 @@ package wns.dto;
 import lombok.*;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import wns.constants.CategoryTools;
-import wns.constants.EstimateSection;
 import wns.constants.Filter;
 
 import java.util.Optional;
@@ -18,8 +16,8 @@ public class PageDataDTO implements Pageable {
 
     private Optional<Integer> page;
     private Optional<Integer> size;
-    private CategoryTools categoryTools;
-    private EstimateSection section;
+    private long categoryId;
+    private String section;
     private Filter filter;
     private long id = -1;
 
@@ -36,11 +34,11 @@ public class PageDataDTO implements Pageable {
         this.id = id;
     }
 
-    public PageDataDTO(Optional<Integer> page, Optional<Integer> size, Filter filter, CategoryTools categoryTools, EstimateSection section) {
+    public PageDataDTO(Optional<Integer> page, Optional<Integer> size, Filter filter, long categoryId, String section) {
         this.page = page;
         this.size = size;
         this.section = section;
-        this.categoryTools = categoryTools;
+        this.categoryId = categoryId;
         this.filter = filter;
     }
 
@@ -79,7 +77,6 @@ public class PageDataDTO implements Pageable {
         return null;
     }
 
-    @Override
     public Pageable withPage(int pageNumber) {
         return null;
     }
