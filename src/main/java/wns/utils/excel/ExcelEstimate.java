@@ -36,11 +36,9 @@ public class ExcelEstimate extends ExcelUtil{
         Row employee = sheet.createRow(10);
         Row phone_number = sheet.createRow(12);
         Row site = sheet.createRow(14);
-        int num_cell = 5;
-
+        int num_cell = 4;
 
         XSSFCellStyle headerStyle = createHeaderStyle();
-
         Cell cell_name_project = name_project.createCell(num_cell);
         cell_name_project.setCellValue("Проект: " + estimate.getProject().getName());
         cell_name_project.setCellStyle(headerStyle);
@@ -79,126 +77,8 @@ public class ExcelEstimate extends ExcelUtil{
 
         addHeaders(headerStyle);
         addData(estimate);
+        addImageAndMergedColsForHeaders();
         setBordersToMergedCells(sheet);
-        addImage();
-    }
-
-
-    private void createEstimateResultRows(int num_row, Sheet sheet, XSSFCellStyle section_style, Estimate estimate)
-    {
-        sheet.addMergedRegion(new CellRangeAddress(num_row, num_row, 0, 4));
-        Row row = sheet.createRow(num_row);
-        Cell cell = row.createCell(0);
-        cell.setCellValue("Всего за проект:");
-        cell.setCellStyle(section_style);
-        cell = row.createCell(5);
-        cell.setCellValue(estimate.getAllByProject());
-        cell.setCellStyle(section_style);
-        num_row++;
-
-        sheet.addMergedRegion(new CellRangeAddress(num_row, num_row, 0, 4));
-        row = sheet.createRow(num_row);
-        cell = row.createCell(0);
-        cell.setCellValue("Скидка на оборудование(%):");
-        cell.setCellStyle(section_style);
-        cell = row.createCell(5);
-        cell.setCellValue(estimate.getDiscountByTools());
-        cell.setCellStyle(section_style);
-        num_row++;
-
-        sheet.addMergedRegion(new CellRangeAddress(num_row, num_row, 0, 4));
-        row = sheet.createRow(num_row);
-        cell = row.createCell(0);
-        cell.setCellValue("Всего за проект с учетом скидки:");
-        cell.setCellStyle(section_style);
-        cell = row.createCell(5);
-        cell.setCellValue(estimate.getAllByProjectWithDiscount());
-        cell.setCellStyle(section_style);
-        num_row++;
-
-        sheet.addMergedRegion(new CellRangeAddress(num_row, num_row, 0, 5));
-        row = sheet.createRow(num_row);
-        cell = row.createCell(0);
-        cell.setCellValue("Оборудование и транспорт");
-        cell.setCellStyle(section_style);
-        num_row++;
-
-        Cell cell_name_tool = row.createCell(0);
-        cell_name_tool.setCellValue("Наименование");
-        cell_name_tool.setCellStyle(section_style);
-        sheet.autoSizeColumn(cell_name_tool.getColumnIndex());
-
-        Cell cell_price = row.createCell(1);
-        cell_price.setCellValue("Стоимость (руб.)");
-        cell_price.setCellStyle(section_style);
-        sheet.autoSizeColumn(cell_price.getColumnIndex());
-
-        Cell cell_amount = row.createCell(2);
-        cell_amount.setCellValue("Ед. Техники");
-        cell_amount.setCellStyle(section_style);
-        sheet.autoSizeColumn(cell_amount.getColumnIndex());
-
-        Cell cell_days = row.createCell(3);
-        cell_days.setCellValue("Дней");
-        cell_days.setCellStyle(section_style);
-        sheet.autoSizeColumn(cell_days.getColumnIndex());
-
-
-        Cell cell_sum = row.createCell(5);
-        cell_sum.setCellValue("Сумма");
-        cell_sum.setCellStyle(section_style);
-
-
-        XSSFCellStyle styleForSection = createStyleForSection();
-        List<ToolsEstimate> toolsEstimates = estimate.getToolsEstimates();
-        int count_cell = 0;
-        for (ToolsEstimate toolsEstimate : toolsEstimates) {
-            if(toolsEstimate.getSection().equals(EstimateSection.SERVICE))
-            {
-                row = sheet.createRow(num_row);
-                createCellsWithData(styleForSection, row, count_cell, toolsEstimate);
-                num_row++;
-            }
-        }
-
-        sheet.addMergedRegion(new CellRangeAddress(num_row, num_row, 0, 4));
-        row = sheet.createRow(num_row);
-        cell = row.createCell(0);
-        cell.setCellValue("Всего по обслуживанию и транспорту:");
-        cell.setCellStyle(section_style);
-        cell = row.createCell(5);
-        cell.setCellValue(estimate.getAllByService());
-        cell.setCellStyle(section_style);
-        num_row++;
-
-        sheet.addMergedRegion(new CellRangeAddress(num_row, num_row, 0, 4));
-        row = sheet.createRow(num_row);
-        cell = row.createCell(0);
-        cell.setCellValue("Итоговая сумма по проекту:");
-        cell.setCellStyle(section_style);
-        cell = row.createCell(5);
-        cell.setCellValue(estimate.getFinalSumByProject());
-        cell.setCellStyle(section_style);
-        num_row++;
-
-        sheet.addMergedRegion(new CellRangeAddress(num_row, num_row, 0, 4));
-        row = sheet.createRow(num_row);
-        cell = row.createCell(0);
-        cell.setCellValue("Процент УСН (%):");
-        cell.setCellStyle(section_style);
-        cell = row.createCell(5);
-        cell.setCellValue(estimate.getProcentUsn());
-        cell.setCellStyle(section_style);
-        num_row++;
-
-        sheet.addMergedRegion(new CellRangeAddress(num_row, num_row, 0, 4));
-        row = sheet.createRow(num_row);
-        cell = row.createCell(0);
-        cell.setCellValue("Итоговая сумма УСН:");
-        cell.setCellStyle(section_style);
-        cell = row.createCell(5);
-        cell.setCellValue(estimate.getFinalSumWithUsn());
-        cell.setCellStyle(section_style);
     }
 
     protected void addData(Estimate estimate) {
@@ -222,7 +102,7 @@ public class ExcelEstimate extends ExcelUtil{
         for (EstimateSection estimateSection : sectionListMap.keySet()) {
             if (estimateSection != EstimateSection.SERVICE) {
                 Row row = sheet.createRow(num_row);
-                sheet.addMergedRegion(new CellRangeAddress(num_row, num_row, 0, 5));
+                sheet.addMergedRegion(new CellRangeAddress(num_row, num_row, 0, 6));
 
                 Cell cell = row.createCell(count_cell);
                 cell.setCellValue(estimateSection.getValue());
@@ -232,17 +112,39 @@ public class ExcelEstimate extends ExcelUtil{
                     ToolsEstimate toolsEstimate = list_tools.get(i);
                     row = sheet.createRow(num_row + 1);
                     createCellsWithData(section_style, row, count_cell, toolsEstimate);
-                    cell = row.createCell(count_cell + 5);
-                    long sum_without_procent = ((long) toolsEstimate.getAmount() * toolsEstimate.getPriceByDay() * toolsEstimate.getCountShifts());
-                    long sum = Math.round(sum_without_procent - (((sum_without_procent) / 100.0) * toolsEstimate.getDiscount()));
-                    cell.setCellValue(sum);
-                    cell.setCellStyle(section_style);
                 }
+                num_row++;
+            }
+        }
+
+        num_row = createToolsResultRows(num_row,sheet,headerStyle,estimate);
+
+        sheet.addMergedRegion(new CellRangeAddress(num_row, num_row, 0, 6));
+        Row row = sheet.createRow(num_row);
+        addCellToRow(row,0,"",null);
+
+        num_row++;
+        XSSFCellStyle styleForSection = createStyleForSection();
+        List<ToolsEstimate> toolsEstimates = estimate.getToolsEstimates();
+        row = sheet.createRow(num_row);
+
+        sheet.addMergedRegion(new CellRangeAddress(num_row, num_row, 0, 6));
+        Cell cell = row.createCell(count_cell);
+        cell.setCellValue(EstimateSection.SERVICE.getValue());
+        cell.setCellStyle(headerStyle);
+        num_row++;
+        for (ToolsEstimate toolsEstimate : toolsEstimates) {
+            if(toolsEstimate.getSection().equals(EstimateSection.SERVICE))
+            {
+                row = sheet.createRow(num_row);
+                createCellsWithData(styleForSection, row, count_cell, toolsEstimate);
                 num_row++;
             }
         }
         createEstimateResultRows(num_row,sheet,headerStyle,estimate);
     }
+
+
 
     protected void createCellsWithData(XSSFCellStyle section_style, Row row, int count_cell, ToolsEstimate toolsEstimate) {
         Cell cell = row.createCell(count_cell);
@@ -266,21 +168,23 @@ public class ExcelEstimate extends ExcelUtil{
         cell.setCellStyle(section_style);
 
         cell = row.createCell(count_cell + 5);
-        long sum_without_procent = ((long) toolsEstimate.getAmount() * toolsEstimate.getPriceByDay() * toolsEstimate.getCountShifts());
-        long sum = Math.round(sum_without_procent - (((sum_without_procent) / 100.0) * toolsEstimate.getDiscount()));
-        cell.setCellValue(sum);
+        cell.setCellValue(toolsEstimate.getTotalByDay());
+        cell.setCellStyle(section_style);
+
+        cell = row.createCell(count_cell + 6);
+        cell.setCellValue(toolsEstimate.getTotalByDayWithDiscount());
         cell.setCellStyle(section_style);
     }
 
     protected void addHeaders(CellStyle headerStyle) {
         XSSFCellStyle section_style = createStyleForSection();
 
-        sheet.addMergedRegion(new CellRangeAddress(16, 16, 0, 5));
+        sheet.addMergedRegion(new CellRangeAddress(16, 16, 0, 6));
         Row tools = sheet.createRow(16);
         Cell cell_tools = tools.createCell(0);
         cell_tools.setCellStyle(headerStyle);
         cell_tools.setCellValue("Оборудование");
-        for (int i = 1; i < 5; i++) {
+        for (int i = 1; i < 6; i++) {
             cell_tools = tools.createCell(i);
             cell_tools.setCellStyle(section_style);
         }
@@ -314,8 +218,53 @@ public class ExcelEstimate extends ExcelUtil{
         sheet.autoSizeColumn(cell_discount.getColumnIndex());
 
         Cell cell_sum = headers.createCell(5);
-        cell_sum.setCellValue("Сумма");
+        cell_sum.setCellValue("Итого за смену");
         cell_sum.setCellStyle(section_style);
         sheet.autoSizeColumn(cell_sum.getColumnIndex());
+
+        Cell cell_result = headers.createCell(6);
+        cell_result.setCellValue("Итого за смену с учетом скидки");
+        cell_result.setCellStyle(section_style);
+        sheet.autoSizeColumn(cell_result.getColumnIndex());
+    }
+
+    private int createToolsResultRows(int num_row, Sheet sheet, XSSFCellStyle headerStyle, Estimate estimate) {
+        int lastCol = 4;
+        sheet.addMergedRegion(new CellRangeAddress(num_row, num_row+3, 0, lastCol));
+        Row row = sheet.createRow(num_row);
+        addCellToRow(row,0,"Итоговая стоимость оборудования",headerStyle);
+        for (int i = num_row; i <= num_row+3; i++) {
+            sheet.addMergedRegion(new CellRangeAddress(i, i, 5, 6));
+        }
+        addCellToRow(row,5,"В смену : " + estimate.getResultByToolsInShift(),headerStyle);
+        addCellToRow(sheet.createRow(num_row+1),5,"Скидка (%) : " + estimate.getDiscountByTools(),headerStyle);
+        addCellToRow(sheet.createRow(num_row+2),5,"С учетом скидки : " + estimate.getResultByToolsWithDiscount(),headerStyle);
+        addCellToRow(sheet.createRow(num_row+3),5,"За проект : " + estimate.getTotalByTools(),headerStyle);
+        return num_row + 4;
+    }
+
+    private void createEstimateResultRows(int num_row, Sheet sheet, XSSFCellStyle section_style, Estimate estimate)
+    {
+        int lastCol = 4;
+        int rowResultService = num_row + 1;
+        sheet.addMergedRegion(new CellRangeAddress(num_row, rowResultService, 0, lastCol));
+        Row row = sheet.createRow(num_row);
+        addCellToRow(row,0,"Итоговая стоимость обслуживания",section_style);
+        for (int i = num_row; i <= rowResultService; i++) {
+            sheet.addMergedRegion(new CellRangeAddress(i, i, 5, 6));
+        }
+        addCellToRow(row,5,"В смену : " + estimate.getResultByServiceInShift(),section_style);
+        addCellToRow(sheet.createRow(num_row+1),5,"За проект :" + estimate.getTotalByService(),section_style);
+
+        int rowTotalResult = rowResultService + 3;
+        sheet.addMergedRegion(new CellRangeAddress(rowResultService+1, rowTotalResult, 0, lastCol));
+        row = sheet.createRow(rowResultService+1);
+        addCellToRow(row,0,"Общая стоимость",section_style);
+        for (int i = rowResultService+1; i <= rowTotalResult; i++) {
+            sheet.addMergedRegion(new CellRangeAddress(i, i, 5, 6));
+        }
+        addCellToRow(row,5,"За проект : "+estimate.getTotalByProject(),section_style);
+        addCellToRow(sheet.createRow(rowResultService+2),5,"Процент УСН : "+estimate.getProcentUsn(),section_style);
+        addCellToRow(sheet.createRow(rowResultService+3),5,"При оплате по УСН : "+estimate.getFinalTotalWithUsn(),section_style);
     }
 }

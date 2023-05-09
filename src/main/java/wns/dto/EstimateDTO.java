@@ -26,18 +26,27 @@ public class EstimateDTO {
     private String operator;
     private Project project;
     private List<ToolsEstimate> toolsEstimates = new ArrayList<>();
-    private EstimateFieldsDTO params;
+    private long resultByToolsInShift;
+    private int discountByTools;
+    private long resultByToolsWithDiscount;
+    private long totalByTools;
+    private long resultByServiceInShift;
+    private long totalByService;
+    private long totalByProject;
+    private int procentUsn;
+    private long finalTotalWithUsn;
 
-    public Estimate createEstimateFromProject(Project project)
-    {
-        Estimate estimate = project.getEstimate();
-        estimate.setAllByProject(params.getAllByPRoject());
-        estimate.setDiscountByTools(params.getDiscountByTools());
-        estimate.setAllByProjectWithDiscount(params.getAllByProjectWithDiscount());
-        estimate.setAllByService(params.getAllByService());
-        estimate.setFinalSumByProject(params.getFinalSumByProject());
-        estimate.setProcentUsn(params.getProcentUsn());
-        estimate.setFinalSumWithUsn(params.getFinalSumWithUsn());
+    public Estimate setDataToEstimateFromDTO(Estimate estimate) {
+        estimate.setOperator(operator);
+        estimate.setResultByToolsInShift(resultByToolsInShift);
+        estimate.setDiscountByTools(discountByTools);
+        estimate.setResultByToolsWithDiscount(resultByToolsWithDiscount);
+        estimate.setTotalByTools(totalByTools);
+        estimate.setResultByServiceInShift(resultByServiceInShift);
+        estimate.setTotalByService(totalByService);
+        estimate.setTotalByProject(totalByProject);
+        estimate.setProcentUsn(procentUsn);
+        estimate.setFinalTotalWithUsn(finalTotalWithUsn);
         estimate.setToolsEstimates(toolsEstimates);
         return estimate;
     }

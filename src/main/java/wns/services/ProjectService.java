@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import wns.aspects.ToLog;
 import wns.constants.ClassificationProject;
+import wns.constants.Filter;
 import wns.constants.StatusProject;
 import wns.dto.ProjectDTO;
 import wns.entity.Client;
@@ -13,6 +14,8 @@ import wns.entity.Project;
 import wns.repo.ProjectRepo;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -71,11 +74,20 @@ public class ProjectService {
         projectRepo.deleteById(id);
     }
 
+    @Transactional(readOnly = true)
     public Project getByName(String name) {
         return projectRepo.findByName(name);
     }
 
+    @Transactional(readOnly = true)
     public List<Project> findProjectsByDateShift(LocalDate localDate) {
         return projectRepo.findAllByWorkingShifts_DateShift(localDate);
     }
+
+    @Transactional(readOnly = true)
+    public List<ProjectDTO> findAllByDates(LocalDate startDate) {
+        List<Project> projects = projectRepo.findAllForCalendar();
+        return projects.stream().map(ProjectDTO::new).collect(Collectors.toList());
+    }
+
 }

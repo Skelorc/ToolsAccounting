@@ -34,7 +34,12 @@ public enum Filter {
     CATEGORY("Категория"),
     //Контакты
     ALL_CONTACTS("Все контакты"),
-    CONTACTS_BY_ROLE("Контакты по роли");
+    CONTACTS_BY_ROLE("Контакты по роли"),
+    //Календарь
+    TOOLS_BY_WEEK("Оборудование за неделю"),
+    TOOLS_BY_MONTH("Оборудование за месяц"),
+    PROJECTS_BY_WEEK("Проекты за неделю"),
+    PROJECTS_BY_MONTH("Проекты за месяц");
 
     private final String value;
 

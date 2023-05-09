@@ -55,6 +55,6 @@ public class EstimateService {
 
     @Transactional(readOnly = true)
     public Estimate findById(long id) {
-        return estimateRepo.findById(id).get();
+        return estimateRepo.findById(id).orElse(new Estimate());
     }
 }

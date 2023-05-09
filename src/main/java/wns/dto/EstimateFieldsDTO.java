@@ -10,11 +10,13 @@ import javax.persistence.Column;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EstimateFieldsDTO {
-    private long allByPRoject;
+    private long resultByToolsInShift;
     private int discountByTools;
-    private long allByProjectWithDiscount;
-    private long allByService;
-    private long finalSumByProject;
+    private long resultByToolsWithDiscount;
+    private long totalByTools;
+    private long resultByServiceInShift;
+    private long totalByService;
+    private long totalByProject;
     private int procentUsn;
-    private long finalSumWithUsn;
+    private long finalTotalWithUsn;
 }

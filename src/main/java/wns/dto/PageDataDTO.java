@@ -5,6 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import wns.constants.Filter;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 @AllArgsConstructor
@@ -20,11 +21,19 @@ public class PageDataDTO implements Pageable {
     private String section;
     private Filter filter;
     private long id = -1;
+    private LocalDate startDateForCalendar;
 
     public PageDataDTO(Optional<Integer> page, Optional<Integer> size, Filter filter) {
         this.page = page;
         this.size = size;
         this.filter = filter;
+    }
+
+    public PageDataDTO(Optional<Integer> page, Optional<Integer> size, Filter filter, LocalDate startDateForCalendar) {
+        this.page = page;
+        this.size = size;
+        this.filter = filter;
+        this.startDateForCalendar = startDateForCalendar;
     }
 
     public PageDataDTO(Optional<Integer> page, Optional<Integer> size, Filter filter, long id) {

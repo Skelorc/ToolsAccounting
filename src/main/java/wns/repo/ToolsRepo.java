@@ -1,9 +1,7 @@
 package wns.repo;
 
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
-import wns.constants.CategoryTools;
 import wns.constants.EstimateSection;
 import wns.constants.StatusTools;
 import wns.entity.Tools;
@@ -16,4 +14,6 @@ public interface ToolsRepo extends PagingAndSortingRepository<Tools,Long> {
     Optional<Tools> findByBarcode(String barcode);
     List<Tools> findAllByStatus_StatusTools(StatusTools statusTools);
     List<Tools> findAllBySection(EstimateSection section);
+    @Query("select t from Tools t where t.status.statusTools = 'ONLEASE' or t.status.statusTools = 'WAITING' or t.status.statusTools = 'BOOKING' or t.status.statusTools = 'REPAIR'")
+    List<Tools> findAllByStatusForCalendar();
 }

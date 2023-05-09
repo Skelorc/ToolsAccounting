@@ -1,34 +1,45 @@
 package wns.controllers;
 
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import wns.constants.Filter;
-import wns.dto.PageDataDTO;
-import wns.services.PageableFilterService;
+import wns.dto.CalendarFilterDTO;
+import wns.services.ProjectService;
+import wns.services.ToolsService;
 
-import java.util.Optional;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
 @RequestMapping("calendar")
 @AllArgsConstructor
 public class CalendarController {
-private final PageableFilterService pageableFilterService;
+
+    private final ToolsService toolsService;
+    private final ProjectService projectService;
+
 
     @GetMapping
-    public String showByDate(@RequestParam(value ="page", required = false) Optional<Integer> page,
-                             @RequestParam(value ="size", required = false) Optional<Integer> size,
-                             Model model)
-    {
-        Page<Object> paginated_list = pageableFilterService.getListData(new PageDataDTO(page, size, Filter.ALL_PROJECTS));
-        pageableFilterService.addPageNumbers(paginated_list, model);
-        model.addAttribute("list_data", paginated_list);
+    public String showCalendar() {
         return "calendar";
+    }
+
+    @PostMapping
+    @ResponseBody
+    public ResponseEntity<?> showByDate(@RequestBody CalendarFilterDTO calendarFilterDTO) {
+        Filter filter = calendarFilterDTO.getFilter();
+        LocalDate startDate = calendarFilterDTO.getDateStart();
+        final List<Object> list = new ArrayList<>();
+        if (filter.equals(Filter.PROJECTS_BY_WEEK) || filter.equals(Filter.PROJECTS_BY_MONTH)) {
+            list.addAll(projectService.findAllByDates(startDate));
+        } else if (filter.equals(Filter.TOOLS_BY_WEEK) || filter.equals(Filter.TOOLS_BY_MONTH)) {
+            list.addAll(toolsService.findAllByDates(startDate));
+        }
+        return ResponseEntity.ok(list);
     }
 
 }

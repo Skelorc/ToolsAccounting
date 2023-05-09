@@ -19,7 +19,7 @@ public class AdminController {
 
     private final UserService userService;
     @GetMapping
-    public String showRegistrationPage(@ModelAttribute("message") String message,Model model)
+    public String showRegistrationPage(@ModelAttribute("message") String message, Model model)
     {
         List<UserDTO> allUsers = userService.getAll();
         model.addAttribute("roles", Roles.values());

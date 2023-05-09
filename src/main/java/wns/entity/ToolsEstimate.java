@@ -34,8 +34,9 @@ public class ToolsEstimate {
     @Column(name = "count_shifts")
     private int countShifts;
     private int discount;
-
+    @Column(name = "total_by_day")
     private long totalByDay;
+    @Column(name = "total_by_day_with_discount")
     private long totalByDayWithDiscount;
 
     @ManyToOne(fetch = FetchType.LAZY)

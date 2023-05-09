@@ -11,25 +11,24 @@ import com.itextpdf.text.pdf.PdfPTable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import wns.aspects.LoggingAspect;
+import wns.aspects.ToLog;
 import wns.entity.Estimate;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public abstract class CreateBasePdf {
+@Component
+public abstract class BasePDF {
     private Logger logger = LoggerFactory.getLogger(LoggingAspect.class);
-    @Value("${filepath}")
-    protected String path;
-    @Value("${static-files}")
-    protected String staticFilesPath;
 
-
-    protected String FONT = staticFilesPath +"static/fonts/ubuntu/Ubuntu-Regular.ttf";
     protected Document document;
-
-    protected Image addImage() {
+    @ToLog
+    protected Image addImage(String pathToFile) {
         try {
-            Image img = Image.getInstance(staticFilesPath + "static/img/logo/mad-dog-logo.png");
+            Image img = Image.getInstance(pathToFile + "static/img/logo/mad-dog-logo.png");
             img.scaleToFit(240, 200);
             img.setAbsolutePosition(40, 612);
             return img;
@@ -66,8 +65,6 @@ public abstract class CreateBasePdf {
         cell.setBackgroundColor(color);
         cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-        cell.setColspan(2);
-        cell.setColspan(3);
         cell.setColspan(4);
         if(name.equals("Оборудование")) {
             cell.setMinimumHeight(24f);
@@ -108,10 +105,10 @@ public abstract class CreateBasePdf {
         table.addCell(cell);
     }
 
-    protected void addResultToolsRows(String data, Font font, BaseColor color, PdfPTable table) {
+    protected void addResultToolsRows(String data, Font font, BaseColor color, PdfPTable table, int sizeList) {
         Phrase phrase = new Phrase(data, font);
         PdfPCell cell = new PdfPCell(phrase);
-        cell.setRowspan(table.getRows().size());
+        cell.setRowspan(table.getRows().size()-sizeList-1);
         cell.setColspan(2);
         cell.setBorder(Rectangle.BOTTOM);
         cell.setBackgroundColor(color);
@@ -121,5 +118,5 @@ public abstract class CreateBasePdf {
         table.addCell(cell);
     }
 
-    protected abstract void createDocument(Estimate estimate);
+    public abstract File createDocument(Estimate estimate, String fileName) throws IOException, DocumentException;
 }

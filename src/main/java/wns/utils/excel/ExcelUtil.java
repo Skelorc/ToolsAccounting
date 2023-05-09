@@ -49,29 +49,24 @@ public abstract class ExcelUtil {
         return file_to_write;
     }
 
-    protected void addImage() {
+    protected void addImageAndMergedColsForHeaders() {
         File file = new File(filePath+"static/img/logo/mad-dog-logo.png");
         try (InputStream inputStream = new FileInputStream(file)) {
-            try {
                 byte[] inputImageBytes1 = IOUtils.toByteArray(inputStream);
                 int inputImagePictureID1 = workbook.addPicture(inputImageBytes1, Workbook.PICTURE_TYPE_JPEG);
                 XSSFDrawing drawing = (XSSFDrawing) sheet.createDrawingPatriarch();
                 XSSFClientAnchor logo = new XSSFClientAnchor();
                 logo.setCol1(0);
-                logo.setCol2(5);
+                logo.setCol2(4);
                 logo.setRow1(0);
                 logo.setRow2(16);
-                sheet.addMergedRegion(new CellRangeAddress(0, 15, 0, 4));
+                sheet.addMergedRegion(new CellRangeAddress(0, 15, 0, 3));
                 for (int i = 0; i < 16; i = i + 2) {
-                    sheet.addMergedRegion(new CellRangeAddress(i, i + 1, 5, 5));
+                    sheet.addMergedRegion(new CellRangeAddress(i, i + 1, 4, 6));
                 }
                 drawing.createPicture(logo, inputImagePictureID1);
-            } catch (IOException e) {
-                System.out.println("ошибка записи в файл");
-                e.printStackTrace();
-            }
-        } catch (IOException e) {
-            System.out.println("ошибка закрытия потока получения файла!");
+        } catch (Exception e) {
+            System.out.println("Ошибка записи в файл!");
             e.printStackTrace();
         }
     }
@@ -108,6 +103,13 @@ public abstract class ExcelUtil {
         headerStyle.setBorderBottom(BorderStyle.MEDIUM);
         headerStyle.setBorderTop(BorderStyle.MEDIUM);
         return headerStyle;
+    }
+
+    protected void addCellToRow(Row row, int numCol, String data, XSSFCellStyle section_style)
+    {
+        Cell cell = row.createCell(numCol);
+        cell.setCellValue(data);
+        cell.setCellStyle(section_style);
     }
 
     protected void setBordersToMergedCells(Sheet sheet) {

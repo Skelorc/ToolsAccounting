@@ -77,7 +77,7 @@ public class ExcelArray extends ExcelUtil{
         addData(estimate);
         setBordersToMergedCells(sheet);
 
-        addImage();
+        addImageAndMergedColsForHeaders();
     }
 
     @Override

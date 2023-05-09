@@ -114,6 +114,7 @@ public class ProjectsController {
         pageableFilterService.addPageNumbers(paginated_list, model);
         model.addAttribute("clients", clientsService.getAll());
         model.addAttribute("list_tools", paginated_list);
+        model.addAttribute("list_categories", categoryService.getAll());
         model.addAttribute("project", projectService.getById(id));
         return "edit_project";
     }
@@ -165,7 +166,7 @@ public class ProjectsController {
     @ResponseBody
     public ResponseEntity<Object> addToolsToProject(@PathVariable("id") long id, @RequestBody IdsDTO ids) {
         Project project = projectService.getById(id);
-        for (Long id_tool : ids.getIds()) {
+        for (Long id_tool : ids.getNew_ids()) {
             Tools tool = toolsService.findById(id_tool);
             toolsService.addToolToProject(tool, project);
             toolsEstimateService.addToolEstimateToEstimate(project, tool);
@@ -209,7 +210,7 @@ public class ProjectsController {
     public String downloadShipment(@PathVariable("id") long id) throws IOException {
         Estimate estimate = projectService.getById(id).getEstimate();
         excelShipment.createShipment(estimate);
-        File file = excelShipment.createFileFromWorkBook("Otgruzka - "+estimate.getProject().getId()+"-"+estimate.getId()+ ", data -" + LocalDate.now().toString());
+        File file = excelShipment.createFileFromWorkBook("Otgruzka - "+estimate.getProject().getId()+"-"+estimate.getId()+ ", data -" + estimate.getProject().getStart().toLocalDate().toString());
         return "redirect:/"+fileUrl+file.getName();
     }
 
@@ -217,7 +218,7 @@ public class ProjectsController {
     public String downloadArray(@PathVariable("id") long id) throws IOException {
         Estimate estimate = projectService.getById(id).getEstimate();
         excelArray.createArray(estimate);
-        File file = excelArray.createFileFromWorkBook("Spisok - "+estimate.getProject().getId()+"-"+estimate.getId()+ ", data -" + LocalDate.now().toString());
+        File file = excelArray.createFileFromWorkBook("Spisok - "+estimate.getProject().getId()+"-"+estimate.getId()+ ", data -" + estimate.getProject().getStart().toLocalDate().toString());
         return "redirect:/"+fileUrl+file.getName();
     }
 }

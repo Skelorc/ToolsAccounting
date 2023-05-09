@@ -9,18 +9,21 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import wns.aspects.ToLog;
 import wns.constants.EstimateSection;
+import wns.constants.Filter;
 import wns.constants.StatusTools;
+import wns.dto.CalendarToolDTO;
 import wns.dto.Identifiers;
 import wns.dto.StatusToolDTO;
 import wns.dto.ToolsDTO;
 import wns.entity.*;
 import wns.repo.ToolsRepo;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 @AllArgsConstructor
@@ -111,8 +114,8 @@ public class ToolsService {
     public void addToolToProject(Tools tool, Project project) {
         Status status = StatusToolDTO.createStatusWithTools(tool, StatusTools.ONLEASE);
         status.setCreated(project.getCreated());
-        status.setStart(project.getStart().toLocalDate());
-        status.setEnd(project.getEnd().toLocalDate());
+        status.setStart(project.getStart());
+        status.setEnd(project.getEnd());
         status.setEmployee(SecurityContextHolder.getContext().getAuthentication().getName());
         status.setExecutor(project.getClient().getFullName());
         status.setNote(project.getNote());
@@ -157,5 +160,23 @@ public class ToolsService {
     @Transactional(readOnly = true)
     public List<Tools> getToolsBySection(String section) {
         return toolsRepo.findAllBySection(EstimateSection.valueOf(section));
+    }
+
+    @Transactional(readOnly = true)
+    public List<CalendarToolDTO> findAllByDates(LocalDate startDate) {
+        List<Tools> listTools =  toolsRepo.findAllByStatusForCalendar();
+        return listTools.stream().map(CalendarToolDTO::new).collect(Collectors.toList());
+       /* List<CalendarToolDTO> resultList = new ArrayList<>();
+        for (Tools tool : tools) {
+            if((tool.getStatus().getStart().equals(startDate) || tool.getStatus().getStart().isAfter(startDate))
+                && (tool.getStatus().getEnd().equals(startDate) || startDate.isBefore(tool.getStatus().getEnd())))
+            {
+                resultList.add(new CalendarToolDTO(tool));
+            }
+        }
+        return resultList;*/
+       /* return tools.stream()
+                .filter(x -> ((x.getStatus().getStart().equals(startDate) || x.getStatus().getStart().isAfter(startDate))
+                        && (x.getStatus().getEnd().equals(startDate) || startDate.isBefore(x.getStatus().getEnd())))).map(CalendarToolDTO::new).collect(Collectors.toList());*/
     }
 }

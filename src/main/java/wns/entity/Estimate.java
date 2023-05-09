@@ -30,27 +30,28 @@ public class Estimate {
     private LocalDate end;
     private int count_shifts;
     private String operator;
-    @Column(name = "all_by_project")
-    private long allByProject;
+    @Column(name = "result_by_tools_in_shift")
+    private long resultByToolsInShift;
     @Column(name = "discount_by_tools")
     private int discountByTools;
-    @Column(name = "all_by_project_with_discount")
-    private long allByProjectWithDiscount;
-    @Column(name = "all_by_service")
-    private long allByService;
-    @Column (name = "final_sum_by_project")
-    private long finalSumByProject;
+    @Column(name = "result_by_tools_with_discount")
+    private long resultByToolsWithDiscount;
+    @Column(name = "total_by_tools")
+    private long totalByTools;
+    @Column(name = "result_by_service_in_shift")
+    private long resultByServiceInShift;
+    @Column (name = "total_by_service")
+    private long totalByService;
+    @Column(name = "total_by_project")
+    private long totalByProject;
     @Column(name = "procent_usn")
     private int procentUsn;
-    @Column(name = "final_sum_with_usn")
-    private long finalSumWithUsn;
+    @Column(name = "final_total_with_usn")
+    private long finalTotalWithUsn;
 
 
     @OneToOne(mappedBy = "estimate")
     private Project project;
-
-
-
 
     @OneToMany(mappedBy = "estimate", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<ToolsEstimate> toolsEstimates = new ArrayList<>();
@@ -75,13 +76,16 @@ public class Estimate {
                 ", start=" + start +
                 ", end=" + end +
                 ", count_shifts=" + count_shifts +
-                ", allByPRoject=" + allByProject +
+                ", operator='" + operator + '\'' +
+                ", resultByToolsInShift=" + resultByToolsInShift +
                 ", discountByTools=" + discountByTools +
-                ", allByProjectWithDiscount=" + allByProjectWithDiscount +
-                ", allByService=" + allByService +
-                ", finalSumByProject=" + finalSumByProject +
+                ", resultByToolsWithDiscount=" + resultByToolsWithDiscount +
+                ", totalByTools=" + totalByTools +
+                ", resultByServiceInShift=" + resultByServiceInShift +
+                ", totalByService=" + totalByService +
+                ", totalByProject=" + totalByProject +
                 ", procentUsn=" + procentUsn +
-                ", finalSumWithUsn=" + finalSumWithUsn +
+                ", finalTotalWithUsn=" + finalTotalWithUsn +
                 '}';
     }
 }

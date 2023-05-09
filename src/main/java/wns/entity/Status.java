@@ -30,10 +30,10 @@ public class Status {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime created;
     private String employee;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate start;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate end;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+    private LocalDateTime start;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+    private LocalDateTime end;
     private String executor;
     private String phone_number;
     private String note;
