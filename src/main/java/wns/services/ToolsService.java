@@ -23,6 +23,7 @@ import java.time.LocalDateTime;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -145,6 +146,7 @@ public class ToolsService {
                 .map(ToolsDTO::new)
                 .collect(Collectors.toList());
     }
+
     @Transactional(readOnly = true)
     public List<ToolsDTO> getToolsByStatusesAndNotProject(StatusTools statusTools, long id) {
         List<Tools> allByStatusTools = toolsRepo.findAllByStatus_StatusTools(statusTools);
@@ -157,6 +159,7 @@ public class ToolsService {
     public void delete(long id) {
         toolsRepo.deleteById(id);
     }
+
     @Transactional(readOnly = true)
     public List<Tools> getToolsBySection(String section) {
         return toolsRepo.findAllBySection(EstimateSection.valueOf(section));
@@ -164,19 +167,28 @@ public class ToolsService {
 
     @Transactional(readOnly = true)
     public List<CalendarToolDTO> findAllByDates(LocalDate startDate) {
-        List<Tools> listTools =  toolsRepo.findAllByStatusForCalendar();
-        return listTools.stream().map(CalendarToolDTO::new).collect(Collectors.toList());
-       /* List<CalendarToolDTO> resultList = new ArrayList<>();
-        for (Tools tool : tools) {
-            if((tool.getStatus().getStart().equals(startDate) || tool.getStatus().getStart().isAfter(startDate))
-                && (tool.getStatus().getEnd().equals(startDate) || startDate.isBefore(tool.getStatus().getEnd())))
-            {
-                resultList.add(new CalendarToolDTO(tool));
+        List<Tools> listTools = toolsRepo.findAllByStatusForCalendar(startDate);
+        CalendarToolDTO calendarToolDTO;
+        List<CalendarToolDTO> listData = new ArrayList<>();
+        for (Tools tool : listTools) {
+            if (listData.isEmpty()) {
+                calendarToolDTO = new CalendarToolDTO(tool);
+                calendarToolDTO.addDataToList(tool);
+                listData.add(calendarToolDTO);
+            } else {
+                Optional<CalendarToolDTO> calendarToolDTOOptional = listData.stream().filter(x -> x.getName().equals(tool.getName())).findAny();
+                if(calendarToolDTOOptional.isEmpty()) {
+                    calendarToolDTO = new CalendarToolDTO(tool);
+                    calendarToolDTO.addDataToList(tool);
+                    listData.add(calendarToolDTO);
+                }
+                else
+                {
+                    calendarToolDTOOptional.get().addDataToList(tool);
+                }
             }
+
         }
-        return resultList;*/
-       /* return tools.stream()
-                .filter(x -> ((x.getStatus().getStart().equals(startDate) || x.getStatus().getStart().isAfter(startDate))
-                        && (x.getStatus().getEnd().equals(startDate) || startDate.isBefore(x.getStatus().getEnd())))).map(CalendarToolDTO::new).collect(Collectors.toList());*/
+        return listData;
     }
 }
