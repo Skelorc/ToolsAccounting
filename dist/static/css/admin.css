@@ -1,0 +1,284 @@
+@font-face {
+  font-family: "Ubuntu-Regular";
+  font-style: normal;
+  font-weight: normal;
+    src: url("/dist/static/fonts/fontawesome/Ubuntu-Regular.woff2") format('woff2');
+    src: url("/dist/static/fonts/fontawesome/Ubuntu-Regular.woff2") format('woff');
+}
+
+body {
+    font-size: 0;
+    padding: 0;
+    margin: 0;
+    font-family: Ubuntu-Regular;
+}
+
+/* quick styles */
+.d-flex {
+    display: flex;
+}
+
+.f-size_14 {
+    font-size: 14px;
+}
+
+.pad-0_3 {
+    padding: 0 3%;
+}
+/* quick styles end */
+
+
+/* wrapper */
+.projects_wrapper {
+    height: 100vh;
+    width: 100%;
+}
+
+.projects_wrapper__main {
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+/* wrapper end */
+
+
+/* navigation logo */
+.main_navigation {
+    flex: 11%;
+    flex-direction: column;
+    background: #16171a;
+}
+
+.main_navigation__logo {
+    height: 10%;
+    padding-left: 3%;
+    text-decoration: none;
+}
+
+.main_navigation__logo_image {
+    width: 40%;
+    height: 80%;
+    align-items: center;
+    align-self: center;
+}
+
+.logo_image__svg {
+    height: 85%;
+    width: 85%;
+}
+
+.main_navigation__logo_text {
+    width: 60%;
+    font-size: 22px;
+    font-weight: bold;
+    align-items: center;
+    color: #fcfcfd;
+}
+/* navigation logo end */
+
+
+/* navigation menu */
+.main_navigation__menu {
+    height: 50%;
+    flex-direction: column;
+    background: #16171a;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.main_navigation__menu_item {
+    flex: 10%;
+    text-decoration: none;
+    padding-left: 2%;
+}
+
+.menu_item__icon {
+    flex: 20%;
+    align-self: center;
+    text-align: right;
+}
+
+.menu_item__icon_svg {
+    width: 40%;
+    background: #16171a;
+    color: #a7b1c2;
+}
+
+.menu_item__text {
+    flex: 80%;
+    align-self: center;
+    padding-left: 2%;
+    color: #fcfcfd;
+}
+
+/*.main_navigation__logout {
+    font-size: 18px;
+    height: 35%;
+    justify-content: center;
+}
+
+.main_navigation__logout_block {
+    flex-direction: column;
+    justify-content: end;
+    width: 40%;
+}
+
+.logout_block__text {
+    color: white;
+    text-align: center;
+    cursor: default;
+}
+
+.logout_block__link {
+    justify-content: center;
+    color: white;
+}
+
+.logout_block__link_svg {
+    height: 18px;
+    width: 18px;
+}*/
+/* navigation menu end */
+
+
+/* main */
+.main_general {
+    flex: 88%;
+    background-image: url('../img/images/bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding-top: 5%;
+    overflow-y: hidden;
+}
+
+.main_general__content {
+    flex-direction: column;
+    width: 100%;
+}
+/* main end */
+
+
+/* panel */
+.main_general__content_panel {
+    flex-direction: column;
+    flex: 64%;
+}
+
+.content_panel__name {
+    flex: 15%;
+    font-size: 32px;
+    font-weight: bold;
+    align-self: center;
+}
+
+.content_panel__text {
+    flex: 10%;
+    font-size: 26px;
+    align-items: center;
+    justify-content: center;
+}
+
+.content_panel__form {
+    flex: 75%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content_panel__form_item {
+    flex-direction: column;
+    flex: 20%;
+    width: 40%;
+}
+
+.form_item__text {
+    font-size: 22px;
+    padding-bottom: 2%;
+}
+
+.form_item__input {
+    font-size: 22px; 
+}
+
+.form_item__checkbox {
+    flex: 20%;
+    width: 40%;
+    flex-direction: column;
+}
+
+.form_item__checkbox_text {
+    font-size: 22px;
+}
+
+.checkbox_select__input {
+    height: 150%;
+    width: 100%;
+}
+
+.form_item__button {
+    flex: 20%;
+}
+
+.form_item__button_input {
+    font-size: 18px;
+    height: 50%;
+    width: 130%;
+    border-radius: 30px;
+    background: #777e91;
+    color: white;
+    border-color: #777e91;
+}
+
+.form_item__button_input:hover {
+    background: black;
+    border-color: black;
+}
+/* panel end */
+
+
+/* table */
+.main_general__content_table {
+    flex: 35%;
+    flex-direction: column;
+    font-size: 14px;
+    overflow-x: auto;
+}
+
+.content_table__info {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.content_table__info_name {
+    text-align: center;
+}
+
+.content_table__info_pos {
+    background: white;
+    height: 5vh;
+    border: 1px solid black;
+}
+
+.content_table__info_line {
+    text-align: center;
+}
+
+.content_table__info_column {
+    background: white;
+    height: 5vh;
+    border: 1px solid black;
+}
+/* table end */
+
+
+/* footer */
+.main_general__content_footer {
+    flex: 4%;
+    font-size: 14px;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    background: white;
+}
+/* footer end */

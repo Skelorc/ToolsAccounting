@@ -1,0 +1,248 @@
+@font-face {
+  font-family: "Ubuntu-Regular";
+  font-style: normal;
+  font-weight: normal;
+    src: url("/dist/static/fonts/fontawesome/Ubuntu-Regular.woff2") format('woff2');
+    src: url("/dist/static/fonts/fontawesome/Ubuntu-Regular.woff2") format('woff');
+}
+
+body {
+    font-size: 0;
+    padding: 0;
+    margin: 0;
+    font-family: Ubuntu-Regular;
+}
+
+/* quick styles */
+.d-flex {
+    display: flex;
+}
+
+.f-size_14 {
+    font-size: 14px;
+}
+
+.pad-0_3 {
+    padding: 0 3%;
+}
+/* quick styles end */
+
+
+/* wrapper */
+.projects_wrapper {
+    height: 100vh;
+    width: 100%;
+}
+
+.projects_wrapper__main {
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+/* wrapper end */
+
+
+/* navigation logo */
+.main_navigation {
+    flex: 11%;
+    flex-direction: column;
+    background: #16171a;
+}
+
+.main_navigation__logo {
+    height: 10%;
+    padding-left: 3%;
+    text-decoration: none;
+}
+
+.main_navigation__logo_image {
+    width: 40%;
+    align-items: center;
+    align-self: center;
+}
+
+.logo_image__svg {
+    height: 85%;
+    width: 85%;
+}
+
+.main_navigation__logo_text {
+    width: 60%;
+    font-size: 22px;
+    font-weight: bold;
+    align-items: center;
+    color: #fcfcfd;
+}
+/* navigation logo end */
+
+
+/* navigation menu */
+.main_navigation__menu {
+    height: 50%;
+    flex-direction: column;
+    background: #16171a;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.main_navigation__menu_item {
+    flex: 10%;
+    text-decoration: none;
+    padding-left: 2%;
+}
+
+.menu_item__icon {
+    flex: 20%;
+    align-self: center;
+    text-align: right;
+}
+
+.menu_item__icon_svg {
+    width: 40%;
+    background: #16171a;
+    color: #a7b1c2;
+}
+
+.menu_item__text {
+    flex: 80%;
+    align-self: center;
+    padding-left: 2%;
+    color: #fcfcfd;
+}
+/* navigation menu end */
+
+
+/* main */
+.main_general {
+    flex: 88%;
+    background-image: url('../img/images/bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding-top: 3%;
+}
+
+.main_general__content {
+    flex-direction: column;
+    width: 100%;
+}
+/* main end */
+
+.main_general__content_article {
+    flex: 95%;
+    flex-direction: column;
+    font-size: 18px;
+    overflow-y: auto;
+}
+
+
+table.estimate, 
+table.estimate td, 
+table.estimate th {
+    border: 1px solid #595959;
+}
+
+table.estimate {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    height: auto;
+    background: white;
+}
+
+table.estimate td, 
+table.estimate th {
+    text-align: center;
+}
+
+.form-control__table {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+
+.buttons {
+    margin-top: 0.5%;
+    justify-content: center;
+}
+
+.buttons_save {
+    background: #7ed957;
+    border-color: #7ed957;
+    border-radius: 10px;
+    height: 120%;
+    width: 15%;
+}
+
+.buttons_save:hover {
+    color: white;
+    background: #777e91;
+    border-color: #777e91;
+    cursor: pointer;
+}
+
+.buttons_upload {
+    background: #7ed957;
+    border-color: #7ed957;
+    border-radius: 10px;
+    height: 120%;
+    width: 15%;
+}
+
+.buttons_upload:hover {
+    color: white;
+    background: #777e91;
+    border-color: #777e91;
+    cursor: pointer; 
+}
+
+
+/* footer */
+.main_general__content_footer {
+    flex: 4%;
+    font-size: 14px;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    background: white;
+}
+/* footer end */
+
+.fixedTotalCalc__subRow {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    border-bottom: 1px solid #000;
+    padding: 4px 10px;
+}
+
+.fixedTotalCalc__subRow:last-child {
+    border-bottom: 0px solid #000;
+}
+
+.fixedTotalCalc__desc {
+    margin-right: 20px;
+    width: 160px;
+    text-align: right;
+}
+
+
+
+.fixedTotalCalc__input {
+    width: 200px;
+}
+
+.fixedTotalCalc__labelText {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 14px;
+    width: 90px;
+}
+
+.uploadAsLabel {
+    display: block;
+    margin: 30px auto 10px auto;
+}

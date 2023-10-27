@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" th:href="@{/dist/static/img/logo/favicon.ico}">
+    <link rel="stylesheet" type="text/css" th:href="@{/dist/static/css/create_client.css}">
+
+    <meta th:name="_csrf" th:content="${_csrf.token}"/>
+    <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <!--JQuery-->
+    <script src="/static/js/jquery.js" th:src="@{/dist/static/js/jquery.js}"></script>
+    <!-- jQuery Modal -->
+    <script th:src="@{/dist/static/js/jquery.modal.js}"></script>
+    <link rel="stylesheet" th:href="@{/dist/static/css/jquery.modal.css}"/>
+    <title th:text="${client.typeClient != null} ? 'Редактирование клиента' : 'Создать нового клиента'"></title>
+</head>
+<body>
+<div class="projects_wrapper d-flex">
+    <div class="projects_wrapper__main d-flex">
+        <div th:replace="fragments/menu_sidebar.html"></div>
+        <div class="main_general d-flex">
+            <div class="main_general__content d-flex">
+                <div class="main_general__content_article d-flex pad-0_3">
+                    <div class="content_article__buttons d-flex">
+                        <div class="content_article__buttons_text d-flex">
+                            Категории
+                        </div>
+                        <a href="/clients" class="content_article__buttons_back d-flex">
+                            Назад
+                        </a>
+                    </div>
+                    <div class="content_article__form_group_up d-flex fd-col">
+                        <div class="form_group_up__item d-flex">
+                            <div class="form_group_up__item_block1 d-flex fd-col">
+                                <div class="form_group_up__item_block1__name">
+                                    Тип клиента
+                                </div>
+                                <div class="form_group_up__item_block1__input">
+                                    <select required class="item_block1__input_select" id="select_type_client">
+                                        <option class="item_block1__input_option" value="" disabled>
+                                            Выберите тип клиента
+                                        </option>
+                                        <option class="item_block1__input_option"
+                                                th:each="type : ${T(wns.constants.TypeClients).values()}"
+                                                th:text="${type.getType()}"
+                                                th:value="${type}"
+                                                th:selected="${client.typeClient !=null && client.typeClient==type}">
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form_group_up__item_block1 d-flex">
+                                <div class="form_group_up__item_block1__name d-flex" style="align-self: center;">
+                                    В чёрном списке
+                                </div>
+                                <input class="form_group_up__item_block1__input" th:name="inBlackList"
+                                       th:value="${client.inBlackList}"
+                                       id="inBlackList"
+                                       type="checkbox">
+                                <script>
+                                    if ([[${client.inBlackList}]]) {
+                                        $('#inBlackList').click();
+                                    }
+                                </script>
+                            </div>
+                            <div class="form_group_up__item_block1 d-flex fd-col">
+                                <div class="form_group_up__item_block1__name">
+                                    Аккаунт в соц.сетях
+                                </div>
+                                <input required th:value="${client.account}" th:name="account" id="account"
+                                       type="text" class="form_group_up__item_block1__input"
+                                       placeholder="Аккаунт в соц.сетях">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content_article__bloks">
+                        <div id="individual">
+                            <div class="form_group_up__item d-flex fd-col">
+                                <div class="form_group_up__item_name d-flex">
+                                    Основное
+                                </div>
+                                <div class="form_group_up__item_block d-flex">
+                                    <div class="form_group_up__item_block__left d-flex fd-col">
+                                        <label class="form_group_up__item_block__name">ФИО/Наименование</label>
+                                        <input required th:value="${client.fullName}" th:name="fullName"
+                                            id="fullName_individual" type="text" class="form_group_up__item_block__input"
+                                            placeholder="Введите ФИО/Наименование">
+                                    </div>
+                                    <div class="form_group_up__item_block__right d-flex fd-col">
+                                        <label class="form_group_up__item_block__name">Скидки</label>
+                                        <input required th:value="${client.discount}" th:name="discount"
+                                            id="discount_individual" type="text"
+                                            class="form_group_up__item_block__input"
+                                            placeholder="Введите скидку в процентах">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form_group_up__item d-flex fd-col">
+                                <div class="form_group_up__item_name d-flex">
+                                    Контакты
+                                </div>
+                                <div class="form_group_up__item_block d-flex">
+                                    <div class="form_group_up__item_block__left d-flex fd-col">
+                                        <label class="form_group_up__item_block__name">Телефон</label>
+                                        <input required th:name="phoneNumber" th:value="${client.phoneNumber}"
+                                            id="phoneNumber_individual" class="form_group_up__item_block__input"
+                                            placeholder="+7-999-999-99-99">
+                                    </div>
+                                    <div class="form_group_up__item_block__right d-flex fd-col">
+                                        <label class="form_group_up__item_block__name">E-mail</label>
+                                        <input th:name="email" th:value="${client.email}" id="email_individual"
+                                            type="email" class="form_group_up__item_block__input"
+                                            placeholder="Ваш email">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form_group_up__item d-flex fd-col">
+                                <div class="form_group_up__item_name d-flex">
+                                    Дополнительно
+                                </div>
+                                <div class="form_group_up__item_block d-flex fd-col">
+                                    <div class="form_group_up__item_block__1 d-flex">
+                                        <div class="form_group_up__item_block__left d-flex fd-col">
+                                            <label class="form_group_up__item_block__name">Откуда пришел</label>
+                                            <input th:name="fromComing" th:value="${client.fromComing}"
+                                                id="fromComing_individual" type="text"
+                                                class="form_group_up__item_block__input"
+                                                placeholder="Как или где узнали о нас?">
+                                        </div>
+                                        <div class="form_group_up__item_block__right d-flex fd-col">
+                                            <label class="form_group_up__item_block__name">Лимит</label>
+                                            <input th:name="limited" th:value="${client.limited}"
+                                                id="limit_individual" type="text"
+                                                class="form_group_up__item_block__input">
+                                        </div>
+                                    </div>
+                                    <div class="form_group_up__item_block__2 d-flex">
+                                        <div class="form_group_up__item_block__left d-flex fd-col">
+                                            <label class="form_group_up__item_block__name">Оператор
+                                                постановщик</label>
+                                            <input th:name="directorOfPhotography"
+                                                th:value="${client.directorOfPhotography}"
+                                                id="directorOfPhotography" type="text"
+                                                class="form_group_up__item_block__input"
+                                                placeholder="Введите ФИО">
+                                        </div>
+                                        <div class="form_group_up__item_block__right d-flex fd-col">
+                                            <label class="form_group_up__item_block__name">Дата рождения</label>
+                                            <input th:name="birthday" th:value="${client.birthday}"
+                                                id="birthday" class="form_group_up__item_block__input" type="date"
+                                                placeholder="дд.мм.гггг">
+                                        </div>
+                                    </div>
+                                    <div class="form_group_up__item_block__3 d-flex">
+                                        <div class="form_group_up__item_block__left d-flex fd-col">
+                                            <label class="form_group_up__item_block__name">Примечание</label>
+                                            <textarea th:value="${client.note}" th:name="note"
+                                                    th:text="${client.note}" id="note_individual"
+                                                    class="form_group_up__item_block__input" rows="1"
+                                                    style="height: 20%;"></textarea>
+                                        </div>
+                                        <div class="form_group_up__item_block__right d-flex fd-col">
+                                            <label class="form_group_up__item_block__name">Продакшн</label>
+                                            <input th:name="production" th:value="${client.production}"
+                                                id="production" type="text" class="form_group_up__item_block__input"
+                                                placeholder="Введите название">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="content_article__form_group_down d-flex">
+                                <div class="form_group_down__item d-flex fd-col">
+                                    <div class="form_group_down__item_name d-flex">
+                                        Паспортные данные
+                                    </div>
+                                    <div class="form_group_down__item_block d-flex fd-col">
+                                        <div class="form_group_down__item_block__1 d-flex">
+                                            <div class="form_group_down__item_block__left d-flex fd-col">
+                                                <label class="form_group_down__item_block__name">Серия/Номер</label>
+                                                <input th:name="numberPassport" th:value="${client.numberPassport}"
+                                                    id="numberPassport" type="text"
+                                                    class="form_group_down__item_block__input"
+                                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                            </div>
+                                            <div class="form_group_down__item_block__right d-flex fd-col">
+                                                <label class="form_group_down__item_block__name">Кем выдан</label>
+                                                <input th:name="issuedBy" th:value="${client.issuedBy}" id="issuedBy"
+                                                    type="text" class="form_group_down__item_block__input">
+                                            </div>
+                                        </div>
+                                        <div class="form_group_down__item_block__2 d-flex">
+                                            <div class="form_group_down__item_block__left d-flex fd-col">
+                                                <label class="form_group_down__item_block__name">Дата выдачи
+                                                    паспорта</label>
+                                                <input th:name="dateIssuePassport"
+                                                    th:value="${client.dateIssuePassport}"
+                                                    id="dateIssuePassport" class="form_group_down__item_block__input"
+                                                    type="date"
+                                                    placeholder="дд.мм.гггг">
+                                            </div>
+                                            <div class="form_group_down__item_block__right d-flex fd-col">
+                                                <label class="form_group_down__item_block__name">Адрес
+                                                    фактический</label>
+                                                <input th:name="addressReal" th:value="${client.addressReal}"
+                                                    id="addressReal_individual"
+                                                    type="text" class="form_group_down__item_block__input"
+                                                    placeholder="Введите адрес">
+                                            </div>
+                                        </div>
+                                        <div class="form_group_down__item_block__3 d-flex">
+                                            <div class="form_group_down__item_block__left d-flex fd-col">
+                                                <label class="form_group_down__item_block__name">Дата
+                                                    создания</label>
+                                                <input th:name="dateCreating"
+                                                    th:value="${client.dateCreating}"
+                                                    id="dateCreating_individual"
+                                                    class="form_group_down__item_block__input" type="date"
+                                                    placeholder="дд.мм.гггг">
+                                            </div>
+                                            <div class="form_group_down__item_block__right d-flex fd-col">
+                                                <label class="form_group_down__item_block__name">Загрузите ваши
+                                                    фотографии на сервер</label>
+                                                <textarea th:value="${client.photos}" th:text="${client.photos}"
+                                                        name="photos" class="form_group_down__item_block__input" rows="1"
+                                                        style="height: 18%;"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div id="legal" style="display: none;">
+                            <div class="form_group_up__item d-flex fd-col">
+                                <div class="form_group_up__item_name d-flex">
+                                    Основное
+                                </div>
+                                <div class="form_group_up__item_block d-flex">
+                                    <div class="form_group_up__item_block__left d-flex fd-col">
+                                        <label class="form_group_up__item_block__name">ФИО/Наименование</label>
+                                        <input required th:name="fullName" th:value="${client.fullName}"
+                                            id="fullName_legal" type="text" class="form_group_up__item_block__input"
+                                            placeholder="Введите ФИО/Наименование">
+                                    </div>
+                                    <div class="form_group_up__item_block__right d-flex fd-col">
+                                        <label class="form_group_up__item_block__name">Полное наименование</label>
+                                        <input th:name="legalName" th:value="${client.legalName}" id="legalName"
+                                            type="text" class="form_group_up__item_block__input"
+                                            placeholder="Введите ФИО/Наименование">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form_group_up__item d-flex fd-col">
+                                <div class="form_group_up__item_name d-flex">
+                                    Контакты
+                                </div>
+                                <div class="form_group_up__item_block d-flex">
+                                    <div class="form_group_up__item_block__left d-flex fd-col">
+                                        <label class="form_group_up__item_block__name">Телефон</label>
+                                        <input required th:name="phoneNumber"
+                                            th:value="${client.phoneNumber}" id="phoneNumber_legal"
+                                            name="phoneNumber" class="form_group_up__item_block__input"
+                                            placeholder="+7-999-999-99-99">
+                                    </div>
+                                    <div class="form_group_up__item_block__right d-flex fd-col">
+                                        <label class="form_group_up__item_block__name">E-mail</label>
+                                        <input th:name="email" th:value="${client.email}" id="email_legal"
+                                            type="email" class="form_group_up__item_block__input"
+                                            placeholder="Ваш email">
+                                    </div>
+                                </div>
+                                <div class="form_group_up__item_block d-flex">
+                                    <div class="form_group_up__item_block__left d-flex fd-col">
+                                        <label class="form_group_up__item_block__name">Фактический адрес</label>
+                                        <input th:name="addressReal" th:value="${client.addressReal}"
+                                            id="addressReal_legal" class="form_group_up__item_block__input"
+                                            placeholder="Введите адрес">
+                                    </div>
+                                    <div class="form_group_up__item_block__right d-flex fd-col">
+                                        <label class="form_group_up__item_block__name">Юридический адрес</label>
+                                        <input th:name="addressLegal" th:value="${client.addressLegal}"
+                                            id="addressLegal" type="text" class="form_group_up__item_block__input"
+                                            placeholder="Введите адрес">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form_group_up__item d-flex fd-col">
+                                <div class="form_group_up__item_name d-flex">
+                                    Дополнительно
+                                </div>
+                                <div class="form_group_up__item_block d-flex fd-col">
+                                    <div class="form_group_up__item_block__1 d-flex">
+                                        <div class="form_group_up__item_block__left d-flex fd-col">
+                                            <label class="form_group_up__item_block__name">Откуда пришел</label>
+                                            <input th:name="fromComing" th:value="${client.fromComing}"
+                                                id="fromComing_legal" type="text"
+                                                class="form_group_up__item_block__input"
+                                                placeholder="Как или где узнали о нас?">
+                                        </div>
+                                        <div class="form_group_up__item_block__right d-flex fd-col">
+                                            <label class="form_group_up__item_block__name">Лимит</label>
+                                            <input th:name="limited" th:value="${client.limited}"
+                                                id="limit_legal" type="number" class="form_group_up__item_block__input"
+                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                        </div>
+                                    </div>
+                                    <div class="form_group_up__item_block__2 d-flex">
+                                        <div class="form_group_up__item_block__left d-flex fd-col">
+                                            <label class="form_group_up__item_block__name">Скидки</label>
+                                            <input required th:name="discount" th:value="${client.discount}"
+                                                id="discount_legal" type="number"
+                                                class="form_group_up__item_block__input"
+                                                placeholder="Введите скидку в процентах"
+                                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                        </div>
+                                        <div class="form_group_up__item_block__right d-flex fd-col">
+                                            <label class="form_group_up__item_block__name">Примечание</label>
+                                            <textarea th:name="note" th:value="${client.note}"
+                                                    th:text="${client.note}" id="note_legal"
+                                                    class="form_group_up__item_block__input" rows="1"
+                                                    style="height: 20%;"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="content_article__form_group_down d-flex">
+                                <div class="form_group_down__item d-flex fd-col">
+                                    <div class="form_group_down__item_name d-flex">
+                                        Данные организации
+                                    </div>
+                                    <div class="form_group_down__item_block d-flex fd-col">
+                                        <div class="form_group_down__item_block__1 d-flex">
+                                            <div class="form_group_down__item_block__left d-flex fd-col">
+                                                <label class="form_group_down__item_block__name">ИНН</label>
+                                                <input th:name="inn" th:value="${client.inn}" id="inn"
+                                                    type="text" class="form_group_down__item_block__input">
+
+                                            </div>
+                                            <div class="form_group_down__item_block__right d-flex fd-col">
+                                                <label class="form_group_down__item_block__name">КПП</label>
+                                                <input th:name="kpp" th:value="${client.kpp}" id="kpp"
+                                                    type="text" class="form_group_down__item_block__input">
+                                            </div>
+                                        </div>
+                                        <div class="form_group_down__item_block__2 d-flex">
+                                            <div class="form_group_down__item_block__left d-flex fd-col">
+                                                <label class="form_group_down__item_block__name">ОГРН</label>
+                                                <input th:name="ogrn" th:value="${client.ogrn}" id="ogrn"
+                                                    class="form_group_down__item_block__input" type="text"
+                                                    placeholder="">
+                                            </div>
+                                            <div class="form_group_down__item_block__right d-flex fd-col">
+                                                <label class="form_group_down__item_block__name">ФИО
+                                                    руководителя</label>
+                                                <input th:name="fullNameSupervisor"
+                                                    th:value="${client.fullNameSupervisor}"
+                                                    id="fullNameSupervisor" type="text"
+                                                    class="form_group_down__item_block__input"
+                                                    placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form_group_down__item_block__3 d-flex">
+                                            <div class="form_group_down__item_block__left d-flex fd-col">
+                                                <label class="form_group_down__item_block__name">Должность
+                                                    руководителя</label>
+                                                <input th:name="jobTitleSupervisor"
+                                                    th:value="${client.jobTitleSupervisor}"
+                                                    id="jobTitleSupervisor" class="form_group_down__item_block__input"
+                                                    type="text"
+                                                    placeholder="">
+                                            </div>
+                                            <div class="form_group_down__item_block__right d-flex fd-col">
+                                                <label class="form_group_down__item_block__name">В лице</label>
+                                                <input th:name="inFace" th:value="${client.inFace}" id="in_face"
+                                                    class="form_group_down__item_block__input" type="text"
+                                                    placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form_group_down__item_block__1 d-flex">
+                                            <div class="form_group_down__item_block__left d-flex fd-col">
+                                                <label class="form_group_down__item_block__name">На основании</label>
+                                                <input th:name="based" th:value="${client.based}" id="based"
+                                                    type="text" class="form_group_down__item_block__input">
+                                            </div>
+                                            <div class="form_group_down__item_block__right d-flex fd-col">
+                                                <label class="form_group_down__item_block__name">Р/с</label>
+                                                <input th:name="rs" th:value="${client.rs}" id="rs"
+                                                    type="text" class="form_group_down__item_block__input">
+                                            </div>
+                                        </div>
+                                        <div class="form_group_down__item_block__2 d-flex">
+                                            <div class="form_group_down__item_block__left d-flex fd-col">
+                                                <label class="form_group_down__item_block__name">Банк</label>
+                                                <input th:name="bank" th:value="${client.bank}" id="bank"
+                                                    class="form_group_down__item_block__input" type="text"
+                                                    placeholder="">
+                                            </div>
+                                            <div class="form_group_down__item_block__right d-flex fd-col">
+                                                <label class="form_group_down__item_block__name">К/с</label>
+                                                <input th:name="ks" th:value="${client.ks}" id="ks"
+                                                    type="text" class="form_group_down__item_block__input"
+                                                    placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form_group_down__item_block__3 d-flex">
+                                            <div class="form_group_down__item_block__left d-flex fd-col">
+                                                <label class="form_group_down__item_block__name">БИК</label>
+                                                <input th:name="bik" th:value="${client.bik}" id="bik"
+                                                    class="form_group_down__item_block__input" type="text"
+                                                    placeholder="">
+                                            </div>
+                                            <div class="form_group_down__item_block__right d-flex fd-col">
+                                                <label class="form_group_down__item_block__name">Дата создания</label>
+                                                <input type="date" th:name="dateCreating"
+                                                    th:value="${client.dateCreating}" id="dateCreating_legal"
+                                                    class="form_group_down__item_block__input"
+                                                    placeholder="дд.мм.гггг">
+                                            </div>
+                                        </div>
+                                        <div class="form_group_down__item_block__3 d-flex">
+                                            <div class="form_group_down__item_block__left d-flex fd-col">
+                                                <label class="form_group_down__item_block__name">Загрузите ваши
+                                                    фотографии на сервер</label>
+                                                <textarea th:value="${client.photos}" th:text="${client.photos}"
+                                                        id="photos_legal" name="photos"
+                                                        class="form_group_down__item_block__input" rows="1"
+                                                        style="height: 25%;"></textarea>
+                                            </div>
+                                            <div class="form_group_down__item_block__right d-flex fd-col"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="main_general__content_string d-flex pad-0_3" sec:authorize="hasAuthority('ADMIN')">
+                        <div class="main_general__content_string__name" th:value="${client.rented}">
+                            Арендовал на сумму
+                        </div>
+                        <input class="main_general__content_string__input" type="text" readonly>
+                    </div>
+                </div>
+                <div class="content_article__form_buttons d-flex">
+                    <button type="submit" id="save_client"
+                            class="btn btn-lg btn-primary btn-primary_save w-100 my-green form_buttons__send">
+                        Сохранить
+                    </button>
+                </div>
+                <div id="edit_buttons" class="content_article__form_buttons2 d-flex">
+                    <input type="text" hidden="hidden" id="client_id" th:value="${client.getId()}"/>
+                    <input type="submit" id="update_client" class="form_buttons__send"
+                           th:value="Обновить"/>
+                    <form th:action="@{/clients/delete/{id}(id=${client.getId()})}" th:method="post" class="form_buttons__form">
+                        <input class="form_buttons__send_red d-flex" type="submit" id="delete_client"
+                                   th:value="Удалить"/>
+                    </form>
+                </div>
+
+                <div th:insert="fragments/footer.html"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:insert="fragments/scripts.html"></div>
+<div>
+    <script type="text/javascript" th:src="@{/dist/static/js/changeTypeClients.js}"></script>
+</div>
+<script th:inline="javascript">
+    var typeClient = [[${client.typeClient}]];
+    if (typeClient !== null) {
+        $('#save_client').css("display", "none");
+        if (typeClient === 'INDIVIDUAL') {
+            $('#individual').css("display", "block");
+            $('#legal').css("display", "none");
+        } else {
+            $('#individual').css("display", "none");
+            $('#legal').css("display", "block");
+        }
+    } else {
+        $('#edit_buttons').css("display", "none");
+    }
+</script>
+
+</body>
+</html>

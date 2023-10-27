@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" th:href="@{/dist/static/img/logo/favicon.ico}">
+    <link rel="stylesheet" type="text/css" th:href="@{/dist/static/css/owners.css}">
+	<title>Владельцы</title>
+</head>
+<body>
+    <div class="projects_wrapper d-flex">
+        <div class="projects_wrapper__main d-flex">
+            <div th:replace="fragments/menu_sidebar.html"></div>
+            <div class="main_general d-flex">
+                <div class="main_general__content d-flex">
+                    <div class="main_general__content_article d-flex pad-0_3">
+                        <div class="content_article__buttons d-flex">
+                            <div class="content_article__buttons_text d-flex">
+                                Владельцы
+                            </div>
+                            <a href="/tools" class="content_article__buttons_back d-flex">
+                                Назад
+                            </a>
+                        </div>
+                        <form th:action="@{/owners}" method="post" class="content_article__form d-flex" th:object="${owner}">
+                            <div class="content_article__form_block d-flex">
+                                <div class="content_article__form_item d-flex">
+                                    <label class="form_title__text">Имя владельца</label>
+                                    <input class="form_title__input" th:field="*{name}" required type="text" placeholder="Имя владельца">
+                                </div>
+                                <div class="content_article__form_item d-flex">
+                                    <label class="form_title__text">Код</label>
+                                    <input class="form_title__input" th:field="*{code}" required type="text" placeholder="Код">
+                                </div>
+                            </div>
+                            <div class="content_article__form_button d-flex">
+                                <button type="submit" class="form_button__submit d-flex">
+                                    Сохранить
+                                </button>
+                            </div>
+                        </form>
+                        <div class="content_article__tab d-flex">
+                            <table class="content_article__tab_table">
+                                <tr class="tab_table__name">
+                                    <th class="tab_table__pos">#</th>
+                                    <th class="tab_table__pos">Имя владельца</th>
+                                    <th class="tab_table__pos">Код</th>
+                                </tr>
+                                <tr class="tab_table__line" th:each="owner : ${list_owner}">
+                                    <td class="tab_table__col">
+                                        <input type="hidden" class="id_tool" th:value="${owner.id}"/>
+                                        <span class="tool_id" th:utext="${ownerStat.index+1}"></span>
+                                    </td>
+                                    <td class="tab_table__col">
+                                        <a th:utext="${owner.name}" th:href="@{/owners/edit/{id}/(id=${owner.id})}"></a>
+                                    </td>
+                                    <td class="tab_table__col" th:utext="${owner.code}"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="pagination-control col-lg-12 order-lg-1">
+                        <nav aria-label="Навигация по страницам">
+                            <ul class="pagination">
+                                <li class="page-item" th:if="${list_estimates.totalPages > 0}"
+                                    th:each="page_number : ${page_numbers}">
+                                    <a class="page-link-m page-link"
+                                       th:href="@{/estimate-name(size=${list_estimates.size}, page=${page_numberStat.index})}"
+                                       th:text="${page_numberStat.index}"
+                                       th:class="${page_number==list_estimates.number + 1} ? active"></a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <div th:insert="fragments/footer.html"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:insert="fragments/scripts.html"></div>
+</body>
+</html>

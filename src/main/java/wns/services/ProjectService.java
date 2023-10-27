@@ -5,18 +5,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import wns.aspects.ToLog;
 import wns.constants.ClassificationProject;
-import wns.constants.Filter;
 import wns.constants.StatusProject;
+import wns.dto.CalendarDataDTO;
+import wns.dto.FiltersDTO;
 import wns.dto.ProjectDTO;
 import wns.entity.Client;
 import wns.entity.Estimate;
 import wns.entity.Project;
+import wns.entity.Tools;
 import wns.repo.ProjectRepo;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -85,9 +85,45 @@ public class ProjectService {
     }
 
     @Transactional(readOnly = true)
-    public List<ProjectDTO> findAllByDates(LocalDate startDate) {
-        List<Project> projects = projectRepo.findAllForCalendar();
-        return projects.stream().map(ProjectDTO::new).collect(Collectors.toList());
+    public List<CalendarDataDTO> findAllByFilter(FiltersDTO filtersDTO) {
+        List<Project> allProjects = projectRepo.findAllForCalendar();
+        List<Project> list_project = filteringListProject(allProjects,filtersDTO);
+        List<CalendarDataDTO> listData = new ArrayList<>();
+        CalendarDataDTO calendarToolDTO;
+        for (Project project : list_project) {
+            if (listData.isEmpty()) {
+                calendarToolDTO = new CalendarDataDTO(project.getName(), project.getId(), project.getCreated());
+                calendarToolDTO.addDataToList(project.getStart(), project.getEnd(), project.getStatus().toString());
+                listData.add(calendarToolDTO);
+            } else {
+                Optional<CalendarDataDTO> calendarToolDTOOptional = listData.stream().filter(x -> x.getName().equals(project.getName())).findAny();
+                if (calendarToolDTOOptional.isEmpty()) {
+                    calendarToolDTO = new CalendarDataDTO(project.getName(), project.getId(), project.getCreated());
+                    calendarToolDTO.addDataToList(project.getStart(), project.getEnd(), project.getStatus().toString());
+                    listData.add(calendarToolDTO);
+                } else {
+                    calendarToolDTOOptional.get().addDataToList(project.getStart(), project.getEnd(), project.getStatus().toString());
+                }
+            }
+        }
+        return listData;
     }
+
+    private List<Project> filteringListProject(List<Project> projectsList, FiltersDTO filters) {
+        List<Project> resultList = new ArrayList<>();
+        for (Project project : projectsList) {
+            if (!filters.getClients().isEmpty() && project.getClient().getFullName().equals(filters.getClients()))
+                break;
+            if (!filters.getManagers().isEmpty() && project.getEmployee().equals(filters.getManagers()))
+                break;
+            if (!filters.getNames().isEmpty() && project.getName().equals(filters.getNames()))
+                break;
+            if (!filters.getTypes().isEmpty() && project.getClassification().toString().equals(filters.getTypes()))
+                break;
+            resultList.add(project);
+        }
+        return resultList;
+    }
+
 
 }

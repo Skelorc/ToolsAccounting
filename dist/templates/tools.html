@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html
+  lang="ru"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org/"
+>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" th:href="@{/dist/static/img/logo/favicon.ico}" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/dist/static/css/tools.css}"
+    />
+
+    <meta th:name="_csrf" th:content="${_csrf.token}" />
+    <meta th:name="_csrf_header" th:content="${_csrf.headerName}" />
+    <!--JQuery-->
+    <script
+      type="text/javascript"
+      th:src="@{/dist/static/js/jquery.js}"
+    ></script>
+    <!-- jQuery Modal -->
+    <script
+      type="text/javascript"
+      th:src="@{/dist/static/js/jquery.modal.js}"
+    ></script>
+    <link rel="stylesheet" th:href="@{/dist/static/css/jquery.modal.css}" />
+    <title>Оборудование</title>
+  </head>
+  <body>
+    <div class="projects_wrapper d-flex">
+      <div class="projects_wrapper__main d-flex">
+        <div th:replace="fragments/menu_sidebar.html"></div>
+        <div class="main_general d-flex">
+          <div class="main_general__content d-flex">
+            <div class="main_general__content_buttons d-flex pad-0_3">
+              <a href="/tools/create" class="content_buttons__create d-flex">
+                Создать
+              </a>
+              <a
+                href="/estimate-name"
+                class="content_buttons__other d-flex"
+                style="width: 12%"
+              >
+                Название в смете
+              </a>
+              <a
+                href="/owners"
+                class="content_buttons__other d-flex"
+                style="width: 6.5%"
+              >
+                Владельцы
+              </a>
+              <a href="/category" class="content_buttons__other d-flex">
+                Категории
+              </a>
+            </div>
+            <div class="main_general__content_search d-flex pad-0_3">
+              <div class="content_search__text d-flex">Поиск по штрихкоду</div>
+              <input
+                class="content_search__input f-size_14"
+                type="search"
+                id="barcode_search_input"
+                name="barcode"
+                placeholder="Поиск"
+              />
+            </div>
+            <div class="main_general__content_actions d-flex pad-0_3">
+              <div class="content_actions__text">Действия</div>
+              <button
+                id="status_wait"
+                class="content_actions__buttons d-flex change_status"
+              >
+                В ожидание
+              </button>
+              <button
+                id="status_instock"
+                class="content_actions__buttons d-flex change_status"
+                style="width: 5%"
+              >
+                На склад
+              </button>
+            </div>
+            <div class="main_general__content_table d-flex pad-0_3">
+              <table class="content_table__info">
+                <thead class="content_table__info_head">
+                  <tr class="content_table__info_name">
+                    <th class="content_table__info_pos">#</th>
+                    <th class="content_table__info_pos">Наименование</th>
+                    <th class="content_table__info_pos">Группа</th>
+                    <th class="content_table__info_pos">Штрихкод</th>
+                    <th class="content_table__info_pos">В смете</th>
+                    <th class="content_table__info_pos">Марка/Модель</th>
+                    <th class="content_table__info_pos">Серийный номер</th>
+                    <th class="content_table__info_pos">Комментарий</th>
+                    <th class="content_table__info_pos">Характеристики</th>
+                    <th class="content_table__info_pos">Состояние</th>
+                    <th
+                      sec:authorize="hasAnyAuthority('ADMIN','MANAGER')"
+                      class="content_table__info_pos"
+                    >
+                      Цена аренды
+                    </th>
+                    <th
+                      sec:authorize="hasAnyAuthority('ADMIN','MANAGER')"
+                      class="content_table__info_pos"
+                    >
+                      Себестоимость
+                    </th>
+                    <th class="content_table__info_pos">Комплект</th>
+                    <th class="content_table__info_pos">Количество</th>
+                    <th class="content_table__info_pos">Статус</th>
+                    <th class="content_table__info_pos">Кол-во смен</th>
+                    <th class="content_table__info_pos">Текущий проект</th>
+                    <th
+                      sec:authorize="hasAnyAuthority('ADMIN','MANAGER')"
+                      class="content_table__info_pos"
+                    >
+                      Доход с оборудования
+                    </th>
+                    <th
+                      sec:authorize="hasAnyAuthority('ADMIN','MANAGER')"
+                      class="content_table__info_pos"
+                    >
+                      Цена продажи
+                    </th>
+                    <th
+                      sec:authorize="hasAnyAuthority('ADMIN','MANAGER')"
+                      class="content_table__info_pos"
+                    >
+                      Доход с продажи
+                    </th>
+                    <th
+                      sec:authorize="hasAnyAuthority('ADMIN','MANAGER')"
+                      class="content_table__info_pos"
+                    >
+                      Доход с инвестора (%)
+                    </th>
+                    <th
+                      sec:authorize="hasAnyAuthority('ADMIN','MANAGER')"
+                      class="content_table__info_pos"
+                    >
+                      Доход с инвестора
+                    </th>
+                    <th
+                      sec:authorize="hasAnyAuthority('ADMIN','MANAGER')"
+                      class="content_table__info_pos"
+                    >
+                      Сумма ремонта
+                    </th>
+                    <th
+                      sec:authorize="hasAnyAuthority('ADMIN','MANAGER')"
+                      class="content_table__info_pos"
+                    >
+                      Цена за субаренду
+                    </th>
+                    <th
+                      sec:authorize="hasAnyAuthority('ADMIN','MANAGER')"
+                      class="content_table__info_pos"
+                    >
+                      Плата за субаренду
+                    </th>
+                    <th
+                      sec:authorize="hasAnyAuthority('ADMIN','MANAGER')"
+                      class="content_table__info_pos"
+                    >
+                      Доп. доход
+                    </th>
+                    <th class="content_table__info_pos">Фото</th>
+                  </tr>
+                </thead>
+                <tbody class="content_table__info_body">
+                  <tr
+                    class="content_table__info_line row-tool"
+                    th:each="tool : ${list_tools}"
+                  >
+                    <td class="content_table__info_column">
+                      <div id="ids_tools">
+                        <input class="choose_tool ids" type="checkbox" />
+                        <input
+                          type="hidden"
+                          class="id_tool"
+                          th:value="${tool.id}"
+                        />
+                        <span
+                          class="tool_id"
+                          style=""
+                          th:utext="${toolStat.index+1}"
+                        ></span>
+                      </div>
+                    </td>
+                    <td class="content_table__info_column">
+                      <a
+                        class="nav-link tool_name"
+                        th:href="@{/tools/edit/{id}/(id=${tool.id})}"
+                        th:utext="${tool.name}"
+                      >
+                      </a>
+                    </td>
+                    <td
+                      class="content_table__info_column"
+                      th:utext="${tool.category}"
+                    ></td>
+                    <td
+                      class="content_table__info_column barcode-tool"
+                      th:utext="${tool.barcode}"
+                    ></td>
+                    <td
+                      class="content_table__info_column"
+                      th:utext="${tool.estimateName}"
+                    ></td>
+                    <td
+                      class="content_table__info_column"
+                      th:utext="${tool.model}"
+                    ></td>
+                    <td
+                      class="content_table__info_column"
+                      th:utext="${tool.serialNumber}"
+                    ></td>
+                    <td
+                      class="content_table__info_column"
+                      th:utext="${tool.comment}"
+                    ></td>
+                    <td
+                      class="content_table__info_column"
+                      th:utext="${tool.characteristics}"
+                    ></td>
+                    <td
+                      class="content_table__info_column"
+                      th:utext="${tool.state}"
+                    ></td>
+                    <td
+                      sec:authorize="hasAnyAuthority('ADMIN','MANAGER')"
+                      class="content_table__info_column"
+                      th:utext="${tool.priceByDay}"
+                    ></td>
+                    <td
+                      sec:authorize="hasAnyAuthority('ADMIN','MANAGER')"
+                      class="content_table__info_column"
+                      th:utext="${tool.costPrice}"
+                    ></td>
+                    <td
+                      class="content_table__info_column"
+                      th:utext="${tool.equip}"
+                    ></td>
+                    <td
+                      class="content_table__info_column"
+                      th:utext="${tool.amount}"
+                    ></td>
+                    <td class="content_table__info_column">
+                      <span
+                        class="tool_status"
+                        th:utext="${tool.status.getValue()}"
+                      ></span>
+                    </td>
+                    <td
+                      class="content_table__info_column"
+                      th:utext="${tool.numberWorkingShifts}"
+                    ></td>
+                    <td
+                      class="content_table__info_column"
+                      th:utext="${tool.project}"
+                    ></td>
+                    <td
+                      sec:authorize="hasAnyAuthority('ADMIN','MANAGER')"
+                      class="content_table__info_column"
+                      th:utext="${tool.incomeFromTools}"
+                    ></td>
+                    <td
+                      sec:authorize="hasAnyAuthority('ADMIN','MANAGER')"
+                      class="content_table__info_column"
+                      th:utext="${tool.priceSell}"
+                    ></td>
+                    <td
+                      sec:authorize="hasAnyAuthority('ADMIN','MANAGER')"
+                      class="content_table__info_column"
+                      th:utext="${tool.incomeSales}"
+                    ></td>
+                    <td
+                      sec:authorize="hasAnyAuthority('ADMIN','MANAGER')"
+                      class="content_table__info_column"
+                      th:utext="${tool.incomeInvestorProcents}"
+                    ></td>
+                    <td
+                      sec:authorize="hasAnyAuthority('ADMIN','MANAGER')"
+                      class="content_table__info_column"
+                      th:utext="${tool.incomeInvestor}"
+                    ></td>
+                    <td
+                      sec:authorize="hasAnyAuthority('ADMIN','MANAGER')"
+                      class="content_table__info_column"
+                      th:utext="${tool.repairAmount}"
+                    ></td>
+                    <td
+                      sec:authorize="hasAnyAuthority('ADMIN','MANAGER')"
+                      class="content_table__info_column"
+                      th:utext="${tool.priceSublease}"
+                    ></td>
+                    <td
+                      sec:authorize="hasAnyAuthority('ADMIN','MANAGER')"
+                      class="content_table__info_column"
+                      th:utext="${tool.paymentSublease}"
+                    ></td>
+                    <td
+                      sec:authorize="hasAnyAuthority('ADMIN','MANAGER')"
+                      class="content_table__info_column"
+                      th:utext="${tool.incomeAdditional}"
+                    ></td>
+                    <td class="content_table__info_column">
+                      <span class="tool_photos">
+                        <span th:each="photo : ${tool.photos}">
+                          <a
+                            rel="modal:open"
+                            th:href="${'#'+photoStat.count+tool.id}"
+                          >
+                            <img class="info_column__img1" th:src="${photo}" />
+                            <div
+                              th:id="${photoStat.count+''+tool.id}"
+                              class="modal"
+                            >
+                              <img
+                                class="info_column__img2"
+                                th:src="${photo}"
+                              />
+                            </div>
+                          </a>
+                        </span>
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div>
+                <button id="btn_replace_tools_to_project">
+                  Заменить оборудование
+                </button>
+              </div>
+
+              <div class="pagination-control col-lg-12 order-lg-1">
+                <div th:if="${project_id>=0}">
+                  <input
+                    id="project_id"
+                    type="text"
+                    hidden="hidden"
+                    th:value="${project_id}"
+                  />
+                </div>
+                <nav aria-label="Навигация по страницам">
+                  <ul class="pagination">
+                    <li
+                      class="page-item"
+                      th:if="${list_tools.totalPages > 0}"
+                      th:each="page_number : ${page_numbers}"
+                    >
+                      <a
+                        class="page-link-m page-link"
+                        th:href="@{/tools(size=${list_tools.size}, page=${page_numberStat.index})}"
+                        th:text="${page_numberStat.index}"
+                        th:class="${page_number==list_tools.number + 1} ? active"
+                      ></a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+            <div th:insert="fragments/footer.html"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      type="text/javascript"
+      th:src="@{/dist/static/js/SearchBarcode.js}"
+    ></script>
+    <div th:insert="fragments/scripts.html"></div>
+  </body>
+</html>

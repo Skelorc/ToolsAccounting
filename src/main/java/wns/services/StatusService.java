@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor
 @Transactional
-
 public class StatusService {
     private final StatusRepo repo;
 

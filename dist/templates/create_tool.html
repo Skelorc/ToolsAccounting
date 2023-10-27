@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html
+  lang="ru"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org/"
+>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" th:href="@{/dist/static/img/logo/favicon.ico}" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/dist/static/css/create_tool.css}"
+    />
+
+    <meta th:name="_csrf" th:content="${_csrf.token}" />
+    <meta th:name="_csrf_header" th:content="${_csrf.headerName}" />
+    <!--JQuery-->
+    <script
+      type="text/javascript"
+      th:src="@{/dist/static/js/jquery.js}"
+    ></script>
+    <!-- jQuery Modal -->
+    <script
+      type="text/javascript"
+      th:src="@{/dist/static/js/jquery.modal.js}"
+    ></script>
+    <link rel="stylesheet" th:href="@{/dist/static/css/jquery.modal.css}" />
+    <title>Mad Dog</title>
+  </head>
+  <body>
+    <div class="projects_wrapper d-flex">
+      <div class="projects_wrapper__main d-flex">
+        <div th:replace="fragments/menu_sidebar.html"></div>
+        <div class="main_general d-flex">
+          <div class="main_general__content d-flex">
+            <div class="main_general__content_article d-flex pad-0_3">
+              <div class="content_article__buttons d-flex">
+                <div class="content_article__buttons_text d-flex">
+                  Оборудование
+                </div>
+                <a href="/tools" class="content_article__buttons_back d-flex">
+                  Назад
+                </a>
+              </div>
+              <form
+                th:action="@{/tools/create}"
+                method="post"
+                class="content_article__form d-flex fd-col"
+                th:object="${tool}"
+              >
+                <!-- <h4 class="my-3">Роль контакта</h4>
+                            <select id="role_client_id" required>
+                                <option class="vs__selected vs__dropdown-toggle" value=""
+                                        disabled>
+                                    Выберите роль контакта
+                                </option>
+                                <option th:each="role : ${roles_contacts}"
+                                        th:value="${role.id}"
+                                        th:text="${role.role}">
+                                </option>
+                            </select>
+                            <div class="buttons__add_role d-flex">
+                                <a class="buttons_add__role_link" href="/role-contacts" th:href="@{/role-contacts}">Добавить новую роль</a>
+                            </div> -->
+
+                <div class="content_article__form_group_up d-flex">
+                  <div class="form_group_up__left d-flex fd-col">
+                    <div class="form_group_up__left_item">
+                      <label class="up__left_item__text">Наименование</label>
+                      <input
+                        type="text"
+                        class="up__left_item__input"
+                        th:field="*{name}"
+                        placeholder="Введите наименование"
+                        required
+                      />
+                    </div>
+                    <div class="form_group_up__left_item">
+                      <label class="up__left_item__text">Владелец</label>
+                      <select
+                        class="up__left_item__select"
+                        id="select_type_tool"
+                        name="owner"
+                        required
+                      >
+                        <option class="up__left_item__option" value="" disabled>
+                          Выберите владельца
+                        </option>
+                        <option
+                          class="up__left_item__option"
+                          th:each="owner : ${list_owners}"
+                          th:value="${owner.id}"
+                          th:text="${owner.name}"
+                          th:data-id="${owner.code}"
+                        ></option>
+                      </select>
+                    </div>
+                    <div class="form_group_up__left_item">
+                      <label class="up__left_item__text"
+                        >Наименование в смете</label
+                      >
+                      <select
+                        name="name_estimate"
+                        class="up__left_item__select"
+                        required
+                      >
+                        <option class="up__left_item__option" value="" disabled>
+                          Выберите наименование
+                        </option>
+                        <option
+                          class="up__left_item__option"
+                          th:each="estimateNameDTO : ${list_names_estimate}"
+                          th:value="${estimateNameDTO.id}"
+                          th:text="${estimateNameDTO.name}"
+                        ></option>
+                      </select>
+                    </div>
+                    <div class="form_group_up__left_item">
+                      <label class="up__left_item__text"
+                        >Выберите категорию</label
+                      >
+                      <select
+                        class="up__left_item__select"
+                        name="category"
+                        required
+                      >
+                        <option class="up__left_item__option" value="" disabled>
+                          Выберите категорию
+                        </option>
+                        <option
+                          class="up__left_item__option"
+                          th:each="category : ${list_category}"
+                          th:value="${category.id}"
+                          th:text="${category.name}"
+                          th:data-id="${category.code}"
+                          th:data-number="${category.numberTool}"
+                        ></option>
+                      </select>
+                    </div>
+                    <div class="form_group_up__left_item">
+                      <label class="up__left_item__text">Штрих-код</label>
+                      <input
+                        type="text"
+                        th:field="*{barcode}"
+                        required
+                        class="up__left_item__input"
+                        placeholder="Введите штрих-код"
+                      />
+                    </div>
+                    <div class="form_group_up__left_item">
+                      <label class="up__left_item__text">Модель</label>
+                      <input
+                        type="text"
+                        class="up__left_item__input"
+                        th:field="*{model}"
+                      />
+                    </div>
+                    <div class="form_group_up__left_item">
+                      <label class="up__left_item__text">Серийный номер</label>
+                      <input
+                        th:field="*{serialNumber}"
+                        required
+                        type="text"
+                        class="up__left_item__input"
+                      />
+                    </div>
+                    <div class="form_group_up__left_item">
+                      <label class="up__left_item__text"
+                        >Выберите раздел сметы</label
+                      >
+                      <select
+                        class="up__left_item__select"
+                        th:field="*{section}"
+                        required
+                      >
+                        <option class="up__left_item__option" value="" disabled>
+                          Выберите раздел сметы
+                        </option>
+                        <option
+                          class="up__left_item__option"
+                          th:each="section : ${T(wns.constants.EstimateSection).values()}"
+                          th:value="${section}"
+                          th:text="${section.getValue()}"
+                        ></option>
+                      </select>
+                    </div>
+                    <div class="form_group_down__left_item">
+                      <label class="down__left_item__text">Себестоимость</label>
+                      <input
+                        th:field="*{costPrice}"
+                        type="text"
+                        class="down__left_item__input"
+                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="form_group_up__right d-flex fd-col">
+                    <div class="form_group_up__right_item">
+                      <label class="up__right_item__text">Статус</label>
+                      <select
+                        name="status_tool"
+                        required
+                        class="up__right_item__select"
+                      >
+                        <option
+                          class="up__right_item__option"
+                          value=""
+                          disabled
+                        >
+                          Выберите статус
+                        </option>
+                        <option
+                          class="up__right_item__option"
+                          th:each="status_tool : ${T(wns.constants.StatusTools).values()}"
+                          th:value="${status_tool}"
+                          th:text="${status_tool.getValue()}"
+                        ></option>
+                      </select>
+                    </div>
+                    <div class="form_group_up__right_item">
+                      <label class="up__right_item__text">Характеристики</label>
+                      <input
+                        th:field="*{characteristics}"
+                        type="text"
+                        class="up__right_item__input"
+                      />
+                    </div>
+                    <div class="form_group_up__right_item">
+                      <label class="up__right_item__text">Состояние</label>
+                      <input
+                        th:field="*{state}"
+                        type="text"
+                        class="up__right_item__input"
+                      />
+                    </div>
+                    <div class="form_group_up__right_item">
+                      <label class="up__right_item__text">Комплект</label>
+                      <input
+                        th:field="*{equip}"
+                        type="text"
+                        class="up__right_item__input"
+                      />
+                    </div>
+                    <div class="form_group_up__right_item">
+                      <label class="up__right_item__text">Комментарий</label>
+                      <input
+                        name="comment"
+                        type="text"
+                        class="up__right_item__input"
+                      />
+                    </div>
+                    <div class="form_group_up__right_item">
+                      <label class="up__right_item__text">Дата создания</label>
+                      <input
+                        th:field="*{creating}"
+                        type="date"
+                        class="up__right_item__input"
+                        placeholder="дд.мм.гггг"
+                      />
+                    </div>
+                    <div class="form_group_up__right_item">
+                      <label class="up__right_item__text"
+                        >Загрузите ваши фотографии на сервер</label
+                      >
+                      <textarea
+                        th:field="*{photos}"
+                        required
+                        id="note_individual"
+                        class="up__right_item__textarea"
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="content_article__form_group_down d-flex"
+                  sec:authorize="hasAnyAuthority('ADMIN','MANAGER')"
+                >
+                  <div class="form_group_down__left d-flex fd-col">
+                    <div class="form_group_down__left_item">
+                      <!-- <label class="down__left_item__text">Себестоимость</label>
+                      <input
+                        th:field="*{costPrice}"
+                        type="text"
+                        class="down__left_item__input"
+                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
+                      /> -->
+                    </div>
+                    <div class="form_group_down__left_item">
+                      <label class="down__left_item__text">Цена за сутки</label>
+                      <input
+                        th:field="*{priceByDay}"
+                        type="text"
+                        class="down__left_item__input"
+                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
+                      />
+                    </div>
+                    <div class="form_group_down__left_item">
+                      <label class="down__left_item__text"
+                        >Доход с оборудования</label
+                      >
+                      <input
+                        th:field="*{incomeFromTools}"
+                        type="text"
+                        class="down__left_item__input"
+                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
+                      />
+                    </div>
+                    <div class="form_group_down__left_item">
+                      <label class="down__left_item__text">Цена продажи</label>
+                      <input
+                        type="text"
+                        th:field="*{priceSell}"
+                        class="down__left_item__input"
+                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
+                      />
+                    </div>
+                    <div class="form_group_down__left_item">
+                      <label class="down__left_item__text"
+                        >Доход с продажи</label
+                      >
+                      <input
+                        type="text"
+                        class="down__left_item__input"
+                        th:field="*{incomeSales}"
+                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
+                      />
+                    </div>
+                    <div class="form_group_down__left_item">
+                      <label class="down__left_item__text"
+                        >Доход инвестора (%)</label
+                      >
+                      <input
+                        type="text"
+                        class="down__left_item__input"
+                        th:field="*{incomeInvestorProcents}"
+                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="form_group_down__right d-flex fd-col">
+                    <div class="form_group_down__right_item">
+                      <label class="down__right_item__text"
+                        >Доход инвестора</label
+                      >
+                      <input
+                        type="text"
+                        class="down__right_item__input"
+                        th:field="*{incomeInvestor}"
+                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
+                      />
+                    </div>
+                    <div class="form_group_down__right_item">
+                      <label class="down__right_item__text"
+                        >Сумма ремонта</label
+                      >
+                      <input
+                        type="text"
+                        class="down__right_item__input"
+                        th:field="*{repairAmount}"
+                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
+                      />
+                    </div>
+                    <div class="form_group_down__right_item">
+                      <label class="down__right_item__text"
+                        >Кол-во отработанных смен</label
+                      >
+                      <input
+                        type="text"
+                        class="down__right_item__input"
+                        th:field="*{numberWorkingShifts}"
+                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
+                      />
+                    </div>
+                    <div class="form_group_down__right_item">
+                      <label class="down__right_item__text"
+                        >Цена на субаренду</label
+                      >
+                      <input
+                        type="text"
+                        class="down__right_item__input"
+                        th:field="*{priceSublease}"
+                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
+                      />
+                    </div>
+                    <div class="form_group_down__right_item">
+                      <label class="down__right_item__text"
+                        >Плата за субаренду</label
+                      >
+                      <input
+                        type="text"
+                        class="down__right_item__input"
+                        th:field="*{paymentSublease}"
+                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
+                      />
+                    </div>
+                    <div class="form_group_down__right_item">
+                      <label class="down__right_item__text">Доп.доход</label>
+                      <input
+                        type="text"
+                        class="down__right_item__input"
+                        th:field="*{incomeAdditional}"
+                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="content_article__form_buttons d-flex">
+                  <button type="submit" class="form_buttons__send">
+                    Сохранить
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div th:insert="fragments/footer.html"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div th:insert="fragments/scripts.html"></div>
+  </body>
+</html>

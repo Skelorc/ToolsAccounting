@@ -1,0 +1,413 @@
+/* ? normilize */
+
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  list-style: none;
+  box-sizing: border-box;
+  border-collapse: collapse;
+}
+
+body {
+  font-size: 16px;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.f-size_14 {
+  font-size: 14px;
+}
+
+.pad-0_3 {
+  padding: 0 3%;
+}
+/* quick styles end */
+
+
+/* wrapper */
+.projects_wrapper {
+  height: 100vh;
+  width: 100%;
+}
+
+.projects_wrapper__main {
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+
+.main_navigation {
+  flex: 11%;
+  flex-direction: column;
+  background: #16171a;
+}
+
+.main_navigation__logo {
+  height: 10%;
+  padding-left: 3%;
+  text-decoration: none;
+}
+
+.main_navigation__logo_image {
+  width: 40%;
+  height: 80%;
+  align-items: center;
+  align-self: center;
+}
+
+.logo_image__svg {
+  height: 85%;
+  width: 85%;
+}
+
+.main_navigation__logo_text {
+  width: 60%;
+  font-size: 22px;
+  font-weight: bold;
+  align-items: center;
+  color: #fcfcfd;
+}
+/* navigation logo end */
+
+
+/* navigation menu */
+.main_navigation__menu {
+  height: 50%;
+  flex-direction: column;
+  background: #16171a;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.main_navigation__menu_item {
+  flex: 10%;
+  text-decoration: none;
+  padding-left: 2%;
+}
+
+.menu_item__icon {
+  flex: 20%;
+  align-self: center;
+  text-align: right;
+}
+
+.menu_item__icon_svg {
+  width: 40%;
+  background: #16171a;
+  color: #a7b1c2;
+}
+
+.menu_item__text {
+  flex: 80%;
+  align-self: center;
+  padding-left: 2%;
+  color: #fcfcfd;
+}
+/* navigation menu end */
+
+
+/* main */
+.main_general {
+  flex: 88%;
+  background-image: url('../img/images/bg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding-top: 5%;
+}
+
+.main_general__content {
+  flex-direction: column;
+  width: 100%;
+}
+
+.main_calendar {
+  flex: 88%;
+}
+
+/* ? interactive elements */
+
+.btn, .inp {
+  border-radius: 200px;
+  border: 1px solid slategray;
+  background-color:whitesmoke;
+  padding: 8px 10px;
+  box-shadow: 0px 1px 5px 0px rgba(80, 80, 80, .6);
+  font-size: 14px;
+  cursor: pointer;
+  transition: .3s all linear;
+}
+
+.btn:hover, .inp:hover {
+  box-shadow: 0px 1px 5px 0px rgba(80, 80, 80, .8);
+  background-color:white;
+}
+
+.btn_green {
+  background-color: mediumspringgreen;
+}
+
+.btn_green:hover {
+  background-color: mediumseagreen;
+}
+
+.inp-with-name {
+  position: relative;
+}
+
+.inp-with-name__name {
+  position: absolute;
+  top: -5px;
+  left: 10px;
+  font-size: 12px;
+  background-color: #fff;
+}
+
+/* ? calendar - section */
+
+.calendar {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+.calendar__scale {
+  margin-left: auto;
+}
+
+.calendar__wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+/* ? calendar - sidebar */
+
+.calendar__sideBar {
+  width: 300px;
+  padding: 10px 5px 10px 15px;
+}
+
+.calendar__sideBarItem {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.calendar__monthMapPlaceholder {
+}
+
+.calendar__searchInp {
+  width: 100%;
+}
+
+.calendar__toShow {
+  width: 100%;
+  /* height: 300px; */
+  /* background-color: slategrey; */
+}
+
+/* ? calendar - main */
+
+.calendar__main {
+  width: calc(100% - 240px);
+  padding: 20px;
+}
+
+
+/* ? table */
+
+.calendar__table {
+  width: 100%;
+  font-size: 20px;
+}
+
+.calendar__headNameCell {
+  width: 200px;
+}
+
+.calendar__day {
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  width: calc((100% - 200px) / 7);
+}
+
+.calendar__dayName {
+  font-size: 14px;
+}
+
+.calendar__dayDate {
+  font-size: 20px;
+}
+
+.calendar__projectName {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.calendar__item {
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+}
+
+.calendar__hours {
+  /* border-right: 1px solid rgb(97, 97, 97);
+  border-left: 1px solid rgb(97, 97, 97); */
+  width: 20px;
+}
+
+.calendar__hours_ONLEASE {
+  background-color:red;
+  text-align: center;
+}
+.calendar__hours_INSTOCK {
+  background-color:forestgreen;
+  text-align: center;
+}
+.calendar__hours_WAITING{
+  background-color:yellow;
+  text-align: center;
+}
+.calendar__hours_BOOKING {
+  background-color:orange;
+  text-align: center;
+}
+.calendar__hours_REPAIR {
+  background-color:darkslategray;
+  text-align: center;
+}
+.calendar__hours_WRITEOFF {
+  background-color:brown;
+  text-align: center;
+}
+.calendar__hours_SALE {
+  background-color:blue;
+  text-align: center;
+}
+.calendar__hours_CREATE {
+  background-color:orange;
+  text-align: center;
+}
+.calendar__hours_IN_WORK {
+  background-color:red;
+  text-align: center;
+}
+.calendar__hours_EXTENDED {
+  background-color:red;
+  text-align: center;
+}
+.calendar__hours_OVERDUE {
+  background-color:brown;
+  text-align: center;
+}
+.calendar__hours_WAITING_PAY {
+  background-color:yellow;
+  text-align: center;
+}
+
+.calendar__hours_day-start {
+  border-left: 2px solid #000;
+}
+.calendar__hours_day-end {
+  border-right: 2px solid #000;
+}
+
+/* ! monthly */
+
+.calendar__monthly-day {
+  border: 1px solid slategray;
+  width: 200px;
+}
+
+
+.calendar__monthly-day-entities {
+  height: 150px;
+  overflow-y: auto;
+}
+
+.calendar__monthly-date {
+  font-size: 12px;
+  margin-bottom: 5px;
+  padding: 10px;
+}
+
+.calendar__monthly-entity-link {
+  display: block;
+  font-size: 14px;
+  text-transform: none;
+  text-decoration: none;
+}
+
+.calendar__monthly-entity-link_ONLEASE {
+  background-color:red;
+  text-align: center;
+}
+.calendar__monthly-entity-link_INSTOCK {
+  background-color:forestgreen;
+  text-align: center;
+}
+.calendar__monthly-entity-link_WAITING{
+  background-color:yellow;
+  text-align: center;
+}
+.calendar__monthly-entity-link_BOOKING {
+  background-color:orange;
+  text-align: center;
+}
+.calendar__monthly-entity-link_REPAIR {
+  background-color:darkslategray;
+  text-align: center;
+}
+.calendar__monthly-entity-link_WRITEOFF {
+  background-color:brown;
+  text-align: center;
+}
+.calendar__monthly-entity-link_SALE {
+  background-color:blue;
+  text-align: center;
+}
+.calendar__monthly-entity-link_CREATE {
+  background-color:orange;
+  text-align: center;
+}
+.calendar__monthly-entity-link_IN_WORK {
+  background-color:red;
+  text-align: center;
+}
+.calendar__monthly-entity-link_EXTENDED {
+  background-color:red;
+  text-align: center;
+}
+.calendar__monthly-entity-link_OVERDUE {
+  background-color:brown;
+  text-align: center;
+}
+.calendar__monthly-entity-link_WAITING_PAY {
+  background-color:yellow;
+  text-align: center;
+}
+
+
+/* ? filters */
+
+.calendar__filters {
+  padding: 20px;
+}
+
+.calendar__filters-list {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  column-gap: 20px;
+  width: 100%;
+}

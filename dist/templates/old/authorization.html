@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+
+    <head class="head">
+        <title>Авторизация</title>
+        <div th:replace="fragments/head :: header"></div>
+        <!-- <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="robots" content="index, follow">
+        <meta name="author" content="">
+        <meta property="og:url" content="https://site.ru">
+        <meta property="og:title" content="MAD DOG">
+        <meta property="og:image:type" content="image/jpeg">
+        <meta property="og:image:width" content="640">
+        <meta property="og:image:height" content="442">
+        <meta property="og:description" content="">
+        <meta property="og:site_name" content="Site-name">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="author" content="Andrey">
+        <meta name="description" content="MAD DOG">
+        <meta name="keywords" content="MAD DOG">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta property="og:title" content="MAD DOG - сервис для учета и автоматизации проката">
+        <meta property="og:image" content="assets/img/icons/badge.jpg" th:src="@{/img/icons/badge.jpg}">
+        <meta property="og:image:type" content="image/jpeg">
+        <meta property="og:image:width" content="1024">
+        <meta property="og:image:height" content="1024">
+        <meta property="og:description" content="Программа для учёта инструментов">
+        <link rel="image_src" href="/static/img/icons/badge.jpg" th:href="@{/img/icons/badge.jpg}">
+        <meta name="theme-color" content="#179d82">
+        <meta th:name="_csrf" th:content="${_csrf.token}"/>
+        <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+        <link rel="manifest" href="/templates/assets/json/manifest.json" th:href="@{/templates/assets/json/manifest.json}">
+  
+        <link rel="preload" href="../static/fonts/fontawesome/fontawesome-all-css.css" as="style" th:href="@{/fonts/fontawesome/fontawesome-all-css.css}">
+        <link rel="preload" href="../static/css/style.css" as="style" th:href="@{/css/style.css}">
+        <link rel="preload" href="../static/css/app.css" as="style" th:href="@{/css/app.css}">
+        <link rel="preload" href="../static/css/media.css" as="style" th:href="@{/css/media.css}">
+        <link rel="preload" href="../static/css/checkout.css" as="style" th:href="@{/css/checkout.css}">
+        <link rel="preload" href="../static/css/main.css" as="style" th:href="@{/css/main.css}">
+  
+  
+        <link rel="stylesheet" href="../static/fonts/webfonts/fa-solid-900.ttf" th:href="@{/fonts/webfonts/fa-solid-900.ttf}">
+        <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+        <link rel="stylesheet" href="../static/css/app.css" th:href="@{/css/app.css}">
+        <link rel="stylesheet" href="../static/css/media.css" th:href="@{/css/media.css}">
+        <link rel="stylesheet" href="../static/css/animation-iror.css" th:href="@{/css/animation-iror.css}">
+        <link rel="stylesheet" href="../static/fonts/fontawesome/fontawesome.css" th:href="@{/fonts/fontawesome/fontawesome.css}">
+        <link rel="stylesheet" href="../static/fonts/fontawesome/fontawesome-all-css.css" th:href="@{/fonts/fontawesome/fontawesome-all-css.css}">
+        <link rel="stylesheet" href="../static/css/checkout.css" th:href="@{/css/checkout.css}">
+        <link rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}">
+        
+        <script src="/static/fonts/fontawesome/all.js" th:src="@{/fonts/fontawesome/all.js}"></script>
+       
+        <script src="/static/js/jquery.js" th:src="@{/js/jquery.js}"></script>
+       
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"  th:src="@{/js/jquery.modal.js}"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" /> -->
+    </head>
+
+    <body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic">
+        <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
+            <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
+                <main class="w-100 login">
+                    <!-- <div class="login__circle login__circle--left-bottom"></div>
+                    <div class="login__circle login__circle--center-top"></div> -->
+                    <div class="row login__row">
+                        <div class="col-6">
+                            <div class="login__left-panel">
+                                <a href="/" class="login__link"><img th:src="@{/img/logo/panel-logo2x.webp}"
+                                                                     class="login__logo">
+                                    <h2>MAD DOG</h2>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <span>
+                                <div>
+                                    <span th:if="${param.loginError!=null}"
+                                        th:text="'Вы ввели неправильный логин/пароль'"></span>
+                                </div>
+                                <form class="login__right-panel" th:action="@{/login}" method="POST">
+                                    <h2 class="login__heading">
+                                        Вход в систему
+                                    </h2>
+                                    <div class="login__form">
+                                        <span class="login__input">
+                                            <div class="labeled-input">
+                                                <label for="input-login"
+                                                    class="labeled-input__label">Логин<span>*</span></label>
+                                                <input class="labeled-input__input" type="text" name="username"
+                                                    placeholder="Можете ввести свой логин, телефон или почту..."
+                                                    autocomplete="on" required>
+                                                <div class="labeled-input__additional"></div>
+                                            </div>
+                                            <div class="labeled-input__additional"></div>
+                                        </span>
+                                        <span class="login__input login__input--mb-none">
+                                            <div class="labeled-input">
+                                                <label for="input-password"
+                                                    class="labeled-input__label">Пароль<span>*</span></label>
+                                                <input class="labeled-input__input" type="password" name="password"
+                                                    placeholder="Введите свой пароль..." autocomplete="on" required>
+                                                <div class="labeled-input__additional"></div>
+                                            </div>
+                                        </span>
+                                        <div class="row login__button-wrapper">
+                                            <div class="login__button-position">
+                                                <input data-v-0839162a class="orange-btn login__button" name="submit"
+                                                    type="submit" value="Вход">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </span>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+        <div th:insert="fragments/scripts.html"></div>
+    </body>
+</html>

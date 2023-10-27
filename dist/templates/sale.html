@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" th:href="@{/dist/static/img/logo/favicon.ico}">
+    <link rel="stylesheet" type="text/css" th:href="@{/dist/static/css/sale.css}">
+
+    <meta th:name="_csrf" th:content="${_csrf.token}"/>
+    <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <!--JQuery-->
+    <script type="text/javascript" th:src="@{/dist/static/js/jquery.js}"></script>
+    <!-- jQuery Modal -->
+    <script type="text/javascript" th:src="@{/dist/static/js/jquery.modal.js}"></script>
+    <link rel="stylesheet" th:href="@{/dist/static/css/jquery.modal.css}"/>
+    <title>Продажа</title>
+</head>
+<body>
+<div class="projects_wrapper d-flex">
+    <div class="projects_wrapper__main d-flex">
+        <div th:replace="fragments/menu_sidebar.html"></div>
+        <div class="main_general d-flex">
+            <div class="main_general__content d-flex">
+                <div class="main_general__content_buttons d-flex pad-0_3">
+                    <a th:href="@{/sale/create}" class="content_buttons__create d-flex">
+                        Создать
+                    </a>
+                    <a href="#" class="content_buttons__other d-flex" id="back_repair">
+                        Вернуть на склад
+                    </a>
+                </div>
+                <div class="main_general__content_table d-flex pad-0_3">
+                    <table class="content_table__info">
+                        <tr class="content_table__info_name">
+                            <th class="content_table__info_pos">#</th>
+                            <th class="content_table__info_pos">Дата создания</th>
+                            <th class="content_table__info_pos">Покупатель</th>
+                            <th class="content_table__info_pos">Телефон</th>
+                            <th class="content_table__info_pos">Всего цена продажи</th>
+                            <th class="content_table__info_pos">Сотрудник</th>
+                            <th class="content_table__info_pos">Примечание</th>
+                            <th class="content_table__info_pos">Статус</th>
+                            <th class="content_table__info_pos">Фотографии</th>
+                        </tr>
+                        <tr class="content_table__info_line" th:each="status : ${list_statuses}">
+                            <td class="content_table__info_column">
+                                <input class="ids" type="checkbox"/>
+                                <input type="hidden" th:value="${status.id}"/>
+                            </td>
+                            <td class="content_table__info_column"
+                                th:utext="${#temporals.format(status.created, 'dd-MM-yyyy HH:mm')}"></td>
+                            <td class="content_table__info_column" th:utext="${status.executor}"></td>
+                            <td class="content_table__info_column" th:utext="${status.phone_number}"></td>
+                            <td class="content_table__info_column" th:utext="${status.priceSell}"></td>
+                            <td class="content_table__info_column" th:utext="${status.employee}"></td>
+                            <td class="content_table__info_column" th:utext="${status.note}"></td>
+                            <td class="content_table__info_column" th:utext="${status.statusTools.getValue()}"></td>
+                            <td class="content_table__info_column">
+                                <span th:each="photo : ${status.photos}">
+                                    <a rel="modal:open" th:href="${'#'+photoStat.count +''+ status.tools_id}">
+                                      <img th:src="${photo}"/ class="content_table__info_column__img">
+                                      <div th:id="${photoStat.count +''+ status.tools_id}" class="modal">
+                                        <img th:src="${photo}"/>
+                                      </div>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="pagination-control col-lg-12 order-lg-1">
+                    <!-- Bootstrap 4 -->
+                    <nav aria-label="Навигация по страницам">
+                        <ul class="pagination">
+                            <li class="page-item" th:if="${list_statuses.totalPages > 0}"
+                                th:each="page_number : ${page_numbers}">
+                                <a class="page-link-m page-link"
+                                   th:href="@{/sale(size=${list_statuses.size}, page=${page_numberStat.index})}"
+                                   th:text="${page_numberStat.index}"
+                                   th:class="${page_number==list_statuses.number + 1} ? active">
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div th:insert="fragments/footer.html"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:insert="fragments/scripts.html"></div>
+</body>
+</html>

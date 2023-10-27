@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" th:href="@{/dist/static/img/logo/favicon.ico}">
+    <link rel="stylesheet" type="text/css" th:href="@{/dist/static/css/calendarPage.css}">
+    <meta th:name="_csrf" th:content="${_csrf.token}"/>
+    <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <script type="text/javascript" th:src="@{/dist/static/js/jquery.js}"></script>
+    <!-- jQuery Modal -->
+    <script type="text/javascript" th:src="@{/dist/static/js/jquery.modal.js}"></script>
+    <title>Календарь</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.3.1/dist/css/datepicker.min.css">
+  </head>
+  <body class="body">
+  <div class="projects_wrapper d-flex">
+    <div class="projects_wrapper__main d-flex">
+      <div th:replace="fragments/menu_sidebar.html"></div>
+      <main class="main main_calendar">
+        <section class="calendar">
+          <!-- <div class="calendar__scale">
+            <select
+              name="calendar__scale"
+              id="calendar__scale"
+              class="calendar__scaleInp inp"
+            >
+              <option value="WEEK" selected>Неделя</option>
+              <option value="MONTH">Месяц</option>
+            </select>
+          </div> -->
+          <div class="calendar__filters">
+            <ul class="calendar__filters-list">
+              <li class="calendar__filters-item">
+                <div class="calendar__scale">
+                  <select
+                    name="calendar__scale"
+                    id="calendar__scale"
+                    class="calendar__scaleInp inp"
+                  >
+                    <option value="WEEK" selected>Неделя</option>
+                    <option value="MONTH">Месяц</option>
+                  </select>
+                </div>
+              </li>
+              <li class="calendar__filters-item">
+                <div class="calendar__name-filer inp-with-name">
+                  <span class="inp-with-name__name"> Название </span>
+                  <select
+                    name="calendar__name-filter-inp"
+                    id="calendar__name-filter-inp"
+                    class="calendar__name-filter-inp inp inp-with-name__inp"
+                  >
+                    <option value="" selected>Все</option>
+                    <option value="pr1">pr1</option>
+                    <option value="afaf">afaf</option>
+                    <option value="Sdasss">Sdasss</option>
+                    <option value="keklol">keklol</option>
+                  </select>
+                </div>
+              </li>
+              <li class="calendar__filters-item">
+                <div class="calendar__clients-filter inp-with-name">
+                  <span class="inp-with-name__name"> Клиент </span>
+                  <select
+                    name="calendar__clients-filter-inp"
+                    id="calendar__clients-filter-inp"
+                    class="calendar__clients-filter-inp inp inp-with-name__inp"
+                  >
+                    <option value="" selected>Все</option>
+                    <option value="pr1">pr1</option>
+                    <option value="afaf">afaf</option>
+                    <option value="Sdasss">Sdasss</option>
+                    <option value="keklol">keklol</option>
+                  </select>
+                </div>
+              </li>
+              <li class="calendar__filters-item">
+                <div class="calendar__workers-filter inp-with-name">
+                  <span class="inp-with-name__name"> Сотрудник </span>
+                  <select
+                    name="calendar__workers-filter-inp"
+                    id="calendar__workers-filter-inp"
+                    class="calendar__workers-filter-inp inp inp-with-name__inp"
+                  >
+                    <option value="" selected>Все</option>
+                    <option value="pr1">pr1</option>
+                    <option value="afaf">afaf</option>
+                    <option value="Sdasss">Sdasss</option>
+                    <option value="keklol">keklol</option>
+                  </select>
+                </div>
+              </li>
+              <li class="calendar__filters-item">
+                <div class="calendar__manager-filter inp-with-name">
+                  <span class="inp-with-name__name"> Менеджер </span>
+                  <select
+                    name="calendar__manager-filter-inp"
+                    id="calendar__manager-filter-inp"
+                    class="calendar__manager-filter-inp inp inp-with-name__inp"
+                  >
+                    <option value="" selected>Все</option>
+                    <option value="pr1">pr1</option>
+                    <option value="afaf">afaf</option>
+                    <option value="Sdasss">Sdasss</option>
+                    <option value="keklol">keklol</option>
+                  </select>
+                </div>
+              </li>
+              <li class="calendar__filters-item">
+                <div class="calendar__type-filter inp-with-name">
+                  <span class="inp-with-name__name"> Тип </span>
+                  <select
+                    name="calendar__type-filter-inp"
+                    id="calendar__type-filter-inp"
+                    class="calendar__type-filter-inp inp inp-with-name__inp"
+                  >
+                    <option value="" selected>Все</option>
+                    <option value="pr1">pr1</option>
+                    <option value="afaf">afaf</option>
+                    <option value="Sdasss">Sdasss</option>
+                    <option value="keklol">keklol</option>
+                  </select>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="calendar__wrapper">
+            <div class="calendar__sideBar">
+              <ul class="calendar__sideBarList">
+                <li class="calendar__sideBarItem">
+                  <button class="btn">Создать &#x2B</button>
+                </li>
+                <li class="calendar__sideBarItem">
+                  <div class="calendar__monthMapPlaceholder"></div>
+                </li>
+                <li class="calendar__sideBarItem">
+                  <input type="text" class="calendar__searchInp inp" placeholder="Поиск"/>
+                </li>
+                <li class="calendar__sideBarItem">
+                  <div class="calendar__toShow">
+                    <select class="calendar__typeInp inp" name="calendar__typeInp" id="">
+                      <option value="TOOLS" selected>Оборудование</option>
+                      <option value="PROJECTS">Проекты</option>
+                    </select>
+                  </div>
+                </li>
+                <li class="calendar__sideBarItem">
+                  <button class="calendar__findBtn btn btn_green">Найти</button>
+                </li>
+              </ul>
+            </div>
+            <div class="calendar__main">
+              <table class="calendar__table">
+                <thead class="calendar__thead">
+                  <!-- <tr class="calendar__days">
+                    <td class="calendar__headNameCell">
+                      Название
+                    </td>
+                    <td class="calendar__day" colspan="8">
+                      <div class="calendar__dayName">Вс</div>
+                      <div class="calendar__dayDate">5</div>
+                    </td>
+                    <td class="calendar__day" colspan="8">
+                      <div class="calendar__dayName">Пн</div>
+                      <div class="calendar__dayDate">6</div>
+                    </td>
+                    <td class="calendar__day" colspan="8">
+                      <div class="calendar__dayName">Вт</div>
+                      <div class="calendar__dayDate">7</div>
+                    </td>
+                    <td class="calendar__day" colspan="8">
+                      <div class="calendar__dayName">Ср</div>
+                      <div class="calendar__dayDate">8</div>
+                    </td>
+                    <td class="calendar__day" colspan="8">
+                      <div class="calendar__dayName">Чт</div>
+                      <div class="calendar__dayDate">9</div>
+                    </td>
+                    <td class="calendar__day" colspan="8">
+                      <div class="calendar__dayName">Пт</div>
+                      <div class="calendar__dayDate">10</div>
+                    </td>
+                    <td class="calendar__day" colspan="8">
+                      <div class="calendar__dayName">Сб</div>
+                      <div class="calendar__dayDate">11</div>
+                    </td>
+                  </tr> -->
+                </thead>
+                <tbody class="calendar__tbody">
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+    <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.3.1/dist/js/datepicker.min.js"></script>
+    <div th:insert="fragments/scripts.html"></div>
+  </body>
+  <script type="text/javascript" th:src="@{/dist/static/js/calendarPage.js}"></script>
+</html>

@@ -1,13 +1,10 @@
 package wns.services;
 
 import lombok.AllArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import wns.aspects.ToLog;
-import wns.constants.Messages;
-import wns.entity.Owner;
 import wns.entity.User;
 import wns.dto.UserDTO;
 import wns.repo.UsersRepo;
@@ -64,4 +61,5 @@ public class UserService {
     public void delete(long id) {
         usersRepo.deleteById(id);
     }
+
 }

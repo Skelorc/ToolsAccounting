@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" th:href="@{/dist/static/img/logo/favicon.ico}">
+    <link rel="stylesheet" type="text/css" th:href="@{/dist/static/css/create_estimate.css}">
+
+    <meta th:name="_csrf" th:content="${_csrf.token}"/>
+    <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <!--JQuery-->
+    <script type="text/javascript" th:src="@{/dist/static/js/jquery.js}"></script>
+    <!-- jQuery Modal -->
+    <script type="text/javascript" th:src="@{/dist/static/js/jquery.modal.js}"></script>
+    <link rel="stylesheet" th:href="@{/dist/static/css/jquery.modal.css}"/>
+    <title>Выдача-смета</title>
+</head>
+<body>
+<div class="projects_wrapper d-flex">
+    <div class="projects_wrapper__main d-flex">
+        <div th:replace="fragments/menu_sidebar.html"></div>
+        <div class="main_general d-flex">
+            <div class="main_general__content d-flex">
+                <div class="main_general__content_article d-flex pad-0_3">
+
+                    <table class="table estimate">
+                        <tbody>
+                        <tr>
+                            <td rowspan="9" class="first-th"></td>
+                            <td rowspan="7"><img class="table-logo" th:src="@{/dist/static/img/logo/mad-dog-logo.png}">
+                            </td>
+                            <th colspan="2" rowspan="2">Съемочный период:</th>
+                            <td colspan="4"><span class="table-td-text" th:field="*{start}" th:value="${estimate.start}"
+                                                  th:text="${#temporals.format(estimate.start, 'dd-MM-yyyy')}">Подстановка даты начала проекта</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"><span class="table-td-text" th:field="*{end}"
+                                                  th:value="${estimate.end}"
+                                                  th:text="${#temporals.format(estimate.end, 'dd-MM-yyyy')}">Подстановка даты окончания проекта</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th colspan="3">Количество смен:</th>
+                            <td colspan="3"><input class="table-td-text input__shiftsAmount" th:value="${estimate.count_shifts}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Проект:</th>
+                            <td colspan="5">
+                                <span class="table-td-text" th:text="${estimate.project.name}">Подстановка названия проекта</span>
+                                <input type="text" th:value="${estimate.id}" class="estimate_id_value" hidden="hidden">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Оператор:</th>
+                            <td colspan="5">
+                                <label class="d-block size">Оператор:</label>
+                                <select id="operator" name="operator"
+                                        class="vs__selected-options main-secect__opions form-control my-select"
+                                        required>
+                                    <option class="vs__selected vs__dropdown-toggle my-select">
+                                        Выберите оператора
+                                    </option>
+                                    <option class="vs__selected vs__dropdown-toggle"
+                                            th:each="operator: ${list_contacts}"
+                                            th:value="${operator.name}"
+                                            th:text="${operator.name +' - '+ operator.roleContact.role}"
+                                            th:selected="${estimate.operator !=null && estimate.operator==operator.name}">
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Заказчик:</th>
+                            <td colspan="5"><span class="table-td-text" th:text="${estimate.project.client.fullName}">Постановка из карточки клиента</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Менеджер:</th>
+                            <td colspan="2.5"><span class="table-td-text" th:text="${estimate.project.employee}">ФИО сотрудника из аккаунта</span>
+                            </td>
+                            <td colspan="2.5"><span class="table-td-text" th:text="${estimate.project.phoneNumber}">+7999123456</span>
+                            </td>
+                            <th>https://maddogrental.pro/</th>
+                        </tr>
+                        <tr>
+                            <th rowspan="2">Наименование оборудования</th>
+                            <th rowspan="2">Стоимость</th>
+                            <th colspan="3">Количество</th>
+                            <th rowspan="2">Итого за смену</th>
+                            <th rowspan="2">Итого за смену
+                                <br /> 
+                                с учетом скидки</th>
+                        </tr>
+                        <tr>
+                            <th>Ед.техники</th>
+                            <th>Дней</th>
+                            <th>Скидка</th>
+                        </tr>
+                        <!-- Выбоpка данных -->
+                        <div id="data-form-send" th:each="list_tools: ${map_tools}">
+                            <div th:with="key = ${list_tools.key}">
+                                <tr th:if="${key.toString()!='SERVICE'}">
+                                    <td class="first-th"></td>
+                                    <th colspan="7" th:utext="${list_tools.key.getValue()}"></th>
+                                </tr>
+                            </div>
+                            <tr class="tableRow__forCalc tableRow__tool" th:each="tool :${list_tools.value}">
+                                <div th:unless="${tool.section.toString()=='SERVICE'}">
+                                    <td>
+                                        <input class="item_id" type="hidden" th:value="${tool.id}">
+                                        <input class="item_category" type="hidden"
+                                               th:value="${list_tools.key}">
+                                    </td>
+                                    <td><span class="table-td-text" th:value="${tool.name}"
+                                              th:utext="${tool.name}"></span></td>
+                                    <td><input required="" th:value="${tool.priceByDay}" type="text"
+                                               class="form-control__table fIn1 tableRow__price"
+                                               oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                               placeholder="Цена за сутки"></td>
+                                    <td><input class="form-control__table tableRow__amount fIn2" type="text"
+                                               th:value="${tool.amount}" placeholder="Количество"
+                                               oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                    </td>
+                                    <td><input required="" th:value="${tool.countShifts}" type="text"
+                                               class="form-control__table tableRow__shifts fIn3"
+                                               oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                               placeholder="Количество смен"></td>
+                                    <td><input type="text" th:value="${tool.discount > 0} ? (${tool.discount}) : ''"
+                                               class="form-control__table tableRow__discount fIn4"
+                                               placeholder="Скидка"></td>
+                                    <td><span class="table-td-text fIn5 tableRow__forCalcPerShift"></span>
+                                    </td>
+                                    <td><span class="table-td-text fIn6 tableRow__forCalcPerShiftWithDiscount "></span>
+                                    </td>
+                                </div>
+                            </tr>
+                        </div>
+                        <!-- <tr>
+                            <td rowspan="4" class="first-th"></td>
+                            <th colspan="3">Всего за проект:</th>
+                            <td colspan="4">
+                                <span class="table-td-text ">
+                                <input required="" type="text"
+                                       class="form-control__table fsIn1"
+                                       oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                       placeholder="Сумма итого по оборудованию">
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th colspan="3">Скидка на оборудование:(%)</th>
+                            <td colspan="4">
+                                <span class="table-td-text">
+                                    <input required="" type="text"
+                                           th:value="${estimate.discountByTools}"
+                                           class="form-control__table fsIn2"
+                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                           placeholder="Скидка на оборудование">
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th colspan="3">Всего за проект с учетом скидки:</th>
+                            <td colspan="4">
+                                <span class="table-td-text">
+                                    <input required="" type="text"
+                                           class="form-control__table fsIn3"
+                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                           placeholder="Сумма итого по оборудованию*(100 на комплект)/100">
+                                </span>
+                            </td>
+                        </tr> -->
+                        <tr>
+                            <td colspan="8"></td>
+                        </tr>
+                        <tr>
+                            <td class="first-th add_transport"
+                                style="cursor: pointer; background: #fff; color: #000; font-size: 20px;">
+                                +
+                            </td>
+                            <th colspan="7" class="sat">Обслуживание и транспорт</th>
+                        </tr>
+                        <div th:each="list_tools: ${map_tools}">
+                            <div  th:each="tool :${list_tools.value}">
+                                <tr class="sat_item tableRow__forCalc tableRow__service" th:unless="${tool.section.toString()!='SERVICE'}">
+                                    <td class="first-th remove_transport"
+                                        style="cursor: pointer; background: #fff; color: #000; font-size: 20px;">
+                                        -
+                                    </td>
+                                    <td>
+                                        <select name="transportsSelect" id="" class="transportsSelect" placeholder="Вид" style="width: 100%">
+                                        <option disabled>
+                                          Выберите тип обслуживания
+                                        </option>
+                                        <option th:selected="${tool.name=='mechanic'}" value="mechanic">
+                                          Механик
+                                        </option>
+                                        <option th:selected="${tool.name=='focuspuller'}" value="focuspuller">
+                                          Фокуспуллер
+                                        </option>
+                                        <option th:selected="${tool.name=='mech-focus'}" value="mech-focus">
+                                          Мех-фокус
+                                        </option>
+                                        <option th:selected="${tool.name=='recycle'}" value="recycle">
+                                          Переработка
+                                        </option>
+                                        <option th:selected="${tool.name=='camerwagen'}" value="camerwagen">
+                                          Камерваген
+                                        </option>
+                                        <option th:selected="${tool.name=='taxi'}" value="taxi">
+                                          Такси
+                                        </option>
+                                        <option th:selected="${tool.name=='parking'}" value="parking">
+                                          Парковка
+                                        </option>
+                                        <option th:selected="${tool.name=='outside-mkad'}" value="outside-mkad">
+                                          Прогон за МКАД
+                                        </option>
+                                      </select></td>
+                                    <td><input th:value="${tool.priceByDay}" type="text"
+                                               class="form-control__table tableRow__price fIn1_t"
+                                               placeholder="Цена за смену"></td>
+                                    <td><input th:value="${tool.amount}" type="text"
+                                               class="form-control__table tableRow__amount fIn2_t"
+                                               placeholder="Количество"></td>
+                                    <td><input th:value="${tool.countShifts}" type="text"
+                                               class="form-control__table tableRow__shifts fIn3_t"
+                                               placeholder="Количество смен"></td>
+                                    <td>
+                                        <!-- <input type="text" th:value="${tool.discount}"
+                                               class="form-control__table tableRow__discount fIn4_t"
+                                               placeholder="Скидка"> -->
+                                    </td>
+                                    <td><span class="table-td-text fIn5_t tableRow__forCalcPerShift"></span></td>
+                                    <td><span class="table-td-text fIn6_t"></span></td>
+                                </tr>
+                            </div>
+                        </div>
+                        <!-- <tr>
+                            <td class="first-th"></td>
+                            <th colspan="3">Всего по обслуживанию и транспорту:</th>
+                            <td colspan="4">
+                                <span class="table-td-text ">
+                                    <input required="" type="text"
+                                           class="form-control__table fsIn1_t"
+                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                           placeholder="Сумма итого по ослуживанию">
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="first-th"></td>
+                            <th colspan="3">Итоговая сумма по проекту:</th>
+                            <td colspan="4">
+                                <span class="table-td-text">
+                                    <input required="" type="text"
+                                           class="form-control__table fsIn2_t"
+                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                           placeholder="Сумма итого по оборудованию + Сумма итого по ослуживанию">
+                                </span>
+                            </td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="first-th"></td>
+                            <th colspan="3">Процент УСН (%):</th>
+                            <td colspan="4">
+                                <span class="table-td-text">
+                                    <input required="" type="text"
+                                           th:value="${estimate.procentUsn}"
+                                           class="form-control__table fsIn3_USN_t"
+                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                           placeholder="Процент УСН (%)">
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="first-th"></td>
+                            <th colspan="3">Итоговая сумма УСН:</th>
+                            <td colspan="4">
+                                <span class="table-td-text">
+                                    <input required="" type="text"
+                                           class="form-control__table fsIn3_t"
+                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                           placeholder="Итоговая сумма по проекту/0.91/Ручной ввод">
+                                </span>
+                            </td>
+                        </tr> -->
+
+                        <!-- ! Fixed total calc -->
+                        <tr class="fixedTotalCalc__tools">
+                            <td class="fixedTotalCalc__desc" colspan="4"><span>Итоговая стоимость оборудования</span></td>
+                            <td class="fixedTotalCalc__toolsTotal" colspan="3">
+                                <div class="fixedTotalCalc__wrapper">
+                                    <div class="fixedTotalCalc__toolsTotalPerShift fixedTotalCalc__subRow">
+                                        <div class="fixedTotalCalc__desc">
+                                            В смену
+                                        </div>
+                                        <div class="fixedTotalCalc__val">
+                                            0
+                                        </div>
+                                    </div>
+                                    <div class="fixedTotalCalc__subRow">
+                                        <label>
+                                            <span class="fixedTotalCalc__labelText">
+                                                Скидка %
+                                            </span>
+                                            <input type="text" th:value="${estimate.discountByTools}" class="fixedTotalCalc__toolsTotalDiscount fixedTotalCalc__input" placeholder="Скидка %">
+                                        </label>
+                                    </div>
+                                    </input>
+                                    <div class="fixedTotalCalc__toolsTotalWithDiscount fixedTotalCalc__subRow">
+                                        <div class="fixedTotalCalc__desc">
+                                            С учетом скидки
+                                        </div>
+                                        <div class="fixedTotalCalc__val">
+                                            0
+                                        </div>
+                                    </div>
+                                    <div class="fixedTotalCalc__toolsTotalPerProject fixedTotalCalc__subRow">
+                                        <div class="fixedTotalCalc__desc">
+                                            За проект
+                                        </div>
+                                        <div class="fixedTotalCalc__val">
+                                            0
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="td_empty"></td>
+                        </tr>
+                        <tr class="fixedTotalCalc__service">
+                            <td class="fixedTotalCalc__desc" colspan="4"><span>Итоговая стоимость обслуживания</span></td>
+                            <td class="fixedTotalCalc__serviceTotal" colspan="3">
+                                <div class="fixedTotalCalc__wrapper">
+                                    <div class="fixedTotalCalc__serviceTotalPerShift fixedTotalCalc__subRow">
+                                        <div class="fixedTotalCalc__desc">
+                                            В смену
+                                        </div>
+                                        <div class="fixedTotalCalc__val">
+                                            0
+                                        </div>
+                                    </div>
+                                    <div class="fixedTotalCalc__serviceTotalPerProject fixedTotalCalc__subRow">
+                                        <div class="fixedTotalCalc__desc">
+                                            За проект
+                                        </div>
+                                        <div class="fixedTotalCalc__val">
+                                            0
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="td_empty"></td>
+                        </tr>
+                        <tr class="fixedTotalCalc__summ">
+                            <td class="fixedTotalCalc__desc" colspan="4"><span>Общая стоимость</span></td>
+                            <td class="fixedTotalCalc__summTotalRow" colspan="3">
+                                <div class="fixedTotalCalc__wrapper">
+                                    <div class="fixedTotalCalc__summTotal fixedTotalCalc__subRow">
+                                        <div class="fixedTotalCalc__desc">
+                                            За проект
+                                        </div>
+                                        <div class="fixedTotalCalc__val">
+                                            0
+                                        </div>
+                                    </div>
+                                    <div class="fixedTotalCalc__valOfUsn fixedTotalCalc__subRow">
+                                        <label>
+                                            <span class="fixedTotalCalc__labelText">
+                                                Процент УСН
+                                            </span>
+                                            <input type="number" th:value="${estimate.procentUsn}" class="fixedTotalCalc__usnInp fixedTotalCalc__input" placeholder="УСН %" min="0" max="100">
+                                        </label>
+                                    </div>
+                                    <div class="fixedTotalCalc__summTotalUsn fixedTotalCalc__subRow">
+                                        <div class="fixedTotalCalc__desc">
+                                            При оплате по УСН
+                                        </div>
+                                        <div class="fixedTotalCalc__val">
+                                            0
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="td_empty"></td>
+                        </tr>
+                        <!-- ! Fixed total calc -->
+                        </tbody>
+                    </table>
+
+
+                    <div class="buttons d-flex">
+                        <button type="submit" id="save_estimate" class="buttons_save">
+                            Сохранить смету
+                        </button>
+                    </div>
+
+                    <!-- <form th:action="@{/estimate/download-estimate/{id}/(id=${estimate.id})}" method="post"> -->
+                        <label class="d-block size uploadAsLabel">Выберите тип файлов:
+                            <select name="type_files" class="uploadAsSelect vs__selected-options main-secect__opions form-control my-select">
+                                <option name="type_files" class="item_block1__input_option"
+                                        th:each="type : ${T(wns.constants.TypeFiles).values()}"
+                                        th:text="${type.getType()}"
+                                        th:value="${type}">
+                                </option>
+                            </select>
+                        </label>
+                        <div class="buttons d-flex">
+                            <button type="submit" id="estimate_load_file" class="buttons_upload">
+                                Выгрузить
+                            </button>
+                        </div>
+                    <!-- </form> -->
+                </div>
+
+                <div class="pagination-control col-lg-12 order-lg-1">
+                    <!-- Bootstrap 4 -->
+                    <nav aria-label="Навигация по страницам">
+                        <ul class="pagination">
+                            <li class="page-item" th:if="${list_tools.totalPages > 0}"
+                                th:each="page_number : ${page_numbers}">
+                                <a class="page-link-m page-link"
+                                   th:href="@{/tools(size=${list_tools.size}, page=${page_numberStat.index})}"
+                                   th:text="${page_numberStat.index}"
+                                   th:class="${page_number==list_tools.number + 1} ? active"></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div th:insert="fragments/footer.html"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:insert="fragments/scripts.html"></div>
+</body>
+</html>

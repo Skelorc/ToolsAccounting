@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" th:href="@{/dist/static/img/logo/favicon.ico}">
+    <link rel="stylesheet" type="text/css" th:href="@{/dist/static/css/edit_user.css}">
+	<title>Редактирование пользователя</title>
+</head>
+<body>
+    <div class="projects_wrapper d-flex">
+        <div class="projects_wrapper__main d-flex">
+            <div th:replace="fragments/menu_sidebar.html"></div>
+            <div class="main_general d-flex">
+                <div class="main_general__content d-flex">
+                    <div class="main_general__content_panel d-flex pad-0_3">
+                        <div class="content_panel__name d-flex">
+                            Изменить данные пользователя
+                        </div>
+                        <div class="content_panel__text d-flex">
+                            Редактирование пользователя
+                        </div>
+                        <form th:action="@{/admin-panel/edit/{id}(id=${user.id})}" method="post"
+                              th:object="${user}" class="content_panel__form d-flex">
+                            <div class="content_panel__form_item d-flex">                        
+                                <label class="form_item__text">
+                                    Логин для нового пользователя
+                                </label>
+                                <input class="form_item__input" type="text" placeholder="Укажите логин"
+                                       th:field="*{username}" th:value="${user.getUsername()}">
+                            </div>
+                            <div class="content_panel__form_item d-flex">                            
+                                <label class="form_item__text">
+                                    Обновить пароль пользователя
+                                </label>
+                                <input class="form_item__input" type="password" placeholder="Укажите пароль"
+                                       th:field="*{password}" th:value="${user.getPassword()}">
+                            </div>
+                            <div class="content_panel__form_item d-flex">
+                                <label class="form_item__text">
+                                    Обновить ФИО пользователя
+                                </label>
+                                <input class="form_item__input" type="text" placeholder="Введите ФИО"
+                                       th:field="*{fullName}" th:value="${user.getFullName()}">
+                            </div>
+                            <div class="content_panel__form_item d-flex">
+                                <label class="form_item__text">
+                                    Обновить номер телефона пользователя
+                                </label>
+                                <input class="form_item__input" type="text" placeholder="Введите номер телефона"
+                                       th:field="*{phoneNumber}" th:value="${user.getPhoneNumber()}">
+                            </div>
+                            <div class="form_item__checkbox d-flex">
+                                <label class="form_item__checkbox_text">
+                                    Выберите новую роль
+                                </label>
+                                <div class="form_item__checkbox_select">
+                                <select th:field="*{roles}" class="checkbox_select__input">
+                                    <option selected disabled
+                                            th:value="${user.getRoles()}"
+                                            th:text="${'Текущая роль - '+ user.getRoles().getValue()}">
+                                    Выберите роль
+                                    </option>
+                                    <option th:each="role : ${roles}"
+                                            th:value="${role}"
+                                            th:text="${role}"
+                                            value="role">
+                                    </option>
+                                </select>
+                                </div>
+                            </div>
+                            <div class="form_item__button">
+                              <input class="form_item__button_input" type="submit" value="Обновить">
+                            </div>
+                          </form>
+                          <div class="content_panel__delete d-flex">
+                            <div class="content_panel__delete_text">
+                                Хотите удалить этого пользователя? 
+                            </div>
+                              <form style="margin-bottom: 1%;" th:method="post" th:action="@{/admin-panel/delete/{id}(id=${user.getId()})}">
+                                  <input class="content_panel__delete_input" type="submit" value="Удалить этого пользователя из базы данных!">
+                              </form>
+                          </div>
+                    </div>
+                    <div th:insert="fragments/footer.html"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:insert="fragments/scripts.html"></div>
+</body>
+</html>

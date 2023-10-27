@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" th:href="@{/dist/static/img/logo/favicon.ico}">
+    <link rel="stylesheet" type="text/css" th:href="@{/dist/static/css/estimate_name.css}">
+    <meta th:name="_csrf" th:content="${_csrf.token}"/>
+    <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <!--JQuery-->
+    <script type="text/javascript" th:src="@{/dist/static/js/jquery.js}"></script>
+    <!-- jQuery Modal -->
+    <script type="text/javascript" th:src="@{/dist/static/js/jquery.modal.js}"></script>
+    <link rel="stylesheet" th:href="@{/dist/static/css/jquery.modal.css}"/>
+    <title>Названия в смете</title>
+</head>
+<body>
+<div class="projects_wrapper d-flex">
+    <div class="projects_wrapper__main d-flex">
+        <div th:replace="fragments/menu_sidebar.html"></div>
+        <div class="main_general d-flex">
+            <div class="main_general__content d-flex">
+                <div class="main_general__content_article d-flex pad-0_3">
+                    <div class="content_article__buttons d-flex">
+                        <div class="content_article__buttons_text d-flex">
+                            Названия в смете
+                        </div>
+                        <a href="/tools" class="content_article__buttons_back d-flex">
+                            Назад
+                        </a>
+                    </div>
+                    <form th:action="@{/estimate-name}" method="post" th:object="${estimateName}"
+                          class="content_article__form d-flex">
+                        <div class="content_article__form_block d-flex">
+                            <div role="group col-12" class="content_article__form_title d-flex">
+                                <label class="form_title__text">Наименование в смете</label>
+                                <input class="form_title__input" th:field="*{name}" type="text"
+                                       placeholder="Наименование в смете" required>
+                            </div>
+                            <div role="group" class="content_article__form_group d-flex">
+                                <label class="form_group__text">Группа</label>
+                                <select class="form_group__select" id="categoryTools" th:field="*{categoryId}">
+                                    <option class="form_group__option" value="" disabled>
+                                        Выберите группу оборудования
+                                    </option>
+                                    <option class="form_group__option"
+                                            th:each="type : ${list_categories}"
+                                            th:value="${type.id}"
+                                            th:text="${type.getData()}">
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="content_article__form_button d-flex">
+                            <button type="submit" class="form_button__submit d-flex">
+                                Сохранить
+                            </button>
+                        </div>
+                    </form>
+                    <div class="content_article__tab d-flex">
+                        <table class="content_article__tab_table">
+                            <tr class="tab_table__name">
+                                <th class="tab_table__pos">#</th>
+                                <th class="tab_table__pos">Наименование в смете</th>
+                                <th class="tab_table__pos">Группа</th>
+                            </tr>
+                            <tr class="tab_table__line" th:each="estimate : ${list_estimates}">
+                                <td class="tab_table__col">
+                                    <input type="hidden" class="id_tool" th:value="${estimate.id}">
+                                    <span class="tool_id"
+                                          th:utext="${estimateStat.index+1}">
+                                    </span>
+                                </td>
+                                <td class="tab_table__col">
+                                    <a th:utext="${estimate.name}"
+                                       th:href="@{/estimate-name/edit/{id}/(id=${estimate.id})}"></a>
+                                </td>
+                                <td class="tab_table__col" th:utext="${estimate.categoryTools}"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="pagination-control col-lg-12 order-lg-1">
+                    <nav aria-label="Навигация по страницам">
+                        <ul class="pagination">
+                            <li class="page-item" th:if="${list_estimates.totalPages > 0}"
+                                th:each="page_number : ${page_numbers}">
+                                <a class="page-link-m page-link"
+                                   th:href="@{/estimate-name(size=${list_estimates.size}, page=${page_numberStat.index})}"
+                                   th:text="${page_numberStat.index}"
+                                   th:class="${page_number==list_estimates.number + 1} ? active"></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div th:insert="fragments/footer.html"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:insert="fragments/scripts.html"></div>
+</body>
+</html>

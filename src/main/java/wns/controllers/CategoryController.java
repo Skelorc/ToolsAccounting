@@ -1,6 +1,6 @@
 package wns.controllers;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("category")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class CategoryController {
     private final CategoryService categoryService;
     private final PageableFilterService pageableFilterService;

@@ -11,16 +11,13 @@ import wns.aspects.ToLog;
 import wns.constants.EstimateSection;
 import wns.constants.Filter;
 import wns.constants.StatusTools;
-import wns.dto.CalendarToolDTO;
-import wns.dto.Identifiers;
-import wns.dto.StatusToolDTO;
-import wns.dto.ToolsDTO;
+import wns.dto.*;
 import wns.entity.*;
 import wns.repo.ToolsRepo;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.Period;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -166,29 +163,51 @@ public class ToolsService {
     }
 
     @Transactional(readOnly = true)
-    public List<CalendarToolDTO> findAllByDates(LocalDate startDate) {
-        List<Tools> listTools = toolsRepo.findAllByStatusForCalendar(startDate);
-        CalendarToolDTO calendarToolDTO;
-        List<CalendarToolDTO> listData = new ArrayList<>();
+    public List<CalendarDataDTO> findAllByFilter(LocalDate startDate, CalendarFilterDTO filterDTO) {
+        LocalDateTime start = LocalDateTime.of(startDate, LocalTime.of(0, 0));
+        LocalDateTime end;
+        if (filterDTO.getFilter().equals(Filter.TOOLS_BY_WEEK))
+            end = LocalDateTime.of(startDate.plusWeeks(1), LocalTime.of(0, 0));
+        else
+            end = LocalDateTime.of(startDate.plusMonths(1), LocalTime.of(0, 0));
+        List<Tools> listFromDb = toolsRepo.findAllByStatusForCalendar(start, end);
+        List<Tools> listTools = filteringListTools(listFromDb, filterDTO.getFilters());
+        CalendarDataDTO calendarToolDTO;
+        List<CalendarDataDTO> listData = new ArrayList<>();
         for (Tools tool : listTools) {
+            Status status = tool.getStatus();
             if (listData.isEmpty()) {
-                calendarToolDTO = new CalendarToolDTO(tool);
-                calendarToolDTO.addDataToList(tool);
+                calendarToolDTO = new CalendarDataDTO(tool.getName(), tool.getId(), tool.getStatus().getCreated());
+                calendarToolDTO.addDataToList(status.getStart(), status.getEnd(), status.getStatusTools().toString());
                 listData.add(calendarToolDTO);
             } else {
-                Optional<CalendarToolDTO> calendarToolDTOOptional = listData.stream().filter(x -> x.getName().equals(tool.getName())).findAny();
-                if(calendarToolDTOOptional.isEmpty()) {
-                    calendarToolDTO = new CalendarToolDTO(tool);
-                    calendarToolDTO.addDataToList(tool);
+                Optional<CalendarDataDTO> calendarToolDTOOptional = listData.stream().filter(x -> x.getName().equals(tool.getName())).findAny();
+                if (calendarToolDTOOptional.isEmpty()) {
+                    calendarToolDTO = new CalendarDataDTO(tool.getName(), tool.getId(), tool.getStatus().getCreated());
+                    calendarToolDTO.addDataToList(status.getStart(), status.getEnd(), status.getStatusTools().toString());
                     listData.add(calendarToolDTO);
-                }
-                else
-                {
-                    calendarToolDTOOptional.get().addDataToList(tool);
-                }
+                } else
+                    calendarToolDTOOptional.get().addDataToList(status.getStart(), status.getEnd(), status.getStatusTools().toString());
             }
-
         }
         return listData;
     }
+
+
+    private List<Tools> filteringListTools(List<Tools> listTools, FiltersDTO filters) {
+        List<Tools> resultList = new ArrayList<>();
+        for (Tools tool : listTools) {
+            if (!filters.getClients().isEmpty() && !tool.getProject().getClient().getFullName().equals(filters.getClients()))
+                continue;
+            if (!filters.getManagers().isEmpty() && !tool.getProject().getEmployee().equals(filters.getManagers()))
+                continue;
+            if (!filters.getNames().isEmpty() && !tool.getName().equals(filters.getNames()))
+                continue;
+            if (!filters.getTypes().isEmpty() && !tool.getSection().toString().equals(filters.getTypes()))
+                continue;
+            resultList.add(tool);
+        }
+        return resultList;
+    }
+
 }

@@ -2,15 +2,11 @@ package wns.entity;
 
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
-import wns.constants.CategoryTools;
 import wns.constants.EstimateSection;
-import wns.constants.TypeTools;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -102,8 +98,9 @@ public class Tools{
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @OneToMany(mappedBy = "tools", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<Comments> commentsList;
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name = "comment_id", referencedColumnName = "id")
+    private Comment comment;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "photos_tools", joinColumns = @JoinColumn(name = "tools_id"))

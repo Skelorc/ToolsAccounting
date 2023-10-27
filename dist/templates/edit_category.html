@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" th:href="@{/dist/static/img/logo/favicon.ico}">
+    <link rel="stylesheet" type="text/css" th:href="@{/dist/static/css/edit_category.css}">
+    <title>Редактирование категории</title>
+</head>
+<body>
+<div class="projects_wrapper d-flex">
+    <div class="projects_wrapper__main d-flex">
+        <div th:replace="fragments/menu_sidebar.html"></div>
+        <div class="main_general d-flex">
+            <div class="main_general__content d-flex">
+                <div class="main_general__content_article d-flex pad-0_3">
+                    <div class="content_article__name d-flex">
+                        <div class="content_article__name_text d-flex">
+                            Категория
+                        </div>
+                        <a href="#" class="content_article__name_back d-flex">
+                            Назад
+                        </a> 
+                    </div>
+                    <form th:action="@{/category/edit/{id}(id=${category.id})}" method="post"
+                          th:object="${category}" class="content_article__form d-flex">
+                        <div class="content_article__form_block d-flex">
+                            <div class="content_article__form_item d-flex">
+                                <label class="form_title__text">Название категории</label>
+                                <input class="form_title__input" required type="text"
+                                       th:field="*{name}" th:value="${category.name}" placeholder="Название категории">
+                            </div>
+                            <div class="content_article__form_item d-flex">
+                                <label class="form_title__text">Код</label>
+                                <input class="form_title__input" required type="text" th:field="*{code}"
+                                       th:value="${category.code}" placeholder="Код">
+                            </div>
+                        </div>
+                        <div class="content_article__form_button d-flex">
+                            <button type="submit" class="form_button__submit d-flex">
+                                Обновить
+                            </button>
+                        </div>
+                    </form>
+                    <form th:action="@{/category/delete/{id}(id=${category.id})}" method="post" class="content_article__form_button__red d-flex">
+                        <button type="submit" class="form_button__submit_red d-flex">
+                            Удалить категорию
+                        </button>
+                    </form>
+                </div>
+                <div th:insert="fragments/footer.html"></div>
+            </div>
+        </div>
+    </div>
+    <div th:insert="fragments/scripts.html"></div>
+</div>
+</body>
+</html>

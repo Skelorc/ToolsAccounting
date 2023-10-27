@@ -2,13 +2,11 @@ package wns.controllers;
 
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import wns.constants.EstimateSection;
 import wns.constants.Filter;
 import wns.constants.Messages;
 import wns.constants.StatusTools;
@@ -20,12 +18,8 @@ import wns.entity.*;
 import wns.services.*;
 import wns.utils.ResponseHandler;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @Controller
 @RequestMapping("tools")
@@ -38,6 +32,7 @@ public class ToolsController {
     private final PageableFilterService pageableFilterService;
     private final RoleContactService roleContactService;
     private final OwnerService ownerService;
+    private final CommentsService commentsService;
 
     @GetMapping()
     public String show(@RequestParam(value = "page", required = false) Optional<Integer> page,
@@ -75,7 +70,7 @@ public class ToolsController {
 
     @GetMapping("/edit/{id}")
     public String showToolForUpdate(@PathVariable("id") long id, Model model) {
-        model.addAttribute("tool", toolsService.findById(id));
+        model.addAttribute("tool", new ToolsDTO(toolsService.findById(id)));
         model.addAttribute("list_owners", ownerService.getAll());
         model.addAttribute("list_category", categoryService.getAll());
         model.addAttribute("list_names_estimate", estimateNameService.getAll());
@@ -83,8 +78,20 @@ public class ToolsController {
     }
 
     @PostMapping("/edit/{id}")
-    public String updateTool(@ModelAttribute Tools tools)
+    @Transactional
+    public String updateTool(@ModelAttribute ToolsDTO dto)
     {
+        Tools tools = dto.FromDTOToTools(toolsService.findById(dto.getId()));
+        Comment comment = commentsService.getByTools(tools);
+        comment.setText(dto.getComment());
+        tools.setComment(comment);
+        Status status = tools.getStatus();
+        status.setStatusTools(dto.getStatus());
+        Owner owner = ownerService.getById(dto.getOwnerId());
+        tools.setOwner(owner);
+        Category category = categoryService.getById(dto.getCategoryId());
+        tools.setCategory(category);
+        statusService.save(status);
         toolsService.updateTool(tools);
         return "redirect:/tools";
     }

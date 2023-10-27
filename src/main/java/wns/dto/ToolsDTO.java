@@ -3,17 +3,15 @@ package wns.dto;
 
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
-import wns.constants.CategoryTools;
+import wns.constants.EstimateSection;
 import wns.constants.StatusTools;
-import wns.constants.TypeTools;
-import wns.entity.EstimateName;
-import wns.entity.Project;
-import wns.entity.Status;
 import wns.entity.Tools;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @Getter
@@ -23,6 +21,7 @@ import java.util.Set;
 public class ToolsDTO {
     private long id;
     private String owner;
+    private long ownerId;
     private String name;
     private String barcode;
     private String category;
@@ -32,6 +31,7 @@ public class ToolsDTO {
     private String equip;
     private int amount;
     private String state;
+    private EstimateSection section;
     private StatusTools status;
     private String status_string;
     private long id_status;
@@ -39,9 +39,10 @@ public class ToolsDTO {
     private long id_project;
     private String estimateName;
     private String categoryToolsFromEstimate;
-    private long id_estimate_name;
+    private long categoryId;
+    private long estimateNameId;
     private String comment;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate creating;
     private long costPrice;
     private int priceByDay;
@@ -55,20 +56,23 @@ public class ToolsDTO {
     private int priceSublease;
     private int paymentSublease;
     private int incomeAdditional;
-    private Set<String> photos = new HashSet<>();
+    private String photos;
 
     public ToolsDTO(Tools tools) {
         this.id = tools.getId();
         this.owner = tools.getOwner().getName();
+        this.ownerId = tools.getOwner().getId();
         this.name = tools.getName();
         this.barcode = tools.getBarcode();
         this.category = tools.getCategory().getName();
+        this.categoryId = tools.getCategory().getId();
         this.model = tools.getModel();
         this.serialNumber = tools.getSerialNumber();
         this.characteristics = tools.getCharacteristics();
         this.equip = tools.getEquip();
         this.amount = tools.getAmount();
         this.state = tools.getState();
+        this.section = tools.getSection();
         this.status = tools.getStatus().getStatusTools();
         this.id_status = tools.getStatus().getId();
         this.status_string = tools.getStatus().getStatusTools().getValue();
@@ -80,11 +84,11 @@ public class ToolsDTO {
         }
         this.estimateName = tools.getEstimateName().getName();
         this.categoryToolsFromEstimate = tools.getEstimateName().getCategory().getData();
-        this.id_estimate_name = tools.getEstimateName().getId();
-        if (tools.getCommentsList().isEmpty())
-            comment = "Нет комментария";
+        this.estimateNameId = tools.getEstimateName().getId();
+        if (tools.getComment() != null)
+            this.comment = tools.getComment().getText();
         else
-            comment = tools.getCommentsList().get(tools.getCommentsList().size() - 1).getText();
+            comment = "";
         this.creating = tools.getCreating();
         this.costPrice = tools.getCostPrice();
         this.priceByDay = tools.getPriceByDay();
@@ -98,8 +102,37 @@ public class ToolsDTO {
         this.priceSublease = tools.getPriceSublease();
         this.paymentSublease = tools.getPaymentSublease();
         this.incomeAdditional = tools.getIncomeAdditional();
-        this.photos.addAll(tools.getStatus().getPhotos());
+        this.photos = tools.getPhotos().stream().collect(Collectors.joining(","));
     }
+
+    public Tools FromDTOToTools(Tools tools) {
+        tools.setSection(section);
+        tools.setAmount(amount);
+        tools.setBarcode(barcode);
+        tools.setCharacteristics(characteristics);
+        tools.setPhotos(new HashSet<>(Arrays.asList(photos.split(","))));
+        tools.setName(name);
+        tools.setModel(model);
+        tools.setSerialNumber(serialNumber);
+        tools.setEquip(equip);
+        tools.setState(state);
+        tools.setCreating(creating);
+        tools.setCostPrice(costPrice);
+        tools.setPriceByDay(priceByDay);
+        tools.setIncomeFromTools(incomeFromTools);
+        tools.setPriceSell(priceSell);
+        tools.setIncomeSales(incomeSales);
+        tools.setIncomeInvestorProcents(incomeInvestorProcents);
+        tools.setIncomeInvestor(incomeInvestor);
+        tools.setRepairAmount(repairAmount);
+        tools.setNumberWorkingShifts(numberWorkingShifts);
+        tools.setPriceSublease(priceSublease);
+        tools.setPaymentSublease(paymentSublease);
+        tools.setIncomeAdditional(incomeAdditional);
+        tools.setPaymentSublease(paymentSublease);
+        return tools;
+    }
+
 
 }
 

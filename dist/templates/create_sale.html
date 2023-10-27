@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" th:href="@{/dist/static/img/logo/favicon.ico}">
+    <link rel="stylesheet" type="text/css" th:href="@{/dist/static/css/create_sale.css}">
+    <meta th:name="_csrf" th:content="${_csrf.token}"/>
+    <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <!--JQuery-->
+    <script type="text/javascript" th:src="@{/dist/static/js/jquery.js}"></script>
+    <!-- jQuery Modal -->
+    <script type="text/javascript" th:src="@{/dist/static/js/jquery.modal.js}"></script>
+    <link rel="stylesheet" th:href="@{/dist/static/css/jquery.modal.css}"/>
+    <title>Продажа-Создать</title>
+</head>
+<body>
+<div class="projects_wrapper d-flex">
+    <div class="projects_wrapper__main d-flex">
+        <div th:replace="fragments/menu_sidebar.html"></div>
+        <div class="main_general d-flex">
+            <div class="main_general__content d-flex">
+                <div class="content_article__buttons_up d-flex">
+                    <div class="buttons_up__text d-flex">
+                        Продажа
+                    </div>
+                    <a href="/sale" class="buttons_up__yellow d-flex">
+                        Назад
+                    </a>
+                    <a href="/tools/create" class="buttons_up__green d-flex">
+                        Добавить оборудование
+                    </a>
+                </div>
+                <div class="content_article__form d-flex fd-col pad-0_3">
+
+
+                    <div class="form__item d-flex fd-col">
+                        <div class="form__item__text_button d-flex" style="margin-bottom: 0.5%;">
+                            <label class="text_button__text">Покупатель</label>
+                            <a th:href="@{/clients/create}" class="text_button__button d-flex">Новый покупатель</a>
+                        </div>
+                        <div class="form__item__select_option d-flex fd-col">
+                            <select class="select_option__select" id="sale_data" required>
+                                <option class="select_option__option" value="" disabled>
+                                    Выберите покупателя
+                                </option>
+                                <option class="select_option__option"
+                                        th:each="clientDTO : ${clients}"
+                                        th:value="${clientDTO.fullName+','+clientDTO.phoneNumber}"
+                                        th:text="${clientDTO.fullName}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="form_item d-flex fd-col">
+                        <label> Укажите дату и время продажи
+                            <input class="form1_left__input form-control" required type="datetime-local" id="start" value="T21:44:27"/>
+                        </label>
+                        <label class="form_item_text">Примечание</label>
+                        <textarea class="form_item__textarea" rows="2" id="note_sale" name="note"></textarea>
+                    </div>
+                    <div class="form_item d-flex fd-col">
+                        <label class="form_item_text">Фотографии</label>
+                        <textarea class="form_item__textarea" rows="2" id="photos_sale" name="photos"></textarea>
+                    </div>
+
+                    <div id="edit_buttons" class="edit_buttons d-flex">
+                        <div class="edit_buttons__block">
+                            <input class="edit_buttons__block_link__green" type="submit" id="update_client"
+                                   value="Обновить">
+                        </div>
+                        <div class="edit_buttons__block">
+                            <input class="edit_buttons__block_link__red" type="submit" id="delete_client"
+                                   value="Удалить">
+                        </div>
+                    </div>
+
+                    <div class="form__item d-flex">
+                        <input id="barcode_search_input" name="barcode" type="text" placeholder="Введите штрих код"
+                               class="form_item__input">
+                    </div>
+                </div>
+                <div class="content_article__table d-flex fd-col">
+                    <table class="content_table__info">
+                        <tr class="content_table__info_name">
+                            <th class="content_table__info_pos">#</th>
+                            <th class="content_table__info_pos">Наименование</th>
+                            <th class="content_table__info_pos">Цена продажи</th>
+                            <th class="content_table__info_pos">Штрих код</th>
+                            <th class="content_table__info_pos">Группа</th>
+                            <th class="content_table__info_pos">Марка/Модель</th>
+                            <th class="content_table__info_pos">Серийный номер</th>
+                            <th class="content_table__info_pos">Комментарий</th>
+                            <th class="content_table__info_pos">Характеристики</th>
+                            <th class="content_table__info_pos">Состояние</th>
+                            <th class="content_table__info_pos">Цена</th>
+                            <th class="content_table__info_pos">Себестоимость</th>
+                            <th class="content_table__info_pos">Комплект</th>
+                        </tr>
+                        <tr class="content_table__info_line row-tool" th:each="tool,itemStat : ${list_tools}">
+                            <td class="content_table__info_column">
+                                <input class="ids" type="checkbox">
+                                <input type="hidden" th:value="${tool.id}">
+                            </td>
+                            <td class="content_table__info_column" th:utext="${tool.name}"></td>
+                            <td class="content_table__info_column">
+                                <input id="price_sell_tool" name="price"
+                                       class="sell_price" type="text"
+                                       oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g,'$1');">
+                            </td>
+                            <td class="content_table__info_column barcode-tool" th:utext="${tool.barcode}"></td>
+                            <td class="content_table__info_column" th:utext="${tool.category}"></td>
+                            <td class="content_table__info_column" th:utext="${tool.model}"></td>
+                            <td class="content_table__info_column" th:utext="${tool.serialNumber}"></td>
+                            <td class="content_table__info_column" th:utext="${tool.comment}"></td>
+                            <td class="content_table__info_column" th:utext="${tool.characteristics}"></td>
+                            <td class="content_table__info_column" th:utext="${tool.state}"></td>
+                            <td class="content_table__info_column" th:utext="${tool.costPrice}"></td>
+                            <td class="content_table__info_column" th:utext="${tool.priceSell}"></td>
+                            <td class="content_table__info_column" th:utext="${tool.equip}"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="content_article__send_yellow d-flex">
+                    <input id="sale_on" type="button" class="send_yellow__button" value="В продажу">
+                </div>
+
+                <div class="pagination-control col-lg-12 order-lg-1">
+                    <!-- Bootstrap 4 -->
+                    <nav aria-label="Навигация по страницам">
+                        <ul class="pagination">
+                            <li class="page-item" th:if="${list_tools.totalPages > 0}"
+                                th:each="page_number : ${page_numbers}">
+                                <a class="page-link-m page-link"
+                                   th:href="@{/sale/create(size=${list_tools.size}, page=${page_numberStat.index})}"
+                                   th:text="${page_numberStat.index}"
+                                   th:class="${page_number==list_tools.number + 1} ? active"></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div th:insert="fragments/footer.html"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:insert="fragments/scripts.html"></div>
+<div>
+    <script src="/static/js/SearchBarcode.js" th:src="@{/dist/static/js/SearchBarcode.js}"></script>
+</div>
+</body>
+</html>

@@ -56,7 +56,8 @@ public class EstimateNameController {
     @PostMapping("/edit/{id}")
     public String update(@ModelAttribute("estimateName") EstimateNameDTO estimateName)
     {
-        estimateNameService.save(estimateName);
+        Category category = categoryService.findById(estimateName.getCategoryId());
+        estimateNameService.save(estimateName,category);
         return "redirect:/estimate-name";
     }
     @PostMapping("/delete/{id}")

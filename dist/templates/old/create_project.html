@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+
+<head class="head">
+    <title>Создание проекта</title>
+    <div th:replace="fragments/head :: header"></div>
+    <!-- <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+      <meta name="robots" content="index, follow">
+      <meta name="author" content="">
+      <meta property="og:url" content="https://site.ru">
+      <meta property="og:title" content="MAD DOG">
+      <meta property="og:image:type" content="image/jpeg">
+      <meta property="og:image:width" content="640">
+      <meta property="og:image:height" content="442">
+      <meta property="og:description" content="">
+      <meta property="og:site_name" content="Site-name">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="author" content="Andrey">
+      <meta name="description" content="MAD DOG">
+      <meta name="keywords" content="MAD DOG">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta property="og:title" content="MAD DOG - сервис для учета и автоматизации проката">
+      <meta property="og:image" content="assets/img/icons/badge.jpg" th:src="@{/img/icons/badge.jpg}">
+      <meta property="og:image:type" content="image/jpeg">
+      <meta property="og:image:width" content="1024">
+      <meta property="og:image:height" content="1024">
+      <meta property="og:description" content="Программа для учёта инструментов">
+      <link rel="image_src" href="/static/img/icons/badge.jpg" th:href="@{/img/icons/badge.jpg}">
+      <meta name="theme-color" content="#179d82">
+      <meta th:name="_csrf" th:content="${_csrf.token}"/>
+      <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+      <link rel="manifest" href="/templates/assets/json/manifest.json" th:href="@{/templates/assets/json/manifest.json}">
+
+      <link rel="preload" href="../static/fonts/fontawesome/fontawesome-all-css.css" as="style" th:href="@{/fonts/fontawesome/fontawesome-all-css.css}">
+      <link rel="preload" href="../static/css/style.css" as="style" th:href="@{/css/style.css}">
+      <link rel="preload" href="../static/css/app.css" as="style" th:href="@{/css/app.css}">
+      <link rel="preload" href="../static/css/media.css" as="style" th:href="@{/css/media.css}">
+      <link rel="preload" href="../static/css/checkout.css" as="style" th:href="@{/css/checkout.css}">
+      <link rel="preload" href="../static/css/main.css" as="style" th:href="@{/css/main.css}">
+
+
+      <link rel="stylesheet" href="../static/fonts/webfonts/fa-solid-900.ttf" th:href="@{/fonts/webfonts/fa-solid-900.ttf}">
+      <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+      <link rel="stylesheet" href="../static/css/app.css" th:href="@{/css/app.css}">
+      <link rel="stylesheet" href="../static/css/media.css" th:href="@{/css/media.css}">
+      <link rel="stylesheet" href="../static/css/animation-iror.css" th:href="@{/css/animation-iror.css}">
+      <link rel="stylesheet" href="../static/fonts/fontawesome/fontawesome.css" th:href="@{/fonts/fontawesome/fontawesome.css}">
+      <link rel="stylesheet" href="../static/fonts/fontawesome/fontawesome-all-css.css" th:href="@{/fonts/fontawesome/fontawesome-all-css.css}">
+      <link rel="stylesheet" href="../static/css/checkout.css" th:href="@{/css/checkout.css}">
+      <link rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}">
+
+      <script src="/static/fonts/fontawesome/all.js" th:src="@{/fonts/fontawesome/all.js}"></script>
+
+      <script src="/static/js/jquery.js" th:src="@{/js/jquery.js}"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"  th:src="@{/js/jquery.modal.js}"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" th:href="@{/css/jquery.modal.css}" />
+       <link rel="stylesheet" href="/static/css/datepicker.css" th:href="@{/css/datepicker.css}">-->
+</head>
+
+<body class="fixed-sidebar pace-done fixed-nav fixed-nav-basic curent-page">
+<div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
+    <div class="b-overlay-wrap position-relative w-100" size="sm" id="wrapper">
+        <div th:insert="fragments/menu_sidebar.html"></div>
+        <!--<nav role="navigation" class="rih-nav">
+            <div class="nav-header text-center sidebar-collapse__menu-logo rih-nav__header">
+                <a href="#" class="main-link">
+                    <div class="sidebar-collapse__menu-logo">
+                        <img class="sidebar-collapse__menu-logo_img" th:src="@{/img/logo/mad-dog-logo.png}">
+                    </div>
+                    <div class="sidebar-collapse__menu-title">
+                        <h4 class="sidebar-collapse__menu-title_text">MAD DOG</h4>
+                    </div>
+                </a>
+            </div>
+            <ul id="side-menu" class="nav metismenu rih-nav__list">
+                <li data-id="15" data-parent_id="2">
+                    <a class="vidacha activ-page" th:href="@{/}" data-link="RentBookingApp" ><b><i
+                            class="fa fa-boxes" ></i></b>
+                        <span class="nav-label">Проекты</span>
+                    </a>
+                </li>
+                &lt;!&ndash;<li data-id="4" data-parent_id="2">
+                    <a class="priemka" th:href="@{/acceptance}"><b><i class="fa fa-user-tie"></i></b>
+                        <span class="nav-label">Приемка</span>
+                    </a>
+                </li>&ndash;&gt;
+                <li data-id="310828" data-parent_id="2">
+                    <a class="calendar" th:href="@{/calendar}" ><b><i class="fa fa-calendar-alt"></i></b>
+                        <span class="nav-label">Календарь</span>
+                    </a>
+                </li>
+                <li data-id="8" data-parent_id="2">
+                    <a class="tools" th:href="@{/tools}" data-link="InventoryApp"><b><i
+                            class="fa fa-cubes"></i></b>
+                        <span class="nav-label">Оборудование</span>
+                    </a>
+                </li>
+                <li data-id="170807" data-parent_id="2">
+                    <a class="clients" th:href="@{/clients}" data-link="KitApp"><b><i
+                            class="fa fa-users"></i></b>
+                        <span class="nav-label">Клиенты</span>
+                    </a>
+                </li>
+                <li data-id="22" data-parent_id="2">
+                    <a class="remont" href="/repair" th:href="@{/repair}" data-link="RentApp"><b><i
+                            class="fa fa-wrench"></i></b>
+                        <span class="nav-label">Ремонт</span>
+                    </a>
+                </li>
+                <li data-id="9" data-parent_id="2">
+                    <a class="spisanie" th:href="@{/write-off}" data-link="LkSettingsBaseApp"><b><i class="fa fa-shopping-cart"></i></b>
+                        <span class="nav-label">Списание</span>
+                    </a>
+                </li>
+                <li data-id="12" data-parent_id="2">
+                    <a class="prodaza" th:href="@{/sale}"><b><i class="fa fa-shopping-cart"></i></b>
+                        <span class="nav-label">Продажа</span>
+                    </a>
+                </li>
+                <li data-id="12" data-parent_id="2" sec:authorize="hasAuthority('ADMIN')">
+                    <a class="admin-panel" th:href="@{/admin-panel}"><b><i
+                            class="fa fa-cogs"></i></b>
+                        <span class="nav-label">Панель Администратора</span>
+                    </a>
+                </li>
+                <li data-id="5" data-parent_id="2">
+                    <a class="otchety" href="/reports" data-link="HumanClientApp" ><b><i
+                            class="fa fa-users"></i></b>
+                        <span class="nav-label">Отчеты</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="text-center" id="ex1">
+                <p id="alert_message" class="font-bold"></p>
+            </div>
+        </nav>-->
+        <div class="b-overlay-wrap position-relative w-100" size="sm">
+
+            <div class="rih-page-wrapper">
+                <nav role="navigation" class="navbar navbar-admin navbar-fixed-top"
+                     th:insert="fragments/header_logout.html">
+                </nav>
+                <main class="wrapper wrapper-content">
+                    <div class="b-overlay-wrap position-relative" size="sm">
+                        <div class="project__creat mb-3">
+                            <div class="btn-pimary__groups-wrapper vidacha-sozdach mb-3 vidacha-sozdach">
+                                <div class="mb-3 text-right">
+                                    <span class="btn-pimary__groups_title">Проект</span>
+                                </div>
+                                <div class="mb-3 text-right">
+                                    <a href="/" class="btn btn-primary width my-yellow">Назад</a>
+                                </div>
+                            </div>
+                            <div class="p-3 edit-container d-block col-8 col-md-12">
+                                <div class="row form-creat__half-wrapp">
+                                    <div class="form-creat__half_two-column">
+                                        <div role="group" class="form-group">
+                                            <label class="d-block size">Статус</label>
+                                            <select id="status" name="status_tool"
+                                                    class="vs__selected-options main-secect__opions form-control my-select"
+                                                    required>
+                                                <option class="vs__selected vs__dropdown-toggle my-select">
+                                                    Выберите статус проекта
+                                                </option>
+                                                <option class="vs__selected vs__dropdown-toggle"
+                                                        th:each="status: ${T(wns.constants.StatusProject).values()}"
+                                                        th:value="${status}"
+                                                        th:text="${status.getStatus()}">
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-creat__half_two-column">
+                                        <div role="group" class="form-group">
+                                            <label class="d-block size">Наименование</label>
+                                            <input id="name" placeholder="Имя проекта" name="fromComing" type="text"
+                                                   class="form-control" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-creat__half_two-column">
+                                        <div role="group" class="form-group">
+                                            <label class="d-block size">Укажите время занятости</label>
+                                            <div class="vdpComponent vdpWithInput">
+                                                <input id="word_date" class="form-control  form-control-date" required/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <script type="text/javascript">
+                                        $(document).ready(function () {
+                                            $('.form-control-date').datepicker({
+                                                weekStart: 1,
+                                                multidate: true,
+                                                isRTL: false,
+                                                format: 'dd.mm.yyyy',
+                                                language: 'ru',
+                                            });
+                                        });
+                                    </script>
+                                    <div class="form-creat__half_two-column">
+                                        <div class="form-group">
+                                            <label class="d-block size">Укажите ссылки на фото через запятую</label>
+                                            <textarea id="photos" name="photos" class="form-control"
+                                                      style="height: 40px"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row form-creat__half-wrapp">
+                                    <div class="form-creat__half_two-column">
+                                        <div role="group" class="form-group">
+                                            <label class="d-block size">Собственник</label>
+                                            <select class="vs__selected-options main-secect__opions form-control my-select"
+                                                    id="typeLease" required>
+                                                <option
+                                                        class="vs__selected vs__dropdown-toggle"
+                                                        th:each="type: ${T(wns.constants.TypeLease).values()}"
+                                                        th:value="${type}"
+                                                        th:text="${type.getType()}">
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-creat__half_two-column">
+                                        <div role="group" class="form-group">
+                                            <label class="d-block size">Класс</label>
+                                            <select class="vs__selected-options main-secect__opions form-control my-select"
+                                                    id="classification" required>
+                                                <option
+                                                        class="vs__selected vs__dropdown-toggle"
+                                                        th:each="classification: ${T(wns.constants.ClassificationProject).values()}"
+                                                        th:value="${classification}"
+                                                        th:text="${classification.getValue()}">
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-creat__half_two-column">
+                                        <div role="group" class="form-group">
+                                            <label class="d-block size">Создан</label>
+                                            <div class="vdpComponent vdpWithInput">
+                                                <input id="created" class="form-control" type="datetime-local"
+                                                       placeholder="дд.мм.гггг" required/>
+                                                <script th:inline="javascript">
+                                                    var date = new Date();
+                                                    var day = date.getDate();
+                                                    var month = date.getMonth() + 1;
+                                                    var year = date.getFullYear();
+                                                    var hour = date.getHours();
+                                                    var minutes = date.getMinutes();
+
+                                                    if (day < 10) day = '0' + day;
+                                                    if (month < 10) month = '0' + month;
+                                                    if (hour < 10) hour = '0' + hour;
+                                                    if (minutes < 10) minutes = '0' + minutes;
+
+                                                    $("#created").val(year + "-" + month + "-" + day + "T" + hour + ":" + minutes);
+                                                </script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-creat__half_two-column">
+                                        <div class="mb-3 rent__client__buttons">
+                                                <span class="d-inline-block label-name size">
+                                                    Укажите клиента
+                                                </span>
+                                            <a href="/clients/create" title="Добавить Клиентa"
+                                               class="btn btn-primary width btn-xs size my-green"
+                                               style="padding-top: 5px;">Новый клиент
+                                            </a>
+                                        </div>
+                                        <select id="client_id" required
+                                                class="vs__selected-options main-secect__opions form-control executor my-select">
+                                            <option class="vs__selected vs__dropdown-toggle" value="" disabled>
+                                                Выберите клиента
+                                            </option>
+                                            <option class="vs__selected vs__dropdown-toggle"
+                                                    th:each="client : ${clients}" th:value="${client.id}"
+                                                    th:text="${client.fullName}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="edit-container col-8 col-md-6">
+                                    <div class="row form-creat__half-wrapp">
+                                        <div class="form-creat__half_two-column">
+                                            <div class="form-group">
+                                                <label class="d-block size">Примечание</label>
+                                                <textarea id="note" name="" class="form-control" rows="4"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Tab content -->
+                                <div class="tabcontent mb-3">
+                                    <div class="project__creat">
+                                        <div class="wrapper__btn-primary vidacha-sozdach col-8 col-md-12">
+                                            <div class="mb-3 text-right">
+                                                <span class="btn-pimary__groups_title size">Список оборудования</span>
+                                            </div>
+                                            <div class="mb-3 text-right">
+                                                <a href="/tools/create" class="btn btn-primary width my-green"
+                                                   style="height: 100%;">Добавить</a>
+                                            </div>
+                                            <div class="mb-3 text-right ">
+                                                <a href="#" class="btn btn-primary width my-green">Добавить
+                                                    оборудование из другого проекта</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="btn-pimary__groups-wrapper mb-3 order-lg-1">
+                                    <div class="btn__under-table">
+                                        <div class="mb-3 text-right">
+                                            <a href="#" class="btn btn-primary width my-yellow">Единый список</a>
+                                        </div>
+                                        <div class="mb-3 text-right">
+                                            <a href="#" class="btn btn-primary width my-yellow">Просмотр по группам</a>
+                                        </div>
+                                        <div class="mb-3 text-right">
+                                            <a href="#" class="btn btn-primary width my-yellow">Просмотр по разделам
+                                                сметы</a>
+                                        </div>
+                                        <div class="mb-3 text-right">
+                                            <a href="#" class="btn btn-primary width my-red">Сбросить фильтр</a>
+                                        </div>
+                                        <div class="custom-ll__header-zipcode custom-ll__header-zipcode_project ml-3">
+                                            <div class="custom-ll__header__full show">
+                                                <div class="custom-ll__header__full__right">
+                                                    <div class="custom-ll__header-wrapp">
+                                                        <div class="header__search header__search_width zip-cod__input-width">
+                                                            <input id="barcode_search_input"
+                                                                   type="search" name="barcode"
+                                                                   placeholder="Введите штрих код"
+                                                                   class="form-control ml-3">
+                                                            <span class="header__search__btn"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="table__info table__vidacha-sozdat_wrapp mb-3">
+                                    <div class="table__vidacha-sozdat">
+                                        <table class="in4dr-form  delivery h-table w-table transparent">
+                                            <tr>
+                                                <th class="first-th">#</th>
+                                                <th>Наименование</th>
+                                                <th>Штрихкод</th>
+                                                <th>Группа</th>
+                                                <th>Марка/Модель</th>
+                                                <th>Серийный номер</th>
+                                                <th>Коментарий</th>
+                                                <th>Характеристики</th>
+                                                <th>Состояние</th>
+                                                <th>Стоимость за смену</th>
+                                                <th>Себестоимость</th>
+                                                <th>Комплект</th>
+                                            </tr>
+                                            <tbody>
+                                            <tr th:each="tool: ${list_tools}" class="row-tool">
+                                                <td class="column-table">
+                                                    <div class="column-table_checkbox-wrapp">
+                                                        <input class="column-table_checkbox ids" type="checkbox"
+                                                               name="">
+                                                        <input th:value="${tool.id}" hidden="hidden" type="text">
+                                                        <span class="tools-td-text table-td-text column-table_checkbox-number"
+                                                              th:utext="${toolStat.index}"></span>
+                                                    </div>
+                                                </td>
+                                                <td data-label="Наименование" th:utext="${tool.name}"></td>
+                                                <td data-label="Штрихкод" class="barcode-tool"
+                                                    th:utext="${tool.barcode}"></td>
+                                                <td data-label="Группа" th:utext="${tool.category}"></td>
+                                                <td data-label="Марка\Модель" th:utext="${tool.model}"></td>
+                                                <td data-label="Серийный номер" th:utext="${tool.serialNumber}"></td>
+                                                <td data-label="Комментарий" th:utext="${tool.comment}"></td>
+                                                <td data-label="Характеристики" th:utext="${tool.characteristics}"></td>
+                                                <td data-label="Состояние" th:utext="${tool.state}"></td>
+                                                <td data-label="Цена" class="price-tool"
+                                                    th:utext="${tool.priceByDay}"></td>
+                                                <td data-label="Себестоимость" th:utext="${tool.costPrice}"></td>
+                                                <td data-label="Комплект" th:utext="${tool.equip}"></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="btn-pimary__groups mt-3 mb-3">
+                                    <div class="btn-pimary__groups-wrapper mb-3">
+                                        <div class="mb-3 text-right">
+                                            <span class="btn-pimary__groups_title size">Действия</span>
+                                        </div>
+                                        <div class="mb-3 text-right">
+                                            <button id="create_new_project" type="submit"
+                                                    class="btn btn-primary width my-yellow">Создать проект и перейти в
+                                                смету
+                                            </button>
+                                        </div>
+                                        <div class="mb-3 text-right">
+                                            <a href="#" class="btn btn-primary width my-red">Удалить</a>
+                                        </div>
+
+                                        <div class="pagination-control col-lg-12 order-lg-1">
+                                            <!-- Bootstrap 4 -->
+                                            <nav aria-label="Навигация по страницам">
+                                                <ul class="pagination">
+                                                    <li class="page-item" th:if="${list_tools.totalPages > 0}"
+                                                        th:each="page_number : ${page_numbers}">
+                                                        <a class="page-link-m page-link"
+                                                           th:href="@{/project/create(size=${list_tools.size}, page=${page_numberStat.index})}"
+                                                           th:text="${page_numberStat.index}"
+                                                           th:class="${page_number==list_tools.number + 1} ? active"></a>
+                                                    </li>
+                                                </ul>
+                                            </nav>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:insert="fragments/footer.html"></div>
+<div th:insert="fragments/scripts.html"></div>
+<div>
+   <!-- <script type="text/javascript">
+        document.write('<script src="https://91.210.168.186/js/bootstrap-datepicker.js">' + '<\/script>');
+    </script>
+    <script type="text/javascript">
+        document.write('<script src="https://91.210.168.186/js/calendar.js">' + '<\/script>');
+    </script>-->
+    <script th:src="@{/js/bootstrap-datepicker.js}"></script>
+    <script th:src="@{/js/calendar.js}"></script>
+    <!--<script th:src="@{/js/TotalCounter.js}"></script>-->
+    <script th:src="@{/js/SearchBarcode.js}"></script>
+</div>
+
+</body>
+</html>

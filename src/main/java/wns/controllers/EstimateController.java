@@ -13,6 +13,7 @@ import wns.dto.EstimateDTO;
 import wns.entity.Estimate;
 import wns.entity.Project;
 import wns.services.ClientsService;
+import wns.services.ContactsService;
 import wns.services.EstimateNameService;
 import wns.services.EstimateService;
 import wns.services.ProjectService;
@@ -24,13 +25,13 @@ import java.io.*;
 import java.nio.file.FileSystems;
 
 @Controller
-@RequestMapping("estimate")
+@RequestMapping("/estimate")
 @RequiredArgsConstructor
 public class EstimateController {
     private final EstimateNameService estimateNameService;
     private final EstimateService estimateService;
     private final ProjectService projectService;
-    private final ClientsService clientsService;
+    private final ContactsService contactsService;
     private final ExcelEstimate excelEstimate;
     private final PDFEstimate pdfEstimate;
 
@@ -44,7 +45,7 @@ public class EstimateController {
         Estimate estimate = project.getEstimate();
         model.addAttribute("estimate", estimate);
         model.addAttribute("map_tools", estimateService.getToolsEstimate(estimate));
-        model.addAttribute("list_clients", clientsService.getAll());
+        model.addAttribute("list_contacts", contactsService.getAll());
         return "create_estimate";
     }
 

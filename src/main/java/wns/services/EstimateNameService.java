@@ -58,8 +58,8 @@ public class EstimateNameService {
     }
 
     @Transactional(readOnly = true)
-    public EstimateName getNameEstimateById(long id) {
-        return repo.findById(id).orElse(new EstimateName());
+    public EstimateNameDTO getNameEstimateById(long id) {
+        return new EstimateNameDTO(repo.findById(id).orElse(new EstimateName()));
     }
 
 }

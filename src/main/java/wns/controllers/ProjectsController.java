@@ -1,24 +1,27 @@
 package wns.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.apache.poi.util.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import wns.constants.Filter;
 import wns.constants.Messages;
-import wns.dto.*;
+import wns.dto.IdsDTO;
+import wns.dto.PageDataDTO;
+import wns.dto.ProjectDTO;
+import wns.dto.WorkingShiftDTO;
 import wns.entity.*;
 import wns.services.*;
+import wns.utils.ResponseHandler;
 import wns.utils.excel.ExcelArray;
 import wns.utils.excel.ExcelShipment;
-import wns.utils.ResponseHandler;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -80,6 +83,7 @@ public class ProjectsController {
 
     @PostMapping("/projects/create")
     @ResponseBody
+    @Transactional
     public ResponseEntity<Object> createProject(@RequestBody ProjectDTO projectDTO) {
         List<WorkingShiftDTO> workingShifts = projectDTO.getWorkingShifts();
         projectDTO.setStart(projectDTO.getStart());

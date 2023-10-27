@@ -80,4 +80,8 @@ public class ClientsService{
                 .map(ClientDTO::new)
                 .collect(Collectors.toList());
     }
+
+    public List<String> getAllNames() {
+        return clientsRepo.findAllNames();
+    }
 }

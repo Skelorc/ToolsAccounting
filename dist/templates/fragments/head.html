@@ -1,0 +1,51 @@
+<div th:fragment="header">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="">
+    <meta property="og:url" content="https://site.ru">
+    <meta property="og:title" content="MAD DOG">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="640">
+    <meta property="og:image:height" content="442">
+    <meta property="og:description" content="">
+    <meta property="og:site_name" content="Site-name">
+
+
+    <link rel="icon" type="image/x-icon" th:href="@{/dist/static/img/logo/favicon.ico}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Andrey">
+    <meta name="description" content="MAD DOG">
+    <meta name="keywords" content="MAD DOG">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="MAD DOG - сервис для учета и автоматизации проката">
+    <meta property="og:image" content="assets/img/icons/badge.jpg" th:src="@{/dist/static/img/icons/badge.jpg}">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="1024">
+    <meta property="og:description" content="Программа для учёта инструментов">
+    <link rel="image_src" href="/static/img/icons/badge.jpg" th:href="@{/dist/static/img/icons/badge.jpg}">
+    <meta name="theme-color" content="#179d82">
+    <meta th:name="_csrf" th:content="${_csrf.token}"/>
+    <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <link rel="preload" th:href="@{/dist/static/fonts/fontawesome/fontawesome-all-css.css}" href="/static/fonts/fontawesome/fontawesome-all-css.css" as="style">
+    <link rel="preload" href="/static/css/style.css" as="style"  th:href="@{/dist/static/css/style.css}">
+    <link rel="preload" href="/static/css/app.css" as="style" th:href="@{/dist/static/css/app.css}">
+    <link rel="preload" href="/static/css/media.css" as="style" th:href="@{/dist/static/css/media.css}">
+    <link rel="preload" href="/static/css/checkout.css" as="style" th:href="@{/dist/static/css/checkout.css}">
+    <link rel="preload" href="/static/css/main.css" as="style" th:href="@{/dist/static/css/main.css}">
+    <link rel="icon" href="../images/favicon.ico">
+
+    <link rel="stylesheet" href="/static/fonts/webfonts/fa-solid-900.ttf" th:href="@{/dist/static/fonts/webfonts/fa-solid-900.ttf}">
+    <link rel="stylesheet" href="/static/css/animation-iror.css" th:href="@{/dist/static/css/animation-iror.css}">
+    <link rel="stylesheet" href="/static/fonts/fontawesome/fontawesome.css"
+          th:href="@{/dist/static/fonts/fontawesome/fontawesome.css}">
+    <link rel="stylesheet" href="/static/fonts/fontawesome/fontawesome-all-css.css"
+          th:href="@{/dist/static/fonts/fontawesome/fontawesome-all-css.css}">
+    <script src="/static/fonts/fontawesome/all.js" th:src="@{/fonts/fontawesome/all.js}"></script>
+    <!--JQuery-->
+    <script src="/static/js/jquery.js" th:src="@{/dist/static/js/jquery.js}"></script>
+    <!-- jQuery Modal -->
+    <script th:src="@{/dist/static/js/jquery.modal.js}"></script>
+    <link rel="stylesheet" th:href="@{/dist/static/css/jquery.modal.css}"/>
+</div>

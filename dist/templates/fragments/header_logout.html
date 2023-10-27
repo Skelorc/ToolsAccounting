@@ -1,0 +1,18 @@
+<ul class="nav navbar-top-links navbar-right" style="flex-basis: 0px">
+  <li id="logout">
+    <form id="logoutForm"  class="form-flex" th:action="@{/logout}" method="post">
+      <span style="margin-right: 10px"
+        class="count-info"
+        th:text="${#authentication.getPrincipal().getUsername()}"
+      ></span>
+      <a
+        class="count-info"
+        href="javascript: document.getElementById('logoutForm').submit()"
+        role="menuitem"
+      >
+        <i class="fa fa-sign-out-alt f-20">
+          <input hidden type="submit" value="Sign Out" /> </i
+      ></a>
+    </form>
+  </li>
+</ul>

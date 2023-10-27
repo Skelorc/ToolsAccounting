@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" th:href="@{/dist/static/img/logo/favicon.ico}">
+    <link rel="stylesheet" type="text/css" th:href="@{/dist/static/css/contacts.css}">
+
+    <meta th:name="_csrf" th:content="${_csrf.token}"/>
+    <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <!--JQuery-->
+    <script type="text/javascript" th:src="@{/dist/static/js/jquery.js}"></script>
+    <!-- jQuery Modal -->
+    <script type="text/javascript" th:src="@{/dist/static/js/jquery.modal.js}"></script>
+    <link rel="stylesheet" th:href="@{/dist/static/css/jquery.modal.css}"/>
+    <title>Контакты</title>
+</head>
+<body>
+<div class="projects_wrapper d-flex">
+    <div class="projects_wrapper__main d-flex">
+        <div th:replace="fragments/menu_sidebar.html"></div>
+        <div class="main_general__content d-flex">
+            <div class="main_general__content_buttons d-flex pad-0_3">
+                <a href="/contacts/create" class="content_buttons__create d-flex">
+                    Создать
+                </a>
+            </div>
+            <div class="main_general__content_search d-flex pad-0_3">
+                <input class="content_search__input f-size_14 " id="barcode_search_input" name="username" type="search"
+                       placeholder="ФИО">
+            </div>
+
+            <form th:action="@{/contacts/filter}" method="get" class="main_general__content_form d-flex pad-0_3">
+                <select required name="filter" class="content_form__select">
+                    <option class="vs__selected vs__dropdown-toggle" value="">
+                        Выберите тип контакта
+                    </option>
+                    <option class="vs__selected vs__dropdown-toggle"
+                            th:each="role : ${roles_contacts}"
+                            th:text="${role.role}"
+                            th:value="${role.id}">
+                    </option>
+                </select>
+                <button type="submit" class="content_form__button">
+                    Найти
+                </button>
+            </form>
+            <div class="mb-3 text-right" style="margin-right: 50px">
+                <a href="/contacts" class="btn btn-primary width btn-add_vidacha my-yellow">Все</a>
+            </div>
+
+            <div class="main_general__content_table d-flex pad-0_3">
+                <table class="content_table__info">
+                    <tr class="content_table__info_name">
+                        <th class="content_table__info_pos">ФИО</th>
+                        <th class="content_table__info_pos">Роль</th>
+                        <th class="content_table__info_pos">Фото</th>
+                    </tr>
+                    <tr class="content_table__info_line row-tool" th:each="contact : ${list_contacts}">
+                        <td class="content_table__info_column">
+                            <input type="checkbox"/>
+                            <input hidden="hidden" th:value="${contact.id}"/>
+                            <span th:utext="${contactStat.index+1}"></span>
+                        </td>
+                        <td class="content_table__info_column">
+                            <a class="nav-link barcode-tool" style="font-size: medium"
+                               th:href="@{/contacts/edit/{id}/(id=${contact.id})}"
+                               th:utext="${contact.name}"></a>
+                        </td>
+                        <td class="content_table__info_column">
+                            <span class="tool_photos">
+                                <span th:each="photo : ${contact.photos}">
+                                    <a rel="modal:open" th:href="${'#'+photoStat.count+contact.id}">
+                                        <img class="info_column__img1" th:src="${photo}">
+                                        <div th:id="${photoStat.count+''+contact.id}" class="modal">
+                                            <img class="info_column__img2" th:src="${photo}">
+                                        </div>
+                                    </a>
+                                </span>
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+
+            <div class="pagination-control col-lg-12 order-lg-1">
+                <nav aria-label="Навигация по страницам">
+                    <ul class="pagination">
+                        <li class="page-item" th:if="${list_contacts.totalPages > 0}"
+                            th:each="page_number : ${page_numbers}">
+                            <a class="page-link-m page-link"
+                               th:href="@{/contacts(size=${list_contacts.size}, page=${page_numberStat.index})}"
+                               th:text="${page_numberStat.index}"
+                               th:class="${page_number==list_contacts.number + 1} ? active"></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div th:insert="fragments/footer.html"></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" th:src="@{/dist/static/js/SearchBarcode.js}"></script>
+<div th:insert="fragments/scripts.html"></div>
+</body>
+</html>

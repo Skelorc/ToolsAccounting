@@ -1,7 +1,12 @@
 package wns.repo;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
-import wns.entity.Comments;
+import wns.entity.Comment;
 
-public interface CommentsRepo extends PagingAndSortingRepository<Comments, Long> {
+import java.util.Optional;
+
+public interface CommentsRepo extends PagingAndSortingRepository<Comment, Long> {
+
+    Optional<Comment> findByToolsId(long id);
 }

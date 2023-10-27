@@ -49,7 +49,7 @@ public class PageableFilterService {
             case GET_TOOLS_BY_PROJECT -> {
                 Project byId = projectService.getById(id);
                 Set<Tools> tools = byId.getTools();
-                list.addAll(tools.stream().map(ToolsDTO::new).collect(Collectors.toList()));
+                list.addAll(tools.stream().map(ToolsDTO::new).toList());
             }
             case STOCK -> list.addAll(toolsService.findListByStatusAndProject(StatusTools.INSTOCK, id));
             case INSTOCK -> list.addAll(toolsService.getToolsByStatuses(StatusTools.INSTOCK));
@@ -62,30 +62,31 @@ public class PageableFilterService {
             case INDIVIDUAL -> list.addAll(clientsService.findListByTypeClient(TypeClients.INDIVIDUAL));
             case BLACKLIST -> list.addAll(clientsService.findListByInBlackList(true));
             case ALL_CLIENTS -> list.addAll(clientsService.getAllClientsDTO());
-            case PROJECTS_BY_CLIENTS -> list.addAll(clientsService.getById(id).getProjects().stream().map(ProjectDTO::new).collect(Collectors.toList()));
+            case PROJECTS_BY_CLIENTS -> list.addAll(clientsService.getById(id).getProjects().stream().map(ProjectDTO::new).toList());
             case ESTIMATE_NAME -> list.addAll(estimateNameService.getAll());
-            case CATEGORY -> list.addAll(categoryService.getAll().stream().map(CategoryDTO::new).collect(Collectors.toList()));
+            case CATEGORY -> list.addAll(categoryService.getAll().stream().map(CategoryDTO::new).toList());
             case ALL_PROJECTS -> list.addAll(projectService.getAll()
                     .stream()
                     .map(ProjectDTO::new)
-                    .collect(Collectors.toList()));
+                    .toList());
             case ALL_CONTACTS -> list.addAll(contactsService.getAll()
-                    .stream().map(ContactDTO::new).collect(Collectors.toList()));
-            case ALL_TOOLS -> list.addAll(toolsService.getAll().stream().map(ToolsDTO::new).collect(Collectors.toList()));
+                    .stream().map(ContactDTO::new).toList());
+            case ALL_TOOLS -> list.addAll(toolsService.getAll().stream().map(ToolsDTO::new).toList());
             case TOOLS_BY_FILTER -> {
                 Set<ToolsDTO> setData = new LinkedHashSet<>();
                 if (pageDataDTO.getCategoryId() == 0) {
                     setData.addAll(toolsService.getToolsByStatuses(StatusTools.INSTOCK));
-                } else {
+                } else{
                     Category category = categoryService.findById(pageDataDTO.getCategoryId());
-                    setData.addAll(category.getTools().stream().filter(x -> x.getStatus().getStatusTools().equals(StatusTools.INSTOCK)).map(ToolsDTO::new).collect(Collectors.toList()));
+                    setData.addAll(category.getTools().stream().filter(x -> x.getStatus().getStatusTools().equals(StatusTools.INSTOCK)).map(ToolsDTO::new).toList());
                 }
-                if (!pageDataDTO.getSection().isEmpty()) {
-                    setData.addAll(toolsService.getToolsBySection(pageDataDTO.getSection()).stream().map(ToolsDTO::new).collect(Collectors.toList()));
+                 if (!pageDataDTO.getSection().isEmpty()) {
+                     setData.clear();
+                    setData.addAll(toolsService.getToolsBySection(pageDataDTO.getSection()).stream().map(ToolsDTO::new).toList());
                 }
                 list.addAll(setData);
             }
-            case CONTACTS_BY_ROLE -> list.addAll(contactsService.getContactByRoleId(id).stream().map(ContactDTO::new).collect(Collectors.toList()));
+            case CONTACTS_BY_ROLE -> list.addAll(contactsService.getContactByRoleId(id).stream().map(ContactDTO::new).toList());
         }
         return list;
     }

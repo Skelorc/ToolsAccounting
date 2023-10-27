@@ -1,16 +1,12 @@
 package wns.entity;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -38,13 +34,16 @@ public class Contact {
     @JoinColumn(name = "role_contact_id", nullable = false)
     private RoleContact roleContact;
 
-    @OneToMany(mappedBy = "contact", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<Comments> commentsList;
-
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "photos_contacts", joinColumns = @JoinColumn(name = "contacts_id"))
     @Column(columnDefinition = "TEXT")
     private Set<String> photos = new HashSet<>();
+
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name = "comment_id", referencedColumnName = "id")
+    private Comment comment;
 
 
     @Override
